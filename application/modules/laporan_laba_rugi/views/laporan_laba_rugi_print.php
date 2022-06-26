@@ -1588,17 +1588,17 @@
 
 		<table width="98%" border="0" cellpadding="30">
 			<tr >
-				<td width="1%"></td>
-				<td width="98%">
+				<td width="5%"></td>
+				<td width="90%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
-							<td align="left" >
+							<td align="center" >
 								Disetujui Oleh
 							</td>
 							<td align="center" colspan="2">
 								Diperiksa Oleh
 							</td>
-							<td align="left">
+							<td align="center">
 								Dibuat Oleh
 							</td>
 						</tr>
@@ -1617,26 +1617,26 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="left">
-								<u>Deddy Sarwobiso</u><br />
-								<b>Direktur</b>
+							<td align="center">
+								<b><u>Deddy Sarwobiso</u><br />
+								Direktur</b>
 							</td>
-							<td align="left">
-								<u>Erika Sinaga</u><br />
-								<b>Dir. Keuangan & SDM</b>
+							<td align="center">
+								<b><u>Erika Sinaga</u><br />
+								Dir. Keuangan & SDM</b>
 							</td>
-							<td align="left">
-								<u>Annisa Putri</u><br />
-								<b>Dir. Pemasaran & Pengembangan</b>
+							<td align="center">
+								<b><u>Annisa Putri</u><br />
+								Dir. Pemasaran & Pengembangan</b>
 							</td>
-							<td align="left" >
-								<u>Hadi Sucipto</u><br />
-								<b>Ka. Plant</b>
+							<td align="center" >
+							<b><u>Hadi Sucipto</u><br />
+								Ka. Plant</b>
 							</td>
 						</tr>
 					</table>
 				</td>
-				<td width="1%"></td>
+				<td width="5%"></td>
 			</tr>
 		</table>
 		
