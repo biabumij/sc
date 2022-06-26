@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	//'hostname' => 'localhost',
+	'hostname' => 'localhost',
 	'username' => 'bibabumij',
 	//'username' => 'root',
 	'password' => 'J@k1q2w3e4r5t',
-	'password' => '',
+	//'password' => '',
 	'database' => 'biabumij_cuttingstone',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
