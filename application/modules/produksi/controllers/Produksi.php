@@ -1866,5 +1866,91 @@ class Produksi extends Secure_Controller {
 		echo json_encode($output);
 	}
 
+	public function form_akumulasi_biaya()
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'aggregat' => 1))->result_array();
+			$this->load->view('produksi/form_akumulasi_biaya', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_akumulasi_biaya()
+	{
+		$date_akumulasi = $this->input->post('date_akumulasi');
+		$total_nilai_biaya = $this->input->post('total_nilai_biaya');
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
+
+		$arr_insert = array(
+			'date_akumulasi' => date('Y-m-d', strtotime($date_akumulasi)),
+			'total_nilai_biaya' => $total_nilai_biaya,
+			'status' => 'PUBLISH',
+			'created_by' => $this->session->userdata('admin_id'),
+			'created_on' => date('Y-m-d H:i:s')
+		);
+
+		$this->db->insert('akumulasi_biaya', $arr_insert);
+
+		if ($this->db->trans_status() === FALSE) {
+			# Something went wrong.
+			$this->db->trans_rollback();
+			$this->session->set_flashdata('notif_error', 'Gagal membuat Akumulasi Biaya Produksi !!');
+			redirect('produksi/akumulasi_biaya');
+		} else {
+			# Everything is Perfect. 
+			# Committing data to the database.
+			$this->db->trans_commit();
+			$this->session->set_flashdata('notif_success', 'Berhasil membuat Akumulasi Biaya Produksi !!');
+			redirect('admin/produksi');
+		}
+	}
+
+	public function table_akumulasi_biaya()
+	{   
+        $data = array();
+		$filter_date = $this->input->post('filter_date');
+		if(!empty($filter_date)){
+			$arr_date = explode(' - ', $filter_date);
+			$this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($arr_date[1])));
+		}
+        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_biaya, pp.status');
+		$this->db->order_by('pp.date_akumulasi','desc');
+		$query = $this->db->get('akumulasi_biaya pp');
+		
+		//file_put_contents("D:\\table_akumulasi.txt", $this->db->last_query());
+		
+       if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['date_akumulasi'] = date('d F Y',strtotime($row['date_akumulasi']));
+                $row['total_nilai_biaya'] = number_format($row['total_nilai_biaya'],0,',','.');
+				$row['status'] = $row['status'];
+				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasiBiaya('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        echo json_encode(array('data'=>$data));
+    }
+
+	public function delete_akumulasi_biaya()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			$this->db->delete('akumulasi_biaya',array('id'=>$id));
+			{
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
+
 }
 ?>
