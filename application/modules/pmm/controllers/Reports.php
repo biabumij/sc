@@ -1758,25 +1758,15 @@ class Reports extends CI_Controller {
 			$nilai_produksi_harian_batu1020_bulan_ini = $volume_produksi_harian_batu1020_bulan_ini * $harga_produksi_harian_batu1020_bulan_ini;
 			$nilai_produksi_harian_batu2030_bulan_ini = $volume_produksi_harian_batu2030_bulan_ini * $harga_produksi_harian_batu2030_bulan_ini;
 
-			$nilai_bpp_abubatu = $total_bpp * $produksi_harian_bulan_ini['presentase_a'] / 100;
-			$nilai_bpp_batu0510 = $total_bpp * $produksi_harian_bulan_ini['presentase_b'] / 100;
-			$nilai_bpp_batu1020 = $total_bpp * $produksi_harian_bulan_ini['presentase_c'] / 100;
-			$nilai_bpp_batu2030 = $total_bpp * $produksi_harian_bulan_ini['presentase_d'] / 100;
-
-			$total_bpp_all = $nilai_bpp_abubatu + $nilai_bpp_batu0510 + $nilai_bpp_batu1020 + $nilai_bpp_batu2030;
-
 			$volume_akhir_produksi_harian_abubatu_bulan_ini = $volume_opening_balance_abubatu_bulan_lalu + $volume_produksi_harian_abubatu_bulan_ini;
-			
 			$harga_akhir_produksi_harian_abubatu_bulan_ini = ($nilai_opening_balance_abubatu_bulan_lalu + $nilai_produksi_harian_abubatu_bulan_ini) / $volume_akhir_produksi_harian_abubatu_bulan_ini;
 			$nilai_akhir_produksi_harian_abubatu_bulan_ini = $volume_akhir_produksi_harian_abubatu_bulan_ini * $harga_akhir_produksi_harian_abubatu_bulan_ini;
 
 			$volume_akhir_produksi_harian_batu0510_bulan_ini = $volume_opening_balance_batu0510_bulan_lalu + $volume_produksi_harian_batu0510_bulan_ini;
-
 			$harga_akhir_produksi_harian_batu0510_bulan_ini = ($nilai_opening_balance_batu0510_bulan_lalu + $nilai_produksi_harian_batu0510_bulan_ini) / $volume_akhir_produksi_harian_batu0510_bulan_ini;
 			$nilai_akhir_produksi_harian_batu0510_bulan_ini = $volume_akhir_produksi_harian_batu0510_bulan_ini * $harga_akhir_produksi_harian_batu0510_bulan_ini;
 
 			$volume_akhir_produksi_harian_batu1020_bulan_ini = $volume_opening_balance_batu1020_bulan_lalu + $volume_produksi_harian_batu1020_bulan_ini;
-
 			$harga_akhir_produksi_harian_batu1020_bulan_ini = ($nilai_opening_balance_batu1020_bulan_lalu + $nilai_produksi_harian_batu1020_bulan_ini) / $volume_akhir_produksi_harian_batu1020_bulan_ini;
 			$nilai_akhir_produksi_harian_batu1020_bulan_ini = $volume_akhir_produksi_harian_batu1020_bulan_ini * $harga_akhir_produksi_harian_batu1020_bulan_ini;
 
@@ -2392,10 +2382,6 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
 				<th class="text-right">-</th>
 				<th class="text-right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
-			</tr>
-			<tr class="table-active5">
-				<th class="text-center" colspan="8">TOTAL</th>
-				<th class="text-right"><?php echo number_format($total_bpp_all,0,',','.');?></th>
 			</tr>
 	    </table>
 		
