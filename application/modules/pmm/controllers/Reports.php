@@ -3528,7 +3528,9 @@ class Reports extends CI_Controller {
 
 			//file_put_contents("D:\\biaya_lainnya_jurnal.txt", $this->db->last_query());
 
-			$biaya_umum_administratif = $akumulasi_biaya['total'] + $biaya_umum_administratif_biaya['total'] + $biaya_umum_administratif_jurnal['total'];
+			$biaya_overhead_produksi = $akumulasi_biaya['total'];
+
+			$biaya_umum_administratif = $biaya_umum_administratif_biaya['total'] + $biaya_umum_administratif_jurnal['total'];
 
 			$biaya_lainnya = $biaya_lainnya_biaya['total'] + $biaya_lainnya_jurnal['total'];
 
@@ -3536,7 +3538,7 @@ class Reports extends CI_Controller {
 
 			$laba_kotor = $total_penjualan_all - $total_harga_pokok_pendapatan;
 
-			$total_biaya = $biaya_umum_administratif + $biaya_lainnya;
+			$total_biaya = $biaya_overhead_produksi +$biaya_umum_administratif + $biaya_lainnya;
 
 			$laba_sebelum_pajak = $laba_kotor - $total_biaya;
 
@@ -3651,6 +3653,22 @@ class Reports extends CI_Controller {
 			<tr class="table-active">
 	            <th class="text-left" colspan="5">BIAYA OPERASIONAL</th>
 	        </tr>
+			<tr class="table-active3">
+				<th></th>
+				<th class="text-left" colspan="3">Biaya Overhead Produksi</th>
+	            <th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($biaya_overhead_produksi,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+			</tr>
 			<tr class="table-active3">
 				<th>6-60100</th>
 				<th class="text-left" colspan="3">Biaya Umum & Administratif</th>
