@@ -389,7 +389,7 @@ class Reports extends CI_Controller {
 			<tr class="table-active3">
 	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Pembelian</i></th>
-				<th class="text-center">Ton</th>
+				<th class="text-center">Liter</th>
 				<th class="text-center"><?php echo number_format($pergerakan_bahan_baku_solar['volume'],2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pergerakan_bahan_baku_solar['nilai'],0,',','.');?></th>
