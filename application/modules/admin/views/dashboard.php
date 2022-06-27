@@ -95,12 +95,21 @@
                             </div>
                         </div>
                     </div>
+                    <?php
+                        $hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+                        ->from('hpp pp')
+                        ->order_by('date_hpp','desc')->limit(1)
+                        ->get()->row_array();
+                        
+                        //file_put_contents("D:\\hpp.txt", $this->db->last_query());
+                    ?>
                     <div class="col-sm-8">
                         <div class="panel panel-default">
                             <div class="panel-header">
                                 <div class="row">
                                     <div class="col-sm-12 text-left">
                                         <h4>Harga Jual - Bahan Jadi</h4>
+                                        <?php echo date('d-F-Y',strtotime($hpp['date_hpp']));?>
                                     </div>
                                 </div>
                                 
@@ -115,14 +124,6 @@
                                                 <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20 mm</th> 
                                                 <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30 mm</th>  
                                             <tr>
-                                                <?php
-                                                $hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
-                                                ->from('hpp pp')
-                                                ->order_by('date_hpp','desc')->limit(1)
-                                                ->get()->row_array();
-                                                
-                                                //file_put_contents("D:\\hpp.txt", $this->db->last_query());
-                                                ?>
                                             <tr>
                                                 <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['abubatu'],0,',','.');?></blink></th>
                                                 <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['batu0510'],0,',','.');?></blink></th> 
