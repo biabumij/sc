@@ -53,8 +53,9 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">NO.</th>
-                                                    <th width="50%">URAIAN</th>
-													<th width="45%">HARGA SATUAN</th>
+                                                    <th width="35%">URAIAN</th>
+                                                    <th width="30%">VOLUME</th>
+													<th width="30%">HARGA SATUAN</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -62,6 +63,9 @@
 
                                                     <td class="text-center">1.</td>
                                                     <td>Batu Split 0 - 0,5 (Abu Batu)</td>
+                                                    <td>
+                                                        <input type="number" step=".01" min="0" name="vol_abubatu" id="vol_abubatu" class="form-control input-sm text-center numberformat" required="" />
+                                                    </td>
 													<td>
                                                         <input type="number" step=".01" min="0" name="abubatu" id="abubatu" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>
@@ -69,6 +73,9 @@
 												<tr>
                                                     <td class="text-center">2.</td>
                                                     <td>Batu Split 0,5 - 1</td>
+                                                    <td>
+                                                        <input type="number" step=".01" min="0" name="vol_batu0510" id="vol_batu0510" class="form-control input-sm text-center numberformat" required="" />
+                                                    </td>
 													<td>
                                                         <input type="number" step=".01" min="0" name="batu0510" id="batu0510" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>
@@ -76,6 +83,9 @@
 												<tr>
                                                     <td class="text-center">3.</td>
                                                     <td>Batu Split 1 - 2</td>
+                                                    <td>
+                                                        <input type="number" step=".01" min="0" name="vol_batu1020" id="vol_batu1020" class="form-control input-sm text-center numberformat" required="" />
+                                                    </td>
 													<td>
                                                         <input type="number" step=".01" min="0" name="batu1020" id="batu1020" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>
@@ -83,6 +93,9 @@
 												<tr>
                                                     <td class="text-center">4.</td>
                                                     <td>Batu Split 2 - 3</td>
+                                                    <td>
+                                                        <input type="number" step=".01" min="0" name="vol_batu2030" id="vol_batu2030" class="form-control input-sm text-center numberformat" required="" />
+                                                    </td>
 													<td>
                                                         <input type="number" step=".01" min="0" name="batu2030" id="batu2030" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>

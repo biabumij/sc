@@ -1610,6 +1610,10 @@ class Produksi extends Secure_Controller {
 	public function submit_hpp()
 	{
 		$date_hpp = $this->input->post('date_hpp');
+		$vol_abubatu = $this->input->post('vol_abubatu');
+		$vol_batu0510 = $this->input->post('vol_batu0510');
+		$vol_batu1020 = $this->input->post('vol_batu1020');
+		$vol_batu2030 = $this->input->post('vol_batu2030');
 		$abubatu = $this->input->post('abubatu');
 		$batu0510 = $this->input->post('batu0510');
 		$batu1020 = $this->input->post('batu1020');
@@ -1624,6 +1628,10 @@ class Produksi extends Secure_Controller {
 			'batu0510' => $batu0510,
 			'batu1020' => $batu1020,
 			'batu2030' => $batu2030,
+			'vol_abubatu' => $vol_abubatu,
+			'vol_batu0510' => $vol_batu0510,
+			'vol_batu1020' => $vol_batu1020,
+			'vol_batu2030' => $vol_batu2030,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
@@ -1654,7 +1662,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_hpp >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_hpp <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030, pp.status');
+        $this->db->select('pp.id, pp.date_hpp, pp.vol_abubatu, pp.vol_batu0510, pp.vol_batu1020, pp.vol_batu2030, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030, pp.status');
 		$this->db->order_by('pp.date_hpp','desc');
 		$query = $this->db->get('hpp pp');
 		

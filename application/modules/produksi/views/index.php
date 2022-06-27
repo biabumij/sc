@@ -287,9 +287,13 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 														<th>Tanggal</th>
+                                                        <th> Volume Abu Batu</th>
 														<th>Abu Batu</th>
+                                                        <th>Volume Batu 0,5 - 10</th>
                                                         <th>Batu 0,5 - 10</th>
+                                                        <th>Volume Batu 10 - 20</th>
 														<th>Batu 10 - 20</th>
+                                                        <th>Volume Batu 20 - 30</th>
                                                         <th>Batu 20 - 30</th>
 														<th>Status</th>
                                                         <th>Tindakan</th>
@@ -779,14 +783,26 @@
 				{
                     "data": "date_hpp"
                 },
+                {
+                    "data": "vol_abubatu"
+                },
 				{
                     "data": "abubatu"
+                },
+                {
+                    "data": "vol_batu0510"
                 },
 				{
                     "data": "batu0510"
                 },
+                {
+                    "data": "vol_batu1020"
+                },
 				{
                     "data": "batu1020"
+                },
+                {
+                    "data": "vol_batu2030"
                 },
                 {
                     "data": "batu2030"
