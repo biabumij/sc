@@ -1,44 +1,45 @@
 <!doctype html>
 <html lang="en" class="fixed">
 <head>
-    <?php echo $this->Templates->Header();?>
+<?php echo $this->Templates->Header();?>
 </head>
-    
-    <style type="text/css">
-        #table-productions tr th{
-            vertical-align: middle;
-            text-align: center;
-        }
-        #table-productions tr td{
-            /*vertical-align: middle;*/
-            text-align: center;
-        }
-        .chart-container{
-            position: relative; width:100%;height:350px;background: #fff;
-        }
-        .square-label{
-            width: 10px;
-            height: 10px;
-            display: inline-block;
-        }
-        .square-grey{
-            width: 10px;
-            height: 10px;
-            background: #d5dcdc;
-            display: block;
-        }
-        .square-darkblue{
-            width: 10px;
-            height: 10px;
-            background: #323e51;
-            display: block;
-        }
-        .loading-chart{
+<style type="text/css">
+    .chart-container{
+        position: relative; width:100%;height:350px;background: #fff;
+    }
+    .loading-chart{
             text-align: center;
             align-content: center;
             display: none;
-        }
-    </style>
+    }
+    blink {
+    -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+    animation: 2s linear infinite kedip;
+    }
+    /* for Safari 4.0 - 8.0 */
+    @-webkit-keyframes kedip { 
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+    }
+    @keyframes kedip {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+    }
+</style>
 <body>
 <div class="wrap">
     
@@ -52,7 +53,6 @@
          // gmdate('F j, Y', strtotime('first day of january this year'));;
         $arr_date = date("d-m-Y", strtotime('first day of january this year')).' - '.date("d-m-Y", strtotime('last day of december this year'));
     }
-
 
     ?>
     <div class="page-body">
@@ -73,7 +73,7 @@
                                 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <h4>Lost & Profit</h4>
+                                        <h4>Laba Rugi</h4>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" name="" id="filter_lost_profit" class="form-control dtpicker" placeholder="Filter">
@@ -95,8 +95,49 @@
                             </div>
                         </div>
                     </div>
-            </div>  
-        </div>
+                    <div class="col-sm-8">
+                        <div class="panel panel-default">
+                            <div class="panel-header">
+                                <div class="row">
+                                    <div class="col-sm-12 text-left">
+                                        <h4>Harga Jual - Bahan Jadi</h4>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-center" border="2" id="table-harga">
+                                            <tr>
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 00 - 05 mm</th>
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 05 - 10 mm</th> 
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20 mm</th> 
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30 mm</th>  
+                                            <tr>
+                                                <?php
+                                                $hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+                                                ->from('hpp pp')
+                                                ->order_by('date_hpp','desc')->limit(1)
+                                                ->get()->row_array();
+                                                
+                                                //file_put_contents("D:\\hpp.txt", $this->db->last_query());
+                                                ?>
+                                            <tr>
+                                                <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['abubatu'],0,',','.');?></blink></th>
+                                                <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['batu0510'],0,',','.');?></blink></th> 
+                                                <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['batu1020'],0,',','.');?></blink></th> 
+                                                <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['batu2030'],0,',','.');?></blink></th>  
+                                            <tr> 
+                                            
+                                        </table>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
         <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
     </div>
 </div>
@@ -173,13 +214,13 @@
                         return data['labels'][tooltipItem[0]['index']];
                     },
                     beforeLabel : function(tooltipItem, data) {
-                        return 'Total Penjualan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']];
+                        return 'Pendapatan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']];
                     },
                     label: function(tooltipItem, data) {
-                        return 'Total Pembelian = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];
+                        return 'HPP = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];
                     },
                     afterLabel : function(tooltipItem, data) {
-                        return 'Profit = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+' %)';
+                        return 'Laba Rugi = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+' %)';
                     },
                     },
                 }

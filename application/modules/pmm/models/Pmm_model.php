@@ -3181,7 +3181,7 @@ class Pmm_model extends CI_Model {
                 $num_data = 0; 
             }
         }
-        $this->db->select('SUM(pp.display_price) as total');
+        $this->db->select('SUM(pp.price) as total');
         $this->db->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left');
         if($num_data > 0){
 			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
@@ -3192,6 +3192,7 @@ class Pmm_model extends CI_Model {
             $this->db->where('pp.date_production >=',date('Y-m-d',strtotime($ex_date[0])));
             $this->db->where('pp.date_production <=',date('Y-m-d',strtotime($ex_date[1])));
         }
+        $this->db->where("pp.product_id in (3,4,7,8,9,14,24)");
         $this->db->where('pp.status','PUBLISH');
         $this->db->where("ppo.status in ('OPEN','CLOSED')");
         $query = $this->db->get_where('pmm_productions pp')->row_array();
@@ -3223,7 +3224,7 @@ class Pmm_model extends CI_Model {
         }
 
         if(!empty($last_opname)){
-            $this->db->select('SUM(pp.display_price) as total, SUM(pp.display_volume) as volume');
+            $this->db->select('SUM(pp.price) as total, SUM(pp.volume) as volume');
             $this->db->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left');
             if(!empty($arr_date)){
                 $ex_date = explode(' - ', $arr_date);
@@ -3239,7 +3240,7 @@ class Pmm_model extends CI_Model {
                 
                 $this->db->where('pp.date_production <=',$last_opname);
             }
-            
+            $this->db->where("pp.product_id in (3,4,7,8,9,14,24)");
             $this->db->where('pp.status','PUBLISH');
             $this->db->where("ppo.status in ('OPEN','CLOSED')");
             $query = $this->db->get_where('pmm_productions pp')->row_array();
@@ -3263,26 +3264,108 @@ class Pmm_model extends CI_Model {
                 $num_data = 0; 
             }
         }
-        $this->db->select('SUM(prm.display_price) as total');
+        $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total');
         if($num_data > 0){
 			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
             $last_day_this_month  = date('Y-m-31',strtotime($month));
-            $this->db->where('prm.date_receipt >=',$first_day_this_month);
-            $this->db->where('prm.date_receipt <=',$last_day_this_month);
+            $this->db->where('pp.date_akumulasi >=',$first_day_this_month);
+            $this->db->where('pp.date_akumulasi <=',$last_day_this_month);
         }else {
-            $this->db->where('prm.date_receipt >=',date('Y-m-d',strtotime($ex_date[0])));
-            $this->db->where('prm.date_receipt <=',date('Y-m-d',strtotime($ex_date[1])));
+            $this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($ex_date[1])));
         }
-        $query = $this->db->get_where('pmm_receipt_material prm')->row_array();
-		
-		//file_put_contents("D:\\getRevenueCost.txt", $this->db->last_query());
+        $akumulasi_hpp = $this->db->get_where('akumulasi pp')->row_array();
+		//file_put_contents("D:\\akumulasi_hpp.txt", $this->db->last_query());
 
-        return $query['total'];
+        $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_biaya) as total');
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pp.date_akumulasi >=',$first_day_this_month);
+            $this->db->where('pp.date_akumulasi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $akumulasi_biaya = $this->db->get_where('akumulasi_biaya pp')->row_array();
+		//file_put_contents("D:\\akumulasi_biaya.txt", $this->db->last_query());
+
+        $this->db->select('pb.tanggal_transaksi, sum(pdb.jumlah) as total');
+        $this->db->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('c.coa_category',16);
+        $this->db->where('pb.status','PAID');
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pb.tanggal_transaksi >=',$first_day_this_month);
+            $this->db->where('pb.tanggal_transaksi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $biaya_umum_administratif_biaya = $this->db->get_where('pmm_biaya pb')->row_array();
+        //file_put_contents("D:\\biaya_umum_administratif_biaya.txt", $this->db->last_query());
+
+        $this->db->select('pb.tanggal_transaksi, sum(pdb.debit) as total');
+        $this->db->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('c.coa_category',16);
+        $this->db->where('pb.status','PAID');
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pb.tanggal_transaksi >=',$first_day_this_month);
+            $this->db->where('pb.tanggal_transaksi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $biaya_umum_administratif_jurnal = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
+        //file_put_contents("D:\\biaya_umum_administratif_jurnal.txt", $this->db->last_query());
+
+        $this->db->select('pb.tanggal_transaksi, sum(pdb.jumlah) as total');
+        $this->db->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('c.coa_category',17);
+        $this->db->where('pb.status','PAID');
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pb.tanggal_transaksi >=',$first_day_this_month);
+            $this->db->where('pb.tanggal_transaksi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $biaya_lainnya_biaya = $this->db->get_where('pmm_biaya pb')->row_array();
+        //file_put_contents("D:\\biaya_lainnya_biaya.txt", $this->db->last_query());
+
+        $this->db->select('pb.tanggal_transaksi, sum(pdb.debit) as total');
+        $this->db->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('c.coa_category',17);
+        $this->db->where('pb.status','PAID');
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pb.tanggal_transaksi >=',$first_day_this_month);
+            $this->db->where('pb.tanggal_transaksi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $biaya_lainnya_jurnal = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
+        //file_put_contents("D:\\biaya_lainnya_jurnal.txt", $this->db->last_query());
+        
+
+        return $akumulasi_hpp['total'] + $akumulasi_biaya['total'] + $biaya_umum_administratif_biaya['total'] + $biaya_umum_administratif_jurnal['total'] + $biaya_lainnya_biaya['total'] + $biaya_lainnya_jurnal['total'];
     }
+
 
     function getRevenueCostAll($arr_date=false,$before=false)
     {
-        $output = array('total'=>0); 
+        $output = array('total'=>0);
 
         if(!empty($arr_date)){
             $ex_date = explode(' - ', $arr_date);
@@ -3302,30 +3385,278 @@ class Pmm_model extends CI_Model {
         }
 
         if(!empty($last_opname)){
-            $this->db->select('SUM(prm.display_price) as total, SUM(prm.display_volume) as volume');
+            $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total');
             if(!empty($arr_date)){
                 $ex_date = explode(' - ', $arr_date);
                 
                 if($before){
-                    $this->db->where('prm.date_receipt <',$start_date);
+                    $this->db->where('pp.date_akumulasi <',$start_date);
                 }else {
-                    $this->db->where('prm.date_receipt >=',$start_date);
-                    $this->db->where('prm.date_receipt <=',$last_opname);  
+                    $this->db->where('pp.date_akumulasi >=',$start_date);
+                    $this->db->where('pp.date_akumulasi <=',$last_opname);  
                 }
                 
             }else {
                 
-                $this->db->where('prm.date_receipt <=',$last_opname);
+                $this->db->where('pp.date_akumulasi <=',$last_opname);
             }
             
-            $query = $this->db->get_where('pmm_receipt_material prm')->row_array();
-            //file_put_contents("D:\\getRevenueCostAll.txt", $this->db->last_query());
+            $query = $this->db->get_where('akumulasi pp')->row_array();
+
             $output = $query;
-        }
+            
+        }      
         
         return $output;
     }
 
+    function getRevenueCostAllAkumulasiBiaya($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_biaya) as total');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pp.date_akumulasi <',$start_date);
+                }else {
+                    $this->db->where('pp.date_akumulasi >=',$start_date);
+                    $this->db->where('pp.date_akumulasi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pp.date_akumulasi <=',$last_opname);
+            }
+            
+            $query = $this->db->get_where('akumulasi_biaya pp')->row_array();
+
+            $output = $query;
+            
+        }      
+        
+        return $output;
+    }
+
+    function getRevenueCostAllAdministrasiBiaya($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pb.tanggal_transaksi, sum(pdb.jumlah) as total');
+            $this->db->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left');
+            $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+            $this->db->where('c.coa_category',16);
+            $this->db->where('pb.status','PAID');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pb.tanggal_transaksi <',$start_date);
+                }else {
+                    $this->db->where('pb.tanggal_transaksi >=',$start_date);
+                    $this->db->where('pb.tanggal_transaksi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pb.tanggal_transaksi <=',$last_opname);
+            }
+            $query = $this->db->get_where('pmm_biaya pb')->row_array();
+
+            $output = $query;
+            
+        }
+          
+        return $output;
+    }
+
+    function getRevenueCostAllAdministrasiJurnal($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pb.tanggal_transaksi, sum(pdb.debit) as total');
+            $this->db->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left');
+            $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+            $this->db->where('c.coa_category',16);
+            $this->db->where('pb.status','PAID');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pb.tanggal_transaksi <',$start_date);
+                }else {
+                    $this->db->where('pb.tanggal_transaksi >=',$start_date);
+                    $this->db->where('pb.tanggal_transaksi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pb.tanggal_transaksi <=',$last_opname);
+            }
+            $query = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
+
+            $output = $query;
+            
+        }
+          
+        return $output;
+    }
+
+    function getRevenueCostAllLainnyaBiaya($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pb.tanggal_transaksi, sum(pdb.jumlah) as total');
+            $this->db->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left');
+            $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+            $this->db->where('c.coa_category',17);
+            $this->db->where('pb.status','PAID');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pb.tanggal_transaksi <',$start_date);
+                }else {
+                    $this->db->where('pb.tanggal_transaksi >=',$start_date);
+                    $this->db->where('pb.tanggal_transaksi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pb.tanggal_transaksi <=',$last_opname);
+            }
+            $query = $this->db->get_where('pmm_biaya pb')->row_array();
+
+            $output = $query;
+            
+        }
+          
+        return $output;
+    }
+
+    function getRevenueCostAllLainnyaJurnal($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pb.tanggal_transaksi, sum(pdb.debit) as total');
+            $this->db->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left');
+            $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+            $this->db->where('c.coa_category',17);
+            $this->db->where('pb.status','PAID');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pb.tanggal_transaksi <',$start_date);
+                }else {
+                    $this->db->where('pb.tanggal_transaksi >=',$start_date);
+                    $this->db->where('pb.tanggal_transaksi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pb.tanggal_transaksi <=',$last_opname);
+            }
+            $query = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
+
+            $output = $query;
+            
+        }
+          
+        return $output;
+    }
+    
     function getOverhead($month=false,$arr_date=false)
     {
         $total = 0;

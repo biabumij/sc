@@ -1660,7 +1660,7 @@ class Pmm extends CI_Controller {
 
 		}
 		
-        $label_chart = array(); 
+        $label_chart = array();
 
         while($month < $end)
         {    
@@ -1697,12 +1697,27 @@ class Pmm extends CI_Controller {
         $label_chart[] = 'Akumulasi';
         $all_revenue = $this->pmm_model->getRevenueAll($arr_date);
         $chart_revenue[] = number_format($all_revenue['total'],0,',','.');
-		
-		$all_revenuecost = $this->pmm_model->getRevenueCostAll($arr_date);
-        $chart_revenuecost[] = number_format($all_revenuecost['total'],0,',','.');
 
-        $all_laba = $all_revenue['total'] - $all_revenuecost['total'];
-        $chart_laba[] = number_format($all_laba,2,',','.');
+		$all_revenuecostakumulasibiaya = $this->pmm_model->getRevenueCostAllAkumulasiBiaya($arr_date);
+        $chart_revenuecostakumulasibiaya[] = number_format($all_revenuecostakumulasibiaya['total'],0,',','.');
+
+		$all_revenuecostadministrasibiaya = $this->pmm_model->getRevenueCostAllAdministrasiBiaya($arr_date);
+        $chart_revenuecostadministrasibiaya[] = number_format($all_revenuecostadministrasibiaya['total'],0,',','.');
+
+		$all_revenuecostadministrasijurnal = $this->pmm_model->getRevenueCostAllAdministrasiJurnal($arr_date);
+        $chart_revenuecostadministrasijurnal[] = number_format($all_revenuecostadministrasijurnal['total'],0,',','.');
+
+		$all_revenuecostlainnyabiaya = $this->pmm_model->getRevenueCostAllLainnyaBiaya($arr_date);
+        $chart_revenuecostlainnyabiaya[] = number_format($all_revenuecostlainnyabiaya['total'],0,',','.');
+
+		$all_revenuecostlainnyajurnal = $this->pmm_model->getRevenueCostAllLainnyaJurnal($arr_date);
+        $chart_revenuecostlainnyajurnal[] = number_format($all_revenuecostlainnyajurnal['total'],0,',','.');
+
+		$all_revenuecost = $this->pmm_model->getRevenueCostAll($arr_date);
+        $chart_revenuecost[] = number_format($all_revenuecost['total'] + $all_revenuecostakumulasibiaya['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total'],0,',','.');
+
+        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostakumulasibiaya['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total']);
+        $chart_laba[] = number_format($all_laba,0,',','.');
 
 		if($all_revenue['total'] > 0){
         	$all_net = ($all_laba / $all_revenue['total']) * 100;
@@ -1712,7 +1727,7 @@ class Pmm extends CI_Controller {
         $chart_net[] = number_format($all_net,2,'.',',');
 
         $datasets_laba[0] = array(
-            'label' => 'Persentase Profit',
+            'label' => 'Persentase Laba Rugi',
             'backgroundColor' => 'rgb(0,206,209)',
             'data' => $chart_net,
             'data_revenue' => $chart_revenue,
