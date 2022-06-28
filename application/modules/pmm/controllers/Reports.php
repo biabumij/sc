@@ -5564,7 +5564,7 @@ class Reports extends CI_Controller {
 				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
 				<th class = "text-center"><?php echo number_format($stok_volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($stok_nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
 				<th class = "text-center"><?php echo number_format($evaluasi_volume_batu0510,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($evaluasi_harga_batu0510,0,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($evaluasi_nilai_batu0510,0,',','.');?></th>
