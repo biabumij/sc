@@ -999,7 +999,7 @@
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->row_array();
 			
-			//file_put_contents("D:\\akumulasi.txt", $this->db->last_query());
+			//file_put_contents("D:\\tidak_ada_produksi.txt", $this->db->last_query());
 
 			$round_nilai_produksi_harian_abubatu_bulan_ini = ($total_bpp * $produksi_harian_bulan_ini['presentase_a'] / 100) * $tidak_ada_produksi['total'];
 			$round_nilai_produksi_harian_batu0510_bulan_ini = ($total_bpp * $produksi_harian_bulan_ini['presentase_b'] / 100) * $tidak_ada_produksi['total'];
