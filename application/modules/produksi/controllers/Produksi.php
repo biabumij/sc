@@ -1881,6 +1881,7 @@ class Produksi extends Secure_Controller {
 	{
 		$date_akumulasi = $this->input->post('date_akumulasi');
 		$total_nilai_biaya = $this->input->post('total_nilai_biaya');
+		$tidak_ada_produksi = $this->input->post('tidak_ada_produksi');
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -1888,6 +1889,7 @@ class Produksi extends Secure_Controller {
 		$arr_insert = array(
 			'date_akumulasi' => date('Y-m-d', strtotime($date_akumulasi)),
 			'total_nilai_biaya' => $total_nilai_biaya,
+			'tidak_ada_produksi' => $tidak_ada_produksi,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')

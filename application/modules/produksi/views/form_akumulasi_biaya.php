@@ -66,6 +66,23 @@
                                                         <input type="number" step=".01" min="0" name="total_nilai_biaya" id="total_nilai_biaya" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>
                                                 </tr>
+                                                <tr>
+
+                                                    <td style="vertical-align:middle">2.</td>
+                                                    <td style="vertical-align:middle">Apakah ada produksi?</td>
+													<td>
+                                                        <table width="100%">
+                                                            <tr>
+                                                                <td width="20%">YA </td>
+                                                                <td><input type="checkbox" name="tidak_ada_produksi" id="tidak_ada_produksi" value="0"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="20%">TIDAK </td>
+                                                                <td><input type="checkbox" name="tidak_ada_produksi" id="tidak_ada_produksi" value="1"/></td>
+                                                            </tr>
+                                                        <table>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>    
                                     </div>

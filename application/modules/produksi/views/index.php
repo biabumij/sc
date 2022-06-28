@@ -49,7 +49,7 @@
                                             <li><a href="<?= site_url('produksi/form_hpp'); ?>">HPP Pergerakan Bahan Jadi</a></li>
                                             <li><a href="<?= site_url('produksi/form_akumulasi_bahan_baku'); ?>">Akumulasi Pergerakan Bahan Baku</a></li>
                                             <li><a href="<?= site_url('produksi/form_akumulasi'); ?>">Akumulasi Pergerakan Bahan Jadi</a></li>
-                                            <li><a href="<?= site_url('produksi/form_akumulasi_biaya'); ?>">Akumulasi Biaya Produksi</a></li>
+                                            <li><a href="<?= site_url('produksi/form_akumulasi_biaya'); ?>">Akumulasi Biaya Overhead Produksi</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -66,7 +66,7 @@
                                     <li role="presentation"><a href="#hpp" aria-controls="hpp" role="tab" data-toggle="tab">HPP Pergerakan Bahan Jadi</a></li>
                                     <li role="presentation"><a href="#akumulasi_bahan_baku" aria-controls="akumulasi_bahan_baku" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Baku</a>
                                     <li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Jadi</a>
-                                    <li role="presentation"><a href="#akumulasi_biaya" aria-controls="akumulasi_biaya" role="tab" data-toggle="tab">Akumulasi Biaya Produksi</a>
+                                    <li role="presentation"><a href="#akumulasi_biaya" aria-controls="akumulasi_biaya" role="tab" data-toggle="tab">Akumulasi Biaya Overhead Produksi</a>
                                 </ul>
 
                                 <div class="tab-content">
