@@ -909,7 +909,7 @@
 			$volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 			$volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
 			$volume_produksi_harian_batu2030_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_d'];
-			
+
 			$tidak_ada_produksi = $this->db->select('pp.date_akumulasi, pp.tidak_ada_produksi as total')
 			->from('akumulasi_biaya pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
@@ -932,24 +932,19 @@
 			$harga_produksi_harian_batu1020_bulan_ini = ($volume_produksi_harian_batu1020_bulan_ini!=0)?($nilai_produksi_harian_batu1020_bulan_ini / $volume_produksi_harian_batu1020_bulan_ini)  * 1:0;
 			$harga_produksi_harian_batu2030_bulan_ini = ($volume_produksi_harian_batu2030_bulan_ini!=0)?($nilai_produksi_harian_batu2030_bulan_ini / $volume_produksi_harian_batu2030_bulan_ini)  * 1:0;
 
-			
-
-			$volume_akhir_produksi_harian_abubatu_bulan_ini = $volume_opening_balance_abubatu_bulan_lalu + $volume_produksi_harian_abubatu_bulan_ini;
-			
+			$volume_akhir_produksi_harian_abubatu_bulan_ini = round($volume_opening_balance_abubatu_bulan_lalu + $volume_produksi_harian_abubatu_bulan_ini,2);
 			$harga_akhir_produksi_harian_abubatu_bulan_ini = ($nilai_opening_balance_abubatu_bulan_lalu + $nilai_produksi_harian_abubatu_bulan_ini) / $volume_akhir_produksi_harian_abubatu_bulan_ini;
 			$nilai_akhir_produksi_harian_abubatu_bulan_ini = $volume_akhir_produksi_harian_abubatu_bulan_ini * $harga_akhir_produksi_harian_abubatu_bulan_ini;
 
-			$volume_akhir_produksi_harian_batu0510_bulan_ini = $volume_opening_balance_batu0510_bulan_lalu + $volume_produksi_harian_batu0510_bulan_ini;
-
+			$volume_akhir_produksi_harian_batu0510_bulan_ini = round($volume_opening_balance_batu0510_bulan_lalu + $volume_produksi_harian_batu0510_bulan_ini,2);
 			$harga_akhir_produksi_harian_batu0510_bulan_ini = ($nilai_opening_balance_batu0510_bulan_lalu + $nilai_produksi_harian_batu0510_bulan_ini) / $volume_akhir_produksi_harian_batu0510_bulan_ini;
 			$nilai_akhir_produksi_harian_batu0510_bulan_ini = $volume_akhir_produksi_harian_batu0510_bulan_ini * $harga_akhir_produksi_harian_batu0510_bulan_ini;
 
-			$volume_akhir_produksi_harian_batu1020_bulan_ini = $volume_opening_balance_batu1020_bulan_lalu + $volume_produksi_harian_batu1020_bulan_ini;
-
+			$volume_akhir_produksi_harian_batu1020_bulan_ini = round($volume_opening_balance_batu1020_bulan_lalu + $volume_produksi_harian_batu1020_bulan_ini,2);
 			$harga_akhir_produksi_harian_batu1020_bulan_ini = ($nilai_opening_balance_batu1020_bulan_lalu + $nilai_produksi_harian_batu1020_bulan_ini) / $volume_akhir_produksi_harian_batu1020_bulan_ini;
 			$nilai_akhir_produksi_harian_batu1020_bulan_ini = $volume_akhir_produksi_harian_batu1020_bulan_ini * $harga_akhir_produksi_harian_batu1020_bulan_ini;
 
-			$volume_akhir_produksi_harian_batu2030_bulan_ini = $volume_opening_balance_batu2030_bulan_lalu + $volume_produksi_harian_batu2030_bulan_ini;
+			$volume_akhir_produksi_harian_batu2030_bulan_ini = round($volume_opening_balance_batu2030_bulan_lalu + $volume_produksi_harian_batu2030_bulan_ini,2);
 			$harga_akhir_produksi_harian_batu2030_bulan_ini = ($nilai_opening_balance_batu2030_bulan_lalu + $nilai_produksi_harian_batu2030_bulan_ini) / $volume_akhir_produksi_harian_batu2030_bulan_ini;
 			$nilai_akhir_produksi_harian_batu2030_bulan_ini = $volume_akhir_produksi_harian_batu2030_bulan_ini * $harga_akhir_produksi_harian_batu2030_bulan_ini;
 		

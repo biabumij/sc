@@ -1016,21 +1016,19 @@
 			$harga_produksi_harian_batu1020_bulan_ini = ($volume_produksi_harian_batu1020_bulan_ini!=0)?($nilai_produksi_harian_batu1020_bulan_ini / $volume_produksi_harian_batu1020_bulan_ini)  * 1:0;
 			$harga_produksi_harian_batu2030_bulan_ini = ($volume_produksi_harian_batu2030_bulan_ini!=0)?($nilai_produksi_harian_batu2030_bulan_ini / $volume_produksi_harian_batu2030_bulan_ini)  * 1:0;
 
-			
-
-			$volume_akhir_produksi_harian_abubatu_bulan_ini = $volume_opening_balance_abubatu_bulan_lalu + $volume_produksi_harian_abubatu_bulan_ini;
+			$volume_akhir_produksi_harian_abubatu_bulan_ini = round($volume_opening_balance_abubatu_bulan_lalu + $volume_produksi_harian_abubatu_bulan_ini,2);
 			$harga_akhir_produksi_harian_abubatu_bulan_ini = ($nilai_opening_balance_abubatu_bulan_lalu + $nilai_produksi_harian_abubatu_bulan_ini) / $volume_akhir_produksi_harian_abubatu_bulan_ini;
 			$nilai_akhir_produksi_harian_abubatu_bulan_ini = $volume_akhir_produksi_harian_abubatu_bulan_ini * $harga_akhir_produksi_harian_abubatu_bulan_ini;
 
-			$volume_akhir_produksi_harian_batu0510_bulan_ini = $volume_opening_balance_batu0510_bulan_lalu + $volume_produksi_harian_batu0510_bulan_ini;
+			$volume_akhir_produksi_harian_batu0510_bulan_ini = round($volume_opening_balance_batu0510_bulan_lalu + $volume_produksi_harian_batu0510_bulan_ini,2);
 			$harga_akhir_produksi_harian_batu0510_bulan_ini = ($nilai_opening_balance_batu0510_bulan_lalu + $nilai_produksi_harian_batu0510_bulan_ini) / $volume_akhir_produksi_harian_batu0510_bulan_ini;
 			$nilai_akhir_produksi_harian_batu0510_bulan_ini = $volume_akhir_produksi_harian_batu0510_bulan_ini * $harga_akhir_produksi_harian_batu0510_bulan_ini;
 
-			$volume_akhir_produksi_harian_batu1020_bulan_ini = $volume_opening_balance_batu1020_bulan_lalu + $volume_produksi_harian_batu1020_bulan_ini;
+			$volume_akhir_produksi_harian_batu1020_bulan_ini = round($volume_opening_balance_batu1020_bulan_lalu + $volume_produksi_harian_batu1020_bulan_ini,2);
 			$harga_akhir_produksi_harian_batu1020_bulan_ini = ($nilai_opening_balance_batu1020_bulan_lalu + $nilai_produksi_harian_batu1020_bulan_ini) / $volume_akhir_produksi_harian_batu1020_bulan_ini;
 			$nilai_akhir_produksi_harian_batu1020_bulan_ini = $volume_akhir_produksi_harian_batu1020_bulan_ini * $harga_akhir_produksi_harian_batu1020_bulan_ini;
 
-			$volume_akhir_produksi_harian_batu2030_bulan_ini = $volume_opening_balance_batu2030_bulan_lalu + $volume_produksi_harian_batu2030_bulan_ini;
+			$volume_akhir_produksi_harian_batu2030_bulan_ini = round($volume_opening_balance_batu2030_bulan_lalu + $volume_produksi_harian_batu2030_bulan_ini,2);
 			$harga_akhir_produksi_harian_batu2030_bulan_ini = ($nilai_opening_balance_batu2030_bulan_lalu + $nilai_produksi_harian_batu2030_bulan_ini) / $volume_akhir_produksi_harian_batu2030_bulan_ini;
 			$nilai_akhir_produksi_harian_batu2030_bulan_ini = $volume_akhir_produksi_harian_batu2030_bulan_ini * $harga_akhir_produksi_harian_batu2030_bulan_ini;
 		
@@ -1366,23 +1364,21 @@
 			$stok_harga_produksi_harian_abubatu_bulan_ini = ($stok_volume_produksi_harian_abubatu_bulan_ini!=0)?($stok_nilai_produksi_harian_abubatu_bulan_ini / $stok_volume_produksi_harian_abubatu_bulan_ini)  * 1:0;
 			$stok_harga_produksi_harian_batu0510_bulan_ini = ($stok_volume_produksi_harian_batu0510_bulan_ini!=0)?($stok_nilai_produksi_harian_batu0510_bulan_ini / $stok_volume_produksi_harian_batu0510_bulan_ini)  * 1:0;
 			$stok_harga_produksi_harian_batu1020_bulan_ini = ($stok_volume_produksi_harian_batu1020_bulan_ini!=0)?($stok_nilai_produksi_harian_batu1020_bulan_ini / $stok_volume_produksi_harian_batu1020_bulan_ini)  * 1:0;
-			$stok_harga_produksi_harian_batu2030_bulan_ini = ($stok_volume_produksi_harian_batu2030_bulan_ini!=0)?($stok_nilai_produksi_harian_batu2030_bulan_ini / $stok_volume_produksi_harian_batu2030_bulan_ini)  * 1:0;
+			$stok_harga_produksi_harian_batu2030_bulan_ini = ($stok_volume_produksi_harian_batu2030_bulan_ini!=0)?($stok_nilai_produksi_harian_batu2030_bulan_ini / $stok_volume_produksi_harian_batu2030_bulan_ini)  * 1:0;	
 
-			
-
-			$stok_volume_akhir_produksi_harian_abubatu_bulan_ini = $stok_volume_opening_balance_abubatu_bulan_lalu + $stok_volume_produksi_harian_abubatu_bulan_ini;
+			$stok_volume_akhir_produksi_harian_abubatu_bulan_ini = round($stok_volume_opening_balance_abubatu_bulan_lalu + $stok_volume_produksi_harian_abubatu_bulan_ini,2);
 			$stok_harga_akhir_produksi_harian_abubatu_bulan_ini = ($stok_nilai_opening_balance_abubatu_bulan_lalu + $stok_nilai_produksi_harian_abubatu_bulan_ini) / $stok_volume_akhir_produksi_harian_abubatu_bulan_ini;
 			$stok_nilai_akhir_produksi_harian_abubatu_bulan_ini = $stok_volume_akhir_produksi_harian_abubatu_bulan_ini * $stok_harga_akhir_produksi_harian_abubatu_bulan_ini;
 
-			$stok_volume_akhir_produksi_harian_batu0510_bulan_ini = $stok_volume_opening_balance_batu0510_bulan_lalu + $stok_volume_produksi_harian_batu0510_bulan_ini;
+			$stok_volume_akhir_produksi_harian_batu0510_bulan_ini = round($stok_volume_opening_balance_batu0510_bulan_lalu + $stok_volume_produksi_harian_batu0510_bulan_ini,2);
 			$stok_harga_akhir_produksi_harian_batu0510_bulan_ini = ($stok_nilai_opening_balance_batu0510_bulan_lalu + $stok_nilai_produksi_harian_batu0510_bulan_ini) / $stok_volume_akhir_produksi_harian_batu0510_bulan_ini;
 			$stok_nilai_akhir_produksi_harian_batu0510_bulan_ini = $stok_volume_akhir_produksi_harian_batu0510_bulan_ini * $stok_harga_akhir_produksi_harian_batu0510_bulan_ini;
 
-			$stok_volume_akhir_produksi_harian_batu1020_bulan_ini = $stok_volume_opening_balance_batu1020_bulan_lalu + $stok_volume_produksi_harian_batu1020_bulan_ini;
+			$stok_volume_akhir_produksi_harian_batu1020_bulan_ini = round($stok_volume_opening_balance_batu1020_bulan_lalu + $stok_volume_produksi_harian_batu1020_bulan_ini,2);
 			$stok_harga_akhir_produksi_harian_batu1020_bulan_ini = ($stok_nilai_opening_balance_batu1020_bulan_lalu + $stok_nilai_produksi_harian_batu1020_bulan_ini) / $stok_volume_akhir_produksi_harian_batu1020_bulan_ini;
 			$stok_nilai_akhir_produksi_harian_batu1020_bulan_ini = $stok_volume_akhir_produksi_harian_batu1020_bulan_ini * $stok_harga_akhir_produksi_harian_batu1020_bulan_ini;
 
-			$stok_volume_akhir_produksi_harian_batu2030_bulan_ini = $stok_volume_opening_balance_batu2030_bulan_lalu + $stok_volume_produksi_harian_batu2030_bulan_ini;
+			$stok_volume_akhir_produksi_harian_batu2030_bulan_ini = round($stok_volume_opening_balance_batu2030_bulan_lalu + $stok_volume_produksi_harian_batu2030_bulan_ini,2);
 			$stok_harga_akhir_produksi_harian_batu2030_bulan_ini = ($stok_nilai_opening_balance_batu2030_bulan_lalu + $stok_nilai_produksi_harian_batu2030_bulan_ini) / $stok_volume_akhir_produksi_harian_batu2030_bulan_ini;
 			$stok_nilai_akhir_produksi_harian_batu2030_bulan_ini = $stok_volume_akhir_produksi_harian_batu2030_bulan_ini * $stok_harga_akhir_produksi_harian_batu2030_bulan_ini;
 		
@@ -1591,19 +1587,19 @@
 			<?php
 
 			$evaluasi_volume_abubatu = $volume_akhir_agregat_abubatu_bulan_ini_2 - $stok_volume_akhir_agregat_abubatu_bulan_ini_2;
-			$evaluasi_harga_abubatu = $harga_akhir_agregat_abubatu_bulan_ini_2;
+			$evaluasi_harga_abubatu = $stok_harga_akhir_agregat_abubatu_bulan_ini_2;
 			$evaluasi_nilai_abubatu = $nilai_akhir_agregat_abubatu_bulan_ini_2 - $stok_nilai_akhir_agregat_abubatu_bulan_ini_2;
 			
 			$evaluasi_volume_batu0510 = $volume_akhir_agregat_batu0510_bulan_ini_2 - $stok_volume_akhir_agregat_batu0510_bulan_ini_2;
-			$evaluasi_harga_batu0510 = $harga_akhir_agregat_batu0510_bulan_ini_2;
+			$evaluasi_harga_batu0510 = $stok_harga_akhir_agregat_batu0510_bulan_ini_2;
 			$evaluasi_nilai_batu0510 = $nilai_akhir_agregat_batu0510_bulan_ini_2 - $stok_nilai_akhir_agregat_batu0510_bulan_ini_2;
 
 			$evaluasi_volume_batu1020 = $volume_akhir_agregat_batu1020_bulan_ini_2 - $stok_volume_akhir_agregat_batu1020_bulan_ini_2;
-			$evaluasi_harga_batu1020 = $harga_akhir_agregat_batu1020_bulan_ini_2;
+			$evaluasi_harga_batu1020 = $stok_harga_akhir_agregat_batu1020_bulan_ini_2;
 			$evaluasi_nilai_batu1020 = $nilai_akhir_agregat_batu1020_bulan_ini_2 - $stok_nilai_akhir_agregat_batu1020_bulan_ini_2;
 
 			$evaluasi_volume_batu2030 = $volume_akhir_agregat_batu2030_bulan_ini_2 - $stok_volume_akhir_agregat_batu2030_bulan_ini_2;
-			$evaluasi_harga_batu2030 = $harga_akhir_agregat_batu2030_bulan_ini_2;
+			$evaluasi_harga_batu2030 = $stok_harga_akhir_agregat_batu2030_bulan_ini_2;
 			$evaluasi_nilai_batu2030 = $nilai_akhir_agregat_batu2030_bulan_ini_2 - $stok_nilai_akhir_agregat_batu2030_bulan_ini_2;
 
 			$stok_evaluasi_total_volume_akhir = $evaluasi_volume_abubatu + $evaluasi_volume_batu0510 + $evaluasi_volume_batu1020 + $evaluasi_volume_batu2030;
