@@ -119,10 +119,10 @@
                                     <div class="col-sm-12">
                                         <table class="table table-center" border="2" id="table-harga">
                                             <tr>
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 00 - 05 mm</th>
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 05 - 10 mm</th> 
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20 mm</th> 
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30 mm</th>  
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 00 - 05</th>
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 05 - 10</th> 
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20</th> 
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30</th>  
                                             <tr>
                                             <tr>
                                                 <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['abubatu'],0,',','.');?></blink></th>
