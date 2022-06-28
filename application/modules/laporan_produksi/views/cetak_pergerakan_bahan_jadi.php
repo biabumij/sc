@@ -840,8 +840,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
 			->where("pp.product_id = 7")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -855,8 +855,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
 			->where("pp.product_id = 8")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -870,8 +870,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
 			->where("pp.product_id = 3")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -885,8 +885,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
 			->where("pp.product_id = 4")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -902,8 +902,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
 			->where("pp.product_id = 24")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -921,8 +921,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$tanggal_awal' and '$tanggal_opening_balance'")
 			->where("pp.product_id = 14")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -1037,8 +1037,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
 			->where("pp.product_id = 7")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -1062,8 +1062,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
 			->where("pp.product_id = 8")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -1087,8 +1087,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
 			->where("pp.product_id = 3")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -1112,8 +1112,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
 			->where("pp.product_id = 4")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -1143,8 +1143,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
 			->where("pp.product_id = 24")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
@@ -1197,8 +1197,8 @@
 			->join('produk p', 'pp.product_id = p.id','left')
 			->where("pp.date_production between '$date1' and '$date2'")
 			->where("pp.product_id = 14")
+			->where("po.status in ('OPEN','CLOSED')")
 			->where("pp.status = 'PUBLISH'")
-			//->where("po.status = 'OPEN'")
 			->group_by('pp.product_id')
 			->get()->row_array();
 			
