@@ -5511,19 +5511,19 @@ class Reports extends CI_Controller {
 			<?php
 
 			$evaluasi_volume_abubatu = $volume_akhir_agregat_abubatu_bulan_ini_2 - $stok_volume_akhir_agregat_abubatu_bulan_ini_2;
-			$evaluasi_harga_abubatu = $harga_akhir_agregat_abubatu_bulan_ini_2;
+			$evaluasi_harga_abubatu = $stok_harga_akhir_agregat_abubatu_bulan_ini_2;
 			$evaluasi_nilai_abubatu = $nilai_akhir_agregat_abubatu_bulan_ini_2 - $stok_nilai_akhir_agregat_abubatu_bulan_ini_2;
 			
 			$evaluasi_volume_batu0510 = $volume_akhir_agregat_batu0510_bulan_ini_2 - $stok_volume_akhir_agregat_batu0510_bulan_ini_2;
-			$evaluasi_harga_batu0510 = $harga_akhir_agregat_batu0510_bulan_ini_2;
+			$evaluasi_harga_batu0510 = $stok_harga_akhir_agregat_batu0510_bulan_ini_2;
 			$evaluasi_nilai_batu0510 = $nilai_akhir_agregat_batu0510_bulan_ini_2 - $stok_nilai_akhir_agregat_batu0510_bulan_ini_2;
 
 			$evaluasi_volume_batu1020 = $volume_akhir_agregat_batu1020_bulan_ini_2 - $stok_volume_akhir_agregat_batu1020_bulan_ini_2;
-			$evaluasi_harga_batu1020 = $harga_akhir_agregat_batu1020_bulan_ini_2;
+			$evaluasi_harga_batu1020 = $stok_harga_akhir_agregat_batu1020_bulan_ini_2;
 			$evaluasi_nilai_batu1020 = $nilai_akhir_agregat_batu1020_bulan_ini_2 - $stok_nilai_akhir_agregat_batu1020_bulan_ini_2;
 
 			$evaluasi_volume_batu2030 = $volume_akhir_agregat_batu2030_bulan_ini_2 - $stok_volume_akhir_agregat_batu2030_bulan_ini_2;
-			$evaluasi_harga_batu2030 = $harga_akhir_agregat_batu2030_bulan_ini_2;
+			$evaluasi_harga_batu2030 = $stok_harga_akhir_agregat_batu2030_bulan_ini_2;
 			$evaluasi_nilai_batu2030 = $nilai_akhir_agregat_batu2030_bulan_ini_2 - $stok_nilai_akhir_agregat_batu2030_bulan_ini_2;
 
 			$stok_evaluasi_total_volume_akhir = $evaluasi_volume_abubatu + $evaluasi_volume_batu0510 + $evaluasi_volume_batu1020 + $evaluasi_volume_batu2030;
