@@ -2071,7 +2071,7 @@ class Laporan extends Secure_Controller {
         $pdf->setPrintHeader(true);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
         $pdf->setHtmlVSpace($tagvs);
-                $pdf->AddPage('L');
+                $pdf->AddPage('P');
 
         $arr_date = $this->input->get('filter_date');
 

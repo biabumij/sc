@@ -149,5 +149,53 @@
             	<th align="right" width="12%"><?php echo number_format($total,0,',','.');?></th>
             </tr>
 		</table>
+		<br />
+		<br />
+		<table width="98%" border="0" cellpadding="15">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+								Disetujui oleh
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center" >
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr>
+							<td align="center" height="40px">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center" >
+								<b><u>Hadi Sucipto</u><br />
+								Ka. Plant</b>
+							</td>
+							<td align="center" >
+								<b><u>Rifka Dian B.</u><br />
+								Pj. Keuangan & SDM</b>
+							</td>
+							<td align="center" >
+								<b><u>Dian Melinda S.</u><br />
+								Staff Keuangan & SDM</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
+		</table>
 	</body>
 </html>

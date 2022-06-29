@@ -46,7 +46,7 @@
 			<tr>
 				<td align="center">
 					<div style="display: block;font-weight: bold;font-size: 12px;">LAPORAN BIAYA</div>
-					<div style="display: block;font-weight: bold;font-size: 12px;"><?= $this->crud_global->GetField('pmm_setting_production',array('id'=>1),'nama_pt');?></div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">STONE CRUSHER</div>
 				</td>
 			</tr>
 		</table>
@@ -196,6 +196,54 @@
 			<tr class="active">
 				<td width="80%" style="padding-left:20px;">Total Biaya Lain - Lain</td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
+			</tr>
+		</table>
+		<br />
+		<br />
+		<table width="98%" border="0" cellpadding="15">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+								Disetujui oleh
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center" >
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr>
+							<td align="center" height="40px">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+							<td align="center">
+								
+							</td>
+						</tr>
+						<tr>
+							<td align="center" >
+								<b><u>Hadi Sucipto</u><br />
+								Ka. Plant</b>
+							</td>
+							<td align="center" >
+								<b><u>Rifka Dian B.</u><br />
+								Pj. Keuangan & SDM</b>
+							</td>
+							<td align="center" >
+								<b><u>Dian Melinda S.</u><br />
+								Staff Keuangan & SDM</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
 			</tr>
 		</table>
 	</body>
