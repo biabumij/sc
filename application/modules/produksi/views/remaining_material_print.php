@@ -180,105 +180,52 @@
 		</table>
 		<br />
 		<br />
-		<br />
-		<br />
-
-		<?php
-        $admin_logistik = $this->pmm_model->GetNameGroup(7);
-        $ka_logistik = $this->pmm_model->GetNameGroup(11);
-        $ka_plant = $this->pmm_model->GetNameGroup(8);
-        $manager_produksi = $this->pmm_model->GetNameGroup(4);
-        $direksi = $this->pmm_model->GetNameGroup(6);
-        $manager_keuangan = $this->pmm_model->GetNameGroup(5);
-        ?>
-        <table width="98%" border="0" cellpadding="0">
-            <tr >
-                <td width="5%"></td>
-                <td width="90%">
-                    <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
-                            <td align="center" >
-                                Dibuat Oleh
-                            </td>
-                            <td align="center" >
-                                Diperiksa Oleh
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td align="center" height="75px">
-                                
-                            </td>
-                            <td align="center">
-                                
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
-                            <td align="center" >
-                                <?= $admin_logistik['admin_name'];?>
-                            </td>
-                            <td align="center" >
-                                <?= $ka_logistik['admin_name'];?>
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
-                            <td align="center" >
-                                <b><?= $admin_logistik['admin_group_name'];?></b>
-                            </td>
-                            <td align="center" >
-                                <b><?= $ka_logistik['admin_group_name'];?></b>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td width="5%"></td>
-            </tr>
-        </table>
-        <br />
-        <br />
-        <br />
-        <br />
-        <table width="98%" border="0" cellpadding="0">
-            <tr >
-                <td width="5%"></td>
-                <td width="90%">
-                    <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
-                            <td align="center" >
-                                Menyetujui
-                            </td>
-                            <td align="center" >
-                                Mengetahui
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td align="center" height="75px">
-                                
-                            </td>
-                            <td align="center">
-                                
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
-                            <td align="center" >
-                                <?= $ka_plant['admin_name'];?>
-                            </td>
-                            <td align="center" >
-                                <?= $manager_produksi['admin_name'];?>
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
-                            <td align="center" >
-                                <b><?= $ka_plant['admin_group_name'];?></b>
-                            </td>
-                            <td align="center" >
-                                <b><?= $manager_produksi['admin_group_name'];?></b>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td width="5%"></td>
-            </tr>
-        </table>
+		<table width="98%" border="0" cellpadding="0">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+								Disetujui Oleh
+							</td>
+							<td align="center">
+								Diperiksa Oleh
+							</td>
+							<td align="center">
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="40px">
+							
+							</td>
+							<td align="center">
+							
+							</td>
+							<td align="center">
+							
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<b><u>Hadi Sucipto</u><br />
+								Ka. Plant</b>
+							</td>
+							<td align="center">
+								<b><br />
+								Keuangan</b>
+							</td>
+							<td align="center" >
+								<b><br />
+								Logistik</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
+		</table>
 
 		
 	</body>
