@@ -2107,9 +2107,9 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
 		
-        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, ppp.total as tagihan,  (select COALESCE(SUM((total)), 0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as pembayaran, ppp.total - (select COALESCE(SUM((total)), 0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as piutang');
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.total) + SUM(ppd.tax) as tagihan,(select sum(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as pembayaran, (SUM(ppd.total) + SUM(ppd.tax)) - (select sum(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as piutang');
 		
-		$this->db->join('pmm_pembayaran_penagihan_pembelian ppm', 'ppp.id = ppm.penagihan_pembelian_id','left');
+		$this->db->join('pmm_penagihan_penjualan_detail ppd', 'ppd.penagihan_id = ppp.id','left');
         
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
@@ -2130,7 +2130,7 @@ class Pmm_model extends CI_Model {
 		$this->db->order_by('ppp.tanggal_invoice','asc');
         $query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\GetReceiptMat5.txt", $this->db->last_query());
+		//file_put_contents("D:\\GetReceiptMat13.txt", $this->db->last_query());
 		
         $output = $query->result_array();
         return $output;
