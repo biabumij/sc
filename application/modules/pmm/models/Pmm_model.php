@@ -1658,9 +1658,9 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
 		
-        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.tanggal_jatuh_tempo, ppp.memo, ppp.total_tagihan as tagihan,  (select COALESCE(SUM((total)), 0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI") as pembayaran, ppp.total_tagihan - (select COALESCE(SUM((total)), 0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI") as hutang');
-		
-		$this->db->join('pmm_pembayaran_penagihan_pembelian ppm', 'ppp.id = ppm.penagihan_pembelian_id','left');
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.tanggal_jatuh_tempo, ppp.memo, SUM(ppd.total) + SUM(ppd.tax) as tagihan, (select sum(total) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI") as pembayaran, (SUM(ppd.total) + SUM(ppd.tax)) - (select sum(total) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI") as hutang');
+
+        $this->db->join('pmm_penagihan_pembelian_detail ppd', 'ppd.penagihan_pembelian_id = ppp.id','left');
         
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
