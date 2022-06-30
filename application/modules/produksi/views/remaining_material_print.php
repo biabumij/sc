@@ -41,45 +41,34 @@
 	  ?>
 	  
 	  <style type="text/css">
-	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
-	  	}
-	  	table.minimalistBlack {
-		  border: 0px solid #000000;
-		  width: 98%;
-		  text-align: left;
+		table tr.table-judul{
+			background-color: #e69500;
+			font-weight: bold;
+			font-size: 8px;
+			color: black;
 		}
-		table.minimalistBlack td, table.minimalistBlack th {
-		  border: 1px solid #000000;
-		  /*padding: 10px 4px;*/
+			
+		table tr.table-baris1{
+			background-color: #F0F0F0;
+			font-size: 8px;
 		}
-		table.minimalistBlack tr th {
-		  /*font-size: 14px;*/
-		  font-weight: bold;
-		  color: #000000;
-		  text-align: center;
+
+		table tr.table-baris1-bold{
+			background-color: #F0F0F0;
+			font-size: 8px;
+			font-weight: bold;
 		}
-		table tr.table-active{
-            background-color: #e69500;
-        }
-        table tr.table-active2{
-            background-color: #cac8c8;
-        }
-        table tr.table-active3{
-            background-color: #cccccc;
-        }
-        table tr.table-active4{
-            background-color: #eee;
-        }
-        table tr.table-active4 td{
-            font-weight: bold;
-        }
-		hr{
-			margin-top:0;
-			margin-bottom:30px;
+			
+		table tr.table-baris2{
+			font-size: 8px;
+			background-color: #E8E8E8;
 		}
-		h3{
-			margin-top:0;
+			
+		table tr.table-total{
+			background-color: #cccccc;
+			font-weight: bold;
+			font-size: 8px;
+			color: black;
 		}
 	  </style>
 
@@ -98,8 +87,8 @@
 		<br />
 		<br />
 		<br />
-		<table class="minimalistBlack" cellpadding="2" width="98%">
-			<tr class="table-active">
+		<table cellpadding="2" width="98%">
+			<tr class="table-judul">
                 <th width="5%">No</th>
                 <th width="15%">Tanggal</th>
                 <th width="20%">Bahan</th>
@@ -147,7 +136,7 @@
 					$query = $this->db->get('pmm_receipt_material pm');
 					//file_put_contents("D:\\row_2.txt", $this->db->last_query());
             		?>
-            		<tr class="table-active4">
+            		<tr class="table-baris1">
             			<td align="center"><?php echo $key + 1;?></td>
             			<td align="center"><?php echo date('d F Y',strtotime($row['date']));?></td>
             			<td><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
@@ -176,7 +165,7 @@
             	<?php
             }
             ?>	
-            <tr class="table-active3">
+            <tr class="table-total">
             	<th width="70%" align="right" colspan="7">TOTAL</th>
             	<th align="right" width="20%">
             		<table cellpadding="0" width="100%" border="0">
