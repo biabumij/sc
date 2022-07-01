@@ -20,7 +20,6 @@
                 <th class="text-center">Material</th>
                 <th class="text-center">Satuan</th>
                 <th class="text-center">Volume</th>
-                <th class="text-center">Total</th>
                 <th class="text-center">Catatan</th>
                 <th class="text-center">Tindakan</th>
             </tr>

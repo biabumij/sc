@@ -59,9 +59,6 @@
                 "data": "volume"
             },
             {
-                "data": "total"
-            },
-            {
                 "data": "notes"
             },
             {
