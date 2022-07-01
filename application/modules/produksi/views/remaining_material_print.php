@@ -86,17 +86,14 @@
 		</table>
 		<br />
 		<br />
-		<br />
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th width="5%">No</th>
-                <th width="15%">Tanggal</th>
-                <th width="20%">Bahan</th>
-                <th width="10%">Volume</th>
-                <th width="10%">Satuan</th>
-                <th width="10%">Harga</th>
-                <th width="20%">Total</th>
-                <th width="10%">Catatan</th>
+                <th width="5%" align="center">NO.</th>
+                <th width="15%" align="center">TANGGAL</th>
+                <th width="30%" align="center">URAIAN</th>
+                <th width="15%" align="center">VOLUME</th>
+                <th width="15%" align="center">SATUAN</th>
+                <th width="20%" align="center">CATATAN</th>
             </tr>
             <?php
             
@@ -136,21 +133,12 @@
 					$query = $this->db->get('pmm_receipt_material pm');
 					//file_put_contents("D:\\row_2.txt", $this->db->last_query());
             		?>
-            		<tr class="table-baris1">
+            		<tr class="table-baris2">
             			<td align="center"><?php echo $key + 1;?></td>
             			<td align="center"><?php echo date('d F Y',strtotime($row['date']));?></td>
             			<td><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
             			<td align="right"><?php echo  number_format($row['volume'],2,',','.');?></td>
             			<td align="center"><?php echo $measure;?></td>
-            			<td align="right"><?php echo  number_format($row['price'],2,',','.');?></td>
-            			<td>
-            				<table cellpadding="0" width="100%" border="0">
-            					<tr>
-            						<td width="20%" align="left">Rp.</td>
-            						<td width="80%" align="right"><?php echo number_format($row['total'],2,',','.');?></td>
-            					</tr>
-            				</table>
-            			</td>
             			<td align="center"><?php echo $row['notes'];?></td>
             		</tr>
             		<?php
@@ -164,23 +152,11 @@
             	</tr>
             	<?php
             }
-            ?>	
-            <tr class="table-total">
-            	<th width="70%" align="right" colspan="7">TOTAL</th>
-            	<th align="right" width="20%">
-            		<table cellpadding="0" width="100%" border="0">
-    					<tr>
-    						<td width="20%" align="left">Rp.</td>
-    						<td width="80%" align="right"><?php echo number_format($total,2,',','.');?></td>
-    					</tr>
-    				</table>
-            	</th>
-            	<th width="10%"></th>
-            </tr>
+            ?>
 		</table>
 		<br />
 		<br />
-		<table width="98%" border="0" cellpadding="0">
+		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -196,7 +172,7 @@
 								Dibuat Oleh
 							</td>
 						</tr>
-						<tr class="">
+						<tr>
 							<td align="center" height="40px">
 							
 							</td>
