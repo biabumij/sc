@@ -2107,7 +2107,7 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
 		
-        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.total) + SUM(ppd.tax) as tagihan,(select sum(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as pembayaran, (SUM(ppd.total) + SUM(ppd.tax)) - (select sum(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as piutang');
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.qty * price) + SUM(ppd.tax) as tagihan,(select sum(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as pembayaran, (SUM(ppd.total) + SUM(ppd.tax)) - (select sum(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as piutang');
 		
 		$this->db->join('pmm_penagihan_penjualan_detail ppd', 'ppd.penagihan_id = ppp.id','left');
         
