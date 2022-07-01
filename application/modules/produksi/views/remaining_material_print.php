@@ -138,7 +138,7 @@
             			<td align="center"><?php echo date('d F Y',strtotime($row['date']));?></td>
             			<td><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
             			<td align="right"><?php echo  number_format($row['volume'],2,',','.');?></td>
-            			<td align="center"><?php echo $measure;?></td>
+						<td align="center"><?php echo $measure;?></td>
             			<td align="center"><?php echo $row['notes'];?></td>
             		</tr>
             		<?php
