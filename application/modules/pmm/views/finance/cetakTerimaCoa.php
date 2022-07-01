@@ -57,7 +57,7 @@
         <table width="100%" border="0" cellpadding="3">
             <tr >
                 <td align="center">
-                    <div style=";font-weight: bold;font-size: 14px;border-bottom: 1px solid #000;border-top: 1px solid #000;text-transform: uppercase;">BUKTI PENGELUARAN</div>
+                    <div style=";font-weight: bold;font-size: 14px;border-bottom: 1px solid #000;border-top: 1px solid #000;text-transform: uppercase;">BUKTI PENERIMAAN</div>
                 </td>
             </tr>
         </table>
