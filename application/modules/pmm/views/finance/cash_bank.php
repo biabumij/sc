@@ -191,7 +191,7 @@
                 }
             ],
             responsive: true,
-            searching: false,
+            searching: true,
         });
 
         var transfer = $('#table-transfer').DataTable( {
@@ -214,7 +214,7 @@
                 }
             ],
             responsive: true,
-            searching: false,
+            searching: true,
         });
 
         var terima = $('#table-terima').DataTable( {
@@ -237,7 +237,7 @@
                 }
             ],
             responsive: true,
-            searching: false,
+            searching: true,
         });
 
 
