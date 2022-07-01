@@ -110,93 +110,59 @@
 	    <p><b>Keterangan</b> :</p>
 		<p><?= $row["memo"] ?></p>
 
-		<table width="98%" border="0" cellpadding="0">
-            <tr >
-                <td width="5%"></td>
-                <td width="90%">
-                    <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
-                            <td align="center" >
-                                Dibuat Oleh
-                            </td>
-                            <td align="center" >
-                                Diperiksa Oleh
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td align="center" height="75px">
-                                
-                            </td>
-                            <td align="center">
-                                
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
-                            <td align="center" >
-                                
-                            </td>
-                            <td align="center" >
-                                
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
-                            <td align="center" >
-                                <b>Adm. Logistik</b>
-                            </td>
-                            <td align="center" >
-                                <b>Ka. Logistik</b>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td width="5%"></td>
-            </tr>
-        </table>
-        <br />
-        <br />
-        <br />
-        <br />
         <table width="98%" border="0" cellpadding="0">
-            <tr >
-                <td width="5%"></td>
-                <td width="90%">
-                    <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
-                            <td align="center" >
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+                                Dibuat Oleh
+							</td>
+							<td align="center">
+								Diperiksa Oleh
+							</td>
+							<td align="center">
                                 Menyetujui
-                            </td>
-                            <td align="center" >
-                                Mengetahui
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td align="center" height="75px">
-                                
-                            </td>
+							</td>
                             <td align="center">
-                                
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
+                                Mengetahui
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="55px">
+							
+							</td>
+							<td align="center">
+							
+							</td>
+							<td align="center">
+							
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<b><u></u><br />
+								Adm. Logistik</b>
+							</td>
+							<td align="center">
+								<b><u>Vicky Irwana Yudha</u><br />
+								Ka. Logistik</b>
+							</td>
+							<td align="center" >
+								<b><u>Hadi Sucipto</u><br />
+								Ka. Plant</b>
+							</td>
                             <td align="center" >
-                                
-                            </td>
-                            <td align="center" >
-                                
-                            </td>
-                        </tr>
-                        <tr class="table-active3">
-                            <td align="center" >
-                                <b>Ka. Plant</b>
-                            </td>
-                            <td align="center" >
-                                <b>Dir. Produksi & Pengembangan</b>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td width="5%"></td>
-            </tr>
-        </table>
+								<b><u>Annisa Putri</u><br />
+								Dir. Produksi & Pengembangan</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
+		</table>
+
 	</body>
 </html>

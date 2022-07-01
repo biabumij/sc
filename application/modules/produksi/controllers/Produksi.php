@@ -1404,8 +1404,8 @@ class Produksi extends Secure_Controller {
 		$filter_date = $this->input->post('filter_date');
 		if(!empty($filter_date)){
 			$arr_date = explode(' - ', $filter_date);
-			$this->db->where('kb.date_prod >=',date('Y-m-d',strtotime($arr_date[0])));
-			$this->db->where('kb.date_prod <=',date('Y-m-d',strtotime($arr_date[1])));
+			$this->db->where('ppc.date_prod >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('ppc.date_prod <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
 		$no_prod = $this->input->post('no_prod');
 		if(!empty($no_prod)){

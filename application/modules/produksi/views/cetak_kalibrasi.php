@@ -89,31 +89,31 @@
 			?>
                <tr>
 					<td align="center">1.</td>
-					<td align="center"><?= $row["produk_a"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_a']),'nama_produk'); ?></td>
+					<td align="left"><?= $row["produk_a"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_a']),'nama_produk'); ?></td>
 					<td align="center"><?= $row["measure_a"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_a']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_a"]; ?> %</td>
 				</tr>
 				<tr>
 					<td align="center">2.</td>
-					<td align="center"><?= $row["produk_b"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_b']),'nama_produk'); ?></td>
+					<td align="left"><?= $row["produk_b"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_b']),'nama_produk'); ?></td>
 					<td align="center"><?= $row["measure_b"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_b']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_b"]; ?> %</td>
 				</tr>
 				<tr>
 					<td align="center">3.</td>
-					<td align="center"><?= $row["produk_c"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_c']),'nama_produk'); ?></td>
+					<td align="left"><?= $row["produk_c"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_c']),'nama_produk'); ?></td>
 					<td align="center"><?= $row["measure_c"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_c']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_c"]; ?> %</td>
 				</tr>
 				<tr>
 					<td align="center">4.</td>
-					<td align="center"><?= $row["produk_d"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_d']),'nama_produk'); ?></td>
+					<td align="left"><?= $row["produk_d"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_d']),'nama_produk'); ?></td>
 					<td align="center"><?= $row["measure_d"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_d']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_d"]; ?> %</td>
 				</tr>
 				<tr>
 					<td align="center">5.</td>
-					<td align="center"><?= $row["produk_e"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_e']),'nama_produk'); ?></td>
+					<td align="left"><?= $row["produk_e"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_e']),'nama_produk'); ?></td>
 					<td align="center"><?= $row["measure_e"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_e']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_e"]; ?> %</td>
 				</tr>
