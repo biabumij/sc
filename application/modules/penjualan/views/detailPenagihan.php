@@ -28,7 +28,7 @@
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
                             <li>
-                                <a href="<?php echo site_url('admin/productions'); ?>"> <i class="fa fa-calendar" aria-hidden="true"></i> PO Penjualan</a>
+                                <a href="<?php echo site_url('admin/penjualan'); ?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Penjualan</a>
                             </li>
                             <li><a>Penagihan Penjualan</a></li>
                         </ul>
@@ -196,7 +196,7 @@
 													<div class="form-group">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
 															<div class="col-sm-5 text-right">
-																<label><?= number_format($tax_0,0,',','.'); ?></label>
+																<label><?= number_format(0,0,',','.'); ?></label>
 																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_0;?>">
 															</div>
 													</div>                                                  
