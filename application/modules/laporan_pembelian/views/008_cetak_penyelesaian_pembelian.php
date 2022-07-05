@@ -73,10 +73,22 @@
 			background-color: #F0F0F0;
 			font-size: 7px;
 		}
+
+		table tr.table-baris1-bold{
+			background-color: #F0F0F0;
+			font-size: 7px;
+			font-weight: bold;
+		}
 			
 		table tr.table-baris2{
 			font-size: 7px;
 			background-color: #E8E8E8;
+		}
+
+		table tr.table-baris2-bold{
+			font-size: 7px;
+			background-color: #E8E8E8;
+			font-weight: bold;
 		}
 			
 		table tr.table-total{
@@ -85,11 +97,6 @@
 			font-size: 7px;
 			color: black;
 		}
-		table tr.table-bold{
-			font-size: 7px;
-			font-weight: bold;
-		}
-		
 	  </style>
 
 	</head>
