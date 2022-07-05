@@ -2105,7 +2105,7 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
 		
-        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppp.total) as tagihan, (select SUM(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as pembayaran, SUM(ppp.total) - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI") as piutang');
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppp.total) as tagihan, (select SUM(total) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= ' . $start_date . ' and ppm.tanggal_pembayaran <= ' . $end_date . ') as pembayaran, SUM(ppp.total) - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI"  and ppm.tanggal_pembayaran >= ' . $start_date . ' and ppm.tanggal_pembayaran <= ' . $end_date . ') as piutang');
         
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
@@ -2126,7 +2126,7 @@ class Pmm_model extends CI_Model {
 		$this->db->order_by('ppp.tanggal_invoice','asc');
         $query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\GetReceiptMat13.txt", $this->db->last_query());
+		file_put_contents("D:\\GetReceiptMat13.txt", $this->db->last_query());
 		
         $output = $query->result_array();
         return $output;
