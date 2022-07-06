@@ -1180,6 +1180,9 @@ class Productions extends Secure_Controller {
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
+		$total_volume = 0;
+		$total_dpp = 0;
+		$total_ppn = 0;
 		$date = $this->input->post('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -1187,7 +1190,7 @@ class Productions extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
 
-		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(pso.total) as all_total');
+		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(psod.qty) as qty, SUM(psod.total) as dpp, SUM(psod.tax) as tax, (pso.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pso.contract_date >=',$start_date);
             $this->db->where('pso.contract_date <=',$end_date);
@@ -1226,7 +1229,7 @@ class Productions extends Secure_Controller {
 						$arr['contract_number'] = $row['contract_number'];
 						$arr['nama_produk'] = $row['nama_produk'];
 						$arr['measure'] = $row['measure'];
-						$arr['qty'] = $row['qty'];
+						$arr['qty'] = number_format($row['qty'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['dpp'] = number_format($row['dpp'],0,',','.');
 						$arr['tax'] =  number_format($row['tax'],0,',','.');
@@ -1238,9 +1241,15 @@ class Productions extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['all_total'];
+					$total += $sups['jumlah'];
+					$total_volume += $sups['qty'];
+					$total_dpp += $sups['dpp'];
+					$total_ppn += $sups['tax'];
 					$sups['no'] =$no;
-					$sups['all_total'] = number_format($sups['all_total'],0,',','.');
+					$sups['qty'] = number_format($sups['qty'],2,',','.');
+					$sups['dpp'] = number_format($sups['dpp'],0,',','.');
+					$sups['tax'] = number_format($sups['tax'],0,',','.');
+					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 
 					$data[] = $sups;
@@ -1251,7 +1260,12 @@ class Productions extends Secure_Controller {
 			}
 		}
 
-		echo json_encode(array('data'=>$data,'all_total'=>number_format($total,0,',','.')));	
+		echo json_encode(array('data'=>$data,
+		'total_volume'=>number_format($total_volume,2,',','.'),
+		'total_dpp'=>number_format($total_dpp,0,',','.'),
+		'total_ppn'=>number_format($total_ppn,0,',','.'),
+		'total'=>number_format($total,0,',','.')
+	));	
 	}
 	
 	function table_date11()

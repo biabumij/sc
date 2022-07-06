@@ -94,18 +94,17 @@
 			<tr class="table-judul">
                 <th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
                 <th align="center" width="10%">PELANGGAN</th>
-				<th align="center" width="16%" rowspan="2">&nbsp; <br />NO. ORDER</th>
-                <th align="center" width="12%" rowspan="2">&nbsp; <br />MUTU BETON</th>
+				<th align="center" width="23%" rowspan="2">&nbsp; <br />NO. KONTRAK</th>
+                <th align="center" width="12%" rowspan="2">&nbsp; <br />PRODUK</th>
                 <th align="center" width="5%" rowspan="2">&nbsp; <br />SATUAN</th>
 				<th align="center" width="8%" rowspan="2">&nbsp; <br />VOLUME</th>
 				<th align="center" width="9%" rowspan="2">&nbsp; <br />HARGA SATUAN</th>
 				<th align="center" width="9%" rowspan="2">&nbsp; <br />DPP</th>
 				<th align="center" width="9%" rowspan="2">&nbsp; <br />PPN</th>
 				<th align="center" width="10%" rowspan="2">&nbsp; <br />JUMLAH</th>
-                <th align="center" width="7%" rowspan="2">&nbsp; <br />STATUS</th>
             </tr>
 			<tr class="table-judul">
-				<th align="center">TGL. ORDER</th>
+				<th align="center">TGL. KONTRAK</th>
 			</tr>
             <?php   
             if(!empty($data)){
@@ -129,16 +128,18 @@
 	            			<td align="right"><?php echo $mat['dpp'];?></td>
 							<td align="right"><?php echo $mat['tax'];?></td>
 							<td align="right"><?php echo $mat['total'];?></td>
-							<td align="center"><b><?php echo $mat['status'];?></b></td>
 	            		</tr>		
             			<?php
 					}
 					?>
 					<tr class="table-baris2-bold">
-            			<td align="right" colspan="9">JUMLAH</td>
-						<td align="right"><?php echo $row['all_total'];?></td>
-						<th align="center"></th>
-            		</tr>	
+            			<td align="right" colspan="5">JUMLAH</td>
+						<td align="right"><?php echo $row['qty'];?></td>
+						<td></td>
+						<td align="right"><?php echo $row['dpp'];?></td>
+						<td align="right"><?php echo $row['tax'];?></td>
+						<td align="right"><?php echo $row['jumlah'];?></td>
+            		</tr>
 				<?php		
             	}
             }else {
@@ -150,9 +151,10 @@
             }
             ?>
             <tr  class="table-total">
-            	<th align="right" colspan="9">TOTAL</th>
+            	<th align="right" colspan="7">TOTAL</th>
+				<th align="right"><?php echo number_format($total_dpp,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_ppn,0,',','.');?></th>
             	<th align="right"><?php echo number_format($total,0,',','.');?></th>
-				<th align="center"></th>
             </tr>		
 		</table>
 		<table width="98%" border="0" cellpadding="15">
