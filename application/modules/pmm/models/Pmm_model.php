@@ -1995,7 +1995,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 		
-        $this->db->select('pso.id, pso.contract_date, pso.contract_number, p.nama_produk, psod.measure, psod.qty, psod.price, (psod.qty * psod.price ) as dpp, psod.tax, (psod.qty * psod.price ) + psod.tax as total, pso.status');
+        $this->db->select('pso.id, pso.contract_date, pso.contract_number, p.nama_produk, psod.measure, SUM(psod.qty) as qty, (psod.qty * psod.price) / SUM(psod.qty) as price, SUM(psod.qty * psod.price) as dpp, SUM(psod.tax) as tax, (pso.total) as total, pso.status');
 		$this->db->join('pmm_sales_po_detail psod', 'pso.id = psod.sales_po_id', 'left');
         $this->db->join('produk p','psod.product_id = p.id','left');
 		$this->db->join('penerima ps', 'pso.client_id = ps.id','left');
@@ -2015,6 +2015,7 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('psod.product_id',$filter_material);
         }
   
+        $this->db->group_by('pso.id');
 		$this->db->order_by('pso.contract_number','asc');
 		$this->db->where("pso.status in ('OPEN','CLOSED')");
         $query = $this->db->get('pmm_sales_po pso');
@@ -2067,7 +2068,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('ppp.id, ppp.nama_pelanggan as nama, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.qty) as qty, ppd.measure, ppd.price, sum(ppd.total) as jumlah, sum(ppd.tax) as ppn, sum(ppd.total + ppd.tax) as total_price');
+        $this->db->select('ppp.id, ppp.nama_pelanggan as nama, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.qty) as qty, ppd.measure, sum(ppd.total) as jumlah, sum(ppd.tax) as ppn, sum(ppp.total) as total_price');
 		$this->db->join('pmm_penagihan_penjualan_detail ppd', 'ppp.id = ppd.penagihan_id', 'left');
         
 		if(!empty($start_date) && !empty($end_date)){
@@ -2085,8 +2086,8 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('ppd.material_id',$filter_material);
         }
 		
-		$this->db->order_by('ppp.tanggal_invoice','asc');
         $this->db->group_by('ppp.id','asc');
+		$this->db->order_by('ppp.tanggal_invoice','asc');
         $query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
 		//file_put_contents("D:\\GetReceiptMat12.txt", $this->db->last_query());

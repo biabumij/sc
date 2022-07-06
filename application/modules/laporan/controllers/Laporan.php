@@ -205,7 +205,7 @@ class Laporan extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $jumlah_all;
 					$sups['no'] = $no;
-					$sups['jumlah'] = number_format($jumlah,0,',','.');
+					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 
 					$arr_data[] = $sups;
@@ -412,7 +412,6 @@ class Laporan extends Secure_Controller {
 						$arr['memo'] = $row['memo'];
 						$arr['qty'] =  number_format($row['qty'],2,',','.');
 						$arr['measure'] = $row['measure'];
-						$arr['price'] = number_format($row['price'],0,',','.');	
 						$arr['jumlah'] = number_format($row['jumlah'],0,',','.');
 						$arr['ppn'] = number_format($row['ppn'],0,',','.');							
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
@@ -425,7 +424,7 @@ class Laporan extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $jumlah_all;
 					$sups['no'] =$no;
-					$sups['jumlah'] = number_format($jumlah,0,',','.');
+					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 					$arr_data[] = $sups;
 					$no++;

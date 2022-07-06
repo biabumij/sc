@@ -178,7 +178,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+            
         </div>
     </div>
     
@@ -290,10 +290,12 @@
             $('#tax-val-3').val(0);
             $('#tax-val-4').val(0);
             $('#tax-val-5').val(0);
+            $('#tax-val-6').val(0);
             var sub_total = $('#sub-total-val').val();
             var tax_3 = $('#tax-val-3').val();
             var tax_4 = $('#tax-val-4').val();
             var tax_5 = $('#tax-val-5').val();
+            var tax_6 = $('#tax-val-6').val();
             var total_total = $('#total-val').val();
             
             for (var i = 1; i <= total_product; i++) {
@@ -317,6 +319,10 @@
                     $('#tax-total-5').show();
                     tax_5 = parseInt(tax_5) + (parseInt($('#total-'+i).val()) * 2) / 100 ;
                 }
+                if(tax == 6){
+                    $('#tax-total-6').show();
+                    tax_6 = parseInt(tax_6) + (parseInt($('#total-'+i).val()) * 11) / 100 ;
+                }
                 
             }
             $('#sub-total-val').val(sub_total);
@@ -332,7 +338,10 @@
             $('#tax-val-5').val(tax_5);
             $('#tax-total-5 h5').text($.number( tax_5, 2,',','.' ));
 
-            total_total = parseInt(sub_total) + parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5);
+            $('#tax-val-6').val(tax_6);
+            $('#tax-total-6 h5').text($.number( tax_6, 2,',','.' ));
+
+            total_total = parseInt(sub_total) + parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5) + parseInt(tax_6);
             $('#total-val').val(total_total);
             $('#total').text($.number( total_total, 2,',','.' ));
         }
