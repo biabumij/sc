@@ -1242,7 +1242,6 @@ class Productions extends Secure_Controller {
 					}
 					$sups['mats'] = $mats;
 					$total += $sups['jumlah'];
-					$total_volume += $sups['qty'];
 					$total_dpp += $sups['dpp'];
 					$total_ppn += $sups['tax'];
 					$sups['no'] =$no;
@@ -1261,7 +1260,6 @@ class Productions extends Secure_Controller {
 		}
 
 		echo json_encode(array('data'=>$data,
-		'total_volume'=>number_format($total_volume,2,',','.'),
 		'total_dpp'=>number_format($total_dpp,0,',','.'),
 		'total_ppn'=>number_format($total_ppn,0,',','.'),
 		'total'=>number_format($total,0,',','.')

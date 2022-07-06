@@ -733,7 +733,7 @@
                                         $('#table-date10 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.contract_date + '</td><td class="text-left">' + row.contract_number + '</td><td class="text-center">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.qty + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.dpp + '</td><td class="text-right">' + row.tax + '</td><td class="text-right">' + row.total + '</td></tr>');
                                     });
                                 });
-                                $('#table-date10 tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td></td><td class="text-right" ><b>' + result.total_dpp + '</b></td><td class="text-right" ><b>' + result.total_ppn + '</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
+                                $('#table-date10 tbody').append('<tr><td class="text-right" colspan="7"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total_dpp + '</b></td><td class="text-right" ><b>' + result.total_ppn + '</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
                                 $('#table-date10 tbody').append('<tr><td class="text-center" colspan="10"><b>NO DATA</b></td></tr>');
                             }

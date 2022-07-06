@@ -205,7 +205,6 @@ class Laporan extends Secure_Controller {
 					}
 					$sups['mats'] = $mats;
 					$total += $sups['jumlah'];
-					$total_volume += $sups['qty'];
 					$total_dpp += $sups['dpp'];
 					$total_ppn += $sups['tax'];
 					$sups['no'] =$no;
@@ -226,7 +225,6 @@ class Laporan extends Secure_Controller {
 			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
-			$data['total_volume'] = $total_volume;
 			$data['total_dpp'] = $total_dpp;
 			$data['total_ppn'] = $total_ppn;
 	        $html = $this->load->view('laporan_penjualan/002_cetak_sales_order',$data,TRUE);
