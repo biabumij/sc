@@ -139,6 +139,7 @@ class Laporan extends Secure_Controller {
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
+		$jumlah_all = 0;
 		$date = $this->input->get('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -198,12 +199,13 @@ class Laporan extends Secure_Controller {
 						
 						
 						$arr['nama'] = $sups['nama'];
+						$jumlah_all += $row['total'];
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['jumlah'];
-					$sups['no'] =$no;
-					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
+					$total += $jumlah_all;
+					$sups['no'] = $no;
+					$sups['jumlah_all'] = number_format($jumlah_all,0,',','.');
 					
 
 					$arr_data[] = $sups;
