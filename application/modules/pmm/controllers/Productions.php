@@ -1188,7 +1188,7 @@ class Productions extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
 
-		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number');
+		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(pso.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pso.contract_date >=',$start_date);
             $this->db->where('pso.contract_date <=',$end_date);
@@ -1242,7 +1242,7 @@ class Productions extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $jumlah_all;
 					$sups['no'] = $no;
-					$sups['jumlah_all'] = number_format($jumlah_all,0,',','.');
+					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 
 					$data[] = $sups;
@@ -1353,7 +1353,7 @@ class Productions extends Secure_Controller {
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
-		$this->db->select('ppp.client_id, ppp.nama_pelanggan as nama');
+		$this->db->select('ppp.client_id, ppp.nama_pelanggan as nama, SUM(ppp.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -1403,7 +1403,7 @@ class Productions extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $jumlah_all;
 					$sups['no'] =$no;
-					$sups['jumlah_all'] = number_format($jumlah_all,0,',','.');
+					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 
 					$data[] = $sups;

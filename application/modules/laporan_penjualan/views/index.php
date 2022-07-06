@@ -732,7 +732,7 @@
                                         var a_no = a + 1;
                                         $('#table-date10 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.contract_date + '</td><td class="text-left">' + row.contract_number + '</td><td class="text-center">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.qty + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.dpp + '</td><td class="text-right">' + row.tax + '</td><td class="text-right">' + row.total + '</td></tr>');
                                     });
-                                    $('#table-date10 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="9"><b>JUMLAH</b></td><td class="text-right""><b>' + val.jumlah_all + '</b></td></tr>');
+                                    $('#table-date10 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="9"><b>JUMLAH</b></td><td class="text-right""><b>' + val.jumlah + '</b></td></tr>');
                                 });
                                 $('#table-date10 tbody').append('<tr><td class="text-right" colspan="9"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
@@ -871,7 +871,7 @@
                                         var a_no = a + 1;
                                         $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.qty + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.jumlah + '</td><td class="text-right">' + row.ppn + '</td><td class="text-right">' + row.total_price + '</td></tr>');
                                     });
-                                    $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="8"><b>JUMLAH</b></td><td class="text-right"><b>' + val.jumlah_all + '</b></td></tr>');
+                                    $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="8"><b>JUMLAH</b></td><td class="text-right"><b>' + val.jumlah + '</b></td></tr>');
                                 });
                                 $('#table-date12 tbody').append('<tr><td class="text-right" colspan="8"><b>TOTAL</b></td><td class="text-right"><b>' + result.total + '</b></td></tr>');
                             } else {
