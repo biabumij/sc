@@ -2068,7 +2068,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('ppp.id, ppp.nama_pelanggan as nama, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.qty) as qty, ppd.measure, sum(ppd.total) as jumlah, sum(ppd.tax) as ppn, sum(ppp.total) as total_price');
+        $this->db->select('ppp.id, ppp.nama_pelanggan as nama, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.qty) as qty, ppd.measure, sum(ppd.total) as jumlah, sum(ppd.tax) as ppn, (ppp.total) as total_price');
 		$this->db->join('pmm_penagihan_penjualan_detail ppd', 'ppp.id = ppd.penagihan_id', 'left');
         
 		if(!empty($start_date) && !empty($end_date)){
