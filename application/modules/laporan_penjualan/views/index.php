@@ -342,7 +342,7 @@
 																<th align="center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">JUMLAH TAGIHAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">PAJAK</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">PPN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">TOTAL</th>
                                                             </tr>
                                                             <tr>
