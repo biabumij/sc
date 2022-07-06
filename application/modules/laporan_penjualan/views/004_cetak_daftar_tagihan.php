@@ -136,7 +136,7 @@
 						<td align="right"><?php echo $row['qty'];?></td>
 						<td></td>
 						<td align="right"><?php echo $row['dpp'];?></td>
-						<td align="right"><?php echo $row['tax'];?></td>
+						<td></td>
 						<td align="right"><?php echo $row['jumlah'];?></td>
             		</tr>
 					<?php
@@ -152,7 +152,7 @@
             <tr class="table-total">
             	<th align="right" colspan="6"><b>TOTAL</b></th>
             	<th align="right"><?php echo number_format($total_dpp,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_ppn,0,',','.');?></th>
+				<th></th>
 				<th align="right"><?php echo number_format($total,0,',','.');?></th>
             </tr>
 			

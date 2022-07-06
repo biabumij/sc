@@ -371,7 +371,6 @@ class Laporan extends Secure_Controller {
 		$end_date = false;
 		$total = 0;
 		$total_dpp = 0;
-		$total_ppn = 0;
 		$date = $this->input->get('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -382,7 +381,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-		$this->db->select('ppp.client_id, ppp.nama_pelanggan as nama, SUM(ppd.qty) as qty, SUM(ppd.total) as dpp, SUM(ppd.tax) as tax, SUM(ppp.total) as jumlah');
+		$this->db->select('ppp.client_id, ppp.nama_pelanggan as nama, SUM(ppd.qty) as qty, SUM(ppd.total) as dpp, SUM(ppp.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -433,11 +432,9 @@ class Laporan extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $sups['jumlah'];
 					$total_dpp += $sups['dpp'];
-					$total_ppn += $sups['tax'];
 					$sups['no'] =$no;
 					$sups['qty'] = number_format($sups['qty'],3,',','.');
 					$sups['dpp'] = number_format($sups['dpp'],0,',','.');
-					$sups['tax'] = number_format($sups['tax'],0,',','.');
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 					$arr_data[] = $sups;
@@ -451,7 +448,6 @@ class Laporan extends Secure_Controller {
 			
 			$data['data'] = $arr_data;
 			$data['total_dpp'] = $total_dpp;
-			$data['total_ppn'] = $total_ppn;
 			$data['total'] = $total;
 	        $html = $this->load->view('laporan_penjualan/004_cetak_daftar_tagihan',$data,TRUE);
 
