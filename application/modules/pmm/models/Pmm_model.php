@@ -1995,7 +1995,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 		
-        $this->db->select('pso.id, pso.contract_date, pso.contract_number, p.nama_produk, psod.measure, SUM(psod.qty) as qty, (psod.qty * psod.price) / SUM(psod.qty) as price, SUM(psod.qty * psod.price) as dpp, SUM(psod.tax) as tax, (pso.total) as total, pso.status');
+        $this->db->select('pso.id, pso.contract_date, pso.contract_number, p.nama_produk, psod.measure, SUM(psod.qty) as qty, SUM(psod.qty * psod.price) / SUM(psod.qty) as price, SUM(psod.qty * psod.price) as dpp, SUM(psod.tax) as tax, (pso.total) as total, pso.status');
 		$this->db->join('pmm_sales_po_detail psod', 'pso.id = psod.sales_po_id', 'left');
         $this->db->join('produk p','psod.product_id = p.id','left');
 		$this->db->join('penerima ps', 'pso.client_id = ps.id','left');
