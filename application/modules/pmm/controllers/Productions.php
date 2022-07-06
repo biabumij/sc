@@ -1414,7 +1414,7 @@ class Productions extends Secure_Controller {
 					$total += $sups['jumlah'];
 					$total_dpp += $sups['dpp'];
 					$sups['no'] =$no;
-					$sups['qty'] = number_format($sups['qty'],3,',','.');
+					$sups['qty'] = number_format($sups['qty'],2,',','.');
 					$sups['dpp'] = number_format($sups['dpp'],0,',','.');
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					

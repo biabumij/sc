@@ -133,11 +133,11 @@
 					?>
 					<tr class="table-baris2-bold">
             			<td align="right" colspan="4">JUMLAH</td>
-						<td align="right"><?php echo $row['qty'];?></td>
+						<td align="right"><?php echo number_format($row['qty'],0,',','.');?></td>
 						<td></td>
-						<td align="right"><?php echo $row['dpp'];?></td>
+						<td align="right"><?php echo number_format($row['dpp'],0,',','.');?></td>
 						<td></td>
-						<td align="right"><?php echo $row['jumlah'];?></td>
+						<td align="right"><?php echo number_format($row['jumlah'],0,',','.');?></td>
             		</tr>
 					<?php
             		}	
