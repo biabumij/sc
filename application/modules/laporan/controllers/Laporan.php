@@ -447,8 +447,8 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['data'] = $arr_data;
-			$data['total_dpp'] = $total_dpp;
-			$data['total'] = $total;
+			$data['total_dpp'] = number_format($total_dpp,0,',','.');
+			$data['total'] =  number_format($total,0,',','.');
 	        $html = $this->load->view('laporan_penjualan/004_cetak_daftar_tagihan',$data,TRUE);
 
 	        
