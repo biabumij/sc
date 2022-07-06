@@ -865,7 +865,7 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-date12 tbody').append('<tr onclick="NextShowDaftarTagihanPenjualan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="3">' + val.nama + '</td><td class="text-right">' + val.qty + '</td><td></td>><td class="text-right">' + val.dpp + '</td></td>><td class="text-right">' + val.tax + '</td></td>><td class="text-right">' + val.jumlah + '</td></tr>');
+                                    $('#table-date12 tbody').append('<tr onclick="NextShowDaftarTagihanPenjualan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="3">' + val.nama + '</td><td class="text-right">' + val.qty + '</td><td></td><td class="text-right">' + val.dpp + '</td><td></td><td class="text-right">' + val.jumlah + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
                                         $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.qty + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.jumlah + '</td><td class="text-right">' + row.ppn + '</td><td class="text-right">' + row.total_price + '</td></tr>');
