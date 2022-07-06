@@ -1242,7 +1242,7 @@ class Productions extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $jumlah_all;
 					$sups['no'] = $no;
-					$sups['jumlah'] = number_format($jumlah_all,0,',','.');
+					$sups['jumlah_all'] = number_format($jumlah_all,0,',','.');
 					
 
 					$data[] = $sups;
@@ -1403,7 +1403,7 @@ class Productions extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $jumlah_all;
 					$sups['no'] =$no;
-					$sups['jumlah'] = number_format($jumlah_all,0,',','.');
+					$sups['jumlah_all'] = number_format($jumlah_all,0,',','.');
 					
 
 					$data[] = $sups;
