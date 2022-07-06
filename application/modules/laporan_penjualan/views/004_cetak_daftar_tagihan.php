@@ -133,7 +133,7 @@
 					?>
 					<tr class="table-baris2-bold">
             			<td align="right" colspan="8">JUMLAH</td>
-						<td align="right"><?php echo $row['jumlah_all'];?></td>
+						<td align="right"><?php echo $row['jumlah'];?></td>
             		</tr>
 					<?php
             		}	
