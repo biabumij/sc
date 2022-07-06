@@ -133,13 +133,9 @@
 					}
 					?>
 					<tr class="table-baris2-bold">
-            			<td align="right" colspan="5">JUMLAH</td>
-						<td align="right"><?php echo $row['qty'];?></td>
-						<td></td>
-						<td align="right"><?php echo $row['dpp'];?></td>
-						<td></td>
+            			<td align="right" colspan="9">JUMLAH</td>
 						<td align="right"><?php echo $row['jumlah'];?></td>
-            		</tr>
+            		</tr>	
 				<?php		
             	}
             }else {
@@ -151,9 +147,7 @@
             }
             ?>
             <tr  class="table-total">
-            	<th align="right" colspan="7">TOTAL</th>
-				<th align="right"><?php echo number_format($total_dpp,0,',','.');?></th>
-				<th></th>
+            	<th align="right" colspan="9">TOTAL</th>
             	<th align="right"><?php echo number_format($total,0,',','.');?></th>
             </tr>		
 		</table>
