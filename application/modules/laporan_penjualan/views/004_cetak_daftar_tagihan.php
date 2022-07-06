@@ -95,17 +95,15 @@
 				<th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
                 <th align="center" width="10%">PELANGGAN</th>
 				<th align="center" width="18%" rowspan="2">&nbsp; <br />NO. INVOICE</th>
-				<th align="center" width="15%" rowspan="2">&nbsp; <br />MEMO</th>
+				<th align="center" width="23%" rowspan="2">&nbsp; <br />MEMO</th>
 				<th align="center" width="8%" rowspan="2">&nbsp; <br />VOLUME</th>
 				<th align="center" width="8%" rowspan="2">&nbsp; <br />SATUAN</th>
-				<th align="center" width="8%">HARGA</th>
 				<th align="center" width="10%">JUMLAH</th>
 				<th align="center" width="8%" rowspan="2">&nbsp; <br />PPN</th>
 				<th align="center" width="10%" rowspan="2">&nbsp; <br />TOTAL</th>
             </tr>
 			<tr class="table-judul">
 				<th align="center">TGL. INVOICE</th>
-				<th align="center">SATUAN</th>
 				<th align="center">TAGIHAN</th>
 			</tr>
             <?php   
@@ -125,7 +123,6 @@
 							<td align="left"><?php echo $mat['nomor_invoice'];?></td>
 							<td align="left"><?php echo $mat['memo'];?></td>
 							<td align="right"><?php echo $mat['qty'];?></td>
-							<td align="right"><?php echo $mat['qty'];?></td>
 							<td align="center"><?php echo $mat['measure'];?></td>
 							<td align="right"><?php echo $mat['jumlah'];?></td>
 							<td align="right"><?php echo $mat['ppn'];?></td>
@@ -135,24 +132,28 @@
 					}
 					?>
 					<tr class="table-baris2-bold">
-            			<td align="right" colspan="7">JUMLAH</td>
+            			<td align="right" colspan="4">JUMLAH</td>
+						<td align="right"><?php echo $row['qty'];?></td>
+						<td></td>
+						<td align="right"><?php echo $row['dpp'];?></td>
+						<td align="right"><?php echo $row['tax'];?></td>
 						<td align="right"><?php echo $row['jumlah'];?></td>
-						<td align="right"><?php echo $row['ppn'];?></td>
-						<td align="right"><?php echo $row['total_price'];?></td>
             		</tr>
 					<?php
             		}	
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="10" align="center">NO DATA</td>
+            		<td width="100%" colspan="9" align="center">NO DATA</td>
             	</tr>
             	<?php
             }
             ?>
             <tr class="table-total">
-            	<th align="right" width="90%"><b>TOTAL</b></th>
-            	<th align="right" width="10%"><?php echo number_format($total,0,',','.');?></th>
+            	<th align="right" colspan="6"><b>TOTAL</b></th>
+            	<th align="right"><?php echo number_format($total_dpp,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_ppn,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total,0,',','.');?></th>
             </tr>
 			
 		</table>
