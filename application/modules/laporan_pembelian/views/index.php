@@ -420,16 +420,17 @@
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
                                                                 <th class="text-center">REKANAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. PEMESANAN</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. PO</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">DPP</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">PPN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">TOTAL</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">JUMLAH</th>
                                                             </tr>
                                                             <tr>
-                                                                <th class="text-center">TGL. PESAN</th>
+                                                                <th class="text-center">TGL. PO</th>
                                                             </tr>
 															</thead>
                                                             <tbody></tbody>
