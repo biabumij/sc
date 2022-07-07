@@ -700,6 +700,7 @@ class Receipt_material extends CI_Controller {
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
+		$jumlah_all = 0;
 		$date = $this->input->post('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -708,7 +709,7 @@ class Receipt_material extends CI_Controller {
 		}
 
 
-		$this->db->select('ps.nama, ppo.supplier_id, ppo.date_po, ppo.no_po, pod.measure, pod.price, SUM(pod.volume) as volume, pod.tax as ppn, SUM(pod.volume * pod.price) as jumlah, SUM(pod.volume * pod.price + pod.tax) as total_price');
+		$this->db->select('ps.nama, ppo.supplier_id, SUM(ppo.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppo.date_po >=',$start_date);
             $this->db->where('ppo.date_po <=',$end_date);
@@ -756,12 +757,12 @@ class Receipt_material extends CI_Controller {
 						
 						
 						$arr['nama'] = $sups['nama'];
+						$jumlah_all += $row['total_price'];
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['total_price'];
-					$sups['no'] =$no;
-					$sups['total_price'] = number_format($sups['total_price'],0,',','.');
+					$total += $sups['jumlah'];
+					$sups['no'] = $no;
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
 
@@ -865,13 +866,14 @@ class Receipt_material extends CI_Controller {
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
+		$jumlah_all = 0;
 		$date = $this->input->post('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
-		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppd.total) as jumlah, SUM(ppd.tax) as ppn, SUM(ppd.total + ppd.tax) as total_price');
+		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -886,7 +888,6 @@ class Receipt_material extends CI_Controller {
             $this->db->where('ppd.penagihan_pembelian_id',$purchase_order_no);
         }
 		
-		$this->db->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id');
 		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id');
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
@@ -916,15 +917,13 @@ class Receipt_material extends CI_Controller {
 						
 						
 						$arr['nama'] = $sups['nama'];
+						$jumlah_all += $row['total_price'];
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['total_price'];
+					$total += $sups['jumlah'];
 					$sups['no'] =$no;
-					$sups['total_price'] = number_format($sups['total_price'],0,',','.');
-					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
-					$sups['ppn'] = number_format($sups['ppn'],0,',','.');
-					
+					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');			
 
 					$data[] = $sups;
 					$no++;

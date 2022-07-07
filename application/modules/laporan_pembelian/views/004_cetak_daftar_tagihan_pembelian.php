@@ -93,7 +93,7 @@
 		<br />
 		<br />
 		<table cellpadding="3" width="98%">
-		<tr class="table-judul">
+			<tr class="table-judul">
 				<th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
                 <th align="center" width="15%">REKANAN</th>
 				<th align="center" width="15%" rowspan="2">&nbsp; <br />NO. INVOICE</th>
@@ -133,24 +133,22 @@
 					}
 					?>
 					<tr class="table-baris2-bold">
-            			<td align="right" colspan="6">JUMLAH</td>
+            			<td align="right" colspan="8">JUMLAH</td>
 						<td align="right"><?php echo $row['jumlah'];?></td>
-						<td align="right"><?php echo $row['ppn'];?></td>
-						<td align="right"><?php echo $row['total_price'];?></td>
             		</tr>
 					<?php
             		}
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="8" align="center">NO DATA</td>
+            		<td width="100%" colspan="9" align="center">NO DATA</td>
             	</tr>
             	<?php
             }
             ?>
             <tr class="table-total">
-            	<th align="right" width="92%">TOTAL</th>
-            	<th align="right" width="8%"><?php echo number_format($total,0,',','.');?></th>
+            	<th align="right" colspan="8">TOTAL</th>
+            	<th align="right"><?php echo number_format($total,0,',','.');?></th>
             </tr>
 			
 		</table>

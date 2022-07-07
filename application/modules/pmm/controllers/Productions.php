@@ -1188,7 +1188,7 @@ class Productions extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
 
-		$this->db->select('pso.id, ps.nama, pso.contract_date, pso.contract_number, SUM(pso.total) as jumlah');
+		$this->db->select('pso.id, ps.nama, SUM(pso.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pso.contract_date >=',$start_date);
             $this->db->where('pso.contract_date <=',$end_date);
@@ -1203,7 +1203,6 @@ class Productions extends Secure_Controller {
             $this->db->where('psod.sales_po_id',$purchase_order_no);
         }
 		
-		$this->db->join('pmm_sales_po_detail psod', 'pso.id = psod.sales_po_id', 'left');
 		$this->db->join('penerima ps', 'pso.client_id = ps.id');
 		$this->db->where("pso.status in ('OPEN','CLOSED')");
 		$this->db->group_by('pso.client_id');
@@ -1240,7 +1239,7 @@ class Productions extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $jumlah_all;
+					$total += $sups['jumlah'];
 					$sups['no'] = $no;
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					
@@ -1367,8 +1366,7 @@ class Productions extends Secure_Controller {
         if(!empty($purchase_order_no)){
             $this->db->where('ppd.penagihan_id',$purchase_order_no);
         }
-		
-		$this->db->join('pmm_penagihan_penjualan_detail ppd', 'ppp.id = ppd.penagihan_id','left');
+
 		$this->db->group_by('ppp.nama_pelanggan');
 		$this->db->order_by('ppp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
@@ -1401,7 +1399,7 @@ class Productions extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $jumlah_all;
+					$total += $sups['jumlah'];
 					$sups['no'] =$no;
 					$sups['jumlah'] = number_format($sups['jumlah'],0,',','.');
 					

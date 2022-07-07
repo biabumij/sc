@@ -325,8 +325,9 @@
                         date_pkp : $('#date_pkp').val(),
                         supplier_id : $('#supplier_id').val(),
                         total : $('#total').val(),
-                        //ppn : $('#ppn_val').val(),
-                        //pph : $('#pph_val').val(),
+                        ppn : $('#ppn').val(),
+                        pph : $('#pph').val(),
+                        pph : $('#ppn11').val(),
                         id : $('#purchase_order_id').val()
                     }
                     if($('#date_po').val() == '' || $('#subject').val() == '' || $('#date_pkp').val() == '' || $('#supplier').val() == ''){

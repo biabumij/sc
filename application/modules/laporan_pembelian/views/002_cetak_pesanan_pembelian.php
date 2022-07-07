@@ -94,17 +94,16 @@
 			<tr class="table-judul">
                 <th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
                 <th align="center" width="20%">REKANAN</th>
-				<th align="center" width="15%" rowspan="2">&nbsp; <br />NO. PEMESANAN</th>
-                <th align="center" width="10%" rowspan="2">&nbsp; <br />PRODUK</th>
+				<th align="center" width="20%" rowspan="2">&nbsp; <br />NO. PO</th>
+                <th align="center" width="12%" rowspan="2">&nbsp; <br />PRODUK</th>
                 <th align="center" width="5%" rowspan="2">&nbsp; <br />SATUAN</th>
 				<th align="center" width="10%" rowspan="2">&nbsp; <br />HARGA SATUAN</th>
                 <th align="center" width="8%" rowspan="2">&nbsp; <br />VOLUME</th>
 				<th align="center" width="10%" rowspan="2">&nbsp; <br />PPN</th>
                 <th align="center" width="10%" rowspan="2">&nbsp; <br />TOTAL</th>
-				<th align="center" width="7%" rowspan="2">&nbsp; <br />STATUS</th>
             </tr>
 			<tr class="table-judul">
-				<th align="center">TGL. PESAN</th>
+				<th align="center">TGL. PO</th>
 			</tr>
             <?php   
             if(!empty($data)){
@@ -112,7 +111,7 @@
             		?>
             		<tr class="table-baris1-bold">
             			<td align="center"><b><?php echo $key + 1;?></b></td>
-            			<td align="left" colspan="10"><b><?php echo $row['nama'];?></b></td>
+            			<td align="left" colspan="9"><b><?php echo $row['nama'];?></b></td>
             		</tr>
             		<?php
             		foreach ($row['mats'] as $mat) {
@@ -127,7 +126,6 @@
 	            			<td align="right"><?php echo $mat['volume'];?></td>
 							<td align="right"><?php echo $mat['ppn'];?></td>
 							<td align="right"><?php echo $mat['total_price'];?></td>
-							<td align="right"><b><?php echo $mat['status'];?></b></td>
 	            		</tr>					
             			<?php						
             		}
@@ -135,22 +133,20 @@
 					<tr class="table-baris2-bold">
             			<td align="right" colspan="8">JUMLAH</td>
 						<td align="right"><?php echo $row['jumlah'];?></td>
-						<th align="center"></th>
             		</tr>				
 				<?php					
             	}
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="11" align="center">NO DATA</td>
+            		<td width="100%" colspan="9" align="center">NO DATA</td>
             	</tr>
             	<?php
             }
             ?>
-           <tr  class="table-total">
+            <tr  class="table-total">
             	<th align="right "colspan="8">TOTAL</th>
             	<th align="right"><?php echo number_format($total,0,',','.');?></th>
-				<th align="center"></th>
             </tr>
 			
 		</table>
@@ -161,7 +157,7 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center">
-								Diperiksa oleh
+								Diperiksa Oleh
 							</td>
 							<td align="center" >
 								Disetujui Oleh

@@ -1557,7 +1557,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('ppo.id, ppo.date_po, ppo.no_po, p.nama_produk, pod.material_id, pod.measure, pod.price, pod.volume, pod.tax as ppn, (pod.volume * pod.price) as jumlah, (pod.volume * pod.price + pod.tax) as total_price, ppo.status');
+        $this->db->select('ppo.id, ppo.date_po, ppo.no_po, p.nama_produk, pod.material_id, pod.measure, SUM(pod.volume * pod.price) / SUM(pod.volume) as price, SUM(pod.volume) as volume, SUM(pod.tax) as ppn, (pod.volume * pod.price) as jumlah, SUM(ppo.total) as total_price, ppo.status');
 		$this->db->join('pmm_purchase_order_detail pod', 'ppo.id = pod.purchase_order_id', 'left');
         $this->db->join('produk p','pod.material_id = p.id','left');
         
@@ -1577,6 +1577,7 @@ class Pmm_model extends CI_Model {
         }
 		
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+        $this->db->group_by('ppo.id');
 		$this->db->order_by('ppo.date_po','asc');
         $query = $this->db->get('pmm_purchase_order ppo');
 		
@@ -1625,7 +1626,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.volume) as volume, ppd.measure, SUM(ppd.total) as jumlah, SUM(ppd.tax) as ppn, SUM(ppd.price * ppd.volume) + SUM(ppd.tax) as total_price');
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.memo, SUM(ppd.volume) as volume, ppd.measure, SUM(ppd.total) as jumlah, SUM(ppd.tax) as ppn, (ppp.total) as total_price');
 		$this->db->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id', 'left');
         
 		if(!empty($start_date) && !empty($end_date)){
@@ -1643,8 +1644,8 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('ppd.material_id',$filter_material);
         }
 		
+        $this->db->group_by('ppp.id');
 		$this->db->order_by('ppp.tanggal_invoice','asc');
-        $this->db->group_by('ppp.id','asc');
         $query = $this->db->get('pmm_penagihan_pembelian ppp');
 		
 		//file_put_contents("D:\\GetReceiptMat4.txt", $this->db->last_query());
@@ -2015,9 +2016,9 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('psod.product_id',$filter_material);
         }
   
+        $this->db->where("pso.status in ('OPEN','CLOSED')");
         $this->db->group_by('pso.id');
 		$this->db->order_by('pso.contract_number','asc');
-		$this->db->where("pso.status in ('OPEN','CLOSED')");
         $query = $this->db->get('pmm_sales_po pso');
 		
 		//file_put_contents("D:\\GetReceiptMat10.txt", $this->db->last_query());
