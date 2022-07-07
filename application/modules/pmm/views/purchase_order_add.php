@@ -113,6 +113,7 @@
                                     <tbody>
                                        <?php
                                        $no=1;
+                                       $subtotal = 0;
                                        $total = 0;
 									   $ppn = 0;
 									   $pph = 0;
@@ -136,6 +137,7 @@
                                        }
                                        ?>
                                        <?php
+                                       $subtotal += $dt['total'] * $dt['price'];
 										if($dt['tax_id'] == 3){
 											?>
 											<tr>
