@@ -750,7 +750,7 @@ class Receipt_material extends CI_Controller {
 						$arr['nama_produk'] = $row['nama_produk'];
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['volume'] =  number_format($row['volume'],2,',','.');
-						$arr['ppn'] = number_format($row['ppn'],02,',','.');
+						$arr['ppn'] = number_format($row['ppn'],0,',','.');
 						$arr['jumlah'] = number_format($row['jumlah'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
 						$arr['status'] = $row['status'];
