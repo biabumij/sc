@@ -452,7 +452,7 @@
 							<td align="center" >
 								Disetujui Oleh
 							</td>
-							<td align="center" colspan="2">
+							<td align="center">
 								Diperiksa Oleh
 							</td>
 							<td align="center">
@@ -475,20 +475,16 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u>Deddy Sarwobiso</u><br />
-								Direktur</b>
+								<u>Deddy Sarwobiso</u><br />
+								<b>Dir. Produksi, HSE & Sistem</b>
 							</td>
 							<td align="center">
-								<b><u>Erika Sinaga</u><br />
-								Dir. Keuangan & SDM</b>
+								<u>Endah Purnama S.</u><br />
+								<b>Staff. Produksi & HSE</b>
 							</td>
 							<td align="center">
-								<b><u>Annisa Putri</u><br />
-								Dir. Pemasaran & Pengembangan</b>
-							</td>
-							<td align="center" >
-							<b><u>Hadi Sucipto</u><br />
-								Ka. Plant</b>
+								<u>Hadi Sucipto</u><br />
+								<b>Ka. Plant</b>
 							</td>
 						</tr>
 					</table>
