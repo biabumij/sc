@@ -475,16 +475,16 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<u>Deddy Sarwobiso</u><br />
-								<b>Dir. Produksi, HSE & Sistem</b>
+								<b><u>Deddy Sarwobiso</u><br />
+								Dir. Produksi, HSE & Sistem</b>
 							</td>
 							<td align="center">
-								<u>Endah Purnama S.</u><br />
-								<b>Staff. Produksi & HSE</b>
+								<b><u>Endah Purnama S.</u><br />
+								Staff. Produksi & HSE</b>
 							</td>
 							<td align="center">
-								<u>Hadi Sucipto</u><br />
-								<b>Ka. Plant</b>
+							<b><u>Hadi Sucipto</u><br />
+								Ka. Plant</b>
 							</td>
 						</tr>
 					</table>
