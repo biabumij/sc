@@ -298,7 +298,7 @@
 				<th width="100%" align="left"></th>
 	        </tr>
 			<tr class="table-active4">
-				<th width="100%" align="left"><b>HARGA POKOK PENDAPATAN</b></th>
+				<th width="100%" align="left"><b>BEBAN POKOK PENDAPATAN</b></th>
 	        </tr>
 			<tr class="table-active2">
 				<th width="10%" align="center">5-50000</th>
