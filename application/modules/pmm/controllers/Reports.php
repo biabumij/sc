@@ -2486,7 +2486,7 @@ class Reports extends CI_Controller {
 
 	        ?>
 			
-			<!-- END PERGERAKAN BAHAN BAKU -->
+			<!-- End Pergerakan Bahan Baku -->
 			
 			<?php
 			
@@ -2769,7 +2769,7 @@ class Reports extends CI_Controller {
 
 			<!--- END LAPORAN BEBAN POKOK PRODUKSI --->
 
-			<!--- OPENING BALANCE --->
+			<!--- OPENING BALANCE PERGERAKAN BAHAN JADI --->
 
 			<?php
 
@@ -2808,13 +2808,9 @@ class Reports extends CI_Controller {
 			->order_by('cat.date','desc')->limit(1)
 			->get()->row_array();
 
-			//OPENING BALANCE
 			$volume_opening_balance_abubatu_bulan_lalu = $stock_opname_abubatu_ago['volume'];
-
 			$volume_opening_balance_batu0510_bulan_lalu = $stock_opname_batu0510_ago['volume'];
-
 			$volume_opening_balance_batu1020_bulan_lalu = $stock_opname_batu1020_ago['volume'];
-
 			$volume_opening_balance_batu2030_bulan_lalu = $stock_opname_batu2030_ago['volume'];
 
 			//RUMUS HARGA OPENING BALANCE
@@ -2832,8 +2828,8 @@ class Reports extends CI_Controller {
 			//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
 
 			$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
-			$harga_opening_balance_batu0510_bulan_lalu =  $harga_hpp['batu0510'];
-			$harga_opening_balance_batu1020_bulan_lalu =  $harga_hpp['batu1020'];
+			$harga_opening_balance_batu0510_bulan_lalu = $harga_hpp['batu0510'];
+			$harga_opening_balance_batu1020_bulan_lalu = $harga_hpp['batu1020'];
 			$harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp['batu2030'];
 
 			$vol_1 = round($volume_opening_balance_abubatu_bulan_lalu,2);
@@ -2845,6 +2841,7 @@ class Reports extends CI_Controller {
 			$nilai_opening_balance_batu0510_bulan_lalu = $vol_2 * $harga_opening_balance_batu0510_bulan_lalu;
 			$nilai_opening_balance_batu1020_bulan_lalu = $vol_3 * $harga_opening_balance_batu1020_bulan_lalu;
 			$nilai_opening_balance_batu2030_bulan_lalu = $vol_4 * $harga_opening_balance_batu2030_bulan_lalu;
+
 
 			?>
 
@@ -2866,14 +2863,14 @@ class Reports extends CI_Controller {
 			$volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 			$volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
 			$volume_produksi_harian_batu2030_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_d'];
-
+			
 			$tidak_ada_produksi = $this->db->select('pp.date_akumulasi, pp.tidak_ada_produksi as total')
 			->from('akumulasi_biaya pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->row_array();
 			
 			//file_put_contents("D:\\tidak_ada_produksi.txt", $this->db->last_query());
-			
+
 			$harga_produksi_harian_abubatu_bulan_ini = $harga_bpp;
 			$harga_produksi_harian_batu0510_bulan_ini = $harga_bpp;
 			$harga_produksi_harian_batu1020_bulan_ini = $harga_bpp;
@@ -2884,109 +2881,137 @@ class Reports extends CI_Controller {
 			$nilai_produksi_harian_batu1020_bulan_ini = $volume_produksi_harian_batu1020_bulan_ini * $harga_produksi_harian_abubatu_bulan_ini;
 			$nilai_produksi_harian_batu2030_bulan_ini = $volume_produksi_harian_batu2030_bulan_ini * $harga_produksi_harian_abubatu_bulan_ini;
 
+			$harga_hpp_now = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			->from('hpp pp')
+			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->get()->row_array();
+			
+			//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
+
+			$harga_hpp_now_abubatu = $harga_hpp_now['abubatu'];
+			$harga_hpp_now_batu0510 = $harga_hpp_now['batu0510'];
+			$harga_hpp_now_batu1020 = $harga_hpp_now['batu1020'];
+			$harga_hpp_now_batu2030 =  $harga_hpp_now['batu2030'];
+
 			$volume_akhir_produksi_harian_abubatu_bulan_ini = $volume_opening_balance_abubatu_bulan_lalu + $volume_produksi_harian_abubatu_bulan_ini;
-			$harga_akhir_produksi_harian_abubatu_bulan_ini = ($nilai_opening_balance_abubatu_bulan_lalu + $nilai_produksi_harian_abubatu_bulan_ini) / $volume_akhir_produksi_harian_abubatu_bulan_ini;
+			$harga_akhir_produksi_harian_abubatu_bulan_ini = $harga_hpp_now_abubatu;
 			$nilai_akhir_produksi_harian_abubatu_bulan_ini = $volume_akhir_produksi_harian_abubatu_bulan_ini * $harga_akhir_produksi_harian_abubatu_bulan_ini;
 
 			$volume_akhir_produksi_harian_batu0510_bulan_ini = $volume_opening_balance_batu0510_bulan_lalu + $volume_produksi_harian_batu0510_bulan_ini;
-			$harga_akhir_produksi_harian_batu0510_bulan_ini = ($nilai_opening_balance_batu0510_bulan_lalu + $nilai_produksi_harian_batu0510_bulan_ini) / $volume_akhir_produksi_harian_batu0510_bulan_ini;
+			$harga_akhir_produksi_harian_batu0510_bulan_ini = $harga_hpp_now_batu0510;
 			$nilai_akhir_produksi_harian_batu0510_bulan_ini = $volume_akhir_produksi_harian_batu0510_bulan_ini * $harga_akhir_produksi_harian_batu0510_bulan_ini;
 
 			$volume_akhir_produksi_harian_batu1020_bulan_ini = $volume_opening_balance_batu1020_bulan_lalu + $volume_produksi_harian_batu1020_bulan_ini;
-			$harga_akhir_produksi_harian_batu1020_bulan_ini = ($nilai_opening_balance_batu1020_bulan_lalu + $nilai_produksi_harian_batu1020_bulan_ini) / $volume_akhir_produksi_harian_batu1020_bulan_ini;
+			$harga_akhir_produksi_harian_batu1020_bulan_ini = $harga_hpp_now_batu1020;
 			$nilai_akhir_produksi_harian_batu1020_bulan_ini = $volume_akhir_produksi_harian_batu1020_bulan_ini * $harga_akhir_produksi_harian_batu1020_bulan_ini;
 
 			$volume_akhir_produksi_harian_batu2030_bulan_ini = $volume_opening_balance_batu2030_bulan_lalu + $volume_produksi_harian_batu2030_bulan_ini;
-			$harga_akhir_produksi_harian_batu2030_bulan_ini = ($nilai_opening_balance_batu2030_bulan_lalu + $nilai_produksi_harian_batu2030_bulan_ini) / $volume_akhir_produksi_harian_batu2030_bulan_ini;
+			$harga_akhir_produksi_harian_batu2030_bulan_ini = $harga_hpp_now_batu2030;
 			$nilai_akhir_produksi_harian_batu2030_bulan_ini = $volume_akhir_produksi_harian_batu2030_bulan_ini * $harga_akhir_produksi_harian_batu2030_bulan_ini;
 		
 			//ABU BATU
-			$stock_opname_abu_batu = $this->db->select('(cat.volume) as volume')
-			->from('pmm_remaining_materials_cat cat ')
-			->where("cat.date between '$date1' and '$date2'")
-			->where("cat.material_id = 7")
-			->where("cat.status = 'PUBLISH'")
-			->order_by('cat.date','desc')->limit(1)
+			$penjualan_abubatu_bulan_ini = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai')
+			->from('pmm_productions pp')
+			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->where("pp.date_production between '$date1' and '$date2'")
+			->where("pp.product_id = 7")
+			->where("po.status in ('OPEN','CLOSED')")
+			->where("pp.status = 'PUBLISH'")
+			->group_by('pp.product_id')
 			->get()->row_array();
+			
+			//file_put_contents("D:\\penjualan_abubatu_bulan_ini.txt", $this->db->last_query());
 
-			//file_put_contents("D:\\stock_opname_abu_batu.txt", $this->db->last_query());
-		
-			$harga_abubatu_fix = round($harga_akhir_produksi_harian_abubatu_bulan_ini,0);
+			$volume_penjualan_abubatu_bulan_ini = $penjualan_abubatu_bulan_ini['volume'];
+			$harga_penjualan_abubatu_bulan_ini = $harga_akhir_produksi_harian_abubatu_bulan_ini;
 
-			$volume_akhir_penjualan_abubatu_bulan_ini = $stock_opname_abu_batu['volume'];
+			$harga_abubatu_fix = round($harga_penjualan_abubatu_bulan_ini,0);
+			$nilai_penjualan_abubatu_bulan_ini = $volume_penjualan_abubatu_bulan_ini * $harga_abubatu_fix;
+
+			$volume_akhir_penjualan_abubatu_bulan_ini = $volume_akhir_produksi_harian_abubatu_bulan_ini - $volume_penjualan_abubatu_bulan_ini;
+			$volume_akhir_penjualan_abubatu_bulan_ini_fix = round($volume_akhir_penjualan_abubatu_bulan_ini,2);
 			$harga_akhir_penjualan_abubatu_bulan_ini = $harga_abubatu_fix;
-			$nilai_akhir_penjualan_abubatu_bulan_ini = $volume_akhir_penjualan_abubatu_bulan_ini *$harga_akhir_penjualan_abubatu_bulan_ini;
-
-			$volume_penjualan_abubatu_bulan_ini = $volume_akhir_produksi_harian_abubatu_bulan_ini - $volume_akhir_penjualan_abubatu_bulan_ini;
-			$harga_penjualan_abubatu_bulan_ini = $harga_akhir_penjualan_abubatu_bulan_ini;
-			$nilai_penjualan_abubatu_bulan_ini = $volume_penjualan_abubatu_bulan_ini * $harga_penjualan_abubatu_bulan_ini;
+			$nilai_akhir_penjualan_abubatu_bulan_ini = $volume_akhir_penjualan_abubatu_bulan_ini_fix * $harga_akhir_penjualan_abubatu_bulan_ini;
 
 			//BATU 0,5 - 10
-			$stock_opname_batu0510 = $this->db->select('(cat.volume) as volume')
-			->from('pmm_remaining_materials_cat cat ')
-			->where("cat.date between '$date1' and '$date2'")
-			->where("cat.material_id = 8")
-			->where("cat.status = 'PUBLISH'")
-			->order_by('cat.date','desc')->limit(1)
+			$penjualan_batu0510_bulan_ini = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai')
+			->from('pmm_productions pp')
+			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->where("pp.date_production between '$date1' and '$date2'")
+			->where("pp.product_id = 8")
+			->where("po.status in ('OPEN','CLOSED')")
+			->where("pp.status = 'PUBLISH'")
+			->group_by('pp.product_id')
 			->get()->row_array();
+			
+			//file_put_contents("D:\\penjualan_batu0510_bulan_ini.txt", $this->db->last_query());
 
-			//file_put_contents("D:\\stock_opname_batu0510.txt", $this->db->last_query());
-		
-			$harga_batu0510_fix = round($harga_akhir_produksi_harian_batu0510_bulan_ini,0);
+			$volume_penjualan_batu0510_bulan_ini = $penjualan_batu0510_bulan_ini['volume'];
+			$harga_penjualan_batu0510_bulan_ini = $harga_akhir_produksi_harian_batu0510_bulan_ini;
 
-			$volume_akhir_penjualan_batu0510_bulan_ini = $stock_opname_batu0510['volume'];
-			$harga_akhir_penjualan_batu0510_bulan_ini = $harga_batu0510_fix;
-			$nilai_akhir_penjualan_batu0510_bulan_ini = $volume_akhir_penjualan_batu0510_bulan_ini *$harga_akhir_penjualan_batu0510_bulan_ini;
+			$harga_batu0510_fix = round($harga_penjualan_batu0510_bulan_ini,0);
+			$nilai_penjualan_batu0510_bulan_ini = $volume_penjualan_batu0510_bulan_ini * $harga_batu0510_fix;
 
-			$volume_penjualan_batu0510_bulan_ini = $volume_akhir_produksi_harian_batu0510_bulan_ini - $volume_akhir_penjualan_batu0510_bulan_ini;
-			$harga_penjualan_batu0510_bulan_ini = $harga_akhir_penjualan_batu0510_bulan_ini;
-			$nilai_penjualan_batu0510_bulan_ini = $volume_penjualan_batu0510_bulan_ini * $harga_penjualan_batu0510_bulan_ini;
+			$volume_akhir_penjualan_batu0510_bulan_ini = $volume_akhir_produksi_harian_batu0510_bulan_ini - $volume_penjualan_batu0510_bulan_ini;
+			$volume_akhir_penjualan_batu0510_bulan_ini_fix = round($volume_akhir_penjualan_batu0510_bulan_ini,2);
+			$harga_akhir_penjualan_batu0510_bulan_ini =  $harga_batu0510_fix;
+			$nilai_akhir_penjualan_batu0510_bulan_ini = $volume_akhir_penjualan_batu0510_bulan_ini_fix * $harga_akhir_penjualan_batu0510_bulan_ini;
 
 			//BATU 10 - 20
-			$stock_opname_batu1020 = $this->db->select('(cat.volume) as volume')
-			->from('pmm_remaining_materials_cat cat ')
-			->where("cat.date between '$date1' and '$date2'")
-			->where("cat.material_id = 3")
-			->where("cat.status = 'PUBLISH'")
-			->order_by('cat.date','desc')->limit(1)
+			$penjualan_batu1020_bulan_ini = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai')
+			->from('pmm_productions pp')
+			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->where("pp.date_production between '$date1' and '$date2'")
+			->where("pp.product_id = 3")
+			->where("po.status in ('OPEN','CLOSED')")
+			->where("pp.status = 'PUBLISH'")
+			->group_by('pp.product_id')
 			->get()->row_array();
+			
+			//file_put_contents("D:\\penjualan_batu0510_bulan_ini.txt", $this->db->last_query());
 
-			//file_put_contents("D:\\stock_opname_batu1020.txt", $this->db->last_query());
-		
-			$harga_batu1020_fix = round($harga_akhir_produksi_harian_batu1020_bulan_ini,0);
+			$volume_penjualan_batu1020_bulan_ini = $penjualan_batu1020_bulan_ini['volume'];
+			$harga_penjualan_batu1020_bulan_ini = $harga_akhir_produksi_harian_batu1020_bulan_ini;
+			
+			$harga_batu1020_fix = round($harga_penjualan_batu1020_bulan_ini,0);
+			$nilai_penjualan_batu1020_bulan_ini = $volume_penjualan_batu1020_bulan_ini * $harga_batu1020_fix;
 
-			$volume_akhir_penjualan_batu1020_bulan_ini = $stock_opname_batu1020['volume'];
+			$volume_akhir_penjualan_batu1020_bulan_ini = $volume_akhir_produksi_harian_batu1020_bulan_ini - $volume_penjualan_batu1020_bulan_ini;
+			$volume_akhir_penjualan_batu1020_bulan_ini_fix = round($volume_akhir_penjualan_batu1020_bulan_ini,2);
 			$harga_akhir_penjualan_batu1020_bulan_ini = $harga_batu1020_fix;
-			$nilai_akhir_penjualan_batu1020_bulan_ini = $volume_akhir_penjualan_batu1020_bulan_ini *$harga_akhir_penjualan_batu1020_bulan_ini;
-
-			$volume_penjualan_batu1020_bulan_ini = $volume_akhir_produksi_harian_batu1020_bulan_ini - $volume_akhir_penjualan_batu1020_bulan_ini;
-			$harga_penjualan_batu1020_bulan_ini = $harga_akhir_penjualan_batu1020_bulan_ini;
-			$nilai_penjualan_batu1020_bulan_ini = $volume_penjualan_batu1020_bulan_ini * $harga_penjualan_batu1020_bulan_ini;
+			$nilai_akhir_penjualan_batu1020_bulan_ini = $volume_akhir_penjualan_batu1020_bulan_ini_fix * $harga_akhir_penjualan_batu1020_bulan_ini;
 
 			//BATU 20 - 30
-			$stock_opname_batu2030 = $this->db->select('(cat.volume) as volume')
-			->from('pmm_remaining_materials_cat cat ')
-			->where("cat.date between '$date1' and '$date2'")
-			->where("cat.material_id = 4")
-			->where("cat.status = 'PUBLISH'")
-			->order_by('cat.date','desc')->limit(1)
+			$penjualan_batu2030_bulan_ini = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai')
+			->from('pmm_productions pp')
+			->join('pmm_sales_po po', 'pp.salesPo_id = po.id','left')
+			->join('produk p', 'pp.product_id = p.id','left')
+			->where("pp.date_production between '$date1' and '$date2'")
+			->where("pp.product_id = 4")
+			->where("po.status in ('OPEN','CLOSED')")
+			->where("pp.status = 'PUBLISH'")
+			->group_by('pp.product_id')
 			->get()->row_array();
+			
+			//file_put_contents("D:\\penjualan_batu2030_bulan_ini.txt", $this->db->last_query());
 
-			//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
-		
-			$harga_batu2030_fix = round($harga_akhir_produksi_harian_batu2030_bulan_ini,0);
+			$volume_penjualan_batu2030_bulan_ini = $penjualan_batu2030_bulan_ini['volume'];
+			$harga_penjualan_batu2030_bulan_ini = $harga_akhir_produksi_harian_batu2030_bulan_ini;
+			
+			$harga_batu2030_fix = round($harga_penjualan_batu2030_bulan_ini,0);
+			$nilai_penjualan_batu2030_bulan_ini = $volume_penjualan_batu2030_bulan_ini * $harga_batu2030_fix;
 
-			$volume_akhir_penjualan_batu2030_bulan_ini = $stock_opname_batu2030['volume'];
+			$volume_akhir_penjualan_batu2030_bulan_ini = $volume_akhir_produksi_harian_batu2030_bulan_ini - $volume_penjualan_batu2030_bulan_ini;
+			$volume_akhir_penjualan_batu2030_bulan_ini_fix = round($volume_akhir_penjualan_batu2030_bulan_ini,2);
 			$harga_akhir_penjualan_batu2030_bulan_ini = $harga_batu2030_fix;
-			$nilai_akhir_penjualan_batu2030_bulan_ini = $volume_akhir_penjualan_batu2030_bulan_ini *$harga_akhir_penjualan_batu2030_bulan_ini;
-
-			$volume_penjualan_batu2030_bulan_ini = $volume_akhir_produksi_harian_batu2030_bulan_ini - $volume_akhir_penjualan_batu2030_bulan_ini;
-			$harga_penjualan_batu2030_bulan_ini = $harga_akhir_penjualan_batu2030_bulan_ini;
-			$nilai_penjualan_batu2030_bulan_ini = $volume_penjualan_batu2030_bulan_ini * $harga_penjualan_batu2030_bulan_ini;
+			$nilai_akhir_penjualan_batu2030_bulan_ini = $volume_akhir_penjualan_batu2030_bulan_ini_fix * $harga_akhir_penjualan_batu2030_bulan_ini;
 
 			?>
 
-			<!--- AGREGAT  --->
+			<!--- AGREGAT --->
 
 			<?php
 			
@@ -3078,10 +3103,45 @@ class Reports extends CI_Controller {
 			$nilai_agregat_batu1020_bulan_ini_2 = $volume_agregat_batu1020_bulan_ini_2_fix * $harga_agregat_batu1020_bulan_ini_2;
 			$nilai_agregat_batu2030_bulan_ini_2 = $volume_agregat_batu2030_bulan_ini_2_fix * $harga_agregat_batu2030_bulan_ini_2;
 
-			$volume_akhir_agregat_abubatu_bulan_ini_2 = $volume_akhir_agregat_abubatu_bulan_ini - $volume_agregat_abubatu_bulan_ini_2;
-			$volume_akhir_agregat_batu0510_bulan_ini_2 = $volume_akhir_agregat_batu0510_bulan_ini - $volume_agregat_batu0510_bulan_ini_2;
-			$volume_akhir_agregat_batu1020_bulan_ini_2 = $volume_akhir_agregat_batu1020_bulan_ini - $volume_agregat_batu1020_bulan_ini_2;
-			$volume_akhir_agregat_batu2030_bulan_ini_2 = $volume_akhir_agregat_batu2030_bulan_ini - $volume_agregat_batu2030_bulan_ini_2;
+			$stock_opname_abu_batu = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("cat.date between '$date1' and '$date2'")
+			->where("cat.material_id = 7")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+			
+			$stock_opname_batu0510 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("cat.date between '$date1' and '$date2'")
+			->where("cat.material_id = 8")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_batu1020 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("cat.date between '$date1' and '$date2'")
+			->where("cat.material_id = 3")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_batu2030 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("cat.date between '$date1' and '$date2'")
+			->where("cat.material_id = 4")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+
+			//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
+
+
+			$volume_akhir_agregat_abubatu_bulan_ini_2 = $stock_opname_abu_batu['volume'];
+			$volume_akhir_agregat_batu0510_bulan_ini_2 = $stock_opname_batu0510['volume'];
+			$volume_akhir_agregat_batu1020_bulan_ini_2 = $stock_opname_batu1020['volume'];
+			$volume_akhir_agregat_batu2030_bulan_ini_2 = $stock_opname_batu2030['volume'];
 
 			$harga_akhir_agregat_abubatu_bulan_ini_2 = $harga_agregat_abubatu_bulan_ini_2;
 			$harga_akhir_agregat_batu0510_bulan_ini_2 = $harga_agregat_batu0510_bulan_ini_2;
@@ -3101,31 +3161,31 @@ class Reports extends CI_Controller {
 			//TOTAL BAHAN BAKU
 			$nilai_opening_bahan_jadi = $nilai_opening_balance_abubatu_bulan_lalu + $nilai_opening_balance_batu0510_bulan_lalu + $nilai_opening_balance_batu1020_bulan_lalu + $nilai_opening_balance_batu2030_bulan_lalu;
 
-			$volume_penjualan_abubatu = $volume_penjualan_abubatu_bulan_ini;
-			$nilai_penjualan_abubatu = $nilai_penjualan_abubatu_bulan_ini;
+			$volume_penjualan_abubatu = $volume_penjualan_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini_2;
+			$nilai_penjualan_abubatu = $nilai_penjualan_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini_2;
 			$harga_penjualan_abubatu = ($volume_penjualan_abubatu!=0)?($nilai_penjualan_abubatu / $volume_penjualan_abubatu)  * 1:0;
 
-			$volume_penjualan_batu0510 = $volume_penjualan_batu0510_bulan_ini;
-			$nilai_penjualan_batu0510 =  $nilai_penjualan_batu0510_bulan_ini;
+			$volume_penjualan_batu0510 = $volume_penjualan_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini_2;
+			$nilai_penjualan_batu0510 = $nilai_penjualan_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini_2;
 			$harga_penjualan_batu0510 = ($volume_penjualan_batu0510!=0)?($nilai_penjualan_batu0510 / $volume_penjualan_batu0510)  * 1:0;
 
-			$volume_penjualan_batu1020 = $volume_penjualan_batu1020_bulan_ini;
-			$nilai_penjualan_batu1020 =  $nilai_penjualan_batu1020_bulan_ini;
+			$volume_penjualan_batu1020 = $volume_penjualan_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini_2;
+			$nilai_penjualan_batu1020 = $nilai_penjualan_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini_2;
 			$harga_penjualan_batu1020 = ($volume_penjualan_batu1020!=0)?($nilai_penjualan_batu1020 / $volume_penjualan_batu1020)  * 1:0;
 
-			$volume_penjualan_batu2030 = $volume_penjualan_batu2030_bulan_ini;
-			$nilai_penjualan_batu2030 = $nilai_penjualan_batu2030_bulan_ini;
+			$volume_penjualan_batu2030 = $volume_penjualan_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini_2;
+			$nilai_penjualan_batu2030 = $nilai_penjualan_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini_2;
 			$harga_penjualan_batu2030 = ($volume_penjualan_batu2030!=0)?($nilai_penjualan_batu2030 / $volume_penjualan_batu2030)  * 1:0;
 
 			//TOTAL
 			$total_volume_masuk = $volume_produksi_harian_abubatu_bulan_ini + $volume_produksi_harian_batu0510_bulan_ini + $volume_produksi_harian_batu1020_bulan_ini + $volume_produksi_harian_batu2030_bulan_ini;
 			$total_nilai_masuk = $nilai_produksi_harian_abubatu_bulan_ini + $nilai_produksi_harian_batu0510_bulan_ini + $nilai_produksi_harian_batu1020_bulan_ini + $nilai_produksi_harian_batu2030_bulan_ini;
 
-			$total_volume_keluar = $volume_penjualan_abubatu_bulan_ini + $volume_penjualan_batu0510_bulan_ini + $volume_penjualan_batu1020_bulan_ini + $volume_penjualan_batu2030_bulan_ini;
-			$total_nilai_keluar = $nilai_penjualan_abubatu_bulan_ini + $nilai_penjualan_batu0510_bulan_ini + $nilai_penjualan_batu1020_bulan_ini + $nilai_penjualan_batu2030_bulan_ini;
+			$total_volume_keluar = $volume_penjualan_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini_2 + $volume_penjualan_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini_2 + $volume_penjualan_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini_2 + $volume_penjualan_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini_2;
+			$total_nilai_keluar = $nilai_penjualan_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini_2 +  $nilai_penjualan_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini_2 + $nilai_penjualan_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini_2 + $nilai_penjualan_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini_2;
 			
-			$total_volume_akhir = $volume_akhir_penjualan_abubatu_bulan_ini + $volume_akhir_penjualan_batu0510_bulan_ini + $volume_akhir_penjualan_batu1020_bulan_ini + $volume_akhir_penjualan_batu2030_bulan_ini;
-			$total_nilai_akhir = $nilai_akhir_penjualan_abubatu_bulan_ini + $nilai_akhir_penjualan_batu0510_bulan_ini + $nilai_akhir_penjualan_batu1020_bulan_ini + $nilai_akhir_penjualan_batu2030_bulan_ini;
+			$total_volume_akhir = $volume_akhir_agregat_abubatu_bulan_ini_2 + $volume_akhir_agregat_batu0510_bulan_ini_2 + $volume_akhir_agregat_batu1020_bulan_ini_2 + $volume_akhir_agregat_batu2030_bulan_ini_2;
+			$total_nilai_akhir = $nilai_akhir_agregat_abubatu_bulan_ini_2 + $nilai_akhir_agregat_batu0510_bulan_ini_2 + $nilai_akhir_agregat_batu1020_bulan_ini_2 + $nilai_akhir_agregat_batu2030_bulan_ini_2;
 			
 			?>
 
@@ -3188,7 +3248,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($harga_akhir_penjualan_abubatu_bulan_ini,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_penjualan_abubatu_bulan_ini,0,',','.');?></th>
 	        </tr>
-			<!--<tr class="table-active3">		
+			<tr class="table-active3">		
 				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Penjualan (Agregat A)</i></th>
 				<th class="text-center">Ton</th>
@@ -3215,7 +3275,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-	        </tr>-->
+	        </tr>
 			<tr class="table-active2">
 				<th class="text-center" colspan="12">BATU 0,5 - 10</th>
 			</tr>
@@ -3254,7 +3314,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($harga_akhir_penjualan_batu0510_bulan_ini,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_penjualan_batu0510_bulan_ini,0,',','.');?></th>
 	        </tr>
-			<!--<tr class="table-active3">		
+			<tr class="table-active3">		
 				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Penjualan (Agregat A)</i></th>
 				<th class="text-center">Ton</th>
@@ -3281,7 +3341,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-	        </tr>-->
+	        </tr>
 			<tr class="table-active2">
 				<th class="text-center" colspan="12">BATU 10 - 20</th>
 			</tr>
@@ -3320,7 +3380,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($harga_akhir_penjualan_batu1020_bulan_ini,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_penjualan_batu1020_bulan_ini,0,',','.');?></th>
 	        </tr>
-			<!--<tr class="table-active3">		
+			<tr class="table-active3">		
 				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Penjualan (Agregat A)</i></th>
 				<th class="text-center">Ton</th>
@@ -3347,7 +3407,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-	        </tr>-->
+	        </tr>
 			<tr class="table-active2">
 				<th class="text-center" colspan="12">BATU 20 - 30</th>
 			</tr>
@@ -3386,7 +3446,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($harga_akhir_penjualan_batu2030_bulan_ini,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_penjualan_batu2030_bulan_ini,0,',','.');?></th>
 	        </tr>
-			<!--<tr class="table-active3">		
+			<tr class="table-active3">		
 				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 				<th class="text-left"><i>Penjualan (Agregat A)</i></th>
 				<th class="text-center">Ton</th>
@@ -3413,7 +3473,7 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
 				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-	        </tr>-->
+	        </tr>
 			<tr class="table-active2">
 				<th class="text-center" colspan="12">BAHAN JADI</th>
 			</tr>
@@ -3434,9 +3494,9 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($volume_penjualan_abubatu,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($harga_penjualan_abubatu,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_penjualan_abubatu,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($volume_akhir_penjualan_abubatu_bulan_ini,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($harga_akhir_penjualan_abubatu_bulan_ini,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_akhir_penjualan_abubatu_bulan_ini,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">		
 				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
@@ -3448,9 +3508,9 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($volume_penjualan_batu0510,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($harga_penjualan_batu0510,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_penjualan_batu0510,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($volume_akhir_penjualan_batu0510_bulan_ini,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($harga_akhir_penjualan_batu0510_bulan_ini,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_akhir_penjualan_batu0510_bulan_ini,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">		
 				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
@@ -3462,9 +3522,9 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($volume_penjualan_batu1020,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($harga_penjualan_batu1020,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_penjualan_batu1020,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($volume_akhir_penjualan_batu1020_bulan_ini,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($harga_akhir_penjualan_batu1020_bulan_ini,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_akhir_penjualan_batu1020_bulan_ini,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">		
 				<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
@@ -3476,9 +3536,9 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($volume_penjualan_batu2030,2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($harga_penjualan_batu2030,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_penjualan_batu2030,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($volume_akhir_penjualan_batu2030_bulan_ini,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($harga_akhir_penjualan_batu2030_bulan_ini,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($nilai_akhir_penjualan_batu2030_bulan_ini,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active5">
 				<th class="text-center" colspan="3">TOTAL</th>
@@ -4604,6 +4664,18 @@ class Reports extends CI_Controller {
 
 			<?php
 
+			$harga_hpp_now = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			->from('hpp pp')
+			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->get()->row_array();
+
+			//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
+
+			$harga_hpp_now_abubatu = $harga_hpp_now['abubatu'];
+			$harga_hpp_now_batu0510 = $harga_hpp_now['batu0510'];
+			$harga_hpp_now_batu1020 = $harga_hpp_now['batu1020'];
+			$harga_hpp_now_batu2030 =  $harga_hpp_now['batu2030'];
+
 			$stok_volume_produksi_harian_abubatu_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_a'];
 			$stok_volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 			$stok_volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
@@ -4620,19 +4692,19 @@ class Reports extends CI_Controller {
 			$stok_nilai_produksi_harian_batu2030_bulan_ini = $stok_volume_produksi_harian_batu2030_bulan_ini * $stok_harga_produksi_harian_abubatu_bulan_ini;
 
 			$stok_volume_akhir_produksi_harian_abubatu_bulan_ini = $stok_volume_opening_balance_abubatu_bulan_lalu + $stok_volume_produksi_harian_abubatu_bulan_ini;
-			$stok_harga_akhir_produksi_harian_abubatu_bulan_ini = ($stok_nilai_opening_balance_abubatu_bulan_lalu + $stok_nilai_produksi_harian_abubatu_bulan_ini) / $stok_volume_akhir_produksi_harian_abubatu_bulan_ini;
+			$stok_harga_akhir_produksi_harian_abubatu_bulan_ini = $harga_hpp_now_abubatu;
 			$stok_nilai_akhir_produksi_harian_abubatu_bulan_ini = $stok_volume_akhir_produksi_harian_abubatu_bulan_ini * $stok_harga_akhir_produksi_harian_abubatu_bulan_ini;
 
 			$stok_volume_akhir_produksi_harian_batu0510_bulan_ini = $stok_volume_opening_balance_batu0510_bulan_lalu + $stok_volume_produksi_harian_batu0510_bulan_ini;
-			$stok_harga_akhir_produksi_harian_batu0510_bulan_ini = ($stok_nilai_opening_balance_batu0510_bulan_lalu + $stok_nilai_produksi_harian_batu0510_bulan_ini) / $stok_volume_akhir_produksi_harian_batu0510_bulan_ini;
+			$stok_harga_akhir_produksi_harian_batu0510_bulan_ini = $harga_hpp_now_batu0510;
 			$stok_nilai_akhir_produksi_harian_batu0510_bulan_ini = $stok_volume_akhir_produksi_harian_batu0510_bulan_ini * $stok_harga_akhir_produksi_harian_batu0510_bulan_ini;
 
 			$stok_volume_akhir_produksi_harian_batu1020_bulan_ini = $stok_volume_opening_balance_batu1020_bulan_lalu + $stok_volume_produksi_harian_batu1020_bulan_ini;
-			$stok_harga_akhir_produksi_harian_batu1020_bulan_ini = ($stok_nilai_opening_balance_batu1020_bulan_lalu + $stok_nilai_produksi_harian_batu1020_bulan_ini) / $stok_volume_akhir_produksi_harian_batu1020_bulan_ini;
+			$stok_harga_akhir_produksi_harian_batu1020_bulan_ini = $harga_hpp_now_batu1020;
 			$stok_nilai_akhir_produksi_harian_batu1020_bulan_ini = $stok_volume_akhir_produksi_harian_batu1020_bulan_ini * $stok_harga_akhir_produksi_harian_batu1020_bulan_ini;
 
 			$stok_volume_akhir_produksi_harian_batu2030_bulan_ini = $stok_volume_opening_balance_batu2030_bulan_lalu + $stok_volume_produksi_harian_batu2030_bulan_ini;
-			$stok_harga_akhir_produksi_harian_batu2030_bulan_ini = ($stok_nilai_opening_balance_batu2030_bulan_lalu + $stok_nilai_produksi_harian_batu2030_bulan_ini) / $stok_volume_akhir_produksi_harian_batu2030_bulan_ini;
+			$stok_harga_akhir_produksi_harian_batu2030_bulan_ini = $harga_hpp_now_batu2030;
 			$stok_nilai_akhir_produksi_harian_batu2030_bulan_ini = $stok_volume_akhir_produksi_harian_batu2030_bulan_ini * $stok_harga_akhir_produksi_harian_batu2030_bulan_ini;
 		
 			//ABU BATU
@@ -4839,21 +4911,21 @@ class Reports extends CI_Controller {
 			<!--- END AGREGAT --->
 			<?php
 
-			$evaluasi_volume_abubatu = $volume_akhir_agregat_abubatu_bulan_ini_2 - $stok_volume_akhir_penjualan_abubatu_bulan_ini;
+			$evaluasi_volume_abubatu = $stok_volume_akhir_penjualan_abubatu_bulan_ini - $volume_akhir_agregat_abubatu_bulan_ini_2;
 			$evaluasi_harga_abubatu = $stok_harga_akhir_agregat_abubatu_bulan_ini_2;
-			$evaluasi_nilai_abubatu = $nilai_akhir_agregat_abubatu_bulan_ini_2 - $stok_nilai_akhir_penjualan_abubatu_bulan_ini;
+			$evaluasi_nilai_abubatu = $stok_nilai_akhir_penjualan_abubatu_bulan_ini - $nilai_akhir_agregat_abubatu_bulan_ini_2;
 			
-			$evaluasi_volume_batu0510 = $volume_akhir_agregat_batu0510_bulan_ini_2 - $stok_volume_akhir_penjualan_batu0510_bulan_ini;
+			$evaluasi_volume_batu0510 = $stok_volume_akhir_penjualan_batu0510_bulan_ini - $volume_akhir_agregat_batu0510_bulan_ini_2;
 			$evaluasi_harga_batu0510 = $stok_harga_akhir_agregat_batu0510_bulan_ini_2;
-			$evaluasi_nilai_batu0510 = $nilai_akhir_agregat_batu0510_bulan_ini_2 - $stok_nilai_akhir_penjualan_batu0510_bulan_ini;
+			$evaluasi_nilai_batu0510 = $stok_nilai_akhir_penjualan_batu0510_bulan_ini - $nilai_akhir_agregat_batu0510_bulan_ini_2;
 
-			$evaluasi_volume_batu1020 = $volume_akhir_agregat_batu1020_bulan_ini_2 - $stok_volume_akhir_penjualan_batu1020_bulan_ini;
+			$evaluasi_volume_batu1020 = $stok_volume_akhir_penjualan_batu1020_bulan_ini - $volume_akhir_agregat_batu1020_bulan_ini_2;
 			$evaluasi_harga_batu1020 = $stok_harga_akhir_agregat_batu1020_bulan_ini_2;
-			$evaluasi_nilai_batu1020 = $nilai_akhir_agregat_batu1020_bulan_ini_2 - $stok_nilai_akhir_penjualan_batu1020_bulan_ini;
+			$evaluasi_nilai_batu1020 =  $stok_nilai_akhir_penjualan_batu1020_bulan_ini - $nilai_akhir_agregat_batu1020_bulan_ini_2;
 
-			$evaluasi_volume_batu2030 = $volume_akhir_agregat_batu2030_bulan_ini_2 - $stok_volume_akhir_penjualan_batu2030_bulan_ini;
+			$evaluasi_volume_batu2030 = $stok_volume_akhir_penjualan_batu2030_bulan_ini - $volume_akhir_agregat_batu2030_bulan_ini_2;
 			$evaluasi_harga_batu2030 = $stok_harga_akhir_agregat_batu2030_bulan_ini_2;
-			$evaluasi_nilai_batu2030 = $nilai_akhir_agregat_batu2030_bulan_ini_2 - $stok_nilai_akhir_penjualan_batu2030_bulan_ini;
+			$evaluasi_nilai_batu2030 = $stok_nilai_akhir_penjualan_batu2030_bulan_ini - $nilai_akhir_agregat_batu2030_bulan_ini_2;
 
 			$stok_evaluasi_total_volume_akhir = $evaluasi_volume_abubatu + $evaluasi_volume_batu0510 + $evaluasi_volume_batu1020 + $evaluasi_volume_batu2030;
 			$stok_evaluasi_total_nilai_akhir = $evaluasi_nilai_abubatu + $evaluasi_nilai_batu0510 + $evaluasi_nilai_batu1020 + $evaluasi_nilai_batu2030;
@@ -4865,8 +4937,8 @@ class Reports extends CI_Controller {
 			<tr class="table-active4">
 				<th class="text-center" rowspan="2">&nbsp;<br>URAIAN</th>
 				<th class="text-center" rowspan="2">&nbsp;<br>SATUAN</th>
-				<th class="text-center" colspan="3">RUMUS</th>
-				<th class="text-center" colspan="3">STOK</th>
+				<th class="text-center" colspan="3">NILAI PERSEDIAAN AKHIR TERHADAP STOK</th>
+				<th class="text-center" colspan="3">NILAI PERSEDIAAN AKHIR TERHADAP RUMUS</th>
 				<th class="text-center" colspan="3">EVALUASI</th>
 			</tr>
 			<tr class="table-active4">
@@ -4880,69 +4952,81 @@ class Reports extends CI_Controller {
 				<th class="text-center">HARGA</th>
 				<th class="text-center">NILAI</th>
 			</tr>
+			<?php
+				$styleColorA = $evaluasi_volume_abubatu < 0 ? 'color:red' : 'color:black';
+				$styleColorB = $evaluasi_nilai_abubatu < 0 ? 'color:red' : 'color:black';
+				$styleColorC = $evaluasi_volume_batu0510 < 0 ? 'color:red' : 'color:black';
+				$styleColorD = $evaluasi_nilai_batu1020 < 0 ? 'color:red' : 'color:black';
+				$styleColorE = $evaluasi_volume_batu1020 < 0 ? 'color:red' : 'color:black';
+				$styleColorF = $evaluasi_nilai_batu1020 < 0 ? 'color:red' : 'color:black';
+				$styleColorG = $evaluasi_volume_batu2030 < 0 ? 'color:red' : 'color:black';
+				$styleColorH = $evaluasi_nilai_batu2030 < 0 ? 'color:red' : 'color:black';
+				$styleColorI = $stok_evaluasi_total_volume_akhir < 0 ? 'color:red' : 'color:black';
+				$styleColorJ = $stok_evaluasi_total_nilai_akhir < 0 ? 'color:red' : 'color:black';
+			?>
 			<tr class="table-active3">		
 				<th class = "text-left"><i>Batu 0,0 - 0,5</i></th>
 				<th class = "text-center">Ton</th>
-				<th class = "text-center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
 				<th class = "text-center"><?php echo number_format($stok_volume_akhir_penjualan_abubatu_bulan_ini,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_harga_akhir_penjualan_abubatu_bulan_ini,0,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_nilai_akhir_penjualan_abubatu_bulan_ini,0,',','.');?></th>
-				<th class = "text-center"><?php echo number_format($evaluasi_volume_abubatu,2,',','.');?></th>
+				<th class = "text-center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-center" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_abubatu,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($evaluasi_harga_abubatu,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($evaluasi_nilai_abubatu,0,',','.');?></th>
+				<th class = "text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_nilai_abubatu,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class = "text-left"><i>Batu 0,5 - 10</i></th>
 				<th class = "text-center">Ton</th>
-				<th class = "text-center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
 				<th class = "text-center"><?php echo number_format($stok_volume_akhir_penjualan_batu0510_bulan_ini,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_harga_akhir_penjualan_batu0510_bulan_ini,0,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_nilai_akhir_penjualan_batu0510_bulan_ini,0,',','.');?></th>
-				<th class = "text-center"><?php echo number_format($evaluasi_volume_batu0510,2,',','.');?></th>
+				<th class = "text-center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-center" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_batu0510,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($evaluasi_harga_batu0510,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($evaluasi_nilai_batu0510,0,',','.');?></th>
+				<th class = "text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_nilai_batu0510,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class = "text-left"><i>Batu 10 - 20</i></th>
 				<th class = "text-center">Ton</th>
-				<th class = "text-center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
 				<th class = "text-center"><?php echo number_format($stok_volume_akhir_penjualan_batu1020_bulan_ini,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_harga_akhir_penjualan_batu1020_bulan_ini,0,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_nilai_akhir_penjualan_batu1020_bulan_ini,0,',','.');?></th>
-				<th class = "text-center"><?php echo number_format($evaluasi_volume_batu1020,2,',','.');?></th>
+				<th class = "text-center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-center" style="<?php echo $styleColorE ?>"><?php echo number_format($evaluasi_volume_batu1020,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($evaluasi_harga_batu1020,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($evaluasi_nilai_batu1020,0,',','.');?></th>
+				<th class = "text-right" style="<?php echo $styleColorF ?>"><?php echo number_format($evaluasi_nilai_batu1020,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">		
 				<th class = "text-left"><i>Batu 20 - 30</i></th>
 				<th class = "text-center">Ton</th>
-				<th class = "text-center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 				<th class = "text-center"><?php echo number_format($stok_volume_akhir_penjualan_batu2030_bulan_ini,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_harga_akhir_penjualan_batu2030_bulan_ini,0,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($stok_nilai_akhir_penjualan_batu2030_bulan_ini,0,',','.');?></th>
-				<th class = "text-center"><?php echo number_format($evaluasi_volume_batu2030,2,',','.');?></th>
+				<th class = "text-center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+				<th class = "text-center" style="<?php echo $styleColorG ?>"><?php echo number_format($evaluasi_volume_batu2030,2,',','.');?></th>
 				<th class = "text-right"><?php echo number_format($evaluasi_harga_batu2030,0,',','.');?></th>
-				<th class = "text-right"><?php echo number_format($evaluasi_nilai_batu2030,0,',','.');?></th>
+				<th class = "text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($evaluasi_nilai_batu2030,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
 				<th class = "text-center" colspan="2">TOTAL</th>
-				<th class = "text-center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
-				<th class = "text-right">-</th>
-				<th class = "text-right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
 				<th class = "text-center"><?php echo number_format($stok_total_volume_akhir,2,',','.');?></th>
 				<th class = "text-right">-</th>
 				<th class = "text-right"><?php echo number_format($stok_total_nilai_akhir,0,',','.');?></th>
-				<th class = "text-center"><?php echo number_format($stok_evaluasi_total_volume_akhir,2,',','.');?></th>
+				<th class = "text-center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
 				<th class = "text-right">-</th>
-				<th class = "text-right"><?php echo number_format($stok_evaluasi_total_nilai_akhir,0,',','.');?></th>
+				<th class = "text-right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
+				<th class = "text-center" style="<?php echo $styleColorI ?>"><?php echo number_format($stok_evaluasi_total_volume_akhir,2,',','.');?></th>
+				<th class = "text-right">-</th>
+				<th class = "text-right" style="<?php echo $styleColorJ ?>"><?php echo number_format($stok_evaluasi_total_nilai_akhir,0,',','.');?></th>
 			</tr>
 	    </table>
 		

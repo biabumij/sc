@@ -1122,6 +1122,18 @@
 
 			<?php
 
+			$harga_hpp_now = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			->from('hpp pp')
+			->where("(pp.date_hpp between '$date1' and '$date2')")
+			->get()->row_array();
+
+			//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
+
+			$harga_hpp_now_abubatu = $harga_hpp_now['abubatu'];
+			$harga_hpp_now_batu0510 = $harga_hpp_now['batu0510'];
+			$harga_hpp_now_batu1020 = $harga_hpp_now['batu1020'];
+			$harga_hpp_now_batu2030 =  $harga_hpp_now['batu2030'];
+
 			$stok_volume_produksi_harian_abubatu_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_a'];
 			$stok_volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 			$stok_volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
@@ -1138,19 +1150,19 @@
 			$stok_nilai_produksi_harian_batu2030_bulan_ini = $stok_volume_produksi_harian_batu2030_bulan_ini * $stok_harga_produksi_harian_abubatu_bulan_ini;
 
 			$stok_volume_akhir_produksi_harian_abubatu_bulan_ini = $stok_volume_opening_balance_abubatu_bulan_lalu + $stok_volume_produksi_harian_abubatu_bulan_ini;
-			$stok_harga_akhir_produksi_harian_abubatu_bulan_ini = ($stok_nilai_opening_balance_abubatu_bulan_lalu + $stok_nilai_produksi_harian_abubatu_bulan_ini) / $stok_volume_akhir_produksi_harian_abubatu_bulan_ini;
+			$stok_harga_akhir_produksi_harian_abubatu_bulan_ini = $harga_hpp_now_abubatu;
 			$stok_nilai_akhir_produksi_harian_abubatu_bulan_ini = $stok_volume_akhir_produksi_harian_abubatu_bulan_ini * $stok_harga_akhir_produksi_harian_abubatu_bulan_ini;
 
 			$stok_volume_akhir_produksi_harian_batu0510_bulan_ini = $stok_volume_opening_balance_batu0510_bulan_lalu + $stok_volume_produksi_harian_batu0510_bulan_ini;
-			$stok_harga_akhir_produksi_harian_batu0510_bulan_ini = ($stok_nilai_opening_balance_batu0510_bulan_lalu + $stok_nilai_produksi_harian_batu0510_bulan_ini) / $stok_volume_akhir_produksi_harian_batu0510_bulan_ini;
+			$stok_harga_akhir_produksi_harian_batu0510_bulan_ini = $harga_hpp_now_batu0510;
 			$stok_nilai_akhir_produksi_harian_batu0510_bulan_ini = $stok_volume_akhir_produksi_harian_batu0510_bulan_ini * $stok_harga_akhir_produksi_harian_batu0510_bulan_ini;
 
 			$stok_volume_akhir_produksi_harian_batu1020_bulan_ini = $stok_volume_opening_balance_batu1020_bulan_lalu + $stok_volume_produksi_harian_batu1020_bulan_ini;
-			$stok_harga_akhir_produksi_harian_batu1020_bulan_ini = ($stok_nilai_opening_balance_batu1020_bulan_lalu + $stok_nilai_produksi_harian_batu1020_bulan_ini) / $stok_volume_akhir_produksi_harian_batu1020_bulan_ini;
+			$stok_harga_akhir_produksi_harian_batu1020_bulan_ini = $harga_hpp_now_batu1020;
 			$stok_nilai_akhir_produksi_harian_batu1020_bulan_ini = $stok_volume_akhir_produksi_harian_batu1020_bulan_ini * $stok_harga_akhir_produksi_harian_batu1020_bulan_ini;
 
 			$stok_volume_akhir_produksi_harian_batu2030_bulan_ini = $stok_volume_opening_balance_batu2030_bulan_lalu + $stok_volume_produksi_harian_batu2030_bulan_ini;
-			$stok_harga_akhir_produksi_harian_batu2030_bulan_ini = ($stok_nilai_opening_balance_batu2030_bulan_lalu + $stok_nilai_produksi_harian_batu2030_bulan_ini) / $stok_volume_akhir_produksi_harian_batu2030_bulan_ini;
+			$stok_harga_akhir_produksi_harian_batu2030_bulan_ini = $harga_hpp_now_batu2030;
 			$stok_nilai_akhir_produksi_harian_batu2030_bulan_ini = $stok_volume_akhir_produksi_harian_batu2030_bulan_ini * $stok_harga_akhir_produksi_harian_batu2030_bulan_ini;
 		
 			//ABU BATU
@@ -1357,21 +1369,21 @@
 			<!--- END AGREGAT --->
 			<?php
 
-			$evaluasi_volume_abubatu = $volume_akhir_agregat_abubatu_bulan_ini_2 - $stok_volume_akhir_penjualan_abubatu_bulan_ini;
+			$evaluasi_volume_abubatu = $stok_volume_akhir_penjualan_abubatu_bulan_ini - $volume_akhir_agregat_abubatu_bulan_ini_2;
 			$evaluasi_harga_abubatu = $stok_harga_akhir_agregat_abubatu_bulan_ini_2;
-			$evaluasi_nilai_abubatu = $nilai_akhir_agregat_abubatu_bulan_ini_2 - $stok_nilai_akhir_penjualan_abubatu_bulan_ini;
+			$evaluasi_nilai_abubatu = $stok_nilai_akhir_penjualan_abubatu_bulan_ini - $nilai_akhir_agregat_abubatu_bulan_ini_2;
 			
-			$evaluasi_volume_batu0510 = $volume_akhir_agregat_batu0510_bulan_ini_2 - $stok_volume_akhir_penjualan_batu0510_bulan_ini;
+			$evaluasi_volume_batu0510 = $stok_volume_akhir_penjualan_batu0510_bulan_ini - $volume_akhir_agregat_batu0510_bulan_ini_2;
 			$evaluasi_harga_batu0510 = $stok_harga_akhir_agregat_batu0510_bulan_ini_2;
-			$evaluasi_nilai_batu0510 = $nilai_akhir_agregat_batu0510_bulan_ini_2 - $stok_nilai_akhir_penjualan_batu0510_bulan_ini;
+			$evaluasi_nilai_batu0510 = $stok_nilai_akhir_penjualan_batu0510_bulan_ini - $nilai_akhir_agregat_batu0510_bulan_ini_2;
 
-			$evaluasi_volume_batu1020 = $volume_akhir_agregat_batu1020_bulan_ini_2 - $stok_volume_akhir_penjualan_batu1020_bulan_ini;
+			$evaluasi_volume_batu1020 = $stok_volume_akhir_penjualan_batu1020_bulan_ini - $volume_akhir_agregat_batu1020_bulan_ini_2;
 			$evaluasi_harga_batu1020 = $stok_harga_akhir_agregat_batu1020_bulan_ini_2;
-			$evaluasi_nilai_batu1020 = $nilai_akhir_agregat_batu1020_bulan_ini_2 - $stok_nilai_akhir_penjualan_batu1020_bulan_ini;
+			$evaluasi_nilai_batu1020 =  $stok_nilai_akhir_penjualan_batu1020_bulan_ini - $nilai_akhir_agregat_batu1020_bulan_ini_2;
 
-			$evaluasi_volume_batu2030 = $volume_akhir_agregat_batu2030_bulan_ini_2 - $stok_volume_akhir_penjualan_batu2030_bulan_ini;
+			$evaluasi_volume_batu2030 = $stok_volume_akhir_penjualan_batu2030_bulan_ini - $volume_akhir_agregat_batu2030_bulan_ini_2;
 			$evaluasi_harga_batu2030 = $stok_harga_akhir_agregat_batu2030_bulan_ini_2;
-			$evaluasi_nilai_batu2030 = $nilai_akhir_agregat_batu2030_bulan_ini_2 - $stok_nilai_akhir_penjualan_batu2030_bulan_ini;
+			$evaluasi_nilai_batu2030 = $stok_nilai_akhir_penjualan_batu2030_bulan_ini - $nilai_akhir_agregat_batu2030_bulan_ini_2;
 
 			$stok_evaluasi_total_volume_akhir = $evaluasi_volume_abubatu + $evaluasi_volume_batu0510 + $evaluasi_volume_batu1020 + $evaluasi_volume_batu2030;
 			$stok_evaluasi_total_nilai_akhir = $evaluasi_nilai_abubatu + $evaluasi_nilai_batu0510 + $evaluasi_nilai_batu1020 + $evaluasi_nilai_batu2030;
@@ -1383,8 +1395,8 @@
 			<tr class="table-judul">
 				<th align="center" rowspan="2">&nbsp;<br>URAIAN</th>
 				<th align="center" rowspan="2">&nbsp;<br>SATUAN</th>
-				<th align="center" colspan="3">RUMUS</th>
-				<th align="center" colspan="3">STOK</th>
+				<th align="center" colspan="3">NILAI PERSEDIAAN AKHIR TERHADAP STOK</th>
+				<th align="center" colspan="3">NILAI PERSEDIAAN AKHIR TERHADAP RUMUS</th>
 				<th align="center" colspan="3">EVALUASI</th>
 			</tr>
 			<tr class="table-judul">
@@ -1398,69 +1410,81 @@
 				<th align="center">HARGA</th>
 				<th align="center">NILAI</th>
 			</tr>
+			<?php
+				$styleColorA = $evaluasi_volume_abubatu < 0 ? 'color:red' : 'color:black';
+				$styleColorB = $evaluasi_nilai_abubatu < 0 ? 'color:red' : 'color:black';
+				$styleColorC = $evaluasi_volume_batu0510 < 0 ? 'color:red' : 'color:black';
+				$styleColorD = $evaluasi_nilai_batu1020 < 0 ? 'color:red' : 'color:black';
+				$styleColorE = $evaluasi_volume_batu1020 < 0 ? 'color:red' : 'color:black';
+				$styleColorF = $evaluasi_nilai_batu1020 < 0 ? 'color:red' : 'color:black';
+				$styleColorG = $evaluasi_volume_batu2030 < 0 ? 'color:red' : 'color:black';
+				$styleColorH = $evaluasi_nilai_batu2030 < 0 ? 'color:red' : 'color:black';
+				$styleColorI = $stok_evaluasi_total_volume_akhir < 0 ? 'color:red' : 'color:black';
+				$styleColorJ = $stok_evaluasi_total_nilai_akhir < 0 ? 'color:red' : 'color:black';
+			?>
 			<tr class="table-baris1">		
 				<th align = "left"><i>Batu 0,0 - 0,5</i></th>
 				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
 				<th align = "center"><?php echo number_format($stok_volume_akhir_penjualan_abubatu_bulan_ini,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($stok_harga_akhir_penjualan_abubatu_bulan_ini,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($stok_nilai_akhir_penjualan_abubatu_bulan_ini,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($evaluasi_volume_abubatu,2,',','.');?></th>
+				<th align = "center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+				<th align = "center" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_abubatu,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($evaluasi_harga_abubatu,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($evaluasi_nilai_abubatu,0,',','.');?></th>
+				<th align = "right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_nilai_abubatu,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align = "left"><i>Batu 0,5 - 10</i></th>
 				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
 				<th align = "center"><?php echo number_format($stok_volume_akhir_penjualan_batu0510_bulan_ini,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($stok_harga_akhir_penjualan_batu0510_bulan_ini,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($stok_nilai_akhir_penjualan_batu0510_bulan_ini,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($evaluasi_volume_batu0510,2,',','.');?></th>
+				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+				<th align = "center" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_batu0510,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($evaluasi_harga_batu0510,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($evaluasi_nilai_batu0510,0,',','.');?></th>
+				<th align = "right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_nilai_batu0510,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align = "left"><i>Batu 10 - 20</i></th>
 				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
 				<th align = "center"><?php echo number_format($stok_volume_akhir_penjualan_batu1020_bulan_ini,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($stok_harga_akhir_penjualan_batu1020_bulan_ini,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($stok_nilai_akhir_penjualan_batu1020_bulan_ini,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($evaluasi_volume_batu1020,2,',','.');?></th>
+				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+				<th align = "center" style="<?php echo $styleColorE ?>"><?php echo number_format($evaluasi_volume_batu1020,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($evaluasi_harga_batu1020,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($evaluasi_nilai_batu1020,0,',','.');?></th>
+				<th align = "right" style="<?php echo $styleColorF ?>"><?php echo number_format($evaluasi_nilai_batu1020,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">		
 				<th align = "left"><i>Batu 20 - 30</i></th>
 				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 				<th align = "center"><?php echo number_format($stok_volume_akhir_penjualan_batu2030_bulan_ini,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($stok_harga_akhir_penjualan_batu2030_bulan_ini,0,',','.');?></th>
 				<th align = "right"><?php echo number_format($stok_nilai_akhir_penjualan_batu2030_bulan_ini,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($evaluasi_volume_batu2030,2,',','.');?></th>
+				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
+				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+				<th align = "center" style="<?php echo $styleColorG ?>"><?php echo number_format($evaluasi_volume_batu2030,2,',','.');?></th>
 				<th align = "right"><?php echo number_format($evaluasi_harga_batu2030,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($evaluasi_nilai_batu2030,0,',','.');?></th>
+				<th align = "right" style="<?php echo $styleColorH ?>"><?php echo number_format($evaluasi_nilai_batu2030,0,',','.');?></th>
 	        </tr>
 			<tr class="table-total">
 				<th align = "center" colspan="2">TOTAL</th>
-				<th align = "center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
-				<th align = "right">-</th>
-				<th align = "right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
 				<th align = "center"><?php echo number_format($stok_total_volume_akhir,2,',','.');?></th>
 				<th align = "right">-</th>
 				<th align = "right"><?php echo number_format($stok_total_nilai_akhir,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($stok_evaluasi_total_volume_akhir,2,',','.');?></th>
+				<th align = "center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
 				<th align = "right">-</th>
-				<th align = "right"><?php echo number_format($stok_evaluasi_total_nilai_akhir,0,',','.');?></th>
+				<th align = "right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
+				<th align = "center" style="<?php echo $styleColorI ?>"><?php echo number_format($stok_evaluasi_total_volume_akhir,2,',','.');?></th>
+				<th align = "right">-</th>
+				<th align = "right" style="<?php echo $styleColorJ ?>"><?php echo number_format($stok_evaluasi_total_nilai_akhir,0,',','.');?></th>
 			</tr>
 	    </table>
 		<br />
