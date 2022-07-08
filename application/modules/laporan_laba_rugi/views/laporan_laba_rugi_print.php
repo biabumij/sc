@@ -336,7 +336,7 @@
 				<th width="100%" align="left"></th>
 	        </tr>
 			<?php
-				$styleColor = $laba_sebelum_pajak < 0 ? 'color:red' : 'color:black';
+				$styleColor = $laba_kotor < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active2">
 	            <th width="70%" align="left"><b>Laba Kotor</b></th>
@@ -425,7 +425,10 @@
 	        </tr>
 			<tr class="table-active3">
 				<th width="100%" align="left"></th>
-	        </tr>	
+	        </tr>
+			<?php
+				$styleColor = $laba_sebelum_pajak < 0 ? 'color:red' : 'color:black';
+			?>	
 			<tr class="table-active3">
 	            <th width="70%" align="left"><b>Laba Sebelum Pajak</b></th>
 	            <th width="30%" align="right" style="<?php echo $styleColor ?>">
