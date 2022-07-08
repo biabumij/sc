@@ -219,7 +219,7 @@
                         return 'Pendapatan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']];
                     },
                     label: function(tooltipItem, data) {
-                        return 'HPP = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];
+                        return 'Biaya = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];
                     },
                     afterLabel : function(tooltipItem, data) {
                         return 'Laba Rugi = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+' %)';
