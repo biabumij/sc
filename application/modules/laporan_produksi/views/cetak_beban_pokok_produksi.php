@@ -467,10 +467,7 @@
 
 			$tangki_solar = $tangki_solar_biaya['total'] + $tangki_solar_jurnal['total'];
 			
-			$bbm_solar = $akumulasi_nilai_bahan_baku_2;
-			
-			
-			$total_biaya_peralatan = $stone_crusher + $whell_loader + $excavator['price'] + $genset + $timbangan + $tangki_solar + $bbm_solar;
+			$total_biaya_peralatan = $stone_crusher + $whell_loader + $excavator['price'] + $genset + $timbangan + $tangki_solar;
 			$hpp_peralatan = ($total_abu_batu!=0)?($total_biaya_peralatan / $total_abu_batu)  * 1:0;
 			
 			$gaji_upah_biaya = $this->db->select('sum(pdb.jumlah) as total')
