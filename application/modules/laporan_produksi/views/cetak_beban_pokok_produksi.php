@@ -644,6 +644,14 @@
 				<th align="center"><?php echo number_format($total_harga_produksi,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_nilai_produksi,0,',','.');?></th>
 	        </tr>
+			<tr class="table-active2">
+				<th></th>
+	            <th align="left">&nbsp;&nbsp;&nbsp;&nbsp;Total Pemakaian BBM Solar</th>
+				<th align="center">Liter</th>
+	            <th align="center"><?php echo number_format($total_volume_produksi_solar,2,',','.');?></th>
+				<th align="center"><?php echo number_format($total_harga_produksi_solar,0,',','.');?></th>
+				<th align="right"><?php echo number_format($total_nilai_produksi_solar,0,',','.');?></th>
+	        </tr>
 			<tr class="table-active3">
 	            <th align="center">2.</th>
 				<th>Peralatan</th>
@@ -700,18 +708,10 @@
 				<th></th>
 				<th align="right"><?php echo number_format($tangki_solar,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active2">
-				<th></th>
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;BBM Solar</th>
-				<th align="center">Litter</th>
-				<th></th>
-				<th></th>
-				<th align="right"><?php echo number_format($bbm_solar,0,',','.');?></th>
-	        </tr>
 			<hr width="98%">
 			<tr class="table-active3">
 				<th></th>
-				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;Total Biaya Perlatan</th>
+				<th align="left">&nbsp;&nbsp;&nbsp;&nbsp;Total Biaya Peralatan</th>
 				<th></th>
 				<th></th>
 	            <th align="center"></th>

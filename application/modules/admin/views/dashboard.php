@@ -12,33 +12,6 @@
             align-content: center;
             display: none;
     }
-    blink {
-    -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
-    animation: 2s linear infinite kedip;
-    }
-    /* for Safari 4.0 - 8.0 */
-    @-webkit-keyframes kedip { 
-    0% {
-        visibility: hidden;
-    }
-    50% {
-        visibility: hidden;
-    }
-    100% {
-        visibility: visible;
-    }
-    }
-    @keyframes kedip {
-    0% {
-        visibility: hidden;
-    }
-    50% {
-        visibility: hidden;
-    }
-    100% {
-        visibility: visible;
-    }
-    }
 </style>
 <body>
 <div class="wrap">
@@ -102,6 +75,16 @@
                         ->get()->row_array();
                         
                         //file_put_contents("D:\\hpp.txt", $this->db->last_query());
+
+                        $harga_jual_abubatu = 0;
+                        $harga_jual_batu0510 = 0;
+                        $harga_jual_batu1020 = 0;
+                        $harga_jual_batu2030 = 0;
+
+                        $harga_jual_abubatu = $hpp['abubatu'] + ($hpp['abubatu'] * 10) / 100;
+                        $harga_jual_batu0510 = $hpp['batu0510'] + ($hpp['batu0510'] * 10) / 100;
+                        $harga_jual_batu1020 = $hpp['batu1020'] + ($hpp['batu1020'] * 10) / 100;
+                        $harga_jual_batu2030 = $hpp['batu2030'] + ($hpp['batu2030'] * 10) / 100;
                     ?>
                     <div class="col-sm-8">
                         <div class="panel panel-default">
@@ -118,17 +101,35 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <table class="table table-center" border="2" id="table-harga">
+                                        <tr>
+                                                <th class="text-left" style='background-color:rgb(0,206,209); color:black' colspan="4">Harga Jual (Termasuk Laba 10% dari HPP)</th>
+                                            <tr> 
                                             <tr>
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,5 - 10</th> 
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20</th> 
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30</th>  
+                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 0,0 - 0,5</th>
+                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 0,5 - 10</th> 
+                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 10 - 20</th> 
+                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 20 - 30</th>  
                                             <tr>
                                             <tr>
-                                                <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['abubatu'],0,',','.');?></blink></th>
-                                                <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['batu0510'],0,',','.');?></blink></th> 
-                                                <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['batu1020'],0,',','.');?></blink></th> 
-                                                <th class="text-right" style='color:red'><blink><?php echo number_format($hpp['batu2030'],0,',','.');?></blink></th>  
+                                                <th class="text-right" style='color:red'><?php echo number_format($harga_jual_abubatu,0,',','.');?></th>
+                                                <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu0510,0,',','.');?></th> 
+                                                <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu1020,0,',','.');?></th> 
+                                                <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu2030,0,',','.');?></th>  
+                                            <tr> 
+                                            <tr>
+                                                <th class="text-left" style='background-color:rgb(0,206,209); color:black' colspan="4">HPP</th>
+                                            <tr> 
+                                            <tr>
+                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 0,0 - 0,5</th>
+                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 0,5 - 10</th> 
+                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 10 - 20</th> 
+                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 20 - 30</th>  
+                                            <tr>
+                                            <tr>
+                                                <th class="text-right" style='color:red'><?php echo number_format($hpp['abubatu'],0,',','.');?></th>
+                                                <th class="text-right" style='color:red'><?php echo number_format($hpp['batu0510'],0,',','.');?></th> 
+                                                <th class="text-right" style='color:red'><?php echo number_format($hpp['batu1020'],0,',','.');?></th> 
+                                                <th class="text-right" style='color:red'><?php echo number_format($hpp['batu2030'],0,',','.');?></th>  
                                             <tr> 
                                             
                                         </table>
