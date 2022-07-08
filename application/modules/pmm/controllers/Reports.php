@@ -6152,11 +6152,11 @@ class Reports extends CI_Controller {
 				<th colspan="5"></th>
 			</tr>
 			<tr class="table-active">
-				<th class="text-left" colspan="5">BEBAN POKOK PENDAPATAN</th>
+				<th class="text-left" colspan="5">HARGA POKOK PENDAPATAN</th>
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center">5-50000</th>
-				<th class="text-left" colspan="3">Beban Pokok Pendapatan</th>
+				<th class="text-left" colspan="3">Harga Pokok Pendapatan</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -6170,7 +6170,7 @@ class Reports extends CI_Controller {
 					</table></th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-left" colspan="4">Total Beban Pokok Pendapatan</th>
+				<th class="text-left" colspan="4">Total Harga Pokok Pendapatan</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
