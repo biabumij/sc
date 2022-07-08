@@ -5581,7 +5581,7 @@ class Reports extends CI_Controller {
 				<th class="text-center">Ls</th>
 				<th></th>
 	            <th class="text-center"></th>
-				<th class="text-right"><?php echo number_format($stone_crusher,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($stone_crusher,0,',','.');?></th>
 			</tr>
 			<tr class="table-active3">
 				<th></th>
