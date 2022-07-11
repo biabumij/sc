@@ -1483,6 +1483,7 @@ class Pmm extends CI_Controller {
 			'measure' => $get_m,
 			'volume' => $volume,
 			'notes' => $notes,
+			'penyesuaian_stok' => '1',
 			'price' => $price,
 			'total' => $volume * $price,
 			'status' => 'PUBLISH'
