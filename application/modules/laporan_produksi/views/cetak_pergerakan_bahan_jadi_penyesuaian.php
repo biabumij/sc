@@ -651,7 +651,7 @@
 			->where("cat.penyesuaian_stok = 1")
 			->get()->row_array();
 
-			//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
+			//file_put_contents("D:\\stock_opname_batu2030_ago.txt", $this->db->last_query());
 
 			$volume_opening_balance_abubatu_bulan_lalu = $stock_opname_penyesuaian['abubatu'] + $stock_opname_abu_batu_ago['volume'];
 			$volume_opening_balance_batu0510_bulan_lalu = $stock_opname_penyesuaian['batu0510'] + $stock_opname_batu0510_ago['volume'];
@@ -958,34 +958,34 @@
 
 			$stock_opname_abu_batu = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
-			->where("cat.date between '$date1' and '$date2'")
+			->where("(cat.date < '$date2')")
 			->where("cat.material_id = 7")
 			->where("cat.status = 'PUBLISH'")
-			->where("cat.penyesuaian_stok = 1")
+			->where("cat.penyesuaian_stok = 1")->limit(1)
 			->get()->row_array();
 			
 			$stock_opname_batu0510 = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
-			->where("cat.date between '$date1' and '$date2'")
+			->where("(cat.date < '$date2')")
 			->where("cat.material_id = 8")
 			->where("cat.status = 'PUBLISH'")
-			->where("cat.penyesuaian_stok = 1")
+			->where("cat.penyesuaian_stok = 1")->limit(1)
 			->get()->row_array();
 
 			$stock_opname_batu1020 = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
-			->where("cat.date between '$date1' and '$date2'")
+			->where("(cat.date < '$date2')")
 			->where("cat.material_id = 3")
 			->where("cat.status = 'PUBLISH'")
-			->where("cat.penyesuaian_stok = 1")
+			->where("cat.penyesuaian_stok = 1")->limit(1)
 			->get()->row_array();
 
 			$stock_opname_batu2030 = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
-			->where("cat.date between '$date1' and '$date2'")
+			->where("(cat.date < '$date2')")
 			->where("cat.material_id = 4")
 			->where("cat.status = 'PUBLISH'")
-			->where("cat.penyesuaian_stok = 1")
+			->where("cat.penyesuaian_stok = 1")->limit(1)
 			->get()->row_array();
 
 			//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
