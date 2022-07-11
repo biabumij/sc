@@ -619,6 +619,8 @@
 			->order_by('cat.date_penyesuaian','desc')->limit(1)
 			->get()->row_array();
 
+			//file_put_contents("D:\\stock_opname_penyesuaian.txt", $this->db->last_query());
+
 			$stock_opname_abu_batu_ago = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
 			->where("(cat.date < '$date1')")
@@ -958,7 +960,7 @@
 
 			$stock_opname_abu_batu = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
-			->where("(cat.date < '$date2')")
+			->where("(cat.date <= '$date2')")
 			->where("cat.material_id = 7")
 			->where("cat.status = 'PUBLISH'")
 			->where("cat.penyesuaian_stok = 1")->limit(1)
@@ -966,7 +968,7 @@
 			
 			$stock_opname_batu0510 = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
-			->where("(cat.date < '$date2')")
+			->where("(cat.date <= '$date2')")
 			->where("cat.material_id = 8")
 			->where("cat.status = 'PUBLISH'")
 			->where("cat.penyesuaian_stok = 1")->limit(1)
@@ -974,7 +976,7 @@
 
 			$stock_opname_batu1020 = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
-			->where("(cat.date < '$date2')")
+			->where("(cat.date <= '$date2')")
 			->where("cat.material_id = 3")
 			->where("cat.status = 'PUBLISH'")
 			->where("cat.penyesuaian_stok = 1")->limit(1)
@@ -982,7 +984,7 @@
 
 			$stock_opname_batu2030 = $this->db->select('(cat.volume) as volume')
 			->from('pmm_remaining_materials_cat cat ')
-			->where("(cat.date < '$date2')")
+			->where("(cat.date <= '$date2')")
 			->where("cat.material_id = 4")
 			->where("cat.status = 'PUBLISH'")
 			->where("cat.penyesuaian_stok = 1")->limit(1)
