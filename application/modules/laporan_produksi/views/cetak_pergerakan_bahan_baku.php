@@ -343,7 +343,7 @@
 			<tr class="table-baris1">
 				<th align="center"style="vertical-align:middle"><?php echo $date2_ago;?></th>			
 				<th align="left" colspan="9"><i>Opening Balance</i></th>
-				<th align="center"><?php echo number_format($opening_balance_bahan_baku,0,',','.');?></th>
+				<th align="right"><?php echo number_format($opening_balance_bahan_baku,0,',','.');?></th>
 	        </tr>
 			<tr class="table-baris1">
 				<th align="left"><i>Batu Boulder</i></th>
