@@ -1987,7 +1987,7 @@ class Reports extends CI_Controller {
 				<th class="text-right">-</th>
 				<th class="text-right">-</th>
 				<th class="text-center"><?php echo number_format($volume_akhir_produksi_harian_batu1020_bulan_ini,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($harga_akhir_produksi_harian_batu1020_bulan_ini,10,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harga_akhir_produksi_harian_batu1020_bulan_ini,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_produksi_harian_batu1020_bulan_ini,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">		
