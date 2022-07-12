@@ -102,7 +102,12 @@
                                         <table class="table table-bordered" border="2">
                                             <tr>
                                                 <th class="text-center" colspan="4" style="background-color:#ffb732; color:black; text-transform:uppercase">
-                                                    <?php
+                                                    
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-left" style='background-color:#ffb732; color:black' colspan="4">Harga Jual (Termasuk Laba 10% dari HPP) -  
+                                                Harga Update (<?php
                                                     $search = array(
                                                     'January',
                                                     'February',
@@ -138,11 +143,7 @@
 
                                                     echo str_replace($search, $replace, $subject);
 
-                                                    ?>
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black' colspan="4">Harga Jual (Termasuk Laba 10% dari HPP)</th>
+                                                    ?>)</th>
                                             </tr> 
                                             <tr>
                                                 <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
@@ -157,7 +158,45 @@
                                                 <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu2030,0,',','.');?></th>  
                                             </tr> 
                                             <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black' colspan="4">HPP Dasar</th>
+                                                <th class="text-left" style='background-color:#ffb732; color:black' colspan="4">HPP Dasar -  
+                                                Harga Update (<?php
+                                                    $search = array(
+                                                    'January',
+                                                    'February',
+                                                    'March',
+                                                    'April',
+                                                    'May',
+                                                    'June',
+                                                    'July',
+                                                    'August',
+                                                    'September',
+                                                    'October',
+                                                    'November',
+                                                    'December'
+                                                    );
+                                                    
+                                                    $replace = array(
+                                                    'Januari',
+                                                    'Februari',
+                                                    'Maret',
+                                                    'April',
+                                                    'Mei',
+                                                    'Juni',
+                                                    'Juli',
+                                                    'Agustus',
+                                                    'September',
+                                                    'Oktober',
+                                                    'November',
+                                                    'Desember'
+                                                    );
+                                                    
+		                                            $date2_konversi = date('d F Y', strtotime($hpp['date_hpp']));
+                                                    $subject = "$date2_konversi";
+
+                                                    echo str_replace($search, $replace, $subject);
+
+                                                    ?>)
+                                            </th>
                                             </tr> 
                                             <tr>
                                                 <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
