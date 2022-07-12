@@ -1729,7 +1729,7 @@ class Pmm extends CI_Controller {
 
         $datasets_laba[0] = array(
             'label' => 'Persentase Laba Rugi',
-            'backgroundColor' => 'rgb(0,206,209)',
+            'backgroundColor' => '#ffb732',
             'data' => $chart_net,
             'data_revenue' => $chart_revenue,
             'data_revenuecost' => $chart_revenuecost,

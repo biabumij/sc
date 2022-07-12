@@ -93,7 +93,7 @@
                                                     <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi (Penyesuaian Stok)</h5></p>
 														<p>Menampilkan pergerakan bahan jadi (Penyesuaian Stok) dalam suatu periode.</p>
-                                                        <a href="#pergerakan_bahan_jadi_penyusuaian" aria-controls="pergerakan_bahan_jadi_penyusuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                        <a href="#pergerakan_bahan_jadi_penyesuaian" aria-controls="pergerakan_bahan_jadi_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Evaluasi Nilai Persediaan</h5></p>
@@ -418,7 +418,7 @@
 
                                     <!-- Pergerakan Bahan Jadi (Penyesuaian Stok) -->
 									
-									<div role="tabpanel" class="tab-pane" id="pergerakan_bahan_jadi_penyusuaian">
+									<div role="tabpanel" class="tab-pane" id="pergerakan_bahan_jadi_penyesuaian">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
                                                 <div class="panel-heading">

@@ -8,9 +8,9 @@
         position: relative; width:100%;height:350px;background: #fff;
     }
     .loading-chart{
-            text-align: center;
-            align-content: center;
-            display: none;
+        text-align: center;
+        align-content: center;
+        display: none;
     }
 </style>
 <body>
@@ -92,7 +92,6 @@
                                 <div class="row">
                                     <div class="col-sm-12 text-left">
                                         <h4>Harga Jual - Bahan Jadi</h4>
-                                        <?php echo date('d-F-Y',strtotime($hpp['date_hpp']));?>
                                     </div>
                                 </div>
                                 
@@ -100,37 +99,78 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table class="table table-center" border="2" id="table-harga">
-                                        <tr>
-                                                <th class="text-left" style='background-color:rgb(0,206,209); color:black' colspan="4">Harga Jual (Termasuk Laba 10% dari HPP)</th>
-                                            <tr> 
+                                        <table class="table table-bordered" border="2">
                                             <tr>
-                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 0,0 - 0,5</th>
-                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 0,5 - 10</th> 
-                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 10 - 20</th> 
-                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 20 - 30</th>  
+                                                <th class="text-center" colspan="4" style="background-color:#ffb732; color:black; text-transform:uppercase">
+                                                    <?php
+                                                    $search = array(
+                                                    'January',
+                                                    'February',
+                                                    'March',
+                                                    'April',
+                                                    'May',
+                                                    'June',
+                                                    'July',
+                                                    'August',
+                                                    'September',
+                                                    'October',
+                                                    'November',
+                                                    'December'
+                                                    );
+                                                    
+                                                    $replace = array(
+                                                    'Januari',
+                                                    'Februari',
+                                                    'Maret',
+                                                    'April',
+                                                    'Mei',
+                                                    'Juni',
+                                                    'Juli',
+                                                    'Agustus',
+                                                    'September',
+                                                    'Oktober',
+                                                    'November',
+                                                    'Desember'
+                                                    );
+                                                    
+		                                            $date2_konversi = date('d F Y', strtotime($hpp['date_hpp']));
+                                                    $subject = "$date2_konversi";
+
+                                                    echo str_replace($search, $replace, $subject);
+
+                                                    ?>
+                                                </th>
+                                            </tr>
                                             <tr>
+                                                <th class="text-left" style='background-color:#ffb732; color:black' colspan="4">Harga Jual (Termasuk Laba 10% dari HPP)</th>
+                                            </tr> 
+                                            <tr>
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,5 - 10</th> 
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20</th> 
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30</th>  
+                                            </tr> 
                                             <tr>
                                                 <th class="text-right" style='color:red'><?php echo number_format($harga_jual_abubatu,0,',','.');?></th>
                                                 <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu0510,0,',','.');?></th> 
                                                 <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu1020,0,',','.');?></th> 
                                                 <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu2030,0,',','.');?></th>  
-                                            <tr> 
+                                            </tr> 
                                             <tr>
-                                                <th class="text-left" style='background-color:rgb(0,206,209); color:black' colspan="4">HPP</th>
-                                            <tr> 
+                                                <th class="text-left" style='background-color:#ffb732; color:black' colspan="4">HPP Dasar</th>
+                                            </tr> 
                                             <tr>
-                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 0,0 - 0,5</th>
-                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 0,5 - 10</th> 
-                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 10 - 20</th> 
-                                                <th class="text-center" style='background-color:rgb(192,192,192); color:black'>Batu Split 20 - 30</th>  
-                                            <tr>
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,5 - 10</th> 
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20</th> 
+                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30</th>  
+                                            </tr> 
                                             <tr>
                                                 <th class="text-right" style='color:red'><?php echo number_format($hpp['abubatu'],0,',','.');?></th>
                                                 <th class="text-right" style='color:red'><?php echo number_format($hpp['batu0510'],0,',','.');?></th> 
                                                 <th class="text-right" style='color:red'><?php echo number_format($hpp['batu1020'],0,',','.');?></th> 
                                                 <th class="text-right" style='color:red'><?php echo number_format($hpp['batu2030'],0,',','.');?></th>  
-                                            <tr> 
+                                            </tr> 
                                             
                                         </table>
                                     </div>    
@@ -138,6 +178,40 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Pergerakan Bahan Jadi (Penyesuaian Stok) -->
+                    <div class="col-sm-8">
+                        <div role="tabpanel" class="tab-pane" id="pergerakan_bahan_jadi_penyesuaian">
+                            <div class="col-sm-15">
+                            <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Nilai Persediaan Bahan Jadi</h3>
+                                    </div>
+                                    <div style="margin: 20px">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                        <input type="text" id="filter_date_bahan_jadi_penyesuaian" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+                                                    </div>
+                                                
+                                            </div>
+                                        <br />
+                                        <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                            <div>Please Wait</div>
+                                            <div class="fa-3x">
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                            </div>
+                                        </div>				
+                                        <div class="table-responsive" id="box-ajax-6c">													
+                                        
+        
+                                        </div>
+                                    </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+
                 </div>  
             </div>
         <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
@@ -256,5 +330,51 @@
             getLostProfit();
     });
 </script>
+
+<!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->
+			
+    <script type="text/javascript">
+        $('#filter_date_bahan_jadi_penyesuaian').daterangepicker({
+            autoUpdateInput : false,
+            showDropdowns: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
+
+        $('#filter_date_bahan_jadi_penyesuaian').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                TablePergerakanBahanJadiPenyesuaian();
+        });
+        
+        function TablePergerakanBahanJadiPenyesuaian()
+        {
+            $('#wait').fadeIn('fast');   
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo site_url('pmm/reports/pergerakan_bahan_jadi_penyesuaian_dashboard'); ?>/"+Math.random(),
+                dataType : 'html',
+                data: {
+                    filter_date : $('#filter_date_bahan_jadi_penyesuaian').val(),
+                },
+                success : function(result){
+                    $('#box-ajax-6c').html(result);
+                    $('#wait').fadeOut('fast');
+                }
+            });
+        }
+
+        TablePergerakanBahanJadiPenyesuaian();
+        
+    </script>
+
 </body>
 </html>
