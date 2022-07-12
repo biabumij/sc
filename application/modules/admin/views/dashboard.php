@@ -99,14 +99,9 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table class="table table-bordered" border="2">
+                                        <table class="table table-bordered">
                                             <tr>
-                                                <th class="text-center" colspan="4" style="background-color:#ffb732; color:black; text-transform:uppercase">
-                                                    
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black' colspan="4">Harga Jual (Termasuk Laba 10% dari HPP) -  
+                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HARGA JUAL (TERMASUK LABA 10% DARI HPP DASAR) -  
                                                 Harga Update (<?php
                                                     $search = array(
                                                     'January',
@@ -152,13 +147,13 @@
                                                 <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30</th>  
                                             </tr> 
                                             <tr>
-                                                <th class="text-right" style='color:red'><?php echo number_format($harga_jual_abubatu,0,',','.');?></th>
-                                                <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu0510,0,',','.');?></th> 
-                                                <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu1020,0,',','.');?></th> 
-                                                <th class="text-right" style='color:red'><?php echo number_format($harga_jual_batu2030,0,',','.');?></th>  
+                                                <th class="text-right"><?php echo number_format($harga_jual_abubatu,0,',','.');?></th>
+                                                <th class="text-right"><?php echo number_format($harga_jual_batu0510,0,',','.');?></th> 
+                                                <th class="text-right"><?php echo number_format($harga_jual_batu1020,0,',','.');?></th> 
+                                                <th class="text-right"><?php echo number_format($harga_jual_batu2030,0,',','.');?></th>  
                                             </tr> 
                                             <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black' colspan="4">HPP Dasar -  
+                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HPP DASAR -  
                                                 Harga Update (<?php
                                                     $search = array(
                                                     'January',
@@ -205,10 +200,10 @@
                                                 <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30</th>  
                                             </tr> 
                                             <tr>
-                                                <th class="text-right" style='color:red'><?php echo number_format($hpp['abubatu'],0,',','.');?></th>
-                                                <th class="text-right" style='color:red'><?php echo number_format($hpp['batu0510'],0,',','.');?></th> 
-                                                <th class="text-right" style='color:red'><?php echo number_format($hpp['batu1020'],0,',','.');?></th> 
-                                                <th class="text-right" style='color:red'><?php echo number_format($hpp['batu2030'],0,',','.');?></th>  
+                                                <th class="text-right"><?php echo number_format($hpp['abubatu'],0,',','.');?></th>
+                                                <th class="text-right"><?php echo number_format($hpp['batu0510'],0,',','.');?></th> 
+                                                <th class="text-right"><?php echo number_format($hpp['batu1020'],0,',','.');?></th> 
+                                                <th class="text-right"><?php echo number_format($hpp['batu2030'],0,',','.');?></th>  
                                             </tr> 
                                             
                                         </table>
@@ -241,6 +236,38 @@
                                             </div>
                                         </div>				
                                         <div class="table-responsive" id="box-ajax-6c">													
+                                        
+        
+                                        </div>
+                                    </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nilai Persediaan Barang -->
+                    <div class="col-sm-8">			
+                        <div role="tabpanel" class="tab-pane" id="nilai_persediaan_barang">
+                            <div class="col-sm-15">
+                            <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Nilai Persediaan Bahan Baku</h3>
+                                    </div>
+                                    <div style="margin: 20px">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <input type="text" id="filter_date_nilai" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                            <div>Please Wait</div>
+                                            <div class="fa-3x">
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                            </div>
+                                        </div>				
+                                        <div class="table-responsive" id="box-ajax-3">													
                                         
         
                                         </div>
@@ -370,8 +397,7 @@
     });
 </script>
 
-<!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->
-			
+    <!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->		
     <script type="text/javascript">
         $('#filter_date_bahan_jadi_penyesuaian').daterangepicker({
             autoUpdateInput : false,
@@ -413,6 +439,51 @@
 
         TablePergerakanBahanJadiPenyesuaian();
         
+    </script>
+
+    <!-- Script Nilai Persediaan Barang -->
+    <script type="text/javascript">
+    $('#filter_date_nilai').daterangepicker({
+    autoUpdateInput : false,
+    showDropdowns: true,
+    locale: {
+        format: 'DD-MM-YYYY'
+    },
+    ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
+
+        $('#filter_date_nilai').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                TableNilaiPersediaanBarang();
+        });
+
+
+        function TableNilaiPersediaanBarang()
+        {
+            $('#wait').fadeIn('fast');   
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo site_url('pmm/reports/nilai_persediaan_barang_dashboard'); ?>/"+Math.random(),
+                dataType : 'html',
+                data: {
+                    filter_date : $('#filter_date_nilai').val(),
+                },
+                success : function(result){
+                    $('#box-ajax-3').html(result);
+                    $('#wait').fadeOut('fast');
+                }
+            });
+        }
+
+        TableNilaiPersediaanBarang();
+    
     </script>
 
 </body>
