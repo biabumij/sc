@@ -58,8 +58,13 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Pengiriman Penjualan</h5></p>
-														<p>Menampilkan produk bahan baku yang dicatat terkirim untuk transaksi penjualan dalam suatu periode.</p>
+														<p>Menampilkan laporan pengiriman penjualan yang dicatat terkirim untuk transaksi penjualan dalam suatu periode.</p>
                                                         <a href="#laporan_pengiriman_penjualan" aria-controls="laporan_pengiriman_penjualan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>									
+                                                    </div>
+                                                    <div class="col-sm-5">
+														<p><h5>Pengiriman Penjualan Produk</h5></p>
+														<p>Menampilkan laporan pengiriman penjualan produk yang dicatat terkirim untuk transaksi penjualan dalam suatu periode.</p>
+                                                        <a href="#laporan_pengiriman_penjualan_produk" aria-controls="laporan_pengiriman_penjualan_produk" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>									
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Sales Order</h5></p>
@@ -68,7 +73,7 @@
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Penjualan Per Produk</h5></p>
-														<p>Menampilkan daftar kuantitas penjualan per produk.</p>
+														<p>Menampilkan daftar kuantitas penjualan per produk yang dicatat terkirim untuk transaksi penjualan dalam suatu periode.</p>
                                                         <a href="#laporan_penjualan_produk" aria-controls="laporan_penjualan_produk" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
@@ -189,6 +194,44 @@
                                     </div>
 
                                     <!-- End Laporan Pengiriman Penjualan -->
+
+                                    <!-- Laporan Pengiriman Produk -->
+									
+									<div role="tabpanel" class="tab-pane" id="laporan_pengiriman_penjualan_produk">
+                                        <div class="col-sm-15">
+										<div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Laporan Pengiriman Penjualan Produk</h3>
+													<a href="laporan_produksi">Kembali</a>
+                                                </div>
+												<div style="margin: 20px">
+													<div class="row">
+														<form action="<?php echo site_url('laporan/pergerakan_bahan_jadi_print');?>" target="_blank">
+															<div class="col-sm-3">
+																<input type="text" id="filter_date_bahan_jadi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+															</div>
+															<div class="col-sm-3">
+																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+															</div>
+														</form>
+														
+													</div>
+													<br />
+													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+														<div>Please Wait</div>
+														<div class="fa-3x">
+														  <i class="fa fa-spinner fa-spin"></i>
+														</div>
+													</div>				
+													<div class="table-responsive" id="box-ajax-6">													
+													
+                    
+													</div>
+												</div>
+										</div>
+										
+										</div>
+                                    </div>
 									
 									<!-- Laporan Sales Order -->
 
@@ -684,7 +727,54 @@
         </script>
 
         <!-- End Script Penjualan -->
-		
+
+        <!-- Script Pergerakan Bahan Jadi -->
+			
+        <script type="text/javascript">
+			$('#filter_date_bahan_jadi').daterangepicker({
+				autoUpdateInput : false,
+				showDropdowns: true,
+				locale: {
+				  format: 'DD-MM-YYYY'
+				},
+				ranges: {
+				   'Today': [moment(), moment()],
+				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				   'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+				   'This Month': [moment().startOf('month'), moment().endOf('month')],
+				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				}
+			});
+
+			$('#filter_date_bahan_jadi').on('apply.daterangepicker', function(ev, picker) {
+				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+				  TablePergerakanBahanJadi();
+			});
+			
+			function TablePergerakanBahanJadi()
+			{
+				$('#wait').fadeIn('fast');   
+				$.ajax({
+					type    : "POST",
+					url     : "<?php echo site_url('pmm/productions/laporan_pengiriman_penjualan_produk'); ?>/"+Math.random(),
+					dataType : 'html',
+					data: {
+						filter_date : $('#filter_date_bahan_jadi').val(),
+					},
+					success : function(result){
+						$('#box-ajax-6').html(result);
+						$('#wait').fadeOut('fast');
+					}
+				});
+			}
+
+			//TablePergerakanBahanJadi();
+			
+            </script>
+
+		<!-- End Script Pergerakan Bahan Jadi -->
+
 		<!-- Script Sales Order -->
 		
 		<script type="text/javascript">

@@ -1483,7 +1483,6 @@ class Pmm extends CI_Controller {
 			'measure' => $get_m,
 			'volume' => $volume,
 			'notes' => $notes,
-			'penyesuaian_stok' => '1',
 			'price' => $price,
 			'total' => $volume * $price,
 			'status' => 'PUBLISH'
@@ -1528,6 +1527,7 @@ class Pmm extends CI_Controller {
 			$arr['created_by'] = $this->session->userdata('admin_id');
 			$arr['created_on'] = date('Y-m-d H:i:s');
 			$this->db->insert('pmm_remaining_materials_cat',$arr);
+			$this->db->insert('pmm_remaining_materials_cat_2',$arr);
 			$id = $this->db->insert_id();
 			if(!empty($get_mats) && !empty($all_mats['volume'])){
 				foreach ($get_mats as $mat_receipt) {
