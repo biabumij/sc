@@ -289,12 +289,12 @@ class Reports extends CI_Controller {
 			$total_harga_pembelian_akhir_solar = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_akhir_solar;
 			$total_nilai_pembelian_akhir_solar =  $total_volume_pembelian_akhir_solar * $total_harga_pembelian_akhir_solar;
 
-			$stock_opname_solar = $this->db->select('SUM(prm.volume) as volume, SUM(prm.total) as total')
+			$stock_opname_solar = $this->db->select('(prm.volume) as volume, (prm.total) as total')
 			->from('pmm_remaining_materials_cat prm ')
 			->where("prm.material_id = 13")
 			->where("prm.date between '$date1' and '$date2'")
 			->where("status = 'PUBLISH'")
-			->order_by('date','desc')
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 
 			//file_put_contents("D:\\stock_opname_solar.txt", $this->db->last_query());
@@ -709,12 +709,12 @@ class Reports extends CI_Controller {
 			$total_harga_pembelian_akhir_solar = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_akhir_solar;
 			$total_nilai_pembelian_akhir_solar =  $total_volume_pembelian_akhir_solar * $total_harga_pembelian_akhir_solar;
 
-			$stock_opname_solar = $this->db->select('SUM(prm.volume) as volume, SUM(prm.total) as total')
+			$stock_opname_solar = $this->db->select('(prm.volume) as volume, (prm.total) as total')
 			->from('pmm_remaining_materials_cat prm ')
 			->where("prm.material_id = 13")
 			->where("prm.date between '$date1' and '$date2'")
 			->where("status = 'PUBLISH'")
-			->order_by('date','desc')
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 
 			//file_put_contents("D:\\stock_opname_solar.txt", $this->db->last_query());
@@ -1358,12 +1358,12 @@ class Reports extends CI_Controller {
 			$total_harga_pembelian_akhir_solar = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_akhir_solar;
 			$total_nilai_pembelian_akhir_solar =  $total_volume_pembelian_akhir_solar * $total_harga_pembelian_akhir_solar;
 
-			$stock_opname_solar = $this->db->select('SUM(prm.volume) as volume, SUM(prm.total) as total')
+			$stock_opname_solar = $this->db->select('(prm.volume) as volume, (prm.total) as total')
 			->from('pmm_remaining_materials_cat prm ')
 			->where("prm.material_id = 13")
 			->where("prm.date between '$date1' and '$date2'")
 			->where("status = 'PUBLISH'")
-			->order_by('date','desc')
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 
 			//file_put_contents("D:\\stock_opname_solar.txt", $this->db->last_query());
@@ -2770,12 +2770,12 @@ class Reports extends CI_Controller {
 			$total_harga_pembelian_akhir_solar = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_akhir_solar;
 			$total_nilai_pembelian_akhir_solar =  $total_volume_pembelian_akhir_solar * $total_harga_pembelian_akhir_solar;
 
-			$stock_opname_solar = $this->db->select('SUM(prm.volume) as volume, SUM(prm.total) as total')
+			$stock_opname_solar = $this->db->select('(prm.volume) as volume, (prm.total) as total')
 			->from('pmm_remaining_materials_cat prm ')
 			->where("prm.material_id = 13")
 			->where("prm.date between '$date1' and '$date2'")
 			->where("status = 'PUBLISH'")
-			->order_by('date','desc')
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 
 			//file_put_contents("D:\\stock_opname_solar.txt", $this->db->last_query());
@@ -4162,12 +4162,12 @@ class Reports extends CI_Controller {
 			$total_harga_pembelian_akhir_solar = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_akhir_solar;
 			$total_nilai_pembelian_akhir_solar =  $total_volume_pembelian_akhir_solar * $total_harga_pembelian_akhir_solar;
 
-			$stock_opname_solar = $this->db->select('SUM(prm.volume) as volume, SUM(prm.total) as total')
+			$stock_opname_solar = $this->db->select('(prm.volume) as volume, (prm.total) as total')
 			->from('pmm_remaining_materials_cat prm ')
 			->where("prm.material_id = 13")
 			->where("prm.date between '$date1' and '$date2'")
 			->where("status = 'PUBLISH'")
-			->order_by('date','desc')
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 
 			//file_put_contents("D:\\stock_opname_solar.txt", $this->db->last_query());
@@ -5357,12 +5357,12 @@ class Reports extends CI_Controller {
 			$total_harga_pembelian_akhir_solar = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_akhir_solar;
 			$total_nilai_pembelian_akhir_solar =  $total_volume_pembelian_akhir_solar * $total_harga_pembelian_akhir_solar;
 
-			$stock_opname_solar = $this->db->select('SUM(prm.volume) as volume, SUM(prm.total) as total')
+			$stock_opname_solar = $this->db->select('(prm.volume) as volume, (prm.total) as total')
 			->from('pmm_remaining_materials_cat prm ')
 			->where("prm.material_id = 13")
 			->where("prm.date between '$date1' and '$date2'")
 			->where("status = 'PUBLISH'")
-			->order_by('date','desc')
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 
 			//file_put_contents("D:\\stock_opname_solar.txt", $this->db->last_query());
@@ -6968,13 +6968,14 @@ class Reports extends CI_Controller {
 			$total_harga_pembelian_akhir_solar = ($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_akhir_solar;
 			$total_nilai_pembelian_akhir_solar =  $total_volume_pembelian_akhir_solar * $total_harga_pembelian_akhir_solar;
 
-			$stock_opname_solar = $this->db->select('SUM(prm.volume) as volume, SUM(prm.total) as total')
+			$stock_opname_solar = $this->db->select('(prm.volume) as volume, (prm.total) as total')
 			->from('pmm_remaining_materials_cat prm ')
 			->where("prm.material_id = 13")
 			->where("prm.date between '$date1' and '$date2'")
 			->where("status = 'PUBLISH'")
-			->order_by('date','desc')
+			->order_by('date','desc')->limit(1)
 			->get()->row_array();
+
 
 			//file_put_contents("D:\\stock_opname_solar.txt", $this->db->last_query());
 
