@@ -6591,24 +6591,24 @@ class Reports extends CI_Controller {
 			<!--- END AGREGAT --->
 			<?php
 
-			$evaluasi_volume_abubatu = $stok_volume_akhir_penjualan_abubatu_bulan_ini - $volume_akhir_agregat_abubatu_bulan_ini_2;
-			$evaluasi_harga_abubatu = $stok_harga_akhir_agregat_abubatu_bulan_ini_2;
-			$evaluasi_nilai_abubatu = $stok_nilai_akhir_penjualan_abubatu_bulan_ini - $nilai_akhir_agregat_abubatu_bulan_ini_2;
+			$evaluasi_volume_abubatu = round($stok_volume_akhir_penjualan_abubatu_bulan_ini - $volume_akhir_agregat_abubatu_bulan_ini_2,2);
+			$evaluasi_harga_abubatu = round($stok_harga_akhir_agregat_abubatu_bulan_ini_2,0);
+			$evaluasi_nilai_abubatu = round($stok_nilai_akhir_penjualan_abubatu_bulan_ini - $nilai_akhir_agregat_abubatu_bulan_ini_2,0);
 			
-			$evaluasi_volume_batu0510 = $stok_volume_akhir_penjualan_batu0510_bulan_ini - $volume_akhir_agregat_batu0510_bulan_ini_2;
-			$evaluasi_harga_batu0510 = $stok_harga_akhir_agregat_batu0510_bulan_ini_2;
-			$evaluasi_nilai_batu0510 = $stok_nilai_akhir_penjualan_batu0510_bulan_ini - $nilai_akhir_agregat_batu0510_bulan_ini_2;
+			$evaluasi_volume_batu0510 = round($stok_volume_akhir_penjualan_batu0510_bulan_ini - $volume_akhir_agregat_batu0510_bulan_ini_2,2);
+			$evaluasi_harga_batu0510 = round($stok_harga_akhir_agregat_batu0510_bulan_ini_2,0);
+			$evaluasi_nilai_batu0510 = round($stok_nilai_akhir_penjualan_batu0510_bulan_ini - $nilai_akhir_agregat_batu0510_bulan_ini_2,0);
 
-			$evaluasi_volume_batu1020 = $stok_volume_akhir_penjualan_batu1020_bulan_ini - $volume_akhir_agregat_batu1020_bulan_ini_2;
-			$evaluasi_harga_batu1020 = $stok_harga_akhir_agregat_batu1020_bulan_ini_2;
-			$evaluasi_nilai_batu1020 =  $stok_nilai_akhir_penjualan_batu1020_bulan_ini - $nilai_akhir_agregat_batu1020_bulan_ini_2;
+			$evaluasi_volume_batu1020 = round($stok_volume_akhir_penjualan_batu1020_bulan_ini - $volume_akhir_agregat_batu1020_bulan_ini_2,2);
+			$evaluasi_harga_batu1020 = round($stok_harga_akhir_agregat_batu1020_bulan_ini_2,0);
+			$evaluasi_nilai_batu1020 =  round($stok_nilai_akhir_penjualan_batu1020_bulan_ini - $nilai_akhir_agregat_batu1020_bulan_ini_2,0);
 
-			$evaluasi_volume_batu2030 = $stok_volume_akhir_penjualan_batu2030_bulan_ini - $volume_akhir_agregat_batu2030_bulan_ini_2;
-			$evaluasi_harga_batu2030 = $stok_harga_akhir_agregat_batu2030_bulan_ini_2;
-			$evaluasi_nilai_batu2030 = $stok_nilai_akhir_penjualan_batu2030_bulan_ini - $nilai_akhir_agregat_batu2030_bulan_ini_2;
+			$evaluasi_volume_batu2030 = round($stok_volume_akhir_penjualan_batu2030_bulan_ini - $volume_akhir_agregat_batu2030_bulan_ini_2,2);
+			$evaluasi_harga_batu2030 = round($stok_harga_akhir_agregat_batu2030_bulan_ini_2,0);
+			$evaluasi_nilai_batu2030 = round($stok_nilai_akhir_penjualan_batu2030_bulan_ini - $nilai_akhir_agregat_batu2030_bulan_ini_2,0);
 
-			$stok_evaluasi_total_volume_akhir = $evaluasi_volume_abubatu + $evaluasi_volume_batu0510 + $evaluasi_volume_batu1020 + $evaluasi_volume_batu2030;
-			$stok_evaluasi_total_nilai_akhir = $evaluasi_nilai_abubatu + $evaluasi_nilai_batu0510 + $evaluasi_nilai_batu1020 + $evaluasi_nilai_batu2030;
+			$stok_evaluasi_total_volume_akhir = round($evaluasi_volume_abubatu + $evaluasi_volume_batu0510 + $evaluasi_volume_batu1020 + $evaluasi_volume_batu2030,2);
+			$stok_evaluasi_total_nilai_akhir = round($evaluasi_nilai_abubatu + $evaluasi_nilai_batu0510 + $evaluasi_nilai_batu1020 + $evaluasi_nilai_batu2030,0);
 			
 			?>
 
@@ -6633,16 +6633,16 @@ class Reports extends CI_Controller {
 				<th class="text-center">NILAI</th>
 			</tr>
 			<?php
-				$styleColorA = $evaluasi_volume_abubatu < -0.1 ? 'color:red' : 'color:black';
-				$styleColorB = $evaluasi_nilai_abubatu < -0.1 ? 'color:red' : 'color:black';
-				$styleColorC = $evaluasi_volume_batu0510 < -0.1 ? 'color:red' : 'color:black';
-				$styleColorD = $evaluasi_nilai_batu0510 < -0.1 ? 'color:red' : 'color:black';
-				$styleColorE = $evaluasi_volume_batu1020 < -0.1 ? 'color:red' : 'color:black';
-				$styleColorF = $evaluasi_nilai_batu1020 < -0.1 ? 'color:red' : 'color:black';
-				$styleColorG = $evaluasi_volume_batu2030 < -0.1 ? 'color:red' : 'color:black';
-				$styleColorH = $evaluasi_nilai_batu2030 < -0.1 ? 'color:red' : 'color:black';
-				$styleColorI = $stok_evaluasi_total_volume_akhir < -0.1 ? 'color:red' : 'color:black';
-				$styleColorJ = $stok_evaluasi_total_nilai_akhir < -0.1 ? 'color:red' : 'color:black';
+				$styleColorA = $evaluasi_volume_abubatu < 0 ? 'color:red' : 'color:black';
+				$styleColorB = $evaluasi_nilai_abubatu < 0 ? 'color:red' : 'color:black';
+				$styleColorC = $evaluasi_volume_batu0510 < 0 ? 'color:red' : 'color:black';
+				$styleColorD = $evaluasi_nilai_batu0510 < 0 ? 'color:red' : 'color:black';
+				$styleColorE = $evaluasi_volume_batu1020 < 0 ? 'color:red' : 'color:black';
+				$styleColorF = $evaluasi_nilai_batu1020 < 0 ? 'color:red' : 'color:black';
+				$styleColorG = $evaluasi_volume_batu2030 < 0 ? 'color:red' : 'color:black';
+				$styleColorH = $evaluasi_nilai_batu2030 < 0 ? 'color:red' : 'color:black';
+				$styleColorI = $stok_evaluasi_total_volume_akhir < 0 ? 'color:red' : 'color:black';
+				$styleColorJ = $stok_evaluasi_total_nilai_akhir < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">		
 				<th class = "text-left"><i>Batu Split 0,0 - 0,5</i></th>
