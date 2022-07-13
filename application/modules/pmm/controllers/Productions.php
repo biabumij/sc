@@ -2978,7 +2978,7 @@ class Productions extends Secure_Controller {
 				<th class="text-right"><?php echo number_format($harga_penjualan_batu2030,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_penjualan_batu2030_all,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active5">
+			<tr class="table-active3">
 				<th class="text-center" colspan="2">TOTAL</th>
 				<th class="text-center"><?php echo number_format($total_volume_keluar,2,',','.');?></th>
 				<th class="text-right">-</th>
