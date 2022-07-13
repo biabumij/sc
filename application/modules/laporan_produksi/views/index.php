@@ -86,13 +86,8 @@
                                                         <a href="#pergerakan_bahan_jadi" aria-controls="pergerakan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Pergerakan Bahan Jadi (Stok)</h5></p>
-														<p>Menampilkan pergerakan bahan jadi (stok) dalam suatu periode.</p>
-                                                        <a href="#pergerakan_bahan_jadi_stok" aria-controls="pergerakan_bahan_jadi_stok" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-                                                    <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi (Penyesuaian Stok)</h5></p>
-														<p>Menampilkan pergerakan bahan jadi (Penyesuaian Stok) dalam suatu periode.</p>
+														<p>Menampilkan pergerakan bahan jadi (Penyesuaian Stok).</p>
                                                         <a href="#pergerakan_bahan_jadi_penyesuaian" aria-controls="pergerakan_bahan_jadi_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
@@ -369,44 +364,6 @@
 														</div>
 													</div>				
 													<div class="table-responsive" id="box-ajax-6">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-
-                                    <!-- Pergerakan Bahan Jadi (Stok) -->
-									
-									<div role="tabpanel" class="tab-pane" id="pergerakan_bahan_jadi_stok">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Pergerakan Bahan Jadi (Stok)</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/pergerakan_bahan_jadi_stok_print');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_bahan_jadi_stok" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-6a">													
 													
                     
 													</div>
@@ -921,51 +878,6 @@
 			}
 
 			//TablePergerakanBahanJadi();
-			
-            </script>
-
-            <!-- Script Pergerakan Bahan Jadi (Stok) -->
-			
-            <script type="text/javascript">
-			$('#filter_date_bahan_jadi_stok').daterangepicker({
-				autoUpdateInput : false,
-				showDropdowns: true,
-				locale: {
-				  format: 'DD-MM-YYYY'
-				},
-				ranges: {
-				   'Today': [moment(), moment()],
-				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				   'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-				   'This Month': [moment().startOf('month'), moment().endOf('month')],
-				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-				}
-			});
-
-			$('#filter_date_bahan_jadi_stok').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TablePergerakanBahanJadiStok();
-			});
-			
-			function TablePergerakanBahanJadiStok()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/pergerakan_bahan_jadi_stok'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_bahan_jadi_stok').val(),
-					},
-					success : function(result){
-						$('#box-ajax-6a').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TablePergerakanBahanJadiStok();
 			
             </script>
 
