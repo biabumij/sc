@@ -60,8 +60,8 @@ class Reports extends CI_Controller {
 				color: black;
 			}
 			table tr.table-active5{
-				background-color: #E8E8E8;
-				color: red;
+				background-color: #cccccc;
+				color: black;
 				font-size: 12px;
 				font-weight: bold;
 			}
@@ -452,7 +452,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>		
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active5">
 	            <th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
@@ -512,10 +512,10 @@ class Reports extends CI_Controller {
 				color: black;
 			}
 			table tr.table-active5{
-				background-color: #E8E8E8;
+				background-color: #cccccc;
 				font-weight: bold;
 				font-size: 12px;
-				color: red;
+				color: black;
 			}
 			table tr.table-activeago1{
 				background-color: #ffd966;
@@ -761,7 +761,7 @@ class Reports extends CI_Controller {
 			<th class="text-right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
 			<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>
 		</tr>
-		<tr class="table-active2">
+		<tr class="table-active5">
 			<th class="text-right" colspan="4">TOTAL NILAI PERSEDIAAN</th>
 			<th class="text-right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
 		</tr>
@@ -1124,8 +1124,8 @@ class Reports extends CI_Controller {
 				color: black;
 			}
 			table tr.table-active5{
-				background-color: #E8E8E8;
-				color: red;
+				background-color: #cccccc;
+				color: black;
 				font-size: 12px;
 				font-weight: bold;
 			}
@@ -2475,7 +2475,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active5">
 				<th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"><?php echo number_format($total_volume_masuk,2,',','.');?></th>
 				<th class="text-right">-</th>
@@ -2536,8 +2536,8 @@ class Reports extends CI_Controller {
 				color: black;
 			}
 			table tr.table-active5{
-				background-color: #E8E8E8;
-				color: red;
+				background-color: #cccccc;
+				color: black;
 				font-size: 12px;
 				font-weight: bold;
 			}
@@ -3929,7 +3929,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active5">
 				<th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"><?php echo number_format($total_volume_masuk,2,',','.');?></th>
 				<th class="text-right">-</th>
@@ -5123,8 +5123,8 @@ class Reports extends CI_Controller {
 				color: black;
 			}
 			table tr.table-active5{
-				background-color: #E8E8E8;
-				color: red;
+				background-color: #cccccc;
+				color: black;
 				font-size: 12px;
 				font-weight: bold;
 			}
@@ -6696,7 +6696,7 @@ class Reports extends CI_Controller {
 				<th class = "text-right"><?php echo number_format($evaluasi_harga_batu2030,0,',','.');?></th>
 				<th class = "text-right" style="<?php echo $styleColorH ?>"><?php echo number_format($evaluasi_nilai_batu2030,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active3">
+			<tr class="table-active5">
 				<th class = "text-center" colspan="2">TOTAL</th>
 				<th class = "text-center"><?php echo number_format($stok_total_volume_akhir,2,',','.');?></th>
 				<th class = "text-right">-</th>
