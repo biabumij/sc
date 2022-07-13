@@ -3171,17 +3171,26 @@ class Reports extends CI_Controller {
 			//SATU BULAN LALU
 			$tanggal_opening_balance_3 = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 			
-			$harga_hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			$harga_hpp_2 = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
 			->from('hpp_2 pp')
-			->where("(pp.date_hpp between '$tanggal_opening_balance_2' and '$tanggal_opening_balance_3')")
+			->where("(pp.date_hpp = '$tanggal_opening_balance_3')")
+			->where("pp.reset = 1")
+			->get()->row_array();
+			
+			//file_put_contents("D:\\harga_hpp_2.txt", $this->db->last_query());
+
+			$harga_hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			->from('hpp pp')
+			->where("(pp.date_hpp = '$tanggal_opening_balance_3')")
+			->where("pp.reset = 1")
 			->get()->row_array();
 			
 			//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
 
-			$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
-			$harga_opening_balance_batu0510_bulan_lalu = $harga_hpp['batu0510'];
-			$harga_opening_balance_batu1020_bulan_lalu = $harga_hpp['batu1020'];
-			$harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp['batu2030'];
+			$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp_2['abubatu'] + $harga_hpp['abubatu'];
+			$harga_opening_balance_batu0510_bulan_lalu = $harga_hpp_2['batu0510'] + $harga_hpp['batu0510'];
+			$harga_opening_balance_batu1020_bulan_lalu = $harga_hpp_2['batu1020'] + $harga_hpp['batu1020'];
+			$harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp_2['batu2030'] + $harga_hpp['batu2030'];
 
 			$vol_1 = round($volume_opening_balance_abubatu_bulan_lalu,2);
 			$vol_2 = round($volume_opening_balance_batu0510_bulan_lalu,2);
@@ -4554,17 +4563,26 @@ class Reports extends CI_Controller {
 			//SATU BULAN LALU
 			$tanggal_opening_balance_3 = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 			
-			$harga_hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			$harga_hpp_2 = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
 			->from('hpp_2 pp')
-			->where("(pp.date_hpp between '$tanggal_opening_balance_2' and '$tanggal_opening_balance_3')")
+			->where("(pp.date_hpp = '$tanggal_opening_balance_3')")
+			->where("pp.reset = 1")
+			->get()->row_array();
+			
+			//file_put_contents("D:\\harga_hpp_2.txt", $this->db->last_query());
+
+			$harga_hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			->from('hpp pp')
+			->where("(pp.date_hpp = '$tanggal_opening_balance_3')")
+			->where("pp.reset = 1")
 			->get()->row_array();
 			
 			//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
 
-			$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
-			$harga_opening_balance_batu0510_bulan_lalu = $harga_hpp['batu0510'];
-			$harga_opening_balance_batu1020_bulan_lalu = $harga_hpp['batu1020'];
-			$harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp['batu2030'];
+			$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp_2['abubatu'] + $harga_hpp['abubatu'];
+			$harga_opening_balance_batu0510_bulan_lalu = $harga_hpp_2['batu0510'] + $harga_hpp['batu0510'];
+			$harga_opening_balance_batu1020_bulan_lalu = $harga_hpp_2['batu1020'] + $harga_hpp['batu1020'];
+			$harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp_2['batu2030'] + $harga_hpp['batu2030'];
 
 			$vol_1 = round($volume_opening_balance_abubatu_bulan_lalu,2);
 			$vol_2 = round($volume_opening_balance_batu0510_bulan_lalu,2);
@@ -6198,17 +6216,26 @@ class Reports extends CI_Controller {
 			//SATU BULAN LALU
 			$tanggal_opening_balance_3 = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 			
-			$harga_hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			$harga_hpp_2 = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
 			->from('hpp_2 pp')
-			->where("(pp.date_hpp between '$tanggal_opening_balance_2' and '$tanggal_opening_balance_3')")
+			->where("(pp.date_hpp = '$tanggal_opening_balance_3')")
+			->where("pp.reset = 1")
+			->get()->row_array();
+			
+			//file_put_contents("D:\\harga_hpp_2.txt", $this->db->last_query());
+
+			$harga_hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
+			->from('hpp pp')
+			->where("(pp.date_hpp = '$tanggal_opening_balance_3')")
+			->where("pp.reset = 1")
 			->get()->row_array();
 			
 			//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
 
-			$stok_harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
-			$stok_harga_opening_balance_batu0510_bulan_lalu = $harga_hpp['batu0510'];
-			$stok_harga_opening_balance_batu1020_bulan_lalu = $harga_hpp['batu1020'];
-			$stok_harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp['batu2030'];
+			$stok_harga_opening_balance_abubatu_bulan_lalu = $harga_hpp_2['abubatu'] + $harga_hpp['abubatu'];
+			$stok_harga_opening_balance_batu0510_bulan_lalu = $harga_hpp_2['batu0510'] + $harga_hpp['batu0510'];
+			$stok_harga_opening_balance_batu1020_bulan_lalu = $harga_hpp_2['batu1020'] + $harga_hpp['batu1020'];
+			$stok_harga_opening_balance_batu2030_bulan_lalu =  $harga_hpp_2['batu2030'] + $harga_hpp['batu2030'];
 
 			$stok_vol_1 = round($stok_volume_opening_balance_abubatu_bulan_lalu,2);
 			$stok_vol_2 = round($stok_volume_opening_balance_batu0510_bulan_lalu,2);

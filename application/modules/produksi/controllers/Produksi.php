@@ -1624,6 +1624,7 @@ class Produksi extends Secure_Controller {
 			'batu0510' => $batu0510,
 			'batu1020' => $batu1020,
 			'batu2030' => $batu2030,
+			'reset' => 1,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
