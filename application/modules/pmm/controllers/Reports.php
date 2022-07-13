@@ -452,7 +452,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>		
 	        </tr>
-			<tr class="table-active5">
+			<tr class="table-active3">
 	            <th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"></th>
 				<th class="text-right"></th>
@@ -2475,7 +2475,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active5">
+			<tr class="table-active3">
 				<th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"><?php echo number_format($total_volume_masuk,2,',','.');?></th>
 				<th class="text-right">-</th>
@@ -3929,7 +3929,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
 	        </tr>
-			<tr class="table-active5">
+			<tr class="table-active3">
 				<th class="text-center" colspan="3">TOTAL</th>
 				<th class="text-center"><?php echo number_format($total_volume_masuk,2,',','.');?></th>
 				<th class="text-right">-</th>
