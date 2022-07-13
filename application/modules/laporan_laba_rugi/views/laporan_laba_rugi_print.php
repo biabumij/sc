@@ -298,11 +298,11 @@
 				<th width="100%" align="left"></th>
 	        </tr>
 			<tr class="table-active4">
-				<th width="100%" align="left"><b>HARGA POKOK PENDAPATAN</b></th>
+				<th width="100%" align="left"><b>BEBAN POKOK PENJUALAN</b></th>
 	        </tr>
 			<tr class="table-active2">
 				<th width="10%" align="center">5-50000</th>
-				<th width="60%" align="left">Harga Pokok Pendapatan</th>
+				<th width="60%" align="left">Beban Pokok Penjualan</th>
 	            <th width="30%" align="center">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
