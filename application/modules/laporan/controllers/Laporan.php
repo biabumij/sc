@@ -118,6 +118,35 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
+
+	public function cetak_pengiriman_penjualan_produk()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+        $html = $this->load->view('laporan_penjualan/cetak_pengiriman_penjualan_produk',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Pengiriman Penjualan Produk');
+        $pdf->nsi_html($html);
+        $pdf->Output('pengiriman-penjualan-produk.pdf', 'I');
+	
+	}
 	
 	public function cetak_sales_order()
 	{

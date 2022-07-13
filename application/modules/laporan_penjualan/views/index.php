@@ -62,7 +62,7 @@
                                                         <a href="#laporan_pengiriman_penjualan" aria-controls="laporan_pengiriman_penjualan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>									
                                                     </div>
                                                     <div class="col-sm-5">
-														<p><h5>Pengiriman Penjualan Produk</h5></p>
+														<p><h5>Laporan Pengiriman Penjualan Produk</h5></p>
 														<p>Menampilkan laporan pengiriman penjualan produk yang dicatat terkirim untuk transaksi penjualan dalam suatu periode.</p>
                                                         <a href="#laporan_pengiriman_penjualan_produk" aria-controls="laporan_pengiriman_penjualan_produk" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>									
                                                     </div>
@@ -195,7 +195,7 @@
 
                                     <!-- End Laporan Pengiriman Penjualan -->
 
-                                    <!-- Laporan Pengiriman Produk -->
+                                    <!-- Laporan Pengiriman Penjualan Produk -->
 									
 									<div role="tabpanel" class="tab-pane" id="laporan_pengiriman_penjualan_produk">
                                         <div class="col-sm-15">
@@ -206,9 +206,9 @@
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
-														<form action="<?php echo site_url('laporan/pergerakan_bahan_jadi_print');?>" target="_blank">
+														<form action="<?php echo site_url('laporan/cetak_pengiriman_penjualan_produk');?>" target="_blank">
 															<div class="col-sm-3">
-																<input type="text" id="filter_date_bahan_jadi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+																<input type="text" id="filter_date_penjualan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
@@ -728,10 +728,10 @@
 
         <!-- End Script Penjualan -->
 
-        <!-- Script Pergerakan Bahan Jadi -->
+        <!-- Script Laporan Pengiriman Penjualan -->
 			
         <script type="text/javascript">
-			$('#filter_date_bahan_jadi').daterangepicker({
+			$('#filter_date_penjualan').daterangepicker({
 				autoUpdateInput : false,
 				showDropdowns: true,
 				locale: {
@@ -747,7 +747,7 @@
 				}
 			});
 
-			$('#filter_date_bahan_jadi').on('apply.daterangepicker', function(ev, picker) {
+			$('#filter_date_penjualan').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
 				  TablePergerakanBahanJadi();
 			});
@@ -760,7 +760,7 @@
 					url     : "<?php echo site_url('pmm/productions/laporan_pengiriman_penjualan_produk'); ?>/"+Math.random(),
 					dataType : 'html',
 					data: {
-						filter_date : $('#filter_date_bahan_jadi').val(),
+						filter_date : $('#filter_date_penjualan').val(),
 					},
 					success : function(result){
 						$('#box-ajax-6').html(result);
@@ -773,7 +773,7 @@
 			
             </script>
 
-		<!-- End Script Pergerakan Bahan Jadi -->
+		<!-- End Script Laporan Pengiriman Penjualan -->
 
 		<!-- Script Sales Order -->
 		
