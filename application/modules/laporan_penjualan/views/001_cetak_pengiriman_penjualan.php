@@ -51,6 +51,7 @@
 		table tr.table-baris1{
 			background-color: #F0F0F0;
 			font-size: 8px;
+			text-align: center;
 		}
 
 		table tr.table-baris1-bold{
