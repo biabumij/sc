@@ -51,7 +51,6 @@
 		table tr.table-baris1{
 			background-color: #F0F0F0;
 			font-size: 8px;
-			text-align: center;
 		}
 
 		table tr.table-baris1-bold{
@@ -95,12 +94,12 @@
 		<br />
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th width="5%">NO.</th>
-                <th align="center" width="35%" colspan="2">URAIAN</th>
-				<th width="10%">SATUAN</th>
-                <th width="15%">VOLUME</th>
-				<th width="15%">HARGA SATUAN</th>
-                <th width="20%">NILAI</th>
+                <th align="center"width="5%">NO.</th>
+                <th align="center" width="35%">URAIAN</th>
+				<th align="center"width="10%">SATUAN</th>
+                <th align="center"width="15%">VOLUME</th>
+				<th align="center"width="15%">HARGA SATUAN</th>
+                <th align="center" width="20%">NILAI</th>
             </tr>
             <?php
 			$vol_jasa_angkut = 0;
@@ -113,7 +112,7 @@
             		?>
             		<tr class="table-baris1-bold">
             			<td align="center"><?php echo $key + 1;?></td>
-            			<td align="left" colspan="3"><?php echo $row['name'];?></td>
+            			<td align="left" colspan="2"><?php echo $row['name'];?></td>
             			<td align="right"><?php echo $row['real'];?></td>
 						<td align="right"></td>
             			<td align="right">
@@ -133,8 +132,7 @@
             			?>
             			<tr class="table-baris1">
 	            			<td align="center"></td>
-	            			<td width="1%"></td>
-	            			<td align="left" width="29%"><?php echo $mat['nama_produk'];?></td>
+	            			<td align="left"><?php echo $mat['nama_produk'];?></td>
 	            			<td align="center"><?php echo $mat['measure_name'];?></td>
 	            			<td align="right"><?php echo $mat['real'];?></td>
 							<td align="right">
@@ -170,7 +168,7 @@
             }
             ?>	
             <tr class="table-baris2-bold">
-            	<th align="right" colspan="4">TOTAL MATERIAL</th>
+            	<th align="right" colspan="3">TOTAL MATERIAL</th>
 				<th align="right"><?php echo number_format($total_vol,2,',','.');?></th>
 				<th align="right"></th>
             	<th align="right">
@@ -183,7 +181,7 @@
             	</th>
             </tr>
 			<tr class="table-baris2-bold">
-            	<th align="right" colspan="4">JASA ANGKUT</th>
+            	<th align="right" colspan="3">JASA ANGKUT</th>
 				<th align="right"><?php echo number_format($vol_jasa_angkut,2,',','.');?></th>
 				<th align="right"></th>
             	<th align="right">
@@ -196,7 +194,7 @@
             	</th>
             </tr>
 			<tr class="table-total">
-            	<th align="right" colspan="6">TOTAL MATERIAL + JASA ANGKUT</th>
+            	<th align="right" colspan="5">TOTAL MATERIAL + JASA ANGKUT</th>
             	<th align="right">
             		<table cellpadding="0" width="100%" border="0">
     					<tr>
