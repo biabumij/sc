@@ -40,43 +40,43 @@
 
 	  ?>
 	  
-	  <style type="text/css">
-		table tr.table-judul{
-			background-color: #e69500;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-			
-		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 8px;
-		}
+	<style type="text/css">
+	table tr.table-judul{
+		background-color: #e69500;
+		font-weight: bold;
+		font-size: 8px;
+		color: black;
+	}
+		
+	table tr.table-baris1{
+		background-color: #F0F0F0;
+		font-size: 8px;
+	}
 
-		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 8px;
-			font-weight: bold;
-		}
-			
-		table tr.table-baris2{
-			font-size: 8px;
-			background-color: #E8E8E8;
-		}
+	table tr.table-baris1-bold{
+		background-color: #F0F0F0;
+		font-size: 8px;
+		font-weight: bold;
+	}
+		
+	table tr.table-baris2{
+		font-size: 8px;
+		background-color: #E8E8E8;
+	}
 
-		table tr.table-baris2-bold{
-			font-size: 8px;
-			background-color: #E8E8E8;
-			font-weight: bold;
-		}
-			
-		table tr.table-total{
-			background-color: #cccccc;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-	  </style>
+	table tr.table-baris2-bold{
+		font-size: 8px;
+		background-color: #E8E8E8;
+		font-weight: bold;
+	}
+		
+	table tr.table-total{
+		background-color: #cccccc;
+		font-weight: bold;
+		font-size: 8px;
+		color: black;
+	}
+	</style>
 
 	</head>
 	<body>
@@ -112,16 +112,16 @@
 		<table width="98%" border="0" cellpadding="3" border="0">
 
 		<?php
-			
+
 		//LAPORAN BEBAN POKOK PRODUKSI
-			
+
 		//PERGERAKAN BAHAN BAKU
-		
+
 		//Opening Balance
 		$date1_ago = date('2020-01-01');
 		$date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 		$date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
-		
+
 		$pergerakan_bahan_baku_ago = $this->db->select('
 		p.nama_produk, 
 		prm.display_measure as satuan, 
@@ -135,17 +135,17 @@
 		->where("prm.material_id = 15")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
+
 		$total_volume_pembelian_ago = $pergerakan_bahan_baku_ago['volume'];
 		$total_volume_pembelian_akhir_ago  = $total_volume_pembelian_ago;
-		
+
 		$produksi_harian_ago = $this->db->select('sum(pphd.use) as used')
 		->from('pmm_produksi_harian pph ')
 		->join('pmm_produksi_harian_detail pphd','pphd.produksi_harian_id = pph.id','left')
 		->where("(pph.date_prod between '$date1_ago' and '$date2_ago')")
 		->where("pph.status = 'PUBLISH'")
 		->get()->row_array();
-		
+
 		$total_volume_produksi_ago = $produksi_harian_ago['used'];
 		$total_volume_produksi_akhir_ago = $total_volume_pembelian_akhir_ago - $total_volume_produksi_ago;
 
@@ -169,12 +169,12 @@
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-		
+
 		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
-		$volume_opening_balance = $total_volume_produksi_akhir_ago;
+		$volume_opening_balance = $total_volume_produksi_akhir_ago_fix;
 		$harga_opening_balance = $harga_hpp_bahan_baku['boulder'];
 		$nilai_opening_balance = $total_volume_produksi_akhir_ago_fix * $harga_opening_balance;
 
@@ -193,7 +193,7 @@
 		->get()->row_array();
 
 		$volume_pergerakan_bahan_baku_ago_solar = $pergerakan_bahan_baku_ago_solar['volume'];
-		
+
 		$stock_opname_solar_ago = $this->db->select('`prm`.`volume` as volume, `prm`.`total` as total')
 		->from('pmm_remaining_materials_cat prm ')
 		->where("prm.material_id = 13")
@@ -225,7 +225,7 @@
 		->where("prm.material_id = 15")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
+
 		$total_volume_pembelian = $pergerakan_bahan_baku['volume'];
 		$total_nilai_pembelian =  $pergerakan_bahan_baku['nilai'];
 		$total_harga_pembelian = ($total_volume_pembelian!=0)?$total_nilai_pembelian / $total_volume_pembelian * 1:0;
@@ -233,7 +233,7 @@
 		$total_volume_pembelian_akhir  = $total_volume_produksi_akhir_ago + $total_volume_pembelian;
 		$total_harga_pembelian_akhir = ($nilai_opening_balance + $total_nilai_pembelian) / $total_volume_pembelian_akhir;
 		$total_nilai_pembelian_akhir =  $total_volume_pembelian_akhir * $total_harga_pembelian_akhir;			
-		
+
 		$produksi_harian = $this->db->select('sum(pphd.use) as used')
 		->from('pmm_produksi_harian pph ')
 		->join('pmm_produksi_harian_detail pphd','pphd.produksi_harian_id = pph.id','left')
@@ -256,11 +256,11 @@
 
 		$akumulasi_nilai_bahan_baku = $total_akumulasi_bahan_baku;
 		$akumulasi_nilai_bahan_baku_2 = $total_akumulasi_bahan_baku_2;
-		
+
 		$total_volume_produksi = $produksi_harian['used'];
 		$total_nilai_produksi = $akumulasi_nilai_bahan_baku;
 		$total_harga_produksi = ($total_volume_produksi!=0)?($total_nilai_produksi / $total_volume_produksi)  * 1:0;
-		
+
 		$total_volume_produksi_akhir = $total_volume_pembelian_akhir - $total_volume_produksi;
 		$total_harga_produksi_akhir = $total_harga_produksi;
 		$total_nilai_produksi_akhir = $total_volume_produksi_akhir * $total_harga_produksi_akhir;
@@ -279,7 +279,7 @@
 		->where("prm.material_id = 13")
 		->group_by('prm.material_id')
 		->get()->row_array();
-		
+
 		$total_volume_pembelian_solar = $pergerakan_bahan_baku_solar['volume'];
 		$total_nilai_pembelian_solar =  $pergerakan_bahan_baku_solar['nilai'];
 		$total_harga_pembelian_solar = ($total_volume_pembelian_solar!=0)?$total_nilai_pembelian_solar / $total_volume_pembelian_solar * 1:0;
@@ -297,7 +297,7 @@
 		->get()->row_array();
 
 		$volume_stock_opname_solar = $stock_opname_solar['volume'];
-		
+
 		$total_volume_produksi_akhir_solar = $volume_stock_opname_solar;
 		$total_harga_produksi_akhir_solar = round($total_harga_pembelian_akhir_solar,0);
 		$total_nilai_produksi_akhir_solar = $total_volume_produksi_akhir_solar * $total_harga_produksi_akhir_solar;
@@ -333,7 +333,7 @@
 		$nilai_abu_batu_all = $nilai_abu_batu1 + $nilai_abu_batu2 + $nilai_abu_batu3 + $nilai_abu_batu4 + $nilai_abu_batu5;
 
 		$nilai_abu_batu_total = $abu_batu['jumlah_used'] * $total_harga_pembelian;
-		
+
 		$stone_crusher_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -351,7 +351,7 @@
 		->get()->row_array();
 
 		$stone_crusher = $stone_crusher_biaya['total'] + $stone_crusher_jurnal['total'];
-		
+
 		$whell_loader_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -369,13 +369,13 @@
 		->get()->row_array();
 
 		$whell_loader = $whell_loader_biaya['total'] + $whell_loader_jurnal['total'];
-		
+
 		$excavator = $this->db->select('sum(prm.display_price) as price')
 		->from('pmm_receipt_material prm ')
 		->where("prm.material_id = 18")
 		->where("(prm.date_receipt between '$date1' and '$date2')")
 		->get()->row_array();
-		
+
 		$genset_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -393,7 +393,7 @@
 		->get()->row_array();
 
 		$genset = $genset_biaya['total'] + $genset_jurnal['total'];
-		
+
 		$timbangan_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -411,7 +411,7 @@
 		->get()->row_array();
 
 		$timbangan = $timbangan_biaya['total'] + $timbangan_biaya_jurnal['total'];
-		
+
 		$tangki_solar_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -429,10 +429,10 @@
 		->get()->row_array();
 
 		$tangki_solar = $tangki_solar_biaya['total'] + $tangki_solar_jurnal['total'];		
-		
+
 		$total_biaya_peralatan = $stone_crusher + $whell_loader + $excavator['price'] + $genset + $timbangan + $tangki_solar;
 		$hpp_peralatan = ($total_abu_batu!=0)?($total_biaya_peralatan / $total_abu_batu)  * 1:0;
-		
+
 		$gaji_upah_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -450,7 +450,7 @@
 		->get()->row_array();
 
 		$gaji_upah = $gaji_upah_biaya['total'] + $gaji_upah_jurnal['total'];
-		
+
 		$konsumsi_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -468,7 +468,7 @@
 		->get()->row_array();
 
 		$konsumsi = $konsumsi_biaya['total'] + $konsumsi_jurnal['total'];
-		
+
 		$thr_bonus_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -486,7 +486,7 @@
 		->get()->row_array();
 
 		$thr_bonus = $thr_bonus_biaya['total'] + $thr_bonus_jurnal['total'];
-		
+
 		$perbaikan_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -502,7 +502,7 @@
 		->where("status = 'PAID'")
 		->where("(tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
-		
+
 		$perbaikan = $perbaikan_biaya['total'] + $perbaikan_jurnal['total'];
 
 		$akomodasi_tamu_biaya = $this->db->select('sum(pdb.jumlah) as total')
@@ -522,7 +522,7 @@
 		->get()->row_array();
 
 		$akomodasi_tamu = $akomodasi_tamu_biaya['total'] + $akomodasi_tamu_jurnal['total'];
-		
+
 		$pengujian_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -540,7 +540,7 @@
 		->get()->row_array();
 
 		$pengujian = $pengujian_biaya['total'] + $pengujian_jurnal['total'];
-		
+
 		$listrik_internet_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -556,30 +556,30 @@
 		->where("status = 'PAID'")
 		->where("(tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
-		
+
 		$listrik_internet = $listrik_internet_biaya['total'] + $listrik_internet_jurnal['total'];
 
 		$total_operasional = $gaji_upah + $konsumsi + $thr_bonus + $perbaikan + $akomodasi_tamu + $pengujian + $listrik_internet;
 		$hpp_operasional = ($total_abu_batu!=0)?($total_operasional / $total_abu_batu)  * 1:0;
 		$total_bpp = $total_nilai_produksi + $total_nilai_produksi_solar + $total_biaya_peralatan + $total_operasional;
 		$harga_bpp = ($total_abu_batu!=0)?($total_bpp / $total_abu_batu)  * 1:0;
-		
+
 		$harga_pemakaian_a = 0;
 		$harga_pemakaian_b = 0;
 		$harga_pemakaian_c = 0;
 		$harga_pemakaian_d = 0;
 		$total_harga_pemakaian = 0;
-		
+
 		$harga_pemakaian_a = $harga_bpp * $abu_batu['jumlah_pemakaian_a'];
 		$harga_pemakaian_b = $harga_bpp * $abu_batu['jumlah_pemakaian_b'];
 		$harga_pemakaian_c = $harga_bpp * $abu_batu['jumlah_pemakaian_c'];
 		$harga_pemakaian_d = $harga_bpp * $abu_batu['jumlah_pemakaian_d'];
-		
+
 		$total_harga_pemakaian = $harga_pemakaian_a + $harga_pemakaian_b + $harga_pemakaian_c + $harga_pemakaian_d;
 		//END PERALATAN & OPERASIONAL
 		//END LAPORAN BEBAN POKOK PRODUKSI
-		
-		
+			
+			
 		//Opening Balance Pergerakan Bahan Jadi
 		$tanggal_awal = date('2020-01-01');
 		$tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
@@ -696,12 +696,12 @@
 		$tanggal_opening_balance_2 = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
 		//Satu Bulan Lalu
 		$tanggal_opening_balance_3 = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
-		
+
 		$harga_hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
 		->from('hpp pp')
 		->where("(pp.date_hpp between '$tanggal_opening_balance_2' and '$tanggal_opening_balance_3')")
 		->get()->row_array();
-		
+
 		//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
 
 		$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
@@ -732,7 +732,7 @@
 		$volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 		$volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
 		$volume_produksi_harian_batu2030_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_d'];
-		
+
 		$tidak_ada_produksi = $this->db->select('pp.date_akumulasi, pp.tidak_ada_produksi as total')
 		->from('akumulasi_biaya pp')
 		->where("(pp.date_akumulasi between '$date1' and '$date2')")
@@ -815,7 +815,7 @@
 		->where("pp.status = 'PUBLISH'")
 		->group_by('pp.product_id')
 		->get()->row_array();
-		
+
 		//file_put_contents("D:\\penjualan_batu0510_bulan_ini.txt", $this->db->last_query());
 
 		$volume_penjualan_batu1020_bulan_ini = $penjualan_batu1020_bulan_ini['volume'];
@@ -845,7 +845,7 @@
 		$volume_akhir_penjualan_batu2030_bulan_ini = round($volume_akhir_produksi_harian_batu2030_bulan_ini - $volume_penjualan_batu2030_bulan_ini,2);
 		$harga_akhir_penjualan_batu2030_bulan_ini = $harga_penjualan_batu2030_bulan_ini;
 		$nilai_akhir_penjualan_batu2030_bulan_ini = $volume_akhir_penjualan_batu2030_bulan_ini * $harga_akhir_penjualan_batu2030_bulan_ini;
-		
+
 		//Agregat
 		$agregat_bulan_ini = $this->db->select('p.nama_produk, pp.convert_measure as satuan, SUM(pp.display_volume) as volume, (pp.display_price / pp.display_volume) as harga, SUM(pp.display_price) as nilai, (SUM(pp.display_volume) * pa.presentase_a) / 100 as volume_agregat_a, (SUM(pp.display_volume) * pa.presentase_b) / 100 as volume_agregat_b, (SUM(pp.display_volume) * pa.presentase_c) / 100 as volume_agregat_c, (SUM(pp.display_volume) * pa.presentase_d) / 100 as volume_agregat_d')
 		->from('pmm_productions pp')
@@ -956,10 +956,11 @@
 
 		$total_volume_keluar = $volume_penjualan_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini_2 + $volume_penjualan_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini_2 + $volume_penjualan_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini_2 + $volume_penjualan_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini_2;
 		$total_nilai_keluar = $nilai_penjualan_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini_2 +  $nilai_penjualan_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini_2 + $nilai_penjualan_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini_2 + $nilai_penjualan_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini_2;
-		
+
 		$total_volume_akhir = $volume_akhir_agregat_abubatu_bulan_ini_2 + $volume_akhir_agregat_batu0510_bulan_ini_2 + $volume_akhir_agregat_batu1020_bulan_ini_2 + $volume_akhir_agregat_batu2030_bulan_ini_2;
 		$total_nilai_akhir = $nilai_akhir_agregat_abubatu_bulan_ini_2 + $nilai_akhir_agregat_batu0510_bulan_ini_2 + $nilai_akhir_agregat_batu1020_bulan_ini_2 + $nilai_akhir_agregat_batu2030_bulan_ini_2;
-		
+
+		//PERGERAKAN BAHAN BAKU PENYESUAIAN STOK	
 
 		//Opening Balance
 		$stock_opname_abu_batu_ago = $this->db->select('(cat.volume) as volume')
@@ -1192,7 +1193,6 @@
 		$stok_harga_akhir_penjualan_batu2030_bulan_ini = $stok_harga_penjualan_batu2030_bulan_ini;
 		$stok_nilai_akhir_penjualan_batu2030_bulan_ini = $stok_volume_akhir_penjualan_batu2030_bulan_ini * $stok_harga_akhir_penjualan_batu2030_bulan_ini;
 
-		
 		//Agregat
 		$stok_volume_agregat_abubatu_bulan_ini = $agregat_bulan_ini['volume_agregat_a'];
 		$stok_volume_agregat_batu0510_bulan_ini = $agregat_bulan_ini['volume_agregat_b'];
@@ -1362,7 +1362,8 @@
 		$stok_total_volume_akhir = $stok_volume_akhir_agregat_abubatu_bulan_ini_2 + $stok_volume_akhir_agregat_batu0510_bulan_ini_2 + $stok_volume_akhir_agregat_batu1020_bulan_ini_2 + $stok_volume_akhir_agregat_batu2030_bulan_ini_2;
 		$stok_total_nilai_akhir = $stok_nilai_akhir_agregat_abubatu_bulan_ini_2 + $stok_nilai_akhir_agregat_batu0510_bulan_ini_2 + $stok_nilai_akhir_agregat_batu1020_bulan_ini_2 + $stok_nilai_akhir_agregat_batu2030_bulan_ini_2;
 		
-		//Evaluasi
+		//EVALUASI
+
 		$evaluasi_volume_abubatu = round($stok_volume_akhir_penjualan_abubatu_bulan_ini - $volume_akhir_agregat_abubatu_bulan_ini_2,2);
 		$evaluasi_harga_abubatu = round($stok_harga_akhir_agregat_abubatu_bulan_ini_2,0);
 		$evaluasi_nilai_abubatu = round($stok_nilai_akhir_penjualan_abubatu_bulan_ini - $nilai_akhir_agregat_abubatu_bulan_ini_2,0);
@@ -1384,155 +1385,155 @@
 		
 		?>
 			
-			<tr class="table-judul">
-				<th width="15%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
-				<th width="10%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
-				<th width="25%" align="center" colspan="3">NILAI PERSEDIAAN AKHIR TERHADAP STOK</th>
-				<th width="25%" align="center" colspan="3">NILAI PERSEDIAAN AKHIR TERHADAP RUMUS</th>
-				<th width="25%" align="center" colspan="3">EVALUASI</th>
-			</tr>
-			<tr class="table-judul">
-				<th align="center">VOLUME</th>
-				<th align="center">HARGA</th>
-				<th align="center">NILAI</th>
-				<th align="center">VOLUME</th>
-				<th align="center">HARGA</th>
-				<th align="center">NILAI</th>
-				<th align="center">VOLUME</th>
-				<th align="center">HARGA</th>
-				<th align="center">NILAI</th>
-			</tr>
-			<?php
-				$styleColorA = $evaluasi_volume_abubatu < 0 ? 'color:red' : 'color:black';
-				$styleColorB = $evaluasi_nilai_abubatu < 0 ? 'color:red' : 'color:black';
-				$styleColorC = $evaluasi_volume_batu0510 < 0 ? 'color:red' : 'color:black';
-				$styleColorD = $evaluasi_nilai_batu0510 < 0 ? 'color:red' : 'color:black';
-				$styleColorE = $evaluasi_volume_batu1020 < 0 ? 'color:red' : 'color:black';
-				$styleColorF = $evaluasi_nilai_batu1020 < 0 ? 'color:red' : 'color:black';
-				$styleColorG = $evaluasi_volume_batu2030 < 0 ? 'color:red' : 'color:black';
-				$styleColorH = $evaluasi_nilai_batu2030 < 0 ? 'color:red' : 'color:black';
-				$styleColorI = $stok_evaluasi_total_volume_akhir < 0 ? 'color:red' : 'color:black';
-				$styleColorJ = $stok_evaluasi_total_nilai_akhir < 0 ? 'color:red' : 'color:black';
-			?>
-			<tr class="table-baris1">		
-				<th align="left">Batu Split 0,0 - 0,5</th>
-				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($stok_volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
-				<th align="right"><?php echo number_format($stok_harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($stok_nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-				<th align="center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-				<th align="center" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_abubatu,2,',','.');?></th>
-				<th align="right"><?php echo number_format($evaluasi_harga_abubatu,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_nilai_abubatu,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="left">Batu Split 0,5 - 10</th>
-				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($stok_volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
-				<th align="right"><?php echo number_format($stok_harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($stok_nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-				<th align="center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-				<th align="center" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_batu0510,2,',','.');?></th>
-				<th align="right"><?php echo number_format($evaluasi_harga_batu0510,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_nilai_batu0510,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align="left">Batu Split 10 - 20</th>
-				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($stok_volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
-				<th align="right"><?php echo number_format($stok_harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($stok_nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-				<th align="center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-				<th align="center" style="<?php echo $styleColorE ?>"><?php echo number_format($evaluasi_volume_batu1020,2,',','.');?></th>
-				<th align="right"><?php echo number_format($evaluasi_harga_batu1020,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorF ?>"><?php echo number_format($evaluasi_nilai_batu1020,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">		
-				<th align="left">Batu Split 20 - 30</th>
-				<th align="center">Ton</th>
-				<th align="center"><?php echo number_format($stok_volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
-				<th align="right"><?php echo number_format($stok_harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($stok_nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-				<th align="center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
-				<th align="right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-				<th align="right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-				<th align="center" style="<?php echo $styleColorG ?>"><?php echo number_format($evaluasi_volume_batu2030,2,',','.');?></th>
-				<th align="right"><?php echo number_format($evaluasi_harga_batu2030,0,',','.');?></th>
-				<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($evaluasi_nilai_batu2030,0,',','.');?></th>
-	        </tr>
-			<tr class="table-total">
-				<th align = "center" colspan="2">TOTAL</th>
-				<th align = "center"><?php echo number_format($stok_total_volume_akhir,2,',','.');?></th>
-				<th align = "right">-</th>
-				<th align = "right"><?php echo number_format($stok_total_nilai_akhir,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
-				<th align = "right">-</th>
-				<th align = "right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
-				<th align = "center" style="<?php echo $styleColorI ?>"><?php echo number_format($stok_evaluasi_total_volume_akhir,2,',','.');?></th>
-				<th align = "right">-</th>
-				<th align = "right" style="<?php echo $styleColorJ ?>"><?php echo number_format($stok_evaluasi_total_nilai_akhir,0,',','.');?></th>
-			</tr>
-	    </table>
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="30">
-			<tr >
-				<td width="5%"></td>
-				<td width="90%">
-					<table width="100%" border="0" cellpadding="2">
-						<tr>
-							<td align="center" >
-								Disetujui Oleh
-							</td>
-							<td align="center" colspan="2">
-								Diperiksa Oleh
-							</td>
-							<td align="center">
-								Dibuat Oleh
-							</td>
-						</tr>
-						<tr class="">
-							<td align="center" height="40px">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-						</tr>
-						<tr>
-							<td align="center">
-								<b><u>Hadi Sucipto</u><br />
-								Ka. Plant</b>
-							</td>
-							<td align="center">
-								<b><br />
-								Keuangan</b>
-							</td>
-							<td align="center">
-								<b><br />
-								Ka. Produksi</b>
-							</td>
-							<td align="center" >
-								<b><u>Vicky Irwana Yudha</u><br />
-								Ka. Logistik</b>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td width="5%"></td>
-			</tr>
-		</table>
+		<tr class="table-judul">
+			<th width="15%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
+			<th width="10%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
+			<th width="25%" align="center" colspan="3">NILAI PERSEDIAAN AKHIR TERHADAP STOK</th>
+			<th width="25%" align="center" colspan="3">NILAI PERSEDIAAN AKHIR TERHADAP RUMUS</th>
+			<th width="25%" align="center" colspan="3">EVALUASI</th>
+		</tr>
+		<tr class="table-judul">
+			<th align="center">VOLUME</th>
+			<th align="center">HARGA</th>
+			<th align="center">NILAI</th>
+			<th align="center">VOLUME</th>
+			<th align="center">HARGA</th>
+			<th align="center">NILAI</th>
+			<th align="center">VOLUME</th>
+			<th align="center">HARGA</th>
+			<th align="center">NILAI</th>
+		</tr>
+		<?php
+			$styleColorA = $evaluasi_volume_abubatu < 0 ? 'color:red' : 'color:black';
+			$styleColorB = $evaluasi_nilai_abubatu < 0 ? 'color:red' : 'color:black';
+			$styleColorC = $evaluasi_volume_batu0510 < 0 ? 'color:red' : 'color:black';
+			$styleColorD = $evaluasi_nilai_batu0510 < 0 ? 'color:red' : 'color:black';
+			$styleColorE = $evaluasi_volume_batu1020 < 0 ? 'color:red' : 'color:black';
+			$styleColorF = $evaluasi_nilai_batu1020 < 0 ? 'color:red' : 'color:black';
+			$styleColorG = $evaluasi_volume_batu2030 < 0 ? 'color:red' : 'color:black';
+			$styleColorH = $evaluasi_nilai_batu2030 < 0 ? 'color:red' : 'color:black';
+			$styleColorI = $stok_evaluasi_total_volume_akhir < 0 ? 'color:red' : 'color:black';
+			$styleColorJ = $stok_evaluasi_total_nilai_akhir < 0 ? 'color:red' : 'color:black';
+		?>
+		<tr class="table-baris1">		
+			<th align="left">Batu Split 0,0 - 0,5</th>
+			<th align="center">Ton</th>
+			<th align="center"><?php echo number_format($stok_volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
+			<th align="right"><?php echo number_format($stok_harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+			<th align="right"><?php echo number_format($stok_nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+			<th align="center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
+			<th align="right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+			<th align="right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+			<th align="center" style="<?php echo $styleColorA ?>"><?php echo number_format($evaluasi_volume_abubatu,2,',','.');?></th>
+			<th align="right"><?php echo number_format($evaluasi_harga_abubatu,0,',','.');?></th>
+			<th align="right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_nilai_abubatu,0,',','.');?></th>
+		</tr>
+		<tr class="table-baris1">
+			<th align="left">Batu Split 0,5 - 10</th>
+			<th align="center">Ton</th>
+			<th align="center"><?php echo number_format($stok_volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
+			<th align="right"><?php echo number_format($stok_harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+			<th align="right"><?php echo number_format($stok_nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+			<th align="center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
+			<th align="right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+			<th align="right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+			<th align="center" style="<?php echo $styleColorC ?>"><?php echo number_format($evaluasi_volume_batu0510,2,',','.');?></th>
+			<th align="right"><?php echo number_format($evaluasi_harga_batu0510,0,',','.');?></th>
+			<th align="right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_nilai_batu0510,0,',','.');?></th>
+		</tr>
+		<tr class="table-baris1">
+			<th align="left">Batu Split 10 - 20</th>
+			<th align="center">Ton</th>
+			<th align="center"><?php echo number_format($stok_volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
+			<th align="right"><?php echo number_format($stok_harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+			<th align="right"><?php echo number_format($stok_nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+			<th align="center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
+			<th align="right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+			<th align="right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+			<th align="center" style="<?php echo $styleColorE ?>"><?php echo number_format($evaluasi_volume_batu1020,2,',','.');?></th>
+			<th align="right"><?php echo number_format($evaluasi_harga_batu1020,0,',','.');?></th>
+			<th align="right" style="<?php echo $styleColorF ?>"><?php echo number_format($evaluasi_nilai_batu1020,0,',','.');?></th>
+		</tr>
+		<tr class="table-baris1">		
+			<th align="left">Batu Split 20 - 30</th>
+			<th align="center">Ton</th>
+			<th align="center"><?php echo number_format($stok_volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
+			<th align="right"><?php echo number_format($stok_harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+			<th align="right"><?php echo number_format($stok_nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+			<th align="center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
+			<th align="right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+			<th align="right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+			<th align="center" style="<?php echo $styleColorG ?>"><?php echo number_format($evaluasi_volume_batu2030,2,',','.');?></th>
+			<th align="right"><?php echo number_format($evaluasi_harga_batu2030,0,',','.');?></th>
+			<th align="right" style="<?php echo $styleColorH ?>"><?php echo number_format($evaluasi_nilai_batu2030,0,',','.');?></th>
+		</tr>
+		<tr class="table-total">
+			<th align = "center" colspan="2">TOTAL</th>
+			<th align = "center"><?php echo number_format($stok_total_volume_akhir,2,',','.');?></th>
+			<th align = "right">-</th>
+			<th align = "right"><?php echo number_format($stok_total_nilai_akhir,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
+			<th align = "right">-</th>
+			<th align = "right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
+			<th align = "center" style="<?php echo $styleColorI ?>"><?php echo number_format($stok_evaluasi_total_volume_akhir,2,',','.');?></th>
+			<th align = "right">-</th>
+			<th align = "right" style="<?php echo $styleColorJ ?>"><?php echo number_format($stok_evaluasi_total_nilai_akhir,0,',','.');?></th>
+		</tr>
+	</table>
+	<br />
+	<br />
+	<table width="98%" border="0" cellpadding="30">
+		<tr >
+			<td width="5%"></td>
+			<td width="90%">
+				<table width="100%" border="0" cellpadding="2">
+					<tr>
+						<td align="center" >
+							Disetujui Oleh
+						</td>
+						<td align="center" colspan="2">
+							Diperiksa Oleh
+						</td>
+						<td align="center">
+							Dibuat Oleh
+						</td>
+					</tr>
+					<tr class="">
+						<td align="center" height="40px">
+						
+						</td>
+						<td align="center">
+						
+						</td>
+						<td align="center">
+						
+						</td>
+						<td align="center">
+						
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<b><u>Hadi Sucipto</u><br />
+							Ka. Plant</b>
+						</td>
+						<td align="center">
+							<b><br />
+							Keuangan</b>
+						</td>
+						<td align="center">
+							<b><br />
+							Ka. Produksi</b>
+						</td>
+						<td align="center" >
+							<b><u>Vicky Irwana Yudha</u><br />
+							Ka. Logistik</b>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="5%"></td>
+		</tr>
+	</table>
 	</body>
 </html>

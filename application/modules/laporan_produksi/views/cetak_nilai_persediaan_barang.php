@@ -170,7 +170,7 @@
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
-		$volume_opening_balance = $total_volume_produksi_akhir_ago;
+		$volume_opening_balance = $total_volume_produksi_akhir_ago_fix;
 		$harga_opening_balance = $harga_hpp_bahan_baku['boulder'];
 		$nilai_opening_balance = $total_volume_produksi_akhir_ago_fix * $harga_opening_balance;
 
@@ -237,26 +237,10 @@
 		->where("pph.status = 'PUBLISH'")
 		->get()->row_array();
 
-		$akumulasi_bahan_baku = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
-		->from('akumulasi_bahan_baku pp')
-		->where("(pp.date_akumulasi between '$date1' and '$date2')")
-		->get()->result_array();
-
-		$total_akumulasi_bahan_baku = 0;
-		$total_akumulasi_bahan_baku_2 = 0;
-
-		foreach ($akumulasi_bahan_baku as $b){
-		$total_akumulasi_bahan_baku += $b['total_nilai_keluar'];
-		$total_akumulasi_bahan_baku_2 += $b['total_nilai_keluar_2'];
-		}
-
-		$akumulasi_nilai_bahan_baku = $total_akumulasi_bahan_baku;
-		$akumulasi_nilai_bahan_baku_2 = $total_akumulasi_bahan_baku_2;
-
 		$total_volume_produksi = $produksi_harian['used'];
-		$total_nilai_produksi = $akumulasi_nilai_bahan_baku;
-		$total_harga_produksi = ($total_volume_produksi!=0)?($total_nilai_produksi / $total_volume_produksi)  * 1:0;
-
+		$total_harga_produksi = round($total_harga_pembelian_akhir,0);
+		$total_nilai_produksi = $total_volume_produksi * $total_harga_produksi;
+		
 		$total_volume_produksi_akhir = $total_volume_pembelian_akhir - $total_volume_produksi;
 		$total_harga_produksi_akhir = $total_harga_produksi;
 		$total_nilai_produksi_akhir = $total_volume_produksi_akhir * $total_harga_produksi_akhir;
@@ -299,8 +283,8 @@
 		$total_nilai_produksi_akhir_solar = $total_volume_produksi_akhir_solar * $total_harga_produksi_akhir_solar;
 
 		$total_volume_produksi_solar = $total_volume_pembelian_akhir_solar - $total_volume_produksi_akhir_solar;
-		$total_nilai_produksi_solar =  $akumulasi_nilai_bahan_baku_2;
-		$total_harga_produksi_solar = ($total_volume_produksi_solar!=0)?($total_nilai_produksi_solar / $total_volume_produksi_solar)  * 1:0;
+		$total_harga_produksi_solar =  $total_harga_produksi_akhir_solar;
+		$total_nilai_produksi_solar =  $total_volume_produksi_solar * $total_harga_produksi_solar;
 
 		//Total Opening Balance
 		$opening_balance_bahan_baku = $nilai_opening_balance + $nilai_opening_balance_solar;
@@ -312,79 +296,79 @@
 
 		?>
 			
-			<tr class="table-judul">
-				<th width="20%" align="center" >TANGGAL</th>
-				<th width="20%" align="center" >URAIAN</th>
-				<th width="20%" align="center" >STOK BARANG</th>
-				<th width="20%" align="center" >HARGA SATUAN</th>
-				<th width="20%" align="center" >TOTAL</th>
-	        </tr>
+		<tr class="table-judul">
+			<th width="20%" align="center" >TANGGAL</th>
+			<th width="20%" align="center" >URAIAN</th>
+			<th width="20%" align="center" >STOK BARANG</th>
+			<th width="20%" align="center" >HARGA SATUAN</th>
+			<th width="20%" align="center" >TOTAL</th>
+		</tr>
+		<tr class="table-baris1">
+			<th align="center"><?php echo $date2 = date('d/m/Y',strtotime($date2));?></th>
+			<th align="left">BATU BOULDER</th>
+			<th align="center"><?php echo number_format($total_volume_produksi_akhir,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_produksi_akhir,0,',','.');?></th>
+			<th align="right"><?php echo number_format($total_nilai_produksi_akhir,0,',','.');?></th>
+		</tr>
 			<tr class="table-baris1">
-	            <th align="center"><?php echo $date2 = date('d/m/Y',strtotime($date2));?></th>
-				<th align="left">BATU BOULDER</th>
-				<th align="center"><?php echo number_format($total_volume_produksi_akhir,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_harga_produksi_akhir,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_nilai_produksi_akhir,0,',','.');?></th>
-	        </tr>
-				<tr class="table-baris1">
-				<th align="center"><?php echo date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
-				<th align="left">BBM SOLAR</th>
-				<th align="center"><?php echo number_format($total_volume_produksi_akhir_solar,2,',','.');?></th>
-				<th align="right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>
-			</tr>
-			<tr class="table-total">
-				<th align="right" colspan="4">TOTAL NILAI PERSEDIAAN</th>
-				<th align="right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
-			</tr>
-	    </table>
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="0">
-			<tr >
-				<td width="5%"></td>
-				<td width="90%">
-					<table width="100%" border="0" cellpadding="2">
-						<tr>
-							<td align="center" >
-								Disetujui Oleh
-							</td>
-							<td align="center">
-								Diperiksa Oleh
-							</td>
-							<td align="center">
-								Dibuat Oleh
-							</td>
-						</tr>
-						<tr class="">
-							<td align="center" height="40px">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-						</tr>
-						<tr>
-							<td align="center">
-								<b><u>Hadi Sucipto</u><br />
-								Ka. Plant</b>
-							</td>
-							<td align="center">
-								<b><br />
-								Keuangan</b>
-							</td>
-							<td align="center" >
-								<b><br />
-								Logistik</b>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td width="5%"></td>
-			</tr>
-		</table>
+			<th align="center"><?php echo date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+			<th align="left">BBM SOLAR</th>
+			<th align="center"><?php echo number_format($total_volume_produksi_akhir_solar,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
+			<th align="right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>
+		</tr>
+		<tr class="table-total">
+			<th align="right" colspan="4">TOTAL NILAI PERSEDIAAN</th>
+			<th align="right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
+		</tr>
+	</table>
+	<br />
+	<br />
+	<table width="98%" border="0" cellpadding="0">
+		<tr >
+			<td width="5%"></td>
+			<td width="90%">
+				<table width="100%" border="0" cellpadding="2">
+					<tr>
+						<td align="center" >
+							Disetujui Oleh
+						</td>
+						<td align="center">
+							Diperiksa Oleh
+						</td>
+						<td align="center">
+							Dibuat Oleh
+						</td>
+					</tr>
+					<tr class="">
+						<td align="center" height="40px">
+						
+						</td>
+						<td align="center">
+						
+						</td>
+						<td align="center">
+						
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<b><u>Hadi Sucipto</u><br />
+							Ka. Plant</b>
+						</td>
+						<td align="center">
+							<b><br />
+							Keuangan</b>
+						</td>
+						<td align="center" >
+							<b><br />
+							Logistik</b>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="5%"></td>
+		</tr>
+	</table>
 	</body>
 </html>

@@ -114,7 +114,7 @@
 		<?php
 
 		//LAPORAN BEBAN POKOK PRODUKSI
-		
+
 		//PERGERAKAN BAHAN BAKU
 		
 		//Opening Balance
@@ -174,7 +174,7 @@
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
-		$volume_opening_balance = $total_volume_produksi_akhir_ago;
+		$volume_opening_balance = $total_volume_produksi_akhir_ago_fix;
 		$harga_opening_balance = $harga_hpp_bahan_baku['boulder'];
 		$nilai_opening_balance = $total_volume_produksi_akhir_ago_fix * $harga_opening_balance;
 
@@ -578,8 +578,8 @@
 		$total_harga_pemakaian = $harga_pemakaian_a + $harga_pemakaian_b + $harga_pemakaian_c + $harga_pemakaian_d;
 		//END PERALATAN & OPERASIONAL
 		//END LAPORAN BEBAN POKOK PRODUKSI
-		
-		
+			
+	        
 		//Opening Balance Pergerakan Bahan Jadi
 		$tanggal_awal = date('2020-01-01');
 		$tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
@@ -962,152 +962,152 @@
 		
 		?>
 			
-			<tr class="table-judul">
-				<th class="garis_kanan" width="11%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
-				<th class="garis_kanan" width="8%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
-				<th class="garis_kanan" width="27%" align="center" colspan="3">MASUK</th>
-				<th class="garis_kanan" width="27%" align="center" colspan="3">KELUAR</th>
-				<th width="27%" align="center" colspan="3">AKHIR</th>
-			</tr>
-			<tr class="table-judul">
-				<th align="center" width="8%">VOLUME</th>
-				<th align="center" width="8%">HARGA</th>
-				<th class="garis_kanan" align="center" width="11%">NILAI</th>
-				<th align="center" width="8%">VOLUME</th>
-				<th align="center" width="8%">HARGA</th>
-				<th class="garis_kanan" align="center" width="11%">NILAI</th>
-				<th align="center" width="8%">VOLUME</th>
-				<th align="center" width="8%">HARGA</th>
-				<th align="center" width="11%">NILAI</th>
-			</tr>
-			<tr class="table-baris1">
-				<th align = "center" colspan="12"><b>BAHAN JADI</b></th>
-			</tr>
-			<tr class="table-baris1">			
-				<th align = "left" colspan="8"><i>Opening Balance</i></th>
-				<th align = "center"></th>
-				<th align = "right"></th>
-				<th align = "right"><?php echo number_format($nilai_opening_bahan_jadi,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">		
-				<th align = "left"><i>Batu 0,0 - 0,5</i></th>
-				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_produksi_harian_abubatu_bulan_ini,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_produksi_harian_abubatu_bulan_ini,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_produksi_harian_abubatu_bulan_ini,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_penjualan_abubatu,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_penjualan_abubatu,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_penjualan_abubatu,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align = "left"><i>Batu 0,5 - 10</i></th>
-				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_produksi_harian_batu0510_bulan_ini,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_produksi_harian_batu0510_bulan_ini,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_produksi_harian_batu0510_bulan_ini,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_penjualan_batu0510,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_penjualan_batu0510,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_penjualan_batu0510,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">
-				<th align = "left"><i>Batu 10 - 20</i></th>
-				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_produksi_harian_batu1020_bulan_ini,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_produksi_harian_batu1020_bulan_ini,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_produksi_harian_batu1020_bulan_ini,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_penjualan_batu1020,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_penjualan_batu1020,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_penjualan_batu1020,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-	        </tr>
-			<tr class="table-baris1">		
-				<th align = "left"><i>Batu 20 - 30</i></th>
-				<th align = "center">Ton</th>
-				<th align = "center"><?php echo number_format($volume_produksi_harian_batu2030_bulan_ini,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_produksi_harian_batu2030_bulan_ini,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_produksi_harian_batu2030_bulan_ini,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_penjualan_batu2030,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_penjualan_batu2030,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_penjualan_batu2030,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
-				<th align = "right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-				<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-	        </tr>
-			<tr class="table-total">
-				<th align = "center" colspan="2">TOTAL</th>
-				<th align = "center"><?php echo number_format($total_volume_masuk,2,',','.');?></th>
-				<th align = "right">-</th>
-				<th align = "right"><?php echo number_format($total_nilai_masuk,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_volume_keluar,2,',','.');?></th>
-				<th align = "right">-</th>
-				<th align = "right"><?php echo number_format($total_nilai_keluar,0,',','.');?></th>
-				<th align = "center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
-				<th align = "right">-</th>
-				<th align = "right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
-			</tr>
-	    </table>
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="30">
-			<tr >
-				<td width="5%"></td>
-				<td width="90%">
-					<table width="100%" border="0" cellpadding="2">
-						<tr>
-							<td align="center" >
-								Disetujui Oleh
-							</td>
-							<td align="center" colspan="2">
-								Diperiksa Oleh
-							</td>
-							<td align="center">
-								Dibuat Oleh
-							</td>
-						</tr>
-						<tr class="">
-							<td align="center" height="40px">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-						</tr>
-						<tr>
-							<td align="center">
-								<b><u>Hadi Sucipto</u><br />
-								Ka. Plant</b>
-							</td>
-							<td align="center">
-								<b><br />
-								Keuangan</b>
-							</td>
-							<td align="center">
-								<b><br />
-								Ka. Produksi</b>
-							</td>
-							<td align="center" >
-								<b><u>Vicky Irwana Yudha</u><br />
-								Ka. Logistik</b>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td width="5%"></td>
-			</tr>
-		</table>
+		<tr class="table-judul">
+			<th class="garis_kanan" width="11%" align="center" rowspan="2">&nbsp;<br>URAIAN</th>
+			<th class="garis_kanan" width="8%" align="center" rowspan="2">&nbsp;<br>SATUAN</th>
+			<th class="garis_kanan" width="27%" align="center" colspan="3">MASUK</th>
+			<th class="garis_kanan" width="27%" align="center" colspan="3">KELUAR</th>
+			<th width="27%" align="center" colspan="3">AKHIR</th>
+		</tr>
+		<tr class="table-judul">
+			<th align="center" width="8%">VOLUME</th>
+			<th align="center" width="8%">HARGA</th>
+			<th class="garis_kanan" align="center" width="11%">NILAI</th>
+			<th align="center" width="8%">VOLUME</th>
+			<th align="center" width="8%">HARGA</th>
+			<th class="garis_kanan" align="center" width="11%">NILAI</th>
+			<th align="center" width="8%">VOLUME</th>
+			<th align="center" width="8%">HARGA</th>
+			<th align="center" width="11%">NILAI</th>
+		</tr>
+		<tr class="table-baris1">
+			<th align = "center" colspan="12"><b>BAHAN JADI</b></th>
+		</tr>
+		<tr class="table-baris1">			
+			<th align = "left" colspan="8"><i>Opening Balance</i></th>
+			<th align = "center"></th>
+			<th align = "right"></th>
+			<th align = "right"><?php echo number_format($nilai_opening_bahan_jadi,0,',','.');?></th>
+		</tr>
+		<tr class="table-baris1">		
+			<th align = "left"><i>Batu 0,0 - 0,5</i></th>
+			<th align = "center">Ton</th>
+			<th align = "center"><?php echo number_format($volume_produksi_harian_abubatu_bulan_ini,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_produksi_harian_abubatu_bulan_ini,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_produksi_harian_abubatu_bulan_ini,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_penjualan_abubatu,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_penjualan_abubatu,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_penjualan_abubatu,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+		</tr>
+		<tr class="table-baris1">
+			<th align = "left"><i>Batu 0,5 - 10</i></th>
+			<th align = "center">Ton</th>
+			<th align = "center"><?php echo number_format($volume_produksi_harian_batu0510_bulan_ini,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_produksi_harian_batu0510_bulan_ini,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_produksi_harian_batu0510_bulan_ini,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_penjualan_batu0510,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_penjualan_batu0510,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_penjualan_batu0510,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+		</tr>
+		<tr class="table-baris1">
+			<th align = "left"><i>Batu 10 - 20</i></th>
+			<th align = "center">Ton</th>
+			<th align = "center"><?php echo number_format($volume_produksi_harian_batu1020_bulan_ini,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_produksi_harian_batu1020_bulan_ini,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_produksi_harian_batu1020_bulan_ini,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_penjualan_batu1020,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_penjualan_batu1020,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_penjualan_batu1020,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+		</tr>
+		<tr class="table-baris1">		
+			<th align = "left"><i>Batu 20 - 30</i></th>
+			<th align = "center">Ton</th>
+			<th align = "center"><?php echo number_format($volume_produksi_harian_batu2030_bulan_ini,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_produksi_harian_batu2030_bulan_ini,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_produksi_harian_batu2030_bulan_ini,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_penjualan_batu2030,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_penjualan_batu2030,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_penjualan_batu2030,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+		</tr>
+		<tr class="table-total">
+			<th align = "center" colspan="2">TOTAL</th>
+			<th align = "center"><?php echo number_format($total_volume_masuk,2,',','.');?></th>
+			<th align = "right">-</th>
+			<th align = "right"><?php echo number_format($total_nilai_masuk,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($total_volume_keluar,2,',','.');?></th>
+			<th align = "right">-</th>
+			<th align = "right"><?php echo number_format($total_nilai_keluar,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($total_volume_akhir,2,',','.');?></th>
+			<th align = "right">-</th>
+			<th align = "right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
+		</tr>
+	</table>
+	<br />
+	<br />
+	<table width="98%" border="0" cellpadding="30">
+		<tr >
+			<td width="5%"></td>
+			<td width="90%">
+				<table width="100%" border="0" cellpadding="2">
+					<tr>
+						<td align="center" >
+							Disetujui Oleh
+						</td>
+						<td align="center" colspan="2">
+							Diperiksa Oleh
+						</td>
+						<td align="center">
+							Dibuat Oleh
+						</td>
+					</tr>
+					<tr class="">
+						<td align="center" height="40px">
+						
+						</td>
+						<td align="center">
+						
+						</td>
+						<td align="center">
+						
+						</td>
+						<td align="center">
+						
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<b><u>Hadi Sucipto</u><br />
+							Ka. Plant</b>
+						</td>
+						<td align="center">
+							<b><br />
+							Keuangan</b>
+						</td>
+						<td align="center">
+							<b><br />
+							Ka. Produksi</b>
+						</td>
+						<td align="center" >
+							<b><u>Vicky Irwana Yudha</u><br />
+							Ka. Logistik</b>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width="5%"></td>
+		</tr>
+	</table>
 	</body>
 </html>
