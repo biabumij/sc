@@ -3,86 +3,84 @@
 	<head>
 	  <title>PERGERAKAN BAHAN BAKU</title>
 	  
-	  <?php
-		$search = array(
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-		);
+	<?php
+	$search = array(
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December'
+	);
+	
+	$replace = array(
+	'Januari',
+	'Februari',
+	'Maret',
+	'April',
+	'Mei',
+	'Juni',
+	'Juli',
+	'Agustus',
+	'September',
+	'Oktober',
+	'November',
+	'Desember'
+	);
+	
+	$subject = "$filter_date";
+
+	echo str_replace($search, $replace, $subject);
+
+	?>
+	
+	<style type="text/css">
+	table tr.table-judul{
+		background-color: #e69500;
+		font-weight: bold;
+		font-size: 8px;
+		color: black;
+	}
 		
-		$replace = array(
-		'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-		);
+	table tr.table-baris1{
+		background-color: #F0F0F0;
+		font-size: 8px;
+	}
+
+	table tr.table-baris1-bold{
+		background-color: #F0F0F0;
+		font-size: 8px;
+		font-weight: bold;
+	}
 		
-		$subject = "$filter_date";
+	table tr.table-baris2{
+		font-size: 8px;
+		background-color: #E8E8E8;
+	}
 
-		echo str_replace($search, $replace, $subject);
-
-	  ?>
-	  
-	  <style type="text/css">
-		table tr.table-judul{
-			background-color: #e69500;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-			
-		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 8px;
-		}
-
-		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 8px;
-			font-weight: bold;
-		}
-			
-		table tr.table-baris2{
-			font-size: 8px;
-			background-color: #E8E8E8;
-		}
-
-		table tr.table-baris2-bold{
-			font-size: 8px;
-			background-color: #E8E8E8;
-			font-weight: bold;
-		}
-			
-		table tr.table-total{
-			background-color: #cccccc;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-	  </style>
+	table tr.table-baris2-bold{
+		font-size: 8px;
+		background-color: #E8E8E8;
+		font-weight: bold;
+	}
+		
+	table tr.table-total{
+		background-color: #cccccc;
+		font-weight: bold;
+		font-size: 8px;
+		color: black;
+	}
+	</style>
 
 	</head>
 	<body>
-		<br />
-		<br />
-		<table width="98%" cellpadding="3">
+		<table width="98%" cellpadding="30">
 			<tr>
 				<td align="center"  width="100%">
 					<div style="display: block;font-weight: bold;font-size: 12px;">PERGERAKAN BAHAN BAKU</div>
@@ -111,10 +109,9 @@
 		
 		<table width="98%" border="0" cellpadding="3" border="0">
 		
-			<!--- OPENING BALANCE --->
-			
-			<?php
-			
+		<?php
+
+			//Opening Balance
 			$date1_ago = date('2020-01-01');
 			$date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
 			$date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
@@ -133,8 +130,6 @@
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pergerakan_bahan_baku_ago.txt", $this->db->last_query());
-
 			$total_volume_pembelian_ago = $pergerakan_bahan_baku_ago['volume'];
 			$total_volume_pembelian_akhir_ago  = $total_volume_pembelian_ago;
 			
@@ -145,8 +140,6 @@
 			->where("pph.status = 'PUBLISH'")
 			->get()->row_array();
 			
-			//file_put_contents("D:\\produksi_harian_ago.txt", $this->db->last_query());
-
 			$total_volume_produksi_ago = $produksi_harian_ago['used'];
 			$total_volume_produksi_akhir_ago = $total_volume_pembelian_akhir_ago - $total_volume_produksi_ago;
 
@@ -163,9 +156,7 @@
 			->where("prm.material_id = 15")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\harga_satuan_ago.txt", $this->db->last_query());
-
+		
 			$nilai_harga_satuan_ago = ($harga_satuan_ago['volume']!=0)?($harga_satuan_ago['nilai'] / $harga_satuan_ago['volume'])  * 1:0;
 
 			$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
@@ -197,8 +188,6 @@
 
 			$volume_pergerakan_bahan_baku_ago_solar = $pergerakan_bahan_baku_ago_solar['volume'];
 			
-			//file_put_contents("D:\\pergerakan_bahan_baku_ago_solar.txt", $this->db->last_query());
-
 			$stock_opname_solar_ago = $this->db->select('`prm`.`volume` as volume, `prm`.`total` as total')
 			->from('pmm_remaining_materials_cat prm ')
 			->where("prm.material_id = 13")
@@ -206,8 +195,6 @@
 			->where("status = 'PUBLISH'")
 			->order_by('date','desc')->limit(1)
 			->get()->row_array();
-
-			//file_put_contents("D:\\stock_opname_solar_ago.txt", $this->db->last_query());
 
 			$volume_stock_opname_solar_ago = $stock_opname_solar_ago['volume'];
 
@@ -217,12 +204,8 @@
 			$harga_opening_balance_solar = $harga_hpp_bahan_baku['bbm'];
 			$nilai_opening_balance_solar = $volume_opening_balance_solar_fix * $harga_opening_balance_solar;
 
-			?>
-
-			<!--- NOW --->
-
-			<?php
-			
+			//Now
+			//Bahan Baku			
 			$pergerakan_bahan_baku = $this->db->select('
 			p.nama_produk, 
 			prm.display_measure as satuan, 
@@ -236,8 +219,6 @@
 			->where("prm.material_id = 15")
 			->group_by('prm.material_id')
 			->get()->row_array();
-			
-			//file_put_contents("D:\\pergerakan_bahan_baku.txt", $this->db->last_query());
 			
 			$total_volume_pembelian = $pergerakan_bahan_baku['volume'];
 			$total_nilai_pembelian =  $pergerakan_bahan_baku['nilai'];
@@ -254,17 +235,31 @@
 			->where("pph.status = 'PUBLISH'")
 			->get()->row_array();
 
-			//file_put_contents("D:\\produksi_harian.txt", $this->db->last_query());
+			$akumulasi_bahan_baku = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			->from('akumulasi_bahan_baku pp')
+			->where("(pp.date_akumulasi between '$date1' and '$date2')")
+			->get()->result_array();
+
+			$total_akumulasi_bahan_baku = 0;
+			$total_akumulasi_bahan_baku_2 = 0;
+
+			foreach ($akumulasi_bahan_baku as $b){
+				$total_akumulasi_bahan_baku += $b['total_nilai_keluar'];
+				$total_akumulasi_bahan_baku_2 += $b['total_nilai_keluar_2'];
+			}
+
+			$akumulasi_nilai_bahan_baku = $total_akumulasi_bahan_baku;
+			$akumulasi_nilai_bahan_baku_2 = $total_akumulasi_bahan_baku_2;
 			
 			$total_volume_produksi = $produksi_harian['used'];
-			$total_harga_produksi =  round($total_harga_pembelian_akhir,0);
-			$total_nilai_produksi = $total_volume_produksi * $total_harga_produksi;
+			$total_nilai_produksi = $akumulasi_nilai_bahan_baku;
+			$total_harga_produksi = ($total_volume_produksi!=0)?($total_nilai_produksi / $total_volume_produksi)  * 1:0;
 			
 			$total_volume_produksi_akhir = $total_volume_pembelian_akhir - $total_volume_produksi;
 			$total_harga_produksi_akhir = $total_harga_produksi;
 			$total_nilai_produksi_akhir = $total_volume_produksi_akhir * $total_harga_produksi_akhir;
 
-			//BBM
+			//BBM Solar
 			$pergerakan_bahan_baku_solar = $this->db->select('
 			p.nama_produk, 
 			prm.display_measure as satuan, 
@@ -279,8 +274,6 @@
 			->group_by('prm.material_id')
 			->get()->row_array();
 			
-			//file_put_contents("D:\\pergerakan_bahan_baku_solar.txt", $this->db->last_query());
-
 			$total_volume_pembelian_solar = $pergerakan_bahan_baku_solar['volume'];
 			$total_nilai_pembelian_solar =  $pergerakan_bahan_baku_solar['nilai'];
 			$total_harga_pembelian_solar = ($total_volume_pembelian_solar!=0)?$total_nilai_pembelian_solar / $total_volume_pembelian_solar * 1:0;
@@ -297,8 +290,6 @@
 			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 
-			//file_put_contents("D:\\stock_opname_solar.txt", $this->db->last_query());
-
 			$volume_stock_opname_solar = $stock_opname_solar['volume'];
 			
 			$total_volume_produksi_akhir_solar = $volume_stock_opname_solar;
@@ -306,13 +297,13 @@
 			$total_nilai_produksi_akhir_solar = $total_volume_produksi_akhir_solar * $total_harga_produksi_akhir_solar;
 
 			$total_volume_produksi_solar = $total_volume_pembelian_akhir_solar - $total_volume_produksi_akhir_solar;
-			$total_harga_produksi_solar =  $total_harga_pembelian_akhir_solar;
-			$total_nilai_produksi_solar = $total_volume_produksi_solar * $total_harga_produksi_akhir_solar;
+			$total_nilai_produksi_solar =  $akumulasi_nilai_bahan_baku_2;
+			$total_harga_produksi_solar = ($total_volume_produksi_solar!=0)?($total_nilai_produksi_solar / $total_volume_produksi_solar)  * 1:0;
 
-			//TOTAL BAHAN BAKU
+			//Total Opening Balance
 			$opening_balance_bahan_baku = $nilai_opening_balance + $nilai_opening_balance_solar;
 
-			//TOTAL
+			//Total
 			$total_nilai_masuk = $total_nilai_pembelian + $total_nilai_pembelian_solar;
 			$total_nilai_keluar = $total_nilai_produksi + $total_nilai_produksi_solar;
 			$total_nilai_akhir = $total_nilai_produksi_akhir + $total_nilai_produksi_akhir_solar;
