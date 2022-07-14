@@ -33,6 +33,8 @@ class Laporan extends Secure_Controller {
 		$start_date = false;
 		$end_date = false;
 		$total = 0;
+		$total_nilai = 0;
+		$total_volume = 0;
 		$date = $this->input->get('filter_date');
 		if(!empty($date)){
 			$arr_date = explode(' - ',$date);
@@ -43,7 +45,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 		
-			$this->db->select('ppo.client_id, pp.convert_measure, ps.nama as name, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
+			$this->db->select('ppo.client_id, pp.convert_measure as convert_measure, ps.nama as name, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pp.date_production >=',$start_date);
             $this->db->where('pp.date_production <=',$end_date);
@@ -59,10 +61,10 @@ class Laporan extends Secure_Controller {
         }
 		
 		$this->db->join('penerima ps','ppo.client_id = ps.id','left');
-		$this->db->join('pmm_productions pp','ppo.id = pp.salesPo_id');
+		$this->db->join('pmm_productions pp','ppo.id = pp.salesPo_id','left');
 		$this->db->where("ppo.status in ('OPEN','CLOSED')");
 		$this->db->where('pp.status','PUBLISH');
-		$this->db->where("pp.product_id in (3,4,7,8,9,14,24)");
+		$this->db->where("pp.product_id in (3,4,7,8,9,14,24,35,36,37,38)");
 		$this->db->group_by('ppo.client_id');
 		$query = $this->db->get('pmm_sales_po ppo');
 
@@ -89,10 +91,10 @@ class Laporan extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					$sups['mats'] = $mats;
-					$total += $sups['total_price'];
-					$sups['no'] =$no;
+					$total_volume += $sups['total'];
+					$total_nilai += $sups['total_price'];
+					$sups['no'] = $no;
 					$sups['real'] = number_format($sups['total'],2,',','.');
-					$sups['price'] = number_format($sups['price'],0,',','.');
 					$sups['total_price'] = number_format($sups['total_price'],0,',','.');
 
 					$arr_data[] = $sups;

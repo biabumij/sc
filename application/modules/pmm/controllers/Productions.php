@@ -1799,7 +1799,7 @@ class Productions extends Secure_Controller {
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
 
-		$this->db->select('ppo.client_id, pp.convert_measure as convert_measure, ps.nama as name, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
+		$this->db->select('ppo.client_id, pp.convert_measure as convert_measure, ps.nama as name, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pp.date_production >=',$start_date);
             $this->db->where('pp.date_production <=',$end_date);
@@ -1851,7 +1851,6 @@ class Productions extends Secure_Controller {
 					$total_nilai += $sups['total_price'];
 					$sups['no'] = $no;
 					$sups['real'] = number_format($sups['total'],2,',','.');
-					$sups['price'] = number_format($sups['price'],0,',','.');
 					$sups['total_price'] = number_format($sups['total_price'],0,',','.');
 					
 					$data[] = $sups;

@@ -2337,7 +2337,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('pp.measure, pm.measure_name, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
+        $this->db->select('pp.salesPo_id, pp.measure, pm.measure_name, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
         $this->db->join('produk p','pp.product_id = p.id','left');
 		$this->db->join('pmm_measures pm','pp.convert_measure = pm.id','left');
         $this->db->join('pmm_sales_po ppo','pp.salesPo_id = ppo.id','left');
