@@ -255,7 +255,7 @@ class Reports extends CI_Controller {
 			
 			$total_volume_produksi = $produksi_harian['used'];
 			$total_nilai_produksi = $akumulasi_nilai_bahan_baku;
-			$total_harga_produksi = ($total_volume_produksi!=0)?($total_nilai_produksi / $total_volume_produksi)  * 1:0;
+			$total_harga_produksi = $total_harga_pembelian_akhir;
 			
 			$total_volume_produksi_akhir = $total_volume_pembelian_akhir - $total_volume_produksi;
 			$total_harga_produksi_akhir = $total_harga_produksi;
@@ -300,7 +300,7 @@ class Reports extends CI_Controller {
 
 			$total_volume_produksi_solar = $total_volume_pembelian_akhir_solar - $total_volume_produksi_akhir_solar;
 			$total_nilai_produksi_solar =  $akumulasi_nilai_bahan_baku_2;
-			$total_harga_produksi_solar = ($total_volume_produksi_solar!=0)?($total_nilai_produksi_solar / $total_volume_produksi_solar)  * 1:0;
+			$total_harga_produksi_solar =  $total_harga_pembelian_akhir_solar;
 
 			//Total Opening Balance
 			$opening_balance_bahan_baku = $nilai_opening_balance + $nilai_opening_balance_solar;
