@@ -95,10 +95,10 @@
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
                 <th width="5%">NO.</th>
-                <th align="center" width="30%" colspan="2">URAIAN</th>
+                <th align="center" width="35%" colspan="2">URAIAN</th>
 				<th width="10%">SATUAN</th>
                 <th width="15%">VOLUME</th>
-				<th width="20%">HARGA SATUAN</th>
+				<th width="15%">HARGA SATUAN</th>
                 <th width="20%">NILAI</th>
             </tr>
             <?php
