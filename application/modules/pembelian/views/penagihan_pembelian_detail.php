@@ -40,7 +40,7 @@
                             <div class="panel-header">
                                 <div class="">
                                     <h3 class="">
-                                        Penagihan Pembelian
+                                        Detail Tagihan Pembelian
                                         <small>(<i><?= $row['status']; ?></i>)</small>
                                     </h3>
                                 </div>

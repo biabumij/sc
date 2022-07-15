@@ -35,7 +35,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Penagihan Pembelian</h3>
+                                    <h3 class="">Tagihan Pembelian</h3>
                                 </div>
                             </div>
                             <form id="form-po" action="<?= base_url("pembelian/submit_penagihan_pembelian") ?>" method="post" enctype="multipart/form-data" autocomplete="off">
