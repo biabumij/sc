@@ -27,10 +27,9 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
-                            <li>
-                                <a href="<?php echo site_url('admin/productions'); ?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Produksi</a>
-                            </li>
+                        <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
+                            <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
+                            <li><a href="<?php echo site_url('admin/penjualan');?>"> Sales Order</a></li>
                             <li><a>Surat Jalan Pengiriman Penjualan (Retur)</a></li>
                         </ul>
                     </div>
@@ -293,7 +292,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+            
         </div>
     </div>
 

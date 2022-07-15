@@ -2069,7 +2069,7 @@ class Laporan extends Secure_Controller {
 	
 	}
 
-    public function biaya()
+    public function laporan_biaya()
     {
         $data['asd'] = false;
         $this->load->view('laporan_biaya/laporan_biaya',$data);

@@ -23,7 +23,7 @@
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li>
-                                <a href="<?php echo site_url('admin/biaya');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Jurnal</a></li>
+                                <a href="<?php echo site_url('admin/biaya');?>"> Jurnal Umum</a></li>
                             <li><a>Detail Jurnal</a></li>
                         </ul>
                     </div>

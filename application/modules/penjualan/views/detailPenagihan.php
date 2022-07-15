@@ -27,10 +27,10 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
-                            <li>
-                                <a href="<?php echo site_url('admin/penjualan'); ?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Penjualan</a>
-                            </li>
-                            <li><a>Penagihan Penjualan</a></li>
+                            <li><a href="<?php echo site_url('admin/penjualan'); ?>"> Penjualan</a></li>
+                            <li><a href="<?php echo site_url('admin/penjualan'); ?>"> Tagihan Penjualan</a></li>
+                            <li><a>Detail Tagihan Penjualan</a></li>
+                        </ul>
                         </ul>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div class="">
-                                    <h3 class="">Penagihan Penjualan <small>(<i><?= $penagihan['status']; ?></i>)</small></h3>
+                                    <h3 class="">Detail Penagihan Penjualan <small>(<i><?= $penagihan['status']; ?></i>)</small></h3>
                                 </div>
                             </div>
                             <div class="panel-content">
@@ -369,7 +369,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+            
         </div>
     </div>
 

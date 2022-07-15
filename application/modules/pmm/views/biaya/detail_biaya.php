@@ -24,7 +24,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li>
                                 <a href="<?php echo site_url('admin/biaya');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Biaya</a></li>
-                            <li><a>Tambah Biaya</a></li>
+                            <li><a>Detail Biaya</a></li>
                         </ul>
                     </div>
                 </div>

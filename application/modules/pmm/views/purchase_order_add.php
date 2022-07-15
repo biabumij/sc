@@ -28,9 +28,8 @@
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                        <li>
-                            <a href="<?php echo site_url('admin/purchase_order');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Pemesanan Pembelian</a></li>
-                        <li><a>Edit Pemesanan Pembelian</a></li>
+                        <li><a href="<?php echo site_url('admin/pembelian');?>"> Pesanan Pembelian</a></li>
+                        <li><a>Detail Pemesanan Pembelian</a></li>
                     </ul>
                 </div>
             </div>
@@ -277,7 +276,7 @@
                 </div>
             </div>
         </div>
-        <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+        
     </div>
 </div>
     

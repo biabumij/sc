@@ -23,8 +23,8 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                            <li>
-                                <a href="<?php echo site_url('admin/penjualan');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Penjualan</a></li>
+                            <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
+                            <li><a href="<?php echo site_url('admin/penjualan');?>"> Penawaran Penjualan</a></li>
                             <li><a>Penawaran Penjualan Baru</a></li>
                         </ul>
                     </div>
@@ -216,7 +216,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="scroll-to-top"><i class="fa fa-angle-double-up"></i></a>
+            
         </div>
     </div>
 

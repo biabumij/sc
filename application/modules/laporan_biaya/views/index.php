@@ -61,7 +61,7 @@
 														<div class="col-sm-5">
 														<p><h5>Biaya</h5></p>
 														<p>Menampilkan biaya pembelian dalam suatu periode.</p>
-                                                        <a href="<?= site_url('laporan/biaya'); ?>" class="btn btn-primary">Lihat Laporan</a>
+                                                        <a href="<?= site_url('laporan/laporan_biaya'); ?>" class="btn btn-primary">Lihat Laporan</a>
 														</div>													
 													</div>
 												</div>

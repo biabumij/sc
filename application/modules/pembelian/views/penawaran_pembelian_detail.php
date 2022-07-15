@@ -22,9 +22,9 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                            <li>
-                                <a href="<?php echo site_url('admin/pembelian');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Pembelian</a></li>
-                            <li><a>Penawaran Pembelian</a></li>
+                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
+                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Penawaran</a></li>
+                            <li><a href="<?php echo site_url('admin/pembelian');?>"> Detail Penawaran Pembelian</a></li>
                         </ul>
                     </div>
                 </div>

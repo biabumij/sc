@@ -28,10 +28,10 @@
         <div class="content">
             <div class="content-header">
                 <div class="leftside-content-header">
-                    <ul class="breadcrumbs">
-                        <li><i class="fa fa-home" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
-                        <li><a>Detail Penawaran Penjualan</a></li>
-                    </ul>
+                    <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
+                    <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
+                    <li><a href="<?php echo site_url('admin/penjualan');?>"> Penawaran Penjualan</a></li>
+                    <li><a>Detail Penawaran Penjualan</a></li>
                 </div>
             </div>
             <div class="row animated fadeInUp">

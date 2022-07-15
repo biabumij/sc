@@ -22,8 +22,7 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                            <li>
-                                <a href="<?php echo site_url('admin/kas_&_bank');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Kas & Bank</a></li>
+                            <li><a href="<?php echo site_url('admin/kas_&_bank');?>"></i> Kas & Bank</a></li>
                             <li><a>Terima Uang</a></li>
                         </ul>
                     </div>
