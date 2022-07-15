@@ -45,8 +45,9 @@
             <div class="content-header">
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
-                        <li><i class="fa fa-home" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
-                        <li><a>Detail Produksi Harian</a></li>
+                        <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
+                        <li><a href="<?php echo site_url('admin/produksi'); ?>"> Produksi</a></li>
+                        <li><a>Detail Produksi Campuran</a></li>
                     </ul>
                 </div>
             </div>
