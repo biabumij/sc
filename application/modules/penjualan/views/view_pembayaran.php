@@ -25,7 +25,7 @@
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/penjualan'); ?>"> Penjualan</a></li>
-                            <li><a href="<?php echo site_url('admin/penjualan'); ?>"> Tagihan Penjualan</a></li>
+                            <li><a href="<?= base_url('penjualan/detailPenagihan/' . $pembayaran["id"]) ?>"> Tagihan Penjualan</a></li>
                             <li><a>Pembayaran</a></li>
                         </ul>
                     </div>
