@@ -147,7 +147,7 @@
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								<b>Kepala Divisi</b>
+								<b>Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
 								<b>Ka. Logistik</b>

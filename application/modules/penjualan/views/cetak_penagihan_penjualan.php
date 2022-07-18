@@ -215,10 +215,7 @@
 		</table>
 		<br />
 		<br />
-		<br />
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="0">
+		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -242,12 +239,9 @@
 								
 							</td>
 							<td align="center">
-								<!-- <img src="/uploads/ttd_annisa.jpeg" width="100px"> -->
+								
 							</td>
 						</tr>
-						<?php
-                		    $logistik = $this->pmm_model->GetNameGroup(6);
-                		?>
 						<tr>
 							<td align="center" class="ttd">
 							    	

@@ -275,7 +275,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b>Ka. Plant</b>
+								<b>Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
 								<b>Ka. Laboratorium</b>

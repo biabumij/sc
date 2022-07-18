@@ -134,7 +134,7 @@
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								<b>Ka. Plant</b>
+								<b>Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
 								<b>Keuangan Proyek</b>

@@ -210,7 +210,7 @@
 						</tr>
 						<tr class="table-active3">
 							<td align="center" >
-								<b>Ka. Plant</b>
+								<b>Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
 								<b>M. Produksi & Pengembangan</b>

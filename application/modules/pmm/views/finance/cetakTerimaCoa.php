@@ -164,7 +164,7 @@
                                 Pj. Keuangan & SDM
                             </td>
                             <td align="center">
-                                Ka. Plant
+                                Ka. Unit Bisnis
                             </td>
                             <td align="center">
                                 Dir. Keuangan

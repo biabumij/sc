@@ -184,7 +184,7 @@
 							</td>
 							<td align="center" >
 								<b><u>Hadi Sucipto</u><br />
-								Ka. Plant</b>
+								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
 								<b><br />

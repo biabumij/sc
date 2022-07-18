@@ -833,7 +833,7 @@
 					<tr>
 						<td align="left">
 							Nama : Hadi Sucipto<br />
-							<b>Jabatan : Ka. Plant</b>
+							<b>Jabatan : Ka. Unit Bisnis</b>
 						</td>
 						<td align="left">
 							Nama : <br />

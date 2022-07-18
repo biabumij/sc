@@ -68,15 +68,7 @@
         </table>
         <br />
         <br />
-        <br />
-        <br />
-        <br />
-        <?php
-        $staff_keuangan_pusat = $this->pmm_model->GetNameGroup(9);
-        $manager_keuangan = $this->pmm_model->GetNameGroup(5);
-        $direksi = $this->pmm_model->GetNameGroup(6);
-        ?>  
-        <table width="98%" border="0" cellpadding="0">
+        <table width="98%" border="0" cellpadding="30">
             <tr >
                 <td width="5%"></td>
                 <td width="90%">
@@ -105,24 +97,30 @@
                         </tr>
                         <tr class="table-active3">
                             <td align="center" >
-                                <?= $staff_keuangan_pusat['admin_name'];?>
+                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$pembayaran['created_by']),'admin_name'); ?>
                             </td>
                             <td align="center" >
-                                <?= $manager_keuangan['admin_name'];?>
+                                Erika Sinaga
                             </td>
                             <td align="center" >
-                                <?= $direksi['admin_name'];?>
+                                Deddy Sarwobiso
                             </td>
                         </tr>
                         <tr class="table-active3">
                             <td align="center" >
-                                <b><?= $staff_keuangan_pusat['admin_group_name'];?></b>
+                            <?php
+                            $this->db->select('g.admin_group_name');
+                            $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                            $this->db->where('a.admin_id',$pembayaran['created_by']);
+                            $created_group = $this->db->get('tbl_admin a')->row_array();
+                            ?>
+                                <b><?= $created_group['admin_group_name']?></b>
                             </td>
                             <td align="center" >
-                                <b><?= $manager_keuangan['admin_group_name'];?></b>
+                                <b>Dir. Keuangan</b>
                             </td>
                             <td align="center" >
-                                <b><?= $direksi['admin_group_name'];?></b>
+                                <b>Direktur Utama</b>
                             </td>
                         </tr>
                     </table>
@@ -130,9 +128,5 @@
                 <td width="5%"></td>
             </tr>
         </table>
-
-            
-        
-
     </body>
 </html>

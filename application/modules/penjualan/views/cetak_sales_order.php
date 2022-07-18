@@ -228,7 +228,7 @@
 								
 							</td>
 							<td align="center">
-								<!-- <img src="/uploads/ttd_annisa.jpeg" width="100px"> -->
+								
 							</td>
 						</tr>
 						<?php
@@ -243,12 +243,12 @@
 							</td>
 						</tr>
 						<tr class="table-active3">
-						     <?php
-                                $this->db->select('g.admin_group_name');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$row['created_by']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-                                ?>
+						    <?php
+							$this->db->select('g.admin_group_name');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$row['created_by']);
+							$created_group = $this->db->get('tbl_admin a')->row_array();
+							?>
 							<td align="center">
 							    <?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?>	
 							</td>
