@@ -149,7 +149,7 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
 							<td align="center" >
-								Diperiksa oleh
+								Diperiksa Oleh
 							</td>
 							<td align="center" >
 								Disetujui Oleh

@@ -802,22 +802,22 @@
 	</table>
 	<table width="98%" border="0" cellpadding="0">
 		<tr >
-			<td width="10%"></td>
-			<td width="80%">
+			<td width="5%"></td>
+			<td width="90%">
 				<table width="100%" border="0" cellpadding="2">
 					<tr>
-						<td align="left" >
+						<td align="center" >
 							Disetujui Oleh
 						</td>
 						<td align="center" colspan="2">
 							Diperiksa Oleh
 						</td>
-						<td align="left">
+						<td align="center">
 							Dibuat Oleh
 						</td>
 					</tr>
 					<tr class="">
-						<td align="center" height="35px">
+						<td align="center" height="30px">
 						
 						</td>
 						<td align="center">
@@ -831,26 +831,26 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="left">
-							Nama : Hadi Sucipto<br />
-							<b>Jabatan : Ka. Unit Bisnis</b>
+						<td align="center">
+							<b><u>Hadi Sucipto</u><br />
+							Ka. Unit Bisnis</b>
 						</td>
-						<td align="left">
-							Nama : <br />
-							<b>Jabatan : Keuangan</b>
+						<td align="center">
+							<b><br />
+							Keuangan</b>
 						</td>
-						<td align="left">
-							Nama : <br />
-							<b>Jabatan : Ka. Produksi</b>
+						<td align="center">
+							<b><br />
+							Ka. Produksi</b>
 						</td>
-						<td align="left" >
-							Nama : Vicky Irwana Yudha<br />
-							<b>Jabatan : Ka. Logistik</b>
+						<td align="center" >
+							<b><u>Vicky Irwana Yudha</u><br />
+							Ka. Logistik</b>
 						</td>
 					</tr>
 				</table>
 			</td>
-			<td width="10%"></td>
+			<td width="5%"></td>
 		</tr>
 	</table>
 	</body>
