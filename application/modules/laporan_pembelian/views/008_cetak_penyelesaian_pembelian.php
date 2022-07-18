@@ -279,7 +279,6 @@
             </tr>	
 		</table>
 		<br />
-		<p>*<i>Periode Tanggal Filter Berdasarkan Tanggal Order</i></p>
 		<br />
 		<table width="100%" border="0" cellpadding="30">
 			<tr >

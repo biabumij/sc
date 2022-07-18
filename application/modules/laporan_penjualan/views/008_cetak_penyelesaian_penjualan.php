@@ -281,7 +281,6 @@
 			
 		</table>
 		<br />
-		<p>*<i>Periode Tanggal Filter Berdasarkan Tanggal Pemesanan</i></p>
 		<br />
 		<table width="100%" border="0" cellpadding="50">
 			<tr >
