@@ -67,7 +67,7 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">Pelanggan * </label>
                                                 <select id="client_id" name="client_id" class="form-control form-select2" required="">
-                                                    <option value="">Pilih Pelanggan</option>
+                                                    <option value=""></option>
                                                     <?php foreach ($clients as $client) : ?>
                                                         <option value="<?= $client['id'] ?>"><?= $client['nama'] ?></option>
                                                     <?php endforeach; ?>
@@ -78,7 +78,10 @@
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">No. Sales Order * </label>
                                                 <select id="po_penjualan" name="po_penjualan" class="form-control form-select2" required="">
-                                                    
+                                                <option value=""></option>
+                                                    <?php foreach ($contract_number as $po) : ?>
+                                                        <option value="<?= $po['id'] ?>"><?= $po['contract_number'] ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
