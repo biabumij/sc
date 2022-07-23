@@ -21,17 +21,20 @@ class Productions extends Secure_Controller {
 	public function add()
 	{	
 		$check = $this->m_admin->check_login();
-		if($check == true){		
-
+		if($check == true){
 			$po_id =  $this->input->get('po_id');
 			$data['po_id'] = $po_id;
 			$client_id = $this->input->get('client_id');
 			$data['client_id'] = $client_id;
 			$data['products'] = $this->db->select('id,product')->order_by('product','asc')->get_where('pmm_product',array('status'=>'PUBLISH'))->result_array();
 			$data['clients'] = $this->db->select('id,nama')->order_by('nama','asc')->get_where('penerima',array('pelanggan'=>1))->result_array();
-			$data['komposisi'] = $this->db->select('id,no_komposisi')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
-	
+			$data['komposisi'] = $this->db->select('id, jobs_type')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
 			$data['penjualan'] = $this->db->get_where('pmm_sales_po',array('status'=>'OPEN'))->result_array();
+			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status !='=>'DELETED'))->row_array();
+			//file_put_contents("D:\\get_data.txt", $this->db->last_query());
+			$data['contract_number'] = $this->db->get_where('pmm_sales_po',array('client_id'=>$get_data['client_id'],'status !='=>'DELETED'))->result_array();
+			//file_put_contents("D:\\contract_number.txt", $this->db->last_query());
+			$data['data'] = $get_data;
 			$this->load->view('pmm/productions_add',$data);
 			
 		}else {
@@ -43,16 +46,19 @@ class Productions extends Secure_Controller {
 	{	
 		$check = $this->m_admin->check_login();
 		if($check == true){		
-
 			$po_id =  $this->input->get('po_id');
 			$data['po_id'] = $po_id;
 			$client_id = $this->input->get('client_id');
 			$data['client_id'] = $client_id;
 			$data['products'] = $this->db->select('id,product')->order_by('product','asc')->get_where('pmm_product',array('status'=>'PUBLISH'))->result_array();
 			$data['clients'] = $this->db->select('id,nama')->order_by('nama','asc')->get_where('penerima',array('pelanggan'=>1))->result_array();
-			$data['komposisi'] = $this->db->select('id,no_komposisi')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
-
+			$data['komposisi'] = $this->db->select('id, jobs_type')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
 			$data['penjualan'] = $this->db->get_where('pmm_sales_po',array('status'=>'OPEN'))->result_array();
+			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status !='=>'DELETED'))->row_array();
+			//file_put_contents("D:\\get_data.txt", $this->db->last_query());
+			$data['contract_number'] = $this->db->get_where('pmm_sales_po',array('client_id'=>$get_data['client_id'],'status !='=>'DELETED'))->result_array();
+			//file_put_contents("D:\\contract_number.txt", $this->db->last_query());
+			$data['data'] = $get_data;
 			$this->load->view('pmm/productions_add_retur',$data);
 			
 		}else {
@@ -588,7 +594,7 @@ class Productions extends Secure_Controller {
 			//file_put_contents("D:\\get_po_penjualan.txt", $this->db->last_query());
 
 			$data = [];
-			$data[0] = ['id'=>'','text'=>'Pilih PO'];
+			//$data[0] = ['id'=>'','text'=>'Pilih No. Sales Order'];
 
 			if (!empty($query)){
 				foreach ($query as $row){
@@ -631,10 +637,10 @@ class Productions extends Secure_Controller {
 			$this->db->where('psp.client_id = ' . intval($id));
 			$this->db->group_by('psp.id');
 			$query = $this->db->get()->result_array();
-			//file_put_contents("D:\\get_po_penjualan_retur.txt", $this->db->last_query());
+			//file_put_contents("D:\\get_po_penjualan.txt", $this->db->last_query());
 
 			$data = [];
-			$data[0] = ['id'=>'','text'=>'Pilih PO'];
+			//$data[0] = ['id'=>'','text'=>'Pilih No. Sales Order'];
 
 			if (!empty($query)){
 				foreach ($query as $row){

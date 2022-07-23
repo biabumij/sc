@@ -364,16 +364,10 @@
             $('#box-view').show();
         });
 
-        <?php
-        if (!empty($client_id)) {
-        ?>
-            $('document').ready(function() {
-                $('#client_id').val(<?= $client_id; ?>).trigger('change');
-            });
-
-        <?php
-        }
-        ?>
+        $(document).ready(function(){
+            $('#client_id').val(<?= $data['client_id'];?>).trigger('change');
+            $('#po_penjualan').val(<?= $data['id'];?>).trigger('change');
+        });
 
         $('.filterpicker').daterangepicker({
             autoUpdateInput: false,
@@ -591,7 +585,7 @@
             });
         }
 
-        $('#client_id').change(function() {
+        ('#client_id').change(function() {
             $.ajax({
                 type: "POST",
                 url: "<?php echo site_url('pmm/productions/get_po_penjualan_retur'); ?>",
@@ -601,14 +595,12 @@
                 },
                 success: function(result) {
                     if (result.output) {
-                        // $('#product_id').empty();
-                        // $('#product_id').select2({data:result.products});
-
                         $('#po_penjualan').empty();
                         $('#po_penjualan').select2({
                             data: result.po
                         });
-                        $('#po_penjualan').trigger('change');
+                        
+                        $('#po_penjualan').val(<?= $data['id'];?>).trigger('change');
                     } else if (result.err) {
                         bootbox.alert(result.err);
                     }
@@ -703,13 +695,6 @@
 
         $('#po_penjualan').change(function() {
             $('#salesPo_id').val($('#po_penjualan').val()).trigger('change');
-        });
-
-
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#po_penjualan').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
         });
 		
 		$("#convert_value, #volume, #select_operation").change(function(){

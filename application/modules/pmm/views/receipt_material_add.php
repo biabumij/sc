@@ -553,8 +553,8 @@
                     if(result.data){
                         $('#purchase_order').empty();
                         $('#purchase_order').select2({data:result.data});
-                        // $('#purchase_order').trigger('change');
                         $('#purchase_order').val(result.last_po).trigger('change');
+                        $('#purchase_order').val(<?= $data['id'];?>).trigger('change');
                     }else if(result.err){
                         bootbox.alert(result.err);
                     }

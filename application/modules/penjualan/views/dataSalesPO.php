@@ -205,8 +205,8 @@
                                 <?php if($sales_po["status"] === "OPEN") : ?>
                                 <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
-                                <a href="<?= base_url("pmm/productions/add?client_id=".$sales_po["client_id"]) ?>"  class="btn btn-success"><i class="fa fa-truck"></i> Surat Jalan Pengiriman Penjualan</a>
-								<a href="<?= base_url("pmm/productions/add_retur?client_id=".$sales_po["client_id"]) ?>"  class="btn btn-primary"><i class="fa fa-truck"></i> Retur</a>
+                                <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success"><i class="fa fa-truck"></i> Surat Jalan Pengiriman Penjualan</a>
+								<a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-primary"><i class="fa fa-truck"></i> Retur</a>
                                 <br />
                                 <?php
                                 if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 11){
