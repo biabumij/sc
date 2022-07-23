@@ -491,8 +491,8 @@
                 success: function(result) {
                     $('#btn-form').button('reset');
                     if (result.output) {
-                       // $("#form-product").trigger("reset");
-                       $('#po_penjualan').val('').trigger('change');
+                        // $("#form-product").trigger("reset");
+                        $('#po_penjualan').val('').trigger('change');
                         $('#product_id').val('').trigger('change');
                         $('#client_id').val('').trigger('change');
                         $('#volume').val('');
@@ -570,7 +570,7 @@
                 if (result) {
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo site_url('pmm/productions/delete_retur'); ?>",
+                        url: "<?php echo site_url('pmm/productions/get_po_penjualan_retur'); ?>",
                         dataType: 'json',
                         data: {
                             id: id
@@ -588,7 +588,7 @@
             });
         }
 
-        ('#client_id').change(function() {
+        $('#client_id').change(function() {
             $.ajax({
                 type: "POST",
                 url: "<?php echo site_url('pmm/productions/get_po_penjualan_retur'); ?>",
@@ -699,11 +699,6 @@
         $('#po_penjualan').change(function() {
             $('#salesPo_id').val($('#po_penjualan').val()).trigger('change');
         });
-		
-		$("#convert_value, #volume, #select_operation").change(function(){
-            
-            getTotalDisplay();
-        });
 
         $(document).ready(function() {
             setTimeout(function(){
@@ -715,6 +710,11 @@
             setTimeout(function(){
                 $('#convert_measure').prop('selectedIndex', 3).trigger('change');
             }, 1000);
+        });
+		
+		$("#convert_value, #volume, #select_operation").change(function(){
+            
+            getTotalDisplay();
         });
 		
 		function getTotalDisplay()

@@ -28,7 +28,7 @@ class Productions extends Secure_Controller {
 			$data['client_id'] = $client_id;
 			$data['products'] = $this->db->select('id,product')->order_by('product','asc')->get_where('pmm_product',array('status'=>'PUBLISH'))->result_array();
 			$data['clients'] = $this->db->select('id,nama')->order_by('nama','asc')->get_where('penerima',array('pelanggan'=>1))->result_array();
-			$data['komposisi'] = $this->db->select('id, jobs_type')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
+			$data['komposisi'] = $this->db->select('id, no_komposisi')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
 			$data['penjualan'] = $this->db->get_where('pmm_sales_po',array('status'=>'OPEN'))->result_array();
 			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status !='=>'DELETED'))->row_array();
 			//file_put_contents("D:\\get_data.txt", $this->db->last_query());
@@ -52,7 +52,7 @@ class Productions extends Secure_Controller {
 			$data['client_id'] = $client_id;
 			$data['products'] = $this->db->select('id,product')->order_by('product','asc')->get_where('pmm_product',array('status'=>'PUBLISH'))->result_array();
 			$data['clients'] = $this->db->select('id,nama')->order_by('nama','asc')->get_where('penerima',array('pelanggan'=>1))->result_array();
-			$data['komposisi'] = $this->db->select('id, jobs_type')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
+			$data['komposisi'] = $this->db->select('id, no_komposisi')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
 			$data['penjualan'] = $this->db->get_where('pmm_sales_po',array('status'=>'OPEN'))->result_array();
 			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status !='=>'DELETED'))->row_array();
 			//file_put_contents("D:\\get_data.txt", $this->db->last_query());
