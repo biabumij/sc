@@ -611,52 +611,6 @@ class Productions extends Secure_Controller {
 		}
 			
 	}
-	
-	public function get_po_penjualan_retur(){
-
-		$response = [
-			'output' => true,
-			'po' => null
-		];
-
-		try {
-
-			$id = $this->input->post('id');
-
-			/*
-			select psp.id, psp.contract_number
-			from pmm_sales_po psp 
-			inner join pmm_productions pp 
-			on psp.id = pp.salesPo_id 
-			where pp.client_id = 585
-			group by psp.id;
-			*/
-
-			$this->db->select('psp.id, psp.contract_number, psp.client_id');
-			$this->db->from('pmm_sales_po psp');
-			$this->db->where('psp.client_id = ' . intval($id));
-			$this->db->group_by('psp.id');
-			$query = $this->db->get()->result_array();
-			//file_put_contents("D:\\get_po_penjualan.txt", $this->db->last_query());
-
-			$data = [];
-			//$data[0] = ['id'=>'','text'=>'Pilih No. Sales Order'];
-
-			if (!empty($query)){
-				foreach ($query as $row){
-					$data[] = ['id' => $row['id'], 'text' => $row['contract_number']];
-				}
-			}
-
-			$response['po'] = $data;
-
-		} catch (Throwable $e){
-			$response['output'] = false;
-		} finally {
-			echo json_encode($response);
-		}
-			
-	}
 
 	public function get_materials(){
 

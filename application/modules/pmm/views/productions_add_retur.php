@@ -570,7 +570,7 @@
                 if (result) {
                     $.ajax({
                         type: "POST",
-                        url: "<?php echo site_url('pmm/productions/get_po_penjualan_retur'); ?>",
+                        url: "<?php echo site_url('pmm/productions/get_po_penjualan'); ?>",
                         dataType: 'json',
                         data: {
                             id: id
