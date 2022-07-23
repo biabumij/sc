@@ -137,7 +137,6 @@
 				if($dt['tax_id'] == 6){
 					$tax_ppn11 += $dt['tax'];
 				}
-				// $total += $subtotal;
 				}
 				?>
 				<?php
@@ -180,7 +179,7 @@
 						<?php
 					}
 
-				$total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11;
+				$total = $total + $tax_ppn - $tax_pph + $tax_ppn11;
 				?>
 		<tr>
 			<th align="right" colspan="5" >TOTAL</th>

@@ -113,6 +113,7 @@
                                        <?php
                                        $no=1;
                                        $subtotal = 0;
+                                       $sub_tax = 0;
                                        $total = 0;
 									   $ppn = 0;
 									   $pph = 0;
@@ -133,17 +134,17 @@
                                            <?php
                                            $no++;
                                            $total += $subtotal;
+                                           $sub_tax += $dt['tax'];
                                        }
                                        ?>
                                        <?php
-                                       $subtotal += $dt['total'] * $dt['price'];
 										if($dt['tax_id'] == 3){
 											?>
 											<tr>
 												<th colspan="5" class="text-right">Pajak (PPN 10%)</th>
 												<th  class="text-right">
 													<?php
-													$ppn = $dt['tax'];
+													$ppn = $sub_tax;
 													echo number_format($ppn,0,',','.');
 													?>
 												</th>
@@ -158,7 +159,7 @@
 												<th colspan="5" class="text-right">Pajak (Pajak 0%)</th>
 												<th  class="text-right">
 													<?php
-													$nol = $dt['tax'];
+													$nol = $sub_tax;
 													echo number_format($nol,0,',','.');
 													?>
 												</th>
@@ -173,7 +174,7 @@
 												<th colspan="5" class="text-right">Pajak (PPh 23)</th>
 												<th  class="text-right">
 												<?php
-													$pph = $dt['tax'];
+													$pph = $sub_tax;
 													echo number_format($pph,0,',','.');
 													?>
 												</th>
@@ -188,7 +189,7 @@
 												<th colspan="5" class="text-right">Pajak (PPN 11%)</th>
 												<th  class="text-right">
 												<?php
-													$ppn11 = $dt['tax'];
+													$ppn11 = $sub_tax;
 													echo number_format($ppn11,0,',','.');
 													?>
 												</th>
@@ -196,7 +197,7 @@
 											<?php
 										}
 
-                                    $total = $subtotal + $ppn - $pph + $ppn11;
+                                    $total = $total + $ppn - $pph + $ppn11;
                                     ?>
                                     
                                     <tr>
