@@ -633,7 +633,7 @@ class Productions extends Secure_Controller {
 			where psp.contract_number = '015/PO/BIABUMI-BRM/02/2021';
 			*/
 
-			$this->db->select('p.id, p.nama_produk');
+			$this->db->select('p.id, p.nama_produk, pspd.measure');
 			$this->db->from('produk p ');
 			$this->db->join('pmm_sales_po_detail pspd','p.id = pspd.product_id','left');
 			$this->db->join('pmm_sales_po psp ','pspd.sales_po_id = psp.id','left');
@@ -647,58 +647,12 @@ class Productions extends Secure_Controller {
 			if (!empty($query)){
 				foreach ($query as $row){
 					$data[] = ['id' => $row['id'], 'text' => $row['nama_produk']];
+					//$data_measure[] = ['id' => $row['id'], 'text' => $row['nama_produk']];
 				}
 			}
 
 			$response['products'] = $data;
-
-		} catch (Throwable $e){
-			$response['output'] = false;
-		} finally {
-			echo json_encode($response);
-		}
-			
-	}
-	
-	public function get_materials_retur(){
-
-		$response = [
-			'output' => true,
-			'po' => null
-		];
-
-		try {
-
-			$id = $this->input->post('id');
-
-			/*
-			select p.id, p.nama_produk
-			from produk p 
-			inner join pmm_sales_po_detail pspd 
-			on p.id = pspd.product_id 
-			inner join pmm_sales_po psp 
-			on pspd.sales_po_id = psp.id 
-			where psp.contract_number = '015/PO/BIABUMI-BRM/02/2021';
-			*/
-
-			$this->db->select('p.id, p.nama_produk');
-			$this->db->from('produk p ');
-			$this->db->join('pmm_sales_po_detail pspd','p.id = pspd.product_id','left');
-			$this->db->join('pmm_sales_po psp ','pspd.sales_po_id = psp.id','left');
-			$this->db->where("psp.id = " . intval($id));
-			$query = $this->db->get()->result_array();
-			//file_put_contents("D:\\get_materials_retur.txt", $this->db->last_query());
-
-			$data = [];
-			$data[0] = ['id'=>'','text'=>'Pilih Produk'];
-
-			if (!empty($query)){
-				foreach ($query as $row){
-					$data[] = ['id' => $row['id'], 'text' => $row['nama_produk']];
-				}
-			}
-
-			$response['products'] = $data;
+			//$response['measure'] = $data_measure;
 
 		} catch (Throwable $e){
 			$response['output'] = false;

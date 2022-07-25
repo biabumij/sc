@@ -42,11 +42,38 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div class="">
-                                    <h3 class="">Surat Jalan Pengiriman Penjualan</h3>
+                                    <h4 class="">Surat Jalan Pengiriman Penjualan</h4>
                                 </div>
                             </div>
                             <div class="panel-content">
                                 <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data">
+                                <table class="table">
+                                        <tr>
+                                            <th>Pelanggan *</th>
+                                            <th>:</th>
+                                            <td>
+                                                <select id="client_id" name="client_id" class="form-control form-select2" required="">
+                                                    <option value=""></option>
+                                                    <?php foreach ($clients as $client) : ?>
+                                                        <option value="<?= $client['id'] ?>"><?= $client['nama'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th width="200px">No. Sales Order * </th>
+                                            <th width="20px">:</th>
+                                            <td >
+                                                <select id="po_penjualan" name="po_penjualan" class="form-control form-select2" required="">
+                                                <option value=""></option>
+                                                    <?php foreach ($contract_number as $po) : ?>
+                                                        <option value="<?= $po['id'] ?>"><?= $po['contract_number'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                <div id="alert-receipt-material" class="row"></div>
                                     <input type="hidden" name="id" id="id">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -62,30 +89,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Pelanggan * </label>
-                                                <select id="client_id" name="client_id" class="form-control form-select2" required="">
-                                                    <option value=""></option>
-                                                    <?php foreach ($clients as $client) : ?>
-                                                        <option value="<?= $client['id'] ?>"><?= $client['nama'] ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">No. Sales Order * </label>
-                                                <select id="po_penjualan" name="po_penjualan" class="form-control form-select2" required="">
-                                                <option value=""></option>
-                                                    <?php foreach ($contract_number as $po) : ?>
-                                                        <option value="<?= $po['id'] ?>"><?= $po['contract_number'] ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -201,11 +205,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <br />
-                                    <hr />
-
-                                    <div id="alert-receipt-material" class="row"></div>
-
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
                                             <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
@@ -702,7 +701,7 @@
 
         $(document).ready(function() {
             setTimeout(function(){
-                $('#measure').prop('selectedIndex', 2).trigger('change');
+                $('#measure').prop('selectedIndex', 3).trigger('change');
             }, 1000);
         });
         

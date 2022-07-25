@@ -93,7 +93,7 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Nomor</th>
+                                                        <th class="text-center">No. Sales Order</th>
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Jenis Pekerjaan</th>
 														<th class="text-center">Vol. Sales Order</th>
