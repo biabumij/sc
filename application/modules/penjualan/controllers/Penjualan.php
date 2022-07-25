@@ -396,50 +396,72 @@ class Penjualan extends Secure_Controller
 		echo json_encode(array('data' => $data));
 	}
 
-	public function alert_sales_po(){
+	public function alert_sales_po_total(){
 	
 		$id = $this->input->post('id');
-
-		$this->db->select('p.nama_produk ,pspd.qty as qty, sum(pp.volume) as volume, (select sum(volume) from pmm_productions_retur ppr where ppr.salesPo_id = psp.id) as volume_retur');
-		$this->db->join('pmm_sales_po psp', 'pspd.sales_po_id = psp.id', 'left');
-		$this->db->join('produk p', 'pspd.product_id = p.id', 'left');
-		$this->db->join('pmm_productions pp', 'psp.id = pp.salesPo_id', 'left');
-		$this->db->where("psp.id = " . intval($id));
-		$this->db->where('pp.status','PUBLISH');
-		$this->db->group_by('pspd.product_id');
-		$result = $this->db->get('pmm_sales_po_detail pspd');
-		if($result->num_rows() > 0){
-            foreach ($result->result_array() as $key => $row) {
-			$row['qty'] = number_format($row['qty'],2,',','.');
-			$row['volume'] = number_format($row['volume'],2,',','.');
-			$data[] = $row;
-
-				}
+	
+		$this->db->select('p.nama_produk, pod.product_id, pod.qty as volume');
+		if(!empty($client_id)){
+			$this->db->where('po.client_id',$client_id);
+		}
+		if(!empty($id)){
+			$this->db->where('po.id',$id);
+		}
+		$this->db->where('po.status','OPEN');
+		$this->db->join('produk p','pod.product_id = p.id','left');
+		$this->db->join('pmm_sales_po po','pod.sales_po_id = po.id','left');
+		$this->db->group_by('pod.product_id');
+		$this->db->order_by('p.nama_produk','asc');
+		$query = $this->db->get('pmm_sales_po_detail pod');
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['nama_produk'] = $row['nama_produk'];
+				$row['product_id'] = $row['product_id'];
+				$row['volume'] = number_format($row['volume'],2,',','.');
+				$pengiriman = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions',array('salesPo_id'=>$id,'product_id'=>$row['product_id']))->row_array();
+				//file_put_contents("D:\\pengiriman.txt", $this->db->last_query());
+				$row['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
+				$data[] = $row;
 			}
-		
-		//file_put_contents("D:\\alert_sales_po.txt", $this->db->last_query());
-
+	
+		}
+			
+	
 		echo json_encode(['data' => $data]);
 	}
 
-	public function alert_sales_po_retur(){
+	public function alert_sales_po_total_retur(){
 	
 		$id = $this->input->post('id');
-
-		$this->db->select('p.nama_produk ,pspd.qty as qty, sum(pp.volume) as volume, (select sum(volume) from pmm_productions_retur ppr where ppr.salesPo_id = psp.id) as volume_retur');
-		$this->db->from('pmm_sales_po_detail pspd');
-		$this->db->join('pmm_sales_po psp', 'pspd.sales_po_id = psp.id', 'left');
-		$this->db->join('produk p', 'pspd.product_id = p.id', 'left');
-		$this->db->join('pmm_productions_retur pp', 'psp.id = pp.salesPo_id', 'left');
-		$this->db->where("psp.id = " . intval($id));
-		$this->db->where('pp.status','PUBLISH');
-		$this->db->group_by('pspd.product_id');
-
-		$result = $this->db->get()->result_array();
-		
-		//file_put_contents("D:\\alert_sales_po_retur.txt", $this->db->last_query());
-
-		echo json_encode(['data' => $result]);
+	
+		$this->db->select('p.nama_produk, pod.product_id, pod.qty as volume');
+		if(!empty($client_id)){
+			$this->db->where('po.client_id',$client_id);
+		}
+		if(!empty($id)){
+			$this->db->where('po.id',$id);
+		}
+		$this->db->where('po.status','OPEN');
+		$this->db->join('produk p','pod.product_id = p.id','left');
+		$this->db->join('pmm_sales_po po','pod.sales_po_id = po.id','left');
+		$this->db->group_by('pod.product_id');
+		$this->db->order_by('p.nama_produk','asc');
+		$query = $this->db->get('pmm_sales_po_detail pod');
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['nama_produk'] = $row['nama_produk'];
+				$row['product_id'] = $row['product_id'];
+				$row['volume'] = number_format($row['volume'],2,',','.');
+				$pengiriman = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions_retur',array('salesPo_id'=>$id,'product_id'=>$row['product_id']))->row_array();
+				//file_put_contents("D:\\pengiriman.txt", $this->db->last_query());
+				$row['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
+				$data[] = $row;
+			}
+	
+		}
+			
+	
+		echo json_encode(['data' => $data]);
 	}
 	
 

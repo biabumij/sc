@@ -73,7 +73,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                <div id="alert-receipt-material" class="row"></div>
+                                <div id="alert-receipt-material-total" class="row"></div>
                                     <input type="hidden" name="id" id="id">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -469,7 +469,7 @@
         });
         $('#salesPo_id').change(function() {
             table.ajax.reload();
-            getPoAlert();
+            getPoAlertTotal();
         });
 
 
@@ -534,33 +534,33 @@
 
         });
 
-        function getPoAlert() {
+        function getPoAlertTotal() {
 
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('penjualan/penjualan/alert_sales_po'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: {
-                    id: $('#salesPo_id').val(),
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#alert-receipt-material').html('');
-                        for (let i in result.data) {
-                            $('#alert-receipt-material').append('<div class="col-sm-3">' +
-                                '<div class="alert alert-danger">' +
-                                '<h5><strong>' + result.data[i].nama_produk + '</strong></h5>' +
-                                '<b>PO : ' + result.data[i].qty + '  <br /></b>' +
-                                '<b>Pengiriman : ' + result.data[i].volume +
-                                '</div></b>' +
-                                '</div>');
-                        }
-
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('penjualan/alert_sales_po_total'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: {
+                id: $('#salesPo_id').val(),
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#alert-receipt-material-total').html('');
+                    for (let i in result.data) {
+                        $('#alert-receipt-material-total').append('<div class="col-sm-3">' +
+                            '<div class="alert alert-danger">' +
+                            '<h5><strong>' + result.data[i].nama_produk + '</strong></h5>' +
+                            '<b>Total Order : ' + result.data[i].volume +
+                            '<br />Total Pengiriman : ' + result.data[i].pengiriman +
+                            '</div></b>' +
+                            '</div>');
                     }
+
+                } else if (result.err) {
+                    bootbox.alert(result.err);
                 }
-            });
+            }
+        });
         }
 
         function DeleteData(id) {
