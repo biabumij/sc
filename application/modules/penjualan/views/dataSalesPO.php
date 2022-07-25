@@ -111,7 +111,7 @@
                                         ?>
                                         <tr>
                                             <td class="text-center"><?= $no + 1;?></td>
-                                            <td class="text-center"><?= $d["nama_produk"] ?></td>
+                                            <td class="text-left"><?= $d["nama_produk"] ?></td>
                                             <td class="text-center"><?= $d["qty"]; ?></td>
                                             <td class="text-center"><?= $d["measure"]; ?></td>
                                             <td class="text-right"><?= number_format($d['price'],0,',','.'); ?></td>
@@ -165,7 +165,7 @@
                                         ?>
                                         <tr>
                                             <th colspan="5" class="text-right">Pajak (PPh 23)</th>
-                                            <th  class="text-right"><?= number_format($tax_pph,0,',','.'); ?>></th>
+                                            <th  class="text-right"><?= number_format($tax_pph,0,',','.'); ?></th>
                                         </tr>
                                         <?php
                                     }

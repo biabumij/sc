@@ -698,13 +698,14 @@
         $('#po_penjualan').change(function() {
             $('#salesPo_id').val($('#po_penjualan').val()).trigger('change');
         });
-
+        
         $(document).ready(function() {
             setTimeout(function(){
                 $('#measure').prop('selectedIndex', 3).trigger('change');
             }, 1000);
         });
-        
+		
+
         $(document).ready(function() {
             setTimeout(function(){
                 $('#convert_measure').prop('selectedIndex', 3).trigger('change');
@@ -733,8 +734,8 @@
                 $('#display_volume').val($.number(display_volume,4,',','.'));
                 // console.log(volume+'='+jumlah_berat_isi);
             }
-        }	
-		
+        }
+
     </script>
 </body>
 

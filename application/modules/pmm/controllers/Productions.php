@@ -647,12 +647,10 @@ class Productions extends Secure_Controller {
 			if (!empty($query)){
 				foreach ($query as $row){
 					$data[] = ['id' => $row['id'], 'text' => $row['nama_produk']];
-					//$data_measure[] = ['id' => $row['id'], 'text' => $row['nama_produk']];
 				}
 			}
 
 			$response['products'] = $data;
-			//$response['measure'] = $data_measure;
 
 		} catch (Throwable $e){
 			$response['output'] = false;
