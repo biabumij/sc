@@ -85,10 +85,10 @@
                                             <label>Syarat Pembayaran (Ketik Angka Saja) *</label>
                                             <input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $po['syarat_pembayaran'];?>" required="" />
                                         </div>                                        
-                                        <!--<div class="col-sm-3">
+										<!--<div class="col-sm-3">
                                             <label>Tanggal Jatuh Tempo</label>
                                             <input type="text" class="form-control" name="tanggal_jatuh_tempo" id="tanggal_jatuh_tempo" required="" readonly />
-                                        </div> -->
+                                        </div> -->   
                                     </div>
                                     <br />
                                     <br />
@@ -107,7 +107,6 @@
                                             <tbody>
                                                 <?php
 													$sub_total = 0;
-													$tax = 0;
 													$tax_pph = 0;
 													$tax_ppn = 0;
 													$tax_0 = false;
@@ -139,12 +138,12 @@
                                                         <?= number_format($row['harga_satuan'] * $row['volume'],0,',','.'); ?>
                                                         <input type="hidden" name="total_<?= $key+1; ?>" id="total-<?= $key; ?>" class="form-control input-sm text-right" value="<?= $this->filter->Rupiah($row["price"] * $row['volume']); ?>" readonly="" />
                                                     </td>
-														<input type="hidden" name="tax_id_1" id="tax-id_1" class="form-control" value="<?= $row['tax_id'];?>" readonly =""/>
+														<input type="hidden" name="tax_id_<?= $key+1; ?>" id="tax-id-<?= $key; ?>" class="form-control" value="<?= $row['tax_id'];?>" readonly =""/>
+
                                                 </tr>
                                                 <?php
                                                     $sub_total += ($row['harga_satuan'] * $row['volume']);
 													$tax_id = $row['tax_id'];
-													$tax = $row['tax'];
 													
 													if($row['tax_id'] == 4){
 														$tax_0 = false;
@@ -360,10 +359,12 @@
             $('#tax-val-3').val(0);
             $('#tax-val-4').val(0);
             $('#tax-val-5').val(0);
+            $('#tax-val-6').val(0);
             var sub_total = $('#sub-total-val').val();
             var tax_3 = $('#tax-val-3').val();
             var tax_4 = $('#tax-val-4').val();
             var tax_5 = $('#tax-val-5').val();
+            var tax_6 = $('#tax-val-6').val();
             var total_total = $('#total-val').val();
             
             for (var i = 0; i <= total_product; i++) {
@@ -387,6 +388,10 @@
                     $('#tax-total-5').show();
                     tax_5 = parseInt(tax_5) + (parseInt($('#total-'+i).val()) * 2) / 100 ;
                 }
+                if(tax == 6){
+                    $('#tax-total-6').show();
+                    tax_5 = parseInt(tax_6) + (parseInt($('#total-'+i).val()) * 11) / 100 ;
+                }
                 
             }
             $('#sub-total-val').val(sub_total);
@@ -402,7 +407,10 @@
             $('#tax-val-5').val(tax_5);
             $('#tax-total-5 label.label-show').text($.number( tax_5, 2,',','.' ));
 
-            total_total = parseInt(sub_total) + parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5);
+            $('#tax-val-6').val(tax_5);
+            $('#tax-total-6 label.label-show').text($.number( tax_6, 2,',','.' ));
+
+            total_total = parseInt(sub_total) + parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5) + parseInt(tax_6);
             $('#total-val').val(total_total);
             $('#total').text($.number( total_total, 2,',','.' ));
 
