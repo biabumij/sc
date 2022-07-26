@@ -88,7 +88,8 @@
                                             
                                         </select>
                                     </div>
-                                    </div>    
+                                    <input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
+                                </div>    
                                 <div class="row">
                                     <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Volume * </label>
@@ -579,7 +580,7 @@
                         $('#alert-receipt-material').html('');
                         var no_alert = 1;
                         $.each(result.data,function(key,val){
-                            $('#material_id').append('<option value="'+val.id+'" data-measure="'+val.measure+'" data-display-measure="'+val.display_measure+'">'+val.text+'</option>');
+                            $('#material_id').append('<option value="'+val.id+'" data-measure="'+val.measure+'" data-display-measure="'+val.display_measure+'" data-tax_id="'+val.tax_id+'">'+val.text+'</option>');
                             $('#filter_material').append('<option value="'+val.id+'" >'+val.text+'</option>');
 
                             if(key > 0){
@@ -629,18 +630,13 @@
         });
 
         
-        // $('#material_id').change(function(){
-        //     var koef = $('option:selected', this).attr('data-koef');
-        //     $('#koef').val(koef);
-
-        // });
         $('#material_id').change(function(){
             var measure = $(this).find(':selected').data('measure');
             $('#measure_id').val(measure);
-            //var display_measure = $(this).find(':selected').data('display-measure');
-            //$('#display_measure').val(display_measure);
-            // $('#display_measure').attr("disabled", true);
+            var tax_id = $(this).find(':selected').data('tax_id');
+            $('#tax_id').val(tax_id);
         });
+
 
         $('#form-product').submit(function(event){
             $('#btn-form').button('loading');

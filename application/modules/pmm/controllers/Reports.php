@@ -7343,7 +7343,7 @@ class Reports extends CI_Controller {
 	            <th width="10%"></th>
 				<th width="40%"><?= $x['nama'] ?></th>
 				<th width="10%" class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
-				<th width="10%" class="text-center"><?= $x['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$x['measure']),'measure_name')?></th>
+				<th width="10%" class="text-center"><?= $x['measure'];?></th>
 	            <th width="30%" class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>

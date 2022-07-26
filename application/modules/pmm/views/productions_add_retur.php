@@ -149,7 +149,7 @@
                                                 <input type="text" id="convert_value" name="convert_value" class="form-control numberformat" value="1" required=""  placeholder="Konversi" autocomplete="off">
                                             </div>
                                         </div>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-2" id="test">
                                             <div class="form-group">
                                                 <input type="text" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
                                             </div>

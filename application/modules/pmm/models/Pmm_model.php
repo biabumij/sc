@@ -975,7 +975,7 @@ class Pmm_model extends CI_Model {
     function GetPOMaterials($supplier_id,$id=false)
     {
         $data = array();
-        $this->db->select('pm.nama_produk as material_name,pod.material_id,pod.measure, pod.volume,po.date_po, pm.satuan as display_measure, pod.tax as tax');
+        $this->db->select('pm.nama_produk as material_name,pod.material_id,pod.measure, pod.volume,po.date_po, pm.satuan as display_measure, pod.tax as tax, pod.tax_id as tax_id');
         if(!empty($supplier_id)){
             $this->db->where('po.supplier_id',$supplier_id);
         }
@@ -988,6 +988,7 @@ class Pmm_model extends CI_Model {
         $this->db->group_by('pod.material_id');
         $this->db->order_by('pm.nama_produk','asc');
         $query = $this->db->get('pmm_purchase_order_detail pod');
+        //file_put_contents("D:\\GetPOMaterials.txt", $this->db->last_query());
         if($query->num_rows() > 0){
             foreach ($query->result_array() as $key => $row) {
                 $data[] = $row;
@@ -2031,13 +2032,12 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 		
-        $this->db->select('pp.id, p.nama_produk, ps.nama, pm.measure_name as measure, SUM(pp.volume) as terkirim, SUM(COALESCE(ppr.volume,0)) as dikembalikan, SUM(pp.volume) - SUM(COALESCE(ppr.display_volume,0)) as terjual, SUM(pp.price) as terkirim_rp, SUM(COALESCE(ppr.price,0)) as dikembalikan_rp, SUM(pp.price) - SUM(COALESCE(ppr.price,0)) as terjual_rp');
+        $this->db->select('pp.id, p.nama_produk, ps.nama, pp.measure as measure, SUM(pp.volume) as terkirim, SUM(COALESCE(ppr.volume,0)) as dikembalikan, SUM(pp.volume) - SUM(COALESCE(ppr.display_volume,0)) as terjual, SUM(pp.price) as terkirim_rp, SUM(COALESCE(ppr.price,0)) as dikembalikan_rp, SUM(pp.price) - SUM(COALESCE(ppr.price,0)) as terjual_rp');
 		
 		$this->db->join('pmm_sales_po pso', 'pp.salesPo_id = pso.id', 'left');
 		$this->db->join('pmm_productions_retur ppr', 'pp.id = ppr.id', 'left');
 		$this->db->join('penerima ps', 'pp.client_id = ps.id','left');
         $this->db->join('produk p','pp.product_id = p.id','left');
-		$this->db->join('pmm_measures pm', 'pp.measure = pm.id','left');
         
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pp.date_production >=',$start_date);
@@ -2301,9 +2301,8 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('pp.salesPo_id, pp.measure, pm.measure_name, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
+        $this->db->select('pp.salesPo_id, pp.measure, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
         $this->db->join('produk p','pp.product_id = p.id','left');
-		$this->db->join('pmm_measures pm','pp.convert_measure = pm.id','left');
         $this->db->join('pmm_sales_po ppo','pp.salesPo_id = ppo.id','left');
 		//$this->db->join('pmm_sales_po_detail ppod','ppo.id = ppod.sales_po_id','left');
         if(!empty($start_date) && !empty($end_date)){
@@ -2337,7 +2336,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('pp.salesPo_id, pp.measure, pm.measure_name, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
+        $this->db->select('pp.salesPo_id, pp.measure, pm.measure, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
         $this->db->join('produk p','pp.product_id = p.id','left');
 		$this->db->join('pmm_measures pm','pp.convert_measure = pm.id','left');
         $this->db->join('pmm_sales_po ppo','pp.salesPo_id = ppo.id','left');

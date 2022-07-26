@@ -80,7 +80,7 @@ class Laporan extends Secure_Controller {
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
-						$arr['measure_name'] = $row['measure_name'];
+						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
 						$arr['real'] = number_format($row['total'],3,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');

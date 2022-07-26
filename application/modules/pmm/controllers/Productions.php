@@ -691,48 +691,6 @@ class Productions extends Secure_Controller {
 		echo json_encode(array('data'=>$data));
 	}
 
-	
-	public function table_dashboard_mu()
-	{
-		$data = array();
-		$arr_date = explode(' - ', $this->input->post('date'));
-		$material = $this->input->post('material');
-
-		$this->db->select('pm.material_name,pms.measure_name,pm.id');
-		$this->db->join('pmm_measures pms','pm.measure = pms.id','left');
-		if(!empty($material)){
-			$this->db->where('pm.id',$material);
-		}	
-		$this->db->group_by('pm.id');
-		$query = $this->db->get('pmm_materials pm');
-		if($query->num_rows() > 0){
-			foreach ($query->result_array() as $key => $row) {
-
-				$this->db->select('SUM(pp.volume) as volume,ppm.koef');
-				$this->db->join('pmm_productions pp','ppm.production_id = pp.id');
-				if(!empty($arr_date)){
-					$this->db->where('pp.date_production >=',date('Y-m-d',strtotime($arr_date[0])));
-					$this->db->where('pp.date_production <=',date('Y-m-d',strtotime($arr_date[1])));
-				}
-				$this->db->where('pp.status','PUBLISH');
-				$this->db->where('ppm.material_id',$row['id']);
-				$get_volume = $this->db->get('pmm_production_material ppm')->row_array();
-
-				$row['no'] = $key+1;
-				$row['material_name'] = $row['material_name'].' <b>('.$row['measure_name'].')</b>';
-				$total = $get_volume['volume'] * $get_volume['koef'];
-				
-				$total_pakai = $this->pmm_model->GetTotalSisa($row['id'],$arr_date[0]);
-				$row['total'] = number_format($total_pakai - $total,2,',','.');
-		  //       $pemakaian = $total_pakai * $row['koef'];
-		        // $row['total'] = $pemakaian;
-				$data[] = $row;
-			}
-		}
-
-		echo json_encode(array('data'=>$data,'a'=>$arr_date));
-	}
-
 
 	function table_date()
 	{
@@ -869,9 +827,8 @@ class Productions extends Secure_Controller {
 		if(!empty($clients)){
 			foreach ($clients as $key => $row) {
 
-				$this->db->select('SUM(pp.volume) as total, SUM(pp.price) / SUM(pp.volume) as price, SUM(pp.volume) * SUM(pp.price) / SUM(pp.volume) as cost, pc.nama_produk as product, pm.measure_name');
+				$this->db->select('SUM(pp.volume) as total, SUM(pp.price) / SUM(pp.volume) as price, SUM(pp.volume) * SUM(pp.price) / SUM(pp.volume) as cost, pc.nama_produk as product, pp.measure');
 		        $this->db->join('produk pc','pp.product_id = pc.id','left');
-				$this->db->join('pmm_measures pm','pp.measure = pm.id','left');
 				$this->db->join('pmm_sales_po po','pp.salesPo_id = po.id');
 				//$this->db->join('pmm_sales_po_detail pod','po.id = pod.sales_po_id');
 		        if(!empty($start_date) && !empty($end_date)){
@@ -1717,7 +1674,7 @@ class Productions extends Secure_Controller {
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
-						$arr['measure_name'] = $row['measure_name'];
+						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
 						$arr['salesPo_id'] = $row['salesPo_id'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$row['salesPo_id']),'contract_number');
 						$arr['real'] = number_format($row['total'],2,',','.');
