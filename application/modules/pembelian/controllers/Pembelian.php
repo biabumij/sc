@@ -417,10 +417,8 @@ class Pembelian extends Secure_Controller
                 $data['id'] = $id;
 
                 // $data['rows'] = $this->db->get_where();
-                $this->db->select('prm.*, pm.nama_produk as material_name, SUM(prm.volume) as volume, pod.tax, pod.tax_id');
+                $this->db->select('prm.*, pm.nama_produk as material_name, SUM(prm.volume) as volume, prm.tax_id as tax_id');
                 $this->db->join('produk pm', 'prm.material_id = pm.id', 'left');
-				$this->db->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id', 'left');
-				$this->db->join('pmm_purchase_order_detail pod', 'po.id = pod.purchase_order_id', 'left');
                 $this->db->where_in('prm.id', $arr_receipt);
                 $this->db->group_by('prm.material_id');
                 $detail = $this->db->get('pmm_receipt_material prm')->result_array();
