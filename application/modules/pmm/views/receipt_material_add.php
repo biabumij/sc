@@ -64,7 +64,7 @@
                             <div id="alert-receipt-material" class="row">
                                 
                             </div>
-                            <form id="form-product" class="form-horizontal" action="<?php echo site_url('pmm/receipt_material/process'); ?>"  enctype="multipart/form-data" >
+                            <form id="form-product" class="form-horizontal" action="<?php echo site_url('pmm/receipt_material/process'); ?>"  enctype="multipart/form-data" onSubmit="window.location.reload()">
                                 <input type="hidden" name="purchase_order_id" id="purchase_order_id" value="">
                                 <input type="hidden" id="date_receipt_val" name="date_receipt_val" value="<?php echo date('d-m-Y');?>">
                                 <input type="hidden" name="receipt_material_id" id="receipt_material_id" value="">

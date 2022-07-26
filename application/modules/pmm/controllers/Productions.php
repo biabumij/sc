@@ -15,9 +15,6 @@ class Productions extends Secure_Controller {
 		$this->m_admin->check_login();
 	}	
 
-
-	// Product
-
 	public function add()
 	{	
 		$check = $this->m_admin->check_login();
@@ -26,14 +23,10 @@ class Productions extends Secure_Controller {
 			$data['po_id'] = $po_id;
 			$client_id = $this->input->get('client_id');
 			$data['client_id'] = $client_id;
-			$data['products'] = $this->db->select('id,product')->order_by('product','asc')->get_where('pmm_product',array('status'=>'PUBLISH'))->result_array();
 			$data['clients'] = $this->db->select('id,nama')->order_by('nama','asc')->get_where('penerima',array('pelanggan'=>1))->result_array();
 			$data['komposisi'] = $this->db->select('id, no_komposisi')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
-			$data['penjualan'] = $this->db->get_where('pmm_sales_po',array('status'=>'OPEN'))->result_array();
-			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status !='=>'DELETED'))->row_array();
-			//file_put_contents("D:\\get_data.txt", $this->db->last_query());
-			$data['contract_number'] = $this->db->get_where('pmm_sales_po',array('client_id'=>$get_data['client_id'],'status !='=>'DELETED'))->result_array();
-			//file_put_contents("D:\\contract_number.txt", $this->db->last_query());
+			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status'=>'OPEN'))->row_array();
+			$data['contract_number'] = $this->db->get_where('pmm_sales_po',array('client_id'=>$get_data['client_id'],'status'=>'OPEN'))->result_array();
 			$data['data'] = $get_data;
 			$this->load->view('pmm/productions_add',$data);
 			
@@ -50,14 +43,10 @@ class Productions extends Secure_Controller {
 			$data['po_id'] = $po_id;
 			$client_id = $this->input->get('client_id');
 			$data['client_id'] = $client_id;
-			$data['products'] = $this->db->select('id,product')->order_by('product','asc')->get_where('pmm_product',array('status'=>'PUBLISH'))->result_array();
 			$data['clients'] = $this->db->select('id,nama')->order_by('nama','asc')->get_where('penerima',array('pelanggan'=>1))->result_array();
 			$data['komposisi'] = $this->db->select('id, no_komposisi')->get_where('pmm_agregat',array('status'=>'PUBLISH'))->result_array();
-			$data['penjualan'] = $this->db->get_where('pmm_sales_po',array('status'=>'OPEN'))->result_array();
-			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status !='=>'DELETED'))->row_array();
-			//file_put_contents("D:\\get_data.txt", $this->db->last_query());
-			$data['contract_number'] = $this->db->get_where('pmm_sales_po',array('client_id'=>$get_data['client_id'],'status !='=>'DELETED'))->result_array();
-			//file_put_contents("D:\\contract_number.txt", $this->db->last_query());
+			$get_data = $this->db->get_where('pmm_sales_po',array('id'=>$po_id,'status'=>'OPEN'))->row_array();
+			$data['contract_number'] = $this->db->get_where('pmm_sales_po',array('client_id'=>$get_data['client_id'],'status'=>'OPEN'))->result_array();
 			$data['data'] = $get_data;
 			$this->load->view('pmm/productions_add_retur',$data);
 			
@@ -577,21 +566,12 @@ class Productions extends Secure_Controller {
 
 			$id = $this->input->post('id');
 
-			/*
-			select psp.id, psp.contract_number
-			from pmm_sales_po psp 
-			inner join pmm_productions pp 
-			on psp.id = pp.salesPo_id 
-			where pp.client_id = 585
-			group by psp.id;
-			*/
-
 			$this->db->select('psp.id, psp.contract_number, psp.client_id');
 			$this->db->from('pmm_sales_po psp');
 			$this->db->where('psp.client_id = ' . intval($id));
+			$this->db->where('psp.status','OPEN');
 			$this->db->group_by('psp.id');
 			$query = $this->db->get()->result_array();
-			//file_put_contents("D:\\get_po_penjualan.txt", $this->db->last_query());
 
 			$data = [];
 			//$data[0] = ['id'=>'','text'=>'Pilih No. Sales Order'];
@@ -623,23 +603,12 @@ class Productions extends Secure_Controller {
 
 			$id = $this->input->post('id');
 
-			/*
-			select p.id, p.nama_produk
-			from produk p 
-			inner join pmm_sales_po_detail pspd 
-			on p.id = pspd.product_id 
-			inner join pmm_sales_po psp 
-			on pspd.sales_po_id = psp.id 
-			where psp.contract_number = '015/PO/BIABUMI-BRM/02/2021';
-			*/
-
 			$this->db->select('p.id, p.nama_produk, pspd.measure');
 			$this->db->from('produk p ');
 			$this->db->join('pmm_sales_po_detail pspd','p.id = pspd.product_id','left');
 			$this->db->join('pmm_sales_po psp ','pspd.sales_po_id = psp.id','left');
 			$this->db->where("psp.id = " . intval($id));
 			$query = $this->db->get()->result_array();
-			//file_put_contents("D:\\get_materials.txt", $this->db->last_query());
 
 			$data = [];
 			//$data[0] = ['id'=>'','text'=>'Pilih Produk'];

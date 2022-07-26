@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="panel-content">
-                                <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data">
+                                <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data" onSubmit="window.location.reload()">
                                 <table class="table">
                                         <tr>
                                             <th>Pelanggan *</th>
