@@ -1846,16 +1846,22 @@ class Receipt_material extends CI_Controller {
 	{
 		$data = array();
 		$supplier_id = $this->input->post('supplier_id');
-		$last_po = 0;
-		$check_last = false;
+		//$last_po = 0;
+		//$check_last = false;
 		$this->db->select('id,no_po,date_po');
+		$this->db->from('pmm_purchase_order');
 		$this->db->where('supplier_id',$supplier_id);
 		$this->db->where('status','PUBLISH');
 		$this->db->order_by('date_po','desc');
-		$query = $this->db->get('pmm_purchase_order');
-		$data[0]['id'] = '0';
-		$data[0]['text'] = 'Pilih PO';
-		foreach ($query->result_array() as $key => $value) {
+		$query = $this->db->get()->result_array();
+		$data = [];
+		//$data[0] = ['id'=>'','text'=>'Pilih PO'];
+		if (!empty($query)){
+			foreach ($query as $row){
+				$data[] = ['id' => $row['id'], 'text' => $row['no_po']];
+			}
+		}
+		/*foreach ($query->result_array() as $key => $value) {
 			$materials = $this->db->select('material_id,volume')->get_where('pmm_purchase_order_detail',array('purchase_order_id'=>$value['id']))->result_array();
 			$count_mat = 0;
 			$check_mat = 0;
@@ -1883,8 +1889,9 @@ class Receipt_material extends CI_Controller {
 				$data[]= $arr;
 			}
 			
-		}
-		echo json_encode(array('data'=>$data,'last_po'=>$last_po));		
+		}*/
+		//echo json_encode(array('data'=>$data,'last_po'=>$last_po));	
+		echo json_encode(array('data'=>$data));
 	}
 	
 	function get_po_by_supp_jasa()

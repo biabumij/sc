@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="panel-content">
-                            <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data">
+                            <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 1000)">
                                 <table class="table">
                                         <tr>
                                             <th>Pelanggan *</th>
@@ -132,7 +132,7 @@
                                                     if (!empty($measure)) {
                                                         foreach ($measure as $meas) {
                                                     ?>
-                                                            <option value="<?php echo $meas['id']; ?>"><?php echo $meas['measure_name']; ?></option>
+                                                            <option value="<?php echo $meas['measure_name']; ?>"><?php echo $meas['measure_name']; ?></option>
                                                     <?php
                                                         }
                                                     }
@@ -147,6 +147,11 @@
 												<input type="hidden" id="select_operation" name="select_operation" value="*">
                                                 <label for="inputEmail3" class="control-label">Konversi (Isi angka "1" Jika tidak ada konversi) * </label>
                                                 <input type="text" id="convert_value" name="convert_value" class="form-control numberformat" value="1" required=""  placeholder="Konversi" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="form-group">
+                                                <input type="text" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
                                             </div>
                                         </div>
                                     </div>
@@ -537,21 +542,23 @@
 
         $.ajax({
             type: "POST",
-            url: "<?php echo site_url('penjualan/alert_sales_po_total_retur'); ?>/" + Math.random(),
+            url: "<?php echo site_url('penjualan/alert_sales_po_total'); ?>/" + Math.random(),
             dataType: 'json',
             data: {
                 id: $('#salesPo_id').val(),
             },
             success: function(result) {
                 if (result.data) {
-                    $('#alert-receipt-material-total-retur').html('');
+                    $('#product_id').html('');
+                    $('#alert-receipt-material-total').html('');
                     for (let i in result.data) {
-                        $('#alert-receipt-material-total-retur').append('<div class="col-sm-3">' +
-                            '<div class="alert alert-danger">' +
-                            '<h5><strong>' + result.data[i].nama_produk + '</strong></h5>' +
-                            '<b>Total Order : ' + result.data[i].volume +
-                            '<br />Total (Retur) : ' + result.data[i].pengiriman +
-                            '</div></b>' +
+                        $('#product_id').append('<option value="'+ result.data[i].id +'"  data-tax_id="'+ result.data[i].tax_id +'" data-measure="'+ result.data[i].measure +'">'+ result.data[i].text +'</option>');
+                        $('#alert-receipt-material-total').append('<div class="col-sm-3">' +
+                            '<div class="alert alert-danger text-center">' +
+                            '<h5><strong>' + result.data2[i].nama_produk + '</strong></h5>' +
+                            '<div class="text-right"><b>Total Order : ' + result.data2[i].volume +
+                            '<br />Total Pengiriman : ' + result.data2[i].pengiriman +
+                            '</div></div></b>' +
                             '</div>');
                     }
 
@@ -609,46 +616,11 @@
             });
         });
 
-        $('#po_penjualan').change(function() {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/productions/get_materials'); ?>",
-                dataType: 'json',
-                data: {
-                    id: $(this).val()
-                },
-                success: function(result) {
-                    if (result.output) {
-                        $('#product_id').empty();
-                        $('#product_id').select2({
-                            data: result.products
-                        });
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-        });
-
-        $('#product_id').change(function() {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/productions/get_composition'); ?>",
-                dataType: 'json',
-                data: {
-                    product_id: $(this).val()
-                },
-                success: function(result) {
-                    if (result.output) {
-                        $('#composition_id').empty();
-                        $('#composition_id').select2({
-                            data: result.data
-                        });
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
+        $('#product_id').change(function(){
+            var measure = $(this).find(':selected').data('measure');
+            $('#measure').val(measure);
+            var tax_id = $(this).find(':selected').data('tax_id');
+            $('#tax_id').val(tax_id);
         });
 
         function EditData(id) {
@@ -697,12 +669,6 @@
         $('#po_penjualan').change(function() {
             $('#salesPo_id').val($('#po_penjualan').val()).trigger('change');
         });
-
-        $(document).ready(function() {
-            setTimeout(function(){
-                $('#measure').prop('selectedIndex', 3).trigger('change');
-            }, 1000);
-        });
         
         $(document).ready(function() {
             setTimeout(function(){
@@ -732,7 +698,9 @@
                 $('#display_volume').val($.number(display_volume,4,',','.'));
                 // console.log(volume+'='+jumlah_berat_isi);
             }
-        }	
+        }
+
+        document.getElementById("test").style.display = "none";
 		
     </script>
 </body>

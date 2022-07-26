@@ -106,7 +106,7 @@
 						<td><?php echo $row['nopol_truck'];?></td>
 						<td><?php echo $row['driver'];?></td>
             			<td><?php echo $row['product_id'] = $this->crud_global->GetField('produk',array('id'=>$row['product_id']),'nama_produk');?></td>
-            			<td><?php echo $row['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure']),'measure_name');?></td>
+            			<td><?php echo $row['measure'];?></td>
 						<td><?php echo number_format($row['volume'],2,',','.');?></td>
                  		<td><?php echo number_format($row['harga_satuan'],0,',','.');?></td>
 						 <td><?php echo number_format($row['price'],0,',','.');?></td>

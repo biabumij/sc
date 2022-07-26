@@ -400,7 +400,7 @@ class Penjualan extends Secure_Controller
 	
 		$id = $this->input->post('id');
 	
-		$this->db->select('p.nama_produk, pod.product_id, pod.qty as volume');
+		$this->db->select('p.nama_produk, pod.product_id, pod.measure, pod.tax_id, pod.qty as volume');
 		if(!empty($client_id)){
 			$this->db->where('po.client_id',$client_id);
 		}
@@ -413,28 +413,33 @@ class Penjualan extends Secure_Controller
 		$this->db->group_by('pod.product_id');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_sales_po_detail pod');
+		$data[0] = array('id'=>'0','text'=>'Pilih Produk');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
-				$row['nama_produk'] = $row['nama_produk'];
-				$row['product_id'] = $row['product_id'];
-				$row['volume'] = number_format($row['volume'],2,',','.');
+				$arr['id'] = $row['product_id'];
+				$arr['text'] = $row['nama_produk'];
+				$arr_alert['nama_produk'] = $row['nama_produk'];
+				$arr['tax_id'] = $row['tax_id'];
+				$arr['measure'] = $row['measure'];
+				$arr_alert['volume'] = number_format($row['volume'],2,',','.');
 				$pengiriman = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions',array('salesPo_id'=>$id,'product_id'=>$row['product_id']))->row_array();
-				//file_put_contents("D:\\pengiriman.txt", $this->db->last_query());
-				$row['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
-				$data[] = $row;
+				$arr_alert['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
+				$data[] = $arr;
+				$data2[] = $arr_alert;
+				
 			}
 	
 		}
 			
 	
-		echo json_encode(['data' => $data]);
+		echo json_encode(array('data' => $data, 'data2' => $data2));
 	}
 
 	public function alert_sales_po_total_retur(){
 	
 		$id = $this->input->post('id');
 	
-		$this->db->select('p.nama_produk, pod.product_id, pod.qty as volume');
+		$this->db->select('p.nama_produk, pod.product_id, pod.measure, pod.tax_id, pod.qty as volume');
 		if(!empty($client_id)){
 			$this->db->where('po.client_id',$client_id);
 		}
@@ -447,21 +452,26 @@ class Penjualan extends Secure_Controller
 		$this->db->group_by('pod.product_id');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_sales_po_detail pod');
+		$data[0] = array('id'=>'0','text'=>'Pilih Produk');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
-				$row['nama_produk'] = $row['nama_produk'];
-				$row['product_id'] = $row['product_id'];
-				$row['volume'] = number_format($row['volume'],2,',','.');
+				$arr['id'] = $row['product_id'];
+				$arr['text'] = $row['nama_produk'];
+				$arr_alert['nama_produk'] = $row['nama_produk'];
+				$arr['tax_id'] = $row['tax_id'];
+				$arr['measure'] = $row['measure'];
+				$arr_alert['volume'] = number_format($row['volume'],2,',','.');
 				$pengiriman = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions_retur',array('salesPo_id'=>$id,'product_id'=>$row['product_id']))->row_array();
-				//file_put_contents("D:\\pengiriman.txt", $this->db->last_query());
-				$row['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
-				$data[] = $row;
+				$arr_alert['pengiriman'] = number_format($pengiriman['volume'],2,',','.');
+				$data[] = $arr;
+				$data2[] = $arr_alert;
+				
 			}
 	
 		}
 			
 	
-		echo json_encode(['data' => $data]);
+		echo json_encode(array('data' => $data, 'data2' => $data2));
 	}
 	
 
@@ -855,19 +865,13 @@ class Penjualan extends Secure_Controller
 			p.nama_produk AS nameProduk,
 			pp.harga_satuan AS hargaProduk,
 			pp.no_production,
-			sp.tax_id,
-			sp.tax,
+			pp.tax_id,
 			pt.tax_name,
 			pp.product_id,
-			pm.measure_name,
-			(select (id) from pmm_penawaran_penjualan ppj where sp.penawaran_id = ppj.id) as penawaran_id,
-			SUM(pp.price) * pp.harga_satuan as jumlah');
+			pp.measure');
 			$this->db->where_in('pp.id', $id_new);
-			$this->db->join('pmm_sales_po po', 'pp.salesPo_id = po.id', 'left');
-			$this->db->join('pmm_sales_po_detail sp', 'po.id = sp.sales_po_id', 'left');
 			$this->db->join('produk p', 'p.id = pp.product_id', 'left');
-			$this->db->join('pmm_taxs pt', 'sp.tax_id = pt.id', 'left');
-			$this->db->join('pmm_measures pm', 'pp.measure = pm.id', 'left');
+			$this->db->join('pmm_taxs pt', 'pp.tax_id = pt.id', 'left');
 			$this->db->group_by('pp.product_id');
 			$data['cekHarga'] = $this->db->get('pmm_productions pp')->result_array();
 			
@@ -889,7 +893,13 @@ class Penjualan extends Secure_Controller
 
 			$data['sales'] = $this->db->get_where('pmm_sales_po', array('id' => $data['cekHarga'][0]['salesPo_id']))->row_array();
 
-			$data['syarat_pembayaran'] = $this->db->get_where('pmm_penawaran_penjualan', array('id' => $data['cekHarga'][0]['penawaran_id']))->row_array();
+			$this->db->select('ppp.syarat_pembayaran as syarat_pembayaran');
+			$this->db->join('pmm_sales_po_detail ppod', 'ppo.id = ppod.sales_po_id', 'left');
+			$this->db->join('pmm_penawaran_penjualan ppp', 'ppod.penawaran_id = ppp.id', 'left');
+			$this->db->join('pmm_productions pp', 'ppo.id = pp.salesPo_id', 'left');
+			$this->db->where_in('pp.id', $id_new);
+			$data['syarat_pembayaran'] = $this->db->get_where('pmm_sales_po ppo')->row_array();
+			//file_put_contents("D:\\syarat_pembayaran.txt", $this->db->last_query());
 
 			$data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
 
@@ -907,7 +917,7 @@ class Penjualan extends Secure_Controller
 		$nama_pelanggan = $this->input->post('pelanggan');
 		$tanggal_kontrak = $this->input->post('tanggal_kontrak');
 		$tanggal_invoice = $this->input->post('tanggal_invoice');
-		//$tanggal_jatuh_tempo = $this->input->post('tanggal_jatuh_tempo');
+		$tanggal_jatuh_tempo = $this->input->post('tanggal_jatuh_tempo');
 		$syarat_pembayaran = $this->input->post('syarat_pembayaran');
 		$jobs_type = $this->input->post('jobs_type');
 		$total_product = $this->input->post('total_product');
@@ -931,8 +941,8 @@ class Penjualan extends Secure_Controller
 			'surat_jalan' => $surat_jalan,
 			'tanggal_kontrak' => date('Y-m-d', strtotime($tanggal_kontrak)),
 			'tanggal_invoice' => date('Y-m-d', strtotime($tanggal_invoice)),
-			//'tanggal_jatuh_tempo' => date('Y-m-d', strtotime($tanggal_jatuh_tempo)),
 			'syarat_pembayaran' => $syarat_pembayaran,
+			//'tanggal_jatuh_tempo' => date('Y-m-d', strtotime($tanggal_jatuh_tempo)),
 			'alamat_pelanggan' => $this->input->post('alamat_pelanggan'),
 			'nomor_kontrak' => $this->input->post('nomor_kontrak'),
 			'nomor_invoice' => $this->input->post('nomor_invoice'),
@@ -988,7 +998,7 @@ class Penjualan extends Secure_Controller
 				$price = $this->input->post('price_' . $i);
 				$tax = $this->input->post('tax_' . $i);
 				$tax_id = $this->input->post('tax_id_' . $i);
-				$total_pro = $this->input->post('total_' . $i);
+				$total_pro = $qty * $price;
 				if (!empty($product_id)) {
 
 					$tax = 0;

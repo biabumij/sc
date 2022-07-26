@@ -93,7 +93,7 @@ class Productions extends Secure_Controller {
 				$row['client_id'] = $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');
 				$row['date_production'] =  date('d F Y',strtotime($row['date_production']));
 				$row['volume'] = number_format($row['volume'],2,',','.');
-				$row['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure']),'measure_name');
+				$row['measure'] = $row['measure'];
 				$row['harga_satuan'] = number_format($row['harga_satuan'],0,',','.');
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['surat_jalan'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan/'.$row['surat_jalan'].'" target="_blank">'.$row['surat_jalan'].'</a>';
@@ -144,7 +144,7 @@ class Productions extends Secure_Controller {
 				$row['client_id'] = $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');
 				$row['date_production'] =  date('d F Y',strtotime($row['date_production']));
 				$row['volume'] = number_format($row['volume'],2,',','.');
-				$row['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure']),'measure_name');
+				$row['measure'] = $row['measure'];
 				$row['harga_satuan'] = number_format($row['harga_satuan'],0,',','.');
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['data_lab'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan_retur/'.$row['data_lab'].'" target="_blank">'.$row['data_lab'].'</a>';
@@ -257,6 +257,7 @@ class Productions extends Secure_Controller {
 				'date_production' => date('Y-m-d',strtotime($this->input->post('date'))),
 				'no_production' => $no_production,
 				'product_id' => $product_id,
+				'tax_id' => $this->input->post('tax_id'),
 				'client_id' => $this->input->post('client_id'),
 				'no_production' => $this->input->post('no_production'),
 				'volume' => $volume,

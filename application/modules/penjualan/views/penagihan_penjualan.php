@@ -33,7 +33,7 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div class="text-right">
-                                    <h3 class="pull-left">Tagihan Penjualan</h3>
+                                    <h3 class="pull-left">Penagihan Penjualan</h3>
                                     <a href="<?php echo site_url('admin/penjualan'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Back</a>
                                 </div>
                             </div>
@@ -66,23 +66,30 @@
                                             <label>Alamat Pelanggan</label>
                                             <textarea class="form-control" name="alamat_pelanggan" rows="4" required="" readonly=""><?= $clients['alamat']; ?></textarea>
                                         </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
                                         <div class="col-sm-10">
                                             <label>Nomor Kontrak</label>
                                             <input type="text" class="form-control" value="<?= $sales['contract_number']; ?>" name="nomor_kontrak" required="" readonly="" />
                                         </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
 										<div class="col-sm-3">
-                                            <label>Syarat Pembayaran (Ketik Angka Saja)  *</label>
-                                            <input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $syarat_pembayaran['syarat_pembayaran']; ?>" required=""/>
+                                            <label>Syarat Pembayaran (Hari)  *</label>
+                                            <input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $syarat_pembayaran['syarat_pembayaran'];?>" required=""/>
                                         </div>
                                         <!--<div class="col-sm-3">
                                             <label>Tanggal Jatuh Tempo</label>
                                             <input type="text" class="form-control" name="tanggal_jatuh_tempo" id="tanggal_jatuh_tempo" required="" readonly />
-                                        </div>-->                                     
+                                        </div> -->                                     
                                         <div class="col-sm-6">
                                             <label>Jenis Pekerjaan</label>
                                             <input type="text" class="form-control" value="<?= $sales['jobs_type']; ?>" name="jenis_pekerjaan" required="" readonly="" />
                                         </div>
                                     </div>
+                                    <br />
                                     <br />
                                     <div class="table-responsive">
                                         <table id="table-product" class="table table-bordered table-striped table-condensed text-center">
@@ -120,8 +127,8 @@
 															<input type="hidden" min="0" name="qty_<?= $key+1; ?>" id="qty-<?= $key; ?>" value="<?= $row['volume'];?>" class="form-control input-sm text-center" required="" readonly />
 														</td>
                                                         <td class="text-center">
-															<?= $row['measure_name']; ?>
-															<input type="hidden" name="measure_<?= $key+1; ?>" id="measure-<?= $key; ?>" class="form-control input-sm text-center" value="<?= $row['measure_name'];?>" readonly=""  />
+															<?= $row['measure']; ?>
+															<input type="hidden" name="measure_<?= $key+1; ?>" id="measure-<?= $key; ?>" class="form-control input-sm text-center" value="<?= $row['measure'];?>" readonly=""  />
 														</td>
                                                         <td class="text-right">
                                                             <?= number_format($row['hargaProduk'],0,',','.'); ?>
@@ -131,12 +138,12 @@
                                                             <?= number_format($row['hargaProduk'] * $row['volume'],0,',','.'); ?>
                                                             <input type="hidden" name="total_<?= $key + 1; ?>" id="total-<?= $key; ?>" class="form-control numberformat text-right" readonly="" />
                                                         </td>
-														<input type="hidden" name="tax_id_1" id="tax-id_1" class="form-control" value="<?= $row['tax_id'];?>" readonly =""/>
+														<input type="hidden" name="tax_id_<?= $key + 1; ?>" id="tax-id-<?= $key; ?>" class="form-control" value="<?= $row['tax_id'];?>" readonly =""/>
                                                     </tr>
                                                 <?php 
 													$sub_total += ($row['hargaProduk'] * $row['volume']);
 													$tax_id = $row['tax_id'];
-													$tax = $row['tax'];
+													//$tax = $row['tax'];
 													
 													if($row['tax_id'] == 4){
 														$tax_0 = false;
