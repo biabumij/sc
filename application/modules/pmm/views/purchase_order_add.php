@@ -111,120 +111,110 @@
                                     </thead>
                                     <tbody>
                                        <?php
-                                       $no=1;
                                        $subtotal = 0;
-                                       $sub_tax = 0;
                                        $total = 0;
-									   $ppn = 0;
-									   $pph = 0;
-                                       $ppn11 = 0;
-                                       foreach ($details as $dt) {
-                                            $subtotal = $dt['total'] * $dt['price'];
+                                       $tax_0 = 0;
+									   $tax_ppn = 0;
+									   $tax_pph = 0;
+                                       $tax_ppn11 = 0;
+                                       foreach ($details as $no => $dt) {
+                                            $nilai = $dt['total'] * $dt['price'];
                                            ?>  
                                            <tr>
-                                               <td class="text-center"><?php echo $no;?></td>
-                                               <td class="text-center"><?php echo $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');?></td>
+                                               <td class="text-center"><?= $no + 1;?></td>
+                                               <td class="text-left"><?php echo $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');?></td>
                                                <td class="text-center"><?php echo $dt['measure'];?></td>
                                                <td class="text-center"><?php echo number_format($dt['total'],2,',','.');?></td>
                                                <td class="text-right"><?php echo number_format($dt['price'],0,',','.');?></td>
-                                               <td class="text-right"><?php echo number_format($subtotal,0,',','.');?></td>
+                                               <td class="text-right"><?php echo number_format($nilai,0,',','.');?></td>
                                                <input type="hidden" id="total-<?php echo $no;?>" value="<?php echo $subtotal;?>" >
                                            </tr>
 
                                            <?php
-                                           $no++;
-                                           $total += $subtotal;
-                                           $sub_tax += $dt['tax'];
+                                           $subtotal += $dt['total'] * $dt['price'];
+                                           if($dt['tax_id'] == 4){
+                                               $tax_0 = true;
+                                           }
+                                           if($dt['tax_id'] == 3){
+                                               $tax_ppn += $dt['tax'];
+                                           }
+                                           if($dt['tax_id'] == 5){
+                                               $tax_pph += $dt['tax'];
+                                           }
+                                           if($dt['tax_id'] == 6){
+                                               $tax_ppn11 += $dt['tax'];
+                                           }
+                                           
                                        }
                                        ?>
-                                       <?php
-										if($dt['tax_id'] == 3){
-											?>
-											<tr>
-												<th colspan="5" class="text-right">Pajak (PPN 10%)</th>
-												<th  class="text-right">
-													<?php
-													$ppn = $sub_tax;
-													echo number_format($ppn,0,',','.');
-													?>
-												</th>
-											</tr>
-											<?php
-										}
-										?>
-										<?php
-										if($dt['tax_id'] == 4){
-											?>
-											<tr>
-												<th colspan="5" class="text-right">Pajak (Pajak 0%)</th>
-												<th  class="text-right">
-													<?php
-													$nol = $sub_tax;
-													echo number_format($nol,0,',','.');
-													?>
-												</th>
-											</tr>
-											<?php
-										}
-										?>
-										<?php
-										if($dt['tax_id'] == 5){
-											?>
-											<tr>
-												<th colspan="5" class="text-right">Pajak (PPh 23)</th>
-												<th  class="text-right">
-												<?php
-													$pph = $sub_tax;
-													echo number_format($pph,0,',','.');
-													?>
-												</th>
-											</tr>
-											<?php
-										}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th colspan="5" class="text-right">Sub Total</th>
+                                        <th  class="text-right"><?= number_format($subtotal,0,',','.'); ?></th>
+                                    </tr>
+                                    <?php
+                                    if($tax_ppn > 0){
                                         ?>
-										<?php
-										if($dt['tax_id'] == 6){
-											?>
-											<tr>
-												<th colspan="5" class="text-right">Pajak (PPN 11%)</th>
-												<th  class="text-right">
-												<?php
-													$ppn11 = $sub_tax;
-													echo number_format($ppn11,0,',','.');
-													?>
-												</th>
-											</tr>
-											<?php
-										}
-
-                                    $total = $total + $ppn - $pph + $ppn11;
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (PPN 10%)</th>
+                                            <th  class="text-right"><?= number_format($tax_ppn,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if($tax_0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (PPN 0%)</th>
+                                            <th  class="text-right"><?= number_format(0,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if($tax_pph > 0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (PPh 23)</th>
+                                            <th  class="text-right"><?= number_format($tax_pph,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if($tax_ppn11 > 0){
+                                        ?>
+                                        <tr>
+                                            <th colspan="5" class="text-right">Pajak (PPN 11%)</th>
+                                            <th  class="text-right"><?= number_format($tax_ppn11,0,',','.'); ?></th>
+                                        </tr>
+                                        <?php
+                                    }
+                                    $total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11;
                                     ?>
                                     
                                     <tr>
-                                        <th class="text-right" colspan="5" >TOTAL</th>
-                                        <th class="text-right"><?php echo number_format($total,0,',','.');?></th>
-										<input type="hidden" id="total" value="<?php echo $total;?>" >
+                                        <th colspan="5" class="text-right">TOTAL</th>
+                                        <th  class="text-right"><?= number_format($total,0,',','.'); ?></th>
                                     </tr>
-                                    </tbody>
+                                </tfoot>
                                 </table>
                             </div>
 
                             <br />
-                            <div class="text-right form-detail">
-                                <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
-
+                            <div class="text-right">
+            
                                 <?php
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
                                     <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success"><i class="fa fa-truck"></i> Terima Produk</a>
+                                    <br />
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 11){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                        <!--<form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
-                                        </form>-->
-                                        <br />
                                         <form class="form-approval" action="<?= base_url("pembelian/closed_po/".$id) ?>">
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> CLOSED</button>        
                                         </form>	
@@ -239,7 +229,7 @@
                                     <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/3');?>')" class="btn btn-warning check-btn" id="btn-po"><i class="fa fa-send"></i> Buat PO</a>
                                     <?php
                                 }else if($data['status'] == 'WAITING'){
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata() == 8){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
                                         <a onclick="CreatePO()" class="btn btn-success"><i class="fa fa-check"></i> Setujui</a>
                                         <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/2');?>')" class="btn btn-danger check-btn"><i class="fa fa-close"></i> Tolak</a>
@@ -247,7 +237,9 @@
                                     }
                                 }
                                 ?>
-
+                            </div>
+                            <br />
+                            <div class="text-right">
                                 <?php if($data["status"] === "CLOSED") : ?>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
@@ -271,6 +263,10 @@
                                     }
                                     ?>
                                 <?php endif; ?>
+                            </div>
+
+                             <div class="text-right">
+                                <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                             </div>
                         </div>
                     </div>

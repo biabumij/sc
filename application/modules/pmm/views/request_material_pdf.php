@@ -79,7 +79,7 @@
 		<table class="minimalistBlack" cellpadding="5" width="98%">
 			<tr  class="table-head">
 				<th width="5%">No</th>
-                <th width="30%">Jenis Material</th>
+                <th width="30%">Produk</th>
                 <th width="10%">Satuan</th>
                 <th width="15%">Volume</th>
 				<th width="20%">Harga Satuan</th>
@@ -93,7 +93,7 @@
 					?>
             		<tr>
             			<td><?php echo $dw_key + 1;?></td>
-            			<td><?php echo $dw_val['material_name'];?></td>
+            			<td align="left">><?php echo $dw_val['material_name'];?></td>
             			<td><?php echo $dw_val['measure'];?></td>
 						<td><?php echo $dw_val['volume'];?></td>
             			<td align="right"><?php echo $dw_val['price'];?></td>

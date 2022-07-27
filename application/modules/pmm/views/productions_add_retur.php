@@ -520,7 +520,7 @@
 
                         $.toast({
                             heading: 'Success',
-                            text: 'Berhasil menambahkan Data !!',
+                            text: 'Berhasil Menambahkan Data !!',
                             showHideTransition: 'fade',
                             icon: 'success',
                             position: 'top-right',
@@ -570,7 +570,7 @@
         }
 
         function DeleteData(id) {
-            bootbox.confirm("Are you sure to delete this data ?", function(result) {
+            bootbox.confirm("Apakah anda yakin untuk proses data ini ?", function(result) {
                 // console.log('This was logged in the callback: ' + result); 
                 if (result) {
                     $.ajax({
@@ -583,7 +583,7 @@
                         success: function(result) {
                             if (result.output) {
                                 table.ajax.reload();
-                                bootbox.alert('Berhasil menghapus!!');
+                                bootbox.alert('Berhasil Menghapus Data Surat Jalan!!');
                             } else if (result.err) {
                                 bootbox.alert(result.err);
                             }

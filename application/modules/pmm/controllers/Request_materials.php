@@ -234,7 +234,7 @@ class Request_materials extends CI_Controller {
 
 		if(empty($request_material_detail_id) && $check > 0){
 			$output['output'] = false;
-			$output['err'] = 'Material has been added !!!';
+			$output['err'] = 'Produk Sudah Ditambahkan !!!';
 		}else {
 
 			$this->db->trans_start(); # Starting Transaction

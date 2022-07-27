@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="col-sm-3">
                                             <label>Tanggal Pembayaran</label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal_pembayaran" required="" />
+                                            <input type="text" class="form-control dtpicker" name="tanggal_pembayaran" value="<?= date('d-m-Y', strtotime($bayar["tanggal_pembayaran"])) ?>" required="" />
                                         </div>
                                         <div class="col-sm-3">
                                             <label>Nomor Transaksi</label>
@@ -120,7 +120,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
+                                            <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-close"></i> Kembali</a>
+                                            <button type="button" id="tombol_hapus" class="btn btn-danger"><i class="fa fa-times"></i> Hapus</button>
                                             <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>
@@ -130,7 +131,7 @@
                     </div>
                 </div>
             </div>
- 
+
         </div>
     </div>
     
@@ -193,7 +194,32 @@
                 }
             });
             
-        }); 
+        });
+
+        $('#tombol_hapus').click(function() {
+            bootbox.confirm({
+                message: "Apakah anda yakin untuk menghapus data ini?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result) {
+                    if (result) {
+                        $.post('<?= base_url() . 'pembelian/hapus_pembayaran_pembelian/' . $bayar['id'] ?>', {}, function($response) {
+                            top.location.href = '<?= base_url() . 'pembelian/penagihan_pembelian_detail/' . $bayar['penagihan_pembelian_id'] ?>';
+                        });
+                    }
+
+                }
+            });
+        });
+
     </script>
 
 

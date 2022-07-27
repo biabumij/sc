@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="col-sm-3">
                                             <label text>Tanggal</label>
-                                            <input type="date" class="form-control" name="tanggal" required="">
+                                            <input type="text" class="form-control dtpicker" name="tanggal" required="">
                                         </div>
                                         <div class="col-sm-10">
                                             <label >Alamat Pelanggan</label>
@@ -396,9 +396,9 @@
                 }
             });
 
-        }); 
+        });
+        
     </script>
-
 
 </body>
 </html>

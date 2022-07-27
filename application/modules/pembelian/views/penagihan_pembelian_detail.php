@@ -94,8 +94,8 @@
                                         <thead>
                                             <tr>
                                                 <th width="5%">No</th>
-                                                <th width="22%">Bahan</th>
-                                                <th width="12%">Qty</th>
+                                                <th width="22%">Produk</th>
+                                                <th width="12%">Volume</th>
                                                 <th width="10%">Satuan</th>
                                                 <th width="15%">Harga Satuan</th>
                                                 <th width="10%">Pajak</th>
@@ -119,7 +119,7 @@
                                                 ?>
                                                 <tr>
                                                     <td><?= $key + 1 ?>.</td>
-                                                    <td>
+                                                    <td style="text-align: left !important;">
                                                         <?= $material; ?>
                                                     </td>
                                                     <td><?= $dt['volume']; ?></td>
@@ -247,7 +247,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="text-center">
                                     <div class="col-sm-12 text-right">
                                         <?php if ($row["status"] === "DRAFT") : ?>
                                             <form class="form-approval" action="<?= base_url("pembelian/approve_payment/" . $row["id"]) ?>">
@@ -259,25 +259,20 @@
 
                                         <?php endif; ?>
                                     </div>
-                                </div>
-                                <br />
-                                <div class="text-center">
-
-                                    <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                    <!-- <a href="#" class="btn btn-info"><i class="fa fa-eye"></i> Cetak & Lihat</a> -->
                                     <?php
-                                    if ($row['verifikasi_dok'] == 'SUDAH') {
-                                    ?>
-                                        <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-money"></i> Kirim Pembayaran</a>
+                                    if ($row['verifikasi_dok'] == 'SUDAH') { ?>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 14){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                         ?>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
-                                    <?php
+                                            <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-money"></i> Kirim Pembayaran</a>
+                                            <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                        <?php
                                         }
                                     }
                                     ?>
-
+                                </div>
+                                <div class="text-center">
+                                <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 </div>
                             <div class="container-fluid">
                                 <ul class="nav nav-tabs" role="tablist">

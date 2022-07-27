@@ -97,7 +97,7 @@
                                         </div>
                                     <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Satuan * </label>
-                                        <select id="measure_id" name="measure_id" class="form-control" required="">
+                                        <select id="measure_id" name="measure_id" class="form-control" readonly="" required="">
                                             <option value="">Pilih Satuan</option>
                                             <?php
                                             $arr_mes = $this->db->get_where('pmm_measures',array('status'=>'PUBLISH'))->result_array();

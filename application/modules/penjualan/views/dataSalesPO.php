@@ -191,47 +191,55 @@
                             
                             
                             <div class="text-right">
-                                <?php if($sales_po["status"] === "DRAFT") : ?>
-                                    <form class="form-approval" action="<?= base_url("penjualan/approvalSalesPO/".$sales_po["id"]) ?>">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
-                                    </form>
-                                    <form class="form-approval" action="<?= base_url("penjualan/rejectedSalesPO/".$sales_po["id"]) ?>">
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
-                                    </form>
-                                <br />
-								<br />
-                                <?php endif; ?>
 
+                                <?php if($sales_po["status"] === "DRAFT") : ?>
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                    ?>
+                                        <form class="form-approval" action="<?= base_url("penjualan/approvalSalesPO/".$sales_po["id"]) ?>">
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
+                                        </form>
+                                        <form class="form-approval" action="<?= base_url("penjualan/rejectedSalesPO/".$sales_po["id"]) ?>">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
+                                        </form>
+                                    <?php
+                                    }
+                                    ?>
+                                <?php endif; ?>
+                            
                                 <?php if($sales_po["status"] === "OPEN") : ?>
-                                <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
                                 <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success"><i class="fa fa-truck"></i> Surat Jalan Pengiriman Penjualan</a>
 								<a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-primary"><i class="fa fa-truck"></i> Retur</a>
                                 <br />
-                                <?php
-                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 11){
-                                    ?>
-                                    <form class="form-approval" action="<?= base_url("penjualan/closed_sales_order/".$sales_po["id"]) ?>">
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>        
-                                    </form>					
                                     <?php
-                                }
-                                ?>
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                    ?>
+                                      
+                                        <form class="form-approval" action="<?= base_url("penjualan/closed_sales_order/".$sales_po["id"]) ?>">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>        
+                                        </form>					
+                                    <?php
+                                    }
+                                    ?>
                                 <?php endif; ?>
-        
+                            </div>  
+                            <br />
+                            <div class="text-right">
                                 <?php if($sales_po["status"] === "CLOSED") : ?>
-                                <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
-                                <?php
-                                if($this->session->userdata('admin_group_id') == 1){
-                                    ?>
-                                    <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
-                                    				
                                     <?php
-                                }
-                                ?>
+                                    if($this->session->userdata('admin_group_id') == 1){
+                                    ?>
+                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
+                                                        
+                                    <?php
+                                    }
+                                    ?>
                                 <?php endif; ?>
-
+                            </div>
+                            <br />
+                            <div class="text-right">
                                 <?php if($sales_po["status"] === "REJECT") : ?>
                                 <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
@@ -241,9 +249,13 @@
                                     <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                     				
                                     <?php
-                                }
-                                ?>
+                                    }
+                                    ?>
                                 <?php endif; ?>
+                            </div>
+                            
+                            <div class="text-right">
+                                <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                             </div>
                             
                             
@@ -272,29 +284,7 @@
     <script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
 
     <script type="text/javascript">
-	
-	function DeleteData(href)
-        {
-            bootbox.confirm({
-                message: "Apakah anda yakin untuk proses data ini ?",
-                buttons: {
-                    confirm: {
-                        label: 'Yes',
-                        className: 'btn-success'
-                    },
-                    cancel: {
-                        label: 'No',
-                        className: 'btn-danger'
-                    }
-                },
-                callback: function (result) {
-                    if(result){
-                        window.location.href = href;
-                    }
-                    
-                }
-            });
-        }
+        
         $('.form-approval').submit(function(e){
             e.preventDefault();
             var currentForm = this;
@@ -318,7 +308,31 @@
                 }
             });
             
-        }); 
+        });
+
+        function DeleteData(href)
+        {
+            bootbox.confirm({
+                message: "Apakah anda yakin untuk proses data ini ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+                        window.location.href = href;
+                    }
+                    
+                }
+            });
+        }
+
     </script>
     
 

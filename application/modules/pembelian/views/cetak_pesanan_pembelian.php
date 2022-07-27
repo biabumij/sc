@@ -98,7 +98,7 @@
 		<table class="minimalistBlack" cellpadding="5" width="98%">
 			<tr class="table-active">
                 <th width="5%" align="center">No</th>
-                <th width="30%" align="center">Bahan</th>
+                <th width="30%" align="center">Produk</th>
                 <th width="10%" align="center">Satuan</th>
                 <th width="15%" align="center">Volume</th>
                 <th width="15%" align="center">Harga</th>
@@ -106,85 +106,91 @@
             </tr>
             <?php
            $no=1;
-           $total = 0;
-		   $tax_pph = 0;
+		   $subtotal = 0;
+		   $total = 0;
+		   $tax_0 = 0;
 		   $tax_ppn = 0;
-		   $tax_0 = false;
+		   $tax_pph = 0;
 		   $tax_ppn11 = 0;
            foreach ($details as $dt) {
-                $subtotal = $dt['total'] * $dt['price'];
-               ?>  
+                $nilai = $dt['total'] * $dt['price'];
+               ?>   
                <tr>
                    <td align="center"><?php echo $no;?></td>
                    <td align="center"><?php echo $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');?></td>
                    <td align="center"><?php echo $dt['measure'];?></td>
                    <td align="center"><?php echo number_format($dt['total'],2,',','.');?></td>
                    <td align="right"><?php echo number_format($dt['price'],0,',','.');?></td>
-                   <td align="right"><?php echo number_format($subtotal,0,',','.');?></td>
+                   <td align="right"><?php echo number_format($nilai,0,',','.');?></td>
                </tr>
                <?php
-               $no++;
-               $total += $subtotal;
-			   if($dt['tax_id'] == 4){
-				$tax_0 = true;
-				}
-				if($dt['tax_id'] == 3){
-					$tax_ppn += $dt['tax'];
-				}
-				if($dt['tax_id'] == 5){
-					$tax_pph += $dt['tax'];
-				}
-				if($dt['tax_id'] == 6){
-					$tax_ppn11 += $dt['tax'];
-				}
-				}
-				?>
-				<?php
-					if($dt['tax_id'] == 3){
-						?>
-						<tr>
-							<th colspan="5" align="right">Pajak (PPN 10%)</th>
-							<th align="right"><?php echo number_format($tax_ppn,0,',','.');?></th>
-						</tr>
-						<?php
-					}
-					?>
-					<?php
+					$no++;
+					$subtotal += $dt['total'] * $dt['price'];
 					if($dt['tax_id'] == 4){
-						?>
-						<tr>
-							<th colspan="5" align="right">Pajak (Pajak 0%)</th>
-							<th align="right"><?php echo number_format(0,0,',','.');?></th>
-						</tr>
-						<?php
+						$tax_0 = true;
 					}
-					?>
-					<?php
+					if($dt['tax_id'] == 3){
+						$tax_ppn += $dt['tax'];
+					}
 					if($dt['tax_id'] == 5){
-						?>
-						<tr>
-							<th colspan="5" align="right">Pajak (PPh 23)</th>
-							<th align="right"><?php echo number_format($tax_pph,0,',','.');?></th>
-						</tr>
-						<?php
+						$tax_pph += $dt['tax'];
 					}
-					?>
-					<?php
 					if($dt['tax_id'] == 6){
-						?>
-						<tr>
-							<th colspan="5" align="right">Pajak (PPN 11%)</th>
-							<th align="right"><?php echo number_format($tax_ppn11,0,',','.');?></th>
-						</tr>
-						<?php
+						$tax_ppn11 += $dt['tax'];
 					}
-
-				$total = $total + $tax_ppn - $tax_pph + $tax_ppn11;
+				}
 				?>
-		<tr>
-			<th align="right" colspan="5" >TOTAL</th>
-			<th align="right"><?php echo number_format($total,0,',','.');?></th>
-		</tr>
+			<tr>
+               <th colspan="5" style="text-align:right">Sub Total</th>
+               <th align="right"><?= number_format($subtotal,0,',','.'); ?></th>
+           	</tr>
+			<?php
+            if($tax_ppn > 0){
+                ?>
+                <tr>
+                    <th colspan="5" align="right">Pajak (PPN 10%)</th>
+                    <th  align="right"><?= number_format($tax_ppn,0,',','.'); ?></th>
+                </tr>
+                <?php
+            }
+            ?>
+            <?php
+            if($tax_0){
+                ?>
+                <tr>
+                    <th colspan="5" align="right">Pajak (PPN 0%)</th>
+                    <th  align="right"><?= number_format(0,0,',','.'); ?></th>
+                </tr>
+                <?php
+            }
+            ?>
+            <?php
+            if($tax_pph > 0){
+                ?>
+                <tr>
+                    <th colspan="5" align="right">Pajak (PPh 23)</th>
+                    <th align="right"><?= number_format($tax_pph,0,',','.'); ?></th>
+                </tr>
+                <?php
+            }
+			?>
+			<?php
+            if($tax_ppn11 > 0){
+                ?>
+                <tr>
+                    <th colspan="5" align="right">Pajak (PPN 11%)</th>
+                    <th align="right"><?= number_format($tax_ppn11,0,',','.'); ?></th>
+                </tr>
+                <?php
+            }
+			
+            $total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11;
+            ?>
+            
+            <tr>
+                <th colspan="5" align="right">TOTAL</th>
+                <th align="right"><?= number_format($total,0,',','.'); ?></th>
+            </tr>
 		</table>
 		<p><b>Memo</b></p>
 		<p><?= $row["memo"] ?></p>

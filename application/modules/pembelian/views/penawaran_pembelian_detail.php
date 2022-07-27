@@ -154,24 +154,30 @@
 
                                             <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
                                             <?php if($row["status"] === "DRAFT") : ?>
-                                            <form class="form-approval" action="<?= base_url("pembelian/approve_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
-                                            </form>
-                                            <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
-                                            </form>
+                                                <?php
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                                ?>
+                                                    <form class="form-approval" action="<?= base_url("pembelian/approve_penawaran_pembelian/".$row["id"]) ?>">
+                                                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
+                                                </form>
+                                                <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/".$row["id"]) ?>">
+                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
+                                                </form>
+                                                <?php
+                                                }
+                                                ?>
                                             <?php endif; ?>
 
                                             <?php if($row["status"] === "OPEN") : ?>
-                                            <?php
-                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 11){
+                                                <?php
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                                 ?>
                                                 <form class="form-approval" action="<?= base_url("pembelian/closed_penawaran_pembelian/".$row["id"]) ?>">
                                                 <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>      
                                                 </form>		
                                                 <?php
-                                            }
-                                            ?>
+                                                }
+                                                ?>
                                             <?php endif; ?>
                                             <?php if($row["status"] === "CLOSED") : ?>
                                             <?php

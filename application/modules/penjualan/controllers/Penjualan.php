@@ -107,7 +107,7 @@ class Penjualan extends Secure_Controller
 				</select>
 			</td>
 			<td>
-				<input type="text" name="price_<?= $no; ?>" id="price-<?= $no; ?>" class="form-control numberformat input-sm text-center" onchange="changeData(<?= $no; ?>)" />
+				<input type="text" name="price_<?= $no; ?>" id="price-<?= $no; ?>" class="form-control numberformat input-sm text-right" onchange="changeData(<?= $no; ?>)" />
 			</td>
 			<td>
 				<select id="tax-<?= $no; ?>" class="form-control form-select2" name="tax_<?= $no; ?>" onchange="changeData(<?= $no; ?>)" required="">
@@ -167,6 +167,9 @@ class Penjualan extends Secure_Controller
 
 		if ($this->db->insert('pmm_penawaran_penjualan', $arr_insert)) {
 			$penawaran_penjualan_id = $this->db->insert_id();
+
+			if (!file_exists('uploads/penawaran_penjualan')) {
+			    mkdir('uploads/penawaran_penjualan', 0777, true);
 
 			$data = [];
 			$count = count($_FILES['files']['name']);
@@ -267,7 +270,7 @@ class Penjualan extends Secure_Controller
 			}
 		}
 	}
-
+	}
 
 	public function detailPenawaran($id)
 	{
@@ -613,6 +616,10 @@ class Penjualan extends Secure_Controller
 		if ($this->db->insert('pmm_sales_po', $arr_insert)) {
 			$sales_po_id = $this->db->insert_id();
 
+			if (!file_exists('uploads/sales_po')) {
+			    mkdir('uploads/sales_po', 0777, true);
+			}
+
 			$data = [];
 			$count = count($_FILES['files']['name']);
 			for ($i = 0; $i < $count; $i++) {
@@ -776,9 +783,9 @@ class Penjualan extends Secure_Controller
 				$row['product'] = $this->crud_global->GetField('produk', array('id' => $row['product_id']), 'nama_produk');
 				$row['client'] = $this->crud_global->GetField('penerima', array('id' => $row['client_id']), 'nama');
 				$row['volume'] = number_format($row['volume'],2,',','.');
-				$row['measure'] = $this->crud_global->GetField('pmm_measures', array('id' => $row['measure']), 'measure_name');
+				$row['measure'] = $row['measure'];
 				$row['display_volume'] = number_format($row['display_volume'],2,',','.');
-				$row['convert_measure'] = $this->crud_global->GetField('pmm_measures', array('id' => $row['convert_measure']), 'measure_name');
+				$row['convert_measure'] = $row['convert_measure'];
 				$row['status_payment'] = $this->pmm_model->StatusPayment($row['status_payment']);
 				$row['action'] = '-';
 				$data[] = $row;
@@ -822,7 +829,7 @@ class Penjualan extends Secure_Controller
 				} elseif ($row["status"] === "DRAFT") {
 					$row["nomor_invoice"] = "<a href=" . site_url("penjualan/detailPenagihan/" . $row["id"]) . " class='text-dark'>" . $row["nomor_invoice"] . "</a>";
 				} elseif ($row["status"] === "REJECT") {
-					$row["nomor_invoice"] = "<a>" . $row["nomor_invoice"] . "</a>";
+					$row["nomor_invoice"] = "<a href=" . site_url("penjualan/detailPenagihan/" . $row["id"]) . " class='text-dark'>" . $row["nomor_invoice"] . "</a>";
 				}
 				
 				$row['status'] = (($row['sisa_tagihan']) == 0) ? "LUNAS" : "BELUM LUNAS";
@@ -957,6 +964,11 @@ class Penjualan extends Secure_Controller
 
 		if ($this->db->insert('pmm_penagihan_penjualan', $arr_insert)) {
 			$tagihan_id = $this->db->insert_id();
+
+			if (!file_exists('uploads/penagihan')) {
+			    mkdir('uploads/penagihan', 0777, true);
+			}
+
 			$data = [];
 			$count = count($_FILES['files']['name']);
 			for ($i = 0; $i < $count; $i++) {
@@ -1286,6 +1298,10 @@ class Penjualan extends Secure_Controller
 
 		if ($this->db->insert('pmm_pembayaran', $arr_insert)) {
 			$pembayaran_id = $this->db->insert_id();
+
+			if (!file_exists('uploads/pembayaran')) {
+			    mkdir('uploads/pembayaran', 0777, true);
+			}
 
 			$data = [];
 			$count = count($_FILES['files']['name']);

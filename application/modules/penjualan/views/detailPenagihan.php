@@ -248,47 +248,57 @@
                                     </div>
                                 </div>
                                 <br />
-                                <div class="row">
+                                <div class="text-center">
                                     <div class="col-sm-12 text-right">
                                         <?php if ($penagihan["status"] === "DRAFT") : ?>
+                                            <?php
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                                ?>
                                             <form class="form-approval" action="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>">
                                                 <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Setujui</button>
                                             </form>
                                             <form class="form-approval" action="<?= base_url("penjualan/rejectPenagihan/" . $penagihan["id"]) ?>">
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-close"></i> Tolak</button>
                                             </form>
-                                            <!-- <a href="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>" class="btn btn-success">Pembayaran</a> -->
+                                            <?php
+                                            }
+                                            ?>
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                </form>
-
+                                <div class="text-center">
+                                    <?php if ($penagihan["status"] === "OPEN") : ?>
+                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                        <?php
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 19){
+                                        ?>
+                                        <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-success"><i class="fa fa-money"></i> Terima Penjualan</a>
+                                        <?php
+                                        ?>
+                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
+                                        <!-- <a  class="btn btn-primary"><i class="fa fa-edit"></i> Ubah</a> -->
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php endif; ?>
+                                </div>
+                                <div class="text-center">
+                                    <?php if ($penagihan["status"] === "REJECT") : ?>
+                                        <?php
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 19){
+                                        ?>
+                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php endif; ?>
+                                </div>
+                                <div class="text-center">
+                                    <a href="<?php echo site_url('admin/penjualan#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                </div>
+                                <br />
+                                <br />
                             </div>
-                            <div class="text-center">
-
-                                <a href="<?php echo site_url('admin/penjualan#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                <?php if ($penagihan["status"] === "OPEN") : ?>
-                                    <!-- <a href="#"  class="btn btn-success">Cetak & Lihat</a> -->
-                                    <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-success"><i class="fa fa-money"></i> Terima Penjualan</a>
-                                    <?php
-                                    // if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5){
-                                    ?>
-									<a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
-                                    <!-- <a  class="btn btn-primary"><i class="fa fa-edit"></i> Ubah</a> -->
-                                    <?php
-                                    // }
-                                    ?>
-                                <?php endif; ?>
-                                <?php
-                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
-                                    ?>
-                                    <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>					
-                                    <?php
-                                }
-                                ?>
-                            </div>
-                            <br><br>
-
                             <div class="container-fluid">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#menu1" aria-controls="menu2" role="tab" data-toggle="tab">Daftar Surat Jalan</a></li>

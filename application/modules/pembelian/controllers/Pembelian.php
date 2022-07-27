@@ -115,6 +115,10 @@ class Pembelian extends Secure_Controller
         if ($this->db->insert('pmm_penawaran_pembelian', $arr_insert)) {
             $penawaran_pembelian_id = $this->db->insert_id();
 
+            if (!file_exists('uploads/penawaran_pembelian')) {
+			    mkdir('uploads/penawaran_pembelian', 0777, true);
+			}
+
             $data = [];
             $count = count($_FILES['files']['name']);
             for ($i = 0; $i < $count; $i++) {
@@ -495,6 +499,11 @@ class Pembelian extends Secure_Controller
 
         if ($this->db->insert('pmm_penagihan_pembelian', $arr_insert)) {
             $tagihan_id = $this->db->insert_id();
+
+            if (!file_exists('uploads/penagihan_pembelian')) {
+			    mkdir('uploads/penagihan_pembelian', 0777, true);
+			}
+
             $data = [];
             $count = count($_FILES['files']['name']);
             for ($i = 0; $i < $count; $i++) {
@@ -630,7 +639,7 @@ class Pembelian extends Secure_Controller
         $this->db->update("pmm_penawaran_pembelian");
 
         $this->db->update('pmm_penawaran_pembelian_detail', array('status' => 'OPEN'), array('penawaran_pembelian_id' => $id));
-        $this->session->set_flashdata('notif_success', 'Berhasil menyetujui Penawaran Pembelian');
+        $this->session->set_flashdata('notif_success', 'Berhasil Menyetujui Penawaran Pembelian');
         redirect("admin/pembelian");
     }
 
@@ -639,7 +648,7 @@ class Pembelian extends Secure_Controller
 		$this->db->set("status", "REJECT");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penawaran_pembelian");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menolak Penawaran');
+		$this->session->set_flashdata('notif_success', 'Berhasil Menolak Penawaran Pembelian');
 		redirect("admin/pembelian");
 	}
 
@@ -673,7 +682,7 @@ class Pembelian extends Secure_Controller
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success', 'Gagal Hapus Penawaran Pembelian');
+            $this->session->set_flashdata('notif_success', ' Berhasil Mengahapus Penawaran Pembelian');
             redirect("admin/pembelian");
         }
     }
@@ -1197,7 +1206,7 @@ class Pembelian extends Secure_Controller
                     $row['action'] = '<a href="' . base_url('pembelian/cetak_pembayaran_penagihan_pembelian/' . $row["id"]) . '" target="_blank" class="btn btn-success">Cetak PDF</a>';
                 } else if($row["status"] == 'TIDAK DISETUJUI'){
                     $row['action'] = "BUTUH PERSETUJUAN";
-                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 8){
+                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                     $url_approve = "'" . base_url('pembelian/update_status_pembayaran_penagihan_pembelian/' . $row["id"]) . "'";
                     $row['action'] = '<a href="javascript:void(0);" onclick="ApprovePayment(' . $row["id"] . ')" class="btn btn-success">SETUJUI</a>';
                     }
@@ -1262,6 +1271,10 @@ class Pembelian extends Secure_Controller
 
         if ($this->db->insert('pmm_pembayaran_penagihan_pembelian', $arr_insert)) {
             $pembayaran_id = $this->db->insert_id();
+
+            if (!file_exists('uploads/pembayaran_penagihan_pembelian')) {
+			    mkdir('uploads/pembayaran_penagihan_pembelian', 0777, true);
+			}
 
             $data = [];
             $count = count($_FILES['files']['name']);
@@ -1480,4 +1493,10 @@ class Pembelian extends Secure_Controller
         $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed PO');
         redirect("admin/pembelian");
     }
+
+    public function hapus_pembayaran_pembelian($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->delete('pmm_pembayaran_penagihan_pembelian');
+	}
 }
