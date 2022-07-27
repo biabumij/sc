@@ -70,7 +70,7 @@
                                                     <td class="text-center">2.</td>
                                                     <td>Solar</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="bbm" id="bbm" class="form-control input-sm text-center numberformat"/>
+                                                        <input type="number" step=".01" min="0" name="bbm" id="bbm" class="form-control input-sm text-center numberformat"  required=""/>
                                                     </td>
                                                 </tr>
                                             </tbody>
