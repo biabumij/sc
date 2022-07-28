@@ -179,7 +179,20 @@
                                                 }
                                                 ?>
                                             <?php endif; ?>
+
                                             <?php if($row["status"] === "CLOSED") : ?>
+                                            <?php
+                                            if($this->session->userdata('admin_group_id') == 1){
+                                                ?>
+                                                <form class="form-approval" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
+                                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
+                                            </form>	
+                                                <?php
+                                            }
+                                            ?>
+                                            <?php endif; ?>
+
+                                            <?php if($row["status"] === "REJECT") : ?>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1){
                                                 ?>

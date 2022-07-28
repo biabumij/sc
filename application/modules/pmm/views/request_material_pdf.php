@@ -93,7 +93,7 @@
 					?>
             		<tr>
             			<td><?php echo $dw_key + 1;?></td>
-            			<td align="left">><?php echo $dw_val['material_name'];?></td>
+            			<td align="left"><?php echo $dw_val['material_name'];?></td>
             			<td><?php echo $dw_val['measure'];?></td>
 						<td><?php echo $dw_val['volume'];?></td>
             			<td align="right"><?php echo $dw_val['price'];?></td>

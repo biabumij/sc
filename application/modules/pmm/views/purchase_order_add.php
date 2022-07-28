@@ -205,7 +205,7 @@
 
                             <br />
                             <div class="text-right">
-            
+
                                 <?php
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
@@ -216,7 +216,7 @@
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
                                         <form class="form-approval" action="<?= base_url("pembelian/closed_po/".$id) ?>">
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> CLOSED</button>        
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed Pesanan Pembelian</button>        
                                         </form>	
                                         <?php
                                     }
@@ -237,9 +237,7 @@
                                     }
                                 }
                                 ?>
-                            </div>
-                            <br />
-                            <div class="text-right">
+                            
                                 <?php if($data["status"] === "CLOSED") : ?>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
@@ -263,10 +261,12 @@
                                     }
                                     ?>
                                 <?php endif; ?>
-                            </div>
 
-                             <div class="text-right">
-                                <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                <form>
+                                    <br />
+                                    <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                </form>
+                            
                             </div>
                         </div>
                     </div>
@@ -438,6 +438,31 @@
         }
 
         $('.form-check').submit(function(e){
+            e.preventDefault();
+            var currentForm = this;
+            bootbox.confirm({
+                message: "Apakah anda yakin untuk proses data ini ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+                        currentForm.submit();
+                    }
+                    
+                }
+            });
+            
+        }); 
+
+        $('.form-approval').submit(function(e){
             e.preventDefault();
             var currentForm = this;
             bootbox.confirm({

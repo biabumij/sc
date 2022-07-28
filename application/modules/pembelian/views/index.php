@@ -772,7 +772,7 @@
                             <input type="file" id="file" name="file" class="form-control" required="" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form-doc"><i class="fa fa-send"></i> Simpan</button>
+                            <button type="submit" class="btn btn-success" id="btn-form-doc"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>
@@ -801,7 +801,7 @@
                         </div>
 						
 						<?php
-                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 15){
+                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                         ?>
                                 <div class="form-group">
                                     <label>Status Pesanan Pembelian</label>
@@ -819,7 +819,7 @@
                         ?>
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-no_po"><i class="fa fa-save"></i> Simpan</button>
+                            <button type="submit" class="btn btn-success" id="btn-no_po"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>

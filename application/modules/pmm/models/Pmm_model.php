@@ -957,7 +957,7 @@ class Pmm_model extends CI_Model {
                 $row['measure'] = $row['measure_name'];
                 $get_status = $this->crud_global->GetField('pmm_request_materials',array('id'=>$row['request_material_id']),'status');
                 if($get_status == 'DRAFT'){
-                    $row['actions'] = '<a href="javascript:void(0);" onclick="getDetail('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+                    $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
                 }else {
                     $row['actions'] = '-';
                 }

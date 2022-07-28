@@ -76,7 +76,7 @@ class Request_materials extends CI_Controller {
 				$row['no'] = $key+1;
 				$request_no = "'".$row['request_no']."'";
 				$row['request_no'] = '<a href="'.site_url('pmm/request_materials/get_pdf/'.$row['id']).'" target="_blank" >'.$row['request_no'].'</a>';
-
+				
 				$row['request_date'] = date('d/m/Y',strtotime($row['request_date']));
 
 				$row['supplier_name'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
@@ -223,12 +223,13 @@ class Request_materials extends CI_Controller {
 		$material_id = $this->input->post('material_id');
 		$penawaran_id = $this->input->post('penawaran_id');
 		$tax_id = $this->input->post('tax_id');
-		$tax = $this->input->post('tax');
-		$volume = $this->input->post('volume');
+		$tax = str_replace(',', '.', $this->input->post('tax'));
+		$volume = str_replace(',', '.', $this->input->post('volume'));
 		$supplier_id = $this->input->post('supplier_id');
 		$measure = $this->input->post('measure_id');
 		$price = $this->input->post('price');
 		$penawaran_material_id = $this->input->post('penawaran_material_id');
+		
 
 		$check = $this->db->get_where('pmm_request_material_details',array('request_material_id'=>$request_material_id,'material_id'=>$material_id))->num_rows();
 
@@ -336,12 +337,13 @@ class Request_materials extends CI_Controller {
 
         $id = $this->uri->segment(4);
 		$row = $this->db->get_where('pmm_request_materials',array('id'=>$id))->row_array();
-
+		file_put_contents("D:\\row.txt", $this->db->last_query());
 		$data['data'] = $this->pmm_model->TableDetailRequestMaterials($id);
 		// $data['data_week'] = $this->pmm_model->GetScheduleProduct($id);
 		$data['row'] = $row;
 		$data['id'] = $id;
 		$data['no_spo'] = $this->crud_global->GetField('pmm_schedule',array('id'=>$row['schedule_id']),'no_spo');
+		
         $html = $this->load->view('pmm/request_material_pdf',$data,TRUE);
 
         

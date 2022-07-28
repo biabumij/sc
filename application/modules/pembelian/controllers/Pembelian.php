@@ -1079,7 +1079,7 @@ class Pembelian extends Secure_Controller
 				<input type="text" name="price_<?php echo $no; ?>" id="price-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" />
 			</td>
 			<td>
-				<select id="tax-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="tax_<?php echo $no; ?>">
+				<select id="tax-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="tax_<?php echo $no; ?>" required="">
 					<option value="">Pilih Pajak</option>
 					<?php
 					if (!empty($taxs)) {
