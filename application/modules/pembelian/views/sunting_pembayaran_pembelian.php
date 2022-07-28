@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-close"></i> Kembali</a>
+                                            <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-times"></i> Batal</a>
                                             <button type="button" id="tombol_hapus" class="btn btn-danger"><i class="fa fa-times"></i> Hapus</button>
                                             <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
