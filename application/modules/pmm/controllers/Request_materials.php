@@ -25,7 +25,6 @@ class Request_materials extends CI_Controller {
 			$id = $this->uri->segment(4);
 			$data['id'] = $id;
 			$get_data = $this->db->get_where('pmm_request_materials',array('id'=>$id,'status !='=>'DELETED'))->row_array();
-			//file_put_contents("D:\\manage.txt", $this->db->last_query());
 			if(!empty($get_data)){
 				$data['data'] = $get_data;
 				$data['products'] = $this->pmm_model->SelectScheduleProduct($get_data['schedule_id']);
@@ -337,7 +336,6 @@ class Request_materials extends CI_Controller {
 
         $id = $this->uri->segment(4);
 		$row = $this->db->get_where('pmm_request_materials',array('id'=>$id))->row_array();
-		file_put_contents("D:\\row.txt", $this->db->last_query());
 		$data['data'] = $this->pmm_model->TableDetailRequestMaterials($id);
 		// $data['data_week'] = $this->pmm_model->GetScheduleProduct($id);
 		$data['row'] = $row;

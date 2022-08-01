@@ -65,8 +65,7 @@ class Biaya extends CI_Controller {
             $this->db->where("cc.coa_category_number in ('5','6')");
             $this->db->order_by('c.coa_number','asc');
             $query = $this->db->get('pmm_coa c');
-            $data['akun_biaya'] = $query->result_array();   
-			//file_put_contents("D:\\biaya.txt", $this->db->last_query());			
+            $data['akun_biaya'] = $query->result_array();		
 
 
             $data['penerima'] = $this->db->select('nama,id')->get_where('penerima')->result_array();   
@@ -664,12 +663,9 @@ class Biaya extends CI_Controller {
     	$where = array('id' => $id);
     	$data['akun'] = $this->pmm_finance->getAkunCoa();
 		$data['penerima'] = $this->pmm_model->getPenerima();
-		file_put_contents("D:\\penerima.txt", $this->db->last_query());
 
     	if(!empty($id)){
     		$data['edit'] = $this->db->get_where('pmm_biaya',array('id'=>$id))->row_array();
-			
-			file_put_contents("D:\\form.txt", $this->db->last_query());
     	}
 		$this->load->view('pmm/biaya/form',$data);
     }

@@ -1425,7 +1425,6 @@ class Pmm extends CI_Controller {
 		limit 1;")->first_row("array");
 
 		$price = intval($query['display_harga_satuan']);
-		//file_put_contents("D:\\price.txt", $this->db->last_query());
 		
         /*
 		$this->db->select('material_id,measure,AVG(cost) as cost, AVG(convert_value) as convert_value, (AVG(cost) / AVG(convert_value)) as price,penawaran_material_id,supplier_id,SUM(volume) as volume');
@@ -1436,7 +1435,6 @@ class Pmm extends CI_Controller {
 		$this->db->where('date_receipt <=',$date);
 		$this->db->group_by('penawaran_material_id');
 		$get_mats = $this->db->get('pmm_receipt_material')->result_array();
-		file_put_contents("D:\\get_mats.txt", $this->db->last_query());
 		if(!empty($get_mats)){
 			$total_cost =0;
 			foreach ($get_mats as $mat_receipt) {
@@ -1452,7 +1450,6 @@ class Pmm extends CI_Controller {
 			}
 			$this->db->group_by('penawaran_material_id');
 			$get_mats = $this->db->get('pmm_receipt_material')->result_array();	
-			file_put_contents("D:\\get_mats.txt", $this->db->last_query());
 			$total_cost =0;
 			foreach ($get_mats as $mat_receipt) {
 				$total_cost += $mat_receipt['price'];
