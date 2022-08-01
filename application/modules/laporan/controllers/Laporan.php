@@ -13,7 +13,8 @@ class Laporan extends Secure_Controller {
 		$this->load->library('waktu');
 		$this->load->library('session');
 	}
-
+	
+	//Ginanjar Bayu B.
 	public function cetak_pengiriman_penjualan()
 	{
 		$this->load->library('pdf');
