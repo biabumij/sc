@@ -163,8 +163,6 @@
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 

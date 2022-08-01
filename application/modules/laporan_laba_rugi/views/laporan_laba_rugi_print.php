@@ -114,8 +114,6 @@
 		->where("(pp.date_akumulasi between '$date1' and '$date2')")
 		->get()->row_array();
 
-		//file_put_contents("D:\\akumulasi.txt", $this->db->last_query());
-
 		//BPP
 		$pergerakan_bahan_baku = $this->db->select('
 		p.nama_produk, 
@@ -162,8 +160,6 @@
 			$total_penjualan_limbah += $y['price'];
 		}
 
-		//file_put_contents("D:\\penjualan_limbah.txt", $this->db->last_query());
-
 		$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
 		->from('pmm_productions pp')
 		->join('penerima p', 'pp.client_id = p.id','left')
@@ -174,8 +170,6 @@
 		->where("ppo.status in ('OPEN','CLOSED')")
 		->group_by("pp.client_id")
 		->get()->result_array();
-
-		//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
 
 		$total_penjualan = 0;
 		$total_volume = 0;
@@ -194,8 +188,6 @@
 		->where("(pp.date_akumulasi between '$date1' and '$date2')")
 		->get()->row_array();
 
-		//file_put_contents("D:\\akumulasi_biaya.txt", $this->db->last_query());
-
 		$biaya_umum_administratif_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -204,8 +196,6 @@
 		->where("pb.status = 'PAID'")
 		->where("(tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
-
-		//file_put_contents("D:\\biaya_umum_administratif.txt", $this->db->last_query());
 
 		$biaya_umum_administratif_jurnal = $this->db->select('sum(pdb.debit) as total')
 		->from('pmm_jurnal_umum pb ')
@@ -216,8 +206,6 @@
 		->where("(tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
 
-		//file_put_contents("D:\\biaya_umum_administratif_jurnal.txt", $this->db->last_query());
-
 		$biaya_lainnya_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -227,8 +215,6 @@
 		->where("(tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
 
-		//file_put_contents("D:\\biaya_lainnya_biaya.txt", $this->db->last_query());
-
 		$biaya_lainnya_jurnal = $this->db->select('sum(pdb.debit) as total')
 		->from('pmm_jurnal_umum pb ')
 		->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
@@ -237,8 +223,6 @@
 		->where("pb.status = 'PAID'")
 		->where("(tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
-
-		//file_put_contents("D:\\biaya_lainnya_jurnal.txt", $this->db->last_query());
 
 		$biaya_overhead_produksi = $akumulasi_biaya['total'];
 

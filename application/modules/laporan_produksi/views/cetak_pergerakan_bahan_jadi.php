@@ -169,8 +169,6 @@
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
@@ -701,8 +699,6 @@
 		->from('hpp pp')
 		->where("(pp.date_hpp between '$tanggal_opening_balance_2' and '$tanggal_opening_balance_3')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
 
 		$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
 		$harga_opening_balance_batu0510_bulan_lalu =  $harga_hpp['batu0510'];
@@ -815,8 +811,6 @@
 		->where("pp.status = 'PUBLISH'")
 		->group_by('pp.product_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\penjualan_batu0510_bulan_ini.txt", $this->db->last_query());
 
 		$volume_penjualan_batu1020_bulan_ini = $penjualan_batu1020_bulan_ini['volume'];
 		$harga_penjualan_batu1020_bulan_ini = round($harga_akhir_produksi_harian_batu1020_bulan_ini,0);

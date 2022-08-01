@@ -277,7 +277,6 @@ class M_laporan extends CI_Model {
         $this->db->where('t.created_on <=',$end_date.' 23:59:59');
         $this->db->group_by('c.id');
         $total_parent = $this->db->get('transactions t')->row_array();
-		//file_put_contents("D:\\getTotal.txt", $this->db->last_query());
 
         if(!empty($total)){
             $total_1 = $total['total'];
