@@ -728,7 +728,7 @@
 
         <!-- End Script Penjualan -->
 
-        <!-- Script Laporan Pengiriman Penjualan -->
+        <!-- Script Laporan Pengiriman Penjualan Produk -->
 			
         <script type="text/javascript">
 			$('#filter_date_penjualan').daterangepicker({
@@ -773,7 +773,7 @@
 			
             </script>
 
-		<!-- End Script Laporan Pengiriman Penjualan -->
+		<!-- End Script Laporan Pengiriman Penjualan Produk -->
 
 		<!-- Script Sales Order -->
 		

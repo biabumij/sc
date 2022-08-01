@@ -1678,10 +1678,10 @@ class Reports extends CI_Controller {
 		$volume_agregat_batu2030_bulan_lalu_2 = $agregat_bulan_lalu_2['volume_agregat_d'];
 
 		//Opening Balance
-		$volume_opening_balance_abubatu_bulan_lalu = $volume_produksi_harian_abubatu_bulan_lalu - $volume_penjualan_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu_2;
-		$volume_opening_balance_batu0510_bulan_lalu = $volume_produksi_harian_batu0510_bulan_lalu - $volume_penjualan_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu_2;
-		$volume_opening_balance_batu1020_bulan_lalu = $volume_produksi_harian_batu1020_bulan_lalu - $volume_penjualan_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu_2;
-		$volume_opening_balance_batu2030_bulan_lalu = $volume_produksi_harian_batu2030_bulan_lalu - $volume_penjualan_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu_2;
+		$volume_opening_balance_abubatu_bulan_lalu = round($volume_produksi_harian_abubatu_bulan_lalu - $volume_penjualan_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu_2,2);
+		$volume_opening_balance_batu0510_bulan_lalu = round($volume_produksi_harian_batu0510_bulan_lalu - $volume_penjualan_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu_2,2);
+		$volume_opening_balance_batu1020_bulan_lalu = round($volume_produksi_harian_batu1020_bulan_lalu - $volume_penjualan_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu_2,2);
+		$volume_opening_balance_batu2030_bulan_lalu = round($volume_produksi_harian_batu2030_bulan_lalu - $volume_penjualan_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu_2,2);
 
 		//Rumus Harga Opening Balance
 
@@ -1723,11 +1723,6 @@ class Reports extends CI_Controller {
 		$volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 		$volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
 		$volume_produksi_harian_batu2030_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_d'];
-		
-		$tidak_ada_produksi = $this->db->select('pp.date_akumulasi, pp.tidak_ada_produksi as total')
-		->from('akumulasi_biaya pp')
-		->where("(pp.date_akumulasi between '$date1' and '$date2')")
-		->get()->row_array();
 
 		$harga_produksi_harian_abubatu_bulan_ini = $harga_bpp;
 		$harga_produksi_harian_batu0510_bulan_ini = $harga_bpp;
@@ -3000,11 +2995,6 @@ class Reports extends CI_Controller {
 		$volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 		$volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
 		$volume_produksi_harian_batu2030_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_d'];
-		
-		$tidak_ada_produksi = $this->db->select('pp.date_akumulasi, pp.tidak_ada_produksi as total')
-		->from('akumulasi_biaya pp')
-		->where("(pp.date_akumulasi between '$date1' and '$date2')")
-		->get()->row_array();
 
 		$harga_produksi_harian_abubatu_bulan_ini = $harga_bpp;
 		$harga_produksi_harian_batu0510_bulan_ini = $harga_bpp;
@@ -4292,11 +4282,6 @@ class Reports extends CI_Controller {
 		$volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
 		$volume_produksi_harian_batu2030_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_d'];
 
-		$tidak_ada_produksi = $this->db->select('pp.date_akumulasi, pp.tidak_ada_produksi as total')
-		->from('akumulasi_biaya pp')
-		->where("(pp.date_akumulasi between '$date1' and '$date2')")
-		->get()->row_array();
-
 		$harga_produksi_harian_abubatu_bulan_ini = $harga_bpp;
 		$harga_produksi_harian_batu0510_bulan_ini = $harga_bpp;
 		$harga_produksi_harian_batu1020_bulan_ini = $harga_bpp;
@@ -5371,10 +5356,10 @@ class Reports extends CI_Controller {
 		$volume_agregat_batu2030_bulan_lalu_2 = $agregat_bulan_lalu_2['volume_agregat_d'];
 
 		//Opening Balance
-		$volume_opening_balance_abubatu_bulan_lalu = $volume_produksi_harian_abubatu_bulan_lalu - $volume_penjualan_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu_2;
-		$volume_opening_balance_batu0510_bulan_lalu = $volume_produksi_harian_batu0510_bulan_lalu - $volume_penjualan_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu_2;
-		$volume_opening_balance_batu1020_bulan_lalu = $volume_produksi_harian_batu1020_bulan_lalu - $volume_penjualan_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu_2;
-		$volume_opening_balance_batu2030_bulan_lalu = $volume_produksi_harian_batu2030_bulan_lalu - $volume_penjualan_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu_2;
+		$volume_opening_balance_abubatu_bulan_lalu = round($volume_produksi_harian_abubatu_bulan_lalu - $volume_penjualan_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu - $volume_agregat_abubatu_bulan_lalu_2,2);
+		$volume_opening_balance_batu0510_bulan_lalu = round($volume_produksi_harian_batu0510_bulan_lalu - $volume_penjualan_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu - $volume_agregat_batu0510_bulan_lalu_2,2);
+		$volume_opening_balance_batu1020_bulan_lalu = round($volume_produksi_harian_batu1020_bulan_lalu - $volume_penjualan_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu - $volume_agregat_batu1020_bulan_lalu_2,2);
+		$volume_opening_balance_batu2030_bulan_lalu = round($volume_produksi_harian_batu2030_bulan_lalu - $volume_penjualan_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu - $volume_agregat_batu2030_bulan_lalu_2,2);
 
 		//Rumus Harga Opening Balance
 
@@ -5416,11 +5401,6 @@ class Reports extends CI_Controller {
 		$volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 		$volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
 		$volume_produksi_harian_batu2030_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_d'];
-
-		$tidak_ada_produksi = $this->db->select('pp.date_akumulasi, pp.tidak_ada_produksi as total')
-		->from('akumulasi_biaya pp')
-		->where("(pp.date_akumulasi between '$date1' and '$date2')")
-		->get()->row_array();
 
 		$harga_produksi_harian_abubatu_bulan_ini = $harga_bpp;
 		$harga_produksi_harian_batu0510_bulan_ini = $harga_bpp;

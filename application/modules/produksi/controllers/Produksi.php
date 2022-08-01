@@ -1890,7 +1890,6 @@ class Produksi extends Secure_Controller {
 		$arr_insert = array(
 			'date_akumulasi' => date('Y-m-d', strtotime($date_akumulasi)),
 			'total_nilai_biaya' => $total_nilai_biaya,
-			'tidak_ada_produksi' => $tidak_ada_produksi,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')

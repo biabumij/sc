@@ -1017,6 +1017,7 @@
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_akumulasi_biaya.ajax.reload();
 		});
+        
 
         function DeleteDataAkumulasiBiaya(id) {
         bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
@@ -1031,7 +1032,7 @@
                     },
                     success: function(result) {
                         if (result.output) {
-                            table_akumulasi.ajax.reload();
+                            table_akumulasi_biaya.ajax.reload();
                             bootbox.alert('Berhasil Menghapus Akumulasi Biaya Produksi !!');
                         } else if (result.err) {
                             bootbox.alert(result.err);

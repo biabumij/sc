@@ -66,8 +66,7 @@
                                                         <input type="number" step=".01" min="0" name="total_nilai_biaya" id="total_nilai_biaya" class="form-control input-sm text-center numberformat" required="" />
                                                     </td>
                                                 </tr>
-                                                <tr>
-
+                                                <!--<tr>
                                                     <td style="vertical-align:middle">2.</td>
                                                     <td style="vertical-align:middle">Apakah ada produksi?</td>
 													<td>
@@ -82,7 +81,7 @@
                                                             </tr>
                                                         <table>
                                                     </td>
-                                                </tr>
+                                                </tr>-->
                                             </tbody>
                                         </table>    
                                     </div>
