@@ -105,6 +105,7 @@
 			$vol_jasa_angkut = 0;
 			$jasa_angkut = 0;
 			$total_vol = 0;
+			$total = 0;
 			$total_vol_jasa_angkut = 0;
 			$total_jasa_angkut = 0;
             if(!empty($data)){
@@ -125,6 +126,7 @@
             			</td>
 						<?php
 						$total_vol += str_replace(['.', ','], ['', '.'], $row['real']);
+						$total += str_replace(['.', ','], ['', '.'], $row['total_price']);
 						?>
             		</tr>
             		<?php

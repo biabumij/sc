@@ -13,7 +13,7 @@ class Laporan extends Secure_Controller {
 		$this->load->library('waktu');
 		$this->load->library('session');
 	}
-	
+
 	//Ginanjar Bayu B.
 	public function cetak_pengiriman_penjualan()
 	{
@@ -46,7 +46,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 		
-			$this->db->select('ppo.client_id, pp.convert_measure as convert_measure, ps.nama as name, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
+		$this->db->select('ppo.client_id, pp.convert_measure as convert_measure, ps.nama as name, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pp.date_production >=',$start_date);
             $this->db->where('pp.date_production <=',$end_date);
@@ -65,7 +65,7 @@ class Laporan extends Secure_Controller {
 		$this->db->join('pmm_productions pp','ppo.id = pp.salesPo_id','left');
 		$this->db->where("ppo.status in ('OPEN','CLOSED')");
 		$this->db->where('pp.status','PUBLISH');
-		$this->db->where("pp.product_id in (3,4,7,8,9,14,24,35,36,37,38)");
+		$this->db->where("pp.product_id in (3,4,7,8,9,14,24)");
 		$this->db->group_by('ppo.client_id');
 		$query = $this->db->get('pmm_sales_po ppo');
 
@@ -83,7 +83,7 @@ class Laporan extends Secure_Controller {
 						$arr['no'] = $key + 1;
 						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
-						$arr['real'] = number_format($row['total'],3,',','.');
+						$arr['real'] = number_format($row['total'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
 						
