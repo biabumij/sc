@@ -667,6 +667,7 @@ class Biaya extends CI_Controller {
     	if(!empty($id)){
     		$data['edit'] = $this->db->get_where('pmm_biaya',array('id'=>$id))->row_array();
     	}
+        
 		$this->load->view('pmm/biaya/form',$data);
     }
 
