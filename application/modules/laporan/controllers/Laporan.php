@@ -14,7 +14,7 @@ class Laporan extends Secure_Controller {
 		$this->load->library('session');
 	}
 
-	//Ginanjar Bayu B.
+	# Created by GNB
 	public function cetak_pengiriman_penjualan()
 	{
 		$this->load->library('pdf');
@@ -44,7 +44,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
 
 			
-			$data['filter_date'] = $filter_date;
+		$data['filter_date'] = $filter_date;
 		
 		$this->db->select('ppo.client_id, pp.convert_measure as convert_measure, ps.nama as name, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
 		if(!empty($start_date) && !empty($end_date)){
@@ -68,8 +68,7 @@ class Laporan extends Secure_Controller {
 		$this->db->where("pp.product_id in (3,4,7,8,9,14,24)");
 		$this->db->group_by('ppo.client_id');
 		$query = $this->db->get('pmm_sales_po ppo');
-
-		//file_put_contents("D:\\cetak_pengiriman_penjualan.txt", $this->db->last_query());
+		# file_put_contents("D:\\cetak_pengiriman_penjualan.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -77,7 +76,7 @@ class Laporan extends Secure_Controller {
 			foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat17Print($sups['client_id'],$purchase_order_no,$start_date,$end_date,$filter_product);
+				$materials = $this->pmm_model->GetReceiptMat17($sups['client_id'],$purchase_order_no,$start_date,$end_date,$filter_product);
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
@@ -109,8 +108,6 @@ class Laporan extends Secure_Controller {
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
 	        $html = $this->load->view('laporan_penjualan/001_cetak_pengiriman_penjualan',$data,TRUE);
-
-	        
 	        
 	        $pdf->SetTitle('BBJ - Laporan Penjualan');
 	        $pdf->nsi_html($html);
@@ -121,7 +118,9 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
+	# End - Created by GNB 
 
+	# Created by GNB
 	public function cetak_pengiriman_penjualan_produk()
 	{
 		$this->load->library('pdf');
@@ -144,13 +143,14 @@ class Laporan extends Secure_Controller {
 		$data['filter_date'] = $filter_date;
         $html = $this->load->view('laporan_penjualan/cetak_pengiriman_penjualan_produk',$data,TRUE);
 
-        
         $pdf->SetTitle('BBJ - Pengiriman Penjualan Produk');
         $pdf->nsi_html($html);
         $pdf->Output('pengiriman-penjualan-produk.pdf', 'I');
 	
 	}
+	# End - Created by GNB
 	
+	# Created by GNB
 	public function cetak_sales_order()
 	{
 		$this->load->library('pdf');
@@ -202,9 +202,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('pso.client_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_sales_po pso');
-		
-		//file_put_contents("D:\\laporan_sales_order_print.txt", $this->db->last_query());
-
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -251,7 +248,6 @@ class Laporan extends Secure_Controller {
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
 	        $html = $this->load->view('laporan_penjualan/002_cetak_sales_order',$data,TRUE);
-
 	        
 	        $pdf->SetTitle('BBJ - Laporan Sales Order');
 	        $pdf->nsi_html($html);
@@ -262,6 +258,7 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
+	# End - Created by GNB
 	
 	public function cetak_penjualan_per_produk()
 	{

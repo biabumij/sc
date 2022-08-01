@@ -1992,7 +1992,8 @@ class Pmm_model extends CI_Model {
         $output = $query->result_array();
         return $output;
     }
-	
+
+	#Created by GNB
 	function GetReceiptMat10($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
     {
         $output = array();
@@ -2022,11 +2023,10 @@ class Pmm_model extends CI_Model {
 		$this->db->order_by('pso.contract_number','asc');
         $query = $this->db->get('pmm_sales_po pso');
 		
-		//file_put_contents("D:\\GetReceiptMat10.txt", $this->db->last_query());
-		
         $output = $query->result_array();
         return $output;
     }
+    #End - Created by GNB
 	
 	function GetReceiptMat11($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
     {
@@ -2297,6 +2297,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 	
+    #Created by GNB
 	function GetReceiptMat17($filter_client_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_product=false)
     {
         $output = array();
@@ -2304,7 +2305,6 @@ class Pmm_model extends CI_Model {
         $this->db->select('pp.salesPo_id, pp.measure, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
         $this->db->join('produk p','pp.product_id = p.id','left');
         $this->db->join('pmm_sales_po ppo','pp.salesPo_id = ppo.id','left');
-		//$this->db->join('pmm_sales_po_detail ppod','ppo.id = ppod.sales_po_id','left');
         if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pp.date_production >=',$start_date);
             $this->db->where('pp.date_production <=',$end_date);
@@ -2327,45 +2327,9 @@ class Pmm_model extends CI_Model {
         $query = $this->db->get('pmm_productions pp');
         $output = $query->result_array();
 		
-		//file_put_contents("D:\\GetReceiptMat17.txt", $this->db->last_query());
-		
         return $output;
     }
-	
-	function GetReceiptMat17Print($filter_client_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_product=false)
-    {
-        $output = array();
-
-        $this->db->select('pp.salesPo_id, pp.measure, p.nama_produk, SUM(pp.display_volume) as total, SUM(pp.display_price) / SUM(pp.display_volume) as price, SUM(pp.display_price) as total_price');
-        $this->db->join('produk p','pp.product_id = p.id','left');
-        $this->db->join('pmm_sales_po ppo','pp.salesPo_id = ppo.id','left');
-		//$this->db->join('pmm_sales_po_detail ppod','ppo.id = ppod.sales_po_id','left');
-        if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('pp.date_production >=',$start_date);
-            $this->db->where('pp.date_production <=',$end_date);
-        }
-        if(!empty($filter_client_id)){
-            $this->db->where('pp.client_id',$filter_client_id);
-        }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppo.id',$purchase_order_no);
-        }
-        if(!empty($filter_product)){
-            $this->db->where_in('pp.product_id',$filter_product);
-        }
-		
-		$this->db->where('pp.status','PUBLISH');
-        $this->db->where("ppo.status in ('OPEN','CLOSED')");
-        $this->db->where("pp.product_id in (3,4,7,8,9,14,24,35,36,37,38)");
-        $this->db->order_by('p.nama_produk','asc');
-        $this->db->group_by('pp.product_id');
-        $query = $this->db->get('pmm_productions pp');
-        $output = $query->result_array();
-		
-		//file_put_contents("D:\\GetReceiptMat17.txt", $this->db->last_query());
-		
-        return $output;
-    }
+    #End - Created by GNB
 	
 	function GetReceiptMat18($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
     {
