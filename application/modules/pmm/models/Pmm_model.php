@@ -3825,8 +3825,6 @@ class Pmm_model extends CI_Model {
                 $this->db->where('date <=',$last_opname);  
             }
             $query = $this->db->get('pmm_equipments_data')->row_array();
-			
-			//file_put_contents("D:\\getEquipmentCost.txt", $this->db->last_query());
 
             $total = $query['total'];
         }
@@ -3867,8 +3865,6 @@ class Pmm_model extends CI_Model {
         $this->db->where('pp.status','OPEN');
 		$this->db->order_by('pp.created_on','DESC');
         $data = $this->db->get('pmm_penawaran_pembelian_detail ppd')->result_array();
-		
-		//file_put_contents("D:\\getMatByPenawaran.txt", $this->db->last_query());
 
         return $data;
     }
@@ -3883,8 +3879,6 @@ class Pmm_model extends CI_Model {
         $this->db->where('jmd.status','PUBLISH');
 		$this->db->order_by('jmd.id','DES');
         $data = $this->db->get('pmm_jmd jmd')->result_array();
-		
-		//file_put_contents("D:\\getJMD.txt", $this->db->last_query());
 
         return $data;
     }
@@ -3901,8 +3895,6 @@ class Pmm_model extends CI_Model {
 		$this->db->group_by('ppd.id');
 		$this->db->order_by('pp.created_on','DESC');
         $data = $this->db->get('pmm_penawaran_penjualan_detail ppd')->result_array();
-		
-		//file_put_contents("D:\\getMatByPenawaranPenjualan.txt", $this->db->last_query());
 
         return $data;
     }
@@ -3946,7 +3938,7 @@ class Pmm_model extends CI_Model {
         }
         $this->db->where('status','PUBLISH');
         $query = $this->db->get('penerima');
-		//file_put_contents("D:\\getPenerima.txt", $this->db->last_query());
+		
         if($query->num_rows() > 0){
             if($row){
                 $output = $query->row_array();
