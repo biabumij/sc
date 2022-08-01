@@ -2949,7 +2949,6 @@ class Reports extends CI_Controller {
 		->order_by('date','desc')->limit(1)
 		->get()->row_array();
 
-
 		$volume_opening_balance_abubatu_bulan_lalu = $stock_opname_abu_batu_ago['volume'] + $stock_opname_abu_batu_ago_cat['volume'];
 		$volume_opening_balance_batu0510_bulan_lalu = $stock_opname_batu0510_ago['volume'] + $stock_opname_batu0510_ago_cat['volume'];
 		$volume_opening_balance_batu1020_bulan_lalu = $stock_opname_batu1020_ago['volume'] + $stock_opname_batu1020_ago_cat['volume'];
