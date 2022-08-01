@@ -823,7 +823,7 @@ class Productions extends Secure_Controller {
 		$this->db->where('pp.status','PUBLISH');
 		$this->db->group_by('pp.client_id');
 		$clients = $this->db->get('pmm_productions pp')->result_array();	
-		//file_put_contents("D:\\table_date2.txt", $this->db->last_query());
+
 		if(!empty($clients)){
 			foreach ($clients as $key => $row) {
 
@@ -846,7 +846,6 @@ class Productions extends Secure_Controller {
 		        $this->db->where('pc.status','PUBLISH');
 		        $this->db->group_by('pp.product_id');
 		        $arr_products = $this->db->get_where('pmm_productions pp')->result_array();
-				//file_put_contents("D:\\table_date2a.txt", $this->db->last_query());
 
 				$arr['no'] = $no;
 				$arr['products'] = $arr_products;
@@ -870,7 +869,6 @@ class Productions extends Secure_Controller {
 		$id = $this->input->post('id');
 
 		$data = $this->db->get_where('pmm_productions prm',array('prm.id'=>$id))->row_array();
-		//file_put_contents("D:\\edit_data_detail.txt", $this->db->last_query());
 		$data['date_production'] = date('d-m-Y',strtotime($data['date_production']));
 		echo json_encode(array('data'=>$data));		
 	}
@@ -1048,8 +1046,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_sales_po pso');
 		
-		//file_put_contents("D:\\table_date10.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1132,8 +1128,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_productions pp');
 		
-		//file_put_contents("D:\\table_date11.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1209,8 +1203,6 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('ppp.nama_pelanggan');
 		$this->db->order_by('ppp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
-		
-		//file_put_contents("D:\\table_date12.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1290,8 +1282,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\table_date13.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1367,8 +1357,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\table_date14.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1441,8 +1429,6 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('pmp.client_id');
 		$this->db->order_by('pmp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_pembayaran pmp');
-		
-		//file_put_contents("D:\\table_date15.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -1535,8 +1521,6 @@ class Productions extends Secure_Controller {
 		$this->db->order_by('p.nama','ASC');
 		$query = $this->db->get('pmm_sales_po po');
 		
-		//file_put_contents("D:\\table_date16.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1621,7 +1605,6 @@ class Productions extends Secure_Controller {
 		));	
 	}
 	
-	#Created by GNB
 	function table_date_lap_penjualan()
 	{
 		$data = array();
@@ -1704,9 +1687,7 @@ class Productions extends Secure_Controller {
 		'total_nilai'=>number_format($total_nilai,0,',','.')
 	));	
 	}
-	#End - Created by GNB
-
-	#Created by GNB
+	
 	public function laporan_pengiriman_penjualan_produk($arr_date)
 	{
 		$data = array();
@@ -2685,5 +2666,5 @@ class Productions extends Secure_Controller {
 		
 		<?php
 	}
-	# End - Created by GNB
+	
 }

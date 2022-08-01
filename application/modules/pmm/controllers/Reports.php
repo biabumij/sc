@@ -165,8 +165,6 @@ class Reports extends CI_Controller {
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 			$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
@@ -563,8 +561,6 @@ class Reports extends CI_Controller {
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
 
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
-
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
 		$volume_opening_balance = $total_volume_produksi_akhir_ago_fix;
@@ -734,7 +730,6 @@ class Reports extends CI_Controller {
 		$arr_filter_date = explode(' - ', $arr_date);
 		
 		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
-		//file_put_contents("D:\\last_production.txt", $this->db->last_query());
 		
 		$date1 = date('Y-m-d', strtotime('+2 days -1 month', strtotime($last_production['date'])));
 		$date2 = date('Y-m-d', strtotime($last_production['date']));
@@ -813,8 +808,6 @@ class Reports extends CI_Controller {
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
@@ -1171,8 +1164,6 @@ class Reports extends CI_Controller {
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
@@ -1703,8 +1694,6 @@ class Reports extends CI_Controller {
 		->from('hpp pp')
 		->where("(pp.date_hpp between '$tanggal_opening_balance_2' and '$tanggal_opening_balance_3')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
 
 		$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
 		$harga_opening_balance_batu0510_bulan_lalu =  $harga_hpp['batu0510'];
@@ -1817,8 +1806,6 @@ class Reports extends CI_Controller {
 		->where("pp.status = 'PUBLISH'")
 		->group_by('pp.product_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\penjualan_batu0510_bulan_ini.txt", $this->db->last_query());
 
 		$volume_penjualan_batu1020_bulan_ini = $penjualan_batu1020_bulan_ini['volume'];
 		$harga_penjualan_batu1020_bulan_ini = round($harga_akhir_produksi_harian_batu1020_bulan_ini,0);
@@ -2482,8 +2469,6 @@ class Reports extends CI_Controller {
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
@@ -3011,8 +2996,6 @@ class Reports extends CI_Controller {
 		->where("(pph.date_prod between '$date1' and '$date2')")
 		->where("pph.status = 'PUBLISH'")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\produksi_harian_bulan_ini.txt", $this->db->last_query());
 
 		$volume_produksi_harian_abubatu_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_a'];
 		$volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
@@ -3023,8 +3006,6 @@ class Reports extends CI_Controller {
 		->from('akumulasi_biaya pp')
 		->where("(pp.date_akumulasi between '$date1' and '$date2')")
 		->get()->row_array();
-		
-		//file_put_contents("D:\\tidak_ada_produksi.txt", $this->db->last_query());
 
 		$harga_produksi_harian_abubatu_bulan_ini = $harga_bpp;
 		$harga_produksi_harian_batu0510_bulan_ini = $harga_bpp;
@@ -3103,8 +3084,6 @@ class Reports extends CI_Controller {
 		->where("pp.status = 'PUBLISH'")
 		->group_by('pp.product_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\penjualan_batu0510_bulan_ini.txt", $this->db->last_query());
 
 		$volume_penjualan_batu1020_bulan_ini = $penjualan_batu1020_bulan_ini['volume'];
 		$harga_penjualan_batu1020_bulan_ini = round($harga_akhir_produksi_harian_batu1020_bulan_ini,0);
@@ -3146,8 +3125,6 @@ class Reports extends CI_Controller {
 		->where("pp.status = 'PUBLISH'")
 		->group_by('pp.product_id')
 		->get()->row_array();
-		
-		//file_put_contents("D:\\agregat_bulan_ini.txt", $this->db->last_query());
 
 		$volume_agregat_abubatu_bulan_ini = round($agregat_bulan_ini['volume_agregat_a'],2);
 		$volume_agregat_batu0510_bulan_ini = round($agregat_bulan_ini['volume_agregat_b'],2);
@@ -3242,8 +3219,6 @@ class Reports extends CI_Controller {
 		->order_by('date','desc')->limit(1)
 		->get()->row_array();
 
-		//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
-
 		$stock_opname_abu_batu_cat = $this->db->select('(cat.volume) as volume')
 		->from('pmm_remaining_materials_cat cat ')
 		->where("(cat.date = '$date2')")
@@ -3279,8 +3254,6 @@ class Reports extends CI_Controller {
 		->where("cat.status = 'PUBLISH'")
 		->order_by('date','desc')->limit(1)
 		->get()->row_array();
-
-		//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
 
 		$volume_akhir_agregat_abubatu_bulan_ini_2 = $stock_opname_abu_batu['volume'] + $stock_opname_abu_batu_cat['volume'];
 		$volume_akhir_agregat_batu0510_bulan_ini_2 = $stock_opname_batu0510['volume'] + $stock_opname_batu0510_cat['volume'];
@@ -3707,7 +3680,6 @@ class Reports extends CI_Controller {
 		$arr_filter_date = explode(' - ', $arr_date);
 		
 		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
-		//file_put_contents("D:\\last_production.txt", $this->db->last_query());
 		
 		$date1 = date('Y-m-d', strtotime('+2 days -1 month', strtotime($last_production['date'])));
 		$date2 = date('Y-m-d', strtotime($last_production['date']));
@@ -3788,8 +3760,6 @@ class Reports extends CI_Controller {
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
@@ -4318,8 +4288,6 @@ class Reports extends CI_Controller {
 		->where("pph.status = 'PUBLISH'")
 		->get()->row_array();
 
-		//file_put_contents("D:\\produksi_harian_bulan_ini.txt", $this->db->last_query());
-
 		$volume_produksi_harian_abubatu_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_a'];
 		$volume_produksi_harian_batu0510_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_b'];
 		$volume_produksi_harian_batu1020_bulan_ini = $produksi_harian_bulan_ini['jumlah_pemakaian_c'];
@@ -4329,8 +4297,6 @@ class Reports extends CI_Controller {
 		->from('akumulasi_biaya pp')
 		->where("(pp.date_akumulasi between '$date1' and '$date2')")
 		->get()->row_array();
-
-		//file_put_contents("D:\\tidak_ada_produksi.txt", $this->db->last_query());
 
 		$harga_produksi_harian_abubatu_bulan_ini = $harga_bpp;
 		$harga_produksi_harian_batu0510_bulan_ini = $harga_bpp;
@@ -4410,8 +4376,6 @@ class Reports extends CI_Controller {
 		->group_by('pp.product_id')
 		->get()->row_array();
 
-		//file_put_contents("D:\\penjualan_batu0510_bulan_ini.txt", $this->db->last_query());
-
 		$volume_penjualan_batu1020_bulan_ini = $penjualan_batu1020_bulan_ini['volume'];
 		$harga_penjualan_batu1020_bulan_ini = round($harga_akhir_produksi_harian_batu1020_bulan_ini,0);
 		$nilai_penjualan_batu1020_bulan_ini = $volume_penjualan_batu1020_bulan_ini * $harga_penjualan_batu1020_bulan_ini;
@@ -4452,8 +4416,6 @@ class Reports extends CI_Controller {
 		->where("pp.status = 'PUBLISH'")
 		->group_by('pp.product_id')
 		->get()->row_array();
-
-		//file_put_contents("D:\\agregat_bulan_ini.txt", $this->db->last_query());
 
 		$volume_agregat_abubatu_bulan_ini = round($agregat_bulan_ini['volume_agregat_a'],2);
 		$volume_agregat_batu0510_bulan_ini = round($agregat_bulan_ini['volume_agregat_b'],2);
@@ -4548,8 +4510,6 @@ class Reports extends CI_Controller {
 		->order_by('date','desc')->limit(1)
 		->get()->row_array();
 
-		//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
-
 		$stock_opname_abu_batu_cat = $this->db->select('(cat.volume) as volume')
 		->from('pmm_remaining_materials_cat cat ')
 		->where("(cat.date = '$date2')")
@@ -4585,8 +4545,6 @@ class Reports extends CI_Controller {
 		->where("cat.status = 'PUBLISH'")
 		->order_by('date','desc')->limit(1)
 		->get()->row_array();
-
-		//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
 
 		$volume_akhir_agregat_abubatu_bulan_ini_2 = $stock_opname_abu_batu['volume'] + $stock_opname_abu_batu_cat['volume'];
 		$volume_akhir_agregat_batu0510_bulan_ini_2 = $stock_opname_batu0510['volume'] + $stock_opname_batu0510_cat['volume'];
@@ -4900,8 +4858,6 @@ class Reports extends CI_Controller {
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 		->get()->row_array();
-
-		//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
@@ -5433,8 +5389,6 @@ class Reports extends CI_Controller {
 		->where("(pp.date_hpp between '$tanggal_opening_balance_2' and '$tanggal_opening_balance_3')")
 		->get()->row_array();
 
-		//file_put_contents("D:\\harga_hpp.txt", $this->db->last_query());
-
 		$harga_opening_balance_abubatu_bulan_lalu = $harga_hpp['abubatu'];
 		$harga_opening_balance_batu0510_bulan_lalu =  $harga_hpp['batu0510'];
 		$harga_opening_balance_batu1020_bulan_lalu =  $harga_hpp['batu1020'];
@@ -5546,8 +5500,6 @@ class Reports extends CI_Controller {
 		->where("pp.status = 'PUBLISH'")
 		->group_by('pp.product_id')
 		->get()->row_array();
-
-		//file_put_contents("D:\\penjualan_batu0510_bulan_ini.txt", $this->db->last_query());
 
 		$volume_penjualan_batu1020_bulan_ini = $penjualan_batu1020_bulan_ini['volume'];
 		$harga_penjualan_batu1020_bulan_ini = round($harga_akhir_produksi_harian_batu1020_bulan_ini,0);
@@ -6047,8 +5999,6 @@ class Reports extends CI_Controller {
 		->order_by('date','desc')->limit(1)
 		->get()->row_array();
 
-		//file_put_contents("D:\\stock_opname_batu2030.txt", $this->db->last_query());
-
 		$stok_volume_akhir_agregat_abubatu_bulan_ini_2 = round($stock_opname_abu_batu['volume'] + $stock_opname_abu_batu_cat['volume'],2);
 		$stok_volume_akhir_agregat_batu0510_bulan_ini_2 = round($stock_opname_batu0510['volume'] + $stock_opname_batu0510_cat['volume'],2);
 		$stok_volume_akhir_agregat_batu1020_bulan_ini_2 = round($stock_opname_batu1020['volume'] + $stock_opname_batu1020_cat['volume'],2);
@@ -6326,8 +6276,6 @@ class Reports extends CI_Controller {
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\harga_hpp_bahan_baku.txt", $this->db->last_query());
 
 			$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
 
@@ -7186,8 +7134,6 @@ class Reports extends CI_Controller {
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->row_array();
-			
-			//file_put_contents("D:\\akumulasi.txt", $this->db->last_query());
 
 			//BPP
 			$pergerakan_bahan_baku = $this->db->select('
@@ -7235,8 +7181,6 @@ class Reports extends CI_Controller {
 				$total_penjualan_limbah += $y['price'];
 			}
 
-			//file_put_contents("D:\\penjualan_limbah.txt", $this->db->last_query());
-
 			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
 			->from('pmm_productions pp')
 			->join('penerima p', 'pp.client_id = p.id','left')
@@ -7247,8 +7191,6 @@ class Reports extends CI_Controller {
 			->where("ppo.status in ('OPEN','CLOSED')")
 			->group_by("pp.client_id")
 			->get()->result_array();
-			
-			//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
 			
 			$total_penjualan = 0;
 			$total_volume = 0;
@@ -7267,8 +7209,6 @@ class Reports extends CI_Controller {
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->row_array();
 			
-			//file_put_contents("D:\\akumulasi_biaya.txt", $this->db->last_query());
-			
 			$biaya_umum_administratif_biaya = $this->db->select('sum(pdb.jumlah) as total')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -7277,8 +7217,6 @@ class Reports extends CI_Controller {
 			->where("pb.status = 'PAID'")
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\biaya_umum_administratif.txt", $this->db->last_query());
 
 			$biaya_umum_administratif_jurnal = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
@@ -7289,8 +7227,6 @@ class Reports extends CI_Controller {
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 
-			//file_put_contents("D:\\biaya_umum_administratif_jurnal.txt", $this->db->last_query());
-
 			$biaya_lainnya_biaya = $this->db->select('sum(pdb.jumlah) as total')
 			->from('pmm_biaya pb ')
 			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -7300,8 +7236,6 @@ class Reports extends CI_Controller {
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
 
-			//file_put_contents("D:\\biaya_lainnya_biaya.txt", $this->db->last_query());
-
 			$biaya_lainnya_jurnal = $this->db->select('sum(pdb.debit) as total')
 			->from('pmm_jurnal_umum pb ')
 			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
@@ -7310,8 +7244,6 @@ class Reports extends CI_Controller {
 			->where("pb.status = 'PAID'")
 			->where("(tanggal_transaksi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//file_put_contents("D:\\biaya_lainnya_jurnal.txt", $this->db->last_query());
 
 			$biaya_overhead_produksi = $akumulasi_biaya['total'];
 
@@ -8619,8 +8551,6 @@ class Reports extends CI_Controller {
     	}
     	$this->db->order_by('nama_produk','asc');
     	$tags = $this->db->get_where('produk',array('status'=>'PUBLISH','bahanbaku'=>1))->result_array();
-		
-		//file_put_contents("D:\\data_material_usage.txt", $this->db->last_query());
 
     	if(!empty($tags)){
     		?>

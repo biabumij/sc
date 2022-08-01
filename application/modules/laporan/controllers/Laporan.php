@@ -14,7 +14,6 @@ class Laporan extends Secure_Controller {
 		$this->load->library('session');
 	}
 
-	# Created by GNB
 	public function cetak_pengiriman_penjualan()
 	{
 		$this->load->library('pdf');
@@ -68,7 +67,6 @@ class Laporan extends Secure_Controller {
 		$this->db->where("pp.product_id in (3,4,7,8,9,14,24)");
 		$this->db->group_by('ppo.client_id');
 		$query = $this->db->get('pmm_sales_po ppo');
-		# file_put_contents("D:\\cetak_pengiriman_penjualan.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -118,9 +116,7 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
-	# End - Created by GNB 
-
-	# Created by GNB
+	 
 	public function cetak_pengiriman_penjualan_produk()
 	{
 		$this->load->library('pdf');
@@ -148,9 +144,7 @@ class Laporan extends Secure_Controller {
         $pdf->Output('pengiriman-penjualan-produk.pdf', 'I');
 	
 	}
-	# End - Created by GNB
 	
-	# Created by GNB
 	public function cetak_sales_order()
 	{
 		$this->load->library('pdf');
@@ -258,7 +252,6 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
-	# End - Created by GNB
 	
 	public function cetak_penjualan_per_produk()
 	{
@@ -289,13 +282,11 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-			$this->db->select('pp.id, p.nama_produk, SUM(pp.price) as all_total');
-			
+		$this->db->select('pp.id, p.nama_produk, SUM(pp.price) as all_total');	
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pp.date_production >=',$start_date);
             $this->db->where('pp.date_production <=',$end_date);
         }
-		
 		if(!empty($supplier_id)){
             $this->db->where('pp.client_id',$supplier_id);
         }
@@ -313,9 +304,6 @@ class Laporan extends Secure_Controller {
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_productions pp');
 		
-		//file_put_contents("D:\\penjualan_produk_print.txt", $this->db->last_query());		
-
-
 			$no = 1;
 			if($query->num_rows() > 0){
 
@@ -418,10 +406,7 @@ class Laporan extends Secure_Controller {
 		
 		$this->db->group_by('ppp.nama_pelanggan');
 		$this->db->order_by('ppp.nama_pelanggan','asc');
-		$query = $this->db->get('pmm_penagihan_penjualan ppp');
-		
-		//file_put_contents("D:\\daftar_tagihan_penjualan_print.txt", $this->db->last_query());		
-
+		$query = $this->db->get('pmm_penagihan_penjualan ppp');	
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -476,7 +461,7 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
-
+	
 	public function cetak_piutang()
 	{
 		$this->load->library('pdf');
@@ -505,7 +490,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-			$this->db->select('ppp.client_id, ps.nama, SUM(ppp.total - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_piutang');
+		$this->db->select('ppp.client_id, ps.nama, SUM(ppp.total - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_piutang');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -524,10 +509,7 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppp.client_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
-		
-		//file_put_contents("D:\\laporan_piutang_print.txt", $this->db->last_query());
-
-
+	
 			$no = 1;
 			if($query->num_rows() > 0){
 
@@ -610,8 +592,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-			$this->db->select('ppp.client_id, ps.nama,  SUM(COALESCE(ppp.total,0)) -  SUM(COALESCE(ppm.total,0)) as total_piutang, ppp.syarat_pembayaran');
-		
+		$this->db->select('ppp.client_id, ps.nama,  SUM(COALESCE(ppp.total,0)) -  SUM(COALESCE(ppm.total,0)) as total_piutang, ppp.syarat_pembayaran');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -632,9 +613,6 @@ class Laporan extends Secure_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
-		//file_put_contents("D:\\umur_piutang_print.txt", $this->db->last_query());
-
-
 			$no = 1;
 			if($query->num_rows() > 0){
 
@@ -654,7 +632,6 @@ class Laporan extends Secure_Controller {
 						$mats[] = $arr;
 					}
 					
-					
 					$sups['mats'] = $mats;
 					$total += $sups['total_piutang'];
 					$sups['no'] =$no;
@@ -669,12 +646,10 @@ class Laporan extends Secure_Controller {
 				}
 			}
 
-			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
 	        $html = $this->load->view('laporan_penjualan/006_cetak_umur_piutang',$data,TRUE);
-
-	        
+ 
 	        $pdf->SetTitle('BBJ - Laporan Umur Piutang');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('laporan-umur-piutang.pdf', 'I');
@@ -734,8 +709,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('pmp.client_id');
 		$this->db->order_by('pmp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_pembayaran pmp');
-		
-		//file_put_contents("D:\\penerimaan_print.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -834,7 +807,6 @@ class Laporan extends Secure_Controller {
 		$data['filter_date'] = $filter_date;	
 		
 		$this->db->select('po.id, po.client_id, p.nama');
-		
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('po.contract_date >=',$start_date);
             $this->db->where('po.contract_date <=',$end_date);
@@ -855,8 +827,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('po.client_id');
 		$this->db->order_by('p.nama','ASC');
 		$query = $this->db->get('pmm_sales_po po');
-		
-		//file_put_contents("D:\\penyelesaian_penjualan_print.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -943,7 +913,6 @@ class Laporan extends Secure_Controller {
 			$data['grand_total_akhir'] = $grand_total_akhir;
 	        $html = $this->load->view('laporan_penjualan/008_cetak_penyelesaian_penjualan',$data,TRUE);
 
-	        
 	        $pdf->SetTitle('BBJ - Laporan Penyelesaian Penjualan');
 	        $pdf->nsi_html($html);
 	        $pdf->Output('laporan-penyelesaian-penjualan.pdf', 'I');
@@ -984,7 +953,6 @@ class Laporan extends Secure_Controller {
 			$data['filter_date'] = $filter_date;
 
 			$this->db->select('ppo.supplier_id,prm.measure as measure,ps.nama as name, prm.harga_satuan as price,SUM(prm.volume) as volume, SUM(prm.price) as total_price');
-			
 			if(!empty($start_date) && !empty($end_date)){
 				$this->db->where('prm.date_receipt >=',$start_date);
 				$this->db->where('prm.date_receipt <=',$end_date);
@@ -1149,7 +1117,6 @@ class Laporan extends Secure_Controller {
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
 	        $html = $this->load->view('laporan_pembelian/001_cetak_penerimaan_pembelian_sewa_alat',$data,TRUE);
-
 	        
 	        $pdf->SetTitle('BBJ - Laporan Pembelian');
 	        $pdf->nsi_html($html);
@@ -1160,7 +1127,7 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
-
+	
 	public function cetak_penerimaan_pembelian_jasa_angkut()
 	{
 		$this->load->library('pdf');
@@ -1315,9 +1282,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_purchase_order ppo');
-		
-		//file_put_contents("D:\\pesanan_pembelian_print.txt", $this->db->last_query());
-
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -1427,8 +1391,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('p.nama_produk');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_receipt_material prm');
-		
-		//file_put_contents("D:\\pembelian_produk_report_print.txt", $this->db->last_query());
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -1533,9 +1495,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
-		
-		//file_put_contents("D:\\daftar_tagihan_report_print.txt", $this->db->last_query());		
-
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -1621,7 +1580,6 @@ class Laporan extends Secure_Controller {
 			$data['filter_date'] = $filter_date;
 
 		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total - (select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_hutang');
-
 		if(!empty($start_date) && !empty($end_date)){
 			$this->db->where('ppp.tanggal_invoice >=',$start_date);
 			$this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -1640,9 +1598,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
-		
-		//file_put_contents("D:\\laporan_hutang_print.txt", $this->db->last_query());
-
 
 			$no = 1;
 			if($query->num_rows() > 0){
@@ -1747,10 +1702,6 @@ class Laporan extends Secure_Controller {
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
 		
-		
-		//file_put_contents("D:\\umur_hutang_print.txt", $this->db->last_query());
-
-
 			$no = 1;
 			if($query->num_rows() > 0){
 
@@ -1851,8 +1802,6 @@ class Laporan extends Secure_Controller {
 		$this->db->where('pmp.status','DISETUJUI');
 		$query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
 		
-		//file_put_contents("D:\\table_date7.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -1947,7 +1896,6 @@ class Laporan extends Secure_Controller {
 		$data['filter_date'] = $filter_date;	
 		
 		$this->db->select('po.id, po.supplier_id, p.nama');
-
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('po.date_po >=',$start_date);
             $this->db->where('po.date_po <=',$end_date);
@@ -1967,8 +1915,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('po.supplier_id');
 		$this->db->order_by('p.nama','ASC');
 		$query = $this->db->get('pmm_purchase_order po');
-		
-		//file_put_contents("D:\\penyelesaian_pembelian_report_print.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -2066,6 +2012,7 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
+	
 
     public function laporan_biaya()
     {
@@ -2080,7 +2027,6 @@ class Laporan extends Secure_Controller {
 
         $data['filter_date'] = $filter_date;
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung($filter_date);
-		//file_put_contents("D:\\biaya_langsung.txt", $this->db->last_query());
 		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal($filter_date);
         $data['biaya'] = $this->m_laporan->showBiaya($filter_date);
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal($filter_date);
@@ -2110,7 +2056,6 @@ class Laporan extends Secure_Controller {
         $date = array($start_date,$end_date);
         $data['filter_date'] = $arr_date;
 		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
-		//file_put_contents("D:\\biaya_langsung_print.txt", $this->db->last_query());
 		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
         $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
@@ -2125,6 +2070,7 @@ class Laporan extends Secure_Controller {
         $pdf->Output('laporan-biaya.pdf', 'I');
     
     }
+	
 	
 	public function laporan_evaluasi_produksi_print()
 	{
@@ -2176,8 +2122,6 @@ class Laporan extends Secure_Controller {
 		$this->db->where('pph.status','PUBLISH');
 		$this->db->group_by('pph.date_prod');
 		$query = $this->db->get('pmm_produksi_harian pph');
-		
-		//file_put_contents("D:\\laporan_evaluasi_produksi_print.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -2281,8 +2225,6 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('pph.date_prod');
 		$query = $this->db->get('pmm_produksi_harian pph');
 		
-		//file_put_contents("D:\\laporan_produksi_harian_print.txt", $this->db->last_query());
-		
 		$no = 1;
 		if($query->num_rows() > 0){
 
@@ -2345,7 +2287,7 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
-
+	
 	public function laporan_produksi_campuran_print()
 	{
 		$this->load->library('pdf');
@@ -2377,7 +2319,6 @@ class Laporan extends Secure_Controller {
 		
 		
 		$this->db->select('pph.date_prod, pph.no_prod, pk.jobs_type as agregat, pphd.measure as satuan, SUM(pphd.volume_convert) as volume, (SUM(pphd.volume_convert) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.volume_convert) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.volume_convert) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.volume_convert) * pk.presentase_d) / 100 AS jumlah_pemakaian_d, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d');
-
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pph.date_prod >=',$start_date);
             $this->db->where('pph.date_prod <=',$end_date);
@@ -2397,8 +2338,6 @@ class Laporan extends Secure_Controller {
 		$this->db->where('pph.status','PUBLISH');
 		$this->db->group_by('pph.date_prod');
 		$query = $this->db->get('pmm_produksi_campuran pph');
-		
-		//file_put_contents("D:\\laporan_produksi_campuran_print.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -2509,8 +2448,6 @@ class Laporan extends Secure_Controller {
 		$this->db->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left');
 		$this->db->where('pph.status','PUBLISH');
 		$query = $this->db->get('pmm_produksi_harian pph');
-		
-		//file_put_contents("D:\\rekapitulasi_laporan_produksi_print.txt", $this->db->last_query());
 		
 		$no = 1;
 		if($query->num_rows() > 0){
@@ -2709,7 +2646,7 @@ class Laporan extends Secure_Controller {
         $pdf->Output('nilai-persediaan-barang.pdf', 'I');
 	
 	}
-
+	
 	public function pergerakan_bahan_jadi_print()
 	{
 		$this->load->library('pdf');
