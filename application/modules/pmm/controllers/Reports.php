@@ -731,7 +731,7 @@ class Reports extends CI_Controller {
 		
 		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
 		
-		$date1 = date('Y-m-d', strtotime('+2 days -1 month', strtotime($last_production['date'])));
+		$date1 = date('Y-m-d', strtotime('-1 month', strtotime($last_production['date'])));
 		$date2 = date('Y-m-d', strtotime($last_production['date']));
 		$date1_filter = date('d F Y', strtotime($date1));
 		$date2_filter = date('d F Y', strtotime($date2));
@@ -3670,7 +3670,7 @@ class Reports extends CI_Controller {
 		
 		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
 		
-		$date1 = date('Y-m-d', strtotime('+2 days -1 month', strtotime($last_production['date'])));
+		$date1 = date('Y-m-d', strtotime('-1 month', strtotime($last_production['date'])));
 		$date2 = date('Y-m-d', strtotime($last_production['date']));
 		$date1_filter = date('d F Y', strtotime($date1));
 		$date2_filter = date('d F Y', strtotime($date2));
@@ -3828,8 +3828,8 @@ class Reports extends CI_Controller {
 		$total_akumulasi_bahan_baku_2 = 0;
 
 		foreach ($akumulasi_bahan_baku as $b){
-		$total_akumulasi_bahan_baku += $b['total_nilai_keluar'];
-		$total_akumulasi_bahan_baku_2 += $b['total_nilai_keluar_2'];
+			$total_akumulasi_bahan_baku += $b['total_nilai_keluar'];
+			$total_akumulasi_bahan_baku_2 += $b['total_nilai_keluar_2'];
 		}
 
 		$akumulasi_nilai_bahan_baku = $total_akumulasi_bahan_baku;
@@ -4228,7 +4228,6 @@ class Reports extends CI_Controller {
 		->where("cat.status = 'PUBLISH'")
 		->order_by('date','desc')->limit(1)
 		->get()->row_array();
-
 
 		$volume_opening_balance_abubatu_bulan_lalu = $stock_opname_abu_batu_ago['volume'] + $stock_opname_abu_batu_ago_cat['volume'];
 		$volume_opening_balance_batu0510_bulan_lalu = $stock_opname_batu0510_ago['volume'] + $stock_opname_batu0510_ago_cat['volume'];
