@@ -647,10 +647,10 @@
 		->order_by('date','desc')->limit(1)
 		->get()->row_array();
 
-		$volume_opening_balance_abubatu_bulan_lalu = $stock_opname_abu_batu_ago['volume'] + $stock_opname_abu_batu_ago_cat['volume'];
-		$volume_opening_balance_batu0510_bulan_lalu = $stock_opname_batu0510_ago['volume'] + $stock_opname_batu0510_ago_cat['volume'];
-		$volume_opening_balance_batu1020_bulan_lalu = $stock_opname_batu1020_ago['volume'] + $stock_opname_batu1020_ago_cat['volume'];
-		$volume_opening_balance_batu2030_bulan_lalu = $stock_opname_batu2030_ago['volume'] + $stock_opname_batu2030_ago_cat['volume'];
+		$volume_opening_balance_abubatu_bulan_lalu = round($stock_opname_abu_batu_ago['volume'] + $stock_opname_abu_batu_ago_cat['volume'],2);
+		$volume_opening_balance_batu0510_bulan_lalu = round($stock_opname_batu0510_ago['volume'] + $stock_opname_batu0510_ago_cat['volume'],2);
+		$volume_opening_balance_batu1020_bulan_lalu = round($stock_opname_batu1020_ago['volume'] + $stock_opname_batu1020_ago_cat['volume'],2);
+		$volume_opening_balance_batu2030_bulan_lalu = round($stock_opname_batu2030_ago['volume'] + $stock_opname_batu2030_ago_cat['volume'],2);
 
 		//Rumus Harga Opening Balance
 
