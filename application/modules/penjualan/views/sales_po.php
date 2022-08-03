@@ -217,10 +217,6 @@
               // table.ajax.reload();
         });
 
-        $(document).ready(function(){
-            $('#client').val(<?= $data['client_id'];?>).trigger('change');
-        });
-
         function tambahData()
         {
             var number = parseInt($('#total-product').val()) + 1;
