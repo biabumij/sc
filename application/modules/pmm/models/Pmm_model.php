@@ -3916,9 +3916,6 @@ class Pmm_model extends CI_Model {
         return $data;
     }
 	
-	
-	
-
     function getOneCostMatByPenawaran($supplier_id,$material_id)
     {
         $this->db->select('ppd.price as cost');
@@ -3930,7 +3927,6 @@ class Pmm_model extends CI_Model {
 
         return $data;
     }
-
 
     function GetNameGroup($id)
     {
