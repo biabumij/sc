@@ -3898,23 +3898,6 @@ class Pmm_model extends CI_Model {
 
         return $data;
     }
-
-    function getMatByPenawaranPenjualan2($client_id)
-    {
-
-        $this->db->select('pp.id as penawaran_id, pp.nomor, ppd.id, ppd.product_id as product_id, pm.nama_produk as nama_produk, pms.measure_name as satuan, ppd.price as harga, ppd.tax_id as tax');
-        $this->db->join('pmm_penawaran_penjualan pp','ppd.penawaran_penjualan_id = pp.id','left');
-        $this->db->join('produk pm','ppd.product_id = pm.id','left');
-        $this->db->join('pmm_measures pms','ppd.measure = pms.id','left');
-		$this->db->join('pmm_taxs pt','ppd.tax_id = pt.id','left');
-        $this->db->where('pp.status','OPEN');
-        $this->db->where('pp.client_id',$client_id);
-		$this->db->group_by('ppd.id');
-		$this->db->order_by('pp.created_on','DESC');
-        $data = $this->db->get('pmm_penawaran_penjualan_detail ppd')->result_array();
-
-        return $data;
-    }
 	
     function getOneCostMatByPenawaran($supplier_id,$material_id)
     {
