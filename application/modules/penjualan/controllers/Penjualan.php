@@ -482,12 +482,15 @@ class Penjualan extends Secure_Controller
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
-			$get_data = $this->db->get_where('pmm_penawaran_penjualan',array('status' =>'OPEN'))->row_array();
-			$data['clients'] = $this->db->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'pelanggan' => 1))->result_array();
+			$client_id = $this->input->get('client_id');
+			$data['client_id'] = $client_id;
+			$data['clients'] = $this->db->select('id,nama')->order_by('nama','asc')->get_where('penerima',array('pelanggan'=>1))->result_array();
 			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
 			$data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
 			$data['measures'] = $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
+			$get_data = $this->db->get_where('pmm_penawaran_penjualan',array('client_id' =>$client_id, 'status' =>'OPEN'))->row_array();
 			$data['penawaran'] = $this->pmm_model->getMatByPenawaranPenjualan($get_data['client_id']);
+			$data['data'] = $get_data;
 			$this->load->view('penjualan/sales_po', $data);
 		} else {
 			redirect('admin');
