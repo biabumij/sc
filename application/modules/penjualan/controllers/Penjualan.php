@@ -521,8 +521,7 @@ class Penjualan extends Secure_Controller
 		$taxs = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
 		$measures = $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 		$get_data = $this->db->get_where('pmm_penawaran_penjualan',array('client_id' =>$client_id, 'status' =>'OPEN'))->row_array();
-		file_put_contents("D:\\test.txt", $this->db->last_query());
-		$penawaran = $this->pmm_model->getMatByPenawaranPenjualan($get_data['client_id']);
+		$penawaran = $this->pmm_model->getMatByPenawaranPenjualan2($get_data['client_id']);
 	?>
 		<tr>
 			<td><?php echo $no; ?>.</td>
