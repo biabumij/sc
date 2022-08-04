@@ -490,7 +490,8 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-		$this->db->select('ppp.client_id, ps.nama, SUM(ppp.total - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_piutang');
+		$this->db->select('ppp.client_id, ps.nama, SUM(ppp.total) as total_tagihan, SUM((select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_penerimaan, SUM(ppp.total - (select COALESCE(SUM(total),0) from pmm_pembayaran ppm where ppm.penagihan_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_piutang');
+
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -536,6 +537,8 @@ class Laporan extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $sups['total_piutang'];
 					$sups['no'] =$no;
+					$sups['total_tagihan'] = number_format($sups['total_tagihan'],0,',','.');
+					$sups['total_penerimaan'] = number_format($sups['total_penerimaan'],0,',','.');
 					$sups['total_piutang'] = number_format($sups['total_piutang'],0,',','.');
 					
 
@@ -1579,7 +1582,8 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total - (select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_hutang');
+		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total - ppp.uang_muka) as total_tagihan, SUM((select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_pembayaran, SUM(ppp.total - (select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_hutang');
+		
 		if(!empty($start_date) && !empty($end_date)){
 			$this->db->where('ppp.tanggal_invoice >=',$start_date);
 			$this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -1625,6 +1629,8 @@ class Laporan extends Secure_Controller {
 					$sups['mats'] = $mats;
 					$total += $sups['total_hutang'];
 					$sups['no'] = $no;
+					$sups['total_tagihan'] = number_format($sups['total_tagihan'],0,',','.');
+					$sups['total_pembayaran'] = number_format($sups['total_pembayaran'],0,',','.');
 					$sups['total_hutang'] = number_format($sups['total_hutang'],0,',','.');
 					
 					$arr_data[] = $sups;

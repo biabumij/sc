@@ -100,8 +100,8 @@
 				<th align="center" width="23%" rowspan="2">&nbsp; <br />MEMO</th>
 				<th align="center" width="8%" rowspan="2">&nbsp; <br />VOLUME</th>
 				<th align="center" width="8%" rowspan="2">&nbsp; <br />SATUAN</th>
-				<th align="center" width="10%" rowspan="2">&nbsp; <br />JUMLAH TAGIHAN</th>
-				<th align="center" width="8%" rowspan="2">&nbsp; <br />PAJAK</th>
+				<th align="center" width="10%" rowspan="2">&nbsp; <br />DPP</th>
+				<th align="center" width="8%" rowspan="2">&nbsp; <br />PPN</th>
 				<th align="center" width="8%" rowspan="2">&nbsp; <br />TOTAL</th>
             </tr>
 			<tr class="table-judul">

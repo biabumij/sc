@@ -384,7 +384,7 @@
 																<th align="center" rowspan="2" style="vertical-align:middle;">MEMO</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">JUMLAH TAGIHAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">DPP</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">PPN</th>
 																<th align="center" rowspan="2" style="vertical-align:middle;">TOTAL</th>
                                                             </tr>
@@ -1031,7 +1031,7 @@
                                         var a_no = a + 1;
                                         $('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.piutang + '</td></tr>');
                                     });
-									$('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="6"><b>JUMLAH</b></td><td class="text-right"><b>' + val.total_piutang + '</b></td></tr>');
+									$('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="4"><b>JUMLAH</b></td><td class="text-right""><b>' + val.total_tagihan + '</b></td><td class="text-right""><b>' + val.total_penerimaan + '</b></td><td class="text-right""><b>' + val.total_piutang + '</b></td></tr>');
                                 });
                                 $('#table-date13 tbody').append('<tr><td class="text-right" colspan="6"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {

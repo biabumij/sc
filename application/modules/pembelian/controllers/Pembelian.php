@@ -1004,6 +1004,7 @@ class Pembelian extends Secure_Controller
             }
 
             $this->db->delete('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $id));
+            $this->db->delete('pmm_verifikasi_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_penagihan_pembelian', array('id' => $id));
@@ -1264,6 +1265,7 @@ class Pembelian extends Secure_Controller
             'tanggal_pembayaran' => date('Y-m-d', strtotime($this->input->post('tanggal_pembayaran'))),
             'nomor_transaksi' => $this->input->post('nomor_transaksi'),
             'memo' => $this->input->post('memo'),
+            'status' => 'TIDAK DISETUJUI',
             'total' => $pembayaran_pro,
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s')

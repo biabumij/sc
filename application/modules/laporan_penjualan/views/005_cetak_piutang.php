@@ -130,8 +130,10 @@
 					}
 					?>
 					<tr class="table-baris2-bold">
-            			<td align="right" colspan="6">JUMLAH</td>
-						<td align="right"><?php echo $row['total_piutang'];?></td>
+            			<td align="right" colspan="4">JUMLAH</td>
+						<td align="right"><b><?php echo $row['total_tagihan'];?></b></td>
+						<td align="right"><b><?php echo $row['total_penerimaan'];?></b></td>
+						<td align="right"><b><?php echo $row['total_piutang'];?></b></td>
             		</tr>
 					<?php
             		}	

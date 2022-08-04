@@ -943,8 +943,8 @@ class Receipt_material extends CI_Controller {
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
-		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total - (select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_hutang');
 
+		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total - ppp.uang_muka) as total_tagihan, SUM((select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_pembayaran, SUM(ppp.total - (select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_hutang');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
@@ -990,6 +990,8 @@ class Receipt_material extends CI_Controller {
 					$sups['mats'] = $mats;
 					$total += $sups['total_hutang'];
 					$sups['no'] =$no;
+					$sups['total_tagihan'] = number_format($sups['total_tagihan'],0,',','.');
+					$sups['total_pembayaran'] = number_format($sups['total_pembayaran'],0,',','.');
 					$sups['total_hutang'] = number_format($sups['total_hutang'],0,',','.');
 					
 
