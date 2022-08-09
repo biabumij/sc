@@ -51,7 +51,7 @@
 		<table width="100%" border="0" cellpadding="3">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 12px;">Hasil Kalibrasi</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">Kalibrasi</div>
 					<div style="display: block;font-weight: bold;font-size: 12px;">Produksi Stone Crusher</div>
 				</td>
 			</tr>
