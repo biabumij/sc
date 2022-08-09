@@ -58,7 +58,7 @@
 		<br /><br />
 		<table width="100%" border="0" cellpadding="3">
 			<tr>
-				<th width="20%">>Judul</th>
+				<th width="20%">Judul</th>
 				<th width="2%">:</th>
 				<th align="left"><?php echo $row['jobs_type'];?></th>
 			</tr>
