@@ -102,17 +102,15 @@ class Pmm_finance extends CI_Model {
         $this->db->join('pmm_penagihan_pembelian pp','pvp.penagihan_pembelian_id = pp.id','left');
         $this->db->join('penerima ps','ps.id = pp.supplier_id','left');
         $query = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp',array('pvp.penagihan_pembelian_id'=>$id))->row_array();
-		//file_put_contents("D:\\getVerifDokumen.txt", $this->db->last_query());
-		
 
         if(!empty($query)){
             $query['tanggal_po'] = date('d/m/Y',strtotime($query['tanggal_po']));
             $query['tanggal_invoice'] = date('d/m/Y',strtotime($query['tanggal_invoice']));
             $query['tanggal_diterima_office'] = date('d/m/Y',strtotime($query['tanggal_diterima_office']));
             $query['tanggal_diterima_proyek'] = date('d/m/Y',strtotime($query['tanggal_diterima_proyek']));
-            $query['nilai_kontrak'] = $this->filter->Rupiah($query['nilai_kontrak']);
-            $query['nilai_tagihan'] = $this->filter->Rupiah($query['nilai_tagihan']);
-            $query['ppn'] = $this->filter->Rupiah($query['ppn']);
+            $query['nilai_kontrak'] = number_format($query['nilai_kontrak'],0,',','.');
+            $query['nilai_tagihan'] = number_format($query['nilai_tagihan'],0,',','.');
+            $query['ppn'] = number_format($query['ppn'],0,',','.');
             $query['verifikator'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$query['created_by']),'admin_name');
             $data = $query;
         }
@@ -126,7 +124,6 @@ class Pmm_finance extends CI_Model {
         $this->db->select('pvp.*, ps.nama as supplier_name');
         $this->db->join('pmm_penagihan_pembelian pp','pvp.penagihan_pembelian_id = pp.id','left');
         $this->db->join('penerima ps','ps.id = pp.supplier_id','left');
-        // $this->db->join('pmm_purchase_order po','po.id = pp.purchase_order_id','left');
         $query = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp',array('pvp.id'=>$id))->row_array();
 
         if(!empty($query)){
@@ -134,9 +131,9 @@ class Pmm_finance extends CI_Model {
             $query['tanggal_invoice'] = date('d/m/Y',strtotime($query['tanggal_invoice']));
             $query['tanggal_diterima_office'] = date('d/m/Y',strtotime($query['tanggal_diterima_office']));
             $query['tanggal_diterima_proyek'] = date('d/m/Y',strtotime($query['tanggal_diterima_proyek']));
-            $query['nilai_kontrak'] = $this->filter->Rupiah($query['nilai_kontrak']);
-            $query['nilai_tagihan'] = $this->filter->Rupiah($query['nilai_tagihan']);
-            $query['ppn'] = $this->filter->Rupiah($query['ppn']);
+            $query['nilai_kontrak'] =  number_format($query['nilai_kontrak'],0,',','.');
+            $query['nilai_tagihan'] =  number_format($query['nilai_tagihan'],0,',','.');
+            $query['ppn'] =  number_format($query['ppn'],0,',','.');
             $query['verifikator'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$query['created_by']),'admin_name');
             $data = $query;
         }
