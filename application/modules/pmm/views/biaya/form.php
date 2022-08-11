@@ -144,8 +144,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Deskripsi *</label>
-                            <input type="text" id="deskripsi" name="deskripsi" class="form-control" required="" autocomplete="off" />
+                            <label>Deskripsi</label>
+                            <input type="text" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <label>Jumlah * </label>

@@ -50,6 +50,7 @@ class Jurnal_umum extends CI_Controller {
 		
 		$this->db->select('b.*');
         $this->db->order_by('b.tanggal_transaksi','desc');
+        $this->db->order_by('b.created_on','desc');
 		$query = $this->db->get('pmm_jurnal_umum b');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
