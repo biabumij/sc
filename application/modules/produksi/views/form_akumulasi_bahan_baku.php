@@ -64,10 +64,10 @@
                                                     <td>1.</td>
                                                     <td>Total Nilai Keluar Pergerakan Bahan Baku</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="total_nilai_keluar" id="total_nilai_keluar" class="form-control input-sm text-center numberformat" required="" />
+                                                        <input type="text" name="total_nilai_keluar" id="total_nilai_keluar" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                     <td>
-                                                        <input type="number" step=".01" min="0" name="total_nilai_keluar_2" id="total_nilai_keluar_2" class="form-control input-sm text-center numberformat" required="" />
+                                                        <input type="text" name="total_nilai_keluar_2" id="total_nilai_keluar_2" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -109,7 +109,7 @@
         
         $('.form-select2').select2();
 
-        $('input.numberformat').number( true, 2,',','.' );
+        $('input.numberformat').number( true, 0,',','.' );
         tinymce.init({
           selector: 'textarea#about_text',
           height: 200,

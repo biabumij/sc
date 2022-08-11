@@ -63,14 +63,14 @@
                                                     <td class="text-center">1.</td>
                                                     <td>Batu Boulder</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="boulder" id="boulder" class="form-control input-sm text-center numberformat" required="" />
+                                                        <input type="text" name="boulder" id="boulder" class="form-control numberformat text-right" required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td class="text-center">2.</td>
                                                     <td>Solar</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="bbm" id="bbm" class="form-control input-sm text-center numberformat"  required=""/>
+                                                        <input type="text" name="bbm" id="bbm" class="form-control numberformat text-right"  required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -112,7 +112,7 @@
         
         $('.form-select2').select2();
 
-        $('input.numberformat').number( true, 2,',','.' );
+        $('input.numberformat').number( true, 0,',','.' );
         tinymce.init({
           selector: 'textarea#about_text',
           height: 200,

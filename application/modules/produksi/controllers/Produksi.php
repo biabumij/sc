@@ -1519,10 +1519,8 @@ class Produksi extends Secure_Controller {
 	public function submit_hpp_bahan_baku()
 	{
 		$date_hpp = $this->input->post('date_hpp');
-		$boulder = $this->input->post('boulder');
-		$bbm = $this->input->post('bbm');
-		$nilai_boulder = $this->input->post('nilai_boulder');
-		$nilai_bbm = $this->input->post('nilai_bbm');
+		$boulder = str_replace('.', '', $this->input->post('boulder'));
+		$bbm = str_replace('.', '', $this->input->post('bbm'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -1610,10 +1608,10 @@ class Produksi extends Secure_Controller {
 	public function submit_hpp()
 	{
 		$date_hpp = $this->input->post('date_hpp');
-		$abubatu = $this->input->post('abubatu');
-		$batu0510 = $this->input->post('batu0510');
-		$batu1020 = $this->input->post('batu1020');
-		$batu2030 = $this->input->post('batu2030');
+		$abubatu = str_replace('.', '', $this->input->post('abubatu'));
+		$batu0510 = str_replace('.', '', $this->input->post('batu0510'));
+		$batu1020 = str_replace('.', '', $this->input->post('batu1020'));
+		$batu2030 = str_replace('.', '', $this->input->post('batu2030'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -1706,8 +1704,8 @@ class Produksi extends Secure_Controller {
 	public function submit_akumulasi_bahan_baku()
 	{
 		$date_akumulasi = $this->input->post('date_akumulasi');
-		$total_nilai_keluar = $this->input->post('total_nilai_keluar');
-		$total_nilai_keluar_2 = $this->input->post('total_nilai_keluar_2');
+		$total_nilai_keluar = str_replace('.', '', $this->input->post('total_nilai_keluar'));
+		$total_nilai_keluar_2 = str_replace('.', '', $this->input->post('total_nilai_keluar_2'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -1795,7 +1793,7 @@ class Produksi extends Secure_Controller {
 	public function submit_akumulasi()
 	{
 		$date_akumulasi = $this->input->post('date_akumulasi');
-		$total_nilai_keluar = $this->input->post('total_nilai_keluar');
+		$total_nilai_keluar = str_replace('.', '', $this->input->post('total_nilai_keluar'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 

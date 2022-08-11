@@ -63,28 +63,28 @@
                                                     <td class="text-center">1.</td>
                                                     <td>Batu Split 0 - 0,5 (Abu Batu)</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="abubatu" id="abubatu" class="form-control input-sm text-center numberformat" required="" />
+                                                        <input type="text" name="abubatu" id="abubatu" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td class="text-center">2.</td>
                                                     <td>Batu Split 0,5 - 1</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="batu0510" id="batu0510" class="form-control input-sm text-center numberformat" required="" />
+                                                        <input type="text" name="batu0510" id="batu0510" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td class="text-center">3.</td>
                                                     <td>Batu Split 1 - 2</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="batu1020" id="batu1020" class="form-control input-sm text-center numberformat" required="" />
+                                                        <input type="text" name="batu1020" id="batu1020" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td class="text-center">4.</td>
                                                     <td>Batu Split 2 - 3</td>
 													<td>
-                                                        <input type="number" step=".01" min="0" name="batu2030" id="batu2030" class="form-control input-sm text-center numberformat" required="" />
+                                                        <input type="text" name="batu2030" id="batu2030" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -126,7 +126,7 @@
         
         $('.form-select2').select2();
 
-        $('input.numberformat').number( true, 2,',','.' );
+        $('input.numberformat').number( true, 0,',','.' );
         tinymce.init({
           selector: 'textarea#about_text',
           height: 200,
