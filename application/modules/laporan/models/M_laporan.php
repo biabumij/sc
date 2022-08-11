@@ -16,7 +16,7 @@ class M_laporan extends CI_Model {
         $start_date = date('Y-m-d',strtotime($arr_date[0]));
         $end_date = date('Y-m-d',strtotime($arr_date[1]));
 
-        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
         $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
@@ -37,7 +37,7 @@ class M_laporan extends CI_Model {
         $start_date = date('Y-m-d',strtotime($arr_date[0]));
         $end_date = date('Y-m-d',strtotime($arr_date[1]));
 
-        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
         $this->db->join('pmm_detail_jurnal pdb','b.id = pdb.jurnal_id','left');
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
@@ -58,7 +58,7 @@ class M_laporan extends CI_Model {
         $start_date = date('Y-m-d',strtotime($arr_date[0]));
         $end_date = date('Y-m-d',strtotime($arr_date[1]));
 
-        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
         $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
@@ -79,7 +79,7 @@ class M_laporan extends CI_Model {
         $start_date = date('Y-m-d',strtotime($arr_date[0]));
         $end_date = date('Y-m-d',strtotime($arr_date[1]));
 
-        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
         $this->db->join('pmm_detail_jurnal pdb','b.id = pdb.jurnal_id','left');
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
@@ -99,7 +99,7 @@ class M_laporan extends CI_Model {
         $start_date = date('Y-m-d',strtotime($arr_date[0]));
         $end_date = date('Y-m-d',strtotime($arr_date[1]));
 
-        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
         $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
@@ -119,7 +119,7 @@ class M_laporan extends CI_Model {
         $start_date = date('Y-m-d',strtotime($arr_date[0]));
         $end_date = date('Y-m-d',strtotime($arr_date[1]));
 
-        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.debit) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
         $this->db->join('pmm_detail_jurnal pdb','b.id = pdb.jurnal_id','left');
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');
@@ -140,7 +140,7 @@ class M_laporan extends CI_Model {
         $start_date = date('Y-m-d',strtotime($arr_date[0]));
         $end_date = date('Y-m-d',strtotime($arr_date[1]));
 
-        $this->db->select('c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
+        $this->db->select('b.id, c.id as coa_id, c.coa_number, c.coa, c.coa_parent, SUM(pdb.jumlah) as total, b.tanggal_transaksi, pdb.deskripsi, b.nomor_transaksi');
         $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
         $this->db->join('pmm_coa c','pdb.akun = c.id','left');
         $this->db->where('b.tanggal_transaksi >=',$start_date.' 00:00:00');

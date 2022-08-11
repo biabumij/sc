@@ -50,7 +50,6 @@ class Jurnal_umum extends CI_Controller {
 		
 		$this->db->select('b.*');
         $this->db->order_by('b.tanggal_transaksi','desc');
-        // $this->db->order_by('created_on','desc');
 		$query = $this->db->get('pmm_jurnal_umum b');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -311,6 +310,212 @@ class Jurnal_umum extends CI_Controller {
 		$this->db->update("pmm_jurnal_umum");
 		$this->session->set_flashdata('notif_success', 'Berhasil Menolak Jurnal Umum');
 		redirect("admin/biaya");
+	}
+
+    public function form($id)
+    {
+    	$where = array('id' => $id);
+
+        $data['akun'] = $this->db->get_where('pmm_coa',["status" => "PUBLISH"])->result_array();
+
+        $data['penerima'] = $this->db->select('nama,id')->get_where('penerima')->result_array();  
+
+        $this->db->select('c.*');
+        $this->db->join('pmm_coa_category cc','c.coa_category = cc.id','left');
+        $this->db->where('c.status','PUBLISH');
+        $this->db->where("cc.coa_category_number in ('5','6')");
+        $this->db->order_by('c.coa_number','asc');
+        $query = $this->db->get('pmm_coa c');
+        $data['akun_biaya'] = $query->result_array();
+
+        $get_data = $this->db->select('b.*')
+        ->from('pmm_jurnal_umum b ')
+        ->where('b.id',$id)
+        ->get()->row_array();
+        
+    	$data['data'] = $get_data;
+        
+		$this->load->view('pmm/jurnal_umum/form',$data);
+    }
+
+    public function delete_detail()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			
+			if($this->db->delete('pmm_detail_jurnal',array('id'=>$id))){
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
+
+    public function product_process()
+	{
+		$output['output'] = false;
+
+        $jurnal_detail_id = $this->input->post('jurnal_detail_id');
+		$jurnal_id = $this->input->post('jurnal_id');
+		$product = $this->input->post('product');
+		$deskripsi = $this->input->post('deskripsi');
+		$debit = str_replace(',', '.', $this->input->post('debit'));
+        $kredit = str_replace(',', '.', $this->input->post('kredit'));
+
+		$check = $this->db->get_where('pmm_detail_jurnal',array('jurnal_id'=>$jurnal_id,'akun'=>$product))->num_rows();
+
+		if(empty($id) && $check > 0){
+			$output['output'] = false;
+			$output['err'] = 'Akun Sudah Ditambahkan !!!';
+		}else {
+            $transaction_id = $this->pmm_model->GetNoEditBiaya();
+
+
+			$data_p = array(
+				'jurnal_id' => $jurnal_id,
+				'akun' => $product,
+				'deskripsi' => $deskripsi,
+				'debit' => $debit,
+                'kredit' => $kredit,
+                'transaction_id' => $transaction_id,
+			);
+			if(!empty($biaya_detail_id)){
+				$data_p['updated_by'] = $this->session->userdata('admin_id');
+				$this->db->insert('pmm_detail_jurnal',$data_p,array('id'=>$jurnal_id));
+			}else {	
+				$data_p['created_on'] = date('Y-m-d H:i:s');
+				$data_p['created_by'] = $this->session->userdata('admin_id');
+				$this->db->insert('pmm_detail_jurnal',$data_p,array('id'=>$jurnal_id));	
+			}
+
+			if ($this->db->trans_status() === FALSE) {
+				# Something went wrong.
+				$this->db->trans_rollback();
+				$output['output'] = false;
+			} 
+			else {
+				# Everything is Perfect. 
+				# Committing data to the database.
+				$this->db->trans_commit();
+				$output['output'] = true;
+			}
+		}
+	
+		
+		echo json_encode($output);	
+	}
+
+    public function main_table()
+	{	
+		$data = $this->pmm_model->TableMainJurnal($this->input->post('id'));
+		echo json_encode(array('data'=>$data));
+	}
+
+    public function table_detail()
+	{	
+		$data = $this->pmm_model->TableDetailJurnal($this->input->post('id'));
+		echo json_encode(array('data'=>$data));
+	}
+
+    public function get_jurnal_main()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+            $data = $this->db->select('b.*, sum(pdb.debit + pdb.kredit) as total, sum(pdb.debit) as total_debit, sum(pdb.kredit) as total_kredit')
+            ->from('pmm_jurnal_umum b ')
+            ->join('pmm_detail_jurnal pdb','b.id = pdb.jurnal_id','left')
+            ->where('b.id',$id)
+            ->get()->row_array();
+
+            $data['tanggal_transaksi'] = date('d-m-Y',strtotime($data['tanggal_transaksi']));
+			$output['output'] = $data;
+            
+		}
+		echo json_encode($output);
+	}
+
+    public function get_jurnal()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			$data = $this->db->select('*')->get_where('pmm_detail_jurnal',array('id'=>$id))->row_array();
+			$output['output'] = $data;
+		}
+		echo json_encode($output);
+	}
+
+    public function form_jurnal_main()
+	{
+		$output['output'] = false;
+
+		$form_id_jurnal_main = $this->input->post('form_id_jurnal_main');
+		$nomor_transaksi = $this->input->post('nomor_transaksi');
+		$tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
+        $memo = $this->input->post('memo');
+		$total = str_replace(',', '.', $this->input->post('total'));
+        $total_debit = str_replace(',', '.', $this->input->post('total_debit'));
+        $total_kredit = str_replace(',', '.', $this->input->post('total_kredit'));
+
+		$data = array(
+            'id' => $form_id_jurnal_main,
+			'tanggal_transaksi' => $tanggal_transaksi,
+            'memo' => $memo,
+            'total' => $total,
+            'total_debit' => $total_debit,
+            'total_kredit' => $total_kredit
+		);
+
+		if(!empty($id)){
+            $data['created_by'] = $this->session->userdata('admin_id');
+            $data['created_on'] = date('Y-m-d H:i:s');
+			if($this->db->update('pmm_jurnal_umum',$data,array('id'=>$form_id_jurnal_main))){
+				$output['output'] = true;
+			}
+		}else{
+			$data['updated_by'] = $this->session->userdata('admin_id');
+			if($this->db->update('pmm_jurnal_umum',$data,array('id'=>$form_id_jurnal_main))){
+				$output['output'] = true;
+			}
+		}
+		
+		echo json_encode($output);	
+	}
+
+    public function form_jurnal()
+	{
+		$output['output'] = false;
+
+		$form_id_jurnal = $this->input->post('form_id_jurnal');
+		$jurnal_id = $this->input->post('jurnal_id');
+		$akun = $this->input->post('akun');
+		$deskripsi = $this->input->post('deskripsi');
+		$debit = str_replace(',', '.', $this->input->post('debit'));
+        $kredit = str_replace(',', '.', $this->input->post('kredit'));
+
+		$data = array(
+            'jurnal_id' => $jurnal_id,
+			'akun' => $akun,
+			'deskripsi' => $deskripsi,
+			'debit' => $debit,
+            'kredit' => $kredit
+		);
+
+		if(!empty($id)){
+			$data['created_by'] = $this->session->userdata('admin_id');
+            $data['created_on'] = date('Y-m-d H:i:s');
+			if($this->db->update('pmm_detail_jurnal',$data,array('id'=>$form_id_jurnal))){
+				$output['output'] = true;
+			}
+		}else{
+            $data['updated_by'] = $this->session->userdata('admin_id');
+			if($this->db->update('pmm_detail_jurnal',$data,array('id'=>$form_id_jurnal))){
+				$output['output'] = true;
+			}
+		}
+		
+		echo json_encode($output);	
 	}
 
 }

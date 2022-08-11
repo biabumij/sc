@@ -71,18 +71,10 @@
                                             <?php foreach($detailBiaya as $d) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td>
-                                                <?= $d["coa"]; ?>
-                                                </td>
-                                                <td>
-                                                <?= $d["deskripsi"]; ?>
-                                                </td>
-                                                <td >
-                                                <?= $this->filter->Rupiah($d['debit']);?>
-                                                </td>
-                                                <td >
-                                                <?= $this->filter->Rupiah($d['kredit']);?>
-                                                </td>
+                                                <td style="text-align: left !important;"><?= $d["coa"]; ?></td>
+                                                <td style="text-align: left !important;"><?= $d["deskripsi"]; ?></td>
+                                                <td ><?= $this->filter->Rupiah($d['debit']);?></td>
+                                                <td ><?= $this->filter->Rupiah($d['kredit']);?></td>
                                             </tr>
                                             <?php
                                             $debit += $d['debit'];
@@ -141,18 +133,19 @@
                                             <?php
                                             }
                                             ?>
-                                            <?php
-                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 10){
-                                                ?>
-                                                <?php if($detail["status"] === "PAID") : ?>
+
+                                            <?php if($detail["status"] === "PAID") : ?>
                                                 <a target="_blank" href="<?= base_url('pmm/jurnal_umum/cetakJurnal/'.$detail["id"]) ?>" class="btn btn-success"><i class="fa fa-print"></i> Cetak</a>
-                                                <?php endif; ?>
-                                                <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pmm/jurnal_umum/delete/'.$detail['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
-                                                <!--<a  class="btn btn-primary"><i class="fa fa-edit"></i> Ubah</a>-->
                                                 <?php
-                                            }
-                                            ?>
-                                            
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                                ?>
+                                                <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pmm/jurnal_umum/delete/'.$detail['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
+                                                <a  href="<?= base_url('pmm/jurnal_umum/form/'.$detail['id']) ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+                                                <?php
+                                                }
+                                                ?>
+                                            <?php endif; ?>
+
                                         </div>
                                     </div>
                                 

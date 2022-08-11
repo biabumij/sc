@@ -183,11 +183,6 @@
 		$total_penjualan_all = 0;
 		$total_penjualan_all = $total_penjualan + $total_penjualan_limbah;
 
-		$akumulasi_biaya = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_biaya) as total')
-		->from('akumulasi_biaya pp')
-		->where("(pp.date_akumulasi between '$date1' and '$date2')")
-		->get()->row_array();
-
 		$biaya_umum_administratif_biaya = $this->db->select('sum(pdb.jumlah) as total')
 		->from('pmm_biaya pb ')
 		->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
@@ -224,8 +219,6 @@
 		->where("(tanggal_transaksi between '$date1' and '$date2')")
 		->get()->row_array();
 
-		$biaya_overhead_produksi = $akumulasi_biaya['total'];
-
 		$biaya_umum_administratif = $biaya_umum_administratif_biaya['total'] + $biaya_umum_administratif_jurnal['total'];
 
 		$biaya_lainnya = $biaya_lainnya_biaya['total'] + $biaya_lainnya_jurnal['total'];
@@ -234,7 +227,7 @@
 
 		$laba_kotor = $total_penjualan_all - $total_harga_pokok_pendapatan;
 
-		$total_biaya = $biaya_overhead_produksi +$biaya_umum_administratif + $biaya_lainnya;
+		$total_biaya = $biaya_umum_administratif + $biaya_lainnya;
 
 		$laba_sebelum_pajak = $laba_kotor - $total_biaya;
 
@@ -342,22 +335,6 @@
 	        </tr>
 			<tr class="table-active4">
 				<th width="100%" align="left"><b>BIAYA OPERASIONAL</b></th>
-	        </tr>
-			<tr class="table-active2">
-				<th width="10%" align="center"></th>
-				<th width="60%" align="left">Biaya Overhead Produksi</th>
-	            <th width="30%" align="center">
-					<table width="100%" border="0" cellpadding="0">
-						<tr>
-								<th align="left" width="10%">
-									<span>Rp.</span>
-								</th>
-								<th align="right" width="90%">
-									<span><?php echo number_format($biaya_overhead_produksi,0,',','.');?></span>
-								</th>
-							</tr>
-					</table>
-				</th>
 	        </tr>
 			<tr class="table-active2">
 				<th width="10%" align="center">6-60100</th>

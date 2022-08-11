@@ -26,7 +26,6 @@ class Biaya extends CI_Controller {
         $this->db->select('b.*, p.nama as penerima');
         $this->db->join('penerima p','b.penerima = p.id','left');
         $this->db->order_by('b.tanggal_transaksi','desc');
-        // $this->db->order_by('created_on','desc');
 		$query = $this->db->get('pmm_biaya b');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -241,7 +240,6 @@ class Biaya extends CI_Controller {
         }
 
     }
-
 
     public function cetakBiaya($id){
 
@@ -657,19 +655,219 @@ class Biaya extends CI_Controller {
 		redirect("admin/biaya");
 	}
 
-	 public function form($id)
+	public function form($id)
     {
-
     	$where = array('id' => $id);
-    	$data['akun'] = $this->pmm_finance->getAkunCoa();
-		$data['penerima'] = $this->pmm_model->getPenerima();
 
-    	if(!empty($id)){
-    		$data['edit'] = $this->db->get_where('pmm_biaya',array('id'=>$id))->row_array();
-    	}
+        $this->db->select('c.*');
+        $this->db->where('c.coa_category',3);
+        $this->db->where('c.status','PUBLISH');
+        $this->db->order_by('c.coa_number','asc');
+        $query = $this->db->get('pmm_coa c');
+        $data['akun'] = $query->result_array();
+
+        $data['penerima'] = $this->db->select('nama,id')->get_where('penerima')->result_array();  
+
+        $this->db->select('c.*');
+        $this->db->join('pmm_coa_category cc','c.coa_category = cc.id','left');
+        $this->db->where('c.status','PUBLISH');
+        $this->db->where("cc.coa_category_number in ('5','6')");
+        $this->db->order_by('c.coa_number','asc');
+        $query = $this->db->get('pmm_coa c');
+        $data['akun_biaya'] = $query->result_array();
+
+        $get_data = $this->db->select('b.*, c.coa, p.nama')
+        ->from('pmm_biaya b ')
+        ->join('pmm_coa c','b.bayar_dari = c.id','left')
+        ->join('penerima p','b.penerima = p.id','left')
+        ->where('b.id',$id)
+        ->get()->row_array();
+        
+    	$data['data'] = $get_data;
         
 		$this->load->view('pmm/biaya/form',$data);
     }
+
+    public function delete_detail()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			
+			if($this->db->delete('pmm_detail_biaya',array('id'=>$id))){
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
+
+    public function product_process()
+	{
+		$output['output'] = false;
+
+        $biaya_detail_id = $this->input->post('biaya_detail_id');
+		$biaya_id = $this->input->post('biaya_id');
+		$product = $this->input->post('product');
+		$deskripsi = $this->input->post('deskripsi');
+		$jumlah = str_replace(',', '.', $this->input->post('jumlah'));
+
+		$check = $this->db->get_where('pmm_detail_biaya',array('biaya_id'=>$biaya_id,'akun'=>$product))->num_rows();
+
+		if(empty($id) && $check > 0){
+			$output['output'] = false;
+			$output['err'] = 'Akun Sudah Ditambahkan !!!';
+		}else {
+            $transaction_id = $this->pmm_model->GetNoEditBiaya();
+
+
+			$data_p = array(
+				'biaya_id' => $biaya_id,
+				'akun' => $product,
+				'deskripsi' => $deskripsi,
+				'jumlah' => $jumlah,
+                'transaction_id' => $transaction_id,
+			);
+			if(!empty($biaya_detail_id)){
+				$data_p['updated_by'] = $this->session->userdata('admin_id');
+				$this->db->insert('pmm_detail_biaya',$data_p,array('id'=>$biaya_id));
+			}else {	
+				$data_p['created_on'] = date('Y-m-d H:i:s');
+				$data_p['created_by'] = $this->session->userdata('admin_id');
+				$this->db->insert('pmm_detail_biaya',$data_p,array('id'=>$biaya_id));	
+			}
+
+			if ($this->db->trans_status() === FALSE) {
+				# Something went wrong.
+				$this->db->trans_rollback();
+				$output['output'] = false;
+			} 
+			else {
+				# Everything is Perfect. 
+				# Committing data to the database.
+				$this->db->trans_commit();
+				$output['output'] = true;
+			}
+		}
+	
+		
+		echo json_encode($output);	
+	}
+
+    public function main_table()
+	{	
+		$data = $this->pmm_model->TableMainBiaya($this->input->post('id'));
+		echo json_encode(array('data'=>$data));
+	}
+
+    public function table_detail()
+	{	
+		$data = $this->pmm_model->TableDetailBiaya($this->input->post('id'));
+		echo json_encode(array('data'=>$data));
+	}
+
+    public function form_biaya_main()
+	{
+		$output['output'] = false;
+
+		$form_id_biaya_main = $this->input->post('form_id_biaya_main');
+		$penerima = $this->input->post('penerima');
+		$nomor_transaksi = $this->input->post('nomor_transaksi');
+		$tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
+        $bayar_dari = $this->input->post('bayar_dari');
+        $memo = $this->input->post('memo');
+		$total = str_replace(',', '.', $this->input->post('total'));
+        $total = $this->input->post('total');
+
+		$data = array(
+            'id' => $form_id_biaya_main,
+			'penerima' => $penerima,
+			'tanggal_transaksi' => $tanggal_transaksi,
+			'bayar_dari' => $bayar_dari,
+            'memo' => $memo,
+            'total' => $total
+		);
+
+		if(!empty($id)){
+			$data['created_by'] = $this->session->userdata('admin_id');
+            $data['created_on'] = date('Y-m-d H:i:s');
+			if($this->db->update('pmm_biaya',$data,array('id'=>$form_id_biaya_main))){
+				$output['output'] = true;
+			}
+		}else{
+            $data['updated_by'] = $this->session->userdata('admin_id');
+			if($this->db->update('pmm_biaya',$data,array('id'=>$form_id_biaya_main))){
+				$output['output'] = true;
+			}
+		}
+		
+		echo json_encode($output);	
+	}
+
+    public function form_biaya()
+	{
+		$output['output'] = false;
+
+		$form_id_biaya = $this->input->post('form_id_biaya');
+		$biaya_id = $this->input->post('biaya_id');
+		$akun = $this->input->post('akun');
+		$deskripsi = $this->input->post('deskripsi');
+		$jumlah = str_replace(',', '.', $this->input->post('jumlah'));
+
+		$data = array(
+            'biaya_id' => $biaya_id,
+			'akun' => $akun,
+			'deskripsi' => $deskripsi,
+			'jumlah' => $jumlah
+		);
+
+		if(!empty($id)){
+			$data['created_by'] = $this->session->userdata('admin_id');
+            $data['created_on'] = date('Y-m-d H:i:s');
+			if($this->db->update('pmm_detail_biaya',$data,array('id'=>$form_id_biaya))){
+				$output['output'] = true;
+			}
+		}else{
+            $data['updated_by'] = $this->session->userdata('admin_id');
+			if($this->db->update('pmm_detail_biaya',$data,array('id'=>$form_id_biaya))){
+				$output['output'] = true;
+			}
+		}
+		
+		echo json_encode($output);	
+	}
+
+    public function get_biaya_main()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+            $data = $this->db->select('b.*, sum(pdb.jumlah) as total')
+            ->from('pmm_biaya b ')
+            ->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left')
+            ->join('pmm_coa c','b.bayar_dari = c.id','left')
+            ->join('penerima p','b.penerima = p.id','left')
+            ->where('b.id',$id)
+            ->get()->row_array();
+
+            $data['tanggal_transaksi'] = date('d-m-Y',strtotime($data['tanggal_transaksi']));
+			$output['output'] = $data;
+            
+		}
+		echo json_encode($output);
+	}
+
+    public function get_biaya()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+			$data = $this->db->select('*')->get_where('pmm_detail_biaya',array('id'=>$id))->row_array();
+			$output['output'] = $data;
+		}
+		echo json_encode($output);
+	}
+
+    
 
 }
 

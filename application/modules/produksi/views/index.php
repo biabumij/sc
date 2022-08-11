@@ -49,7 +49,6 @@
                                             <li><a href="<?= site_url('produksi/form_hpp'); ?>">HPP Pergerakan Bahan Jadi</a></li>
                                             <li><a href="<?= site_url('produksi/form_akumulasi_bahan_baku'); ?>">Akumulasi Pergerakan Bahan Baku</a></li>
                                             <li><a href="<?= site_url('produksi/form_akumulasi'); ?>">Akumulasi Pergerakan Bahan Jadi</a></li>
-                                            <li><a href="<?= site_url('produksi/form_akumulasi_biaya'); ?>">Akumulasi Biaya Overhead Produksi</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -66,7 +65,6 @@
                                     <li role="presentation"><a href="#hpp" aria-controls="hpp" role="tab" data-toggle="tab">HPP Pergerakan Bahan Jadi</a></li>
                                     <li role="presentation"><a href="#akumulasi_bahan_baku" aria-controls="akumulasi_bahan_baku" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Baku</a>
                                     <li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Jadi</a>
-                                    <li role="presentation"><a href="#akumulasi_biaya" aria-controls="akumulasi_biaya" role="tab" data-toggle="tab">Akumulasi Biaya Overhead Produksi</a>
                                 </ul>
 
                                 <div class="tab-content">
@@ -369,37 +367,6 @@
 									</div>
 										
 									<!-- End Akumulasi -->
-
-                                    <!-- Akumulasi Biaya -->
-									
-                                    <div role="tabpanel" class="tab-pane" id="akumulasi_biaya">
-										<div class="col-sm-4">
-											<input type="text" id="filter_date_akumulasi_biaya" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
-										</div>
-										<br />
-										<br />										
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_akumulasi_biaya" style="width:100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="5%">No</th>
-														<th>Tanggal</th>
-														<th>Total Nilai Biaya</th>
-														<th>Status</th>
-                                                        <th>Tindakan</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                </tbody>
-                                                <tfoot>
-                                                   
-                                                </tfoot>
-                                            </table>
-                                        </div>
-									</div>
-										
-									<!-- End Akumulasi Biaya -->
 										           
                                 </div>
                             </div>

@@ -24,7 +24,7 @@
 				<td><?= $bl['tanggal_transaksi'];?></td>
 				<td>BIAYA</td>
 				<td><?= $bl['coa'];?></td>
-				<td><?= $bl['nomor_transaksi'];?></td>
+				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $bl["id"]) .'" target="_blank">'. $bl["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $bl['deskripsi'];?></td>
 				<td class="text-right"><?= $this->filter->Rupiah($bl['total']);?></td>
 			</tr>
@@ -43,7 +43,7 @@
 				<td><?= $blj['tanggal_transaksi'];?></td>
 				<td>JURNAL</td>
 				<td><?= $blj['coa'];?></td>
-				<td><?= $blj['nomor_transaksi'];?></td>
+				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $blj["id"]) .'" target="_blank">'. $blj["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $blj['deskripsi'];?></td>
 				<td class="text-right"><?= $this->filter->Rupiah($blj['total']);?></td>
 			</tr>
@@ -73,7 +73,7 @@
 				<td><?= $row['tanggal_transaksi'];?></td>
 				<td>BIAYA</td>
 				<td><?= $row['coa'];?></td>
-				<td><?= $row['nomor_transaksi'];?></td>
+				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $row["id"]) .'" target="_blank">'. $row["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row['deskripsi'];?></td>
 				<td class="text-right"><?= $this->filter->Rupiah($row['total']);?></td>
 			</tr>
@@ -91,7 +91,7 @@
 				<td><?= $row2['tanggal_transaksi'];?></td>
 				<td>JURNAL</td>
 				<td><?= $row2['coa'];?></td>
-				<td><?= $row2['nomor_transaksi'];?></td>
+				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $row2["id"]) .'" target="_blank">'. $row2["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row2['deskripsi'];?></td>
 				<td class="text-right"><?= $this->filter->Rupiah($row2['total']);?></td>
 			</tr>
@@ -121,7 +121,7 @@
 			<td><?= $row['tanggal_transaksi'];?></td>
 				<td>BIAYA</td>
 				<td><?= $row['coa'];?></td>
-				<td><?= $row['nomor_transaksi'];?></td>
+				<td><?= "<a href=" . base_url('pmm/biaya/detail_biaya/' . $row["id"]) .'" target="_blank">'. $row["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row['deskripsi'];?></td>
 				<td class="text-right"><?= $this->filter->Rupiah($row['total'] + $total_parent);?></td>
 			</tr>
@@ -139,7 +139,7 @@
 			<td><?= $row2['tanggal_transaksi'];?></td>
 				<td>JURNAL</td>
 				<td><?= $row2['coa'];?></td>
-				<td><?= $row2['nomor_transaksi'];?></td>
+				<td><?= "<a href=" . base_url('pmm/jurnal_umum/detailJurnal/' . $row2["id"]) .'" target="_blank">'. $row2["nomor_transaksi"] . "</a>";?></td>
 				<td><?= $row2['deskripsi'];?></td>
 				<td class="text-right"><?= $this->filter->Rupiah($row2['total'] + $total_parent);?></td>
 			</tr>

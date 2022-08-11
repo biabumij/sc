@@ -3946,5 +3946,133 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
+    function TableMainBiaya($id)
+    {
+        $data = array();
+        $this->db->select('b.*, c.coa as bayar_dari, p.nama, lk.lampiran');
+        $this->db->join('penerima p','b.penerima = p.id','left');
+        $this->db->join('pmm_coa c','b.bayar_dari = c.id','left');
+        $this->db->join('pmm_lampiran_biaya lk','b.id = lk.biaya_id','left');	
+        $this->db->where('b.id',$id);
+        $this->db->order_by('b.id','asc');
+        $query = $this->db->get('pmm_biaya b');
+	
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['bayar_dari'] = $row['bayar_dari'];
+                $row['nomor_transaksi']= $row['nomor_transaksi'];
+                $row['tanggal_transaksi']= date('d F Y',strtotime($row['tanggal_transaksi']));
+				$row['total']= number_format($row['total'],0,',','.');
+                $row['memo']= $row['memo'];
+                $row['lampiran'] = "<a href=" . base_url('uploads/biaya/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";  
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success">Update Biaya </a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        
+        return $data;   
+    }
+
+    function TableDetailBiaya($id)
+    {
+        $data = array();
+        $this->db->select('pdb.*, c.coa as akun');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('pdb.biaya_id',$id);
+        $this->db->order_by('pdb.id','asc');
+        $query = $this->db->get('pmm_detail_biaya pdb');
+	
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['akun'] = $row['akun'];
+                $row['deskripsi']= $row['deskripsi'];
+				$row['jumlah']= number_format($row['jumlah'],0,',','.');
+                $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        
+        return $data;   
+    }
+
+    function GetNoEditBiaya()
+    {
+
+        $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
+        $output = false;
+
+        $query = $this->db->select('id')->order_by('id','desc')->get('transactions');
+        if($query->num_rows() > 0){
+            $id = $query->row_array()['id'] + 1;
+        }else {
+            $id = 1;
+        }
+        $output = sprintf($id);
+        return $output;
+            
+    }
+
+    function TableMainJurnal($id)
+    {
+        $data = array();
+        $this->db->select('b.*, lk.lampiran');
+        $this->db->join('pmm_lampiran_jurnal lk','b.id = lk.jurnal_id','left');	
+        $this->db->where('b.id',$id);
+        $this->db->order_by('b.id','asc');
+        $query = $this->db->get('pmm_jurnal_umum b');
+	
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['nomor_transaksi']= $row['nomor_transaksi'];
+                $row['tanggal_transaksi']= date('d F Y',strtotime($row['tanggal_transaksi']));
+				$row['total']= number_format($row['total'],0,',','.');
+                $row['total_debit']= number_format($row['total_debit'],0,',','.');
+                $row['total_kredit']= number_format($row['total_kredit'],0,',','.');
+                $row['memo']= $row['memo'];
+                $row['lampiran'] = "<a href=" . base_url('uploads/jurnal_umum/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";  
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success">Update Jutrnal Umum </a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        
+        return $data;   
+    }
+
+    function TableDetailJurnal($id)
+    {
+        $data = array();
+        $this->db->select('pdb.*, c.coa as akun');
+        $this->db->join('pmm_coa c','pdb.akun = c.id','left');
+        $this->db->where('pdb.jurnal_id',$id);
+        $this->db->order_by('pdb.id','asc');
+        $query = $this->db->get('pmm_detail_jurnal pdb');
+        
+	
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['akun'] = $row['akun'];
+                $row['deskripsi']= $row['deskripsi'];
+				$row['debit']= number_format($row['debit'],0,',','.');
+                $row['kredit']= number_format($row['kredit'],0,',','.');
+                $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        
+        return $data;   
+    }
+
 }
 ?>
