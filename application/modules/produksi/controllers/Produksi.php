@@ -1706,6 +1706,7 @@ class Produksi extends Secure_Controller {
 		$date_akumulasi = $this->input->post('date_akumulasi');
 		$total_nilai_keluar = str_replace('.', '', $this->input->post('total_nilai_keluar'));
 		$total_nilai_keluar_2 = str_replace('.', '', $this->input->post('total_nilai_keluar_2'));
+		$total_nilai_akhir = str_replace('.', '', $this->input->post('total_nilai_akhir'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -1714,6 +1715,7 @@ class Produksi extends Secure_Controller {
 			'date_akumulasi' => date('Y-m-d', strtotime($date_akumulasi)),
 			'total_nilai_keluar' => $total_nilai_keluar,
 			'total_nilai_keluar_2' => $total_nilai_keluar_2,
+			'total_nilai_akhir' => $total_nilai_akhir,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
@@ -1744,7 +1746,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, , pp.total_nilai_keluar_2, pp.status');
+        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, , pp.total_nilai_keluar_2, pp.total_nilai_akhir, pp.status');
 		$this->db->order_by('pp.date_akumulasi','desc');
 		$query = $this->db->get('akumulasi_bahan_baku pp');
 		
@@ -1756,6 +1758,7 @@ class Produksi extends Secure_Controller {
                 $row['date_akumulasi'] = date('d F Y',strtotime($row['date_akumulasi']));
                 $row['total_nilai_keluar'] = number_format($row['total_nilai_keluar'],0,',','.');
 				$row['total_nilai_keluar_2'] = number_format($row['total_nilai_keluar_2'],0,',','.');
+				$row['total_nilai_akhir'] = number_format($row['total_nilai_akhir'],0,',','.');
 				$row['status'] = $row['status'];
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasiBahanBaku('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
                 
@@ -1794,6 +1797,7 @@ class Produksi extends Secure_Controller {
 	{
 		$date_akumulasi = $this->input->post('date_akumulasi');
 		$total_nilai_keluar = str_replace('.', '', $this->input->post('total_nilai_keluar'));
+		$total_nilai_akhir = str_replace('.', '', $this->input->post('total_nilai_akhir'));
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -1801,6 +1805,7 @@ class Produksi extends Secure_Controller {
 		$arr_insert = array(
 			'date_akumulasi' => date('Y-m-d', strtotime($date_akumulasi)),
 			'total_nilai_keluar' => $total_nilai_keluar,
+			'total_nilai_akhir' => $total_nilai_akhir,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
@@ -1831,7 +1836,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, pp.status');
+        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, pp.total_nilai_akhir, pp.status');
 		$this->db->order_by('pp.date_akumulasi','desc');
 		$query = $this->db->get('akumulasi pp');
 		
@@ -1842,6 +1847,7 @@ class Produksi extends Secure_Controller {
                 $row['no'] = $key+1;
                 $row['date_akumulasi'] = date('d F Y',strtotime($row['date_akumulasi']));
                 $row['total_nilai_keluar'] = number_format($row['total_nilai_keluar'],0,',','.');
+				$row['total_nilai_akhir'] = number_format($row['total_nilai_akhir'],0,',','.');
 				$row['status'] = $row['status'];
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasi('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
                 

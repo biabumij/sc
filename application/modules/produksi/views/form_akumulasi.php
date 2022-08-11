@@ -53,8 +53,9 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">NO.</th>
-                                                    <th width="50%">URAIAN</th>
-													<th width="45%">TOTAL NILAI KELUAR</th>
+                                                    <th width="55%">URAIAN</th>
+													<th width="20%">TOTAL NILAI KELUAR</th>
+                                                    <th width="20%">TOTAL NILAI AKHIR</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -64,6 +65,9 @@
                                                     <td>Total Nilai Keluar Pergerakan Bahan Jadi</td>
 													<td>
                                                         <input type="text" name="total_nilai_keluar" id="total_nilai_keluar" class="form-control numberformat text-right" required="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="total_nilai_akhir" id="total_nilai_akhir" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                 </tr>
                                             </tbody>

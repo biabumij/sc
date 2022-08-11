@@ -54,8 +54,9 @@
                                                 <tr>
                                                     <th width="5%">NO.</th>
                                                     <th width="35%">URAIAN</th>
-													<th width="30%">TOTAL NILAI KELUAR BOULDER</th>
-                                                    <th width="30%">TOTAL NILAI KELUAR BBM</th>
+													<th width="20%">TOTAL NILAI KELUAR BOULDER</th>
+                                                    <th width="20%">TOTAL NILAI KELUAR BBM</th>
+                                                    <th width="20%">TOTAL NILAI AKHIR</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -68,6 +69,9 @@
                                                     </td>
                                                     <td>
                                                         <input type="text" name="total_nilai_keluar_2" id="total_nilai_keluar_2" class="form-control numberformat text-right" required="" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="total_nilai_akhir" id="total_nilai_akhir" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                 </tr>
                                             </tbody>

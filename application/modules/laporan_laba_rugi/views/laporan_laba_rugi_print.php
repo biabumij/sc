@@ -109,7 +109,12 @@
 
 		<?php
 
-		$akumulasi = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total')
+		$akumulasi = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total, SUM(pp.total_nilai_keluar_2) as total_2, SUM(pp.total_nilai_akhir) as total_akhir')
+		->from('akumulasi_bahan_baku pp')
+		->where("(pp.date_akumulasi between '$date1' and '$date2')")
+		->get()->row_array();
+
+		$akumulasi2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total, SUM(pp.total_nilai_akhir) as total_akhir')
 		->from('akumulasi pp')
 		->where("(pp.date_akumulasi between '$date1' and '$date2')")
 		->get()->row_array();
@@ -231,7 +236,13 @@
 
 		$laba_sebelum_pajak = $laba_kotor - $total_biaya;
 
-		$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_sebelum_pajak / $total_penjualan_all)  * 100:0;
+		$nilai_persediaan_bahan_baku = $akumulasi['total_akhir'];
+
+		$nilai_persediaan_barang_jadi = $akumulasi2['total_akhir'];
+
+		$total = $laba_sebelum_pajak + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
+
+		$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
 
 		?>
 
@@ -400,6 +411,57 @@
 								</th>
 								<th align="right" width="90%">
 									<span><b><?php echo number_format($laba_sebelum_pajak,0,',','.');?></b></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+	            <th width="70%" align="left"><b>Nilai Persediaan Bahan Baku</b></th>
+	            <th width="30%" align="right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="10%">
+									<span><b>Rp.</b></span>
+								</th>
+								<th align="right" width="90%">
+									<span><b><?php echo number_format($nilai_persediaan_bahan_baku,0,',','.');?></b></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+	            <th width="70%" align="left"><b>Nilai Persediaan Barang Jadi</b></th>
+	            <th width="30%" align="right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="10%">
+									<span><b>Rp.</b></span>
+								</th>
+								<th align="right" width="90%">
+									<span><b><?php echo number_format($nilai_persediaan_barang_jadi,0,',','.');?></b></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th width="100%" align="left"></th>
+	        </tr>
+			<?php
+				$styleColor = $total < 0 ? 'color:red' : 'color:black';
+			?>	
+			<tr class="table-active3">
+	            <th width="70%" align="left"><b>Total</b></th>
+	            <th width="30%" align="right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th align="left" width="10%">
+									<span><b>Rp.</b></span>
+								</th>
+								<th align="right" width="90%">
+									<span><b><?php echo number_format($total,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>

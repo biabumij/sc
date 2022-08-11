@@ -321,6 +321,7 @@
 														<th>Tanggal</th>
 														<th>Total Nilai Keluar Boulder</th>
                                                         <th>Total Nilai Keluar Solar</th>
+                                                        <th>Total Nilai Persediaan Akhirr</th>
 														<th>Status</th>
                                                         <th>Tindakan</th>
                                                     </tr>
@@ -352,6 +353,7 @@
                                                         <th width="5%">No</th>
 														<th>Tanggal</th>
 														<th>Total Nilai Keluar</th>
+                                                        <th>Total Nilai Akhir</th>
 														<th>Status</th>
                                                         <th>Tindakan</th>
                                                     </tr>
@@ -766,8 +768,12 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4, 5, 6, 7],
+                    "targets": [0, 1, 6, 7],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2, 3, 4, 5],
+                    "className": 'text-right',
                 }
             ],
         });
@@ -830,6 +836,9 @@
                     "data": "total_nilai_keluar_2"
                 },
                 {
+                    "data": "total_nilai_akhir"
+                },
+                {
                     "data": "status"
                 },
                 {
@@ -837,7 +846,11 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4, 5],
+                    "targets": [0, 1, 5, 6],
+                    "className": 'text-center',
+                },
+                {
+                    "targets": [2, 3, 4],
                     "className": 'text-center',
                 }
             ],
@@ -899,6 +912,9 @@
                     "data": "total_nilai_keluar"
                 },
                 {
+                    "data": "total_nilai_akhir"
+                },
+                {
                     "data": "status"
                 },
                 {
@@ -906,8 +922,12 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4],
+                    "targets": [0, 1, 4, 5],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2, 3],
+                    "className": 'text-right',
                 }
             ],
         });

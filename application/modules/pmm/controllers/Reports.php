@@ -7110,7 +7110,12 @@ class Reports extends CI_Controller {
 
 			<?php
 
-			$akumulasi = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total')
+			$akumulasi = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total, SUM(pp.total_nilai_keluar_2) as total_2, SUM(pp.total_nilai_akhir) as total_akhir')
+			->from('akumulasi_bahan_baku pp')
+			->where("(pp.date_akumulasi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$akumulasi2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total, SUM(pp.total_nilai_akhir) as total_akhir')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->row_array();
@@ -7232,7 +7237,13 @@ class Reports extends CI_Controller {
 
 			$laba_sebelum_pajak = $laba_kotor - $total_biaya;
 
-			$persentase_laba_sebelum_pajak = ($total_penjualan_all!=0)?($laba_sebelum_pajak / $total_penjualan_all)  * 100:0;
+			$nilai_persediaan_bahan_baku = $akumulasi['total_akhir'];
+
+			$nilai_persediaan_barang_jadi = $akumulasi2['total_akhir'];
+
+			$total = $laba_sebelum_pajak + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
+
+			$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
 			
 	        ?>
 
@@ -7412,6 +7423,63 @@ class Reports extends CI_Controller {
 				</th>
 	        </tr>
 			<tr class="table-active3">
+				<th colspan="5"></th>
+			</tr>
+			<tr class="table-active3">
+	            <th colspan="4" class="text-left">Persediaan Bahan Baku</th>
+	            <th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_persediaan_bahan_baku,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+	            <th colspan="4" class="text-left">Persediaan Barang Jadi</th>
+	            <th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_persediaan_barang_jadi,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th colspan="5"></th>
+			</tr>
+			<?php
+				$styleColor = $total < 0 ? 'color:red' : 'color:black';
+			?>
+			<tr class="table-active3">
+	            <th colspan="4" class="text-left">Total</th>
+	            <th class="text-right" style="<?php echo $styleColor ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<?php
+				$styleColor = $persentase < 0 ? 'color:red' : 'color:black';
+			?>
+			<tr class="table-active3">
 	            <th colspan="4" class="text-left">Presentase</th>
 	            <th class="text-right" style="<?php echo $styleColor ?>">
 					<table width="100%" border="0" cellpadding="0">
@@ -7420,7 +7488,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($persentase_laba_sebelum_pajak,0,',','.');?> %</span>
+									<span><?php echo number_format($persentase,0,',','.');?> %</span>
 								</th>
 							</tr>
 					</table>
