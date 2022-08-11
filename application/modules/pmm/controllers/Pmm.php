@@ -1698,9 +1698,6 @@ class Pmm extends CI_Controller {
         $all_revenue = $this->pmm_model->getRevenueAll($arr_date);
         $chart_revenue[] = number_format($all_revenue['total'],0,',','.');
 
-		$all_revenuecostakumulasibiaya = $this->pmm_model->getRevenueCostAllAkumulasiBiaya($arr_date);
-        $chart_revenuecostakumulasibiaya[] = number_format($all_revenuecostakumulasibiaya['total'],0,',','.');
-
 		$all_revenuecostadministrasibiaya = $this->pmm_model->getRevenueCostAllAdministrasiBiaya($arr_date);
         $chart_revenuecostadministrasibiaya[] = number_format($all_revenuecostadministrasibiaya['total'],0,',','.');
 
@@ -1714,9 +1711,9 @@ class Pmm extends CI_Controller {
         $chart_revenuecostlainnyajurnal[] = number_format($all_revenuecostlainnyajurnal['total'],0,',','.');
 
 		$all_revenuecost = $this->pmm_model->getRevenueCostAll($arr_date);
-        $chart_revenuecost[] = number_format($all_revenuecost['total'] + $all_revenuecostakumulasibiaya['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total'],0,',','.');
+        $chart_revenuecost[] = number_format($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total'],0,',','.');
 
-        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostakumulasibiaya['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total']);
+        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total']);
         $chart_laba[] = number_format($all_laba,0,',','.');
 
 		if($all_revenue['total'] > 0){
