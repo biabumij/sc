@@ -6711,7 +6711,7 @@ class Reports extends CI_Controller {
 					</table>
 				</th>
 				<th class="text-center">Liter</th>
-				<th class="text-center"><?php echo number_format($total_volume_produksi_solar,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_solar,2,',','.');?></th>
 	            <th class="text-center"><?php echo number_format($total_harga_produksi_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi_solar,0,',','.');?></th>
 			</tr>
