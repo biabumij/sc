@@ -93,7 +93,7 @@
 			<table cellpadding="2" width="98%">
 			<tr class="table-judul">
                 <th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
-                <th align="center" width="30%" colspan="2">URAIAN</th>
+                <th align="center" width="30%">URAIAN</th>
 				<th align="center" width="10%" rowspan="2">&nbsp; <br />TANGGAL</th>
 				<th align="center" width="10%" rowspan="2">&nbsp; <br />PRODUK</th>
                 <th align="center" width="8%" rowspan="2">&nbsp; <br />SATUAN</th>
@@ -112,7 +112,7 @@
             		?>
             		<tr class="table-baris1-bold">
             			<td align="center"><?php echo $key + 1;?></td>
-            			<td align="left" colspan="4"><?php echo $row['name'];?></td>
+            			<td align="left" colspan="3"><?php echo $row['name'];?></td>
             			<td align="center"><?php echo $row['measure'];?></td>
             			<td align="right"><?php echo $row['volume'];?></td>
 						<td align="right"></td>
@@ -133,7 +133,7 @@
             			?>
             			<tr class="table-baris1">
 	            			<td align="center"></td>
-	            			<td colspan="2"><?php echo $mat['purchase_order_id'];?></td>
+	            			<td><?php echo $mat['purchase_order_id'];?></td>
 							<td align="center"><?php echo $mat['date_receipt'];?></td>
 	            			<td><?php echo $mat['nama_produk'];?></td>
 	            			<td align="center"><?php echo $mat['measure'];?></td>
