@@ -6326,21 +6326,25 @@ class Reports extends CI_Controller {
 			->where("pph.status = 'PUBLISH'")
 			->get()->row_array();
 
-			$akumulasi_bahan_baku = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar, pp.total_nilai_keluar_2 as total_nilai_keluar_2')
+			$akumulasi_bahan_baku = $this->db->select('pp.date_akumulasi, pp.total_nilai_keluar as total_nilai_keluar, pp.total_nilai_keluar_2 as total_nilai_keluar_2, pp.bpp as bpp')
 			->from('akumulasi_bahan_baku pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->result_array();
+			file_put_contents("D:\\akumulasi_bahan_baku.txt", $this->db->last_query());
 
 			$total_akumulasi_bahan_baku = 0;
 			$total_akumulasi_bahan_baku_2 = 0;
+			$total_bpp = 0;
 
 			foreach ($akumulasi_bahan_baku as $b){
 				$total_akumulasi_bahan_baku += $b['total_nilai_keluar'];
 				$total_akumulasi_bahan_baku_2 += $b['total_nilai_keluar_2'];
+				$total_bpp += $b['bpp'];
 			}
 
 			$akumulasi_nilai_bahan_baku = $total_akumulasi_bahan_baku;
 			$akumulasi_nilai_bahan_baku_2 = $total_akumulasi_bahan_baku_2;
+			$akumulasi_nilai_bahan_baku_3 = $total_bpp;
 			
 			$total_volume_produksi = $produksi_harian['used'];
 			$total_nilai_produksi = $akumulasi_nilai_bahan_baku;
@@ -6387,7 +6391,8 @@ class Reports extends CI_Controller {
 			$total_harga_produksi_akhir_solar = round($total_harga_pembelian_akhir_solar,0);
 			$total_nilai_produksi_akhir_solar = $total_volume_produksi_akhir_solar * $total_harga_produksi_akhir_solar;
 
-			$total_volume_produksi_solar = $total_volume_pembelian_akhir_solar - $total_volume_produksi_akhir_solar;
+			$total_volume_produksi_solar_fix = $total_volume_pembelian_akhir_solar - $total_volume_produksi_akhir_solar;
+			$total_volume_produksi_solar = $total_volume_produksi_solar_fix * $akumulasi_nilai_bahan_baku_3;
 			$total_nilai_produksi_solar =  $akumulasi_nilai_bahan_baku_2;
 			$total_harga_produksi_solar = ($total_volume_produksi_solar!=0)?($total_nilai_produksi_solar / $total_volume_produksi_solar)  * 1:0;
 			//END PERGERAKAN BAHAN BAKU

@@ -1707,6 +1707,7 @@ class Produksi extends Secure_Controller {
 		$total_nilai_keluar = str_replace('.', '', $this->input->post('total_nilai_keluar'));
 		$total_nilai_keluar_2 = str_replace('.', '', $this->input->post('total_nilai_keluar_2'));
 		$total_nilai_akhir = str_replace('.', '', $this->input->post('total_nilai_akhir'));
+		$bpp = $this->input->post('bpp');
 
 		$this->db->trans_start(); # Starting Transaction
 		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
@@ -1716,6 +1717,7 @@ class Produksi extends Secure_Controller {
 			'total_nilai_keluar' => $total_nilai_keluar,
 			'total_nilai_keluar_2' => $total_nilai_keluar_2,
 			'total_nilai_akhir' => $total_nilai_akhir,
+			'bpp' => $bpp,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')

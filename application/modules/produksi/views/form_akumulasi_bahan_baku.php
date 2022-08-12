@@ -74,6 +74,23 @@
                                                         <input type="text" name="total_nilai_akhir" id="total_nilai_akhir" class="form-control numberformat text-right" required="" />
                                                     </td>
                                                 </tr>
+                                                <tr>
+
+                                                    <td style="vertical-align:middle">2.</td>
+                                                    <td style="vertical-align:middle">Apakah ada produksi?</td>
+													<td>
+                                                        <table width="100%">
+                                                            <tr>
+                                                                <td width="20%">YA </td>
+                                                                <td><input type="checkbox" name="bpp" id="bpp" value="1"/></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="20%">TIDAK </td>
+                                                                <td><input type="checkbox" name="bpp" id="bpp" value="0"/></td>
+                                                            </tr>
+                                                        <table>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>    
                                     </div>
