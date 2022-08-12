@@ -1028,6 +1028,111 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
+
+	public function cetak_penerimaan_pembelian_per_hari()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$purchase_order_no = $this->input->get('purchase_order_no');
+		$filter_material = $this->input->get('filter_material');
+		$start_date = false;
+		$end_date = false;
+		$total = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
+			
+			$data['filter_date'] = $filter_date;
+
+			$this->db->select('ppo.supplier_id,prm.measure as measure,ps.nama as name, prm.harga_satuan as price,SUM(prm.volume) as volume, SUM(prm.price) as total_price');
+			if(!empty($start_date) && !empty($end_date)){
+				$this->db->where('prm.date_receipt >=',$start_date);
+				$this->db->where('prm.date_receipt <=',$end_date);
+			}
+			if(!empty($supplier_id)){
+				$this->db->where('ppo.supplier_id',$supplier_id);
+			}
+			if(!empty($filter_material)){
+				$this->db->where_in('prm.material_id',$filter_material);
+			}
+			if(!empty($purchase_order_no)){
+				$this->db->where('prm.purchase_order_id',$purchase_order_no);
+			}
+
+			$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
+			$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id');
+			$this->db->where("prm.material_id in (13,15)");
+			$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+			$this->db->group_by('ppo.supplier_id');
+			$this->db->order_by('ps.nama','asc');
+			$query = $this->db->get('pmm_purchase_order ppo');
+
+
+			$no = 1;
+			if($query->num_rows() > 0){
+
+				foreach ($query->result_array() as $key => $sups) {
+
+					$mats = array();
+					$materials = $this->pmm_model->GetReceiptMatHari($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material);
+					if(!empty($materials)){
+						foreach ($materials as $key => $row) {
+							$arr['no'] = $key + 1;
+							$arr['purchase_order_id'] = $row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');
+							$arr['date_receipt'] = date('d-m-Y',strtotime($row['date_receipt']));
+							$arr['measure'] = $row['measure'];
+							$arr['nama_produk'] = $row['nama_produk'];
+							$arr['volume'] = number_format($row['volume'],2,',','.');
+							$arr['price'] = number_format($row['price'],0,',','.');
+							$arr['total_price'] = number_format($row['total_price'],0,',','.');
+							
+							
+							$arr['name'] = $sups['name'];
+							$mats[] = $arr;
+						}
+						$sups['mats'] = $mats;
+						$total += $sups['total_price'];
+						$sups['no'] =$no;
+						$sups['volume'] = number_format($sups['volume'],2,',','.');
+						$sups['total_price'] = number_format($sups['total_price'],0,',','.');
+
+						$arr_data[] = $sups;
+						$no++;
+					}
+					
+					
+				}
+			}
+
+			
+			$data['data'] = $arr_data;
+			$data['total'] = $total;
+	        $html = $this->load->view('laporan_pembelian/001_cetak_penerimaan_pembelian_per_hari',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('BBJ - Laporan Pembelian');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('laporan-pembelian.pdf', 'I');
+	        
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
 	
 	public function cetak_penerimaan_pembelian_sewa_alat()
 	{

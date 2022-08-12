@@ -522,6 +522,90 @@ class Receipt_material extends CI_Controller {
 		'total_nilai'=>number_format($total_nilai,0,',','.')
 	));	
 	}
+
+	function table_date_hari()
+	{
+		$data = array();
+		$supplier_id = $this->input->post('supplier_id');
+		$purchase_order_no = $this->input->post('purchase_order_no');
+		$filter_material = $this->input->post('filter_material');
+		$start_date = false;
+		$end_date = false;
+		$total_volume = 0;
+		$total_nilai = 0;
+		$date = $this->input->post('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+		}
+
+		$this->db->select('ppo.supplier_id,prm.measure as measure,ps.nama as name, prm.harga_satuan as price,SUM(prm.volume) as volume, SUM(prm.price) as total_price');
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('prm.date_receipt >=',$start_date);
+            $this->db->where('prm.date_receipt <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppo.supplier_id',$supplier_id);
+        }
+        if(!empty($filter_material)){
+            $this->db->where_in('prm.material_id',$filter_material);
+        }
+        if(!empty($purchase_order_no)){
+            $this->db->where('prm.purchase_order_id',$purchase_order_no);
+        }
+		
+		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
+		$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id');
+		$this->db->where("prm.material_id in (13,15)");
+		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+		$this->db->group_by('ppo.supplier_id');
+		$this->db->order_by('ps.nama','asc');
+		$query = $this->db->get('pmm_purchase_order ppo');
+		
+		$no = 1;
+		if($query->num_rows() > 0){
+
+			foreach ($query->result_array() as $key => $sups) {
+
+				$mats = array();
+				$materials = $this->pmm_model->GetReceiptMatHari($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				if(!empty($materials)){
+					foreach ($materials as $key => $row) {
+						$arr['no'] = $key + 1;
+						$arr['measure'] = $row['measure'];
+						$arr['date_receipt'] = date('d-m-Y',strtotime($row['date_receipt']));
+						$arr['nama_produk'] = $row['nama_produk'];
+						$arr['purchase_order_id'] = $row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');
+						$arr['volume'] = number_format($row['volume'],2,',','.');
+						$arr['price'] = number_format($row['price'],0,',','.');
+						$arr['total_price'] = number_format($row['total_price'],0,',','.');
+						
+						
+						$arr['name'] = $sups['name'];
+						$mats[] = $arr;
+					}
+					$sups['mats'] = $mats;
+					$total_volume += $sups['volume'];
+					$total_nilai += $sups['total_price'];
+					$sups['no'] =$no;
+					$sups['volume'] = number_format($sups['volume'],2,',','.');
+					$sups['price'] = number_format($sups['price'],0,',','.');
+					$sups['total_price'] = number_format($sups['total_price'],0,',','.');
+
+					$data[] = $sups;
+					$no++;
+				}
+				
+				
+			}
+		}
+
+		echo json_encode(array('data'=>$data,
+		'total_volume'=>number_format($total_volume,2,',','.'),
+		'total_nilai'=>number_format($total_nilai,0,',','.')
+	));	
+	}
 	
 	function table_date_sewa_alat()
 	{
