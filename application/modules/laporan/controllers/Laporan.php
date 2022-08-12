@@ -985,12 +985,13 @@ class Laporan extends Secure_Controller {
 				foreach ($query->result_array() as $key => $sups) {
 
 					$mats = array();
-					$materials = $this->pmm_model->GetReceiptMatPrint($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material);
+					$materials = $this->pmm_model->GetReceiptMat($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material);
 					if(!empty($materials)){
 						foreach ($materials as $key => $row) {
 							$arr['no'] = $key + 1;
 							$arr['measure'] = $row['measure'];
 							$arr['nama_produk'] = $row['nama_produk'];
+							$arr['purchase_order_id'] = $row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');
 							$arr['volume'] = number_format($row['volume'],2,',','.');
 							$arr['price'] = number_format($row['price'],0,',','.');
 							$arr['total_price'] = number_format($row['total_price'],0,',','.');

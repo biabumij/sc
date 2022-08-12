@@ -89,16 +89,21 @@
 					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div>
 				</td>
 			</tr>
-		</table>	
+			</table>	
 			<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-                <th align="center" width="5%">NO.</th>
-                <th align="center" width="30%" colspan="2">URAIAN</th>
-                <th align="center" width="10%">SATUAN</th>
-                <th align="center" width="15%">VOLUME</th>
-				<th align="center" width="20%">HARGA SATUAN</th>
-                <th align="center" width="20%">NILAI</th>
+                <th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
+                <th align="center" width="30%">URAIAN</th>
+				<th align="center" width="15%" rowspan="2">&nbsp; <br />PRODUK</th>
+                <th align="center" width="8%" rowspan="2">&nbsp; <br />SATUAN</th>
+                <th align="center" width="10%" rowspan="2">&nbsp; <br />VOLUME</th>
+				<th align="center" width="12%">HARGA</th>
+                <th align="center" width="20%" rowspan="2">&nbsp; <br />NILAI</th>
             </tr>
+			<tr class="table-judul">
+				<th align="center">NO. PESANAN PEMBELIAN</th>
+				<th align="center">SATUAN</th>
+			</tr>
             <?php
 			$total_vol = 0;
             if(!empty($data)){
@@ -127,8 +132,8 @@
             			?>
             			<tr class="table-baris1">
 	            			<td align="center"></td>
-	            			<td width="1%"></td>
-	            			<td align="left" width="29%"><?php echo $mat['nama_produk'];?></td>
+	            			<td><?php echo $mat['purchase_order_id'];?></td>
+	            			<td><?php echo $mat['nama_produk'];?></td>
 	            			<td align="center"><?php echo $mat['measure'];?></td>
 	            			<td align="right"><?php echo $mat['volume'];?></td>
 							<td align="right">
