@@ -102,7 +102,7 @@
                 <th align="center" width="15%" rowspan="2">&nbsp; <br />NILAI</th>
             </tr>
 			<tr class="table-judul">
-				<th align="center" colspan="2">NO. PESANAN PEMBELIAN</th>
+				<th align="center">NO. PESANAN PEMBELIAN</th>
 				<th align="center">SATUAN</th>
 			</tr>
             <?php
