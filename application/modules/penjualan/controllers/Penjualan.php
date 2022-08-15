@@ -1579,4 +1579,5 @@ class Penjualan extends Secure_Controller
         redirect("admin/penjualan");
     }
 	
+	
 }
