@@ -170,6 +170,7 @@ class Penjualan extends Secure_Controller
 
 			if (!file_exists('uploads/penawaran_penjualan')) {
 			    mkdir('uploads/penawaran_penjualan', 0777, true);
+			}
 
 			$data = [];
 			$count = count($_FILES['files']['name']);
@@ -210,7 +211,6 @@ class Penjualan extends Secure_Controller
         		$product_id = $this->input->post('product_'.$i);
         		$qty = $this->input->post('qty_'.$i);
         		$measure = $this->input->post('measure_'.$i);
-        		//$deskripsi = $this->input->post('deskripsi_'.$i);
 				
         		$price = $this->input->post('price_'.$i);
         		$price = str_replace('.', '', $price);
@@ -234,7 +234,6 @@ class Penjualan extends Secure_Controller
 					if ($tax_id == 5) {
 						$tax = ($total_pro * 2) / 100;
 					}
-
 					if ($tax_id == 6) {
 						$tax = ($total_pro * 11) / 100;
 					}
@@ -269,7 +268,6 @@ class Penjualan extends Secure_Controller
 				redirect('admin/penjualan');
 			}
 		}
-	}
 	}
 
 	public function detailPenawaran($id)
@@ -1578,6 +1576,6 @@ class Penjualan extends Secure_Controller
         $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed Sales Order');
         redirect("admin/penjualan");
     }
-	
+
 	
 }
