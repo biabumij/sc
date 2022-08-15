@@ -26,7 +26,7 @@ auth_check();
   <title>dompdf - The PHP 5 HTML to PDF Converter</title>
   <link rel="stylesheet" href="style.css" type="text/css"/>
   <meta name="robots" content="noindex">
-  <link rel="SHORTCUT ICON" href="images/favicon.ico"/>
+  <link rel="SHORTCUT ICON" href="uploads/favico.ico"/>
   <script type="text/javascript" src="jquery-1.4.2.js"></script>
   
   <?php if (isset($_SESSION["auth_message"])) { ?>
