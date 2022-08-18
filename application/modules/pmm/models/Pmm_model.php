@@ -3307,7 +3307,6 @@ class Pmm_model extends CI_Model {
             $this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($ex_date[1])));
         }
         $nilai_persediaan_barang_jadi = $this->db->get_where('akumulasi pp')->row_array();
-        file_put_contents("D:\\nilai_persediaan_barang_jadi.txt", $this->db->last_query());
 
         return $nilai_persediaan_barang_jadi['total'];
     }
