@@ -3311,9 +3311,6 @@ class Pmm_model extends CI_Model {
         return $nilai_persediaan_barang_jadi['total'];
     }
 
-    
-
-
     function getRevenueCostAll($arr_date=false,$before=false)
     {
         $output = array('total'=>0);
@@ -3553,6 +3550,101 @@ class Pmm_model extends CI_Model {
                 $this->db->where('pb.tanggal_transaksi <=',$last_opname);
             }
             $query = $this->db->get_where('pmm_jurnal_umum pb')->row_array();
+
+            $output = $query;
+            
+        }
+          
+        return $output;
+    }
+
+    function getRevenueCostAllPersediaanBahanBaku($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pp.date_akumulasi, pp.total_nilai_akhir as total');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pp.date_akumulasi <',$start_date);
+                }else {
+                    $this->db->where('pp.date_akumulasi >=',$start_date);
+                    $this->db->where('pp.date_akumulasi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pp.date_akumulasi <=',$last_opname);
+                $this->db->order_by('pp.date_akumulasi','desc')->limit(1);
+            }
+            $query = $this->db->get_where('akumulasi_bahan_baku pp')->row_array();
+
+            $output = $query;
+            
+        }
+          
+        return $output;
+    }
+
+    function getRevenueCostAllPersediaanBarangJadi($arr_date=false,$before=false)
+    {
+        $output = array('total'=>0);
+
+        if(!empty($arr_date)){
+            $ex_date = explode(' - ', $arr_date);
+            $start_date = date('Y-m-d',strtotime($ex_date[0]));
+            $end_date = date('Y-m-d',strtotime($ex_date[1]));
+
+            // Get Last Opname
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','date <='=>$end_date))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }else {
+            $last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+            if(!empty($last_production)){
+                $last_opname = $last_production['date'];
+            }
+        }
+
+        if(!empty($last_opname)){
+            $this->db->select('pp.date_akumulasi, pp.total_nilai_akhir as total');
+            if(!empty($arr_date)){
+                $ex_date = explode(' - ', $arr_date);
+                
+                if($before){
+                    $this->db->where('pp.date_akumulasi <',$start_date);
+                }else {
+                    $this->db->where('pp.date_akumulasi >=',$start_date);
+                    $this->db->where('pp.date_akumulasi <=',$last_opname);  
+                }
+                
+            }else {
+                
+                $this->db->where('pp.date_akumulasi <=',$last_opname);
+                $this->db->order_by('pp.date_akumulasi','desc')->limit(1);
+            }
+            $query = $this->db->get_where('akumulasi pp')->row_array();
+            file_put_contents("D:\\getRevenueCostAllPersediaanBarangJadi.txt", $this->db->last_query());
 
             $output = $query;
             

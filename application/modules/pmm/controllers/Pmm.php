@@ -1673,7 +1673,7 @@ class Pmm extends CI_Controller {
             $get_revenue = $this->pmm_model->getRevenue($m_arr,$arr_date);
             $get_revenuecost = $this->pmm_model->getRevenueCost($m_arr,$arr_date);
 			$get_persediaan_bahan_baku = $this->pmm_model->getPersediaanBahanBaku($m_arr,$arr_date);
-			$get_persediaan_barang_jadi_baku = $this->pmm_model->getPersediaanBarangJadi($m_arr,$arr_date);
+			$get_persediaan_barang_jadi = $this->pmm_model->getPersediaanBarangJadi($m_arr,$arr_date);
             if(empty($get_revenuecost)){
             	$get_revenuecost = 0;
             }
@@ -1713,6 +1713,12 @@ class Pmm extends CI_Controller {
 
 		$all_revenuecostlainnyajurnal = $this->pmm_model->getRevenueCostAllLainnyaJurnal($arr_date);
         $chart_revenuecostlainnyajurnal[] = number_format($all_revenuecostlainnyajurnal['total'],0,',','.');
+
+		$all_persediaanbahanbaku = $this->pmm_model->getRevenueCostAllPersediaanBahanBaku($arr_date);
+        $chart_persediaanbahanbaku[] = number_format($all_persediaanbahanbaku['total'],0,',','.');
+
+		$all_persediaanbarangjadi = $this->pmm_model->getRevenueCostAllPersediaanBarangJadi($arr_date);
+        $chart_persediaanbarangjadi[] = number_format($all_persediaanbarangjadi['total'],0,',','.');
 
 		$all_revenuecost = $this->pmm_model->getRevenueCostAll($arr_date);
         $chart_revenuecost[] = number_format($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total'],0,',','.');
