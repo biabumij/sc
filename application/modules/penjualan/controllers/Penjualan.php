@@ -380,11 +380,10 @@ class Penjualan extends Secure_Controller
 				
 				$total_volume = $this->db->select('SUM(qty) as total,measure,SUM(qty *price) as total_tanpa_ppn')->get_where('pmm_sales_po_detail',array('sales_po_id'=>$row['id']))->row_array();
 				$row['qty'] = number_format($total_volume['total'],2,',','.');
-				//$row['jumlah_total'] = number_format($nilai_pekerjaan,0,',','.');
 				$row['jumlah_total'] = number_format($total_volume['total_tanpa_ppn'],0,',','.');
 				
 				$receipt = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions',array('salesPo_id'=>$row['id'],'status'=>'PUBLISH'))->row_array();
-				$row['receipt'] = number_format($receipt['volume'],2,',','.');
+				$row['receipt'] = '<a href="'.site_url('pmm/purchase_order/production_material_pdf/'.$row['id']).'" target="_blank" >'.number_format($receipt['volume'],2,',','.').'</a>';
 								
 				$total_receipt = $this->db->select('SUM(price) as price')->get_where('pmm_productions',array('salesPo_id'=>$row['id'],'status'=>'PUBLISH'))->row_array();
 				$row['total_receipt'] = number_format($total_receipt['price'],0,',','.');

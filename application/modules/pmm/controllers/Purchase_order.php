@@ -258,7 +258,8 @@ class Purchase_order extends CI_Controller {
 		$row['address_supplier'] = $sp['alamat'];
 		$row['npwp_supplier'] = $sp['npwp'];
 		$row['supplier_name'] = $sp['nama'];
-		$row['pic'] = $sp['nama_kontak'];
+		$row['pic'] = $sp['nama_kontak_logistik'];
+		$row['position'] = $sp['posisi'];
 		$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
 		$data['row'] = $row;
 		$data['id'] = $id;
@@ -268,6 +269,43 @@ class Purchase_order extends CI_Controller {
         $pdf->SetTitle($row['no_po'].'-Penerimaan');
         $pdf->nsi_html($html);
         $pdf->Output($row['no_po'].'-Penerimaan.pdf', 'I');
+	
+	}
+
+	public function production_material_pdf()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+        $id = $this->uri->segment(4);
+		$row = $this->db->get_where('pmm_sales_po',array('id'=>$id))->row_array();
+
+		$data['details'] = $this->pmm_model->GetReceiptBySalesOrder($id);
+		$start_date = $this->db->select('date_production')->order_by('date_production','asc')->limit(1)->get_where('pmm_productions',array('salesPo_id'=>$id))->row_array();
+		$end_date = $this->db->select('date_production')->order_by('date_production','desc')->limit(1)->get_where('pmm_productions',array('salesPo_id'=>$id))->row_array();
+		$data['periode'] = date('d F Y',strtotime($start_date['date_production'])).' - '.date('d F Y',strtotime($end_date['date_production']));
+		$sp = $this->db->get_where('penerima',array('id'=>$row['client_id']))->row_array();
+		$row['address_supplier'] = $sp['alamat'];
+		$row['npwp_supplier'] = $sp['npwp'];
+		$row['supplier_name'] = $sp['nama'];
+		$row['pic'] = $sp['nama_kontak_logistik'];
+		$row['position'] = $sp['posisi'];
+		$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+		$data['row'] = $row;
+		$data['id'] = $id;
+        $html = $this->load->view('pmm/production_material_pdf',$data,TRUE);
+
+        
+        $pdf->SetTitle($row['contract_number'].'-Pengiriman');
+        $pdf->nsi_html($html);
+        $pdf->Output($row['contract_number'].'-Pengiriman.pdf', 'I');
 	
 	}
 

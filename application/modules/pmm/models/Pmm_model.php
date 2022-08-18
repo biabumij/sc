@@ -882,6 +882,18 @@ class Pmm_model extends CI_Model {
         return $query;
     }
 
+    function GetReceiptBySalesOrder($id)
+    {
+        $output = false;
+        $this->db->select('SUM(pp.volume) as volume, SUM(pp.volume * pp.harga_satuan) as total, pp.measure, pm.nama_produk as material_name, pp.product_id');
+        $this->db->join('produk pm','pp.product_id = pm.id','left');
+        $this->db->where('pp.salesPo_id',$id);
+        $this->db->group_by('pp.product_id');
+        $query = $this->db->get('pmm_productions pp')->result_array();
+
+        return $query;
+    }
+
 
     function GetRielPrice($product_id)
     {
@@ -2452,7 +2464,7 @@ class Pmm_model extends CI_Model {
 
                 $receipt = $this->db->select('SUM(volume) as total')->get_where('pmm_receipt_material',array('purchase_order_id'=>$row['id']))->row_array();
                 $total_receipt = $this->pmm_model->GetTotalReceipt($row['id']);
-                $row['receipt'] = number_format($receipt['total'],2,',','.');
+                $row['receipt'] = '<a href="'.site_url('pmm/purchase_order/receipt_material_pdf/'.$row['id']).'" target="_blank" >'.number_format($receipt['total'],2,',','.').'</a>';
                 $row['total_receipt'] = number_format($total_receipt,0,',','.');
                 $row['total_receipt_val'] = $total_receipt;
 
