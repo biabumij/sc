@@ -3246,10 +3246,73 @@ class Pmm_model extends CI_Model {
             $this->db->where('pb.tanggal_transaksi >=',date('Y-m-d',strtotime($ex_date[0])));
             $this->db->where('pb.tanggal_transaksi <=',date('Y-m-d',strtotime($ex_date[1])));
         }
-        $biaya_lainnya_jurnal = $this->db->get_where('pmm_jurnal_umum pb')->row_array();        
+        $biaya_lainnya_jurnal = $this->db->get_where('pmm_jurnal_umum pb')->row_array();    
 
         return $akumulasi_hpp['total'] + $biaya_umum_administratif_biaya['total'] + $biaya_umum_administratif_jurnal['total'] + $biaya_lainnya_biaya['total'] + $biaya_lainnya_jurnal['total'];
     }
+
+    function getPersediaanBahanBaku($month,$arr_date=false)
+    {
+        $num_data = 1; 
+
+        if($arr_date){
+            $ex_date = explode(' - ', $arr_date);
+            $start = substr($ex_date[0],3,2);
+            $end = substr($ex_date[1],3,2);
+
+            if($start == $end){
+                $num_data = 0; 
+            }
+        }
+
+        $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_akhir) as total');
+        $this->db->order_by('pp.date_akumulasi','desc')->limit(1);
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pp.date_akumulasi >=',$first_day_this_month);
+            $this->db->where('pp.date_akumulasi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.date_akumulasi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $nilai_persediaan_bahan_baku = $this->db->get_where('akumulasi_bahan_baku pp')->row_array();
+
+        return $nilai_persediaan_bahan_baku['total'];
+    }
+
+    function getPersediaanBarangJadi($month,$arr_date=false)
+    {
+        $num_data = 1; 
+
+        if($arr_date){
+            $ex_date = explode(' - ', $arr_date);
+            $start = substr($ex_date[0],3,2);
+            $end = substr($ex_date[1],3,2);
+
+            if($start == $end){
+                $num_data = 0; 
+            }
+        }
+
+        $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_akhir) as total');
+        $this->db->order_by('pp.date_akumulasi','desc')->limit(1);
+        if($num_data > 0){
+			$first_day_this_month = date('Y-m-d',strtotime($month)).'';
+            $last_day_this_month  = date('Y-m-31',strtotime($month));
+            $this->db->where('pp.date_akumulasi >=',$first_day_this_month);
+            $this->db->where('pp.date_akumulasi <=',$last_day_this_month);
+        }else {
+            $this->db->where('pb.date_akumulasi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($ex_date[1])));
+        }
+        $nilai_persediaan_barang_jadi = $this->db->get_where('akumulasi pp')->row_array();
+        file_put_contents("D:\\nilai_persediaan_barang_jadi.txt", $this->db->last_query());
+
+        return $nilai_persediaan_barang_jadi['total'];
+    }
+
+    
 
 
     function getRevenueCostAll($arr_date=false,$before=false)

@@ -1672,6 +1672,8 @@ class Pmm extends CI_Controller {
         foreach ($label_chart as $m => $m_arr) {
             $get_revenue = $this->pmm_model->getRevenue($m_arr,$arr_date);
             $get_revenuecost = $this->pmm_model->getRevenueCost($m_arr,$arr_date);
+			$get_persediaan_bahan_baku = $this->pmm_model->getPersediaanBahanBaku($m_arr,$arr_date);
+			$get_persediaan_barang_jadi_baku = $this->pmm_model->getPersediaanBarangJadi($m_arr,$arr_date);
             if(empty($get_revenuecost)){
             	$get_revenuecost = 0;
             }
@@ -1687,7 +1689,9 @@ class Pmm extends CI_Controller {
             }
             
             $chart_revenue[] = number_format($get_revenue,0,',','.');	
-            $chart_revenuecost[] = number_format($get_revenuecost,0,',','.');	
+            $chart_revenuecost[] = number_format($get_revenuecost,0,',','.');
+			$chart_persediaan_bahan_baku[] = number_format($get_persediaan_bahan_baku,0,',','.');
+			$chart_persediaan_barang_jadi[] = number_format($get_persediaan_bahan_baku,0,',','.');	
             $chart_laba[] = number_format($laba,0,',','.');	
             $chart_net[] = number_format($net,0,'.',',');
         }
@@ -1729,7 +1733,9 @@ class Pmm extends CI_Controller {
             'data' => $chart_net,
             'data_revenue' => $chart_revenue,
             'data_revenuecost' => $chart_revenuecost,
+			'data_persediaan_bahan_baku' => $chart_persediaan_bahan_baku,
             'data_laba' => $chart_laba,
+			'data_net' => $chart_net,
             'fill' => false,
         );
 
