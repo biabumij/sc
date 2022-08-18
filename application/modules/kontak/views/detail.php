@@ -110,7 +110,7 @@
                                         </tr>
                                         <tr>
                                             <th>
-                                                Npwp
+                                                NPWP
                                             </th>        
                                             <td>
                                                 <?= $row['npwp'];?>
