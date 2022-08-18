@@ -6330,7 +6330,6 @@ class Reports extends CI_Controller {
 			->from('akumulasi_bahan_baku pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->result_array();
-			file_put_contents("D:\\akumulasi_bahan_baku.txt", $this->db->last_query());
 
 			$total_akumulasi_bahan_baku = 0;
 			$total_akumulasi_bahan_baku_2 = 0;

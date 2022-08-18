@@ -3644,7 +3644,6 @@ class Pmm_model extends CI_Model {
                 $this->db->order_by('pp.date_akumulasi','desc')->limit(1);
             }
             $query = $this->db->get_where('akumulasi pp')->row_array();
-            file_put_contents("D:\\getRevenueCostAllPersediaanBarangJadi.txt", $this->db->last_query());
 
             $output = $query;
             
