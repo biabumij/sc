@@ -115,11 +115,19 @@
 		->order_by('pp.date_akumulasi','desc')->limit(1)
 		->get()->row_array();
 
-		$akumulasi2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total, SUM(pp.total_nilai_akhir) as total_akhir')
+		$akumulasi2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_akhir) as total_akhir')
 		->from('akumulasi pp')
 		->where("(pp.date_akumulasi = '$date2')")
 		->order_by('pp.date_akumulasi','desc')->limit(1)
 		->get()->row_array();
+
+		$akumulasi_hpp = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total')
+		->from('akumulasi pp')
+		->where("(pp.date_akumulasi between '$date1' and '$date2')")
+		->get()->row_array();
+
+
+
 
 		//BPP
 		$pergerakan_bahan_baku = $this->db->select('
@@ -230,7 +238,7 @@
 
 		$biaya_lainnya = $biaya_lainnya_biaya['total'] + $biaya_lainnya_jurnal['total'];
 
-		$total_harga_pokok_pendapatan = $akumulasi['total'];
+		$total_harga_pokok_pendapatan = $akumulasi_hpp['total'];
 
 		$laba_kotor = $total_penjualan_all - $total_harga_pokok_pendapatan;
 
