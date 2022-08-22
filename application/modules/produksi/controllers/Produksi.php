@@ -12,188 +12,6 @@ class Produksi extends Secure_Controller {
 		$this->load->library('filter');
 		$this->load->library('waktu');
 		$this->load->library('session');
-    }	
-
-
-    public function table_produksi_jadi()
-    {   
-        $data = array();
-
-
-        $this->db->select('pj.*, p.nama_produk as produk,');
-        $this->db->join('produk p','pj.produk = p.id','left');
-        $this->db->where('pj.status','PUBLISH');   
-        $this->db->order_by('pj.no_produksi_jadi','desc');
-        $query = $this->db->get('produksi_jadi pj');
-        if($query->num_rows() > 0){
-            foreach ($query->result_array() as $key => $row) {
-                $row['no'] = $key+1;
-                $row['qty'] = $this->filter->Rupiah($row['qty']);
-                $row['tanggal'] = date('d-m-Y',strtotime($row['tanggal']));
-                $row['berat_isi'] = $this->filter->Rupiah($row['berat_isi']);
-                $row['convert_berat_isi'] = $this->filter->Rupiah($row['convert_berat_isi']);
-                $row['no_produksi_jadi'] = '<a href="'.site_url('produksi/detail_produksi_jadi/'.$row['id']).'" >'.$row['no_produksi_jadi'].'</a>';
-                $row['satuan'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');
-                
-                $data[] = $row;
-            }
-
-        }
-        echo json_encode(array('data'=>$data));
-    }
-
-    public function form_produksi_jadi()
-    {
-
-        $id = $this->uri->segment(3);
-
-        $data['produk'] = $this->m_produk->getProduk();
-        $data['satuan'] = $this->m_produk->getSatuan();
-        if(!empty($id)){
-            $data['edit'] = $this->db->get_where('produksi_jadi',array('id'=>$id))->row_array();
-            $data['no_produksi_jadi'] = $data['edit']['no_produksi_jadi'];
-        }else {
-            $data['no_produksi_jadi'] = $this->pmm_model->GetNoProduksiJadi();
-        }
-        $this->load->view('produksi/form_produksi_jadi',$data);
-    }
-    
-
-    public function submit_produksi_jadi()
-    {
-
-        $this->db->trans_start(); # Starting Transaction
-
-        $id = $this->input->post('id');
-        $no_produksi_jadi = $this->input->post('no_produksi_jadi');
-        $produk = $this->input->post('produk');
-        $qty = $this->input->post('qty');
-        $satuan = $this->input->post('satuan');
-        $berat_isi = $this->filter->RupiahToDB($this->input->post('berat_isi'));
-        $convert_berat_isi =  $this->filter->RupiahToDB($this->input->post('convert_berat_isi'));
-        $memo = $this->input->post('memo');
-        $beli = $this->input->post('beli');
-        $tanggal = date('Y-m-d',strtotime($this->input->post('tanggal')));
-
-        $data = array(
-            'no_produksi_jadi' => $no_produksi_jadi,
-            'produk' => $produk,
-            'qty' => $qty,
-            'satuan' => $satuan,
-            'berat_isi' => $berat_isi,
-            'convert_berat_isi' => $convert_berat_isi,
-            'memo' => $memo,
-            'tanggal' => $tanggal
-        );
-
-        if(!empty($id)){
-            $data['updated_by'] = $this->session->userdata('admin_id');
-            $this->db->update('produksi_jadi',$data,array('id'=>$id));
-        }else{
-            $data['created_by'] = $this->session->userdata('admin_id');
-            $data['created_on'] = date('Y-m-d H:i:s');
-            $this->db->insert('produksi_jadi',$data);
-            $produksi_jadi = $this->db->insert_id();
-
-
-            if (!file_exists('uploads/produksi_jadi')) {
-                mkdir('uploads/produksi_jadi', 0777, true);
-            }
-
-            $data = [];
-            $count = count($_FILES['files']['name']);
-            for($i=0;$i<$count;$i++){
-            
-                if(!empty($_FILES['files']['name'][$i])){
-            
-                    $_FILES['file']['name'] = $_FILES['files']['name'][$i];
-                    $_FILES['file']['type'] = $_FILES['files']['type'][$i];
-                    $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
-                    $_FILES['file']['error'] = $_FILES['files']['error'][$i];
-                    $_FILES['file']['size'] = $_FILES['files']['size'][$i];
-            
-                    $config['upload_path'] = 'uploads/produksi_jadi'; 
-                    $config['allowed_types'] = 'jpg|jpeg|png|pdf';
-                    $config['file_name'] = $_FILES['files']['name'][$i];
-            
-                    $this->load->library('upload',$config); 
-            
-                    if($this->upload->do_upload('file')){
-                        $uploadData = $this->upload->data();
-                        $filename = $uploadData['file_name'];
-                
-                        $data['totalFiles'][] = $filename;
-                        
-                        $data[$i] = array(
-                            'produksi_jadi' => $produksi_jadi,
-                            'lampiran'  => $data['totalFiles'][$i]
-                        );
-
-                        $this->db->insert('lampiran_produksi_jadi',$data[$i]);
-
-                    }else {
-                        $this->session->set_flashdata('notif_error',$this->upload->display_errors());
-                        // echo $this->upload->display_errors();
-                        redirect('produksi/form_produksi_jadi');
-                        // exit();
-                    }
-                }
-            }
-
-        }
-
-        if ($this->db->trans_status() === FALSE) {
-            # Something went wrong.
-            $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error','Gagal Input Produksi Jadi');
-            redirect('produksi/form_produksi_jadi');
-        } 
-        else {
-            # Everything is Perfect. 
-            # Committing data to the database.
-            $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success','Berhasil Input Produksi Jadi');
-            redirect('admin/produksi');
-        }
-
-       
-    }
-
-    public function detail_produksi_jadi($id)
-    {
-
-
-        $data['row'] = $this->db->get_where('produksi_jadi',array('id'=>$id))->row_array();
-        $this->load->view('produksi/detail_produksi_jadi',$data);
-    }
-
-    public function delete_produksi_jadi($id)
-    {
-        if(!empty($id)){
-
-            $this->db->trans_start(); # Starting Transaction
-            $this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
-
-            $detail = $this->db->get_where('produksi_jadi',array('id'=>$id))->row_array();
-            $deskripsi = 'Nomor '.$detail['no_produksi_jadi'];
-            $this->pmm_finance->InsertLogs('DELETE','produksi_jadi',$id,$deskripsi);
-            $this->db->update('produksi_jadi',array('status'=>'DELETED'),array('id'=>$id));
-            
-
-            if ($this->db->trans_status() === FALSE) {
-                # Something went wrong.
-                $this->db->trans_rollback();
-                $this->session->set_flashdata('notif_error','Gagal hapus Produksi Jadi !!');
-                redirect('produksi/detail_produksi_jadi/'.$id);
-            } 
-            else {
-                # Everything is Perfect. 
-                # Committing data to the database.
-                $this->db->trans_commit();
-                $this->session->set_flashdata('notif_success','Berhasil hapus Produksi Jadi !!');
-                redirect('admin/produksi');
-            }
-        }
     }
 	
 	public function remaining_material_print()
@@ -1540,13 +1358,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat HPP Bahan Baku !!');
-			redirect('produksi/hpp_bahan_baku');
+			redirect('hpp_&_akumulasi/hpp_bahan_baku');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat HPP Bahan Baku !!');
-			redirect('admin/produksi');
+			redirect('admin/hpp_&_akumulasi');
 		}
 	}
 
@@ -1634,13 +1452,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat HPP !!');
-			redirect('produksi/hpp');
+			redirect('hpp_&_akumulasi/hpp');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat HPP !!');
-			redirect('admin/produksi');
+			redirect('admin/hpp_&_akumulasi');
 		}
 	}
 
@@ -1729,13 +1547,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat Akumulasi Pergerakan Bahan Jadi !!');
-			redirect('produksi/akumulasi_bahan_baku');
+			redirect('hpp_&_akumulasi/akumulasi_bahan_baku');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat Akumulasi Pergerakan Bahan Jadi !!');
-			redirect('admin/produksi');
+			redirect('admin/hpp_&_akumulasi');
 		}
 	}
 
@@ -1819,13 +1637,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat Akumulasi Pergerakan Bahan Baku !!');
-			redirect('produksi/akumulasi');
+			redirect('hpp_&_akumulasi/akumulasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat Akumulasi Pergerakan Bahan Baku !!');
-			redirect('admin/produksi');
+			redirect('admin/hpp_&_akumulasi');
 		}
 	}
 
