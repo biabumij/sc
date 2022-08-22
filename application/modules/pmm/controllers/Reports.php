@@ -442,6 +442,414 @@ class Reports extends CI_Controller {
 	    </table>
 		<?php
 	}
+
+	public function pergerakan_bahan_baku_penyesuaian($arr_date)
+	{
+		$data = array();
+		
+		$arr_date = $this->input->post('filter_date');
+		$arr_filter_date = explode(' - ', $arr_date);
+		$date1 = '';
+		$date2 = '';
+
+		if(count($arr_filter_date) == 2){
+			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
+			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		
+		?>
+		
+		<table class="table table-bordered" width="100%">
+			<style type="text/css">
+			table tr.table-active{
+				background-color: #F0F0F0;
+				font-size: 12px;
+				font-weight: bold;
+				color: black;
+			}
+				
+			table tr.table-active2{
+				background-color: #E8E8E8;
+				font-size: 12px;
+				font-weight: bold;
+			}
+				
+			table tr.table-active3{
+				font-size: 12px;
+				background-color: #F0F0F0;
+			}
+				
+			table tr.table-active4{
+				background-color: #e69500;
+				font-weight: bold;
+				font-size: 12px;
+				color: black;
+			}
+			table tr.table-active5{
+				background-color: #cccccc;
+				color: black;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			table tr.table-activeago1{
+				background-color: #ffd966;
+				font-weight: bold;
+				font-size: 12px;
+				color: black;
+			}
+			table tr.table-activeopening{
+				background-color: #2986cc;
+				font-weight: bold;
+				font-size: 12px;
+				color: black;
+			}
+
+			blink {
+			-webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+			animation: 2s linear infinite kedip;
+			}
+			/* for Safari 4.0 - 8.0 */
+			@-webkit-keyframes kedip { 
+			0% {
+				visibility: hidden;
+			}
+			50% {
+				visibility: hidden;
+			}
+			100% {
+				visibility: visible;
+			}
+			}
+			@keyframes kedip {
+			0% {
+				visibility: hidden;
+			}
+			50% {
+				visibility: hidden;
+			}
+			100% {
+				visibility: visible;
+			}
+			}
+			</style>
+	        <tr class="table-active2">
+	            <th colspan="3">Periode</th>
+	            <th class="text-center" colspan="9"><?php echo $filter_date;?></th>
+	        </tr>
+			
+			<?php
+
+			//Opening Balance
+			$date1_ago = date('2020-01-01');
+			$date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
+			$date3_ago = date('Y-m-d', strtotime('-1 months', strtotime($date1)));
+			$tanggal_opening_balance = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
+
+			$stock_opname_batu_boulder_ago = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 15")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_batu_boulder_ago_2 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 15")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
+			->from('hpp_bahan_baku pp')
+			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+			->get()->row_array();
+
+			$volume_opening_balance = $stock_opname_batu_boulder_ago['volume'] + $stock_opname_batu_boulder_ago_2['volume'];
+			$harga_opening_balance = $harga_hpp_bahan_baku['boulder'];
+			$nilai_opening_balance = $volume_opening_balance * $harga_opening_balance;
+
+			$stock_opname_solar_ago = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 13")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_solar_ago_2 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$tanggal_opening_balance')")
+			->where("cat.material_id = 13")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$volume_opening_balance_solar = $stock_opname_solar_ago['volume'] + $stock_opname_solar_ago_2['volume'];	
+			$harga_opening_balance_solar = $harga_hpp_bahan_baku['bbm'];
+			$nilai_opening_balance_solar = $volume_opening_balance_solar * $harga_opening_balance_solar;
+
+			//Now
+			//Bahan Baku			
+			$pergerakan_bahan_baku = $this->db->select('
+			p.nama_produk, 
+			prm.display_measure as satuan, 
+			SUM(prm.display_volume) as volume, 
+			(prm.display_price / prm.display_volume) as harga, 
+			SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("prm.material_id = 15")
+			->group_by('prm.material_id')
+			->get()->row_array();
+			
+			$total_volume_pembelian = $pergerakan_bahan_baku['volume'];
+			$total_nilai_pembelian =  $pergerakan_bahan_baku['nilai'];
+			$total_harga_pembelian = ($total_volume_pembelian!=0)?$total_nilai_pembelian / $total_volume_pembelian * 1:0;
+
+			$total_volume_pembelian_akhir  = round($volume_opening_balance + $total_volume_pembelian,2);
+			$total_harga_pembelian_akhir = ($total_volume_pembelian_akhir!=0)?($nilai_opening_balance + $total_nilai_pembelian) / $total_volume_pembelian_akhir * 1:0;
+			$total_nilai_pembelian_akhir =  $total_volume_pembelian_akhir * $total_harga_pembelian_akhir;			
+			
+			$stock_opname_batu_boulder = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 15")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_batu_boulder_2 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 15")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+			
+			$total_volume_produksi_akhir = $stock_opname_batu_boulder['volume'] + $stock_opname_batu_boulder_2['volume'];
+			$total_harga_produksi_akhir = round($total_harga_pembelian_akhir,0);
+			$total_nilai_produksi_akhir = $total_volume_produksi_akhir * $total_harga_produksi_akhir;
+
+			$total_volume_produksi = round($total_volume_pembelian_akhir - $total_volume_produksi_akhir,2);
+			$total_harga_produksi = $total_harga_produksi_akhir;
+			$total_nilai_produksi = $total_volume_produksi * $total_harga_produksi;
+
+			//BBM Solar
+			$pergerakan_bahan_baku_solar = $this->db->select('
+			p.nama_produk, 
+			prm.display_measure as satuan, 
+			SUM(prm.display_volume) as volume, 
+			(prm.display_price / prm.display_volume) as harga, 
+			SUM(prm.display_price) as nilai')
+			->from('pmm_receipt_material prm')
+			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
+			->join('produk p', 'prm.material_id = p.id','left')
+			->where("prm.date_receipt between '$date1' and '$date2'")
+			->where("prm.material_id = 13")
+			->group_by('prm.material_id')
+			->get()->row_array();
+			
+			$total_volume_pembelian_solar = $pergerakan_bahan_baku_solar['volume'];
+			$total_nilai_pembelian_solar =  $pergerakan_bahan_baku_solar['nilai'];
+			$total_harga_pembelian_solar = ($total_volume_pembelian_solar!=0)?$total_nilai_pembelian_solar / $total_volume_pembelian_solar * 1:0;
+
+			$total_volume_pembelian_akhir_solar  = round($volume_opening_balance_solar + $total_volume_pembelian_solar,2);
+			$total_harga_pembelian_akhir_solar = ($total_volume_pembelian_akhir_solar!=0)?($nilai_opening_balance_solar + $total_nilai_pembelian_solar) / $total_volume_pembelian_akhir_solar * 1:0;
+			$total_nilai_pembelian_akhir_solar =  $total_volume_pembelian_akhir_solar * $total_harga_pembelian_akhir_solar;
+
+			$stock_opname_solar = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 13")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$stock_opname_solar_2 = $this->db->select('(cat.volume) as volume')
+			->from('pmm_remaining_materials_cat_2 cat ')
+			->where("(cat.date = '$date2')")
+			->where("cat.material_id = 13")
+			->where("cat.reset = 1")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('date','desc')->limit(1)
+			->get()->row_array();
+
+			$total_volume_produksi_akhir_solar = $stock_opname_solar['volume'] + $stock_opname_solar_2['volume'];
+			$total_harga_produksi_akhir_solar = round($total_harga_pembelian_akhir_solar,0);
+			$total_nilai_produksi_akhir_solar = $total_volume_produksi_akhir_solar * $total_harga_produksi_akhir_solar;
+
+			$total_volume_produksi_solar = round($total_volume_pembelian_akhir_solar - $total_volume_produksi_akhir_solar,2);
+			$total_harga_produksi_solar =  $total_harga_produksi_akhir_solar;
+			$total_nilai_produksi_solar =  $total_volume_produksi_solar * $total_harga_produksi_solar;
+
+			//Total Opening Balance
+			$opening_balance_bahan_baku = $nilai_opening_balance + $nilai_opening_balance_solar;
+
+			//Total
+			$total_nilai_masuk = $total_nilai_pembelian + $total_nilai_pembelian_solar;
+			$total_nilai_keluar = $total_nilai_produksi + $total_nilai_produksi_solar;
+			$total_nilai_akhir = $total_nilai_produksi_akhir + $total_nilai_produksi_akhir_solar;
+
+	        ?>
+			
+			<tr class="table-active4">
+				<th width="30%" class="text-center" rowspan="2" style="vertical-align:middle">TANGGAL</th>
+				<th width="20%" class="text-center" rowspan="2" style="vertical-align:middle">URAIAN</th>
+				<th width="10%" class="text-center" rowspan="2" style="vertical-align:middle">SATUAN</th>
+				<th width="20%" class="text-center" colspan="3">MASUK</th>
+				<th width="20%" class="text-center" colspan="3">KELUAR</th>
+				<th width="20%" class="text-center" colspan="3">AKHIR</th>
+	        </tr>
+			<tr class="table-active4">
+				<th class="text-center">VOLUME</th>
+				<th class="text-center">HARGA</th>
+				<th class="text-center">NILAI</th>
+				<th class="text-center">VOLUME</th>
+				<th class="text-center">HARGA</th>
+				<th class="text-center">NILAI</th>
+				<th class="text-center">VOLUME</th>
+				<th class="text-center">HARGA</th>
+				<th class="text-center">NILAI</th>
+	        </tr>
+			<tr class="table-active2">
+	            <th class="text-center" colspan="12">BATU BOULDER</th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
+	            <th class="text-left" colspan="8"><i>Opening Balance</i></th>
+				<th class="text-center"><?php echo number_format($volume_opening_balance,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harga_opening_balance,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_opening_balance,0,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-left"><i>Pembelian</i></th>
+				<th class="text-center">Ton</th>
+				<th class="text-center"><?php echo number_format($pergerakan_bahan_baku['volume'],2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_pembelian,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pergerakan_bahan_baku['nilai'],0,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-center"><?php echo number_format($total_volume_pembelian_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_pembelian_akhir,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pembelian_akhir,0,',','.');?></th>		
+	        </tr>
+			<tr class="table-active3">
+			<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
+				<th class="text-left"><i>Produksi</i></th>
+				<th class="text-center">Ton</th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_akhir,2,',','.');?></th>
+				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_produksi_akhir,0,',','.');?></blink></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir,0,',','.');?></th>
+	        </tr>
+			<tr class="table-active2">
+	            <th class="text-center" colspan="12">BBM SOLAR</th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
+	            <th class="text-left" colspan="8"><i>Opening Balance</i></th>
+				<th class="text-center"><?php echo number_format($volume_opening_balance_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($harga_opening_balance_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($nilai_opening_balance_solar,0,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-left"><i>Pembelian</i></th>
+				<th class="text-center">Liter</th>
+				<th class="text-center"><?php echo number_format($pergerakan_bahan_baku_solar['volume'],2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_pembelian_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pergerakan_bahan_baku_solar['nilai'],0,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-center"><?php echo number_format($total_volume_pembelian_akhir_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_pembelian_akhir_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_pembelian_akhir_solar,0,',','.');?></th>		
+	        </tr>
+			<tr class="table-active3">
+			<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>			
+				<th class="text-left"><i>Produksi</i></th>
+				<th class="text-center">Liter</th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_solar,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_akhir_solar,2,',','.');?></th>
+				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></blink></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>
+	        </tr>
+			<tr class="table-active2">
+	            <th class="text-center" colspan="12">BAHAN BAKU</th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-center" style="vertical-align:middle"><?php echo $date2_ago;?></th>
+	            <th class="text-left" colspan="8"><i>Opening Balance</i></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($opening_balance_bahan_baku,0,',','.');?></th>
+	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-left"><i>Batu Boulder</i></th>
+				<th class="text-center">Ton</th>
+				<th class="text-center"><?php echo number_format($pergerakan_bahan_baku['volume'],2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_pembelian,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pergerakan_bahan_baku['nilai'],0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_akhir,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir,0,',','.');?></th>		
+	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+				<th class="text-left"><i>BBM Solar</i></th>
+				<th class="text-center">Liter</th>
+				<th class="text-center"><?php echo number_format($pergerakan_bahan_baku_solar['volume'],2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_pembelian_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($pergerakan_bahan_baku_solar['nilai'],0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_solar,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_akhir_solar,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>		
+	        </tr>
+			<tr class="table-active5">
+	            <th class="text-center" colspan="3">TOTAL</th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_nilai_masuk,0,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_nilai_keluar,0,',','.');?></th>
+				<th class="text-center"></th>
+				<th class="text-right"></th>
+				<th class="text-right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
+	        </tr>
+	    </table>
+		<?php
+	}
 	
 	public function nilai_persediaan_barang($arr_date)
 	{

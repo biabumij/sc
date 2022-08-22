@@ -80,6 +80,11 @@
 														<p>Menampilkan pergerakan bahan baku dalam suatu periode.</p>
                                                         <a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
+                                                    <div class="col-sm-5">
+														<p><h5>Pergerakan Bahan Baku (Penyesuaian)</h5></p>
+														<p>Menampilkan pergerakan bahan baku dalam suatu periode.</p>
+                                                        <a href="#pergerakan_bahan_baku_penyesuaian" aria-controls="pergerakan_bahan_baku_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+													</div>
 													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi</h5></p>
 														<p>Menampilkan pergerakan bahan jadi dalam suatu periode.</p>
@@ -297,7 +302,7 @@
                                         </div>
 									</div>
 									
-									<!-- Pergerakan Bahan Baku-->
+									<!-- Pergerakan Bahan Baku -->
 									
                                     <div role="tabpanel" class="tab-pane" id="pergerakan_bahan_baku">
                                         <div class="col-sm-15">
@@ -326,6 +331,44 @@
 														</div>
 													</div>				
 													<div class="table-responsive" id="box-ajax-5">													
+													
+                    
+													</div>
+												</div>
+										</div>
+										
+										</div>
+                                    </div>
+
+                                    <!-- Pergerakan Bahan Baku Penyesuaian -->
+									
+                                    <div role="tabpanel" class="tab-pane" id="pergerakan_bahan_baku_penyesuaian">
+                                        <div class="col-sm-15">
+										<div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">Pergerakan Bahan Baku (Penyesuaian)</h3>
+													<a href="laporan_produksi">Kembali</a>
+                                                </div>
+												<div style="margin: 20px">
+													<div class="row">
+														<form action="<?php echo site_url('laporan/pergerakan_bahan_baku_penyesuaian_print');?>" target="_blank">
+															<div class="col-sm-3">
+																<input type="text" id="filter_date_bahan_baku_penyesuaian" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+															</div>
+															<div class="col-sm-3">
+																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+															</div>
+														</form>
+														
+													</div>
+													<br />
+													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+														<div>Please Wait</div>
+														<div class="fa-3x">
+														  <i class="fa fa-spinner fa-spin"></i>
+														</div>
+													</div>				
+													<div class="table-responsive" id="box-ajax-5a">													
 													
                     
 													</div>
@@ -833,6 +876,52 @@
 			}
 
 			//TablePergerakanBahanBaku();
+
+            </script>
+
+            <!-- Script Pergerakan Bahan Baku Penyesuaian -->
+
+			<script type="text/javascript">
+			$('#filter_date_bahan_baku_penyesuaian').daterangepicker({
+            autoUpdateInput : false,
+			showDropdowns: true,
+            locale: {
+              format: 'DD-MM-YYYY'
+            },
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+			});
+
+			$('#filter_date_bahan_baku_penyesuaian').on('apply.daterangepicker', function(ev, picker) {
+				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+				  TablePergerakanBahanBakuPenyesuaian();
+			});
+
+
+			function TablePergerakanBahanBakuPenyesuaian()
+			{
+				$('#wait').fadeIn('fast');   
+				$.ajax({
+					type    : "POST",
+					url     : "<?php echo site_url('pmm/reports/pergerakan_bahan_baku_penyesuaian'); ?>/"+Math.random(),
+					dataType : 'html',
+					data: {
+						filter_date : $('#filter_date_bahan_baku_penyesuaian').val(),
+					},
+					success : function(result){
+						$('#box-ajax-5a').html(result);
+						$('#wait').fadeOut('fast');
+					}
+				});
+			}
+
+			//TablePergerakanBahanBakuPenyesuaian();
 
             </script>
 			
