@@ -606,10 +606,6 @@
 	
     </script>
 
-    <?php include_once("script_material_on_site.php"); ?>
-    
-    <?php include_once("script_material_usage.php"); ?>
-
 </body>
 
 </html>
