@@ -7522,13 +7522,13 @@ class Reports extends CI_Controller {
 
 			<?php
 
-			$akumulasi = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total, SUM(pp.total_nilai_keluar_2) as total_2, SUM(pp.total_nilai_akhir) as total_akhir')
+			$akumulasi = $this->db->select('pp.date_akumulasi, (pp.total_nilai_keluar) as total, SUM(pp.total_nilai_keluar_2) as total_2, SUM(pp.total_nilai_akhir) as total_akhir')
 			->from('akumulasi_bahan_baku pp')
 			->where("(pp.date_akumulasi = '$date2')")
 			->order_by('pp.date_akumulasi','desc')->limit(1)
 			->get()->row_array();
 
-			$akumulasi2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_akhir) as total_akhir')
+			$akumulasi2 = $this->db->select('pp.date_akumulasi, (pp.total_nilai_akhir) as total_akhir')
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi = '$date2')")
 			->order_by('pp.date_akumulasi','desc')->limit(1)
@@ -7538,9 +7538,6 @@ class Reports extends CI_Controller {
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			
-
 
 			//BPP
 			$pergerakan_bahan_baku = $this->db->select('
