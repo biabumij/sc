@@ -2903,6 +2903,72 @@ class Laporan extends Secure_Controller {
         $pdf->Output('evaluasi-nilai-persediaan.pdf', 'I');
 	
 	}
+
+	public function cetak_biaya_umum_administratif()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
+		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
+        $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
+		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
+        $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
+		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
+        $html = $this->load->view('laporan_laba_rugi/cetak_biaya_umum_administratif',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Biaya Umum & Administratif');
+        $pdf->nsi_html($html);
+        $pdf->Output('biaya_umum_administratif.pdf', 'I');
+	}
+
+	public function cetak_biaya_lainnya()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+		$data['biaya_langsung'] = $this->m_laporan->biaya_langsung_print($arr_date);
+		$data['biaya_langsung_jurnal'] = $this->m_laporan->biaya_langsung_jurnal_print($arr_date);
+        $data['biaya'] = $this->m_laporan->showBiaya_print($arr_date);
+		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
+        $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
+		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
+        $html = $this->load->view('laporan_laba_rugi/cetak_biaya_lainnya',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Biaya Lainnya');
+        $pdf->nsi_html($html);
+        $pdf->Output('biaya_lainnya.pdf', 'I');
+	}
 	
 
 }

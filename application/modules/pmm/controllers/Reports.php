@@ -7775,7 +7775,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 				<th>6-60100</th>
-				<th class="text-left" colspan="3">Biaya Umum & Administratif</th>
+				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/cetak_biaya_umum_administratif?filter_date=".$filter_date) ?>">Biaya Umum & Administratif<a/></th>
 	            <th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -7791,7 +7791,7 @@ class Reports extends CI_Controller {
 			</tr>
 			<tr class="table-active3">
 				<th>8-80100</th>
-				<th class="text-left" colspan="3">Biaya Lainnya</th>
+				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/cetak_biaya_lainnya?filter_date=".$filter_date) ?>">Biaya Lainnya<a/></th>
 	            <th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
