@@ -246,9 +246,9 @@
                         </div>
                     </div>
 
-                    <!-- Nilai Persediaan Barang -->
+                    <!-- Nilai Persediaan Bahan Baku -->
                     <div class="col-sm-8">			
-                        <div role="tabpanel" class="tab-pane" id="nilai_persediaan_barang">
+                        <div role="tabpanel" class="tab-pane" id="nilai_persediaan_bahan_baku">
                             <div class="col-sm-15">
                             <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -304,105 +304,105 @@
 <script src="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
 <script type="text/javascript" src="<?php echo base_url();?>assets/back/theme/vendor/chart-js/chart.min.js"></script>
-<script type="text/javascript">
-    
-    $('.dtpicker').daterangepicker({
-        autoUpdateInput : false,
-        locale: {
-            format: 'DD-MM-YYYY'
-        },
-        ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-    });
-
-    
-
-    function LostProfit(CharData)
-    {
-        var ctx = document.getElementById('canvas').getContext('2d');
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            data: CharData,
-            options: {
-                title: {
-                    display: true,
-                },
-                responsive: true,
-                scales: {
-                    xAxes: [{
-                        stacked: true
-                        
-                    }],
-                    yAxes: [{
-                        stacked: true,
-                        ticks: {
-                            beginAtZero: true,
-                            min: -1000,
-                            max: 1000
-                        },
-                    }]
-                },
-                legend: {
-                    display: true,
-                    position : 'bottom'
-                },
-                responsive: true,
-                maintainAspectRatio: false,
-                hoverMode: 'index',
-                tooltips: {
-                    callbacks: {
-                    title: function(tooltipItem, data) {
-                        return data['labels'][tooltipItem[0]['index']];
-                    },
-                    beforeLabel : function(tooltipItem, data) {
-                        return 'Pendapatan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']];
-                    },
-                    label: function(tooltipItem, data) {
-                        return 'Biaya = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];
-                    },
-                    afterLabel : function(tooltipItem, data) {
-                        return 'Laba Rugi = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+' %)';
-                    },
-                    },
-                }
-            }
-        });
-
-    }
-
-
-    function getLostProfit()
-    {
-        $.ajax({
-            type    : "POST",
-            url     : "<?php echo base_url();?>pmm/db_lost_profit/"+Math.random(),
-            dataType : 'json',
-            data: {arr_date : $('#filter_lost_profit').val()},
-            beforeSend : function(){
-                $('#wait-1').show();
+    <script type="text/javascript">
+        
+        $('.dtpicker').daterangepicker({
+            autoUpdateInput : false,
+            locale: {
+                format: 'DD-MM-YYYY'
             },
-            success : function(result){
-                $('#canvas').remove();
-                $('#parent-lost-profit').append('<canvas id="canvas"></canvas>');
-                LostProfit(result);
-                $('#wait-1').hide();
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
         });
-    }
-    getLostProfit();
-    $('#filter_lost_profit').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            getLostProfit();
-    });
-</script>
 
-    <!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->		
+        function LostProfit(CharData)
+        {
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: CharData,
+                options: {
+                    title: {
+                        display: true,
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true
+                            
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                beginAtZero: true,
+                                min: -1000,
+                                max: 1000
+                            },
+                        }]
+                    },
+                    legend: {
+                        display: true,
+                        position : 'bottom'
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    hoverMode: 'index',
+                    tooltips: {
+                        callbacks: {
+                        title: function(tooltipItem, data) {
+                            return data['labels'][tooltipItem[0]['index']];
+                        },
+                        beforeLabel : function(tooltipItem, data) {
+                            return 'Pendapatan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']];
+                        },
+                        label: function(tooltipItem, data) {
+                            return 'Biaya = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];
+                        },
+                        afterLabel : function(tooltipItem, data) {
+                            return 'Laba Rugi = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+' %)';
+                        },
+                        },
+                    }
+                }
+            });
+
+        }
+
+
+        function getLostProfit()
+        {
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo base_url();?>pmm/db_lost_profit/"+Math.random(),
+                dataType : 'json',
+                data: {arr_date : $('#filter_lost_profit').val()},
+                beforeSend : function(){
+                    $('#wait-1').show();
+                },
+                success : function(result){
+                    $('#canvas').remove();
+                    $('#parent-lost-profit').append('<canvas id="canvas"></canvas>');
+                    LostProfit(result);
+                    $('#wait-1').hide();
+                }
+            });
+        }
+        getLostProfit();
+        $('#filter_lost_profit').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                getLostProfit();
+        });
+        
+    </script>
+
+    <!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->
+
     <script type="text/javascript">
         $('#filter_date_bahan_jadi_penyesuaian').daterangepicker({
             autoUpdateInput : false,
@@ -430,7 +430,7 @@
             $('#wait').fadeIn('fast');   
             $.ajax({
                 type    : "POST",
-                url     : "<?php echo site_url('pmm/reports/pergerakan_bahan_jadi_penyesuaian_dashboard'); ?>/"+Math.random(),
+                url     : "<?php echo site_url('pmm/reports/nilai_persediaan_bahan_jadi_dashboard'); ?>/"+Math.random(),
                 dataType : 'html',
                 data: {
                     filter_date : $('#filter_date_bahan_jadi_penyesuaian').val(),
@@ -446,7 +446,8 @@
         
     </script>
 
-    <!-- Script Nilai Persediaan Barang -->
+    <!-- Script Nilai Persediaan Bahan Baku -->
+
     <script type="text/javascript">
     $('#filter_date_nilai').daterangepicker({
     autoUpdateInput : false,
@@ -475,7 +476,7 @@
             $('#wait').fadeIn('fast');   
             $.ajax({
                 type    : "POST",
-                url     : "<?php echo site_url('pmm/reports/nilai_persediaan_barang_dashboard'); ?>/"+Math.random(),
+                url     : "<?php echo site_url('pmm/reports/nilai_persediaan_bahan_baku_dashboard'); ?>/"+Math.random(),
                 dataType : 'html',
                 data: {
                     filter_date : $('#filter_date_nilai').val(),
