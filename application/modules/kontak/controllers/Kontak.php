@@ -12,7 +12,8 @@ class Kontak extends Secure_Controller {
 		$this->load->library('filter');
 		$this->load->library('waktu');
 		$this->load->library('session');
-    }	
+    }
+	
 
     public function table()
 	{	
