@@ -53,12 +53,11 @@
 		                                <table class="table table-striped table-hover table-center" id="table-pelanggan" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-		                                            <th>No</th>
-		                                            <th>Nama</th>
-		                                            <th>Alamat</th>
-		                                            <th>Email</th>
-		                                            <th>Telepon</th>
-		                                            <th>Balance</th>
+		                                            <th class="text-center" width="5%">No.</th>
+		                                            <th class="text-center">Nama</th>
+		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center">Email</th>
+		                                            <th class="text-center">Telp.</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -73,12 +72,11 @@
 		                                <table class="table table-striped table-hover table-center" id="table-rekanan" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-		                                            <th>No</th>
-		                                            <th>Nama</th>
-		                                            <th>Alamat</th>
-		                                            <th>Email</th>
-		                                            <th>Telepon</th>
-		                                            <th>Balance</th>
+                                                    <th class="text-center" width="5%">No.</th>
+		                                            <th class="text-center">Nama</th>
+		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center">Email</th>
+		                                            <th class="text-center">Telp.</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -93,12 +91,11 @@
 		                                <table class="table table-striped table-hover table-center" id="table-karyawan"  style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-		                                            <th>No</th>
-		                                            <th>Nama</th>
-		                                            <th>Alamat</th>
-		                                            <th>Email</th>
-		                                            <th>Telepon</th>
-		                                            <th>Balance</th>
+                                                    <th class="text-center" width="5%">No.</th>
+		                                            <th class="text-center">Nama</th>
+		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center">Email</th>
+		                                            <th class="text-center">Telp.</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -113,12 +110,11 @@
 		                                <table class="table table-striped table-hover table-center" id="teble-lain" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-		                                            <th>No</th>
-		                                            <th>Nama</th>
-		                                            <th>Alamat</th>
-		                                            <th>Email</th>
-		                                            <th>Telepon</th>
-		                                            <th>Balance</th>
+                                                    <th class="text-center" width="5%">No.</th>
+		                                            <th class="text-center">Nama</th>
+		                                            <th class="text-center">Alamat</th>
+		                                            <th class="text-center">Email</th>
+		                                            <th class="text-center">Telp.</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -168,21 +164,16 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "nama" },
-                { "data": "alamat" },
-                { "data": "email" },
-                { "data": "telepon" },
-                { "data": "balance" },
+                { "data": "nama"},
+                { "data": "alamat"},
+                { "data": "email"},
+                { "data": "telepon"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [-1],
                     "className": 'text-center',
                 }
             ],
@@ -199,22 +190,17 @@
                 }
             },
             columns: [
-                { "data": "no" },
-                { "data": "nama" },
-                { "data": "alamat" },
-                { "data": "email" },
-                { "data": "telepon" },
-                { "data": "balance" },
+                { "data": "no"},
+                { "data": "nama"},
+                { "data": "alamat"},
+                { "data": "email"},
+                { "data": "telepon"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [-1],
                     "className": 'text-center',
                 }
             ],
@@ -231,22 +217,17 @@
                 }
             },
             columns: [
-                { "data": "no" },
-                { "data": "nama" },
-                { "data": "alamat" },
-                { "data": "email" },
-                { "data": "telepon" },
-                { "data": "balance" },
+                { "data": "no"},
+                { "data": "nama"},
+                { "data": "alamat"},
+                { "data": "email"},
+                { "data": "telepon"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [-1],
                     "className": 'text-center',
                 }
             ],
@@ -263,12 +244,11 @@
                 }
             },
             columns: [
-                { "data": "no" },
-                { "data": "nama" },
-                { "data": "alamat" },
-                { "data": "email" },
-                { "data": "telepon" },
-                { "data": "balance" },
+                { "data": "no"},
+                { "data": "nama"},
+                { "data": "alamat"},
+                { "data": "email"},
+                { "data": "telepon"}
             ],
             responsive: true,
             pageLength : 25,
@@ -276,16 +256,9 @@
                 {
                     "targets": [0],
                     "className": 'text-center',
-                },
-                {
-                    "targets": [-1],
-                    "className": 'text-center',
                 }
             ],
         });
-
-       
-
 
     </script>
 

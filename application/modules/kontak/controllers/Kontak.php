@@ -14,14 +14,10 @@ class Kontak extends Secure_Controller {
 		$this->load->library('session');
     }	
 
-
     public function table()
 	{	
 		$data = array();
 		$tipe = $this->input->post('tipe');;
-		// if(!empty($tag_id)){
-		// 	$this->db->where('tag_id',$tag_id);	
-		// }
 		if($tipe == 1){
 			$this->db->where('pelanggan',1);
 		}else if($tipe == 2){
@@ -38,7 +34,6 @@ class Kontak extends Secure_Controller {
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
-				$row['balance'] = 0;
 				$row['nama'] = '<a href="'.site_url('kontak/detail/'.$row['id']).'">'.$row['nama'].'</a>';
 				$data[] = $row;
 			}

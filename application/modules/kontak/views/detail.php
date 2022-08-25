@@ -62,31 +62,7 @@
                                     <table class="table table-bordered table-striped">
                                         <tr>
                                             <th width="30%">
-                                                Email
-                                            </th>        
-                                            <td>
-                                                <?= $row['email'];?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                Nama Kontak
-                                            </th>        
-                                            <td>
-                                                <?= $row['nama_kontak'];?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                Identitas
-                                            </th>        
-                                            <td>
-                                                <?= $row['tipe_identitas'].' - '.$row['no_identitas'];?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                Telepon
+                                                Telp.
                                             </th>        
                                             <td>
                                                 <?= $row['telepon'];?>
@@ -94,10 +70,10 @@
                                         </tr>
                                         <tr>
                                             <th>
-                                                Nama Perusahaan
+                                                Email
                                             </th>        
                                             <td>
-                                                <?= $row['nama_perusahaan'];?>
+                                                <?= $row['email'];?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -118,20 +94,52 @@
                                         </tr>
                                         <tr>
                                             <th>
-                                                Posisi
-                                            </th>        
-                                            <td>
-                                                <?= $row['posisi'];?>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
                                                 Alamat Penagihan
                                             </th>        
                                             <td>
                                                 <?= $row['alamat_penagihan'];?>
                                             </td>
                                         </tr>
+                                    </table>
+                                    <div class="panel-header"> 
+                                        <h4>Informasi Umum</h4>
+                                    </div> 
+                                    <table class="table table-bordered table-striped">
+                                        <tr>
+                                            <th width="30%">
+                                                Nama Kontak
+                                            </th>        
+                                            <td>
+                                                <?= $row['nama_kontak'];?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                Identitas
+                                            </th>        
+                                            <td>
+                                                <?= $row['tipe_identitas'].' - '.$row['no_identitas'];?>
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th>
+                                                Nama Perusahaan
+                                            </th>        
+                                            <td>
+                                                <?= $row['nama_perusahaan'];?>
+                                            </td>
+                                        </tr>
+                                       
+                                        <tr>
+                                            <th>
+                                                Posisi
+                                            </th>        
+                                            <td>
+                                                <?= $row['posisi'];?>
+                                            </td>
+                                        </tr>
+                                        
                                         <tr>
                                             <th>
                                                 Alamat
@@ -140,8 +148,13 @@
                                                 <?= $row['alamat'];?>
                                             </td>
                                         </tr>
+                                     </table>
+                                    <div class="panel-header"> 
+                                        <h4>Akun Mapping</h4>
+                                    </div>
+                                    <table class="table table-bordered table-striped">
                                         <tr>
-                                            <th>
+                                            <th width="30%">
                                                 Akun Keluar
                                             </th>        
                                             <td>
