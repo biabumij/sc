@@ -70,6 +70,14 @@
                                         </tr>
                                         <tr>
                                             <th>
+                                                Alamat
+                                            </th>        
+                                            <td>
+                                                <?= $row['alamat'];?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
                                                 Email
                                             </th>        
                                             <td>
@@ -120,8 +128,7 @@
                                             <td>
                                                 <?= $row['tipe_identitas'].' - '.$row['no_identitas'];?>
                                             </td>
-                                        </tr>
-                                        
+                                        </tr>       
                                         <tr>
                                             <th>
                                                 Nama Perusahaan
@@ -130,22 +137,12 @@
                                                 <?= $row['nama_perusahaan'];?>
                                             </td>
                                         </tr>
-                                       
                                         <tr>
                                             <th>
                                                 Posisi
                                             </th>        
                                             <td>
                                                 <?= $row['posisi'];?>
-                                            </td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <th>
-                                                Alamat
-                                            </th>        
-                                            <td>
-                                                <?= $row['alamat'];?>
                                             </td>
                                         </tr>
                                      </table>
