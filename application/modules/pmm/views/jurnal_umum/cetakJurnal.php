@@ -122,7 +122,7 @@
             <tr>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
+                        <tr class="">
                             <td align="center">
                                 Dibuat Oleh
                             </td>
@@ -151,10 +151,9 @@
                             <td align="center" height="75px">
                                 
                             </td>
-                            
-                                    <td align="center">
-                                
-                                    </td>
+                            <td align="center">
+                        
+                            </td>
                             <?php
                             if(!empty($arr_no_trans)){
                                 if (strpos($arr_no_trans[2], 'SC') === false) {
