@@ -239,24 +239,18 @@
                 		?>
 						<tr class="table-bold">
 							<td align="center">
-							    <?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama_kontak');?>	
+							    <u><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama_kontak');?></u><br />
+								<?php
+								$this->db->select('g.admin_group_name');
+								$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+								$this->db->where('a.admin_id',$row['created_by']);
+								$created_group = $this->db->get('tbl_admin a')->row_array();
+								?>
+								<?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?>
 							</td>
 							<td align="center">
-								<?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?>
-							</td>
-						</tr>
-						<tr class="table-active3">
-						    <?php
-							$this->db->select('g.admin_group_name');
-							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-							$this->db->where('a.admin_id',$row['created_by']);
-							$created_group = $this->db->get('tbl_admin a')->row_array();
-							?>
-							<td align="center">
-							    <u><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?></u>
-							</td>
-							<td align="center">
-								<u><?= $created_group['admin_group_name']?></u>
+								<u><?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?></u><br />
+								<?= $created_group['admin_group_name']?>
 							</td>
 						</tr>
 					</table>
