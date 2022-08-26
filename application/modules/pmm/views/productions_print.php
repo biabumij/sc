@@ -2,6 +2,7 @@
 <html>
 	<head>
 	  <title><?php echo $row['no_po'];?></title>
+	  <?= include 'lib.php'; ?>
 	  
 	  <style type="text/css">
 	  	body{
@@ -116,7 +117,7 @@
             		if($key == count($data) - 1){
             			?>
 	            		<tr>
-	            			<th colspan="8" style="text-align:right">TOTAL <?php echo date('d F Y',strtotime($row['date_production']));?></th>
+	            			<th colspan="8" style="text-align:right">TOTAL <?= convertDateDBtoIndo($row["date_production"]); ?></th>
               				<td><?php echo number_format($total_by_date,2,',','.');?></td>
 							<td></td>
 							<td><?php echo number_format($total_nilai_by_date,0,',','.');?></td>
