@@ -206,9 +206,6 @@
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                                 $this->db->where('a.admin_id',$biaya['created_by']);
                                 $created_group = $this->db->get('tbl_admin a')->row_array();
-								//file_put_contents("D:\\cetakJurnal.txt", $this->db->last_query());
-
-
                                 ?>
                                 <?= $created_group['admin_group_name']?>
                             </td>
