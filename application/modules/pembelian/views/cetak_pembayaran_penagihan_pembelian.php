@@ -7,6 +7,9 @@
         body{
             font-family: "Open Sans", Arial, sans-serif;
         }
+        table tr.table-bold{
+           font-weight: bold;
+        }
       </style>
 
     </head>
@@ -95,7 +98,7 @@
                                 
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr class="table-bold">
                             <td align="center" >
                                 <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$pembayaran['created_by']),'admin_name'); ?>
                             </td>
@@ -106,7 +109,7 @@
                                 Deddy Sarwobiso
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr class="table-bold">
                             <td align="center" >
                             <?php
                             $this->db->select('g.admin_group_name');
