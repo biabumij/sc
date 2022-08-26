@@ -40,8 +40,7 @@
             background-color: #cac8c8;
         }
         table tr.table-active3{
-            back
-            ground-color: #eee;
+            font-weight: bold;
         }
         hr{
             margin-top:0;
@@ -102,12 +101,12 @@
             <tr>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
+                        <tr class="">
                             <td align="center">
                                 Dibuat Oleh
                             </td>
                             <td align="center" colspan="2">
-                                Diperiksa Oleh,
+                                Diperiksa Oleh
                             </td>
                             <td align="center" >
                                 Disetujui
