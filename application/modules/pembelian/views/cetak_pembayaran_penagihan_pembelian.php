@@ -76,7 +76,7 @@
                 <td width="5%"></td>
                 <td width="90%">
                     <table width="100%" border="1" cellpadding="3">
-                        <tr class="table-active3">
+                        <tr class="">
                             <td align="center" >
                                 Dibuat Oleh
                             </td>
