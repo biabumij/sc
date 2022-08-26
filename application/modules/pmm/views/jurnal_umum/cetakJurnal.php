@@ -127,7 +127,7 @@
                                 Dibuat Oleh
                             </td>
                             <td align="center">
-                                Diperiksa Oleh,
+                                Diperiksa Oleh
                             </td>
                             <?php
                             if(!empty($arr_no_trans)){
