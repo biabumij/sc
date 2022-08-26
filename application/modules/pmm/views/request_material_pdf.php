@@ -2,6 +2,7 @@
 <html>
 	<head>
 	  <title><?php echo $row['request_no'];?></title>
+	  <?= include 'lib.php'; ?>
 	  
 	  <style type="text/css">
 	  	body{
@@ -61,7 +62,7 @@
 			<tr>
 				<th>Tanggal Permintaan</th>
 				<th width="10px">:</th>
-				<th align="left"><?php echo date('d F Y',strtotime($row['request_date']));?></th>
+				<th align="left"><?= convertDateDBtoIndo($row["request_date"]); ?></th>
 			</tr>
 			<tr>
 				<th>Rekanan</th>
@@ -111,13 +112,13 @@
 			<tr >
 				
 				<td width="100%">
-					<table width="100%" border="1" cellpadding="2">
+					<table width="100%" border="0" cellpadding="2">
 						<tr class="table-active">
 							<td align="center" >
 								Disetujui Oleh
 							</td>
 							<td align="center" >
-								Diperiksa oleh
+								Diperiksa Oleh
 							</td>
 							<td align="center" >
 								Dibuat Oleh
@@ -136,13 +137,13 @@
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								Hadi Sucipto
+								<b><u>Hadi Sucipto</u></b>
 							</td>
 							<td align="center" >
-								Vicky Irwana Yudha
+								<b><u>Vicky Irwana Yudha</u></b>
 							</td>
 							<td align="center" >
-								Mohammad Rasyid
+								<b><u>Mohammad Rasyid</u></b>
 							</td>
 						</tr>
 						<tr class="table-active">
