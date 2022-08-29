@@ -152,7 +152,9 @@ class Biaya extends CI_Controller {
         if($this->db->insert('pmm_biaya',$arr_insert)){
             $biaya_id = $this->db->insert_id();
 
-            
+            if (!file_exists('uploads/biaya')) {
+			    mkdir('uploads/biaya', 0777, true);
+			}            
 
             $data = [];
             $count = count($_FILES['files']['name']);

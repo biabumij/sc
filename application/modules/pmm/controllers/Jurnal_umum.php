@@ -126,6 +126,11 @@ class Jurnal_umum extends CI_Controller {
 
         if($this->db->insert('pmm_jurnal_umum',$arr_insert)){
             $jurnal_id = $this->db->insert_id();
+
+            if (!file_exists('uploads/jurnal_umum')) {
+			    mkdir('uploads/jurnal_umum', 0777, true);
+			}
+            
             $data = [];
             $count = count($_FILES['files']['name']);
             for($i=0;$i<$count;$i++){
