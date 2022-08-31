@@ -457,56 +457,42 @@
 									<!-- End Laporan Piutang -->
 									
 									<!-- Laporan Umur Piutang -->
-									
-									<div role="tabpanel" class="tab-pane" id="laporan_umur_piutang">
+
+                                    <div role="tabpanel" class="tab-pane" id="laporan_umur_piutang">
                                         <div class="col-sm-15">
-                                            <div class="panel panel-default">      
-												<div class="panel-heading">												
+										<div class="panel panel-default">
+                                                <div class="panel-heading">
                                                     <h3 class="panel-title">Laporan Umur Piutang</h3>
-													<a href="laporan_penjualan">Kembali</a>
+													<a href="laporan_pembelian">Kembali</a>
                                                 </div>
-                                                <div style="margin: 20px">
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_umur_piutang'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_p" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
-                                                            <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date14" style="display:none" width="100%";>
-                                                            <thead>
-                                                            <tr>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-																<th align="center">PELANGGAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">TOTAL</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">1-30 HARI</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">31-60 HARI</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">61-90 HARI</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">>90 HARI</th>
-                                                                </tr>
-                                                            <tr>
-                                                                <th class="text-center">NO. TAGIHAN</th>
-                                                            </tr>
-															</thead>
-                                                            <tbody></tbody>
-															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>	 
+												<div style="margin: 20px">
+													<div class="row">
+														<form action="<?php echo site_url('laporan/cetak_umur_piutang');?>" target="_blank">
+															<!--<div class="col-sm-3">
+																<input type="text" id="filter_date_p" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+															</div>-->
+															<div class="col-sm-3">
+																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+															</div>
+														</form>
+														
+													</div>
+													<br />
+													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
+														<div>Please Wait</div>
+														<div class="fa-3x">
+														  <i class="fa fa-spinner fa-spin"></i>
+														</div>
+													</div>				
+													<div class="table-responsive" id="table-date14">													
+													
+                    
+													</div>
+												</div>
+										</div>
+										
+										</div>
+                                    </div>
                                                                      
 									<!-- End Umur Piutang -->
 									
@@ -1055,81 +1041,50 @@
 		<!-- End Piutang -->
 		
 		<!-- Script Umur Piutang -->
-		
-		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_p').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
-                },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            });
 
-            $('#filter_date_p').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate14();
-            });
+        <script type="text/javascript">
+			$('#filter_date_p').daterangepicker({
+            autoUpdateInput : false,
+			showDropdowns: true,
+            locale: {
+              format: 'DD-MM-YYYY'
+            },
+            ranges: {
+               'Today': [moment(), moment()],
+               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+               'This Month': [moment().startOf('month'), moment().endOf('month')],
+               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+					}
+				});
 
-            function TableDate14() {
-                $('#table-date14').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date14 tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/productions/table_date14'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_p').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date14 tbody').html('');
+				$('#filter_date_p').on('apply.daterangepicker', function(ev, picker) {
+					  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+					  TableDate14();
+				});
 
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    $('#table-date14 tbody').append('<tr onclick="NextShowUmurPiutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.nama + '</td><td class="text-right">' + val.total_piutang + '</td><td></td><td></td><td></td><td></td></tr>');
-                                    $.each(val.mats, function(a, row) {
-                                        console.log(val);
-                                        console.log(row);
-                                        var a_no = a + 1;
-                                        if (val.syarat_pembayaran >= 1 && val.syarat_pembayaran <= 30){
-                                            $('#table-date14 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nomor_invoice + '</td><td></td><td class="text-right">' + row.sisa_piutang + '</td><td></td><td></td><td></td></tr>');
-                                        } else if (val.syarat_pembayaran > 31 && val.syarat_pembayaran <= 60){
-                                            $('#table-date14 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nomor_invoice + '</td><td></td><td></td><td class="text-right">' + row.sisa_piutang + '</td><td></td><td></td></tr>');
-                                        } else if (val.syarat_pembayaran > 61 && val.syarat_pembayaran <= 90){
-                                            $('#table-date14 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nomor_invoice + '</td><td></td><td></td><td></td><td class="text-right">' + row.sisa_piutang + '</td><td></td></tr>');
-                                        } else if (val.syarat_pembayaran > 90){
-                                            $('#table-date14 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nomor_invoice + '</td><td></td><td></td><td></td><td></td><td class="text-right">' + row.sisa_piutang + '</td></tr>');
-                                        }
-                                    });
-                                });
-                                $('#table-date14 tbody').append('<tr><td class="text-right" colspan="2"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td><td></td><td></td><td></td><td></td></tr>');
-                            } else {
-                                $('#table-date14 tbody').append('<tr><td class="text-center" colspan="7"><b>NO DATA</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
 
-            function NextShowUmurPiutang(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
+				function TableDate14()
+				{
+					$('#wait').fadeIn('fast');   
+					$.ajax({
+						type    : "POST",
+						url     : "<?php echo site_url('pmm/productions/umur_piutang'); ?>/"+Math.random(),
+						dataType : 'html',
+						data: {
+							filter_date : $('#filter_date_p').val(),
+						},
+						success : function(result){
+							$('#table-date14').html(result);
+							$('#wait').fadeOut('fast');
+						}
+					});
+				}
 
-        </script>
+				TableDate14();
+			
+            </script>
 		
 		<!-- End Umur Piutang -->
 		

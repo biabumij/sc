@@ -1576,5 +1576,14 @@ class Penjualan extends Secure_Controller
         redirect("admin/penjualan");
     }
 
+	public function closed_pembayaran_penagihan($id)
+	{
+		$this->db->set("status", "CLOSED");
+		$this->db->where("id", $id);
+		$this->db->update("pmm_penagihan_penjualan");
+		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+		redirect("penjualan/detailPenagihan/$id");
+	}
+
 	
 }

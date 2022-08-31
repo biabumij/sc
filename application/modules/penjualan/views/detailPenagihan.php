@@ -275,8 +275,22 @@
                                         <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-success"><i class="fa fa-money"></i> Terima Penjualan</a>
                                         <?php
                                         ?>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
-                                        <!-- <a  class="btn btn-primary"><i class="fa fa-edit"></i> Ubah</a> -->
+                                        <a href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Selesai (Lunas)</a>	
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php endif; ?>
+                                </div>
+                                <div class="text-center">
+                                    <?php if ($penagihan["status"] === "CLOSED") : ?>
+                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                        <?php
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                        ?>
+                                        <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-success"><i class="fa fa-money"></i> Terima Penjualan</a>
+                                        <?php
+                                        ?>
+                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <?php
                                         }
                                         ?>
