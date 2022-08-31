@@ -1265,11 +1265,11 @@ class Receipt_material extends CI_Controller {
 		</tr>
 		<tr class="table-active4">
 			<th class="text-center">NO.</th>
+			<th class="text-center">NO. INVOICE</th>
+			<th class="text-center">TGL. INVOICE</th>
 			<th class="text-center">REKANAN</th>
-			<th class="text-center">NO. TAGIHAN</th>
+			<th class="text-center">TGL. DITERIMA PROYEK</th>
 			<th class="text-center">TOTAL</th>
-			<th class="text-center">TGL. DITERIMA OFFICE</th>
-			<th class="text-center">BELUM DIBAYAR</th>
 			<th class="text-center">1-30 HARI</th>
 			<th class="text-center">31-60 HARI</th>
 			<th class="text-center">61-90 HARI</th>
@@ -1293,20 +1293,18 @@ class Receipt_material extends CI_Controller {
 		$dateOne120 = new DateTime($x['tgl']);
 		$dateTwo120 = new DateTime($date_now);
 		$diff120 = $dateTwo120->diff($dateOne120)->format("%a");
-
-
 		?>
 		<tr class="table-active3">
 			<th class="text-center"><?php echo $key + 1;?></th>
-			<th class="text-left"><?= $x['nama'] ?></th>
 			<th class="text-left"><?= $x['nomor_invoice'] ?></th>
+			<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_invoice'])); ?></th>
+			<th class="text-left"><?= $x['nama'] ?></th>
+			<th class="text-center"><?= date('d-m-Y',strtotime($x['tgl'])); ?></th>
 			<th class="text-right"><?php echo number_format($x['total_pembayaran'],0,',','.');?></th>
-			<th class="text-center"><?= $x['tgl'] ?></th>
-			<th class="text-center"></th>
-			<th class="text-center"><?php echo ($diff30 >= 0 && $diff30 <= 30) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
-			<th class="text-center"><?php echo ($diff60 >= 31 && $diff60 <= 60) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
-			<th class="text-center"><?php echo ($diff90 >= 61 && $diff90 <= 90) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
-			<th class="text-center"><?php echo ($diff120 >= 91 && $diff120 <= 999) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th class="text-right"><?php echo ($diff30 >= 0 && $diff30 <= 30) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th class="text-right"><?php echo ($diff60 >= 31 && $diff60 <= 60) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th class="text-right"><?php echo ($diff90 >= 61 && $diff90 <= 90) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th class="text-right"><?php echo ($diff120 >= 91 && $diff120 <= 999) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
 		</tr>
 		<?php
         }

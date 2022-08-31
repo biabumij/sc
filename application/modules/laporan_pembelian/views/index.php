@@ -716,10 +716,10 @@
 														<form action="<?php echo site_url('laporan/cetak_umur_hutang');?>" target="_blank">
 															<!--<div class="col-sm-3">
 																<input type="text" id="filter_date_h" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
+															</div>-->
 															<div class="col-sm-3">
 																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>-->
+															</div>
 														</form>
 														
 													</div>

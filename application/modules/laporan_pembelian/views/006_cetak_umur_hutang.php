@@ -3,43 +3,6 @@
 	<head>
 	  <title>LAPORAN UMUR HUTANG</title>
 	  
-	  <?php
-		$search = array(
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-		);
-		
-		$replace = array(
-		'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-		);
-		
-		$subject = "$filter_date";
-
-		echo str_replace($search, $replace, $subject);
-
-	  ?>
-	  
 	  <style type="text/css">
 		table tr.table-judul{
 			background-color: #e69500;
@@ -86,64 +49,75 @@
 					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN UMUR HUTANG</div>
 					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI STONE CRUSHER</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div>
 				</td>
 			</tr>
 		</table>
 		<br />
 		<br />
 		<table cellpadding="3" width="98%">
+
+		<?php
+
+		$date_now = date('Y-m-d');
+
+		$penagihan_pembelian = $this->db->select('ppp.*, p.nama, ppp.total - (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pm where pm.penagihan_pembelian_id = ppp.id) as total_pembayaran, vpp.tanggal_diterima_proyek as tgl')
+		->from('pmm_penagihan_pembelian ppp')
+		->join('penerima p','ppp.supplier_id = p.id','left')
+		->join('pmm_verifikasi_penagihan_pembelian vpp','ppp.id = vpp.penagihan_pembelian_id','left')
+		->where("ppp.status = 'BELUM LUNAS'")
+		->order_by('ppp.tanggal_invoice','desc')
+		->get()->result_array();
+
+		?>
 			<tr class="table-judul">
-				<th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
-				<th align="center" width="15%">REKANAN</th>
-				<th align="center" width="40%" rowspan="2">&nbsp; <br />TOTAL</th>
-				<th align="center" width="10%" rowspan="2">&nbsp; <br />1-30 HARI</th>
-				<th align="center" width="10%" rowspan="2">&nbsp; <br />31-60 HARI</th>
-				<th align="center" width="10%" rowspan="2">&nbsp; <br />61-90 HARI</th>
-				<th align="center" width="10%" rowspan="2">&nbsp; <br />> 90 HARI</th>
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="12%">NO. INVOICE</th>
+				<th align="center" width="8%">TGL. INVOICE</th>
+				<th align="center" width="17%">REKANAN</th>
+				<th align="center" width="8%">TGL. DITERIMA PROYEK</th>
+				<th align="center" width="10%">TOTAL</th>
+				<th align="center" width="10%">1-30 HARI</th>
+				<th align="center" width="10%">31-60 HARI</th>
+				<th align="center" width="10%">61-90 HARI</th>
+				<th align="center" width="10%">>90 HARI</th>
+				
             </tr>
-			<tr class="table-judul">
-				<th align="center">NO. TAGIHAN</th>
-			</tr>
-            <?php   
-            if(!empty($data)){
-            	foreach ($data as $key => $row) {
-            		?>
-            		<tr class="table-baris1-bold">
-						<td align="center"><?php echo $key + 1;?></td>
-            			<td align="left"><b><?php echo $row['nama'];?></b></td>
-						<td align="right"><b><?php echo $row['total_hutang'];?></b></td>
-						<td align="right" colspan="4"></td>
-            		</tr>
-            		<?php
-            		foreach ($row['mats'] as $mat) {
-            			?>
-            			<tr class="table-baris1">
-							<td align="center"></td>
-							<td align="center"></td>
-	            			<td align="left"><?php echo $mat['nomor_invoice'];?></td>
-							<td align="right"><?php echo ($row['syarat_pembayaran'] >= 1 && $row['syarat_pembayaran'] <= 30) ? $mat['sisa_hutang'] : '';?></td>
-							<td align="right"><?php echo ($row['syarat_pembayaran'] >= 31 && $row['syarat_pembayaran'] <= 60) ? $mat['sisa_hutang'] : '';?></td>
-							<td align="right"><?php echo ($row['syarat_pembayaran'] >= 61 && $row['syarat_pembayaran'] <= 90) ? $mat['sisa_hutang'] : '';?></td>
-							<td align="right"><?php echo ($row['syarat_pembayaran'] > 90) ? $mat['sisa_hutang'] : '';?></td>
-	            		</tr>
-            			<?php
-            		}	
-            	}
-            }else {
-            	?>
-            	<tr>
-            		<td width="100%" colspan="7" align="center">NO DATA</td>
-            	</tr>
-            	<?php
-            }
-            ?>
-            <tr class="table-total">
-            	<th align="right" width="20%" ><b>TOTAL</b></th>
-            	<th align="right" width="40%"><b><?php echo number_format($total,0,',','.');?></b></th>
-				<th align="right" width="40%" colspan="4"></th>
-            </tr>
-			
-		</table>
+            <?php 
+			if(!empty($penagihan_pembelian)){
+			foreach ($penagihan_pembelian as $key => $x) {
+			$dateOne30 = new DateTime($x['tgl']);
+			$dateTwo30 = new DateTime($date_now);
+			$diff30 = $dateTwo30->diff($dateOne30)->format("%a");
+	
+			$dateOne60 = new DateTime($x['tgl']);
+			$dateTwo60 = new DateTime($date_now);
+			$diff60 = $dateTwo60->diff($dateOne60)->format("%a");
+	
+			$dateOne90 = new DateTime($x['tgl']);
+			$dateTwo90 = new DateTime($date_now);
+			$diff90 = $dateTwo90->diff($dateOne90)->format("%a");
+	
+			$dateOne120 = new DateTime($x['tgl']);
+			$dateTwo120 = new DateTime($date_now);
+			$diff120 = $dateTwo120->diff($dateOne120)->format("%a");
+	
+			?>
+            <tr class="table-baris1">
+			<th align="center"><?php echo $key + 1;?></th>
+			<th align="left"><?= $x['nomor_invoice'] ?></th>
+			<th align="center"><?= date('d-m-Y',strtotime($x['tanggal_invoice'])); ?></th>
+			<th align="left"><?= $x['nama'] ?></th>
+			<th align="center"><?= date('d-m-Y',strtotime($x['tgl'])); ?></th>
+			<th align="right"><?php echo number_format($x['total_pembayaran'],0,',','.');?></th>
+			<th align="right"><?php echo ($diff30 >= 0 && $diff30 <= 30) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th align="right"><?php echo ($diff60 >= 31 && $diff60 <= 60) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th align="right"><?php echo ($diff90 >= 61 && $diff90 <= 90) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th align="right"><?php echo ($diff120 >= 91 && $diff120 <= 999) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+		</tr>
+		<?php
+        }
+        }
+        ?>
+	</table>
 	</body>
 </html>

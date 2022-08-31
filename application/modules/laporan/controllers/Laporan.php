@@ -1769,98 +1769,26 @@ class Laporan extends Secure_Controller {
 	
 
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->SetPrintHeader(false);
-		$pdf->SetPrintFooter(false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		$pdf->SetMargins(3, 0, 0, true);
-		$pdf->AddPage('L');
-		
-		$arr_data = array();
-		$supplier_id = $this->input->get('supplier_id');
-		$purchase_order_no = $this->input->get('purchase_order_no');
-		$filter_material = $this->input->get('filter_material');
-		$start_date = false;
-		$end_date = false;
-		$total = 0;
-		$date = $this->input->get('filter_date');
-		if(!empty($date)){
-			$arr_date = explode(' - ',$date);
-			$start_date = date('Y-m-d',strtotime($arr_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_date[1]));
-			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+		        $pdf->AddPage('L');
 
-			
-			$data['filter_date'] = $filter_date;
-
-		$this->db->select('ppp.supplier_id, ps.nama,  SUM(COALESCE(ppp.total,0)) -  SUM(COALESCE(ppm.total,0)) as total_hutang, ppp.syarat_pembayaran');
-		if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.tanggal_invoice >=',$start_date);
-            $this->db->where('ppp.tanggal_invoice <=',$end_date);
-        }
-        if(!empty($supplier_id)){
-            $this->db->where('ppp.supplier_id',$supplier_id);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('ppd.material_id',$filter_material);
-        }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppd.penagihan_pembelian_id',$purchase_order_no);
-        }
-		
-		$this->db->join('pmm_pembayaran_penagihan_pembelian ppm', 'ppp.id = ppm.penagihan_pembelian_id','left');
-		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id');
-		$this->db->group_by('ppp.supplier_id');
-		$this->db->order_by('ps.nama','asc');
-		$query = $this->db->get('pmm_penagihan_pembelian ppp');
-		
-			$no = 1;
-			if($query->num_rows() > 0){
-
-				foreach ($query->result_array() as $key => $sups) {
-
-				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat6($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material);
-				
-				if(!empty($materials)){
-					foreach ($materials as $key => $row) {
-						$arr['no'] = $key + 1;
-						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
-						$arr['sisa_hutang'] = number_format($row['sisa_hutang'],0,',','.');
-						
-						
-						$arr['nama'] = $sups['nama'];
-						$mats[] = $arr;
-					}
-					
-					
-					$sups['mats'] = $mats;
-					$total += $sups['total_hutang'];
-					$sups['no'] =$no;
-					$sups['total_hutang'] = number_format($sups['total_hutang'],0,',','.');
-					
-					$arr_data[] = $sups;
-					$no++;
-					}
-					
-					
-				}
-			}
-
-			
-			$data['data'] = $arr_data;
-			$data['total'] = $total;
-	        $html = $this->load->view('laporan_pembelian/006_cetak_umur_hutang',$data,TRUE);
-
-	        
-	        $pdf->SetTitle('BBJ - Laporan Umur Hutang');
-	        $pdf->nsi_html($html);
-	        $pdf->Output('laporan-umur-hutang.pdf', 'I');
-	        
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
 		}else {
-			echo 'Please Filter Date First';
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
+		$data['filter_date'] = $filter_date;
+        $html = $this->load->view('laporan_pembelian/006_cetak_umur_hutang',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Cetak Umur Hutang');
+        $pdf->nsi_html($html);
+        $pdf->Output('cetak-umur-hutang.pdf', 'I');
 	
 	}
 	
