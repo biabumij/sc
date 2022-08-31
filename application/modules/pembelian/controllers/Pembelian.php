@@ -1501,4 +1501,13 @@ class Pembelian extends Secure_Controller
 		$this->db->where('id', $id);
 		$this->db->delete('pmm_pembayaran_penagihan_pembelian');
 	}
+
+    public function closed_pembayaran_penagihan($id)
+	{
+		$this->db->set("status", "LUNAS");
+		$this->db->where("id", $id);
+		$this->db->update("pmm_penagihan_pembelian");
+		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+		redirect("pembelian/penagihan_pembelian_detail/$id");
+	}
 }

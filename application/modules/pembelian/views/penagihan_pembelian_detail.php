@@ -265,6 +265,27 @@
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                         ?>
                                             <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-money"></i> Kirim Pembayaran</a>
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+
+                                    <?php
+                                    if ($row['status'] == 'BELUM LUNAS') { ?>
+                                        <?php
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                        ?>
+                                            <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> LUNAS</a>
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+
+                                    <?php
+                                    if ($row['status'] == 'LUNAS') { ?>
+                                        <?php
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                        ?>
                                             <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <?php
                                         }
@@ -288,7 +309,7 @@
                                                         <th>Tanggal</th>
                                                         <th>Nomor</th>
                                                         <th>Produk</th>
-                                                        <th>Nopol Truk</th>
+                                                        <th>No. Kendaraan</th>
                                                         <th>Supir</th>
                                                         <th>Volume</th>
                                                         <th>Satuan</th>
@@ -297,9 +318,9 @@
                                                 <tbody>
                                                     <?php
                                                     $surat_jalan = explode(',', $row['surat_jalan']);
-                                                    $this->db->select('prm.*,ppo.no_po, m.material_name');
+                                                    $this->db->select('prm.*,ppo.no_po, p.nama_produk');
                                                     $this->db->join('pmm_purchase_order ppo', 'prm.purchase_order_id = ppo.id', 'left');
-                                                    $this->db->join('pmm_materials m', 'prm.material_id = m.id', 'left');
+                                                    $this->db->join('produk p', 'prm.material_id = p.id', 'left');
                                                     $this->db->where_in('prm.id', $surat_jalan);
                                                     $table_surat_jalan = $this->db->get('pmm_receipt_material prm')->result_array();
                                                     if (!empty($table_surat_jalan)) {
@@ -308,7 +329,7 @@
                                                             <tr>
                                                                 <td><?= date('d/m/Y', strtotime($sj['date_receipt'])); ?></td>
                                                                 <td><?= $sj['surat_jalan']; ?></td>
-                                                                <td><?= $sj['material_name']; ?></td>
+                                                                <td><?= $sj['nama_produk']; ?></td>
                                                                 <td><?= $sj['no_kendaraan']; ?></td>
                                                                 <td><?= $sj['driver']; ?></td>
                                                                 <td><?= $this->filter->Rupiah($sj['volume']); ?></td>

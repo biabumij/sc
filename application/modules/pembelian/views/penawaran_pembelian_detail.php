@@ -73,7 +73,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center" width="5%">No</th>
-                                                    <th class="text-center" width="22%">Material</th>
+                                                    <th class="text-center" width="22%">Produk</th>
                                                     <th class="text-center" width="12%">Volume</th>
                                                     <th class="text-center" width="10%">Satuan</th>
                                                     <th class="text-center" width="15%">Harga Satuan</th>
@@ -93,13 +93,13 @@
 									?>
 									<?php foreach($details as $key => $dt) { ?>
 									<?php 
-										$material = $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');
+										$produk = $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');
 										$measure = $this->crud_global->GetField('pmm_measures',array('id'=>$dt['measure']),'measure_name');
 										$tax = $this->crud_global->GetField('pmm_taxs',array('id'=>$dt['tax_id']),'tax_name');
 									?>
                                         <tr>
                                             <td class="text-center"><?= $key + 1;?></td>
-                                            <td class="text-left"><?= $material ?></td>
+                                            <td class="text-left"><?= $produk ?></td>
                                             <td class="text-center"><?= $dt["qty"]; ?></td>
                                             <td class="text-center"><?= $measure; ?></td>
                                             <td class="text-right"><?= number_format($dt['price'],0,',','.'); ?></td>

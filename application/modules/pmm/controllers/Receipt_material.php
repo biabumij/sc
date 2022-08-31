@@ -1090,77 +1090,230 @@ class Receipt_material extends CI_Controller {
 		echo json_encode(array('data'=>$data,'total'=>number_format($total,0,',','.')));	
 	}
 	
-	function table_date6()
+	public function umur_hutang($arr_date)
 	{
 		$data = array();
-		$supplier_id = $this->input->post('supplier_id');
-		$purchase_order_no = $this->input->post('purchase_order_no');
-		$filter_material = $this->input->post('filter_material');
-		$start_date = false;
-		$end_date = false;
-		$total = 0;
-		$date = $this->input->post('filter_date');
-		if(!empty($date)){
-			$arr_date = explode(' - ',$date);
-			$start_date = date('Y-m-d',strtotime($arr_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+		
+		$arr_date = $this->input->post('filter_date');
+		$arr_filter_date = explode(' - ', $arr_date);
+		$date1 = '';
+		$date2 = '';
+
+		if(count($arr_filter_date) == 2){
+			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
+			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
-		$this->db->select('ppp.supplier_id, ps.nama,  SUM(COALESCE(ppp.total,0)) -  SUM(COALESCE(ppm.total,0)) as total_hutang, ppp.syarat_pembayaran');
-		if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.tanggal_invoice >=',$start_date);
-            $this->db->where('ppp.tanggal_invoice <=',$end_date);
-        }
-        if(!empty($supplier_id)){
-            $this->db->where('ppp.supplier_id',$supplier_id);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('ppd.material_id',$filter_material);
-        }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppm.penagihan_pembelian_id',$purchase_order_no);
-        }
+
+	    ?>
 		
-		$this->db->join('pmm_pembayaran_penagihan_pembelian ppm', 'ppp.id = ppm.penagihan_pembelian_id','left');
-		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id');
-		$this->db->group_by('ppp.supplier_id');
-		$this->db->order_by('ps.nama','asc');
-		$query = $this->db->get('pmm_penagihan_pembelian ppp');
-		
-		$no = 1;
-		if($query->num_rows() > 0){
+		<table class="table table-bordered" width="100%">
+		<style type="text/css">
+		table tr.table-active{
+			background-color: #F0F0F0;
+			font-size: 12px;
+			font-weight: bold;
+			color: black;
+		}
+			
+		table tr.table-active2{
+			background-color: #E8E8E8;
+			font-size: 12px;
+			font-weight: bold;
+		}
+			
+		table tr.table-active3{
+			font-size: 12px;
+			background-color: #F0F0F0;
+		}
+			
+		table tr.table-active4{
+			background-color: #e69500;
+			font-weight: bold;
+			font-size: 12px;
+			color: black;
+		}
+		table tr.table-active5{
+			background-color: #cccccc;
+			font-weight: bold;
+			font-size: 12px;
+			color: black;
+		}
+		table tr.table-activeago1{
+			background-color: #ffd966;
+			font-weight: bold;
+			font-size: 12px;
+			color: black;
+		}
+		table tr.table-activeopening{
+			background-color: #2986cc;
+			font-weight: bold;
+			font-size: 12px;
+			color: black;
+		}
 
-			foreach ($query->result_array() as $key => $sups) {
-
-				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat6($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$filter_material);
-				
-				if(!empty($materials)){
-					foreach ($materials as $key => $row) {
-						$arr['no'] = $key + 1;
-						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
-						$arr['sisa_hutang'] = number_format($row['sisa_hutang'],0,',','.');
-	
-						$arr['nama'] = $sups['nama'];
-						$mats[] = $arr;
-					}
-					
-					
-					$sups['mats'] = $mats;
-					$total += $sups['total_hutang'];
-					$sups['no'] =$no;
-					$sups['total_hutang'] = number_format($sups['total_hutang'],0,',','.');
-					
-
-					$data[] = $sups;
-					$no++;
-					
-				}		
-				
+		blink {
+		-webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+		animation: 2s linear infinite kedip;
+		}
+		/* for Safari 4.0 - 8.0 */
+		@-webkit-keyframes kedip { 
+		0% {
+			visibility: hidden;
+		}
+		50% {
+			visibility: hidden;
+		}
+		100% {
+			visibility: visible;
+		}
+		}
+		@keyframes kedip {
+		0% {
+			visibility: hidden;
+		}
+		50% {
+			visibility: hidden;
+		}
+		100% {
+			visibility: visible;
+		}
+		}
+		</style>
+		<script type="text/javascript">        
+			function tampilkanwaktu(){         //fungsi ini akan dipanggil di bodyOnLoad dieksekusi tiap 1000ms = 1detik    
+			var waktu = new Date();            //membuat object date berdasarkan waktu saat 
+			var sh = waktu.getHours() + "";    //memunculkan nilai jam, //tambahan script + "" supaya variable sh bertipe string sehingga bisa dihitung panjangnya : sh.length    //ambil nilai menit
+			var sm = waktu.getMinutes() + "";  //memunculkan nilai detik    
+			var ss = waktu.getSeconds() + "";  //memunculkan jam:menit:detik dengan menambahkan angka 0 jika angkanya cuma satu digit (0-9)
+			document.getElementById("clock").innerHTML = (sh.length==1?"0"+sh:sh) + ":" + (sm.length==1?"0"+sm:sm) + ":" + (ss.length==1?"0"+ss:ss);
 			}
-		}
+		</script>
 
-		echo json_encode(array('data'=>$data,'total'=>number_format($total,0,',','.')));	
+		<?php
+
+		$date_now = date('Y-m-d');
+
+		$penagihan_pembelian = $this->db->select('ppp.*, p.nama, ppp.total - (select COALESCE(sum(total),0) from pmm_pembayaran_penagihan_pembelian pm where pm.penagihan_pembelian_id = ppp.id) as total_pembayaran, vpp.tanggal_diterima_proyek as tgl')
+		->from('pmm_penagihan_pembelian ppp')
+		->join('penerima p','ppp.supplier_id = p.id','left')
+		->join('pmm_verifikasi_penagihan_pembelian vpp','ppp.id = vpp.penagihan_pembelian_id','left')
+		->where("ppp.status = 'BELUM LUNAS'")
+		->order_by('ppp.tanggal_invoice','desc')
+		->get()->result_array();
+
+		?>
+
+		<tr class="table-active2">
+			<th colspan="3">Periode</th>
+			<th class="text-center" colspan="9">
+				<blink>
+				<?php
+					$hari = date('l');
+					/*$new = date('l, F d, Y', strtotime($Today));*/
+					if ($hari=="Sunday") {
+					echo "Minggu";
+					}elseif ($hari=="Monday") {
+					echo "Senin";
+					}elseif ($hari=="Tuesday") {
+					echo "Selasa";
+					}elseif ($hari=="Wednesday") {
+					echo "Rabu";
+					}elseif ($hari=="Thursday") {
+					echo("Kamis");
+					}elseif ($hari=="Friday") {
+					echo "Jum'at";
+					}elseif ($hari=="Saturday") {
+					echo "Sabtu";
+					}
+					?>,
+
+					<?php
+					$tgl =date('d');
+					echo $tgl;
+					$bulan =date('F');
+					if ($bulan=="January") {
+					echo " Januari ";
+					}elseif ($bulan=="February") {
+					echo " Februari ";
+					}elseif ($bulan=="March") {
+					echo " Maret ";
+					}elseif ($bulan=="April") {
+					echo " April ";
+					}elseif ($bulan=="May") {
+					echo " Mei ";
+					}elseif ($bulan=="June") {
+					echo " Juni ";
+					}elseif ($bulan=="July") {
+					echo " Juli ";
+					}elseif ($bulan=="August") {
+					echo " Agustus ";
+					}elseif ($bulan=="September") {
+					echo " September ";
+					}elseif ($bulan=="October") {
+					echo " Oktober ";
+					}elseif ($bulan=="November") {
+					echo " November ";
+					}elseif ($bulan=="December") {
+					echo " Desember ";
+					}
+					$tahun=date('Y');
+					echo $tahun;
+					?>
+				</blink>
+			</th>
+		</tr>
+		<tr class="table-active4">
+			<th class="text-center">NO.</th>
+			<th class="text-center">REKANAN</th>
+			<th class="text-center">NO. TAGIHAN</th>
+			<th class="text-center">TOTAL</th>
+			<th class="text-center">TGL. DITERIMA OFFICE</th>
+			<th class="text-center">BELUM DIBAYAR</th>
+			<th class="text-center">1-30 HARI</th>
+			<th class="text-center">31-60 HARI</th>
+			<th class="text-center">61-90 HARI</th>
+			<th class="text-center">> 90 HARI</th>
+		</tr>
+		<?php   
+		if(!empty($penagihan_pembelian)){
+		foreach ($penagihan_pembelian as $key => $x) {
+		$dateOne30 = new DateTime($x['tgl']);
+		$dateTwo30 = new DateTime($date_now);
+		$diff30 = $dateTwo30->diff($dateOne30)->format("%a");
+
+		$dateOne60 = new DateTime($x['tgl']);
+		$dateTwo60 = new DateTime($date_now);
+		$diff60 = $dateTwo60->diff($dateOne60)->format("%a");
+
+		$dateOne90 = new DateTime($x['tgl']);
+		$dateTwo90 = new DateTime($date_now);
+		$diff90 = $dateTwo90->diff($dateOne90)->format("%a");
+
+		$dateOne120 = new DateTime($x['tgl']);
+		$dateTwo120 = new DateTime($date_now);
+		$diff120 = $dateTwo120->diff($dateOne120)->format("%a");
+
+
+		?>
+		<tr class="table-active3">
+			<th class="text-center"><?php echo $key + 1;?></th>
+			<th class="text-left"><?= $x['nama'] ?></th>
+			<th class="text-left"><?= $x['nomor_invoice'] ?></th>
+			<th class="text-right"><?php echo number_format($x['total_pembayaran'],0,',','.');?></th>
+			<th class="text-center"><?= $x['tgl'] ?></th>
+			<th class="text-center"></th>
+			<th class="text-center"><?php echo ($diff30 >= 0 && $diff30 <= 30) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th class="text-center"><?php echo ($diff60 >= 31 && $diff60 <= 60) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th class="text-center"><?php echo ($diff90 >= 61 && $diff90 <= 90) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+			<th class="text-center"><?php echo ($diff120 >= 91 && $diff120 <= 999) ? number_format($x['total_pembayaran'],0,',','.') : '';?></th>
+		</tr>
+		<?php
+        }
+        }
+        ?>
+	</table>
+	<?php
 	}
 	
 	function table_date7()
