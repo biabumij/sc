@@ -1205,8 +1205,7 @@ class Receipt_material extends CI_Controller {
 		?>
 
 		<tr class="table-active2">
-			<th colspan="3">Periode</th>
-			<th class="text-center" colspan="9">
+			<th class="text-center" colspan="10">
 				<blink>
 				<?php
 					$hari = date('l');
