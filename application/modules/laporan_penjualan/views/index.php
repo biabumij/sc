@@ -133,24 +133,24 @@
                                                                 <input type="text" id="filter_date_a" name="filter_date" class="form-control dtpicker" value="" autocomplete="off" placeholder="Filter By Date">
                                                             </div>
                                                             <div class="col-sm-3">
-                                                                <select id="filter_product_a" class="form-control select2" name="filter_product">
-                                                                    <option value="">Pilih Produk</option>
-                                                                    <?php
-                                                                    foreach ($product as $key => $pro) {
-                                                                    ?>
-                                                                        <option value="<?php echo $pro['id']; ?>"><?php echo $pro['nama_produk']; ?></option>
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-sm-3">
                                                                 <select id="filter_client_id_a" class="form-control select2" name="filter_client_id">
                                                                     <option value="">Pilih Pelanggan</option>
                                                                     <?php
                                                                     foreach ($client as $key => $cl) {
                                                                     ?>
                                                                         <option value="<?php echo $cl['id']; ?>"><?php echo $cl['nama']; ?></option>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <select id="filter_product_a" class="form-control select2" name="filter_product">
+                                                                    <option value="">Pilih Produk</option>
+                                                                    <?php
+                                                                    foreach ($product as $key => $pro) {
+                                                                    ?>
+                                                                        <option value="<?php echo $pro['id']; ?>"><?php echo $pro['nama_produk']; ?></option>
                                                                     <?php
                                                                     }
                                                                     ?>
