@@ -75,11 +75,11 @@
 														<p>Menampilkan rekapitulasi laporan produksi yang dicatat dalam suatu periode.</p>
                                                         <a href="#rekapitulasi_laporan_produksi" aria-controls="rekapitulasi_laporan_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
-													<div class="col-sm-5">
+													<!--<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku</h5></p>
 														<p>Menampilkan pergerakan bahan baku dalam suatu periode.</p>
                                                         <a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
+													</div>-->
                                                     <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku (Penyesuaian Stok)</h5></p>
 														<p>Menampilkan pergerakan bahan baku dalam suatu periode.</p>
@@ -95,11 +95,11 @@
 														<p>Menampilkan beban pokok produksi dalam suatu periode.</p>
                                                         <a href="#beban_pokok_produksi" aria-controls="beban_pokok_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
-													<div class="col-sm-5">
+													<!--<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi</h5></p>
 														<p>Menampilkan pergerakan bahan jadi dalam suatu periode.</p>
                                                         <a href="#pergerakan_bahan_jadi" aria-controls="pergerakan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
+													</div>-->
                                                     <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi (Penyesuaian Stok)</h5></p>
 														<p>Menampilkan pergerakan bahan jadi (Penyesuaian Stok).</p>
