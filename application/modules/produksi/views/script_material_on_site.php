@@ -5,6 +5,7 @@
     $('input.numberformat').number( true, 2,',','.' );
     $('.dtpicker').daterangepicker({
         singleDatePicker: true,
+        showDropdowns: true,
         locale: {
             format: 'DD-MM-YYYY'
         }
