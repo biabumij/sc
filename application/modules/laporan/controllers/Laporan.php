@@ -1595,7 +1595,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetPrintHeader(true);
 		$pdf->SetPrintFooter(true);
@@ -1621,10 +1620,11 @@ class Laporan extends Secure_Controller {
 			$data['filter_date'] = $filter_date;
 
 		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total - ppp.uang_muka) as total_tagihan, SUM((select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_pembayaran, SUM(ppp.total - (select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_hutang');
-		
+		$this->db->join('pmm_verifikasi_penagihan_pembelian vp', 'ppp.id = vp.penagihan_pembelian_id','left');
+
 		if(!empty($start_date) && !empty($end_date)){
-			$this->db->where('ppp.tanggal_invoice >=',$start_date);
-			$this->db->where('ppp.tanggal_invoice <=',$end_date);
+			$this->db->where('vp.tanggal_diterima_proyek >=',$start_date);
+			$this->db->where('vp.tanggal_diterima_proyek <=',$end_date);
 		}
 		if(!empty($supplier_id)){
 			$this->db->where('ppp.supplier_id',$supplier_id);
@@ -1640,6 +1640,7 @@ class Laporan extends Secure_Controller {
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
+
 
 			$no = 1;
 			if($query->num_rows() > 0){
