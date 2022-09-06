@@ -57,7 +57,7 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Laba Rugi</h5></p>
-														<p>Menampilkan laporan laba rugi dalam suatu periode.</p>
+														<p>Menampilkan laporan laba rugi yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan-laba-rugi" aria-controls="laporan-laba-rugi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>													
                                                 </div>
