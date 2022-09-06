@@ -896,6 +896,16 @@
             }
 			});
 
+			$("#filter_date_bahan_baku").daterangepicker({
+				autoUpdateInput : false,
+				showDropdowns: true,
+				locale: {
+				  format: 'DD-MM-YYYY'
+				},
+				minDate: new Date(2021, 01, 27), 
+				maxDate: new Date(2022, 04, 31)		
+			});
+
 			$('#filter_date_bahan_baku').on('apply.daterangepicker', function(ev, picker) {
 				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
 				  TablePergerakanBahanBaku();
