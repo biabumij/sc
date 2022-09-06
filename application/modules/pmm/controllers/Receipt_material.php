@@ -1029,11 +1029,10 @@ class Receipt_material extends CI_Controller {
 		}
 
 		$this->db->select('ppp.supplier_id, ps.nama, SUM(ppp.total - ppp.uang_muka) as total_tagihan, SUM((select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_pembayaran, SUM(ppp.total - (select COALESCE(SUM((total)),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'")) as total_hutang');
-		$this->db->join('pmm_verifikasi_penagihan_pembelian vp', 'ppp.id = vp.penagihan_pembelian_id','left');
 
 		if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('vp.tanggal_diterima_proyek >=',$start_date);
-            $this->db->where('vp.tanggal_diterima_proyek <=',$end_date);
+            $this->db->where('ppp.tanggal_invoice >=',$start_date);
+            $this->db->where('ppp.tanggal_invoice <=',$end_date);
         }
         if(!empty($supplier_id)){
             $this->db->where('ppp.supplier_id',$supplier_id);
@@ -1062,7 +1061,6 @@ class Receipt_material extends CI_Controller {
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
-						$arr['tanggal_diterima_proyek'] = date('d-m-Y',strtotime($row['tanggal_diterima_proyek']));
 						$arr['nomor_invoice'] = $row['nomor_invoice'];
 						$arr['tanggal_jatuh_tempo'] = date('d-m-Y',strtotime($row['tanggal_jatuh_tempo']));
 						$arr['memo'] = $row['memo'];
