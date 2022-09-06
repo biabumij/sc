@@ -107,7 +107,7 @@
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Penyelesaian Pembelian</h5></p>
-														<p>Menampilkan ringkasan dari proses bisnis dari penawaran, pemesanan, pengiriman, penagihan, dan pembayaran per proses, agar Anda dapat melihat penawaran/pemesanan mana yang berlanjut ke penagihan.</p>
+														<p>Menampilkan ringkasan proses bisnis dari penawaran, pemesanan, pengiriman, penagihan, dan pembayaran per proses, agar Anda dapat melihat penawaran/pemesanan mana yang berlanjut ke penagihan.</p>
                                                         <a href="#laporan_penyelesaian_pembelian" aria-controls="laporan_penyelesaian_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                 </div>
