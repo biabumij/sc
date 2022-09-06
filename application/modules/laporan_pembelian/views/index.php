@@ -57,12 +57,12 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Penerimaan Pembelian (Bahan Baku)</h5></p>
-														<p>Menampilkan produk bahan baku yang dicatat terkirim untuk transaksi pembelian yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan transaksi pembelian bahan baku yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian" aria-controls="laporan_penerimaan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Penerimaan Pembelian (Bahan Baku) Per Hari</h5></p>
-														<p>Menampilkan produk bahan baku per hari yang dicatat terkirim untuk transaksi pembelian yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan transaksi pembelian bahan baku yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian_hari" aria-controls="laporan_penerimaan_pembelian_hari" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
