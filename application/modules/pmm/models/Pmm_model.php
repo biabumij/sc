@@ -1662,7 +1662,6 @@ class Pmm_model extends CI_Model {
 		
 		
         $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, ppp.tanggal_jatuh_tempo, ppp.memo, SUM(ppp.total - ppp.uang_muka) as tagihan, (select sum(total) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'") as pembayaran, SUM(ppp.total - ppp.uang_muka) - (select COALESCE(SUM(total),0) from pmm_pembayaran_penagihan_pembelian ppm where ppm.penagihan_pembelian_id = ppp.id and status = "DISETUJUI" and ppm.tanggal_pembayaran >= "'.$start_date.'"  and ppm.tanggal_pembayaran <= "'.$end_date.'") as hutang');
-        $this->db->join('pmm_verifikasi_penagihan_pembelian vp', 'ppp.id = vp.penagihan_pembelian_id','left');
 
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
