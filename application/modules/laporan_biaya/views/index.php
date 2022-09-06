@@ -60,7 +60,7 @@
 													<div class="panel panel-default">                                            
 														<div class="col-sm-5">
 														<p><h5>Biaya</h5></p>
-														<p>Menampilkan biaya pembelian yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan laporan biaya yang dicatat dalam suatu periode.</p>
                                                         <a href="<?= site_url('laporan/laporan_biaya'); ?>" class="btn btn-primary">Lihat Laporan</a>
 														</div>													
 													</div>
