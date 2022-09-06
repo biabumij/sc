@@ -58,7 +58,7 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Pengiriman Penjualan</h5></p>
-														<p>Menampilkan laporan pengiriman penjualan yang dicatat dalam suatu periode.</p>
+														<p>Menampilkan transaksi penjualan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_pengiriman_penjualan" aria-controls="laporan_pengiriman_penjualan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>									
                                                     </div>
                                                     <div class="col-sm-5">
