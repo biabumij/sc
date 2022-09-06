@@ -827,6 +827,8 @@ class Penjualan extends Secure_Controller
 					$row["nomor_invoice"] = "<a href=" . site_url("penjualan/detailPenagihan/" . $row["id"]) . " class='text-dark'>" . $row["nomor_invoice"] . "</a>";
 				} elseif ($row["status"] === "REJECT") {
 					$row["nomor_invoice"] = "<a href=" . site_url("penjualan/detailPenagihan/" . $row["id"]) . " class='text-dark'>" . $row["nomor_invoice"] . "</a>";
+				} elseif ($row["status"] === "CLOSED") {
+					$row["nomor_invoice"] = "<a href=" . site_url("penjualan/detailPenagihan/" . $row["id"]) . " class='text-dark'>" . $row["nomor_invoice"] . "</a>";
 				}
 				
 				$row['status'] = (($row['sisa_tagihan']) == 0) ? "LUNAS" : "BELUM LUNAS";
