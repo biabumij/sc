@@ -103,7 +103,7 @@
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />HUTANG</th>
             </tr>
 			<tr class="table-judul">
-				<th align="center">TGL. DITERIMA PROYEK</th>
+				<th align="center">TGL. INVOICE</th>
 			</tr>
             <?php   
             if(!empty($data)){
