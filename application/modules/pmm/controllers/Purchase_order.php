@@ -185,15 +185,13 @@ class Purchase_order extends CI_Controller {
 				'date_po' => date('Y-m-d',strtotime($this->input->post('date_po'))),
 				'subject' => $this->input->post('subject'),
 				'date_pkp' => date('Y-m-d',strtotime($this->input->post('date_pkp'))),
-				'supplier_id' => $this->input->post('supplier_id'),
-				'total' => $this->input->post('total'),
 				'approved_by' => $this->session->userdata('admin_id'),
 				'approved_on' => date('Y-m-d H:i:s'),
 				'status' => 'PUBLISH'
 			);
 			if($this->db->update('pmm_purchase_order',$data,array('id'=>$id))){
 				$output['output'] = true;
-				$this->session->set_flashdata('notif_success','Berhasil menyetujui Pesanan Pembelian !!');
+				$this->session->set_flashdata('notif_success','Berhasil Menyetujui Pesanan Pembelian !!');
 				$output['url'] = site_url('admin/pembelian');
 			}
 		}
