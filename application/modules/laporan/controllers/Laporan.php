@@ -1303,7 +1303,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-		$this->db->select('ps.nama, ppo.supplier_id, SUM(ppo.total) as jumlah');
+		$this->db->select('ps.nama, ppo.supplier_id, (ppo.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppo.date_po >=',$start_date);
             $this->db->where('ppo.date_po <=',$end_date);
