@@ -1303,7 +1303,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 
-		$this->db->select('ps.nama, ppo.supplier_id, (ppo.total) as jumlah');
+		$this->db->select('ps.nama, ppo.supplier_id, SUM(ppo.total) as jumlah');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('ppo.date_po >=',$start_date);
             $this->db->where('ppo.date_po <=',$end_date);
@@ -1317,8 +1317,7 @@ class Laporan extends Secure_Controller {
         if(!empty($purchase_order_no)){
             $this->db->where('pod.purchase_order_id',$purchase_order_no);
         }
-		
-		$this->db->join('pmm_purchase_order_detail pod', 'ppo.id = pod.purchase_order_id');
+	
 		$this->db->join('penerima ps', 'ppo.supplier_id = ps.id');
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
