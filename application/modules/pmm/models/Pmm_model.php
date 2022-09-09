@@ -1564,7 +1564,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('ppo.id, ppo.date_po, ppo.no_po, p.nama_produk, pod.material_id, pod.measure, SUM(pod.volume * pod.price) / SUM(pod.volume) as price, SUM(pod.volume) as volume, SUM(pod.tax) as ppn, SUM(pod.volume * pod.price) as jumlah, SUM(ppo.total) as total_price, ppo.status');
+        $this->db->select('ppo.id, ppo.date_po, ppo.no_po, p.nama_produk, pod.material_id, pod.measure, SUM(pod.volume * pod.price) / SUM(pod.volume) as price, SUM(pod.volume) as volume, SUM(pod.tax) as ppn, SUM(pod.volume * pod.price) as jumlah, (ppo.total) as total_price, ppo.status');
 		$this->db->join('pmm_purchase_order_detail pod', 'ppo.id = pod.purchase_order_id', 'left');
         $this->db->join('produk p','pod.material_id = p.id','left');
         
