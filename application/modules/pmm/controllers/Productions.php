@@ -1279,6 +1279,7 @@ class Productions extends Secure_Controller {
         }
 		
 		$this->db->join('penerima ps', 'ppp.client_id = ps.id','left');
+		$this->db->where('ppp.status','OPEN');
 		$this->db->group_by('ppp.client_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');

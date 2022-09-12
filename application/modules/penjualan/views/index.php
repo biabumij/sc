@@ -64,6 +64,11 @@
 
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                         <div class="table-responsive">
+                                            <div class="col-sm-3">
+                                                <input type="text" id="filter_date_penawaran" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
+                                            </div>
+                                            <br />
+                                            <br />
                                             <table class="table table-striped table-hover" id="table_penawaran" style="width:100%">
                                                 <thead>
                                                     <tr>
@@ -82,12 +87,17 @@
                                         </div>
                                     </div>
 
-                                    <!-- End Penawaran Penjualan -->
+                                    <!-- Penawaran Penjualan -->
 
                                     <!-- Sales Order -->
 
                                     <div role="tabpanel" class="tab-pane" id="profile">
                                         <div class="table-responsive">
+                                            <div class="col-sm-3">
+                                                <input type="text" id="filter_date_sales_order" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
+                                            </div>
+                                            <br />
+                                            <br />
                                             <table class="table table-striped table-hover" id="guest-table" style="width:100%">
                                                 <thead>
                                                     <tr>
@@ -98,11 +108,9 @@
                                                         <th class="text-center">Jenis Pekerjaan</th>
 														<th class="text-center">Vol. Sales Order</th>
 														<th class="text-center">Kirim</th>
+                                                        <th class="text-center">Presentase Penerimaan Terhadap Vol. Sales Order</th>
 														<th class="text-center">Total Sales Order</th>
 														<th class="text-center">Total Kirim</th>
-                                                        <!--<th class="text-center">Nilai Pekerjaan</th>
-                                                        <th class="text-center">PPN</th>
-                                                        <th class="text-center">Total</th>-->
                                                         <th class="text-center">Status Sales Order</th>
                                                     </tr>
                                                 </thead>
@@ -193,7 +201,7 @@
 
                                     </div>
 
-                                    <!-- End Pengiriman Penjualan -->
+                                    <!-- Pengiriman Penjualan -->
 
                                     <!-- Tagihan Penjualan -->
 
@@ -216,6 +224,7 @@
                                                         <th class="text-center">Total</th>
                                                         <th class="text-center">Pembayaran</th>
                                                         <th class="text-center">Sisa Tagihan</th>
+                                                        <th class="text-center">Status Pembayaran</th>
                                                         <th class="text-center">Status Tagihan</th>
                                                     </tr>
                                                 </thead>
@@ -226,7 +235,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- End Tagihan Penjualan -->
+                                    <!-- Tagihan Penjualan -->
 
                                 </div>
 
@@ -263,7 +272,7 @@
                 url: '<?php echo site_url('penjualan/table_penawaran'); ?>',
                 type: 'POST',
                 data: function(d) {
-                    d.supplier_id = $('#filter_supplier_id_x').val();
+                    d.filter_date = $('#filter_date_penawaran').val();
                 }
             },
             columns: [{
@@ -297,10 +306,10 @@
 			],
             responsive: true,
         });
-        $('#filter_supplier_id_x').on('select2:select', function(e) {
-            var data = e.params.data;
-            console.log(data);
-            table_penawaran.ajax.reload
+
+        $('#filter_date_penawaran').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            table_penawaran.ajax.reload();
         });
 
         var table_po = $('#guest-table').DataTable({
@@ -309,6 +318,9 @@
                 serverSide: true,
                 url: '<?php echo site_url('penjualan/table_sales_po'); ?>',
                 type: 'POST',
+				data: function(d) {
+                    d.filter_date = $('#filter_date_sales_order').val();
+                }
             },
             columns: [{
                     "data": "no"
@@ -331,6 +343,9 @@
 				{
                     "data": "receipt"
                 },
+                {
+                    "data": "presentase"
+                },
 				{
                     "data": "jumlah_total"
                 },
@@ -343,14 +358,20 @@
             ],
             "columnDefs": [
 				{
-                    "targets": [0, 1, 9],
+                    "targets": [0, 1, 7, 10],
                     "className": 'text-center',
-                },{
-                    "targets": [5, 6, 7, 8],
+                },
+                {
+                    "targets": [5, 6, 8, 9],
                     "className": 'text-right',
                 }
             ],
             responsive: true,
+        });
+
+        $('#filter_date_sales_order').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            table_po.ajax.reload();
         });
 
         var tableProduction = $('#table-production').DataTable({
@@ -482,10 +503,13 @@
                 {
                     "data": "status"
                 },
+                {
+                    "data": "status_tagihan"
+                }
 
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4, 5, 9],
+                    "targets": [0, 1, 4, 5, 9, 10],
                     "className": 'text-center',
                 },
                 {
@@ -541,6 +565,7 @@
             },
             showDropdowns: true,
         });
+
 		$('#filter_date_tagihan').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
             table.ajax.reload();
@@ -567,7 +592,7 @@
                     }
                 });
             } else {
-                bootbox.alert('Tolong Pilih Terlebih dahulu');
+                bootbox.alert('Pilih Surat Jalan Terlebih Dahulu');
             }
         });
     </script>

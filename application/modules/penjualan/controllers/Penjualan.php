@@ -15,12 +15,19 @@ class Penjualan extends Secure_Controller
 		$this->load->library('session');
 	}
 
-	
-
 	public function table_penawaran()
 	{
 		$data = array();
 		
+		$w_date = $this->input->post('filter_date');
+
+        if (!empty($w_date)) {
+            $arr_date = explode(' - ', $w_date);
+            $start_date = $arr_date[0];
+            $end_date = $arr_date[1];
+            $this->db->where('tanggal  >=', date('Y-m-d', strtotime($start_date)));
+            $this->db->where('tanggal <=', date('Y-m-d', strtotime($end_date)));
+        }
 
 		$this->db->select('pmm_penawaran_penjualan.*,penerima.nama');
 		$this->db->join("penerima", "pmm_penawaran_penjualan.client_id = penerima.id");
@@ -30,7 +37,6 @@ class Penjualan extends Secure_Controller
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key + 1;
-				// $row['coa'] = '' 
 				$row['tanggal'] = date('d/m/Y', strtotime($row['tanggal']));
 				$row['nomor'] = "<a href=" . base_url('penjualan/detailPenawaran/' . $row["id"]) . ">" . $row["nomor"] . "</a>";
 				$row['total'] = number_format($row['total'],0,',','.');
@@ -363,6 +369,16 @@ class Penjualan extends Secure_Controller
 	{
 		$data = array();
 
+		$w_date = $this->input->post('filter_date');
+
+        if (!empty($w_date)) {
+            $arr_date = explode(' - ', $w_date);
+            $start_date = $arr_date[0];
+            $end_date = $arr_date[1];
+            $this->db->where('contract_date  >=', date('Y-m-d', strtotime($start_date)));
+            $this->db->where('contract_date <=', date('Y-m-d', strtotime($end_date)));
+        }
+
 		$this->db->select('ps.*, p.nama as client_name');
 		$this->db->join('penerima p', 'ps.client_id = p.id', 'left');
 		$this->db->order_by('contract_date', 'DESC');
@@ -384,6 +400,9 @@ class Penjualan extends Secure_Controller
 				
 				$receipt = $this->db->select('SUM(volume) as volume')->get_where('pmm_productions',array('salesPo_id'=>$row['id'],'status'=>'PUBLISH'))->row_array();
 				$row['receipt'] = '<a href="'.site_url('pmm/purchase_order/production_material_pdf/'.$row['id']).'" target="_blank" >'.number_format($receipt['volume'],2,',','.').'</a>';
+
+				$presentase = ($receipt['volume'] / $total_volume['total']) * 100;
+				$row['presentase'] = number_format($presentase,0,',','.').' %';
 								
 				$total_receipt = $this->db->select('SUM(price) as price')->get_where('pmm_productions',array('salesPo_id'=>$row['id'],'status'=>'PUBLISH'))->row_array();
 				$row['total_receipt'] = number_format($total_receipt['price'],0,',','.');
@@ -765,14 +784,12 @@ class Penjualan extends Secure_Controller
 			$this->db->where('date_production >=', $start_date);
 			$this->db->where('date_production <=', $end_date);
 		}
-		//$this->db->order_by('date_production', 'DESC');
+
 		$this->db->order_by('updated_on', 'DESC');
 		$query = $this->db->get('pmm_productions');
-		//file_put_contents("D:\\table_productions.txt", $this->db->last_query());
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key + 1;
-				// $row['coa'] = ''
 				$row['checkbox'] = '';				
 				$row['date_production'] = date('d/m/Y', strtotime($row['date_production']));
 				$row['no_production'] = $row['no_production'];
@@ -809,17 +826,17 @@ class Penjualan extends Secure_Controller
 		$this->db->order_by('tanggal_invoice', 'DESC');
 		$this->db->order_by('created_on', 'DESC');
         $query = $this->db->get('pmm_penagihan_penjualan');
-		//file_put_contents("D:\\penjualan.txt", $this->db->last_query());
+
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key + 1;
-				// $row['coa'] = ''
 				$row['total_biaya'] = number_format($row['total'], 0, ',', '.');
 				$pembayaran = $this->pmm_finance->getTotalPembayaranPenagihanPenjualan($row['id']);
 				$row['pembayaran'] = number_format($pembayaran, 0, ',', '.');
 				$row['sisa_tagihan'] = number_format($row['total'] - $pembayaran, 0, ',', '.');
 				$row['tanggal_invoice'] = date('d/m/Y', strtotime($row['tanggal_invoice']));
 				$row['tanggal_kontrak'] = date('d/m/Y', strtotime($row['tanggal_kontrak']));
+				$row['status_tagihan'] = $this->pmm_model->GetStatus2($row['status']);
 				
 				if ($row["status"] === "OPEN") {
 					$row["nomor_invoice"] = "<a href=" . site_url("penjualan/detailPenagihan/" . $row["id"]) . " class='text-dark'>" . $row["nomor_invoice"] . "</a>";
@@ -881,8 +898,6 @@ class Penjualan extends Secure_Controller
 			$this->db->group_by('pp.product_id');
 			$data['cekHarga'] = $this->db->get('pmm_productions pp')->result_array();
 			
-			//file_put_contents("D:\\penagihan_penjualan.txt", $this->db->last_query());
-			
 			// return var_dump($data['cekSurat'][0]);
 
 			$data['id'] = $id;
@@ -905,7 +920,6 @@ class Penjualan extends Secure_Controller
 			$this->db->join('pmm_productions pp', 'ppo.id = pp.salesPo_id', 'left');
 			$this->db->where_in('pp.id', $id_new);
 			$data['syarat_pembayaran'] = $this->db->get_where('pmm_sales_po ppo')->row_array();
-			//file_put_contents("D:\\syarat_pembayaran.txt", $this->db->last_query());
 
 			$data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
 
@@ -948,7 +962,6 @@ class Penjualan extends Secure_Controller
 			'tanggal_kontrak' => date('Y-m-d', strtotime($tanggal_kontrak)),
 			'tanggal_invoice' => date('Y-m-d', strtotime($tanggal_invoice)),
 			'syarat_pembayaran' => $syarat_pembayaran,
-			//'tanggal_jatuh_tempo' => date('Y-m-d', strtotime($tanggal_jatuh_tempo)),
 			'alamat_pelanggan' => $this->input->post('alamat_pelanggan'),
 			'nomor_kontrak' => $this->input->post('nomor_kontrak'),
 			'nomor_invoice' => $this->input->post('nomor_invoice'),
@@ -1075,7 +1088,6 @@ class Penjualan extends Secure_Controller
 		if ($check == true) {
 			$data['penagihan'] = $this->db->get_where('pmm_penagihan_penjualan', ["id" => $id])->row_array();
 			$data['cekHarga'] = $this->db->get_where('pmm_penagihan_penjualan_detail', ["penagihan_id" => $id])->result_array();
-			//file_put_contents("D:\\detailPenagihan.txt", $this->db->last_query());
 			$data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
 			$data['dataLampiran'] = $this->db->get_where('pmm_lampiran_penagihan', ["penagihan_id" => $id])->result_array();
 			$this->load->view('penjualan/detailPenagihan', $data);
@@ -1139,7 +1151,6 @@ class Penjualan extends Secure_Controller
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
 			$data['pembayaran'] = $this->db->get_where('pmm_penagihan_penjualan', ["id" => $id])->row_array();
-			//file_put_contents("D:\\pembayaran.txt", $this->db->last_query());
 			$data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran', array('penagihan_id' => $id))->row_array();
 
 
@@ -1385,7 +1396,6 @@ class Penjualan extends Secure_Controller
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key + 1;
-				// $row['coa'] = '' 
 				$row['saldo'] = 0;
 				$row['setor_ke'] = $this->crud_global->GetField('pmm_coa', array('id' => $row['setor_ke']), 'coa');
 				$row['tanggal_pembayaran'] = date('d/m/Y', strtotime($row['tanggal_pembayaran']));
@@ -1508,8 +1518,6 @@ class Penjualan extends Secure_Controller
 
 		$penagihan = $this->db->get_where('pmm_penagihan_penjualan', array('sales_po_id' => $id))->row_array();
 
-		//file_put_contents("D:\\penagihan.txt", $this->db->last_query());
-
 		$this->db->delete('pmm_penagihan_penjualan_detail',array('penagihan_id'=>$penagihan['id']));
 
 		$this->db->delete('pmm_lampiran_penagihan',array('penagihan_id'=>$penagihan['id']));
@@ -1545,19 +1553,15 @@ class Penjualan extends Secure_Controller
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
-		//$pdf->setPrintFooter(true);
         $pdf->SetFont('helvetica','',7); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		//$pdf->SetMargins(0, 0, 0, true);
 		$pdf->AddPage('P');
 		
 		$data['penagihan'] = $this->db->get_where('pmm_penagihan_penjualan', ["id" => $id])->row_array();
 		$data['cekHarga'] = $this->db->get_where('pmm_penagihan_penjualan_detail', ["penagihan_id" => $id])->result_array();
 		$data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
 		$data['dataLampiran'] = $this->db->get_where('pmm_lampiran_penagihan', ["penagihan_id" => $id])->result_array();
-		
-		//file_put_contents("D:\\cetak_penagihan_penjualan.txt", $this->db->last_query());
 		
         $html = $this->load->view('penjualan/cetak_penagihan_penjualan',$data,TRUE);
         $row = $this->db->get_where('pmm_penagihan_penjualan',array('id'=>$id))->row_array();

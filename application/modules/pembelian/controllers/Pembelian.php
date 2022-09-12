@@ -263,8 +263,6 @@ class Pembelian extends Secure_Controller
 
         $query = $this->db->get('pmm_penawaran_pembelian');
 
-        //file_put_contents("D:\\sql.txt", $this->db->last_query());
-
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key + 1;
@@ -354,9 +352,8 @@ class Pembelian extends Secure_Controller
         }
 
         $this->db->order_by('tanggal_invoice', 'DESC');
-        //$this->db->order_by('created_on', 'DESC');
         $query = $this->db->get('pmm_penagihan_pembelian');
-		//file_put_contents("D:\\pembelian.txt", $this->db->last_query());
+	
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $key => $row) {
                 $supplier_name = $this->crud_global->GetField('penerima', array('id' => $row['supplier_id']), 'nama');
@@ -427,15 +424,12 @@ class Pembelian extends Secure_Controller
                 $this->db->group_by('prm.material_id');
                 $detail = $this->db->get('pmm_receipt_material prm')->result_array();
                 $data['details'] = $detail;
-				//file_put_contents("D:\\detail.txt", $this->db->last_query());
-
 
                 $this->db->select('ppo.*, ps.nama as supplier_name, ps.alamat as supplier_address, ppp.syarat_pembayaran');
 				$this->db->join('pmm_purchase_order_detail ppod', 'ppo.id = ppod.purchase_order_id', 'left');
 				$this->db->join('pmm_penawaran_pembelian ppp', 'ppod.penawaran_id = ppp.id', 'left');
                 $this->db->join('penerima ps', 'ppo.supplier_id = ps.id', 'left');
                 $data['po'] = $this->db->get_where('pmm_purchase_order ppo', array('ppo.id' => $detail[0]['purchase_order_id']))->row_array();
-				//file_put_contents("D:\\po.txt", $this->db->last_query());
                 $data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
                 $data['setor_bank'] = $this->pmm_finance->BankCash();
                 $this->load->view('pembelian/penagihan_pembelian', $data);
@@ -704,8 +698,6 @@ class Pembelian extends Secure_Controller
 
         $query['ppn'] = $detail['tax'];
 		$query['nama_produk'] = $detail['nama_produk'];
-		//file_put_contents("D:\\get_penagihan_pembelian.txt", $this->db->last_query());	
-		
 
         if (!empty($query)) {
             $receipt_material_id = explode(',', $query['surat_jalan'])[0];
@@ -964,9 +956,7 @@ class Pembelian extends Secure_Controller
         if (!empty($id)) {
 
             $data['row'] = $this->pmm_finance->getVerifDokumenById($id);
-            // file_put_contents("D:\\sql.txt", $this->db->last_query());
             $html = $this->load->view('pembelian/print_verifikasi_penagihan_pembelian', $data, TRUE);
-
 
             $pdf->SetTitle('Verifikasi Dokumen Penagihan Pembelian');
             $pdf->nsi_html($html);
@@ -1386,7 +1376,6 @@ class Pembelian extends Secure_Controller
 			$data['bayar'] = $this->db->get_where('pmm_pembayaran_penagihan_pembelian', ["id" => $id])->row_array();
 			$data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian', ["id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
 			$data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('id' => $id))->row_array();
-			//file_put_contents("D:\\total_bayar.txt", $this->db->last_query());
 
 			// Setor Bank
 			$this->db->select('c.*');
