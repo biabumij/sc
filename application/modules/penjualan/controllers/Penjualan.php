@@ -370,7 +370,6 @@ class Penjualan extends Secure_Controller
 		$data = array();
 
 		$w_date = $this->input->post('filter_date');
-
         if (!empty($w_date)) {
             $arr_date = explode(' - ', $w_date);
             $start_date = $arr_date[0];
