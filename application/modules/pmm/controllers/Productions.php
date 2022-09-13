@@ -1595,7 +1595,7 @@ class Productions extends Secure_Controller {
 						$arr['tanggal_pembayaran'] =  date('d-m-Y',strtotime($row['tanggal_pembayaran']));
 						$arr['nomor_transaksi'] = '<a href="'.base_url().'penjualan/view_pembayaran/'.$row['id'].'" target="_blank">'.$row['nomor_transaksi'].'</a>';
 						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = '<a href="'.base_url().'penjualan/detailPenagihan/'.$row['penagihan_id'].'" target="_blank">'.$row['nomor_transaksi'].'</a>';
+						$arr['nomor_invoice'] = '<a href="'.base_url().'penjualan/detailPenagihan/'.$row['penagihan_id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['penerimaan'] = number_format($row['penerimaan'],0,',','.');								
 						
 						$arr['nama'] = $sups['nama'];

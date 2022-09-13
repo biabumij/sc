@@ -107,8 +107,8 @@
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Jenis Pekerjaan</th>
 														<th class="text-center">Vol. Sales Order</th>
-														<th class="text-center">Kirim</th>
                                                         <th class="text-center">Presentase Penerimaan Terhadap Vol. Sales Order</th>
+                                                        <th class="text-center">Kirim</th>
 														<th class="text-center">Total Sales Order</th>
 														<th class="text-center">Total Kirim</th>
                                                         <th class="text-center">Status Sales Order</th>
@@ -340,11 +340,11 @@
 				{
                     "data": "qty"
                 },
-				{
-                    "data": "receipt"
-                },
                 {
                     "data": "presentase"
+                },
+				{
+                    "data": "receipt"
                 },
 				{
                     "data": "jumlah_total"
@@ -358,11 +358,11 @@
             ],
             "columnDefs": [
 				{
-                    "targets": [0, 1, 7, 10],
+                    "targets": [0, 1, 6, 10],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [5, 6, 8, 9],
+                    "targets": [5, 7, 8, 9],
                     "className": 'text-right',
                 }
             ],

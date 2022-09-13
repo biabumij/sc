@@ -266,8 +266,8 @@
                                                     <th class="text-center">Subyek</th>
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Vol PO</th>
-                                                    <th class="text-center">Terima</th>
                                                     <th class="text-center">Presentase Penerimaan Terhadap Vol. PO</th>
+                                                    <th class="text-center">Terima</th>
                                                     <th class="text-center">Total Pesanan Pembelian</th>
                                                     <th class="text-center">Total Terima</th>
                                                     <th class="text-center">Status PO</th>
@@ -1129,10 +1129,10 @@
                     "data": "volume"
                 },
                 {
-                    "data": "receipt"
+                    "data": "presentase"
                 },
                 {
-                    "data": "presentase"
+                    "data": "receipt"
                 },
                 {
                     "data": "total"
@@ -1149,11 +1149,11 @@
             ],
                 "columnDefs": [
                     {
-                        "targets": [0, 4, 7, 10, 11],
+                        "targets": [0, 4, 6, 10, 11],
                         "className": 'text-center',
                     },
                     {
-                        "targets": [5, 6, 8, 9],
+                        "targets": [5, 7, 8, 9],
                         "className": 'text-right',
                     }
                  ],

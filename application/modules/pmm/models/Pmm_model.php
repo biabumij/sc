@@ -2475,6 +2475,8 @@ class Pmm_model extends CI_Model {
                 $row['total_receipt'] = number_format($total_receipt,0,',','.');
                 $row['total_receipt_val'] = $total_receipt;
 
+                $row['document_po'] = '<a href="' . base_url('uploads/purchase_order/' . $row['id']) .'" target="_blank">' . $row['document_po'] . '</a>'; 
+
                 $delete = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
                 if($row['status'] == 'DRAFT'){
                     
@@ -2485,7 +2487,7 @@ class Pmm_model extends CI_Model {
                 }
 
                 $upload_document = false;
-                if($row['status'] == 'PUBLISH'){
+                if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED'){
                     $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
                 }
                 $edit_no_po = false;
