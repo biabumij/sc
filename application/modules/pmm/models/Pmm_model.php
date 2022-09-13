@@ -2146,7 +2146,7 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
 		
-        $this->db->select('pmp.client_id, pmp.tanggal_pembayaran, pmp.nomor_transaksi, ppp.tanggal_invoice, ppp.nomor_invoice, pmp.total as penerimaan');
+        $this->db->select('ppp.id as penagihan_id, pmp.id, pmp.client_id, pmp.tanggal_pembayaran, pmp.nomor_transaksi, ppp.tanggal_invoice, ppp.nomor_invoice, pmp.total as penerimaan');
 		
 		$this->db->join('pmm_penagihan_penjualan ppp', 'pmp.penagihan_id = ppp.id');
         

@@ -1058,7 +1058,7 @@ class Productions extends Secure_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['contract_date'] = date('d-m-Y',strtotime($row['contract_date']));
-						$arr['contract_number'] = $row['contract_number'];
+						$arr['contract_number'] = '<a href="'.base_url().'penjualan/dataSalesPO/'.$row['id'].'" target="_blank">'.$row['contract_number'].'</a>';
 						$arr['nama_produk'] = $row['nama_produk'];
 						$arr['measure'] = $row['measure'];
 						$arr['qty'] = number_format($row['qty'],2,',','.');
@@ -1216,7 +1216,7 @@ class Productions extends Secure_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['nomor_invoice'] = '<a href="'.base_url().'penjualan/detailPenagihan/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['memo'] = $row['memo'];
 						$arr['qty'] =  number_format($row['qty'],2,',','.');
 						$arr['measure'] = $row['measure'];
@@ -1296,7 +1296,7 @@ class Productions extends Secure_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['nomor_invoice'] = '<a href="'.base_url().'penjualan/detailPenagihan/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['memo'] = $row['memo'];
 						$arr['tagihan'] = number_format($row['tagihan'],0,',','.');	
 						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');	
@@ -1528,7 +1528,7 @@ class Productions extends Secure_Controller {
 		?>
 		<tr class="table-active3">
 			<th class="text-center"><?php echo $key + 1;?></th>
-			<th class="text-left"><?= $x['nomor_invoice'] ?></th>
+			<th class="text-left"><a target="_blank" href="<?= base_url("penjualan/detailPenagihan/".$x['id']) ?>"><?= $x['nomor_invoice'] ?><a/></th>
 			<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_invoice'])); ?></th>
 			<th class="text-left"><?= $x['nama'] ?></th>
 			<th class="text-right"><?php echo number_format($x['total_pembayaran'],0,',','.');?></th>
@@ -1593,9 +1593,9 @@ class Productions extends Secure_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['tanggal_pembayaran'] =  date('d-m-Y',strtotime($row['tanggal_pembayaran']));
-						$arr['nomor_transaksi'] = $row['nomor_transaksi'];
+						$arr['nomor_transaksi'] = '<a href="'.base_url().'penjualan/view_pembayaran/'.$row['id'].'" target="_blank">'.$row['nomor_transaksi'].'</a>';
 						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['nomor_invoice'] = '<a href="'.base_url().'penjualan/detailPenagihan/'.$row['penagihan_id'].'" target="_blank">'.$row['nomor_transaksi'].'</a>';
 						$arr['penerimaan'] = number_format($row['penerimaan'],0,',','.');								
 						
 						$arr['nama'] = $sups['nama'];
@@ -1809,7 +1809,7 @@ class Productions extends Secure_Controller {
 						$arr['no'] = $key + 1;
 						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
-						$arr['salesPo_id'] = $row['salesPo_id'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$row['salesPo_id']),'contract_number');
+						$arr['salesPo_id'] = '<a href="'.base_url().'penjualan/dataSalesPO/'.$row['salesPo_id'].'" target="_blank">'.$row['salesPo_id'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$row['salesPo_id']),'contract_number').'</a>';
 						$arr['real'] = number_format($row['total'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');

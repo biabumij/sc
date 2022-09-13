@@ -118,9 +118,9 @@
             			<tr class="table-baris1">
 							<td align="center"></td>
 	            			<td align="center"><?php echo $mat['tanggal_pembayaran'];?></td>
-							<td align="center"><?php echo $mat['nomor_transaksi'];?></td>
+							<td align="left"><?php echo $mat['nomor_transaksi'];?></td>
 							<td align="center"><?php echo $mat['tanggal_invoice'];?></td>
-							<td align="center"><?php echo $mat['nomor_invoice'];?></td>            			
+							<td align="left"><?php echo $mat['nomor_invoice'];?></td>            			
 							<td align="right"><?php echo $mat['penerimaan'];?></td>
 	            		</tr>
             			<?php
