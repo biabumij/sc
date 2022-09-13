@@ -492,7 +492,7 @@ class Receipt_material extends CI_Controller {
 						$arr['no'] = $key + 1;
 						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
-						$arr['purchase_order_id'] = $row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');
+						$arr['purchase_order_id'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['purchase_order_id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
 						$arr['volume'] = number_format($row['volume'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
@@ -576,7 +576,7 @@ class Receipt_material extends CI_Controller {
 						$arr['measure'] = $row['measure'];
 						$arr['date_receipt'] = date('d-m-Y',strtotime($row['date_receipt']));
 						$arr['nama_produk'] = $row['nama_produk'];
-						$arr['purchase_order_id'] = $row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');
+						$arr['purchase_order_id'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['purchase_order_id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
 						$arr['volume'] = number_format($row['volume'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
@@ -659,7 +659,7 @@ class Receipt_material extends CI_Controller {
 						$arr['no'] = $key + 1;
 						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
-						$arr['purchase_order_id'] = $row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');
+						$arr['purchase_order_id'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['purchase_order_id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
 						$arr['volume'] = number_format($row['volume'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
@@ -742,7 +742,7 @@ class Receipt_material extends CI_Controller {
 						$arr['no'] = $key + 1;
 						$arr['measure'] = $row['measure'];
 						$arr['nama_produk'] = $row['nama_produk'];
-						$arr['purchase_order_id'] = $row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');
+						$arr['purchase_order_id'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['purchase_order_id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
 						$arr['volume'] = number_format($row['volume'],2,',','.');
 						$arr['price'] = number_format($row['price'],0,',','.');
 						$arr['total_price'] = number_format($row['total_price'],0,',','.');
@@ -824,7 +824,7 @@ class Receipt_material extends CI_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['measure'] = $row['measure'];
-						$arr['no_po'] = $row['no_po'];
+						$arr['no_po'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['id'].'" target="_blank">'.$row['no_po'].'</a>';
 						$arr['date_po'] = date('d-m-Y',strtotime($row['date_po']));
 						$arr['nama_produk'] = $row['nama_produk'];
 						$arr['price'] = number_format($row['price'],0,',','.');
@@ -982,7 +982,7 @@ class Receipt_material extends CI_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['nomor_invoice'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['memo'] = $row['memo'];
 						$arr['volume'] =  number_format($row['volume'],2,',','.');
 						$arr['measure'] = $row['measure'];
@@ -1063,7 +1063,7 @@ class Receipt_material extends CI_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['tanggal_diterima_proyek'] = date('d-m-Y',strtotime($row['tanggal_diterima_proyek']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['nomor_invoice'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['tanggal_jatuh_tempo'] = date('d-m-Y',strtotime($row['tanggal_jatuh_tempo']));
 						$arr['memo'] = $row['memo'];
 						$arr['tagihan'] = number_format($row['tagihan'],0,',','.');	
@@ -1298,7 +1298,7 @@ class Receipt_material extends CI_Controller {
 		?>
 		<tr class="table-active3">
 			<th class="text-center"><?php echo $key + 1;?></th>
-			<th class="text-left"><?= $x['nomor_invoice'] ?></th>
+			<th class="text-left"><a target="_blank" href="<?= base_url("pembelian/penagihan_pembelian_detail/".$x['id']) ?>"><?= $x['nomor_invoice'] ?><a/></th>
 			<th class="text-center"><?= date('d-m-Y',strtotime($x['tanggal_invoice'])); ?></th>
 			<th class="text-left"><?= $x['nama'] ?></th>
 			<th class="text-center"><?= date('d-m-Y',strtotime($x['tgl'])); ?></th>
@@ -1365,9 +1365,9 @@ class Receipt_material extends CI_Controller {
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;
 						$arr['tanggal_pembayaran'] = date('d-m-Y',strtotime($row['tanggal_pembayaran']));
-						$arr['nomor_transaksi'] = $row['nomor_transaksi'];
+						$arr['nomor_transaksi'] = '<a href="'.base_url().'pembelian/view_pembayaran_pembelian/'.$row['id'].'" target="_blank">'.$row['nomor_transaksi'].'</a>';
 						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
-						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['nomor_invoice'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['penagihan_id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
 						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');								
 						
 						$arr['supplier_name'] = $sups['supplier_name'];
