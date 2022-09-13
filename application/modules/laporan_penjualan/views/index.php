@@ -47,10 +47,7 @@
 								<div class="panel-header">
 									<h3 class="section-subtitle"><?php echo $row[0]->menu_name; ?></h3>
 								</div>
-                                <div class="tab-content">
-                                    						
-									<!-- Laporan Penjualan -->
-									
+                                <div class="tab-content">									
                                     <div role="tabpanel" class="tab-pane active" id="penjualan">
                                         <br />
                                         <div class="row">
