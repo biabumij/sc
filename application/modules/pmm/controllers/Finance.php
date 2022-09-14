@@ -23,9 +23,8 @@ class Finance extends CI_Controller {
 		$filter_category = $this->input->post('filter_category');
 
 
-		$this->db->select('c.*, cc.coa_category as coa_category, (SUM(debit) - SUM(credit)) as saldo');
+		$this->db->select('c.*, cc.coa_category as coa_category');
 		$this->db->join('pmm_coa_category cc','c.coa_category = cc.id','left');
-		$this->db->join('transactions t','t.coa_id = c.id','left');
 		$this->db->where('c.status','PUBLISH');
 		if(!empty($filter_category)){
 			$this->db->where('c.coa_category',$filter_category);
@@ -37,7 +36,7 @@ class Finance extends CI_Controller {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
 				// $row['coa'] = '' 
-				$row['saldo'] = $this->filter->Rupiah($row['saldo']);
+				$row['saldo'] = 0;
 				$row['action'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';
 				$data[] = $row;
 			}
@@ -166,8 +165,8 @@ class Finance extends CI_Controller {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
 				// $row['coa'] = '' 
-				$saldo = $this->pmm_finance->GetSaldoKasBank($row['id']);
-				$row['saldo'] = $this->filter->Rupiah($saldo);
+				//$saldo = $this->pmm_finance->GetSaldoKasBank($row['id']);
+				//$row['saldo'] = $this->filter->Rupiah($saldo);
 				$row['saldo_bank'] = 0;
 				$row['hasil_pekerjaan'] = 0;
 				$row['action'] = '-';
@@ -1094,13 +1093,7 @@ class Finance extends CI_Controller {
 		$terima_dari = $this->input->post('terima_dari');
 		$setor_ke = $this->input->post('setor_ke');
 		$nomor_transaksi = $this->input->post('nomor_transaksi');
-		$transaction_id = '';
-
-        $this->pmm_finance->InsertTransactions($terima_dari,$nomor_transaksi,0,$jumlah);
-        $transaction_id .= $this->db->insert_id();
-
-        $this->pmm_finance->InsertTransactions($setor_ke,$nomor_transaksi,$jumlah,0);
-        $transaction_id .= ','.$this->db->insert_id();
+		$tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
 
 		$arr_insert = array(
         	'terima_dari' => $terima_dari,
@@ -1110,13 +1103,15 @@ class Finance extends CI_Controller {
 			'tanggal_transaksi' => date('Y-m-d',strtotime($this->input->post('tanggal_transaksi'))),
 			'memo' => $this->input->post('memo'),
         	'status' => 'PAID',
-        	'transaction_id' => $transaction_id,
         	'created_by' => $this->session->userdata('admin_id'),
         	'created_on' => date('Y-m-d H:i:s')
 		);
 		
 		if($this->db->insert('pmm_terima_uang',$arr_insert)){
 			$terima_id = $this->db->insert_id();
+
+			$this->pmm_finance->InsertTransactionsTerima($terima_id,$setor_ke,$jumlah,$tanggal_transaksi);
+            $transaction_id = $this->db->insert_id();
 
 			if (!file_exists('uploads/terima_uang')) {
 			    mkdir('uploads/terima_uang', 0777, true);
@@ -1221,13 +1216,8 @@ class Finance extends CI_Controller {
 		$transfer_dari = $this->input->post('transfer_dari');
 		$setor_ke = $this->input->post('setor_ke');
 		$nomor_transaksi = $this->input->post('nomor_transaksi');
-		$transaction_id = '';
-
-		$this->pmm_finance->InsertTransactions($transfer_dari,$nomor_transaksi,0,$jumlah);
-        $transaction_id .= $this->db->insert_id();
-
-        $this->pmm_finance->InsertTransactions($setor_ke,$nomor_transaksi,$jumlah,0);
-        $transaction_id .= ','.$this->db->insert_id();
+		$tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
+	
 
 		$arr_insert = array(
         	'transfer_dari' => $transfer_dari,
@@ -1237,13 +1227,15 @@ class Finance extends CI_Controller {
 			'tanggal_transaksi' => date('Y-m-d',strtotime($this->input->post('tanggal_transaksi'))),
 			'memo' => $this->input->post('memo'),
         	'status' => 'PAID',
-        	'transaction_id' => $transaction_id,
         	'created_by' => $this->session->userdata('admin_id'),
         	'created_on' => date('Y-m-d H:i:s')
 		);
 		
 		if($this->db->insert('pmm_transfer',$arr_insert)){
 			$transfer_id = $this->db->insert_id();
+
+			$this->pmm_finance->InsertTransactionsTransfer($transfer_id,$transfer_dari,$jumlah,$tanggal_transaksi);
+            $transaction_id = $this->db->insert_id();
 
 
 			if (!file_exists('uploads/transfer')) {
@@ -1309,6 +1301,8 @@ class Finance extends CI_Controller {
 		$data = array();
 
 		$this->db->select('pmm_transfer.*');
+		$this->db->order_by('tanggal_transaksi','desc');
+		$this->db->order_by('id','desc');
 		$query = $this->db->get("pmm_transfer");
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -1328,6 +1322,8 @@ class Finance extends CI_Controller {
 		$data = array();
 
 		$this->db->select('pmm_terima_uang.*');
+		$this->db->order_by('tanggal_transaksi','desc');
+		$this->db->order_by('id','desc');
 		$query = $this->db->get("pmm_terima_uang");
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -1435,7 +1431,7 @@ class Finance extends CI_Controller {
             $deskripsi = 'Nomor Transaksi '.$detail['nomor_transaksi'];
             $this->pmm_finance->InsertLogs('DELETE','pmm_terima_uang',$id,$deskripsi);
 
-            $this->db->delete('transactions',array('id'=>$detail['transaction_id']));
+            $this->db->delete('transactions',array('terima_id'=>$id));
             $this->db->delete('pmm_lampiran_terima',array('terima_id'=>$id));
             $this->db->delete('pmm_terima_uang',array('id'=>$id));
             
@@ -1467,7 +1463,7 @@ class Finance extends CI_Controller {
             $deskripsi = 'Nomor Transaksi '.$detail['nomor_transaksi'];
             $this->pmm_finance->InsertLogs('DELETE','pmm_transfer',$id,$deskripsi);
 
-            $this->db->delete('transactions',array('id'=>$detail['transaction_id']));
+            $this->db->delete('transactions',array('transfer_id'=>$id));
             $this->db->delete('pmm_lampiran_transfer',array('transfer_id'=>$id));
             $this->db->delete('pmm_transfer',array('id'=>$id));
             

@@ -130,10 +130,7 @@ class Biaya extends CI_Controller {
         $bayar_dari = $this->input->post('bayar_dari');
         $jumlah_biaya = $this->input->post('jumlah_biaya');
         $nomor_transaksi = $this->input->post('nomor_transaksi');
-
-        $description_trans = 'Biaya Nomor '.$nomor_transaksi;
-        $this->pmm_finance->InsertTransactions($bayar_dari,$description_trans,0,$jumlah_biaya);
-        $transaction_id = $this->db->insert_id();
+        $tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
 
         $arr_insert = array(
         	'bayar_dari' => $bayar_dari,
@@ -143,8 +140,7 @@ class Biaya extends CI_Controller {
             'cara_pembayaran' => $this->input->post('cara_pembayaran'),
             'total' => $jumlah_biaya,
             'memo' => $this->input->post('memo'),
-        	'status' => 'UNPAID',
-            'transaction_id' => $transaction_id,
+        	'status' => 'PAID',
         	'created_by' => $this->session->userdata('admin_id'),
         	'created_on' => date('Y-m-d H:i:s')
         );
@@ -154,7 +150,7 @@ class Biaya extends CI_Controller {
 
             if (!file_exists('uploads/biaya')) {
 			    mkdir('uploads/biaya', 0777, true);
-			}            
+			}
 
             $data = [];
             $count = count($_FILES['files']['name']);
@@ -201,16 +197,14 @@ class Biaya extends CI_Controller {
                     
                     if(!empty($product)){
 
-                        // Insert COA
-                        $this->pmm_finance->InsertTransactions($product,$deskripsi,$jumlah,0);
+                        $this->pmm_finance->InsertTransactions($biaya_id,$product,$jumlah,$tanggal_transaksi);
                         $transaction_id = $this->db->insert_id();
 
                         $arr_detail = array(
     		        		'biaya_id' => $biaya_id,
     		        		'akun' => $product,
     		        		'deskripsi' => $deskripsi,
-    		        		'jumlah' => $jumlah,
-                            'transaction_id' => $transaction_id
+    		        		'jumlah' => $jumlah
                         );
                         
                         $this->db->insert('pmm_detail_biaya',$arr_detail);
@@ -313,7 +307,7 @@ class Biaya extends CI_Controller {
                     $this->db->delete('transactions',array('id'=>$dt['transaction_id']));
                 }
             }
-            $this->db->delete('transactions',array('id'=>$biaya['transaction_id']));
+            $this->db->delete('transactions',array('biaya_id'=>$biaya['id']));
             $this->db->delete('pmm_detail_biaya',array('biaya_id'=>$id));
             $this->db->delete('pmm_lampiran_biaya',array('biaya_id'=>$id));
             $this->db->delete('pmm_biaya',array('id'=>$id));

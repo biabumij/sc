@@ -56,7 +56,7 @@
                                                     <th>No</th>
                                                     <th>Kode Akun</th>
                                                     <th>Nama</th>
-                                                    <th>Saldo</th>
+                                                    <!--<th>Saldo</th>-->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -182,7 +182,7 @@
                 { "data": "no" },
                 { "data": "coa_number" },
                 { "data": "coa" },
-                { "data": "saldo" },
+                //{ "data": "saldo" },
             ],
             "columnDefs": [
                 {
@@ -209,8 +209,12 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0],
+                    "targets": [0, 3],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2],
+                    "className": 'text-right',
                 }
             ],
             responsive: true,
@@ -232,8 +236,12 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0],
+                    "targets": [0, 3],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2],
+                    "className": 'text-right',
                 }
             ],
             responsive: true,

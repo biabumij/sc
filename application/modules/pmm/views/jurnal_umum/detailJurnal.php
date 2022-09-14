@@ -23,7 +23,7 @@
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li>
-                                <a href="<?php echo site_url('admin/biaya');?>"> Jurnal Umum</a></li>
+                                <a href="<?php echo site_url('admin/jurnal_umum');?>"> Jurnal Umum</a></li>
                             <li><a>Detail Jurnal</a></li>
                         </ul>
                     </div>
@@ -71,10 +71,18 @@
                                             <?php foreach($detailBiaya as $d) : ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
-                                                <td style="text-align: left !important;"><?= $d["coa"]; ?></td>
-                                                <td style="text-align: left !important;"><?= $d["deskripsi"]; ?></td>
-                                                <td ><?= $this->filter->Rupiah($d['debit']);?></td>
-                                                <td ><?= $this->filter->Rupiah($d['kredit']);?></td>
+                                                <td>
+                                                <?= $d["coa"]; ?>
+                                                </td>
+                                                <td>
+                                                <?= $d["deskripsi"]; ?>
+                                                </td>
+                                                <td >
+                                                <?= $this->filter->Rupiah($d['debit']);?>
+                                                </td>
+                                                <td >
+                                                <?= $this->filter->Rupiah($d['kredit']);?>
+                                                </td>
                                             </tr>
                                             <?php
                                             $debit += $d['debit'];
@@ -119,7 +127,6 @@
                                         </table>
                                     </div>
                                 </div>
-                                <br />
                                 <div class="row">
                                         <div class="col-sm-12 text-right">
                                             <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
@@ -133,11 +140,11 @@
                                             <?php
                                             }
                                             ?>
-
+                                            
                                             <?php if($detail["status"] === "PAID") : ?>
                                                 <a target="_blank" href="<?= base_url('pmm/jurnal_umum/cetakJurnal/'.$detail["id"]) ?>" class="btn btn-success"><i class="fa fa-print"></i> Cetak</a>
                                                 <?php
-                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13|| $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 19){
                                                 ?>
                                                 <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pmm/jurnal_umum/delete/'.$detail['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                                 <a  href="<?= base_url('pmm/jurnal_umum/form/'.$detail['id']) ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
@@ -145,7 +152,7 @@
                                                 }
                                                 ?>
                                             <?php endif; ?>
-
+                                            
                                         </div>
                                     </div>
                                 

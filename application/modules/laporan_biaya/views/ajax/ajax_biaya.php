@@ -18,7 +18,6 @@
 	$total_biaya_langsung = 0;
 	if(!empty($biaya_langsung)){
 		foreach ($biaya_langsung as $key => $bl) {
-			$total_parent = $this->m_laporan->getTotal($bl['coa_id'],$filter_date);
 			?>
 			<tr>
 				<td><?= $bl['tanggal_transaksi'];?></td>
@@ -37,7 +36,6 @@
 	$grand_total_biaya_langsung = $total_biaya_langsung;
 	if(!empty($biaya_langsung_jurnal)){
 		foreach ($biaya_langsung_jurnal as $key => $blj) {
-			$total_parent = $this->m_laporan->getTotal($blj['coa_id'],$filter_date);
 			?>	
 			<tr>
 				<td><?= $blj['tanggal_transaksi'];?></td>
@@ -67,7 +65,6 @@
 	$total_biaya = 0;
 	if(!empty($biaya)){
 		foreach ($biaya as $key => $row) {
-			$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
 			?>
 			<tr>
 				<td><?= $row['tanggal_transaksi'];?></td>
@@ -85,7 +82,6 @@
 	$grand_total_biaya = $total_biaya;
 	if(!empty($biaya_jurnal)){
 		foreach ($biaya_jurnal as $key => $row2) {
-			$total_parent = $this->m_laporan->getTotal($row2['coa_id'],$filter_date);
 			?>
 			<tr>
 				<td><?= $row2['tanggal_transaksi'];?></td>
@@ -115,7 +111,6 @@
 	$total_biaya_lainnya = 0;
 	if(!empty($biaya_lainnya)){
 		foreach ($biaya_lainnya as $key => $row) {
-			$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
 			?>
 			<tr>
 			<td><?= $row['tanggal_transaksi'];?></td>
@@ -133,7 +128,6 @@
 	$grand_total_biaya_lainnya = $total_biaya_lainnya;
 	if(!empty($biaya_lainnya_jurnal)){
 		foreach ($biaya_lainnya as $key => $row2) {
-			$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
 			?>
 			<tr>
 			<td><?= $row2['tanggal_transaksi'];?></td>

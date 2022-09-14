@@ -257,37 +257,6 @@ class M_laporan extends CI_Model {
         return $query->result_array();
     }
 
-    function getTotal($id,$date)
-    {
-
-        $arr_date = explode(' - ', $date);
-        $start_date = date('Y-m-d',strtotime($arr_date[0]));
-        $end_date = date('Y-m-d',strtotime($arr_date[1]));
-        $total_1 = 0;
-        $total_2 = 0;
-        // $this->db->select('(SUM(t.debit) - SUM(t.credit)) as total');
-        // $this->db->where('t.coa_id',$id);
-        // $total = $this->db->get('transactions t')->row_array();
-
-
-        $this->db->select('(SUM(t.debit) - SUM(t.credit)) as total');
-        $this->db->join('pmm_coa c','t.coa_id = c.id');
-        $this->db->where('c.coa_parent',$id);
-         $this->db->where('t.created_on >=',$start_date.' 00:00:00');
-        $this->db->where('t.created_on <=',$end_date.' 23:59:59');
-        $this->db->group_by('c.id');
-        $total_parent = $this->db->get('transactions t')->row_array();
-
-        if(!empty($total)){
-            $total_1 = $total['total'];
-        }
-        if(!empty($total_parent)){
-            $total_2 = $total_parent['total'];
-        }
-
-        return $total_2;
-    }
-
     function buildTree(array $elements, $parentId = 0) 
     {
         $branch = array();

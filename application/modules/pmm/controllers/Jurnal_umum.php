@@ -110,6 +110,7 @@ class Jurnal_umum extends CI_Controller {
         $this->db->trans_start(); # Starting Transaction
         $this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
         $total = $this->input->post('jumlah_debit') + $this->input->post('jumlah_kredit');
+        $tanggal_transaksi = date('Y-m-d',strtotime($this->input->post('tanggal_transaksi')));
 
         $arr_insert = array(
             'nomor_transaksi' => $this->input->post('nomor_transaksi'),
@@ -119,7 +120,7 @@ class Jurnal_umum extends CI_Controller {
             'total_kredit' => $this->input->post('jumlah_kredit'),
             'total_debit' => $this->input->post('jumlah_debit'),
             'memo' => $this->input->post('memo'),
-        	'status' => 'UNPAID',
+        	'status' => 'PAID',
         	'created_by' => $this->session->userdata('admin_id'),
         	'created_on' => date('Y-m-d H:i:s')
         );
@@ -179,7 +180,7 @@ class Jurnal_umum extends CI_Controller {
                     
                     if(!empty($product)){
 
-                        $this->pmm_finance->InsertTransactions($product,$deskripsi,$debit,$kredit);
+                        $this->pmm_finance->InsertTransactionsJurnal($jurnal_id,$product,$debit,$kredit,$tanggal_transaksi);
                         $transaction_id = $this->db->insert_id();
 
                         $arr_detail = array(
@@ -187,8 +188,7 @@ class Jurnal_umum extends CI_Controller {
                             'akun' => $product,
                             'deskripsi' => $deskripsi,
                             'debit' => $debit,
-                            'kredit' => $kredit,
-                            'transaction_id' => $transaction_id
+                            'kredit' => $kredit
                         );
                         
                         $this->db->insert('pmm_detail_jurnal',$arr_detail);
@@ -214,7 +214,7 @@ class Jurnal_umum extends CI_Controller {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-             $this->session->set_flashdata('notif_success','Berhasil membuat Jurnal !!');
+             $this->session->set_flashdata('notif_success','Berhasil Menambahkan Jurnal !!');
             redirect('admin/jurnal_umum');
         }
 
@@ -272,12 +272,7 @@ class Jurnal_umum extends CI_Controller {
             $nomor_transaksi = $this->crud_global->GetField('pmm_jurnal_umum',array('id'=>$id),'nomor_transaksi');
             $deskripsi = 'Nomor Transaksi '.$nomor_transaksi;
             $this->pmm_finance->InsertLogs('DELETE','pmm_jurnal_umum',$id,$deskripsi);
-            $details = $this->db->select('transaction_id')->get_where('pmm_detail_jurnal',array('jurnal_id'=>$id))->result_array();
-            if(!empty($details)){
-                foreach ($details as $key => $dt) {
-                    $this->db->delete('transactions',array('id'=>$dt['transaction_id']));
-                }
-            }
+            $this->db->delete('transactions',array('jurnal_id'=>$id));
             $this->db->delete('pmm_detail_jurnal',array('jurnal_id'=>$id));
             $this->db->delete('pmm_lampiran_jurnal',array('jurnal_id'=>$id));
             $this->db->delete('pmm_jurnal_umum',array('id'=>$id));
