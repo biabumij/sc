@@ -239,6 +239,7 @@
                                 ?>
                             
                                 <?php if($data["status"] === "CLOSED") : ?>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
