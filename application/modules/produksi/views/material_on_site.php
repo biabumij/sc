@@ -17,7 +17,7 @@
             <tr>
                 <th class="text-center">No</th>
                 <th class="text-center">Tanggal</th>
-                <th class="text-center" width="30%">Produk</th>
+                <th class="text-center" width="35%">Produk</th>
                 <th class="text-center">Satuan</th>
                 <th class="text-center">Volume</th>
                 <th class="text-center">Catatan</th>
