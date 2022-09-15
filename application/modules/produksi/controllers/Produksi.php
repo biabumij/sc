@@ -49,7 +49,6 @@ class Produksi extends Secure_Controller {
 			$this->db->where('date <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
 		$query = $this->db->get('pmm_remaining_materials_cat');
-		//file_put_contents("D:\\remaining_material_print.txt", $this->db->last_query());
 		$data['data'] = $query->result_array();
 		$data['custom_date'] = $this->input->get('custom_date');
         $html = $this->load->view('produksi/remaining_material_print',$data,TRUE);
@@ -203,8 +202,6 @@ class Produksi extends Secure_Controller {
 		$this->db->order_by('kb.created_on','asc');		
 		$query = $this->db->get('pmm_kalibrasi kb');
 		
-		//file_put_contents("D:\\table_kalibrasi.txt", $this->db->last_query());
-		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
@@ -271,7 +268,6 @@ class Produksi extends Secure_Controller {
 			$data['kalibrasi'] = $this->db->get_where("pmm_kalibrasi", ["id" => $id])->row_array();
 			$data['lampiran'] = $this->db->get_where("pmm_lampiran_kalibrasi", ["kalibrasi_id" => $id])->result_array();
 			$this->load->view('produksi/data_kalibrasi', $data);
-			//file_put_contents("D:\\data_kalibrasi.txt", $this->db->last_query());
 		} else {
 			redirect('admin');
 		}
@@ -434,8 +430,6 @@ class Produksi extends Secure_Controller {
 		$this->db->order_by('kb.date_prod','desc');			
 		$query = $this->db->get('pmm_produksi_harian kb');
 		
-		//file_put_contents("D:\\table_produksi_harian.txt", $this->db->last_query());
-		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
@@ -464,7 +458,6 @@ class Produksi extends Secure_Controller {
 			$data['lampiran'] = $this->db->get_where("pmm_lampiran_produksi_harian", ["produksi_harian_id" => $id])->result_array();
 			$data['details'] = $this->db->query("SELECT * FROM `pmm_produksi_harian_detail` WHERE produksi_harian_id = '$id'")->result_array();
 			$this->load->view('produksi/data_produksi_harian', $data);
-			//file_put_contents("D:\\data_produksi_harian.txt", $this->db->last_query());
 		} else {
 			redirect('admin');
 		}
@@ -508,8 +501,6 @@ class Produksi extends Secure_Controller {
 		$data['row'] = $this->db->get_where('pmm_produksi_harian',array('id'=>$id))->row_array();
 		$data['data'] = $this->db->query("SELECT * FROM `pmm_produksi_harian_detail` INNER JOIN pmm_kalibrasi ON pmm_produksi_harian_detail.product_id = pmm_kalibrasi.id WHERE produksi_harian_id = '$id'")->result_array();
 		
-		//file_put_contents("D:\\cetak_produksi_harian.txt", $this->db->last_query());
-		
         $html = $this->load->view('produksi/cetak_produksi_harian',$data,TRUE);
         $row = $this->db->get_where('pmm_produksi_harian',array('id'=>$id))->row_array();
 
@@ -535,7 +526,6 @@ class Produksi extends Secure_Controller {
 		$this->db->group_by('kb.id');	
 		$this->db->order_by('kb.created_on','desc');		
 		$query = $this->db->get('pmm_produksi_harian kb');
-		//file_put_contents("D:\\table_laporan_produksi_harian.txt", $this->db->last_query());
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -706,7 +696,6 @@ class Produksi extends Secure_Controller {
 		$this->db->join('pmm_lampiran_agregat lk', 'ag.id = lk.agregat_id','left');		
 		$this->db->order_by('ag.date_agregat','desc');		
 		$query = $this->db->get('pmm_agregat ag');
-		//file_put_contents("D:\\table_aggregat.txt", $this->db->last_query());
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -751,7 +740,6 @@ class Produksi extends Secure_Controller {
 			$data['agregat'] = $this->db->get_where("pmm_agregat", ["id" => $id])->row_array();
 			$data['lampiran'] = $this->db->get_where("pmm_lampiran_agregat", ["agregat_id" => $id])->result_array();
 			$this->load->view('produksi/data_komposisi_agregat', $data);
-			//file_put_contents("D:\\data_kalibrasi.txt", $this->db->last_query());
 		} else {
 			redirect('admin');
 		}
@@ -1237,8 +1225,6 @@ class Produksi extends Secure_Controller {
 		$this->db->order_by('ppc.date_prod','desc');			
 		$query = $this->db->get('pmm_produksi_campuran ppc');
 		
-		//file_put_contents("D:\\table_produksi_campuran.txt", $this->db->last_query());
-		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
@@ -1267,7 +1253,6 @@ class Produksi extends Secure_Controller {
 			$data['lampiran'] = $this->db->get_where("pmm_lampiran_produksi_campuran", ["produksi_campuran_id" => $id])->result_array();
 			$data['details'] = $this->db->query("SELECT * FROM `pmm_produksi_campuran_detail` WHERE produksi_campuran_id = '$id'")->result_array();
 			$this->load->view('produksi/data_produksi_campuran', $data);
-			//file_put_contents("D:\\data_produksi_campuran.txt", $this->db->last_query());
 		} else {
 			redirect('admin');
 		}
@@ -1310,8 +1295,6 @@ class Produksi extends Secure_Controller {
 
 		$data['row'] = $this->db->get_where('pmm_produksi_campuran',array('id'=>$id))->row_array();
 		$data['details'] = $this->db->query("SELECT * FROM `pmm_produksi_campuran_detail` WHERE produksi_campuran_id = '$id'")->result_array();
-		
-		//file_put_contents("D:\\cetak_produksi_campuran.txt", $this->db->last_query());
 		
         $html = $this->load->view('produksi/cetak_produksi_campuran',$data,TRUE);
         $row = $this->db->get_where('pmm_produksi_campuran',array('id'=>$id))->row_array();
@@ -1380,8 +1363,6 @@ class Produksi extends Secure_Controller {
         $this->db->select('pp.id, pp.date_hpp, pp.boulder, pp.bbm, pp.status');
 		$this->db->order_by('pp.date_hpp','desc');
 		$query = $this->db->get('hpp_bahan_baku pp');
-		
-		//file_put_contents("D:\\table_hpp_bahan_baku.txt", $this->db->last_query());
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -1474,8 +1455,6 @@ class Produksi extends Secure_Controller {
         $this->db->select('pp.id, pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030, pp.status');
 		$this->db->order_by('pp.date_hpp','desc');
 		$query = $this->db->get('hpp pp');
-		
-		//file_put_contents("D:\\table_hpp.txt", $this->db->last_query());
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -1570,8 +1549,6 @@ class Produksi extends Secure_Controller {
 		$this->db->order_by('pp.date_akumulasi','desc');
 		$query = $this->db->get('akumulasi_bahan_baku pp');
 		
-		//file_put_contents("D:\\table_akumulasi_bahan_baku.txt", $this->db->last_query());
-		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
@@ -1659,8 +1636,6 @@ class Produksi extends Secure_Controller {
         $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, pp.total_nilai_akhir, pp.status');
 		$this->db->order_by('pp.date_akumulasi','desc');
 		$query = $this->db->get('akumulasi pp');
-		
-		//file_put_contents("D:\\table_akumulasi.txt", $this->db->last_query());
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
