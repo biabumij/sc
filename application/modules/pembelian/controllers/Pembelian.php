@@ -1494,6 +1494,7 @@ class Pembelian extends Secure_Controller
     public function closed_pembayaran_penagihan($id)
 	{
 		$this->db->set("status", "LUNAS");
+        $this->db->set("verifikasi_dok", "LENGKAP");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_pembelian");
 		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');

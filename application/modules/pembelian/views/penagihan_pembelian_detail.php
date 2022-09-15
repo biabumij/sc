@@ -13,6 +13,33 @@
         .form-approval {
             display: inline-block;
         }
+        blink {
+        -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+        animation: 2s linear infinite kedip;
+        }
+        /* for Safari 4.0 - 8.0 */
+        @-webkit-keyframes kedip { 
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+        }
+        @keyframes kedip {
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+        }
     </style>
 </head>
 
@@ -247,11 +274,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="text-center">
                                     <div class="col-sm-12 text-right">
                                         <?php if ($row["status"] === "DRAFT") : ?>
                                             <form class="form-approval" action="<?= base_url("pembelian/approve_payment/" . $row["id"]) ?>">
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button></blink>
                                             </form>
                                             <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/" . $row["id"]) ?>">
                                                 <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>
@@ -260,40 +288,44 @@
                                         <?php endif; ?>
                                     </div>
                                     <?php
+                                    if ($row['verifikasi_dok'] == 'BELUM') { ?>
+                                        <blink><p style='color:red; font-weight:bold;'> Verifikasi Dokumen Tagihan Terlebih Dahulu !!</p></blink>
+                                        <?php
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                        ?>
+                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+                                    <br />
+                                    <?php
                                     if ($row['verifikasi_dok'] == 'SUDAH') { ?>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                         ?>
-                                            <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-money"></i> Kirim Pembayaran</a>
-                                        <?php
-                                        }
-                                    }
-                                    ?>
-
-                                    <?php
-                                    if ($row['status'] == 'BELUM LUNAS') { ?>
-                                        <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
-                                        ?>
-                                            <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Selesai (Lunas)</a>
-                                        <?php
-                                        }
-                                    }
-                                    ?>
-
-                                    <?php
-                                    if ($row['status'] == 'LUNAS') { ?>
-                                        <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
-                                        ?>
+                                            <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-warning"><i class="fa fa-money"></i> Kirim Pembayaran</a>
+                                            <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Pembayaran Lunas</a>
                                             <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <?php
                                         }
                                     }
                                     ?>
+
+                                    <?php
+                                    if ($row['verifikasi_dok'] == 'LENGKAP') { ?>
+                                        <?php
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                        ?>
+                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                        <?php
+                                        }
+                                    }
+                                    ?>
+
                                 </div>
                                 <div class="text-center">
-                                <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                    <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
                                 </div>
                             <div class="container-fluid">
                                 <ul class="nav nav-tabs" role="tablist">
