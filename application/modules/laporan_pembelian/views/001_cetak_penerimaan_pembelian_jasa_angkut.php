@@ -225,7 +225,7 @@
 							</td>
 							<td align="center">
 								<b><u>Annisa Putri</u><br />
-								Dir. Produksi & Pengembangan</b>
+								Dir. Pemasaran & Pengembangan</b>
 							</td>
 						</tr>
 					</table>
