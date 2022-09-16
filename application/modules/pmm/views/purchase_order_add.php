@@ -39,7 +39,7 @@
                         <div class="panel-header">
                             
                             <div class="">
-                                <h3 class="">Pesanan Pembelian <?php echo $this->pmm_model->GetStatus($data['status']);?></h3>
+                                <h3 class="">Detail Pesanan Pembelian <?php echo $this->pmm_model->GetStatus($data['status']);?></h3>
                                 
                             </div>
                         </div>
@@ -63,6 +63,12 @@
                                             <label for="inputEmail3" class="col-sm-3 control-label">Perihal : </label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" id="subject" value="<?php echo $data['subject'];?>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-3 control-label">Lampiran : </label>
+                                            <div class="col-sm-8">
+                                                <a href="<?= base_url("uploads/purchase_order/".$data["document_po"]) ?>" target="_blank"><?php echo $data['document_po'];?></a>
                                             </div>
                                         </div>
 									
@@ -209,7 +215,7 @@
                                 <?php
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a><br />
                                     <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success"><i class="fa fa-truck"></i> Terima Produk</a>
                                     <br />
                                     <?php
@@ -239,8 +245,7 @@
                                 ?>
                             
                                 <?php if($data["status"] === "CLOSED") : ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
-                                    <br />
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a><br />
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
@@ -462,7 +467,7 @@
                 }
             });
             
-        }); 
+        });
 
         $('.form-approval').submit(function(e){
             e.preventDefault();
