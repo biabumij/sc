@@ -4221,9 +4221,6 @@ class Pmm_model extends CI_Model {
         $this->db->group_by('t.id');
         $query = $this->db->get('transactions t');
         $output = $query->result_array();
-
-        file_put_contents("D:\\GetReceiptBukuBesar.txt", $this->db->last_query());
-
 		
         return $output;
     }
