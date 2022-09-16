@@ -566,6 +566,7 @@ class Reports extends CI_Controller {
 			$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+			->order_by('pp.date_hpp','desc')->limit(1)
 			->get()->row_array();
 
 			$volume_opening_balance = $stock_opname_batu_boulder_ago['volume'] + $stock_opname_batu_boulder_ago_2['volume'];
@@ -942,6 +943,7 @@ class Reports extends CI_Controller {
 		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+		->order_by('pp.date_hpp','desc')->limit(1)
 		->get()->row_array();
 
 		$volume_opening_balance = $stock_opname_batu_boulder_ago['volume'] + $stock_opname_batu_boulder_ago_2['volume'];
@@ -1172,6 +1174,7 @@ class Reports extends CI_Controller {
 		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+		->order_by('pp.date_hpp','desc')->limit(1)
 		->get()->row_array();
 
 		$volume_opening_balance = $stock_opname_batu_boulder_ago['volume'] + $stock_opname_batu_boulder_ago_2['volume'];
@@ -2834,6 +2837,7 @@ class Reports extends CI_Controller {
 		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+		->order_by('pp.date_hpp','desc')->limit(1)
 		->get()->row_array();
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
@@ -4158,6 +4162,7 @@ class Reports extends CI_Controller {
 		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+		->order_by('pp.date_hpp','desc')->limit(1)
 		->get()->row_array();
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
@@ -5147,6 +5152,7 @@ class Reports extends CI_Controller {
 		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+		->order_by('pp.date_hpp','desc')->limit(1)
 		->get()->row_array();
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
@@ -6225,6 +6231,7 @@ class Reports extends CI_Controller {
 		$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 		->from('hpp_bahan_baku pp')
 		->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+		->order_by('pp.date_hpp','desc')->limit(1)
 		->get()->row_array();
 
 		$total_volume_produksi_akhir_ago_fix = round($total_volume_produksi_akhir_ago,2);
@@ -7633,6 +7640,7 @@ class Reports extends CI_Controller {
 			$harga_hpp_bahan_baku = $this->db->select('pp.date_hpp, pp.boulder, pp.bbm')
 			->from('hpp_bahan_baku pp')
 			->where("(pp.date_hpp between '$date3_ago' and '$date2_ago')")
+			->order_by('pp.date_hpp','desc')->limit(1)
 			->get()->row_array();
 
 			$volume_opening_balance = $stock_opname_batu_boulder_ago['volume'] + $stock_opname_batu_boulder_ago_2['volume'];
