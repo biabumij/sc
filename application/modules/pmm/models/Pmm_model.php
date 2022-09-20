@@ -1909,7 +1909,7 @@ class Pmm_model extends CI_Model {
             where ppp.purchase_order_id = po_id
             and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
         ) as pembayaran,
-        (select sum(volume) from pmm_receipt_material prm where prm.purchase_order_id = po.id and prm.material_id) -
+        (select sum(volume) from pmm_receipt_material prm where prm.purchase_order_id = po.id and prm.date_receipt >= "'.$start_date.'"  and prm.date_receipt <= "'.$end_date.'") -
         (
             select SUM(volume) 
             from pmm_penagihan_pembelian_detail ppd 

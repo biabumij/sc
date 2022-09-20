@@ -1499,7 +1499,7 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-date5 tbody').append('<tr onclick="NextShowDaftarTagihan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.nama + '</td></tr>');
+                                    $('#table-date5 tbody').append('<tr onclick="NextShowHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="6">' + val.nama + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
                                         $('#table-date5 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_diterima_proyek + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.hutang + '</td></tr>');
@@ -1518,7 +1518,7 @@
                 });
             }
 
-            function NextShowDaftarTagihan(id) {
+            function NextShowHutang(id) {
                 console.log('.mats-' + id);
                 $('.mats-' + id).slideToggle();
             }
