@@ -75,6 +75,7 @@
                                 <?php
                                 $arr_po = $this->db->order_by('date_po', 'desc')->get_where('pmm_purchase_order', array('status' => 'PUBLISH'))->result_array();
                                 $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
+                                $kategori  = $this->db->order_by('nama_kategori_produk', 'asc')->select('*')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
                                 ?>
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Penawaran Pembelian</a></li>
@@ -130,18 +131,6 @@
                                             <input type="text" id="filter_date_b" class="form-control filter_date_b input-sm"  autocomplete="off" placeholder="Filter By Date">
                                         </div>
                                         <div class="col-sm-3">
-                                            <select id="filter_schedule_id_b" class="form-control select2">
-                                                <option value="">Pilih Jadwal</option>
-                                                <?php
-                                                foreach ($arr_schedule as $key => $schedule) {
-                                                    ?>
-                                                    <option value="<?php echo $schedule['id'];?>"><?php echo $schedule['schedule_name'].' - '.$schedule['no_spo'];?></option>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3">
                                             <select id="filter_supplier_id_b" class="form-control select2">
                                                 <option value="">Pilih Rekanan</option>
                                                 <?php
@@ -195,21 +184,6 @@
 														<label>Tanggal Permintaan</label>
 														<input type="text" id="request_date" name="request_date" class="form-control dtpicker-single" required="" autocomplete="off" value="<?php echo date('d-m-Y');?>" />
 													</div>
-
-													<!--<div class="form-group">
-														<label>Jadwal</label>
-														
-														<select id="schedule_id_request" name="schedule_id" class="form-control select2">
-															<option>Pilih Jadwal Produksi</option>
-															<?php
-															foreach ($arr_schedule as $key => $schedule) {
-																?>
-																<option value="<?php echo $schedule['id'];?>"><?php echo $schedule['schedule_name'];?></option>
-																<?php
-															}
-															?>
-														</select>
-													</div>-->
 													<div class="form-group">
 														<label>Subyek</label>
 														<input type="text" id="subject" name="subject" class="form-control" required="" autocomplete="off"  />
@@ -226,6 +200,19 @@
 															foreach ($suppliers as $key => $supplier) {
 																?>
 																<option value="<?php echo $supplier['id'];?>"><?php echo $supplier['nama'];?></option>
+																<?php
+															}
+															?>
+														</select>
+													</div>
+                                                    <div class="form-group">
+														<label>Kategori</label>
+														<select id="kategori_id" name="kategori_id" class="form-control select2">
+															<option>Pilih Kategori</option>
+															<?php
+															foreach ($kategori as $key => $kat) {
+																?>
+																<option value="<?php echo $kat['id'];?>"><?php echo $kat['nama_kategori_produk'];?></option>
 																<?php
 															}
 															?>
@@ -1061,6 +1048,7 @@
                         $('#schedule_id_request').val(result.output.schedule_id);
                         $('#supplier_id').val(result.output.supplier_id);
                         $('#subject').val(result.output.subject);
+                        $('#kategori_id').val(result.output.kategori_id);
                         $('#week').val(result.output.week);
                         $('#request_date').val(result.output.request_date);
                         // $('#status').val(result.output.status);

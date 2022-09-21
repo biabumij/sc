@@ -55,7 +55,12 @@
                                     <th width="50px">:</th>
                                     <td><?php echo $this->crud_global->GetField('penerima',array('id'=>$data['supplier_id']),'nama');?></td>
                                 </tr>
-                                 <tr>
+                                <tr>
+                                    <th width="150px">Kategori</th>
+                                    <th width="50px">:</th>
+                                    <td><?php echo $this->crud_global->GetField('kategori_produk',array('id'=>$data['kategori_id']),'nama_kategori_produk');?></td>
+                                </tr>
+                                <tr>
                                     <th width="150px">Memo</th>
                                     <th width="50px">:</th>
                                     <td><?php echo $data['memo'];?></td>

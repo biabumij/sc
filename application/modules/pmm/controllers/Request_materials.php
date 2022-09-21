@@ -123,6 +123,7 @@ class Request_materials extends CI_Controller {
 				//'schedule_id' => $schedule_id,
 				'request_date' => $request_date,
 				'supplier_id' => $this->input->post('supplier_id'),
+				'kategori_id' => $this->input->post('kategori_id'),
 				'subject' => $this->input->post('subject'),
 				'memo' => $this->input->post('memo'),
 				//'week'	=> $week

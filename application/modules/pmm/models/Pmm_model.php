@@ -802,7 +802,7 @@ class Pmm_model extends CI_Model {
         $this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
 
 
-        $arr_rm = $this->db->select('supplier_id,subject,memo')->get_where('pmm_request_materials',array('id'=>$id))->row_array();
+        $arr_rm = $this->db->select('supplier_id,subject,memo,kategori_id')->get_where('pmm_request_materials',array('id'=>$id))->row_array();
 
         $dt = $this->db->get_where('pmm_request_materials',array('id'=>$id))->row_array();
         $data = array(
@@ -811,6 +811,7 @@ class Pmm_model extends CI_Model {
             'date_po' => $dt['request_date'],
             'supplier_id' => $arr_rm['supplier_id'],
 			'memo' => $arr_rm['memo'],
+            'kategori_id' => $arr_rm['kategori_id'],
             'subject' => $arr_rm['subject'],
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
@@ -1373,7 +1374,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function GetReceiptMat($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+    function GetReceiptMat($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false,$filter_kategori=falses)
     {
         $output = array();
 
@@ -1393,7 +1394,9 @@ class Pmm_model extends CI_Model {
         if(!empty($filter_material)){
             $this->db->where_in('prm.material_id',$filter_material);
         }
-		$this->db->where("prm.material_id in (13,15)");
+        if(!empty($filter_kategori)){
+            $this->db->where_in('ppo.kategori_id',$filter_kategori);
+        }
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('p.nama_produk','asc');
         $this->db->group_by('prm.purchase_order_id');
@@ -1404,7 +1407,39 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function GetReceiptMatHari($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+    function GetReceiptMatPrint($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false,$filter_kategori=false)
+    {
+        $output = array();
+
+        $this->db->select('prm.purchase_order_id, prm.measure as measure,p.nama_produk,prm.material_id,SUM(prm.display_price) / SUM(prm.display_volume) as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price');
+        $this->db->join('produk p','prm.material_id = p.id','left');
+        $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
+        if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('prm.date_receipt >=',$start_date);
+            $this->db->where('prm.date_receipt <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppo.supplier_id',$supplier_id);
+        }
+        if(!empty($purchase_order_no)){
+            $this->db->where('ppo.id',$purchase_order_no);
+        }
+        if(!empty($filter_material)){
+            $this->db->where_in('prm.material_id',$filter_material);
+        }
+        if(!empty($filter_kategori)){
+            $this->db->where_in('ppo.kategori_id',$filter_kategori);
+        }
+		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+        $this->db->order_by('p.nama_produk','asc');
+        $this->db->group_by('prm.material_id');
+        $query = $this->db->get('pmm_receipt_material prm');
+        $output = $query->result_array();
+		
+        return $output;
+    }
+
+    function GetReceiptMatHari($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false,$filter_kategori=false)
     {
         $output = array();
 
@@ -1424,135 +1459,14 @@ class Pmm_model extends CI_Model {
         if(!empty($filter_material)){
             $this->db->where_in('prm.material_id',$filter_material);
         }
-		$this->db->where("prm.material_id in (13,15)");
+        if(!empty($filter_kategori)){
+            $this->db->where_in('ppo.kategori_id',$filter_kategori);
+        }
+
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('prm.date_receipt','asc');
         $this->db->order_by('p.nama_produk','asc');
         $this->db->group_by('prm.id');
-        $query = $this->db->get('pmm_receipt_material prm');
-        $output = $query->result_array();
-		
-		
-        return $output;
-    }
-	
-	function GetReceiptMatSewaAlat($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
-    {
-        $output = array();
-
-         $this->db->select('prm.purchase_order_id, prm.measure as measure,p.nama_produk,prm.material_id,prm.harga_satuan as price,SUM(prm.volume) as volume, SUM(prm.price) as total_price');
-        $this->db->join('produk p','prm.material_id = p.id','left');
-        $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
-        if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('prm.date_receipt >=',$start_date);
-            $this->db->where('prm.date_receipt <=',$end_date);
-        }
-        if(!empty($supplier_id)){
-            $this->db->where('ppo.supplier_id',$supplier_id);
-        }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppo.id',$purchase_order_no);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('prm.material_id',$filter_material);
-        }
-		$this->db->where("prm.material_id in (16,17,18,19,20,22)");
-		$this->db->where('ppo.status','PUBLISH');
-        $this->db->order_by('p.nama_produk','asc');
-        $this->db->group_by('prm.purchase_order_id');
-        $query = $this->db->get('pmm_receipt_material prm');
-        $output = $query->result_array();
-		
-		
-        return $output;
-    }
-
-	function GetReceiptMatSewaAlatPrint($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
-    {
-        $output = array();
-
-         $this->db->select('prm.measure as measure,p.nama_produk,prm.material_id,prm.harga_satuan as price,SUM(prm.volume) as volume, SUM(prm.price) as total_price');
-        $this->db->join('produk p','prm.material_id = p.id','left');
-        $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
-        if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('prm.date_receipt >=',$start_date);
-            $this->db->where('prm.date_receipt <=',$end_date);
-        }
-        if(!empty($supplier_id)){
-            $this->db->where('ppo.supplier_id',$supplier_id);
-        }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppo.id',$purchase_order_no);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('prm.material_id',$filter_material);
-        }
-		$this->db->where("prm.material_id in (16,17,18,19,20,22)");
-		$this->db->where('ppo.status','PUBLISH');
-        $this->db->order_by('p.nama_produk','asc');
-        $this->db->group_by('prm.material_id');
-        $query = $this->db->get('pmm_receipt_material prm');
-        $output = $query->result_array();
-		
-		
-        return $output;
-    }
-	
-    function GetReceiptMatJasaAngkut($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
-    {
-        $output = array();
-
-         $this->db->select('prm.purchase_order_id, prm.measure as measure,p.nama_produk,prm.material_id,prm.harga_satuan as price,SUM(prm.volume) as volume, SUM(prm.price) as total_price');
-        $this->db->join('produk p','prm.material_id = p.id','left');
-        $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
-        if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('prm.date_receipt >=',$start_date);
-            $this->db->where('prm.date_receipt <=',$end_date);
-        }
-        if(!empty($supplier_id)){
-            $this->db->where('ppo.supplier_id',$supplier_id);
-        }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppo.id',$purchase_order_no);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('prm.material_id',$filter_material);
-        }
-		$this->db->where("prm.material_id in (10)");
-		$this->db->where('ppo.status','PUBLISH');
-        $this->db->order_by('p.nama_produk','asc');
-        $this->db->group_by('prm.purchase_order_id');
-        $query = $this->db->get('pmm_receipt_material prm');
-        $output = $query->result_array();
-		
-		
-        return $output;
-    }
-	
-	function GetReceiptMatJasaAngkutPrint($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
-    {
-        $output = array();
-
-         $this->db->select('prm.measure as measure,p.nama_produk,prm.material_id,prm.harga_satuan as price,SUM(prm.volume) as volume, SUM(prm.price) as total_price');
-        $this->db->join('produk p','prm.material_id = p.id','left');
-        $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
-        if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('prm.date_receipt >=',$start_date);
-            $this->db->where('prm.date_receipt <=',$end_date);
-        }
-        if(!empty($supplier_id)){
-            $this->db->where('ppo.supplier_id',$supplier_id);
-        }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppo.id',$purchase_order_no);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('prm.material_id',$filter_material);
-        }
-		$this->db->where("prm.material_id in (10)");
-		$this->db->where('ppo.status','PUBLISH');
-        $this->db->order_by('p.nama_produk','asc');
-        $this->db->group_by('prm.material_id');
         $query = $this->db->get('pmm_receipt_material prm');
         $output = $query->result_array();
 		
@@ -1593,7 +1507,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 	
-	function GetReceiptMat3($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+	function GetReceiptMat3($supplier_id=false,$start_date=false,$end_date=false,$filter_kategori=false)
     {
         $output = array();
 
@@ -1606,18 +1520,13 @@ class Pmm_model extends CI_Model {
             $this->db->where('prm.date_receipt >=',$start_date);
             $this->db->where('prm.date_receipt <=',$end_date);
         }
-		
 		if(!empty($supplier_id)){
             $this->db->where('p.nama_produk',$supplier_id);
         }
-        if(!empty($purchase_order_no)){
-            $this->db->where('prm.purchase_order_id',$purchase_order_no);
-        }
-        if(!empty($filter_material)){
-            $this->db->where_in('prm.material_id',$filter_material);
+        if(!empty($filter_kategori)){
+            $this->db->where('ppo.kategori_id',$filter_kategori);
         }
 		
-		$this->db->where('p.bahanbaku','1');
         $this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_receipt_material prm');
@@ -4224,6 +4133,56 @@ class Pmm_model extends CI_Model {
 		
         return $output;
     }
+
+    function GetReceiptMatHutangPenerimaan($supplier_id=false,$start_date=false,$end_date=false,$filter_katagori=false)
+    {
+        $output = array();
+
+        $this->db->select('ppo.id, ppo.date_po, ppo.no_po, prm.purchase_order_id, ppo.memo, SUM(prm.display_price) as total_price,
+        (
+            select(COALESCE(sum(pppp.total),0))
+            from pmm_pembayaran_penagihan_pembelian pppp 
+            inner join pmm_penagihan_pembelian ppp 
+            on pppp.penagihan_pembelian_id = ppp.id 
+            where ppp.purchase_order_id = ppo.id
+            and pppp.status = "DISETUJUI"
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as pembayaran,
+        SUM(prm.display_price) -
+        (
+            select(COALESCE(sum(pppp.total),0))
+            from pmm_pembayaran_penagihan_pembelian pppp 
+            inner join pmm_penagihan_pembelian ppp 
+            on pppp.penagihan_pembelian_id = ppp.id 
+            where ppp.purchase_order_id = ppo.id
+            and pppp.status = "DISETUJUI"
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as hutang');
+        
+        $this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
+        $this->db->join('pmm_penagihan_pembelian ppp','ppo.id = ppp.purchase_order_id','left');
+        $this->db->join('produk p','prm.material_id = p.id','left');
+
+        if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('prm.date_receipt >=',$start_date);
+            $this->db->where('prm.date_receipt <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppo.supplier_id',$supplier_id);
+        }
+        if(!empty($filter_katagori)){
+            $this->db->where('ppo.kategori_id',$filter_katagori);
+        }
+       
+		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+        $this->db->order_by('p.nama_produk','asc');
+        $this->db->group_by('prm.purchase_order_id');
+        $query = $this->db->get('pmm_receipt_material prm');
+        $output = $query->result_array();
+		
+        return $output;
+    }
+
 
 }
 ?>
