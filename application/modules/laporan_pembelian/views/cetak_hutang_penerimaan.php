@@ -99,7 +99,7 @@
 				<th align="center" width="12%">REKANAN</th>
 				<th align="center" width="30%" rowspan="2">&nbsp; <br />NO. PESANAN PEMBELIAN</th>
 				<th align="center" width="17%" rowspan="2">&nbsp; <br />KETERANGAN</th>
-				<th align="center" width="12%" rowspan="2">&nbsp; <br />TAGIHAN</th>
+				<th align="center" width="12%" rowspan="2">&nbsp; <br />PENERIMAAN</th>
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
 				<th align="center" width="12%" rowspan="2">&nbsp; <br />HUTANG</th>
             </tr>

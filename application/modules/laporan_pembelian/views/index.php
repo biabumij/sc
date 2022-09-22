@@ -562,7 +562,7 @@
                                                                 <th class="text-center">REKANAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO. PESANAN PEMBELIAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">KETERANGAN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">HUTANG</th>
                                                             </tr>
