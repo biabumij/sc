@@ -2670,7 +2670,7 @@ class Laporan extends Secure_Controller {
         }
 		
 		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
-		$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id');
+		$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id','left');
 		$this->db->join('pmm_penagihan_pembelian ppp','ppo.id = ppp.purchase_order_id','left');
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 		$this->db->group_by('ppo.supplier_id');
