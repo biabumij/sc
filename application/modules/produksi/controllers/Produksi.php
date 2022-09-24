@@ -794,7 +794,7 @@ class Produksi extends Secure_Controller {
 															<?php
 					foreach ($komposisi_agregat as $key => $ka) {
 					?>
-						<option value="<?php echo $ka['id']; ?>"><?php echo $ka['nama_komposisi']; ?></option>
+						<option value="<?php echo $ka['id']; ?>"><?php echo $ka['jobs_type']; ?></option>
 					<?php
 					}
 					?>
