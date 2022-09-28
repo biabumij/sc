@@ -202,10 +202,9 @@
 			->from('pmm_penawaran_pembelian')
 			->where('id',$dt['penawaran_id'])
 			->get()->row_array();
-			file_put_contents("D:\\memo.txt", $this->db->last_query());
             ?>   
 			<tr>
-				<th><b>Memo Penawaran :</b></th>
+				<th><b>Memo :</b></th>
 			</tr>
 			<br />
 			<tr>
