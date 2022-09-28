@@ -192,8 +192,27 @@
                 <th align="right"><?= number_format($total,0,',','.'); ?></th>
             </tr>
 		</table>
-		<p><b>Memo</b></p>
-		<p><?= $row["memo"] ?></p>
+		<!--<p><b>Memo</b></p>
+		<p><?= $row["memo"] ?></p>-->
+		<br />
+		<br />
+		<table>
+			<?php
+			$memo = $this->db->select('memo')
+			->from('pmm_penawaran_pembelian')
+			->where('id',$dt['penawaran_id'])
+			->get()->row_array();
+			file_put_contents("D:\\memo.txt", $this->db->last_query());
+            ?>   
+			<tr>
+				<th><b>Memo Penawaran :</b></th>
+			</tr>
+			<br />
+			<tr>
+				<th><?php echo $memo['memo'];?></th>
+			</tr>			
+		</table>
+		<br />
 		<br />
 		<br />
 		<br />
