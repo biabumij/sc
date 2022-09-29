@@ -1105,18 +1105,6 @@ class Penjualan extends Secure_Controller
 			$penagihan = $this->db->get_where('pmm_penagihan_penjualan', array('id' => $id))->row_array();
 			$deskripsi = 'Nomor Invoice ' . $penagihan['nomor_invoice'];
 			$this->pmm_finance->InsertLogs('DELETE', 'pmm_penagihan_penjualan', $id, $deskripsi);
-
-			$pembayaran = $this->db->select()->get_where('pmm_pembayaran', array('penagihan_id' => $id))->result_array();
-			if (!empty($pembayaran)) {
-				foreach ($pembayaran as $key => $row) {
-
-					$arr_trans_2 = explode(',', $row['transaction_id']);
-					$this->db->where_in('id', $arr_trans_2);
-					$this->db->delete('transactions');
-				}
-			}
-
-			$this->db->delete('transactions', array('id' => $penagihan['transaction_id']));
 			$this->db->delete('pmm_penagihan_penjualan_detail', array('penagihan_id' => $id));
 			$this->db->delete('pmm_pembayaran', array('penagihan_id' => $id));
 			$this->db->delete('pmm_lampiran_penagihan', array('penagihan_id' => $id));
@@ -1437,12 +1425,7 @@ class Penjualan extends Secure_Controller
 		$penagihan_penjualan = $this->db->get_where('pmm_penagihan_penjualan', array('id' => $id))->row_array();
 		$coa_description = 'Sales Invoice ' . $penagihan_penjualan['nomor_invoice'];
 
-		// Insert COA
-		$this->pmm_finance->InsertTransactions(3, $coa_description, $penagihan_penjualan['total'], 0);
-		$transaction_id = $this->db->insert_id();
-
 		$this->db->set('status', 'OPEN');
-		$this->db->set('transaction_id', $transaction_id);
 		$this->db->where('id', $id);
 		$this->db->update('pmm_penagihan_penjualan');
 
