@@ -1471,7 +1471,18 @@ class Pembelian extends Secure_Controller
 
     public function hapus_pembayaran_pembelian($id)
 	{
-		$this->db->where('id', $id);
+        $penagihan_pembelian_id = $this->db->select('(ppp.id) as id')
+        ->from('pmm_pembayaran_penagihan_pembelian pppp')
+        ->join('pmm_penagihan_pembelian ppp', 'pppp.penagihan_pembelian_id = ppp.id','left')
+        ->where('pppp.id', $id)
+        ->get()->row_array();
+
+		$this->db->set("status", "BELUM LUNAS");
+        $this->db->set("verifikasi_dok", "SUDAH");
+        $this->db->where('id', $penagihan_pembelian_id['id']);
+        $this->db->update('pmm_penagihan_pembelian');
+
+        $this->db->where('id', $id);
 		$this->db->delete('pmm_pembayaran_penagihan_pembelian');
 	}
 

@@ -1403,7 +1403,17 @@ class Penjualan extends Secure_Controller
 
 	public function hapus_pembayaran($id)
 	{
-		$this->db->where('id', $id);
+		$penagihan_id = $this->db->select('(ppp.id) as id')
+        ->from('pmm_pembayaran pppp')
+        ->join('pmm_penagihan_penjualan ppp', 'pppp.penagihan_id = ppp.id','left')
+        ->where('pppp.id', $id)
+        ->get()->row_array();
+
+		$this->db->set("status", "OPEN");
+        $this->db->where('id', $penagihan_id['id']);
+        $this->db->update('pmm_penagihan_penjualan');
+
+        $this->db->where('id', $id);
 		$this->db->delete('pmm_pembayaran');
 	}
 
