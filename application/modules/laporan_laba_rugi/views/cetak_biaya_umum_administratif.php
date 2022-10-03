@@ -75,7 +75,6 @@
 			$total_biaya  = 0;
 			if(!empty($biaya)){
 				foreach ($biaya as $key => $row) {
-					$total_parent = $this->m_laporan->getTotal($row['coa_id'],$filter_date);
 					?>
 					<tr>
 						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
