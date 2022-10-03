@@ -104,7 +104,7 @@
 			$total_b = $grand_total_biaya + $total_biaya_jurnal;
 			?>
 			<tr class="active">
-				<td width="80%" style="padding-left:20px;">Total Biaya Umum & Administrasi</td>
+				<td width="80%" style="padding-left:20px;"><b>Total Biaya Umum & Administrasi</b></td>
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_b);?></b></td>
 			</tr>
 		</table>
