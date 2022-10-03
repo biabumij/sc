@@ -90,7 +90,6 @@
 			$grand_total_biaya = $total_biaya;
 			if(!empty($biaya_jurnal)){
 				foreach ($biaya_jurnal as $key => $row2) {
-					$total_parent = $this->m_laporan->getTotal($row2['coa_id'],$filter_date);
 					?>
 					<tr>
 						<td><?= $row2['tanggal_transaksi'];?></td>
