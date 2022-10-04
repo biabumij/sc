@@ -44,7 +44,7 @@
                                     <div class="row">
                                         <div class="col-sm-10">
                                             <label>Rekanan</label>
-                                            <input type="text" class="form-control" name="supplier_name" value="<?= $po["supplier_name"] ?>" required="" readonly="" />
+                                            <input type="text" class="form-control" name="supplier_name" value="<?= $po["supplier_name"] ?>" required="" readonly=""/>
                                             <input type="hidden" name="supplier_name" value="<?= $po['supplier_name'];?>">
 											<input type="hidden" name="supplier_id" value="<?= $po['supplier_id'];?>">
                                         </div>
@@ -53,7 +53,7 @@
 									<div class="row">
 										<div class="col-sm-10">
                                             <label>Alamat Rekanan</label>
-                                            <textarea class="form-control" name="alamat_pelanggan" required="" readonly=""><?= $po['supplier_address'];?></textarea>
+                                            <textarea class="form-control" name="alamat_pelanggan" readonly=""><?= $po['supplier_address'];?></textarea>
                                         </div>
 									</div>
                                     <br />
@@ -64,25 +64,26 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <label>Nomor Purchase Order</label>
-                                            <input type="text" class="form-control" name="no_po" value="<?= $po['no_po'];?>" required="" readonly="" />
+                                            <input type="text" class="form-control" name="no_po" value="<?= $po['no_po'];?>" readonly=""/>
                                             <input type="hidden" name="purchase_order_id" value="<?= $po['id'];?>">
                                         </div>
                                     </div>
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <label>Tanggal Invoice *</label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal_invoice" id="tanggal_invoice" required="" />
+                                            <label>Tanggal Invoice</label>
+                                            <input type="text" class="form-control dtpicker" name="tanggal_invoice" id="tanggal_invoice" required=""/>
                                         </div>
                                         <div class="col-sm-8">
-                                            <label>Nomor Invoice *</label>
-                                            <input type="text" class="form-control" name="nomor_invoice" required="" />
+                                            <label>Nomor Invoice</label>
+                                            <input type="text" class="form-control" name="nomor_invoice" required=""/>
                                         </div>
                                     </div>
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <label>Syarat Pembayaran (Ketik Angka Saja) *</label>
+                                            <label>Syarat Pembayaran</label>
+                                            <label>(Ketik Angka Saja, Tanpa Hari)</label>
                                             <input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $po['syarat_pembayaran'];?>" required="" />
                                         </div>                                        
 										<!--<div class="col-sm-3">

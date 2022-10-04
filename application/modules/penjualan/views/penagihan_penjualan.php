@@ -44,40 +44,41 @@
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <label>Pelanggan</label>
-                                            <input type="text" class="form-control" name="pelanggan" value="<?= $clients['nama'] ?>" required="" readonly="" />
+                                            <input type="text" class="form-control" name="pelanggan" value="<?= $clients['nama'] ?>" required="" readonly=""/>
                                             <input type="hidden" name="client_id" value="<?= $query['client_id']; ?>">
                                         </div>
                                         <div class="col-sm-2">
                                             <label>Tanggal Kontrak</label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal_kontrak" required="" value="<?= date("d-m-Y", strtotime($sales['contract_date'])) ?>" readonly="" />
+                                            <input type="text" class="form-control dtpicker" name="tanggal_kontrak" required="" value="<?= date("d-m-Y", strtotime($sales['contract_date'])) ?>" readonly=""/>
                                         </div>
                                         <div class="col-sm-2">
-                                            <label>Tanggal Invoice *</label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal_invoice" id="tanggal_invoice" required="" />
+                                            <label>Tanggal Invoice</label>
+                                            <input type="text" class="form-control dtpicker" name="tanggal_invoice" id="tanggal_invoice" required=""/>
                                         </div>
                                         <div class="col-sm-5">
-                                            <label>Nomor Invoice  *</label>
-                                            <input type="text" class="form-control" value="" name="nomor_invoice" required="" />
+                                            <label>Nomor Invoice</label>
+                                            <input type="text" class="form-control" value="" name="nomor_invoice" required=""/>
                                         </div>
                                     </div>
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-10">
                                             <label>Alamat Pelanggan</label>
-                                            <textarea class="form-control" name="alamat_pelanggan" rows="4" required="" readonly=""><?= $clients['alamat']; ?></textarea>
+                                            <textarea class="form-control" name="alamat_pelanggan" rows="4" readonly=""><?= $clients['alamat']; ?></textarea>
                                         </div>
                                     </div>
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-10">
                                             <label>Nomor Kontrak</label>
-                                            <input type="text" class="form-control" value="<?= $sales['contract_number']; ?>" name="nomor_kontrak" required="" readonly="" />
+                                            <input type="text" class="form-control" value="<?= $sales['contract_number']; ?>" name="nomor_kontrak" readonly=""/>
                                         </div>
                                     </div>
                                     <br />
                                     <div class="row">
 										<div class="col-sm-3">
-                                            <label>Syarat Pembayaran (Hari)  *</label>
+                                            <label>Syarat Pembayaran</label>
+                                            <label>(Ketik Angka Saja, Tanpa Hari)</label>
                                             <input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $syarat_pembayaran['syarat_pembayaran'];?>" required=""/>
                                         </div>
                                         <!--<div class="col-sm-3">
@@ -86,7 +87,7 @@
                                         </div> -->                                     
                                         <div class="col-sm-6">
                                             <label>Jenis Pekerjaan</label>
-                                            <input type="text" class="form-control" value="<?= $sales['jobs_type']; ?>" name="jenis_pekerjaan" required="" readonly="" />
+                                            <input type="text" class="form-control" value="<?= $sales['jobs_type']; ?>" name="jenis_pekerjaan" readonly=""/>
                                         </div>
                                     </div>
                                     <br />
