@@ -1019,7 +1019,7 @@ class Pembelian extends Secure_Controller
         <tr>
             <td><?php echo $no; ?>.</td>
             <td>
-				<select id="product-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="product_<?php echo $no; ?>">
+				<select id="product-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="product_<?php echo $no; ?>" required="">
 					<option value="">Pilih Produk</option>
 					<?php
 					if (!empty($products)) {
@@ -1034,7 +1034,7 @@ class Pembelian extends Secure_Controller
 				</select>
 			</td>
             <td>
-				<input type="number" min="0" name="qty_<?php echo $no; ?>" id="qty-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control input-sm text-center" />
+				<input type="number" min="0" name="qty_<?php echo $no; ?>" id="qty-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control input-sm text-center" required=""/>
 			</td>
 			<td>
 				<select id="measure-<?php echo $no; ?>" class="form-control form-select2" name="measure_<?php echo $no; ?>" required="">
@@ -1051,7 +1051,7 @@ class Pembelian extends Secure_Controller
 					</select>
 				</td>
 			<td>
-				<input type="text" name="price_<?php echo $no; ?>" id="price-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" />
+				<input type="text" name="price_<?php echo $no; ?>" id="price-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" required=""/>
 			</td>
 			<td>
 				<select id="tax-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="tax_<?php echo $no; ?>" required="">
@@ -1068,7 +1068,7 @@ class Pembelian extends Secure_Controller
 				</select>
 			</td>
 			<td>
-				<input type="text" name="total_<?php echo $no; ?>" id="total-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" readonly="" />
+				<input type="text" name="total_<?php echo $no; ?>" id="total-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" readonly=""/>
 			</td>
 		</tr>
 

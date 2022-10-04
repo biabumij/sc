@@ -82,7 +82,7 @@ class Penjualan extends Secure_Controller
 		<tr>
 			<td><?php echo $no; ?>.</td>
 			<td>
-				<select id="product-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="product_<?php echo $no; ?>">
+				<select id="product-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="product_<?php echo $no; ?>" required="">
 					<option value="">Pilih Produk</option>
 					<?php
 					if (!empty($products)) {
@@ -96,10 +96,10 @@ class Penjualan extends Secure_Controller
 				</select>
 			</td>
 			<td>
-				<input type="number" min="0" name="qty_<?= $no; ?>" id="qty-<?= $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?= $no; ?>)" required="" />
+				<input type="number" min="0" name="qty_<?= $no; ?>" id="qty-<?= $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?= $no; ?>)" required=""/>
 			</td>
 			<td>
-				<select id="measure-<?= $no; ?>" class="form-control form-select2" name="measure_<?= $no; ?>">
+				<select id="measure-<?= $no; ?>" class="form-control form-select2" name="measure_<?= $no; ?>" required="">
 					<option value="">Pilih Satuan</option>
 					<?php
 					if (!empty($measures)) {
@@ -113,7 +113,7 @@ class Penjualan extends Secure_Controller
 				</select>
 			</td>
 			<td>
-				<input type="text" name="price_<?= $no; ?>" id="price-<?= $no; ?>" class="form-control numberformat input-sm text-right" onchange="changeData(<?= $no; ?>)" />
+				<input type="text" name="price_<?= $no; ?>" id="price-<?= $no; ?>" class="form-control numberformat input-sm text-right" onchange="changeData(<?= $no; ?>)" required=""/>
 			</td>
 			<td>
 				<select id="tax-<?= $no; ?>" class="form-control form-select2" name="tax_<?= $no; ?>" onchange="changeData(<?= $no; ?>)" required="">
@@ -129,7 +129,7 @@ class Penjualan extends Secure_Controller
 					?>
 				</select>
 			</td>	
-			    <input type="hidden" name="total_<?php echo $no; ?>" id="total-<?php echo $no; ?>" class="form-control numberformat" readonly="" />
+			    <input type="hidden" name="total_<?php echo $no; ?>" id="total-<?php echo $no; ?>" class="form-control numberformat"/>
 
 		</tr>
 
@@ -536,21 +536,21 @@ class Penjualan extends Secure_Controller
 			</td>	
 				<input type="hidden" name="product_<?php echo $no; ?>" id="product-<?php echo $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?php echo $no; ?>)" readonly=""/>
 			<td>
-				<input type="text" name="nama_produk_<?php echo $no; ?>" id="nama_produk-<?php echo $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?php echo $no; ?>)" required="" readonly=""/>
+				<input type="text" name="nama_produk_<?php echo $no; ?>" id="nama_produk-<?php echo $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?php echo $no; ?>)" readonly=""/>
 			</td>
 			<td>
 				<input type="text" min="0" name="qty_<?php echo $no; ?>" id="qty-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control numberformat input-sm text-center" />
 			</td>
 			<td>
-				<input type="text" name="measure_<?php echo $no; ?>" id="measure-<?php echo $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?php echo $no; ?>)" required="" readonly=""/>
+				<input type="text" name="measure_<?php echo $no; ?>" id="measure-<?php echo $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?php echo $no; ?>)" readonly=""/>
 			</td>
 			<td>
-				<input type="text" name="price_<?php echo $no; ?>" id="price-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" readonly="" />
+				<input type="text" name="price_<?php echo $no; ?>" id="price-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" readonly=""/>
 			</td>
 			<td>
-				<input type="text" name="total_<?php echo $no; ?>" id="total-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" readonly="" />
+				<input type="text" name="total_<?php echo $no; ?>" id="total-<?php echo $no; ?>" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" readonly=""/>
 			</td>
-				<input type="hidden" name="tax_<?php echo $no; ?>" id="tax-<?php echo $no; ?>" class="form-control tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" readonly="" />
+				<input type="hidden" name="tax_<?php echo $no; ?>" id="tax-<?php echo $no; ?>" class="form-control tex-left input-sm text-right" onchange="changeData(<?php echo $no; ?>)" readonly=""/>
 		</tr>
 
 		<script type="text/javascript">

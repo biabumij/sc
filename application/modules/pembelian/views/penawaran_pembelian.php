@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <label >Alamat Rekanan</label>
-                                            <textarea class="form-control" rows="4" name="alamat_supplier" id="alamat_supplier" required="" readonly="" ></textarea>
+                                            <textarea class="form-control" rows="4" name="alamat_supplier" id="alamat_supplier" readonly=""></textarea>
                                         </div>
                                         <br />
                                         <div class="col-sm-10">
@@ -140,11 +140,11 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="price_1" id="price-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)"/>
+                                                        <input type="text" name="price_1" id="price-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)" required=""/>
                                                     </td>
                                                     <td>
                                                         <select id="tax-1" class="form-control form-select2" name="tax_1" onchange="changeData(1)" required="">
-                                                            <option value="4">Pilih Pajak</option>
+                                                            <option value="">Pilih Pajak</option>
                                                             <?php
                                                             if(!empty($taxs)){
                                                                 foreach ($taxs as $row) {
@@ -157,7 +157,7 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="total_1" id="total-1" class="form-control numberformat tex-left input-sm text-right" readonly="" />
+                                                        <input type="text" name="total_1" id="total-1" class="form-control numberformat tex-left input-sm text-right" readonly=""/>
                                                     </td>
                                                 </tr>
                                             </tbody>

@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="col-sm-10">
                                             <label >Alamat Pelanggan</label>
-                                            <textarea class="form-control text" rows="4" name="alamat_client" id="alamat_client" required="" readonly=""></textarea>
+                                            <textarea class="form-control text" rows="4" name="alamat_client" id="alamat_client" readonly=""></textarea>
                                         </div>
 										 <div class="col-sm-10">
                                             <label>Nomor</label>
@@ -137,10 +137,10 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="price_1" id="price-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)"/>
+                                                        <input type="text" name="price_1" id="price-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)" required=""/>
                                                     </td>
 													<td>
-                                                        <select id="tax-1" class="form-control form-select2" name="tax_1" onchange="changeData(1)" >
+                                                        <select id="tax-1" class="form-control form-select2" name="tax_1" onchange="changeData(1)" required="">
                                                             <option value="">Pilih Pajak</option>
                                                             <?php
                                                             if(!empty($taxs)){

@@ -57,11 +57,11 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <label>Tanggal Kontrak</label>
-                                            <input type="text" class="form-control dtpicker" name="contract_date" required="" value="" />
+                                            <input type="text" class="form-control dtpicker" name="contract_date" required="" value=""/>
                                         </div>
                                         <div class="col-sm-6">
                                             <label>Nomor Kontrak</label>
-                                            <input type="text" class="form-control" name="contract_number" required="" />
+                                            <input type="text" class="form-control" name="contract_number" required="" value=""/>
                                         </div>
 										<div class="col-sm-10" style="padding-top:10px">
 											<label>Alamat Pelanggan</label>
@@ -69,7 +69,7 @@
 										</div>
 										<div class="col-sm-10" style="padding-top:10px">
 											<label>Jenis Pekerjaan</label>
-											<input type="text" class="form-control" name="jobs_type" required="" />
+											<input type="text" class="form-control" name="jobs_type" required="" value=""/>
 										</div>									
                                     </div>
                                     <div class="table-responsive" style="padding-top:10px">
@@ -110,15 +110,15 @@
                                                         <input type="text" name="qty_1" id="qty-1" class="form-control numberformat input-sm text-center" onchange="changeData(1)" required="" />
                                                     </td>                                                   
                                                     <td>
-                                                        <input type="text" name="measure_1" id="measure-1" class="form-control input-sm text-center" onchange="changeData(1)" required="" readonly=""/>
+                                                        <input type="text" name="measure_1" id="measure-1" class="form-control input-sm text-center" onchange="changeData(1)" readonly=""/>
                                                     </td> 
 													<td>
-                                                        <input type="text" min="0" name="price_1" id="price-1" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)" required="" readonly=""/>
+                                                        <input type="text" min="0" name="price_1" id="price-1" class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)" readonly=""/>
                                                     </td>
                                                     <td>
                                                         <input type="text" name="total_1" id="total-1" class="form-control numberformat tex-left input-sm text-right" readonly="" />
                                                     </td>	
-													<input type="hidden" name="tax_1" id="tax-1" class="form-control tex-left input-sm text-right" onchange="changeData(1)" readonly="" />   
+													<input type="hidden" name="tax_1" id="tax-1" class="form-control tex-left input-sm text-right" onchange="changeData(1)"/>   
 												</tr>
                                             </tbody>
                                         </table>    
