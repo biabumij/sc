@@ -76,9 +76,8 @@
                                     </div>
                                     <br />
                                     <div class="row">
-										<div class="col-sm-3">
-                                            <label>Syarat Pembayaran</label>
-                                            <label>(Ketik Angka Saja, Tanpa Hari)</label>
+										<div class="col-sm-4">
+                                            <label>Syarat Pembayaran (Ketik Angka Saja, Tanpa Hari)</label>
                                             <input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $syarat_pembayaran['syarat_pembayaran'];?>" required=""/>
                                         </div>
                                         <!--<div class="col-sm-3">
@@ -86,8 +85,7 @@
                                             <input type="text" class="form-control" name="tanggal_jatuh_tempo" id="tanggal_jatuh_tempo" required="" readonly />
                                         </div> -->                                     
                                         <div class="col-sm-6">
-                                            <label>Jenis</label>
-                                            <label>Pekerjaan</label>
+                                            <label>Jenis Pekerjaan</label>
                                             <input type="text" class="form-control" value="<?= $sales['jobs_type']; ?>" name="jenis_pekerjaan" readonly=""/>
                                         </div>
                                     </div>
