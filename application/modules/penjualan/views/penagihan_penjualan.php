@@ -86,7 +86,8 @@
                                             <input type="text" class="form-control" name="tanggal_jatuh_tempo" id="tanggal_jatuh_tempo" required="" readonly />
                                         </div> -->                                     
                                         <div class="col-sm-6">
-                                            <label>Jenis Pekerjaan</label>
+                                            <label>Jenis</label>
+                                            <label>Pekerjaan</label>
                                             <input type="text" class="form-control" value="<?= $sales['jobs_type']; ?>" name="jenis_pekerjaan" readonly=""/>
                                         </div>
                                     </div>
