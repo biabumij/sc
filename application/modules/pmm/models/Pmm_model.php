@@ -3233,7 +3233,7 @@ class Pmm_model extends CI_Model {
             $this->db->where('pp.date_akumulasi >=',$first_day_this_month);
             $this->db->where('pp.date_akumulasi <=',$last_day_this_month);
         }else {
-            $this->db->where('pb.date_akumulasi >=',date('Y-m-d',strtotime($ex_date[0])));
+            $this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($ex_date[0])));
             $this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($ex_date[1])));
         }
         $nilai_persediaan_barang_jadi = $this->db->get_where('akumulasi pp')->row_array();
