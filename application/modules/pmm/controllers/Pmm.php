@@ -1691,7 +1691,7 @@ class Pmm extends CI_Controller {
             $chart_revenue[] = number_format($get_revenue,0,',','.');	
             $chart_revenuecost[] = number_format($get_revenuecost,0,',','.');
 			$chart_persediaan_bahan_baku[] = number_format($get_persediaan_bahan_baku,0,',','.');
-			$chart_persediaan_barang_jadi[] = number_format($get_persediaan_bahan_baku,0,',','.');	
+			$chart_persediaan_barang_jadi[] = number_format($get_persediaan_barang_jadi,0,',','.');	
             $chart_laba[] = number_format($laba,0,',','.');	
             $chart_net[] = number_format($net,0,'.',',');
         }
@@ -1739,7 +1739,6 @@ class Pmm extends CI_Controller {
             'data' => $chart_net,
             'data_revenue' => $chart_revenue,
             'data_revenuecost' => $chart_revenuecost,
-			'data_persediaan_bahan_baku' => $chart_persediaan_bahan_baku,
             'data_laba' => $chart_laba,
 			'data_net' => $chart_net,
             'fill' => false,
