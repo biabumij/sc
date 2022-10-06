@@ -75,7 +75,7 @@
                             <div class="col-sm-15">
                             <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Detail Laba Rugi</h3>
+                                        <h3 class="panel-title">Laba Rugi (Bulan Terakhir)</h3>
                                     </div>
                                     <div style="margin: 20px">
                                         <div class="row">
@@ -105,8 +105,6 @@
                         ->from('hpp pp')
                         ->order_by('date_hpp','desc')->limit(1)
                         ->get()->row_array();
-                        
-                        //file_put_contents("D:\\hpp.txt", $this->db->last_query());
 
                         $harga_jual_abubatu = 0;
                         $harga_jual_batu0510 = 0;
@@ -373,8 +371,8 @@
                             stacked: true,
                             ticks: {
                                 beginAtZero: true,
-                                min: -1000,
-                                max: 1000
+                                //min: -1500,
+                                //max: 1500
                             },
                         }]
                     },
@@ -391,13 +389,13 @@
                             return data['labels'][tooltipItem[0]['index']];
                         },
                         beforeLabel : function(tooltipItem, data) {
-                            return 'Pendapatan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']];
+                            return 'Pendapatan + Persediaan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']]+ ' + '+data['datasets'][0]['data_revenuestok'][tooltipItem['index']]+'';
                         },
                         label: function(tooltipItem, data) {
                             return 'Biaya = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];
                         },
                         afterLabel : function(tooltipItem, data) {
-                            return 'Laba Rugi = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+' %)';
+                            return 'Laba Rugi = '+data['datasets'][0]['data_laba'][tooltipItem['index']]+ ' ('+data['datasets'][0]['data'][tooltipItem['index']]+'%)';
                         },
                         },
                     }

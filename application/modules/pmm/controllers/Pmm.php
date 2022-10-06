@@ -1671,29 +1671,36 @@ class Pmm extends CI_Controller {
         
         foreach ($label_chart as $m => $m_arr) {
             $get_revenue = $this->pmm_model->getRevenue($m_arr,$arr_date);
+			$get_revenuestok = $this->pmm_model->getRevenueStok($m_arr,$arr_date);
             $get_revenuecost = $this->pmm_model->getRevenueCost($m_arr,$arr_date);
 			$get_persediaan_bahan_baku = $this->pmm_model->getPersediaanBahanBaku($m_arr,$arr_date);
 			$get_persediaan_barang_jadi = $this->pmm_model->getPersediaanBarangJadi($m_arr,$arr_date);
-            if(empty($get_revenuecost)){
-            	$get_revenuecost = 0;
+            if(empty($get_revenue)){
+            	$get_revenue = 0;
+            }
+			if(empty($get_revenuestok)){
+            	$get_revenuestok = 0;
             }
             if(empty($get_revenuecost)){
             	$get_revenuecost = 0;
             }
 
-            $laba = $get_revenue - $get_revenuecost;
+            $laba = ($get_revenue + $get_revenuestok) - $get_revenuecost;
             if($get_revenue > 0){
             	$net = ($laba / $get_revenue) * 100;
             }else {
             	$net = 0;
             }
+			$net = round($net,0);
+
             
-            $chart_revenue[] = number_format($get_revenue,0,',','.');	
+            $chart_revenue[] = number_format($get_revenue,0,',','.');
+			$chart_revenuestok[] = number_format($get_revenuestok,0,',','.');	
             $chart_revenuecost[] = number_format($get_revenuecost,0,',','.');
 			$chart_persediaan_bahan_baku[] = number_format($get_persediaan_bahan_baku,0,',','.');
 			$chart_persediaan_barang_jadi[] = number_format($get_persediaan_barang_jadi,0,',','.');	
             $chart_laba[] = number_format($laba,0,',','.');	
-            $chart_net[] = number_format($net,0,'.',',');
+            $chart_net[] = $net; 
         }
 
 
@@ -1701,6 +1708,10 @@ class Pmm extends CI_Controller {
         $label_chart[] = 'Akumulasi';
         $all_revenue = $this->pmm_model->getRevenueAll($arr_date);
         $chart_revenue[] = number_format($all_revenue['total'],0,',','.');
+
+		$all_persediaanbahanbaku = $this->pmm_model->getRevenueAllPersediaanBahanBaku($arr_date);
+		$all_persediaanbarangjadi = $this->pmm_model->getRevenueAllPersediaanBarangJadi($arr_date);
+        $chart_revenuestok[] = number_format($all_persediaanbahanbaku['total'] + $all_persediaanbarangjadi['total'],0,',','.');
 
 		$all_revenuecostadministrasibiaya = $this->pmm_model->getRevenueCostAllAdministrasiBiaya($arr_date);
         $chart_revenuecostadministrasibiaya[] = number_format($all_revenuecostadministrasibiaya['total'],0,',','.');
@@ -1714,16 +1725,10 @@ class Pmm extends CI_Controller {
 		$all_revenuecostlainnyajurnal = $this->pmm_model->getRevenueCostAllLainnyaJurnal($arr_date);
         $chart_revenuecostlainnyajurnal[] = number_format($all_revenuecostlainnyajurnal['total'],0,',','.');
 
-		$all_persediaanbahanbaku = $this->pmm_model->getRevenueCostAllPersediaanBahanBaku($arr_date);
-        $chart_persediaanbahanbaku[] = number_format($all_persediaanbahanbaku['total'],0,',','.');
-
-		$all_persediaanbarangjadi = $this->pmm_model->getRevenueCostAllPersediaanBarangJadi($arr_date);
-        $chart_persediaanbarangjadi[] = number_format($all_persediaanbarangjadi['total'],0,',','.');
-
 		$all_revenuecost = $this->pmm_model->getRevenueCostAll($arr_date);
         $chart_revenuecost[] = number_format($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total'],0,',','.');
 
-        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total']);
+        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total']) + ($all_persediaanbahanbaku['total'] + $all_persediaanbarangjadi['total']);
         $chart_laba[] = number_format($all_laba,0,',','.');
 
 		if($all_revenue['total'] > 0){
@@ -1731,13 +1736,17 @@ class Pmm extends CI_Controller {
         }else {
         	$all_net = 0;
         }
-        $chart_net[] = number_format($all_net,2,'.',',');
+		$all_net = round($all_net,0);
+
+        $chart_net[] = $all_net;
+		
 
         $datasets_laba[0] = array(
             'label' => 'Persentase Laba Rugi',
-            'backgroundColor' => '#ffb732',
+            'backgroundColor' => 'rgb(0,206,209)',
             'data' => $chart_net,
             'data_revenue' => $chart_revenue,
+			'data_revenuestok' => $chart_revenuestok,
             'data_revenuecost' => $chart_revenuecost,
             'data_laba' => $chart_laba,
 			'data_net' => $chart_net,
