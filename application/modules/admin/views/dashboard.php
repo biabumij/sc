@@ -68,6 +68,38 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Laba Rugi -->
+                    <div class="col-sm-8">			
+                        <div role="tabpanel" class="tab-pane" id="nilai_persediaan_bahan_baku">
+                            <div class="col-sm-15">
+                            <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Detail Laba Rugi</h3>
+                                    </div>
+                                    <div style="margin: 20px">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <input type="text" id="filter_date_detail_laba_rugi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                            <div>Please Wait</div>
+                                            <div class="fa-3x">
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                            </div>
+                                        </div>				
+                                        <div class="table-responsive" id="detail-laba-rugi">													
+                                        
+        
+                                        </div>
+                                    </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
                     <?php
                         $hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
                         ->from('hpp pp')
@@ -401,8 +433,52 @@
         
     </script>
 
-    <!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->
+    <!-- Script Detail Laba Rugi -->
+    <script type="text/javascript">
+    $('#filter_date_detail_laba_rugi').daterangepicker({
+    autoUpdateInput : false,
+    showDropdowns: true,
+    locale: {
+        format: 'DD-MM-YYYY'
+    },
+    ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
 
+        $('#filter_date_detail_laba_rugi').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        TableDetailLabaRugi();
+        });
+
+
+        function TableDetailLabaRugi()
+        {
+            $('#wait').fadeIn('fast');   
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo site_url('pmm/reports/report_production_dashboard'); ?>/"+Math.random(),
+                dataType : 'html',
+                data: {
+                    filter_date : $('#filter_date_detail_laba_rugi').val(),
+                },
+                success : function(result){
+                    $('#detail-laba-rugi').html(result);
+                    $('#wait').fadeOut('fast');
+                }
+            });
+        }
+
+        TableDetailLabaRugi();
+    
+    </script>
+
+    <!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->
     <script type="text/javascript">
         $('#filter_date_bahan_jadi_penyesuaian').daterangepicker({
             autoUpdateInput : false,
@@ -447,7 +523,6 @@
     </script>
 
     <!-- Script Nilai Persediaan Bahan Baku -->
-
     <script type="text/javascript">
     $('#filter_date_nilai').daterangepicker({
     autoUpdateInput : false,
