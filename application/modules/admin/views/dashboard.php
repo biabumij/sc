@@ -69,37 +69,7 @@
                         </div>
                     </div>
 
-                    <!-- Laba Rugi -->
-                    <div class="col-sm-8">			
-                        <div role="tabpanel" class="tab-pane" id="nilai_persediaan_bahan_baku">
-                            <div class="col-sm-15">
-                            <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Laba Rugi (Bulan Terakhir)</h3>
-                                    </div>
-                                    <div style="margin: 20px">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <input type="text" id="filter_date_detail_laba_rugi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div id="wait" style=" text-align: center; align-content: center; display: none;">	
-                                            <div>Please Wait</div>
-                                            <div class="fa-3x">
-                                                <i class="fa fa-spinner fa-spin"></i>
-                                            </div>
-                                        </div>				
-                                        <div class="table-responsive" id="detail-laba-rugi">													
-                                        
-        
-                                        </div>
-                                    </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Harga Jual - Bahan Jadi -->
                     <?php
                         $hpp = $this->db->select('pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030')
                         ->from('hpp pp')
