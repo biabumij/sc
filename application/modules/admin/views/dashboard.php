@@ -325,7 +325,7 @@
         {
             var ctx = document.getElementById('canvas').getContext('2d');
             window.myBar = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: CharData,
                 options: {
                     title: {
