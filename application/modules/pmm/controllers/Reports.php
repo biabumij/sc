@@ -8879,7 +8879,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($persentase,0,',','.');?> %</span>
+									<span><?php echo number_format($persentase,2,',','.');?> %</span>
 								</th>
 							</tr>
 					</table>

@@ -1691,7 +1691,7 @@ class Pmm extends CI_Controller {
             }else {
             	$net = 0;
             }
-			$net = round($net,0);
+			$net = round($net,2);
 
             
             $chart_revenue[] = number_format($get_revenue,0,',','.');
@@ -1736,7 +1736,7 @@ class Pmm extends CI_Controller {
         }else {
         	$all_net = 0;
         }
-		$all_net = round($all_net,0);
+		$all_net = round($all_net,2);
 
         $chart_net[] = $all_net;
 		
