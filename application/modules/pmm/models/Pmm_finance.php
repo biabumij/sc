@@ -110,7 +110,6 @@ class Pmm_finance extends CI_Model {
         //$this->db->where('tax_id',3);
         $this->db->where("tax_id in (3,6)");
         $query = $this->db->get('pmm_sales_po_detail')->row_array();
-        //file_put_contents("D:\\getSalesPoPpn.txt", $this->db->last_query());
         if(!empty($query)){
             $total = $query['tax'];
         }

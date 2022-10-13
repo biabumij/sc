@@ -253,7 +253,6 @@ class Laboratorium extends Secure_Controller {
 		$this->db->order_by('jmd.tanggal_jmd','desc');
 		$this->db->order_by('jmd.created_on','desc');			
 		$query = $this->db->get('pmm_jmd jmd');
-		//file_put_contents("D:\\table_jmd.txt", $this->db->last_query());
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -282,7 +281,6 @@ class Laboratorium extends Secure_Controller {
 			$data['jmd'] = $this->db->get_where("pmm_jmd", ["id" => $id])->row_array();
 			$data['lampiran'] = $this->db->get_where("pmm_lampiran_jmd", ["jmd_id" => $id])->result_array();
 			$this->load->view('laboratorium/data_jmd', $data);
-			//file_put_contents("D:\\data_jmd.txt", $this->db->last_query());
 		} else {
 			redirect('admin');
 		}

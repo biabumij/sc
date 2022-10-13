@@ -458,8 +458,6 @@ class Pmm_reports extends CI_Model {
 		$this->db->where_in('material_id',$id);
 		$all_mats = $this->db->get('pmm_receipt_material pm')->row_array();
 		
-		//file_put_contents("D:\\all_mats.txt", $this->db->last_query());
-		
 		$this->db->select('SUM(volume) as volume, price');
 		$this->db->where('date >=',$date[0]);
 		$this->db->where('date <=',$date[1]);
@@ -468,16 +466,12 @@ class Pmm_reports extends CI_Model {
 		$this->db->order_by('date','asc');
 		$result = $this->db->get('pmm_remaining_materials_cat')->row_array();
 		
-		//file_put_contents("D:\\result.txt", $this->db->last_query());
-		
 		$this->db->select('volume');
 		$this->db->where('date <=',$date[0]);
 		$this->db->where('material_id',$id);	
 		$this->db->where('status','PUBLISH');
 		$this->db->order_by('date','desc')->limit(1);
 		$sisa_bahan_before = $this->db->get('pmm_remaining_materials_cat')->row_array();
-		
-		//file_put_contents("D:\\sisa_bahan_before.txt", $this->db->last_query());
 		
 		$sisa_before = $all_mats['volume'] + $sisa_bahan_before['volume'];
 		$output['volume'] = $sisa_before - $result['volume'];
@@ -608,9 +602,6 @@ class Pmm_reports extends CI_Model {
 		$this->db->where('pm.date_receipt <=',$date[1]);
 		$this->db->where_in('pm.material_id',$id);
 		$all_mats = $this->db->get('pmm_receipt_material pm')->row_array();
-		
-		//file_put_contents("D:\\MatUseBySupp2.txt", $this->db->last_query());
-
 
 		$this->db->select('ppo.supplier_id, SUM(pm.volume) as volume, ps.nama as supplier');
 		$this->db->join('pmm_purchase_order ppo','pm.purchase_order_id = ppo.id');
@@ -620,8 +611,6 @@ class Pmm_reports extends CI_Model {
 		$this->db->where_in('pm.material_id',$id);
 		$this->db->group_by('ppo.supplier_id');
 		$query = $this->db->get('pmm_receipt_material pm');
-
-		//file_put_contents("D:\\MatUseBySupp.txt", $this->db->last_query());
 
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {

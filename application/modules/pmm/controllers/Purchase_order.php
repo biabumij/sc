@@ -424,8 +424,6 @@ class Purchase_order extends CI_Controller {
 
 		$penagihan = $this->db->get_where('pmm_penagihan_pembelian', array('purchase_order_id' => $id))->row_array();
 
-		file_put_contents("D:\\penagihan.txt", $this->db->last_query());
-
 		$this->db->delete('pmm_penagihan_pembelian_detail',array('penagihan_pembelian_id'=>$penagihan['id']));
 
 		$this->db->delete('pmm_lampiran_penagihan_pembelian',array('penagihan_pembelian_id'=>$penagihan['id']));

@@ -105,7 +105,6 @@
             		$measure = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure']),'measure_name');
             		$arr_filter_mats = array();
 					$query_mats = $this->db->select('id')->get_where('produk',array('status'=>'PUBLISH','id'=>$row['material_id']))->result_array();
-					//file_put_contents("D:\\query_mats.txt", $this->db->last_query());
 					foreach ($query_mats as $m => $r) {
 						$arr_filter_mats[] = $r['id'];
 					}
@@ -121,7 +120,6 @@
 					$this->db->where('pm.date_receipt <=',$last_date);
 					$this->db->where_in('pm.material_id',$arr_filter_mats);
 					$all_mats = $this->db->get('pmm_receipt_material pm')->row_array();
-					//file_put_contents("D:\\all_mats.txt", $this->db->last_query());
 
 					$this->db->select('ppo.supplier_id, SUM(pm.volume) as volume, ps.nama as supplier, pm.harga_satuan as price,pm.convert_value');
 					$this->db->join('pmm_purchase_order ppo','pm.purchase_order_id = ppo.id');
@@ -131,7 +129,6 @@
 					$this->db->where_in('pm.material_id',$arr_filter_mats);
 					$this->db->group_by('ppo.supplier_id');
 					$query = $this->db->get('pmm_receipt_material pm');
-					//file_put_contents("D:\\row_2.txt", $this->db->last_query());
             		?>
             		<tr class="table-baris2">
             			<td align="center"><?php echo $key + 1;?></td>

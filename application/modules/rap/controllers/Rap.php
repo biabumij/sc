@@ -197,7 +197,6 @@ class Rap extends Secure_Controller {
 		$this->db->order_by('rap.nomor_rap','desc');
 		$this->db->order_by('rap.nomor_rap','desc');			
 		$query = $this->db->get('pmm_rap rap');
-		//file_put_contents("D:\\table_jmd.txt", $this->db->last_query());
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -223,7 +222,6 @@ class Rap extends Secure_Controller {
 			$data['tes'] = '';
 			$data['rap'] = $this->db->get_where("pmm_rap", ["id" => $id])->row_array();
 			$this->load->view('rap/data_rap', $data);
-			//file_put_contents("D:\\data_jmd.txt", $this->db->last_query());
 		} else {
 			redirect('admin');
 		}
