@@ -52,8 +52,8 @@
 		<br />
 		<table class="minimalistBlack" cellpadding="2" width="98%">
 			<tr class="table-active">
-                <th width="5%">No</th>
-                <th width="75%">Nama Satuan</th>
+                <th width="5%">No.</th>
+                <th width="75%">Satuan</th>
                 <th width="20%">Status</th>
             </tr>
             <?php

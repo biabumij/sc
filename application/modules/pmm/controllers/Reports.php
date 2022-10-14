@@ -9632,9 +9632,9 @@ class Reports extends CI_Controller {
         $html = $this->load->view('pmm/measures_print',$data,TRUE);
 
         
-        $pdf->SetTitle('Measures');
+        $pdf->SetTitle('Satuan');
         $pdf->nsi_html($html);
-        $pdf->Output('Measures.pdf', 'I');
+        $pdf->Output('satuan.pdf', 'I');
 	
 	}
 
