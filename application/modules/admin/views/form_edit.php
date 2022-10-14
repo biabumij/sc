@@ -27,7 +27,7 @@
                             <h3 class="section-subtitle">Edit Profile</h3>
                         </div>
                         <div class="panel-content">
-                            <form id="inline-validation" method="POST" class="form-horizontal form-stripe form-submit" novalidate="novalidate" data-button="#btn-submit" action="<?php echo site_url('admin/edit');?>" data-redirect="<?php echo site_url('admin/admin');?>">
+                            <form id="inline-validation" method="POST" class="form-horizontal form-stripe form-submit" novalidate="novalidate" data-button="#btn-submit" action="<?php echo site_url('admin/edit');?>" data-redirect="<?php echo site_url('admin/dashboard');?>">
                                 <input type="hidden" name="id" value="<?php echo $row[0]->admin_id;?>">
                                 <div class="form-group">
                                     <label for="name" class="col-sm-2 control-label">Name<span class="required" aria-required="true">*</span></label>
