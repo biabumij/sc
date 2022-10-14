@@ -42,7 +42,7 @@
                                 <table class="table table-striped table-hover table-center" id="guest-table">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
+                                            <th width="5%">No.</th>
                                             <th>Satuan</th>
                                             <th>Status</th>
                                             <th>Tindakan</th>
@@ -147,7 +147,7 @@
                         <table class="table table-striped table-hover table-center" id="detail-table" width="100%">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th width="5%">No.</th>
                                     <th>Satuan</th>
                                     <th>Nilai</th>
                                     <th>Tindakan</th>
