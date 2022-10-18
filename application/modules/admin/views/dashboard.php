@@ -359,7 +359,8 @@
                             return data['labels'][tooltipItem[0]['index']];
                         },
                         beforeLabel : function(tooltipItem, data) {
-                            return 'Pendapatan + Persediaan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']]+ ' + '+data['datasets'][0]['data_revenuestok'][tooltipItem['index']]+'';
+                            //return 'Pendapatan + Persediaan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']]+ ' + '+data['datasets'][0]['data_revenuestok'][tooltipItem['index']]+'';
+                            return 'Pendapatan = '+data['datasets'][0]['data_revenue'][tooltipItem['index']];
                         },
                         label: function(tooltipItem, data) {
                             return 'Biaya = '+data['datasets'][0]['data_revenuecost'][tooltipItem['index']];

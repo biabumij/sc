@@ -1685,7 +1685,8 @@ class Pmm extends CI_Controller {
             	$get_revenuecost = 0;
             }
 
-            $laba = ($get_revenue + $get_revenuestok) - $get_revenuecost;
+            //$laba = ($get_revenue + $get_revenuestok) - $get_revenuecost;
+			$laba = $get_revenue - $get_revenuecost;
             if($get_revenue > 0){
             	$net = ($laba / $get_revenue) * 100;
             }else {
@@ -1728,8 +1729,9 @@ class Pmm extends CI_Controller {
 		$all_revenuecost = $this->pmm_model->getRevenueCostAll($arr_date);
         $chart_revenuecost[] = number_format($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total'],0,',','.');
 
-        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total']) + ($all_persediaanbahanbaku['total'] + $all_persediaanbarangjadi['total']);
-        $chart_laba[] = number_format($all_laba,0,',','.');
+        //$all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total']) + ($all_persediaanbahanbaku['total'] + $all_persediaanbarangjadi['total']);
+        $all_laba = $all_revenue['total'] - ($all_revenuecost['total'] + $all_revenuecostadministrasibiaya['total'] + $all_revenuecostadministrasijurnal['total'] + $all_revenuecostlainnyabiaya['total'] + $all_revenuecostlainnyajurnal['total']);
+		$chart_laba[] = number_format($all_laba,0,',','.');
 
 		if($all_revenue['total'] > 0){
         	$all_net = ($all_laba / $all_revenue['total']) * 100;
