@@ -101,8 +101,8 @@
                                     <div class="col-sm-12">
                                         <table class="table table-bordered">
                                             <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HARGA JUAL (TERMASUK LABA 10% DARI HPP DASAR) -  
-                                                <marquee>Harga Update (<?php
+                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4"><marquee>HARGA JUAL (TERMASUK LABA 10% DARI HPP DASAR) -  
+                                                Harga Update (<?php
                                                     $search = array(
                                                     'January',
                                                     'February',
