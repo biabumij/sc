@@ -101,7 +101,7 @@
                                     <div class="col-sm-12">
                                         <table class="table table-bordered">
                                             <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4"><marquee>HARGA JUAL (TERMASUK LABA 10% DARI HPP DASAR) -  
+                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HARGA JUAL (TERMASUK LABA 10% DARI HPP DASAR) -  
                                                 Harga Update (<?php
                                                     $search = array(
                                                     'January',
@@ -138,7 +138,7 @@
 
                                                     echo str_replace($search, $replace, $subject);
 
-                                                    ?>)</marquee></th>
+                                                    ?>)</th>
                                             </tr> 
                                             <tr>
                                                 <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
@@ -153,7 +153,7 @@
                                                 <th class="text-right"><?php echo number_format($harga_jual_batu2030,0,',','.');?></th>  
                                             </tr> 
                                             <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4"><marquee>HPP DASAR -  
+                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HPP DASAR -  
                                                 Harga Update (<?php
                                                     $search = array(
                                                     'January',
@@ -190,7 +190,7 @@
 
                                                     echo str_replace($search, $replace, $subject);
 
-                                                    ?>)</marquee>
+                                                    ?>)
                                             </th>
                                             </tr> 
                                             <tr>
