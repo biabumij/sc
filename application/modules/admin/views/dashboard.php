@@ -102,7 +102,7 @@
                                         <table class="table table-bordered">
                                             <tr>
                                                 <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HARGA JUAL (TERMASUK LABA 10% DARI HPP DASAR) -  
-                                                Harga Update (<?php
+                                                <marquee>Harga Update (<?php
                                                     $search = array(
                                                     'January',
                                                     'February',
@@ -138,7 +138,7 @@
 
                                                     echo str_replace($search, $replace, $subject);
 
-                                                    ?>)</th>
+                                                    ?>)</marquee></th>
                                             </tr> 
                                             <tr>
                                                 <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
