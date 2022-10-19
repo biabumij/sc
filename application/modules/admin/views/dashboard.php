@@ -153,7 +153,7 @@
                                                 <th class="text-right"><?php echo number_format($harga_jual_batu2030,0,',','.');?></th>  
                                             </tr> 
                                             <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HPP DASAR -  
+                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4"><marquee>HPP DASAR -  
                                                 Harga Update (<?php
                                                     $search = array(
                                                     'January',
@@ -190,7 +190,7 @@
 
                                                     echo str_replace($search, $replace, $subject);
 
-                                                    ?>)
+                                                    ?>)</marquee>
                                             </th>
                                             </tr> 
                                             <tr>
