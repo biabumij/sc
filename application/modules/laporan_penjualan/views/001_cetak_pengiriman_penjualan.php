@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>LAPORAN PERNGIRIMAN PENJUALAN</title>
+	  <title>LAPORAN PENGIRIMAN PENJUALAN</title>
 	  
 	  <?php
 		$search = array(
@@ -83,7 +83,7 @@
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
 				<td width="100%" align="center">
-					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN PERNGIRIMAN PENJUALAN</div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN PENGIRIMAN PENJUALAN</div>
 					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI STONE CRUSHER</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div>
