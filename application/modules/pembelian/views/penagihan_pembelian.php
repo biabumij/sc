@@ -149,13 +149,13 @@
 														$tax_0 = false;
 													}
 													if($row['tax_id'] == 3){
-														$tax_ppn = ($row['harga_satuan'] * $row['volume']) * 10 / 100;
+														$tax_ppn = $sub_total * 10 / 100;
 													}
 													if($row['tax_id'] == 5){
-														$tax_pph = ($row['harga_satuan'] * $row['volume']) * 2 / 100;
+														$tax_pph = $sub_total * 2 / 100;
 													}
                                                     if($row['tax_id'] == 6){
-														$tax_ppn11 = ($row['harga_satuan'] * $row['volume']) * 11 / 100;
+														$tax_ppn11 = $sub_total * 11 / 100;
 													}
 													
 													$total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;

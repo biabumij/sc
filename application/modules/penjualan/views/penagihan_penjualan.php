@@ -142,8 +142,6 @@
                                                     </tr>
                                                 <?php 
 													$sub_total += ($row['hargaProduk'] * $row['volume']);
-													$tax_id = $row['tax_id'];
-													//$tax = $row['tax'];
 													
 													if($row['tax_id'] == 4){
 														$tax_0 = false;
