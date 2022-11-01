@@ -95,43 +95,47 @@ class Kontak extends Secure_Controller {
     	$id = $this->input->post('id');
 
     	$nama = $this->input->post('nama');
+		$telepon = $this->input->post('telepon');
+		$alamat = $this->input->post('alamat');
+		$email = $this->input->post('email');
+		$fax = $this->input->post('fax');
+    	$npwp = $this->input->post('npwp');
+		$alamat_penagihan = $this->input->post('alamat_penagihan');
+		$nama_kontak = $this->input->post('nama_kontak');
+		$nama_kontak_logistik = $this->input->post('nama_kontak_logistik');
+		$tipe_identitas = $this->input->post('tipe_identitas');
+		$no_identitas = $this->input->post('no_identitas');
+		$nama_perusahaan = $this->input->post('nama_perusahaan');
+		$posisi = $this->input->post('posisi');
     	$pelanggan = $this->input->post('pelanggan');
     	$rekanan = $this->input->post('rekanan');
     	$karyawan = $this->input->post('karyawan');
     	$lain = $this->input->post('lain');
-    	$nama_kontak = $this->input->post('nama_kontak');
-    	$tipe_identitas = $this->input->post('tipe_identitas');
-    	$no_identitas = $this->input->post('no_identitas');
-    	$email = $this->input->post('email');
-    	$nama_perusahaan = $this->input->post('nama_perusahaan');
-    	$telepon = $this->input->post('telepon');
-    	$fax = $this->input->post('fax');
-    	$npwp = $this->input->post('npwp');
-    	$alamat_penagihan = $this->input->post('alamat_penagihan');
-    	$alamat = $this->input->post('alamat');
     	$akun_masuk = $this->input->post('akun_masuk');
     	$akun_keluar = $this->input->post('akun_keluar');
 
 
     	$data = array(
     		'nama' => $nama,
+			'telepon' => $telepon,
+			'alamat' => $alamat,
+			'email' => $email,
+			'fax' => $fax,
+    		'npwp' => $npwp,
+			'alamat_penagihan' => $alamat_penagihan,
+			'nama_kontak' => $nama_kontak,
+			'nama_kontak_logistik' => $nama_kontak_logistik,
+			'tipe_identitas' => $tipe_identitas,
+			'no_identitas' => $no_identitas,
+			'nama_perusahaan' => $nama_perusahaan,
+			'posisi' => $posisi,
     		'pelanggan' => $pelanggan,
     		'rekanan' => $rekanan,
     		'karyawan' => $karyawan,
     		'lain' => $lain,
-    		'nama_kontak' => $nama_kontak,
-    		'tipe_identitas' => $tipe_identitas,
-    		'no_identitas' => $no_identitas,
-    		'email' => $email,
-    		'nama_perusahaan' => $nama_perusahaan,
-    		'telepon' => $telepon,
-    		'fax' => $fax,
-    		'npwp' => $npwp,
-    		'alamat_penagihan' => $alamat_penagihan,
-    		'alamat' => $alamat,
     		'akun_keluar' => $akun_keluar,
-    		'akun_masuk' => $akun_masuk,
-    		'posisi' => $this->input->post('posisi')
+    		'akun_masuk' => $akun_masuk
+    		
     	);
 
     	if(!empty($id)){

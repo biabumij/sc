@@ -118,6 +118,7 @@
                                             <label class="col-sm-2 control-label">Identitas</label>
                                             <div class="col-sm-3">
                                               <select id="tipe_identitas" class="form-control form-select2" name="tipe_identitas">
+                                                    <option value="">Pilih Satuan</option>
                                                     <option value="KTP" <?= (isset($edit) && $edit['tipe_identitas'] == 'KTP') ? 'selected' : '' ;?> >KTP</option>
                                                     <option value="PASSPORT" <?= (isset($edit) && $edit['tipe_identitas'] == 'PASSPORT') ? 'selected' : '' ;?> >PASSPORT</option>
                                                     <option value="SIM" <?= (isset($edit) && $edit['tipe_identitas'] == 'SIM') ? 'selected' : '' ;?> >SIM</option>
@@ -139,6 +140,12 @@
                                               <input type="text" class="form-control input-sm" name="posisi" value="<?= (isset($edit)) ? $edit['posisi'] : '' ;?>" placeholder="Posisi / Jabatan Nama Kontak (Informasi Umum)"/>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Nama Kontak Logistik</label>
+                                            <div class="col-sm-10">
+                                              <input type="text" class="form-control input-sm" name="nama_kontak_logistik" value="<?= (isset($edit)) ? $edit['nama_kontak_logistik'] : '' ;?>" placeholder="Isikan Nama Kontak Logistik, Jika Nama Pada Info Kontak Adalah Perusahaan"/>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br />
@@ -149,8 +156,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Akun Masuk</label>
                                             <div class="col-sm-10">
-                                              <select id="akun_masuk" class="form-control form-select2" name="akun_masuk" >
-                                                    <option>Pilih Akun</option>
+                                              <select id="akun_masuk" class="form-control form-select2" name="akun_masuk">
+                                                    <option value="">Pilih Akun</option>
                                                     <?php
                                                     if($akun){
                                                         foreach ($akun as $key => $ak) {
@@ -170,8 +177,8 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Akun Keluar</label>
                                             <div class="col-sm-10">
-                                              <select id="akun_keluar" class="form-control form-select2" name="akun_keluar" >
-                                                    <option>Pilih Akun</option>
+                                              <select id="akun_keluar" class="form-control form-select2" name="akun_keluar">
+                                                    <option value="">Pilih Akun</option>
                                                     <?php
                                                     if($akun){
                                                         foreach ($akun as $key => $ak) {

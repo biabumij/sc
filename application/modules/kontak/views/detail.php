@@ -145,6 +145,14 @@
                                                 <?= $row['posisi'];?>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <th>
+                                                Nama Kontak Logistik
+                                            </th>        
+                                            <td>
+                                                <?= $row['nama_kontak_logistik'];?>
+                                            </td>
+                                        </tr>
                                      </table>
                                     <div class="panel-header"> 
                                         <h4>Akun Mapping</h4>
