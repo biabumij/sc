@@ -51,7 +51,6 @@ class Request_materials extends CI_Controller {
 
 		$this->db->select('prm.*, ps.schedule_name,ps.no_spo');
 		$this->db->join('pmm_schedule ps','prm.schedule_id = ps.id','left');
-		//$this->db->where('prm.status !=','DELETED');
 		if(!empty($schedule_id)){
 			$this->db->where('prm.schedule_id',$schedule_id);
 		}
@@ -66,7 +65,6 @@ class Request_materials extends CI_Controller {
 			$this->db->where('request_date <=',date('Y-m-d',strtotime($end_date)));	
 		}
 
-		//$this->db->where('ps.status !=','DELETED');
 		$this->db->order_by('request_date','DESC');
 		$this->db->order_by('created_on','DESC');
 		$query = $this->db->get('pmm_request_materials prm');
