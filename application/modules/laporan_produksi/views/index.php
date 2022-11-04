@@ -1127,7 +1127,7 @@
 				locale: {
 				  format: 'DD-MM-YYYY'
 				},
-				minDate: new Date(2020, 12, 27), 
+				//minDate: new Date(2021, 01, 27), 
 				maxDate: new Date(2022, 04, 31)		
 			});
 
