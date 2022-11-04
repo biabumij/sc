@@ -195,18 +195,14 @@ class Request_materials extends CI_Controller {
 		echo json_encode($output);
 	}
 
-
 	public function delete()
 	{
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
-			$data = array(
-				'status' => 'DELETED',
-				'updated_by' => $this->session->userdata('admin_id'),
-				'updated_on' => date('Y-m-d H:i:s'),
-			);
-			if($this->db->update('pmm_request_materials',$data,array('id'=>$id))){
+			$this->db->delete('pmm_request_material_details', array('request_material_id' => $id));
+			$this->db->delete('pmm_request_materials', array('id' => $id));
+			{
 				$output['output'] = true;
 			}
 		}

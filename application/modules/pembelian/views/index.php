@@ -1073,7 +1073,7 @@
                         success : function(result){
                             if(result.output){
                                 table_request.ajax.reload();
-                                bootbox.alert('Berhasil menghapus!!');
+                                bootbox.alert('Berhasil Menghapus!!');
                             }else if(result.err){
                                 bootbox.alert(result.err);
                             }
