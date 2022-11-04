@@ -156,6 +156,7 @@
                                                     <th class="text-center">Volume</th>
                                                     <th class="text-center">Status Permintaan</th>
                                                     <th class="text-center">Tindakan</th>
+                                                    <th class="text-center">Hapus</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -973,10 +974,11 @@
                 { "data": "volume" },
                 { "data": "status" },
                 { "data": "actions" },
+                { "data": "delete" }
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 6, 7],
+                    "targets": [0, 1, 6, 7, 8],
                     "className": 'text-center',
                 },
 				{

@@ -92,8 +92,12 @@ class Request_materials extends CI_Controller {
 					$edit = false;
 				}
 				$row['status'] = $this->pmm_model->GetStatus($row['status']);
+				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-info"><i class="fa fa-gears"></i> </a> '.$edit.' ';
 
-				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-info"><i class="fa fa-gears"></i> </a> '.$edit.' '.$delete;
+				$row['delete'] = '-';
+				if(in_array($this->session->userdata('admin_group_id'), array(1))){
+				$row['delete'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'"></a> '.$delete.' ';
+				}
 				$data[] = $row;
 			}
 
