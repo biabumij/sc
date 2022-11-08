@@ -254,7 +254,7 @@ class Jurnal_umum extends CI_Controller {
         <script type="text/javascript">
         
 	        $('.form-select2').select2();
-	        $('input.numberformat').number( true, 2,',','.' );
+	        $('input.numberformat').number( true, 0,',','.' );
 
 	    </script>
 		<?php
@@ -461,8 +461,9 @@ class Jurnal_umum extends CI_Controller {
 
 		$data = array(
             'id' => $form_id_jurnal_main,
-			'tanggal_transaksi' => $tanggal_transaksi,
-            'memo' => $memo,
+            //'nomor_transaksi' => $nomor_transaksi,
+			//'tanggal_transaksi' => $tanggal_transaksi,
+            //'memo' => $memo,
             'total' => $total,
             'total_debit' => $total_debit,
             'total_kredit' => $total_kredit
@@ -504,8 +505,6 @@ class Jurnal_umum extends CI_Controller {
 		);
 
 		if(!empty($id)){
-			$data['created_by'] = $this->session->userdata('admin_id');
-            $data['created_on'] = date('Y-m-d H:i:s');
 			if($this->db->update('pmm_detail_jurnal',$data,array('id'=>$form_id_jurnal))){
 				$output['output'] = true;
 			}

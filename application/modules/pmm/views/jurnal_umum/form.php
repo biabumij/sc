@@ -133,7 +133,7 @@
                         <input type="hidden" name="jurnal_id" id="jurnal_id" value="<?= $data['id'] ?>">
                         <input type="hidden" id="form_id_jurnal" name="form_id_jurnal" class="form-control" required="" autocomplete="off" />
                         <div class="form-group">
-                            <label>Akun *</label>
+                            <label>Akun</label>
                             <select id="akun" name="akun" class="form-control select2" required="">
                                 <option value="">Pilih Akun</option>
                                 <?php
@@ -152,11 +152,11 @@
                             <input type="text" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Debit * </label>
+                            <label>Debit</label>
                             <input type="text" id="debit" name="debit" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Kredit * </label>
+                            <label>Kredit</label>
                             <input type="text" id="kredit" name="kredit" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
@@ -184,29 +184,29 @@
                     <form class="form-horizontal" style="padding: 0 10px 0 20px;" >
                         <input type="hidden" name="jurnal_umum" id="id" value="<?= $data['id'] ?>">
                         <input type="hidden" id="form_id_jurnal_main" name="form_id_jurnal_main" class="form-control" required="" autocomplete="off" />
-                        <div class="form-group">
-                            <label>Nomor Transaksi *</label>
+                        <!--<div class="form-group">
+                            <label>Nomor Transaksi</label>
                             <input type="text" id="nomor_transaksi" name="nomor_transaksi" class="form-control" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Tanggal Transaksi *</label>
+                            <label>Tanggal Transaksi</label>
                             <input type="text" id="tanggal_transaksi" name="tanggal_transaksi" class="form-control dtpicker" required="" autocomplete="off" />
                         </div>
+                         <div class="form-group">
+                            <label>Memo</label>
+                            <input type="text" id="memo" name="memo" class="form-control" autocomplete="off" />
+                        </div>-->
                         <div class="form-group">
-                            <label>Total *</label>
+                            <label>Total</label>
                             <input type="text" id="total" name="total" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Total Debit *</label>
+                            <label>Total Debit</label>
                             <input type="text" id="total_debit" name="total_debit" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Total Kredit *</label>
+                            <label>Total Kredit</label>
                             <input type="text" id="total_kredit" name="total_kredit" class="form-control numberformat" required="" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Memo * </label>
-                            <input type="text" id="memo" name="memo" class="form-control" autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Update Jurnal Umum</button>
