@@ -470,8 +470,6 @@ class Jurnal_umum extends CI_Controller {
 		);
 
 		if(!empty($id)){
-            $data['created_by'] = $this->session->userdata('admin_id');
-            $data['created_on'] = date('Y-m-d H:i:s');
 			if($this->db->update('pmm_jurnal_umum',$data,array('id'=>$form_id_jurnal_main))){
 				$output['output'] = true;
 			}
