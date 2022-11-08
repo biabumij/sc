@@ -129,7 +129,7 @@
                         <input type="hidden" name="biaya_id" id="id" value="<?= $data['id'] ?>">
                         <input type="hidden" id="form_id_biaya" name="form_id_biaya" class="form-control" required="" autocomplete="off" />
                         <div class="form-group">
-                            <label>Akun *</label>
+                            <label>Akun</label>
                             <select id="akun" name="akun" class="form-control select2" required="">
                                 <option value="">Pilih Akun</option>
                                 <?php
@@ -148,7 +148,7 @@
                             <input type="text" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Jumlah * </label>
+                            <label>Jumlah</label>
                             <input type="text" id="jumlah" name="jumlah" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
@@ -176,8 +176,8 @@
                     <form class="form-horizontal" style="padding: 0 10px 0 20px;" >
                         <input type="hidden" name="biaya_id" id="id" value="<?= $data['id'] ?>">
                         <input type="hidden" id="form_id_biaya_main" name="form_id_biaya_main" class="form-control" required="" autocomplete="off" />
-                        <div class="form-group">
-                            <label>Dibayar kepada *</label>
+                        <!--<div class="form-group">
+                            <label>Dibayar Kepada</label>
                             <select id="penerima" name="penerima" class="form-control select2" required="">
                                 <option value="">Pilih Penerima</option>
                                 <?php
@@ -192,15 +192,15 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Nomor Transaksi *</label>
+                            <label>Nomor Transaksi</label>
                             <input type="text" id="nomor_transaksi" name="nomor_transaksi" class="form-control" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Tanggal Transaksi *</label>
+                            <label>Tanggal Transaksi</label>
                             <input type="text" id="tanggal_transaksi" name="tanggal_transaksi" class="form-control dtpicker" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Akun Penarikan * </label>
+                            <label>Akun Penarikan</label>
                             <select id="bayar_dari" name="bayar_dari" class="form-control select2" required="">
                                 <option value="">Pilih Akun Penarikan</option>
                                 <?php
@@ -215,11 +215,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Memo * </label>
+                            <label>Memo</label>
                             <input type="text" id="memo" name="memo" class="form-control" autocomplete="off" />
-                        </div>
+                        </div>-->
                         <div class="form-group">
-                            <label>Total * </label>
+                            <label>Total</label>
                             <input type="text" id="total" name="total" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">

@@ -115,7 +115,7 @@ class Biaya extends CI_Controller {
         <script type="text/javascript">
         
 	        $('.form-select2').select2();
-	        $('input.numberformat').number( true, 2,',','.' );
+	        $('input.numberformat').number( true, 0,',','.' );
 
 	    </script>
 		<?php
@@ -770,16 +770,14 @@ class Biaya extends CI_Controller {
 
 		$data = array(
             'id' => $form_id_biaya_main,
-			'penerima' => $penerima,
-			'tanggal_transaksi' => $tanggal_transaksi,
-			'bayar_dari' => $bayar_dari,
-            'memo' => $memo,
+			//'penerima' => $penerima,
+			//'tanggal_transaksi' => $tanggal_transaksi,
+			//'bayar_dari' => $bayar_dari,
+            //'memo' => $memo,
             'total' => $total
 		);
 
 		if(!empty($id)){
-			$data['created_by'] = $this->session->userdata('admin_id');
-            $data['created_on'] = date('Y-m-d H:i:s');
 			if($this->db->update('pmm_biaya',$data,array('id'=>$form_id_biaya_main))){
 				$output['output'] = true;
 			}

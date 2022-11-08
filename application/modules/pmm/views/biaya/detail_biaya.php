@@ -118,7 +118,7 @@
                                 </table>
                                 <div class="row">
                                     <div class="col-sm-12 text-right">
-                                        <a href="<?= base_url('admin/biaya') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                        <a href="<?= base_url('admin/biaya_bua') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
 										<?php
 											if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
