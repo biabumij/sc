@@ -30,8 +30,6 @@ class Pmm_finance extends CI_Model {
         $data = array(
             'biaya_id' => $biaya_id,
             'jurnal_id' => 0,
-            'terima_id' => 0,
-            'transfer_id' => 0,
             'akun' => $product,
             'debit' => $jumlah,
             'kredit' => 0,
@@ -46,8 +44,6 @@ class Pmm_finance extends CI_Model {
         $data = array(
             'biaya_id' => 0,
             'jurnal_id' => $jurnal_id,
-            'terima_id' => 0,
-            'transfer_id' => 0,
             'akun' => $product,
             'debit' => $debit,
             'kredit' => $kredit,

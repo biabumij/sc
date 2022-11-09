@@ -251,7 +251,7 @@
         
         $('.form-select2').select2();
 
-        $('input.numberformat').number( true, 2,',','.' );
+        $('input.numberformat').number( true, 0,',','.' );
         $('.dtpicker').daterangepicker({
             singleDatePicker: true,
             showDropdowns : true,
