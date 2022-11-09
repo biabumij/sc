@@ -57,6 +57,27 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">Kategori</label>
+                                            <div class="col-sm-10">
+                                                <select id="kategori" class="form-control form-select2" name="kategori_produk">
+                                                    <option>Pilih Kategori</option>
+                                                    <?php
+                                                    if($kategori){
+                                                        foreach ($kategori as $key => $kat) {
+                                                            $selected = false;
+                                                            if(isset($edit) && $edit['kategori_produk'] == $kat['id']){
+                                                                $selected = 'selected';
+                                                            }
+                                                            ?>
+                                                            <option value="<?= $kat['id'];?>" <?= $selected;?> ><?= $kat['nama_kategori_produk'];?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+										</div>
+                                        <div class="form-group">
                                              <label class="col-sm-2 control-label">Tipe Produk</label>
                                             <div class="col-sm-2">
                                               <input type="checkbox" name="bahanbaku" id="bahanbaku" value="1" <?= (isset($edit) && $edit['bahanbaku'] == 1) ? 'checked' : '' ;?> > Bahan Baku
