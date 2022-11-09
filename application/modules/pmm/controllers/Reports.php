@@ -10196,11 +10196,11 @@ class Reports extends CI_Controller {
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
 				
-						if ($row['no_trx_1']==0) { $jumlah_no_transaksi = $row['no_trx_1'] .= $row['no_trx_2'] .= $row['no_trx_3'] .= $row['no_trx_4'];} else
-						{$jumlah_no_transaksi = $row['no_trx_1'] .= $row['no_trx_2'] .= $row['no_trx_3'] .= $row['no_trx_4'];}
+						if ($row['no_trx_1']==0) { $jumlah_no_transaksi = $row['no_trx_1'] .= $row['no_trx_2'];} else
+						{$jumlah_no_transaksi = $row['no_trx_1'] .= $row['no_trx_2'];}
 
-						if ($row['dex_1']==0) { $jumlah_deskripsi = $row['dex_1'] .= $row['dex_2'] .= $row['dex_3'] .= $row['dex_4'];} else
-						{$jumlah_deskripsi = $row['dex_1'] .= $row['dex_2'] .= $row['dex_3'] .= $row['dex_4'];}
+						if ($row['dex_1']==0) { $jumlah_deskripsi = $row['dex_1'] .= $row['dex_2'];} else
+						{$jumlah_deskripsi = $row['dex_1'] .= $row['dex_2'];}
 
 						if ($row['debit']==0) { $jumlah_debit = $row['debit'];} else
 						{$jumlah_debit = $row['debit'];}

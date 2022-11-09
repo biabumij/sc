@@ -57,38 +57,6 @@ class Pmm_finance extends CI_Model {
         $this->db->insert('transactions',$data);
     }
 
-    function InsertTransactionsTerima($terima_id,$setor_ke,$jumlah,$tanggal_transaksi)
-    {
-        $data = array(
-            'biaya_id' => 0,
-            'jurnal_id' => 0,
-            'terima_id' => $terima_id,
-            'transfer_id' => 0,
-            'akun' => $setor_ke,
-            'debit' => $jumlah,
-            'kredit' => 0,
-            'tanggal_transaksi' => $tanggal_transaksi,
-            'transaksi' => 'TERIMA'
-        );
-        $this->db->insert('transactions',$data);
-    }
-
-    function InsertTransactionsTransfer($transfer_id,$transfer_dari,$jumlah,$tanggal_transaksi)
-    {
-        $data = array(
-            'biaya_id' => 0,
-            'jurnal_id' => 0,
-            'terima_id' => 0,
-            'transfer_id' => $transfer_id,
-            'akun' => $transfer_dari,
-            'debit' => 0,
-            'kredit' => $jumlah,
-            'tanggal_transaksi' => $tanggal_transaksi,
-            'transaksi' => 'TRANSFER'
-        );
-        $this->db->insert('transactions',$data);
-    }
-
     function InsertLogs($log_type,$table_name,$table_id,$description)
     {
         $data = array(

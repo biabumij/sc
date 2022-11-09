@@ -1110,9 +1110,6 @@ class Finance extends CI_Controller {
 		if($this->db->insert('pmm_terima_uang',$arr_insert)){
 			$terima_id = $this->db->insert_id();
 
-			$this->pmm_finance->InsertTransactionsTerima($terima_id,$setor_ke,$jumlah,$tanggal_transaksi);
-            $transaction_id = $this->db->insert_id();
-
 			if (!file_exists('uploads/terima_uang')) {
 			    mkdir('uploads/terima_uang', 0777, true);
 			}
@@ -1233,10 +1230,6 @@ class Finance extends CI_Controller {
 		
 		if($this->db->insert('pmm_transfer',$arr_insert)){
 			$transfer_id = $this->db->insert_id();
-
-			$this->pmm_finance->InsertTransactionsTransfer($transfer_id,$transfer_dari,$jumlah,$tanggal_transaksi);
-            $transaction_id = $this->db->insert_id();
-
 
 			if (!file_exists('uploads/transfer')) {
 			    mkdir('uploads/transfer', 0777, true);

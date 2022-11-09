@@ -4148,13 +4148,11 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-        $this->db->select('c.coa, t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, tu.nomor_transaksi as no_trx_3, tf.nomor_transaksi as no_trx_4, pdb.deskripsi as dex_1, j.memo as dex_2, tu.memo as dex_3, tf.memo as dex_4, t.debit as debit, t.kredit as kredit');
+        $this->db->select('c.coa, t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, pdb.deskripsi as dex_1, j.memo as dex_2, t.debit as debit, t.kredit as kredit');
         $this->db->join('pmm_biaya b','t.biaya_id = b.id','left');
         $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
         $this->db->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left');
         $this->db->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left');
-        $this->db->join('pmm_terima_uang tu','t.terima_id = tu.id','left');
-        $this->db->join('pmm_transfer tf','t.transfer_id = tf.id','left');
         $this->db->join('pmm_coa c','t.akun = c.id','left');
         if(!empty($start_date) && !empty($end_date)){;
             $this->db->where('t.tanggal_transaksi >=',$start_date);
@@ -4175,7 +4173,7 @@ class Pmm_model extends CI_Model {
         $this->db->group_by('t.id');
         $query = $this->db->get('transactions t');
         $output = $query->result_array();
-		
+	
         return $output;
     }
 
