@@ -67,8 +67,7 @@ class Biaya extends CI_Controller {
             $query = $this->db->get('pmm_coa c');
             $data['akun_biaya'] = $query->result_array();		
 
-
-            $data['penerima'] = $this->db->select('nama,id')->get_where('penerima')->result_array();   
+            $data['penerima'] = $this->db->select('nama,id')->order_by('nama','asc')->get_where('penerima')->result_array(); 
             $this->load->view('pmm/biaya/tambah_biaya',$data);
 			
 		}else {
