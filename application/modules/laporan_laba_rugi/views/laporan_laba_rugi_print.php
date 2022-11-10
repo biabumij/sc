@@ -241,13 +241,13 @@
 
 		$total_biaya = $biaya_umum_administratif + $biaya_lainnya;
 
-		$laba_sebelum_pajak = $laba_kotor - $total_biaya;
+		$laba_usaha = $laba_kotor - $total_biaya;
 
 		$nilai_persediaan_bahan_baku = $akumulasi['total_akhir'];
 
 		$nilai_persediaan_barang_jadi = $akumulasi2['total_akhir'];
 
-		$total = $laba_sebelum_pajak + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
+		$total = $laba_usaha + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
 
 		$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
 
@@ -406,7 +406,7 @@
 				<th width="100%" align="left"></th>
 	        </tr>
 			<?php
-				$styleColor = $laba_sebelum_pajak < 0 ? 'color:red' : 'color:black';
+				$styleColor = $laba_usaha < 0 ? 'color:red' : 'color:black';
 			?>	
 			<tr class="table-active3">
 	            <th width="70%" align="left"><b>Laba Usaha</b></th>
@@ -417,7 +417,7 @@
 									<span><b>Rp.</b></span>
 								</th>
 								<th align="right" width="90%">
-									<span><b><?php echo number_format($laba_sebelum_pajak,0,',','.');?></b></span>
+									<span><b><?php echo number_format($laba_usaha,0,',','.');?></b></span>
 								</th>
 							</tr>
 					</table>

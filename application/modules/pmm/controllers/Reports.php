@@ -8626,13 +8626,13 @@ class Reports extends CI_Controller {
 
 			$total_biaya = $biaya_umum_administratif + $biaya_lainnya;
 
-			$laba_sebelum_pajak = $laba_kotor - $total_biaya;
+			$laba_usaha = $laba_kotor - $total_biaya;
 
 			$nilai_persediaan_bahan_baku = $akumulasi['total_akhir'];
 
 			$nilai_persediaan_barang_jadi = $akumulasi2['total_akhir'];
 
-			$total = $laba_sebelum_pajak + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
+			$total = $laba_usaha + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
 
 			$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
 			
@@ -8796,7 +8796,7 @@ class Reports extends CI_Controller {
 				<th colspan="5"></th>
 			</tr>
 			<?php
-				$styleColor = $laba_sebelum_pajak < 0 ? 'color:red' : 'color:black';
+				$styleColor = $laba_usaha < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
 	            <th colspan="4" class="text-left">Laba Usaha</th>
@@ -8807,7 +8807,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($laba_sebelum_pajak,0,',','.');?></span>
+									<span><?php echo number_format($laba_usaha,0,',','.');?></span>
 								</th>
 							</tr>
 					</table>
