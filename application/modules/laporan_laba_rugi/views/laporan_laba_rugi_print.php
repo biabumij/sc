@@ -409,7 +409,7 @@
 				$styleColor = $laba_sebelum_pajak < 0 ? 'color:red' : 'color:black';
 			?>	
 			<tr class="table-active3">
-	            <th width="70%" align="left"><b>Laba Sebelum Pajak</b></th>
+	            <th width="70%" align="left"><b>Laba Usaha</b></th>
 	            <th width="30%" align="right" style="<?php echo $styleColor ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -486,9 +486,6 @@
 								Disetujui Oleh
 							</td>
 							<td align="center">
-								Diperiksa Oleh
-							</td>
-							<td align="center">
 								Dibuat Oleh
 							</td>
 						</tr>
@@ -509,11 +506,7 @@
 						<tr>
 							<td align="center">
 								<b><u>Deddy Sarwobiso</u><br />
-								Dir. Produksi, HSE & Sistem</b>
-							</td>
-							<td align="center">
-								<b><u>Endah Purnama S.</u><br />
-								Staff. Produksi & HSE</b>
+								Direktur Utama</b>
 							</td>
 							<td align="center">
 							<b><u>Hadi Sucipto</u><br />
