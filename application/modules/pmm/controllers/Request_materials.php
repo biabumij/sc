@@ -96,6 +96,8 @@ class Request_materials extends CI_Controller {
 				if(in_array($this->session->userdata('admin_group_id'), array(1))){
 				$row['delete'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'"></a> '.$delete.' ';
 				}
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$data[] = $row;
 			}
 

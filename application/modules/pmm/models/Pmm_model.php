@@ -2407,6 +2407,9 @@ class Pmm_model extends CI_Model {
                 $row['status'] = $this->pmm_model->GetStatus($row['status']);
 
                 $row['actions'] = $edit.' '.$edit_no_po;
+
+                $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
                 
                 $data[] = $row;
             }

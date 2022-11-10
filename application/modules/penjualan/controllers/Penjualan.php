@@ -41,6 +41,8 @@ class Penjualan extends Secure_Controller
 				$row['nomor'] = "<a href=" . base_url('penjualan/detailPenawaran/' . $row["id"]) . ">" . $row["nomor"] . "</a>";
 				$row['total'] = number_format($row['total'],0,',','.');
 				$row['status'] = $this->pmm_model->GetStatus2($row['status']);
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$data[] = $row;
 			}
 		}
@@ -406,7 +408,8 @@ class Penjualan extends Secure_Controller
 				$total_receipt = $this->db->select('SUM(price) as price')->get_where('pmm_productions',array('salesPo_id'=>$row['id'],'status'=>'PUBLISH'))->row_array();
 				$row['total_receipt'] = number_format($total_receipt['price'],0,',','.');
 				$row['status'] = $this->pmm_model->GetStatus2($row['status']);
-				
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				  
 				$data[] = $row;
 			}
@@ -801,6 +804,8 @@ class Penjualan extends Secure_Controller
 				$row['convert_measure'] = $row['convert_measure'];
 				$row['status_payment'] = $this->pmm_model->StatusPayment($row['status_payment']);
 				$row['action'] = '-';
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$data[] = $row;
 			}
 		}
@@ -848,6 +853,9 @@ class Penjualan extends Secure_Controller
 				}
 				
 				$row['status'] = (($row['sisa_tagihan']) == 0) ? "LUNAS" : "BELUM LUNAS";
+
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				
 				$data[] = $row;
 			}
