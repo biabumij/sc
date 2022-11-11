@@ -106,9 +106,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <label>Syarat Pembayaran</label>
                                         <input type="text" class="form-control" value="<?= $row['syarat_pembayaran']; ?> hari" readonly="">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Dibuat Oleh</label>
+                                        <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');?>" readonly="">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Dibuat Tanggal</label>
+                                        <input type="text" class="form-control" value="<?= date('d/m/Y H:i:s',strtotime($row['created_on']));?>" readonly="">
                                     </div>
                                     <!--<div class="col-sm-3">
                                         <label>Tanggal Jatuh Tempo</label>

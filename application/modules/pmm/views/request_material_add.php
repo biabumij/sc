@@ -65,6 +65,16 @@
                                     <th width="50px">:</th>
                                     <td><?php echo $data['memo'];?></td>
                                 </tr>
+                                <tr>
+                                    <th width="150px">Dibuat Oleh</th>
+                                    <th width="50px">:</th>
+                                    <td><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$data['created_by']),'admin_name');?></td>
+                                </tr>
+                                <tr>
+                                    <th width="150px">Dibuat Tanggal</th>
+                                    <th width="50px">:</th>
+                                    <td><?= date('d/m/Y H:i:s',strtotime($data['created_on']));?></td>
+                                </tr>
                             </table>
 
                             <?php

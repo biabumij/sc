@@ -71,6 +71,18 @@
                                                 <a href="<?= base_url("uploads/purchase_order/".$data["document_po"]) ?>" target="_blank"><?php echo $data['document_po'];?></a>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-3 control-label">Dibuat Oleh : </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$data['created_by']),'admin_name');?>" readonly="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail3" class="col-sm-3 control-label">Dibuat Tanggal : </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" value="<?= date('d/m/Y H:i:s',strtotime($data['created_on']));?>" readonly="">
+                                            </div>
+                                        </div>
 									
                                                 <input type="hidden" class="form-control" id="date_pkp" value="<?php echo date('d-m-Y',strtotime('10-02-2021'));?>" readonly="">
                                          

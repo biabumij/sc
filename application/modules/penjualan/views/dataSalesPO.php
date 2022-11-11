@@ -83,6 +83,14 @@
                                     <th>Memo</th>
                                     <td>: <?= $sales_po["memo"] ?></td>
                                 </tr>
+                                <tr>
+                                    <th >Dibuat Oleh</th>
+                                    <td>: <?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$sales_po['created_by']),'admin_name');?></td>
+                                </tr>
+                                <tr>
+                                    <th >Dibuat Tanggal</th>
+                                    <td>: <?= date('d/m/Y H:i:s',strtotime($sales_po['created_on']));?></td>
+                                </tr>
                             </table>
                             
                             <table class="table table-bordered table-hover table-striped">

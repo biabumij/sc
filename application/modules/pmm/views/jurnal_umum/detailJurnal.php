@@ -48,6 +48,16 @@
                                                 <th>:</th>
                                                 <td> <?= date('d F Y',strtotime($detail["tanggal_transaksi"])) ?></td>
                                             </tr>
+                                            <tr>
+                                                <th>Dibuat Oleh</th>
+                                                <th>:</th>
+                                                <td><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$detail['created_by']),'admin_name');?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Dibuat Tanggal</th>
+                                                <th>:</th>
+                                                <td><?= date('d/m/Y H:i:s',strtotime($detail['created_on']));?></td>
+                                            </tr>
                                         </table>
                                     </div>
                                 </div>

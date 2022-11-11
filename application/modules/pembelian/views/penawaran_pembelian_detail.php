@@ -67,8 +67,15 @@
                                             <input type="text" class="form-control" value="<?= $row['jenis_pembelian'];?>" readonly>
                                         </div>
                                     </div>
-                                    <br />
-                                    
+                                    </br >
+                                        <div class="col-sm-16">
+                                            <label>Dibuat Oleh : <?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');?></label>
+                                        </div>
+                        
+                                        <div class="col-sm-16">
+                                            <label>Dibuat Tanggal : <?= date('d/m/Y H:i:s',strtotime($row['created_on']));?></label>
+                                        </div>
+                                        <br />
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr>

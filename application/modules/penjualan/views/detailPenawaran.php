@@ -85,6 +85,14 @@
                                         <th>Persyaratan Harga</th>
                                         <td>: <?= $penawaran["persyaratan_harga"] ?></td>
                                     </tr>
+                                    <tr>
+                                        <th >Dibuat Oleh</th>
+                                        <td>: <?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$penawaran['created_by']),'admin_name');?></td>
+                                    </tr>
+                                    <tr>
+                                        <th >Dibuat Tanggal</th>
+                                        <td>: <?= date('d/m/Y H:i:s',strtotime($penawaran['created_on']));?></td>
+                                    </tr>
                                 </table>
 
                                 <table class="table table-bordered table-hover table-striped">

@@ -81,11 +81,19 @@
                                     </div>
 								</div>
                                 <div class="row">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <label>Syarat Pembayaran</label>
                                         <select name="syarat_pembayaran" disabled class="form-control" required="">
                                             <option selected readonly value="<?= $penagihan["syarat_pembayaran"] ?>"><?= $penagihan["syarat_pembayaran"] ?></option>
                                         </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Dibuat Oleh</label>
+                                        <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$penagihan['created_by']),'admin_name');?>" readonly="">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label>Dibuat Tanggal</label>
+                                        <input type="text" class="form-control" value="<?= date('d/m/Y H:i:s',strtotime($penagihan['created_on']));?>" readonly="">
                                     </div>
                                 </div>
                                 <br />
