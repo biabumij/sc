@@ -83,9 +83,9 @@
 	<body>
 		<table width="98%">
 			<tr>
-				<td width="100%" align="center">
+			<td width="100%" align="center">
 					<div style="display: block;font-weight: bold;font-size: 11px;">LAPORAN HUTANG</div>
-					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON  PROYEK BENDUNGAN TEMEF</div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">DIVISI STONE CRUSHER</div>
 				    <div style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
 					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE <?php echo str_replace($search, $replace, $subject);?></div>
 				</td>
@@ -194,16 +194,16 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Gervasius K. Limahekin</u><br />
-								Ka. Plant</b>
+								<b><u>Hadi Sucipto</u><br />
+								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
-								<b><u>Debi Khania</u><br />
+								<b><u>Rifka Dian B.</u><br />
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center" >
-								<b><u>Debi Khania</u><br />
-								Kasir</b>
+								<b><u>Dian Melinda S.</u><br />
+								Staff Keuangan & SDM</b>
 							</td>
 						</tr>
 					</table>
