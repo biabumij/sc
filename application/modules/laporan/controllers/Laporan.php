@@ -1432,7 +1432,7 @@ class Laporan extends Secure_Controller {
 		}
 		
 		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id','left');
-		$this->db->where('ppp.status','BELUM LUNAS');
+		//$this->db->where('ppp.status','BELUM LUNAS');
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
