@@ -43,22 +43,22 @@
 	  <style type="text/css">
 	  	table tr.table-active{
             background-color: #e69500;
-			font-size: 9px;
+			font-size: 8px;
 			font-weight: bold;
 		}
 			
 		table tr.table-active2{
-			font-size: 9px;
+			font-size: 8px;
 		}
 			
 		table tr.table-active3{
-			font-size: 9px;
+			font-size: 8px;
 			font-weight: bold;
 		}
 			
 		table tr.table-active4{
 			background-color: #D0D0D0;
-			font-size: 9px;
+			font-size: 8px;
 		}
 		tr.border-bottom td {
         border-bottom: 1pt solid #ff000d;
@@ -792,7 +792,7 @@
 			<td></td>
 		</tr>
 	</table>
-	<table width="98%" border="0" cellpadding="30">
+	<table width="98%" border="0" cellpadding="5">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
