@@ -88,11 +88,11 @@
 														<p>Menampilkan jumlah umur hutang hutang pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_umur_hutang" aria-controls="laporan_umur_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
-                                                    <div class="col-sm-5">
+                                                    <!--<div class="col-sm-5">
 														<p><h5>Hutang Terhadap Penerimaan</h5></p>
 														<p>Menampilkan jumlah nilai hutang bahan baku pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_hutang_penerimaan" aria-controls="laporan_hutang_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-                                                    </div>
+                                                    </div>-->
 													<div class="col-sm-5">
 														<p><h5>Daftar Pembayaran</h5></p>
 														<p>Menampilkan jumlah pembayaran setiap rekanan yang dicatat dalam suatu periode.</p>
