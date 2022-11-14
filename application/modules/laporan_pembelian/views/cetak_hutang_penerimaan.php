@@ -107,9 +107,6 @@
 				<th align="center">TGL. PESANAN PEMBELIAN</th>
 			</tr>
             <?php
-			$jumlah_tagihan = 0;
-			$jumlah_pembayaran = 0;
-			$jumlah_hutang = 0;
             if(!empty($data)){
             	foreach ($data as $key => $row) {
             		?>
@@ -118,6 +115,9 @@
             			<td align="left" colspan="6"><b><?php echo $row['name'];?></b></td>
             		</tr>
             		<?php
+					$jumlah_tagihan = 0;
+					$jumlah_pembayaran = 0;
+					$jumlah_hutang = 0;
             		foreach ($row['mats'] as $mat) {
             			?>
             			<tr class="table-baris1">
@@ -130,19 +130,16 @@
 							<td align="right"><?php echo $mat['hutang'];?></td>
 	            		</tr>
             			<?php
+						$jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['total_price']);
+						$jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pembayaran']);
+						$jumlah_hutang += str_replace(['.', ','], ['', '.'], $mat['hutang']);
 					}
-					?>
-					<?php
-
-					$jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['total_price']);
-					$jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pembayaran']);
-					$jumlah_hutang += str_replace(['.', ','], ['', '.'], $mat['hutang']);
 					?>
 					<tr class="table-baris2-bold">
             			<td align="right" colspan="4"><b>JUMLAH</b></td>
-						<td align="right"><b><?php echo $jumlah_tagihan;?></b></td>
-						<td align="right"><b><?php echo $jumlah_pembayaran;?></b></td>
-						<td align="right"><b><?php echo $jumlah_hutang;?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_tagihan,0,',','.');?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_pembayaran,0,',','.');?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_hutang,0,',','.');?></b></td>
             		</tr>
 					<?php
             		}	
