@@ -1196,6 +1196,7 @@
             $('#filter_date_g').daterangepicker({
                 autoUpdateInput: false,
 				showDropdowns : true,
+                singleDatePicker: true,
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
@@ -1208,9 +1209,8 @@
                     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 }
             });
-
             $('#filter_date_g').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                $(this).val(picker.startDate.format('01-01-2021') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
                 TableDate5();
             });
 
@@ -1264,6 +1264,7 @@
             $('#filter_date_hutang_penerimaan').daterangepicker({
                 autoUpdateInput: false,
 				showDropdowns : true,
+                singleDatePicker: true,
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
@@ -1276,9 +1277,8 @@
                     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 }
             });
-
             $('#filter_date_hutang_penerimaan').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                $(this).val(picker.startDate.format('01-01-2021') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
                 TableHutangPenerimaan();
             });
 

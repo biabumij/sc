@@ -1588,7 +1588,7 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('ppd.material_id',$filter_material);
         }
 		
-        $this->db->where('ppp.status','BELUM LUNAS');
+        //$this->db->where('ppp.status','BELUM LUNAS');
 		$this->db->group_by('ppp.id','asc');
 		$this->db->order_by('vp.tanggal_diterima_proyek','asc');
         $query = $this->db->get('pmm_penagihan_pembelian ppp');
