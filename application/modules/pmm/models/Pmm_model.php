@@ -2011,7 +2011,7 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('ppd.product_id',$filter_material);
         }
 		
-        $this->db->where('ppp.status','OPEN');
+        //$this->db->where('ppp.status','OPEN');
 		$this->db->group_by('ppp.id','asc');
 		$this->db->order_by('ppp.tanggal_invoice','asc');
         $query = $this->db->get('pmm_penagihan_penjualan ppp');
