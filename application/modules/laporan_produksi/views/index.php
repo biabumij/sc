@@ -84,66 +84,54 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Produksi Harian</h5></p>
-														<p>Menampilkan laporan produksi harian yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_produksi" aria-controls="laporan_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Produksi Campuran</h5></p>
-														<p>Menampilkan laporan produksi campuran yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_produksi_campuran" aria-controls="laporan_produksi_campuran" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Laporan Evaluasi Kapasitas Produksi</h5></p>
-														<p>Menampilkan laporan evaluasi produksi yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_evaluasi_produksi" aria-controls="laporan_evaluasi_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Rekapitulasi Laporan Produksi</h5></p>
-														<p>Menampilkan rekapitulasi laporan produksi yang dicatat dalam suatu periode.</p>
                                                         <a href="#rekapitulasi_laporan_produksi" aria-controls="rekapitulasi_laporan_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku</h5></p>
-														<p>Menampilkan pergerakan bahan baku yang dicatat dalam suatu periode.</p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Februari 2021 sd. Mei 2022</blink></p>
                                                         <a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku (Penyesuaian Stok)</h5></p>
-														<p>Menampilkan pergerakan bahan baku yang dicatat dalam suatu periode.</p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. sekarang</blink></p>
                                                         <a href="#pergerakan_bahan_baku_penyesuaian" aria-controls="pergerakan_bahan_baku_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Nilai Persediaan Bahan Baku</h5></p>
-														<p>Menampilkan nilai persediaan barang yang dicatat dalam suatu periode.</p>
                                                         <a href="#nilai_persediaan_bahan_baku" aria-controls="nilai_persediaan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Beban Pokok Produksi</h5></p>
-														<p>Menampilkan beban pokok produksi yang dicatat dalam suatu periode.</p>
                                                         <a href="#beban_pokok_produksi" aria-controls="beban_pokok_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi</h5></p>
-														<p>Menampilkan pergerakan bahan jadi yang dicatat dalam suatu periode.</p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Februari 2021 sd. Mei 2022</blink></p>
                                                         <a href="#pergerakan_bahan_jadi" aria-controls="pergerakan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi (Penyesuaian Stok)</h5></p>
-														<p>Menampilkan pergerakan bahan jadi (Penyesuaian Stok) yang dicatat dalam suatu periode.</p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. sekarang</blink></p>
                                                         <a href="#pergerakan_bahan_jadi_penyesuaian" aria-controls="pergerakan_bahan_jadi_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Nilai Persediaan Bahan Jadi</h5></p>
-														<p>Menampilkan nilai persediaan bahan jadi yang dicatat dalam suatu periode.</p>
                                                         <a href="#nilai_persediaan_bahan_jadi" aria-controls="nilai_persediaan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Evaluasi Nilai Persediaan</h5></p>
-														<p>Menampilkan evaluasi nilai persediaan yang dicatat dalam suatu periode.</p>
                                                         <a href="#evaluasi_nilai_persediaan" aria-controls="evaluasi_nilai_persediaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>        													
                                                 </div>

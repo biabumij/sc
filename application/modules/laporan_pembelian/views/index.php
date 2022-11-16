@@ -55,52 +55,42 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Penerimaan Pembelian</h5></p>
-														<p>Menampilkan transaksi pembelian yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian" aria-controls="laporan_penerimaan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Penerimaan Pembelian - Per Hari</h5></p>
-														<p>Menampilkan transaksi pembelian per hari yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_penerimaan_pembelian_hari" aria-controls="laporan_penerimaan_pembelian_hari" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Pembelian Per Produk</h5></p>
-														<p>Menampilkan daftar kuantitas pembelian per produk yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_pembelian_produk" aria-controls="laporan_pembelian_produk" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>								
 													<div class="col-sm-5">
 														<p><h5>Laporan Pesanan Pembelian</h5></p>
-														<p>Menampilkan semua produk yang dipesan dalam suatu periode, dikelompok per supplier yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_pesanan_pembelian" aria-controls="laporan_pesanan_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Daftar Tagihan</h5></p>
-														<p>Menampilkan jumlah nilai tagihan pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_daftar_tagihan" aria-controls="laporan_daftar_tagihan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Hutang</h5></p>
-														<p>Menampilkan jumlah nilai hutang pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_hutang" aria-controls="laporan_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                     <div class="col-sm-5">
 														<p><h5>Umur Hutang</h5></p>
-														<p>Menampilkan jumlah umur hutang hutang pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_umur_hutang" aria-controls="laporan_umur_hutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                     <div class="col-sm-5">
 														<p><h5>Hutang Terhadap Penerimaan</h5></p>
-														<p>Menampilkan jumlah nilai hutang bahan baku pada setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_hutang_penerimaan" aria-controls="laporan_hutang_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Daftar Pembayaran</h5></p>
-														<p>Menampilkan jumlah pembayaran setiap rekanan yang dicatat dalam suatu periode.</p>
                                                         <a href="#laporan_daftar_pembayaran" aria-controls="laporan_daftar_pembayaran" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Penyelesaian Pembelian</h5></p>
-														<p>Menampilkan ringkasan proses bisnis dari penawaran, pemesanan, pengiriman, penagihan, dan pembayaran per proses, agar Anda dapat melihat penawaran/pemesanan mana yang berlanjut ke penagihan.</p>
                                                         <a href="#laporan_penyelesaian_pembelian" aria-controls="laporan_penyelesaian_pembelian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
                                                     </div>
                                                 </div>
