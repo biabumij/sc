@@ -116,11 +116,11 @@
                             <input type="text" id="nama" name="nama" class="form-control" required="" readonly="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Tanggal Transaksi</label>
+                            <label>Tanggal Invoice</label>
                             <input type="text" id="tanggal_invoice" name="tanggal_invoice" class="form-control dtpicker" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Nomor Transaksi</label>
+                            <label>Nomor Invoice</label>
                             <input type="text" id="nomor_invoice" name="nomor_invoice" class="form-control dtpicker" required="" readonly="" autocomplete="off" />
                         </div>
                         <div class="form-group">
