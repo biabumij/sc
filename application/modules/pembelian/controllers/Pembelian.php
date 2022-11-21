@@ -1582,6 +1582,17 @@ class Pembelian extends Secure_Controller
 				$output['output'] = true;
 			}
 		}
+
+        $data_verif = array(
+            'penagihan_pembelian_id' => $penagihan_id,
+		    'tanggal_invoice' => $tanggal_invoice,
+		);
+
+        if(!empty($penagihan_id)){
+			if($this->db->update('pmm_verifikasi_penagihan_pembelian',$data_verif,array('penagihan_pembelian_id'=>$penagihan_id))){
+				$output['output'] = true;
+			}
+		}
 		
 		echo json_encode($output);	
 	}
