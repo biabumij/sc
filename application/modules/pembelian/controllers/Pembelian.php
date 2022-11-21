@@ -1548,7 +1548,6 @@ class Pembelian extends Secure_Controller
             ->from('pmm_penagihan_pembelian ppp')
             ->where('ppp.id',$id)
             ->get()->row_array();
-            file_put_contents("D:\\get_tagihan_main.txt", $this->db->last_query());
 
             $data['nama']= $this->crud_global->GetField('penerima',array('id'=>$data['supplier_id']),'nama');
             $data['tanggal_invoice'] = date('d-m-Y',strtotime($data['tanggal_invoice']));
