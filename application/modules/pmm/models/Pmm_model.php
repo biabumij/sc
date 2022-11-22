@@ -4253,5 +4253,29 @@ class Pmm_model extends CI_Model {
         return $data;   
     }
 
+    function TableMainTagihanPenjualan($id)
+    {
+        $data = array();
+        $this->db->select('ppp.*');
+        $this->db->where('ppp.id',$id);
+        $this->db->order_by('ppp.id','asc');
+        $query = $this->db->get('pmm_penagihan_penjualan ppp');
+	
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['nama']= $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');
+                $row['tanggal_invoice'] = date('d F Y',strtotime($row['tanggal_invoice']));
+                $row['nomor_invoice']= $row['nomor_invoice'];
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success">Update Tagihan </a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        
+        return $data;   
+    }
+
 }
 ?>

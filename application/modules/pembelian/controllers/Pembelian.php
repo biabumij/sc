@@ -1507,7 +1507,7 @@ class Pembelian extends Secure_Controller
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
 
-    public function open_pembayaran_penagihan($id)
+    public function open_penagihan($id)
 	{
 		$this->db->set("status", "BELUM LUNAS");
         $this->db->set("verifikasi_dok", "SUDAH");
@@ -1515,7 +1515,7 @@ class Pembelian extends Secure_Controller
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_pembelian");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+		$this->session->set_flashdata('notif_success', 'Berhasil Merubah Status Penagihan');
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
 
@@ -1524,9 +1524,8 @@ class Pembelian extends Secure_Controller
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
 
-			$this->db->select('pp.*, ps.nama as supplier, ps.alamat as supplier_address');
-            $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
-            $data['row'] = $this->db->get_where('pmm_penagihan_pembelian pp', array('pp.id' => $id))->row_array();
+			$this->db->select('ppp.*');
+            $data['row'] = $this->db->get_where('pmm_penagihan_pembelian ppp', array('ppp.id' => $id))->row_array();
 			$this->load->view('pembelian/sunting_tagihan', $data);
 		} else {
 			redirect('admin');

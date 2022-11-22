@@ -284,6 +284,7 @@
                                         <?php
                                         ?>
                                         <a href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Pembayaran Lunas</a>
+                                        <a href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
                                         <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
                                         <?php
                                         }
@@ -298,6 +299,8 @@
                                         <?php
                                         ?>
                                         <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                        <a href="<?= site_url('penjualan/open_penagihan/' . $penagihan['id']); ?>" class="btn btn-warning"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
+                                        <a href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
                                         <?php
                                         }
                                         ?>

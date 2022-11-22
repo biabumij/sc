@@ -109,7 +109,7 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" style="padding: 0 10px 0 20px;" >
-                        <input type="hidden" name="biaya_id" id="id" value="<?= $row['id'] ?>">
+                        <input type="hidden" id="id" value="<?= $row['id'] ?>">
                         <input type="hidden" id="penagihan_id" name="penagihan_id" class="form-control" required="" autocomplete="off" />
                         <div class="form-group">
                             <label>Rekanan</label>
