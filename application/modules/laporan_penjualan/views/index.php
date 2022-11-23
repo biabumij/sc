@@ -971,12 +971,18 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
+                                    window.jumlah_tagihan = 0;
+                                    window.jumlah_penerimaan = 0;
+                                    window.jumlah_piutang = 0;
                                     $('#table-date13 tbody').append('<tr onclick="NextShowLaporanPiutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="7">' + val.nama + '</td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
                                         $('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.piutang + '</td></tr>');
+                                        window.jumlah_tagihan += parseFloat(row.tagihan.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_penerimaan += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_piutang += parseFloat(row.piutang.replace(/\./g,'').replace(',', '.'));
                                     });
-									$('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="4"><b>JUMLAH</b></td><td class="text-right""><b>' + val.total_tagihan + '</b></td><td class="text-right""><b>' + val.total_penerimaan + '</b></td><td class="text-right""><b>' + val.total_piutang + '</b></td></tr>');
+									$('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="4"><b>JUMLAH</b></td><td class="text-right""><b>' + formatter.format(window.jumlah_tagihan) + '</b></td><td class="text-right""><b>' + formatter.format(window.jumlah_penerimaan) + '</b></td><td class="text-right""><b>' + formatter.format(window.jumlah_piutang) + '</b></td></tr>');
                                 });
                                 $('#table-date13 tbody').append('<tr><td class="text-right" colspan="6"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
@@ -994,6 +1000,13 @@
                 console.log('.mats-' + id);
                 $('.mats-' + id).slideToggle();
             }
+
+            window.formatter = new Intl.NumberFormat('id-ID', {
+                style: 'decimal',
+                currency: 'IDR',
+                symbol: 'none',
+				minimumFractionDigits : '0'
+            });
 
         </script>
 		

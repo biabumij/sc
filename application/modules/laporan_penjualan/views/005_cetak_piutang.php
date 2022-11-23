@@ -115,6 +115,9 @@
             			<td align="left" colspan="6"><b><?php echo $row['nama'];?></b></td>
             		</tr>
             		<?php
+					$jumlah_tagihan = 0;
+					$jumlah_penerimaan = 0;
+					$jumlah_piutang = 0;
             		foreach ($row['mats'] as $mat) {
             			?>
             			<tr class="table-baris1">
@@ -127,13 +130,16 @@
 							<td align="right"><?php echo $mat['piutang'];?></td>
 	            		</tr>
             			<?php
+						$jumlah_tagihan += str_replace(['.', ','], ['', '.'], $mat['tagihan']);
+						$jumlah_penerimaan += str_replace(['.', ','], ['', '.'], $mat['pembayaran']);
+						$jumlah_piutang += str_replace(['.', ','], ['', '.'], $mat['piutang']);
 					}
 					?>
 					<tr class="table-baris2-bold">
             			<td align="right" colspan="4">JUMLAH</td>
-						<td align="right"><b><?php echo $row['total_tagihan'];?></b></td>
-						<td align="right"><b><?php echo $row['total_penerimaan'];?></b></td>
-						<td align="right"><b><?php echo $row['total_piutang'];?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_tagihan,0,',','.');?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_penerimaan,0,',','.');?></b></td>
+						<td align="right"><b><?php echo number_format($jumlah_piutang,0,',','.');?></b></td>
             		</tr>
 					<?php
             		}	
