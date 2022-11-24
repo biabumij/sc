@@ -88,7 +88,15 @@
                                         </tbody>
                                         
                                     </table>
-                                </div>   
+                                </div>
+                                
+                                <?php
+                                $url = htmlspecialchars($_SERVER['HTTP_REFERER']);
+                                ?>
+                                <div class="text-right">
+                                    <a href="<?=$url?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                </div>
+
                             </div>
                         </div>
                     </div>
