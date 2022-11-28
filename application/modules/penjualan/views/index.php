@@ -193,7 +193,7 @@
                                                     <tbody>
 
                                                     </tbody>
-													<tfoot>
+													<!--<tfoot>
                                                         <th colspan="6" style="text-align:right">TOTAL</th>
                                                         <th></th>
                                                         <th></th>
@@ -201,7 +201,7 @@
                                                         <th></th>
                                                         <th></th>
                                                         <th></th>
-													</tfoot>
+													</tfoot>-->
                                                 </table>
                                             </div>
 
