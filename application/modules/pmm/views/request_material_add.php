@@ -148,7 +148,7 @@
 
                                                 foreach ($materials as $key => $mt) {
                                                     ?>
-                                                    <option value="<?php echo $mt['material_id'];?>" data-measure="<?php echo $mt['measure'];?>"data-price="<?php echo $mt['price'];?>" data-penawaran_id="<?php echo $mt['id'];?>" data-tax_id="<?php echo $mt['tax_id'];?>" data-tax="<?php echo $mt['tax'];?>" data-id="<?= $mt['id'];?>"><?php echo $mt['material_name'];?> (PO: <?php echo $mt['nomor_penawaran'];?>)</option>?>
+                                                    <option value="<?php echo $mt['material_id'];?>" data-measure="<?php echo $mt['measure'];?>"data-price="<?php echo $mt['price'];?>" data-penawaran_id="<?php echo $mt['id'];?>" data-tax_id="<?php echo $mt['tax_id'];?>" data-tax="<?php echo $mt['tax'];?>" data-id="<?= $mt['id'];?>"><?php echo $mt['material_name'];?> (Penawaran : <?php echo $mt['nomor_penawaran'];?>)</option>?>
                                                     <?php
                                                 }
                                                 ?>
