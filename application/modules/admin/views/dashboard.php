@@ -40,10 +40,33 @@
             </div>
             <div class="content-body">
                 <div class="row animated fadeInUp">
+                    <div class="col-sm-12">
+                        <div class="tomorrow"
+                        data-location-id="057045"
+                        data-language="ID"
+                        data-unit-system="METRIC"
+                        data-skin="dark"
+                        data-widget-type="upcoming"
+                        style="padding-bottom:22px;position:relative;"
+                        >
+                        <a
+                            href="https://www.tomorrow.io/weather-api/"
+                            rel="nofollow noopener noreferrer"
+                            target="_blank"
+                            style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
+                        >
+                            <img
+                            alt="Powered by the Tomorrow.io Weather API"
+                            src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
+                            width="250"
+                            height="18"
+                            />
+                        </a>
+                        </div>
+                    </div>
                     <div class="col-sm-8">
                         <div class="panel panel-default">
-                            <div class="panel-header">
-                                
+                            <div class="panel-header">                                
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <h4>Laba Rugi</h4>
@@ -489,6 +512,23 @@
 
         TableNilaiPersediaanBarang();
     
+    </script>
+
+    <script>
+        (function(d, s, id) {
+            if (d.getElementById(id)) {
+                if (window.__TOMORROW__) {
+                    window.__TOMORROW__.renderWidget();
+                }
+                return;
+            }
+            const fjs = d.getElementsByTagName(s)[0];
+            const js = d.createElement(s);
+            js.id = id;
+            js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+
+            fjs.parentNode.insertBefore(js, fjs);
+        })(document, 'script', 'tomorrow-sdk');
     </script>
 
 </body>
