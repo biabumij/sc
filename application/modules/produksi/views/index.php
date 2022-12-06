@@ -94,7 +94,7 @@
 										<br />
 										<br />										
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_kalibrasi" style="width:100%">
+                                            <table class="table table-striped table-hover table-center" id="table_kalibrasi" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
@@ -131,7 +131,7 @@
 										<br />
 										<br />										
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_agregat" style="width:100%">
+                                            <table class="table table-striped table-hover table-center" id="table_agregat" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
@@ -167,7 +167,7 @@
 										<br />
 										<br />
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_produksi_harian" style="width:100%">
+                                            <table class="table table-striped table-hover table-center" id="table_produksi_harian" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>	
@@ -221,16 +221,21 @@
 										<br />
 										<br />
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_produksi_campuran" style="width:100%">
+                                            <table class="table table-striped table-hover table-center" id="table_produksi_campuran" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="10%">No</th>	
-                                                        <th width="10%">Tanggal</th>
-														<th width="20%" class="text-center">Nomor Produksi Campuran</th>	
-														<th width="22%">Uraian</th>
-														<th width="8%">Satuan</th>
-														<th width="10%">Volume</th>
-														<th width="20%">Keterangan</th>													
+                                                        <th width="5%">No</th>	
+                                                        <th>Tanggal</th>
+														<th>Nomor Produksi Campuran</th>	
+														<th>Uraian</th>
+														<th>Satuan</th>
+														<th>Volume</th>
+														<th>Keterangan</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Lihat Data</th>
+                                                        <th>Cetak</th>
+                                                        <th>Status</th>											
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -508,10 +513,25 @@
                 },
 				{
                     "data": "memo"
+                },
+                {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "view"
+				},
+                {
+					"data": "print"
+				},
+                {
+                    "data": "status"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 4, 5, 6],
+                    "targets": [0, 1, 3, 4, 5, 7, 8, 9, 10, 11],
                     "className": 'text-center',
                 }
             ],

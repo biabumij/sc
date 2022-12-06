@@ -1231,7 +1231,7 @@ class Produksi extends Secure_Controller {
 		if(!empty($no_prod)){
 			$this->db->where('ppc.no_prod',$no_prod);
 		}
-        $this->db->select('ppc.id, ppc.date_prod, ppc.no_prod, ppcd.uraian, ppcd.measure_convert, SUM(ppcd.volume_convert) as volume_convert, lk.produksi_campuran_id, lk.lampiran, ppc.memo');
+        $this->db->select('ppc.id, ppc.date_prod, ppc.no_prod, ppcd.uraian, ppcd.measure_convert, SUM(ppcd.volume_convert) as volume_convert, lk.produksi_campuran_id, lk.lampiran, ppc.memo, ppc.created_by, ppc.created_on, ppc.status');
 		$this->db->join('pmm_produksi_campuran_detail ppcd','ppc.id = ppcd.produksi_campuran_id','left');
 		$this->db->join('pmm_lampiran_produksi_campuran lk', 'ppc.id = lk.produksi_campuran_id','left');
 		$this->db->where('ppc.status','PUBLISH');
@@ -1243,13 +1243,17 @@ class Produksi extends Secure_Controller {
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
                 $row['date_prod'] = date('d-m-Y',strtotime($row['date_prod']));
-				$row['no_prod'] = "<a href=" . base_url('produksi/data_produksi_campuran/' . $row["id"]) . ">" . $row["no_prod"] . "</a>";
+				$row['no_prod'] = $row['no_prod'];
 				$row['uraian'] = $row['uraian'];
 				$row['measure_convert'] = $row['measure_convert'];
 				$row['volume_convert'] = number_format($row['volume_convert'],2,',','.');
 				$row['memo'] = $row['memo'];
 				//$row['lampiran'] = "<a href=" . base_url('uploads/produksi_harian/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";
-              
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
+				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_campuran/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-gears"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_campuran/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
                 
                 $data[] = $row;
             }
