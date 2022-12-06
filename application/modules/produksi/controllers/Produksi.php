@@ -205,11 +205,15 @@ class Produksi extends Secure_Controller {
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['jobs_type'] = "<a href=" . base_url('produksi/data_kalibrasi/' . $row["id"]) . ">" . $row["jobs_type"] . "</a>";
+				$row['jobs_type'] = $row["jobs_type"];
                 $row['tanggal_kalibrasi'] = date('d F Y',strtotime($row['date_kalibrasi']));
-                $row['no_kalibrasi'] = "<a href=" . base_url('produksi/cetak_kalibrasi/' . $row["id"]) .'" target="_blank">'. $row["no_kalibrasi"] . "</a>";
+                $row['no_kalibrasi'] = $row['no_kalibrasi'];
 				$row['lampiran'] = "<a href=" . base_url('uploads/kalibrasi/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";  
-                
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
+				$row['view'] = '<a href="'.site_url().'produksi/data_kalibrasi/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-gears"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_kalibrasi/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+
                 $data[] = $row;
             }
 

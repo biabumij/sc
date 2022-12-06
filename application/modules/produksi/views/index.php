@@ -97,11 +97,16 @@
                                             <table class="table table-striped table-hover" id="table_kalibrasi" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="10%">No</th>
-														<th width="20%">Tanggal</th>
-														<th width="30%">Nomor Kalibrasi</th>
-                                                        <th width="20%">Judul</th>
-														<th width="20%">Lampiran</th>
+                                                        <th width="5%">No</th>
+														<th>Tanggal</th>
+														<th>Nomor Kalibrasi</th>
+                                                        <th>Judul</th>
+														<th>Lampiran</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Lihat Data</th>
+                                                        <th>Cetak</th>
+                                                        <th>Status</th>
 														
                                                     </tr>
                                                 </thead>
@@ -300,10 +305,25 @@
                 },
 				{
                     "data": "lampiran"
+                },
+                {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "view"
+				},
+                {
+					"data": "print"
+				},
+                {
+                    "data": "status"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3],
+                    "targets": [0, 1, 2, 3, 5, 6, 7, 8, 9],
                     "className": 'text-center',
                 }
             ],
