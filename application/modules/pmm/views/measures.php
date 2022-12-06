@@ -183,7 +183,7 @@
                 { "data": "no" },
                 { "data": "measure_name" },
                 { "data": "status" },
-                { "data": "created_by" },
+                { "data": "admin_name" },
                 { "data": "created_on"},
                 { "data": "actions" }
             ],
