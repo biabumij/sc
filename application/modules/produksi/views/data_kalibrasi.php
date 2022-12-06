@@ -141,20 +141,17 @@
 							<br />
                             
                             <div class="text-right">
-                                <?php if($kalibrasi["status"] === "DRAFT") : ?>
-                                    <form class="form-approval" action="<?= base_url("penjualan/approvalSalesPO/".$kalibrasi["id"]) ?>">
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Approved</button>        
-                                    </form>
-                                    <form class="form-approval" action="<?= base_url("penjualan/rejectedSalesPO/".$kalibrasi["id"]) ?>">
-                                        <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Rejected</button>        
-                                    </form>
-                                
-                                <?php endif; ?>
-                                <?php if($kalibrasi["status"] === "PUBLISH") : ?>
                                 <a href="<?= base_url("admin/produksi/") ?>" target="" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                <?php endif; ?>
+                                <a href="<?= base_url("produksi/cetak_kalibrasi/".$kalibrasi["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+
+                                <?php
+                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                ?>
 								<a class="btn btn-danger" onclick="DeleteData('<?= site_url('produksi/hapus_kalibrasi/'.$kalibrasi['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
-								<a href="<?= base_url("produksi/cetak_kalibrasi/".$kalibrasi["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <?php
+                                }
+                                ?>
+
                             </div>
                             
                             
