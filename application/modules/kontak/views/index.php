@@ -58,6 +58,8 @@
 		                                            <th class="text-center">Alamat</th>
 		                                            <th class="text-center">Email</th>
 		                                            <th class="text-center">Telp.</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -77,6 +79,8 @@
 		                                            <th class="text-center">Alamat</th>
 		                                            <th class="text-center">Email</th>
 		                                            <th class="text-center">Telp.</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -96,6 +100,8 @@
 		                                            <th class="text-center">Alamat</th>
 		                                            <th class="text-center">Email</th>
 		                                            <th class="text-center">Telp.</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -115,6 +121,8 @@
 		                                            <th class="text-center">Alamat</th>
 		                                            <th class="text-center">Email</th>
 		                                            <th class="text-center">Telp.</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -167,7 +175,9 @@
                 { "data": "nama"},
                 { "data": "alamat"},
                 { "data": "email"},
-                { "data": "telepon"}
+                { "data": "telepon"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
@@ -194,7 +204,9 @@
                 { "data": "nama"},
                 { "data": "alamat"},
                 { "data": "email"},
-                { "data": "telepon"}
+                { "data": "telepon"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
@@ -221,7 +233,9 @@
                 { "data": "nama"},
                 { "data": "alamat"},
                 { "data": "email"},
-                { "data": "telepon"}
+                { "data": "telepon"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
@@ -248,7 +262,9 @@
                 { "data": "nama"},
                 { "data": "alamat"},
                 { "data": "email"},
-                { "data": "telepon"}
+                { "data": "telepon"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,

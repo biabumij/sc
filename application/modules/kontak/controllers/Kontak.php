@@ -36,6 +36,8 @@ class Kontak extends Secure_Controller {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
 				$row['nama'] = '<a href="'.site_url('kontak/detail/'.$row['id']).'">'.$row['nama'].'</a>';
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$data[] = $row;
 			}
 
