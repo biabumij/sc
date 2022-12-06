@@ -705,11 +705,16 @@ class Produksi extends Secure_Controller {
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
-				$row['jobs_type'] = "<a href=" . base_url('produksi/data_komposisi_agregat/' . $row["id"]) . ">" . $row["jobs_type"] . "</a>";
+				$row['jobs_type'] = $row['jobs_type'];
                 $row['date_agregat'] = date('d F Y',strtotime($row['date_agregat']));
-				$row['no_komposisi'] = "<a href=" . base_url('produksi/cetak_komposisi_agregat/' . $row["id"]) .'" target="_blank">'. $row["no_komposisi"] . "</a>";
+				$row['no_komposisi'] = $row['no_komposisi'];
 				$row['lampiran'] = '<a href="' . base_url('uploads/agregat/' . $row['lampiran']) .'" target="_blank">' . $row['lampiran'] . '</a>';           
-                $data[] = $row;
+                $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
+				$row['view'] = '<a href="'.site_url().'produksi/data_komposisi_agregat/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-gears"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_komposisi_agregat/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				$data[] = $row;
             }
 
         }

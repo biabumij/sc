@@ -217,11 +217,15 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
-														<th width="25%">Tanggal</th>
-														<th width="25%">Nomor Komposisi</th>
-                                                        <th width="25%">Judul</th>
-														<th width="20%">Lampiran</th>
-														
+														<th>Tanggal</th>
+														<th>Nomor Komposisi</th>
+                                                        <th>Judul</th>
+														<th>Lampiran</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Lihat Data</th>
+                                                        <th>Cetak</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -368,10 +372,25 @@
                 },
 				{
                     "data": "lampiran"
+                },
+                {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "view"
+				},
+                {
+					"data": "print"
+				},
+                {
+                    "data": "status"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3],
+                    "targets": [0, 1, 5, 6, 7, 8, 9],
                     "className": 'text-center',
                 }
             ],
