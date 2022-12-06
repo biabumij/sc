@@ -76,7 +76,7 @@
 														<th>Boulder</th>
                                                         <th>BBM</th>
 														<th>Status</th>
-                                                        <th>Tindakan</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -110,7 +110,7 @@
 														<th>Batu 10 - 20</th>
                                                         <th>Batu 20 - 30</th>
 														<th>Status</th>
-                                                        <th>Tindakan</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -143,7 +143,7 @@
                                                         <th>Total Nilai Keluar Solar</th>
                                                         <th>Total Nilai Persediaan Akhirr</th>
 														<th>Status</th>
-                                                        <th>Tindakan</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -175,7 +175,7 @@
 														<th>Total Nilai Keluar</th>
                                                         <th>Total Nilai Akhir</th>
 														<th>Status</th>
-                                                        <th>Tindakan</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
