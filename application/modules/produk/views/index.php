@@ -53,12 +53,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-bahanbaku" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Kode</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th width="5%">No</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -75,12 +74,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-betonreadymix" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Kode</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th width="5%">No</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -96,12 +94,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-aggregat" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Kode</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th width="5%">No</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -117,12 +114,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-jasa" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Kode</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th width="5%">No</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -138,12 +134,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-peralatan" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Kode</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th width="5%">No</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -159,12 +154,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-bahanbakar" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Kode</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th width="5%">No</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -180,12 +174,11 @@
                                         <table class="table table-striped table-hover table-center" id="table-laboratorium" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>Kode</th>
-                                                    <th class="text-center">Nama</th>
+                                                    <th width="5%">No</th>
+                                                    <th>Nama</th>
                                                     <th>Satuan</th>
-                                                    <th>Harga Jual</th>
-                                                    <th>Harga Beli</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -232,17 +225,16 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -260,17 +252,16 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -288,17 +279,16 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -316,17 +306,16 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -345,17 +334,16 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -373,17 +361,16 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],
@@ -401,17 +388,16 @@
             },
             columns: [
                 { "data": "no" },
-                { "data": "kode_produk" },
                 { "data": "nama_produk" },
                 { "data": "satuan" },
-                { "data": "harga_jual" },
-                { "data": "harga_beli" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             responsive: true,
             pageLength : 25,
             "columnDefs": [
                 {
-                    "targets": [0,1,3,4,5],
+                    "targets": [0,2,3,4],
                     "className": 'text-center',
                 }
             ],

@@ -45,6 +45,8 @@ class Produk extends Secure_Controller {
 				$row['harga_beli'] = $this->filter->Rupiah($row['harga_beli']);
 				$row['nama_produk'] = '<a href="'.site_url('produk/detail/'.$row['id']).'" >'.$row['nama_produk'].'</a>';
 				$row['satuan'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['satuan']),'measure_name');
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				
 				$data[] = $row;
 			}
