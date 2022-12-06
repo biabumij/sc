@@ -121,6 +121,42 @@
 									</div>
 										
 									<!-- End Table Kalibrasi -->
+
+                                    <!-- Table Komposisi Agregat -->
+									
+                                    <div role="tabpanel" class="tab-pane" id="komposisi_agregat">
+										<div class="col-sm-4">
+											<input type="text" id="filter_date_agregat" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
+										</div>
+										<br />
+										<br />										
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="table_agregat" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="5%">No</th>
+														<th>Tanggal</th>
+														<th>Nomor Komposisi</th>
+                                                        <th>Judul</th>
+														<th>Lampiran</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Lihat Data</th>
+                                                        <th>Cetak</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                                <tfoot>
+                                                   
+                                                </tfoot>
+                                            </table>
+                                        </div>
+									</div>
+										
+									<!-- End Table Komposisi Agregat -->
 										
 									<!-- Table Produksi Harian -->
 										
@@ -134,13 +170,18 @@
                                             <table class="table table-striped table-hover" id="table_produksi_harian" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="10%">No</th>	
-                                                        <th width="10%">Tanggal</th>
-														<th width="30%">Nomor Produksi Harian</th>	
-														<th width="10%">Durasi Produksi (Jam)</th>
-														<th width="10%">Pemakaian Bahan Baku (Ton)</th>
-														<th width="10%">Kapasitas Produksi (Ton/Jam)</th>
-														<th width="10%">Keterangan</th>													
+                                                        <th width="5%">No</th>	
+                                                        <th>Tanggal</th>
+														<th>Nomor Produksi Harian</th>	
+														<th>Durasi Produksi (Jam)</th>
+														<th>Pemakaian Bahan Baku (Ton)</th>
+														<th>Kapasitas Produksi (Ton/Jam)</th>
+														<th>Keterangan</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Lihat Data</th>
+                                                        <th>Cetak</th>
+                                                        <th>Status</th>												
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -203,42 +244,6 @@
 									</div>
 										
 									<!-- End Table Produksi Campuran -->
-									
-									<!-- Table Komposisi Agregat -->
-									
-                                    <div role="tabpanel" class="tab-pane" id="komposisi_agregat">
-										<div class="col-sm-4">
-											<input type="text" id="filter_date_agregat" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
-										</div>
-										<br />
-										<br />										
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="table_agregat" style="width:100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="5%">No</th>
-														<th>Tanggal</th>
-														<th>Nomor Komposisi</th>
-                                                        <th>Judul</th>
-														<th>Lampiran</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
-                                                        <th>Lihat Data</th>
-                                                        <th>Cetak</th>
-                                                        <th>Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-
-                                                </tbody>
-                                                <tfoot>
-                                                   
-                                                </tfoot>
-                                            </table>
-                                        </div>
-									</div>
-										
-									<!-- End Table Komposisi Agregat -->
 										           
                                 </div>
                             </div>
@@ -437,10 +442,25 @@
                 },
 				{
                     "data": "memo"
+                },
+                {
+					"data": "admin_name"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+					"data": "view"
+				},
+                {
+					"data": "print"
+				},
+                {
+                    "data": "status"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 4, 5],
+                    "targets": [0, 1, 3, 4, 5, 7, 8, 9, 10, 11],
                     "className": 'text-center',
                 }
             ],

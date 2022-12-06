@@ -427,7 +427,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('kb.date_prod >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('kb.date_prod <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('kb.id, kb.date_prod, kb.no_prod, SUM(phd.duration) as duration, SUM(phd.use) as used, SUM(phd.use) / SUM(phd.duration) as capacity, lk.produksi_harian_id, lk.lampiran, kb.memo');
+        $this->db->select('kb.id, kb.date_prod, kb.no_prod, SUM(phd.duration) as duration, SUM(phd.use) as used, SUM(phd.use) / SUM(phd.duration) as capacity, lk.produksi_harian_id, lk.lampiran, kb.memo, kb.created_by, kb.created_on, kb.status');
 		$this->db->join('pmm_produksi_harian_detail phd','kb.id = phd.produksi_harian_id','left');
 		$this->db->join('pmm_lampiran_produksi_harian lk', 'kb.id = lk.produksi_harian_id','left');
 		$this->db->where('kb.status','PUBLISH');
@@ -439,13 +439,17 @@ class Produksi extends Secure_Controller {
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
                 $row['date_prod'] = date('d-m-Y',strtotime($row['date_prod']));
-				$row['no_prod'] = "<a href=" . base_url('produksi/data_produksi_harian/' . $row["id"]) . ">" . $row["no_prod"] . "</a>";
+				$row['no_prod'] = $row['no_prod'];
 				$row['duration'] = $row['duration'];
 				$row['used'] = $row['used'];
 				$row['capacity'] = number_format($row['capacity'],2,',','.');
 				$row['memo'] = $row['memo'];
 				//$row['lampiran'] = "<a href=" . base_url('uploads/produksi_harian/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";
-              
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
+				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_harian/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-gears"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_harian/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
                 
                 $data[] = $row;
             }
