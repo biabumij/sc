@@ -697,7 +697,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('ag.date_agregat >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('ag.date_agregat <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('ag.id, ag.jobs_type, ag.date_agregat, ag.no_komposisi, lk.agregat_id, lk.lampiran, ag.status');
+        $this->db->select('ag.id, ag.jobs_type, ag.date_agregat, ag.no_komposisi, lk.agregat_id, lk.lampiran, ag.created_by, ag.created_on, ag.status');
 		$this->db->join('pmm_lampiran_agregat lk', 'ag.id = lk.agregat_id','left');		
 		$this->db->order_by('ag.date_agregat','desc');		
 		$query = $this->db->get('pmm_agregat ag');
