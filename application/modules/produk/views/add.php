@@ -50,12 +50,12 @@
                                               <input type="text" class="form-control input-sm" name="nama_produk" value="<?= (isset($edit)) ? $edit['nama_produk'] : '' ;?>" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!--<div class="form-group">
                                             <label class="col-sm-2 control-label">Code / SKU</label>
                                             <div class="col-sm-10">
                                               <input type="text" class="form-control input-sm" name="kode_produk" value="<?= (isset($edit)) ? $edit['kode_produk'] : '' ;?>" />
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Kategori</label>
                                             <div class="col-sm-10">
@@ -122,7 +122,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!--<div class="form-group">
                                             <label class="col-sm-2 control-label">Deskripsi</label>
                                             <div class="col-sm-10">
                                               <input type="text" class="form-control input-sm" name="deskripsi"  value="<?= (isset($edit)) ? $edit['deskripsi'] : '' ;?>"/>
@@ -136,11 +136,11 @@
                                                     <option value="BUNDLE" <?= (isset($edit) && $edit['tipe_produk'] == 'BUNDLE') ? 'selected' : '' ;?>>BUNDLE</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <br />
-                                <div class="row">
+                                <!--<div class="row">
                                     <div class="col-sm-8">
                                         <h5>Harga & Pengaturan</h5>
                                         <hr />
@@ -252,7 +252,7 @@
                                           </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="row">
                                     <div class="col-sm-8 text-right">
                                         <a href="<?= site_url('admin/produk');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
