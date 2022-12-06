@@ -196,7 +196,7 @@ class Produksi extends Secure_Controller {
 		if(!empty($jobs_type)){
 			$this->db->where('kb.jobs_type',$jobs_type);
 		}
-        $this->db->select('kb.id, kb.jobs_type, kb.no_kalibrasi, kb.date_kalibrasi, lk.kalibrasi_id, lk.lampiran, kb.status');
+        $this->db->select('kb.id, kb.jobs_type, kb.no_kalibrasi, kb.date_kalibrasi, lk.kalibrasi_id, lk.lampiran, kb.created_by, kb.created_on, kb.status');
 		$this->db->join('pmm_lampiran_kalibrasi lk', 'kb.id = lk.kalibrasi_id','left');		
 		$this->db->order_by('kb.no_kalibrasi','asc');
 		$this->db->order_by('kb.created_on','asc');		
