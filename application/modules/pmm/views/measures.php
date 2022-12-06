@@ -45,6 +45,8 @@
                                             <th width="5%">No.</th>
                                             <th>Satuan</th>
                                             <th>Status</th>
+                                            <th>Dibuat Oleh</th>
+                                            <th>Dibuat Tanggal</th>
                                             <th>Tindakan</th>
                                         </tr>
                                     </thead>
@@ -182,10 +184,12 @@
                 { "data": "measure_name" },
                 { "data": "status" },
                 { "data": "actions" },
+                { "data": "created_on"},
+                { "data": "actions" }
             ],
             "columnDefs": [
                 {
-                    "targets": [0],
+                    "targets": [0,2,3,4,5],
                     "className": 'text-center',
                 }
             ],

@@ -292,12 +292,15 @@ class Pmm extends CI_Controller {
 	{	
 		$data = array();
 		$this->db->where('status !=','DELETED');
+		$this->db->order_by('measure_name','asc');
 		$query = $this->db->get('pmm_measures');
 
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
 				$name = "'".$row['measure_name']."'";
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
 				if($this->admin_group_id == 1){
 					$row['actions'] = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
@@ -407,14 +410,15 @@ class Pmm extends CI_Controller {
 		);
 
 		if(!empty($id)){
-			if($this->db->update('pmm_measures',$data,array('id'=>$id))){
-				$output['output'] = true;
-			}
+			$data['updated_by'] = $this->session->userdata('admin_id');
+			$data['updated_on'] = date('Y-m-d H:i:s');
+			$this->db->update('pmm_measures',$data,array('id'=>$id));
+			$output['output'] = true;
 		}else{
-			if($this->db->insert('pmm_measures',$data)){
+				$data['created_by'] = $this->session->userdata('admin_id');
+				$data['created_on'] = date('Y-m-d H:i:s');
+				$this->db->insert('pmm_measures',$data);
 				$output['output'] = true;
-			}	
-				
 		}
 		
 		echo json_encode($output);	
