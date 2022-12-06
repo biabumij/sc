@@ -22,7 +22,7 @@ class Admin_access extends CI_Controller {
 			$table = 'tbl_admin_group';
 		    $column_order = array('admin_group_name','datecreated','status',null); 
 		    $column_search = array('admin_group_name');
-		    $order = array('admin_group_id' => 'desc'); // default order 
+		    $order = array('admin_group_name' => 'asc'); // default order 
 		    $arraywhere = array('status !=' => '0');
 			$list = $this->DB_model->get_datatables($table,$column_order,$column_search,$order,$arraywhere);
 	        $data = array();

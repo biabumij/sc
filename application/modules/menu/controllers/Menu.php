@@ -22,7 +22,7 @@ class Menu extends CI_Controller {
 			$table = 'tbl_menu';
 		    $column_order = array('menu_name','file_view','status',null); 
 		    $column_search = array('menu_name');
-		    $order = array('menu_id' => 'desc'); // default order 
+		    $order = array('menu_name' => 'asc'); // default order 
 		    $arraywhere = array('status !=' => '0');
 			$list = $this->DB_model->get_datatables($table,$column_order,$column_search,$order,$arraywhere);
 	        $data = array();
