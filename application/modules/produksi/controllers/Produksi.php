@@ -1371,7 +1371,12 @@ class Produksi extends Secure_Controller {
                 $row['boulder'] = number_format($row['boulder'],0,',','.');
 				$row['bbm'] = number_format($row['bbm'],0,',','.');
 				$row['status'] = $row['status'];
+
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataHppBahanBaku('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '-';
+				}
                 
                 $data[] = $row;
             }
@@ -1465,8 +1470,13 @@ class Produksi extends Secure_Controller {
 				$row['batu1020'] = number_format($row['batu1020'],0,',','.');
 				$row['batu2030'] = number_format($row['batu2030'],0,',','.');
 				$row['status'] = $row['status'];
+
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataHpp('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-                
+				}else {
+					$row['actions'] = '-';
+				}
+
                 $data[] = $row;
             }
 
@@ -1557,8 +1567,13 @@ class Produksi extends Secure_Controller {
 				$row['total_nilai_keluar_2'] = number_format($row['total_nilai_keluar_2'],0,',','.');
 				$row['total_nilai_akhir'] = number_format($row['total_nilai_akhir'],0,',','.');
 				$row['status'] = $row['status'];
+
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasiBahanBaku('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-                
+				}else {
+					$row['actions'] = '-';
+				}
+
                 $data[] = $row;
             }
 
@@ -1644,8 +1659,13 @@ class Produksi extends Secure_Controller {
                 $row['total_nilai_keluar'] = number_format($row['total_nilai_keluar'],0,',','.');
 				$row['total_nilai_akhir'] = number_format($row['total_nilai_akhir'],0,',','.');
 				$row['status'] = $row['status'];
+
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasi('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-                
+				}else {
+					$row['actions'] = '-';
+				}
+
                 $data[] = $row;
             }
 
