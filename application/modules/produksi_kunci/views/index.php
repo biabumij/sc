@@ -141,7 +141,7 @@
 														<th>Tanggal</th>
 														<th>Total Nilai Keluar Boulder</th>
                                                         <th>Total Nilai Keluar Solar</th>
-                                                        <th>Total Nilai Persediaan Akhirr</th>
+                                                        <th>Total Nilai Persediaan Akhirr\</th>
 														<th>Status</th>
                                                         <th>Hapus</th>
                                                     </tr>
