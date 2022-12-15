@@ -1199,9 +1199,8 @@ blockquote {
 .panel {
   border: none;
   /* box-shadow: 1px 1px 1px #cccccc; */
-  background-color: #585858;
+  background-color: #ffffff;
   border-radius: 8px;
-  opacity: 0.9;
 }
 
 .panel .panel-header,
@@ -3651,8 +3650,9 @@ ul.user-contact-info li:last-child {
 }
 
 .bg-scale-0 {
-  background: none;
+  background: #585858;
   border-radius: 10px;
+  opacity: 0.8;
 }
 
 .bg-scale-1 {
