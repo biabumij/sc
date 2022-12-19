@@ -1593,6 +1593,8 @@ class Penjualan extends Secure_Controller
 		$this->db->set("status", "CLOSED");
 		$this->db->set("updated_by", $this->session->userdata('admin_id'));
 		$this->db->set("updated_on", date('Y-m-d H:i:s'));
+		$this->db->set("status_pembayaran", "LUNAS");
+		$this->db->set("status_umur_hutang", "null", false);
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_penjualan");
 		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
