@@ -1359,13 +1359,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat HPP Bahan Baku !!');
-			redirect('hpp_&_akumulasi/hpp_bahan_baku');
+			redirect('kunci_&_approval/hpp_bahan_baku');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat HPP Bahan Baku !!');
-			redirect('admin/hpp_&_akumulasi');
+			redirect('admin/kunci_&_approval');
 		}
 	}
 
@@ -1456,13 +1456,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat HPP !!');
-			redirect('hpp_&_akumulasi/hpp');
+			redirect('kunci_&_approval/hpp');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat HPP !!');
-			redirect('admin/hpp_&_akumulasi');
+			redirect('admin/kunci_&_approval');
 		}
 	}
 
@@ -1554,13 +1554,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat Akumulasi Pergerakan Bahan Jadi !!');
-			redirect('hpp_&_akumulasi/akumulasi_bahan_baku');
+			redirect('kunci_&_approval/akumulasi_bahan_baku');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat Akumulasi Pergerakan Bahan Jadi !!');
-			redirect('admin/hpp_&_akumulasi');
+			redirect('admin/kunci_&_approval');
 		}
 	}
 
@@ -1647,13 +1647,13 @@ class Produksi extends Secure_Controller {
 			# Something went wrong.
 			$this->db->trans_rollback();
 			$this->session->set_flashdata('notif_error', 'Gagal membuat Akumulasi Pergerakan Bahan Baku !!');
-			redirect('hpp_&_akumulasi/akumulasi');
+			redirect('kunci_&_approval/akumulasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
 			$this->session->set_flashdata('notif_success', 'Berhasil membuat Akumulasi Pergerakan Bahan Baku !!');
-			redirect('admin/hpp_&_akumulasi');
+			redirect('admin/kunci_&_approval');
 		}
 	}
 
