@@ -968,6 +968,7 @@ class Penjualan extends Secure_Controller
 			'surat_jalan' => $surat_jalan,
 			'tanggal_kontrak' => date('Y-m-d', strtotime($tanggal_kontrak)),
 			'tanggal_invoice' => date('Y-m-d', strtotime($tanggal_invoice)),
+			'status_umur_hutang' => date('Y-m-d', strtotime($tanggal_invoice)),
 			'syarat_pembayaran' => $syarat_pembayaran,
 			'alamat_pelanggan' => $this->input->post('alamat_pelanggan'),
 			'nomor_kontrak' => $this->input->post('nomor_kontrak'),
@@ -976,6 +977,7 @@ class Penjualan extends Secure_Controller
 			'total' => $total,
 			'memo' => $this->input->post('memo'),
 			'status' => 'DRAFT',
+			'status_pembayaran' => 'BELUM LUNAS',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
 		);
