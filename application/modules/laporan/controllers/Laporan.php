@@ -14,6 +14,122 @@ class Laporan extends Secure_Controller {
 		$this->load->library('session');
 	}
 
+	public function cetak_laporan_hutang()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$filter_kategori = $this->input->get('filter_kategori');
+		$start_date = false;
+		$end_date = false;
+		$total_penerimaan = 0;
+		$total_tagihan = 0;
+		$total_tagihan_bruto = 0;
+		$total_pembayaran = 0;
+		$total_sisa_hutang_penerimaan = 0;
+		$total_sisa_hutang_tagihan = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
+			
+			$data['filter_date'] = $filter_date;
+			$data['date2'] = $end_date;
+
+			$this->db->select('ppo.id, ppo.supplier_id, ps.nama as name');
+			$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
+			
+			if(!empty($start_date) && !empty($end_date)){
+				$this->db->where('prm.date_receipt >=',$start_date);
+				$this->db->where('prm.date_receipt <=',$end_date);
+			}
+			if(!empty($supplier_id)){
+				$this->db->where('ppo.supplier_id',$supplier_id);
+			}
+			if(!empty($filter_kategori)){
+				$this->db->where('ppo.kategori_id',$filter_kategori);
+			}
+
+		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
+		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
+		$this->db->group_by('ppo.supplier_id');
+		$this->db->order_by('ps.nama','asc');
+		$query = $this->db->get('pmm_receipt_material prm');
+
+			$no = 1;
+			if($query->num_rows() > 0){
+
+				foreach ($query->result_array() as $key => $sups) {
+
+					$mats = array();
+					$materials = $this->pmm_model->GetLaporanHutang($sups['supplier_id'],$start_date,$end_date,$filter_kategori);
+					if(!empty($materials)){
+						foreach ($materials as $key => $row) {
+							$arr['no'] = $key + 1;
+							$arr['nama_produk'] = $row['nama_produk'];
+							$arr['purchase_order_id'] = '<a href="'.base_url().'pmm/purchase_order/manage/'.$row['purchase_order_id'].'" target="_blank">'.$row['purchase_order_id'] = $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po').'</a>';
+							$arr['penerimaan'] = number_format($row['penerimaan'],0,',','.');
+							$arr['tagihan'] = number_format($row['tagihan'],0,',','.');
+							$arr['tagihan_bruto'] = number_format($row['tagihan_bruto'],0,',','.');
+							$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
+							$arr['sisa_hutang_penerimaan'] = number_format($row['sisa_hutang_penerimaan'],0,',','.');
+							$arr['sisa_hutang_tagihan'] = number_format($row['sisa_hutang_tagihan'],0,',','.');
+
+							$total_penerimaan += $row['penerimaan'];
+							$total_tagihan += $row['tagihan'];
+							$total_tagihan_bruto += $row['tagihan_bruto'];
+							$total_pembayaran += $row['pembayaran'];
+							$total_sisa_hutang_penerimaan += $row['sisa_hutang_penerimaan'];
+							$total_sisa_hutang_tagihan += $row['sisa_hutang_tagihan'];
+							
+							
+							$arr['name'] = $sups['name'];
+							$mats[] = $arr;
+						}
+						$sups['mats'] = $mats;
+						$sups['no'] =$no;
+
+						$arr_data[] = $sups;
+						$no++;
+					}
+					
+					
+				}
+			}
+
+			
+			$data['data'] = $arr_data;
+			$data['total_penerimaan'] = $total_penerimaan;
+			$data['total_tagihan'] = $total_tagihan;
+			$data['total_tagihan_bruto'] = $total_tagihan_bruto;
+			$data['total_pembayaran'] = $total_pembayaran;
+			$data['total_sisa_hutang_penerimaan'] = $total_sisa_hutang_penerimaan;
+			$data['total_sisa_hutang_tagihan'] = $total_sisa_hutang_tagihan;
+	        $html = $this->load->view('laporan_pembelian/cetak_laporan_hutang',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('BBJ - Laporan Hutang');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('laporan-hutang.pdf', 'I');
+	        
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
+
 	public function cetak_pengiriman_penjualan()
 	{
 		$this->load->library('pdf');
