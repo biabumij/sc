@@ -2897,5 +2897,113 @@ class Productions extends Secure_Controller {
 		'total_sisa_piutang_tagihan'=>number_format($total_sisa_piutang_tagihan,0,',','.')
 	));	
 	}
+
+	function monitoring_piutang()
+	{
+		$data = array();
+		$client_id = $this->input->post('client_id');
+		$filter_kategori = $this->input->post('filter_kategori');
+		$start_date = false;
+		$end_date = false;
+		$total_dpp_tagihan = 0;
+		$total_ppn_tagihan = 0;
+		$total_jumlah_tagihan = 0;
+		$total_dpp_pembayaran = 0;
+		$total_ppn_pembayaran = 0;
+		$total_jumlah_pembayaran = 0;
+		$total_dpp_sisa_piutang = 0;
+		$total_ppn_sisa_piutang = 0;
+		$total_jumlah_sisa_piutang = 0;
+		$date = $this->input->post('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+		}
+
+		$this->db->select('ppp.id, ppp.client_id, ps.nama as name');
+		$this->db->join('penerima ps','ppp.client_id = ps.id','left');
+		$this->db->join('pmm_sales_po po','ppp.sales_po_id = po.id','left');
+
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('ppp.tanggal_invoice >=',$start_date);
+            $this->db->where('ppp.tanggal_invoice <=',$end_date);
+        }
+        if(!empty($client_id)){
+            $this->db->where('ppp.client_id',$client_id);
+        }
+		
+		$this->db->group_by('ppp.client_id');
+		$this->db->order_by('ps.nama','asc');
+		$query = $this->db->get('pmm_penagihan_penjualan ppp');
+		
+		$no = 1;
+		if($query->num_rows() > 0){
+
+			foreach ($query->result_array() as $key => $sups) {
+
+				$mats = array();
+				$materials = $this->pmm_model->GetLaporanMonitoringPiutang($sups['client_id'],$start_date,$end_date,$filter_kategori);
+				if(!empty($materials)){
+					foreach ($materials as $key => $row) {
+
+						$awal  = date_create($row['status_umur_hutang']);
+						$akhir = date_create($end_date);
+						$diff  = date_diff($awal, $akhir);
+
+						$arr['no'] = $key + 1;
+						$arr['nama'] = $row['nama'];
+						$arr['subject'] = $row['subject'];
+						$arr['status_pembayaran'] = $row['status_pembayaran'];
+						$arr['syarat_pembayaran'] = $diff->days . '';
+						$arr['nomor_invoice'] = '<a href="'.base_url().'penjualan/detailPenagihan/'.$row['id'].'" target="_blank">'.$row['nomor_invoice'].'</a>';
+						$arr['tanggal_invoice'] =  date('d-m-Y',strtotime($row['tanggal_invoice']));
+						$arr['dpp_tagihan'] = number_format($row['dpp_tagihan'],0,',','.');
+						$arr['ppn_tagihan'] = number_format($row['ppn_tagihan'],0,',','.');
+						$arr['jumlah_tagihan'] = number_format($row['jumlah_tagihan'],0,',','.');
+						$arr['dpp_pembayaran'] = number_format($row['dpp_pembayaran'],0,',','.');
+						$arr['ppn_pembayaran'] = number_format($row['ppn_pembayaran'],0,',','.');
+						$arr['jumlah_pembayaran'] = number_format($row['jumlah_pembayaran'],0,',','.');
+						$arr['dpp_sisa_piutang'] = number_format($row['dpp_sisa_piutang'],0,',','.');
+						$arr['ppn_sisa_piutang'] = number_format($row['ppn_sisa_piutang'],0,',','.');
+						$arr['jumlah_sisa_piutang'] = number_format($row['jumlah_sisa_piutang'],0,',','.');
+
+						$total_dpp_tagihan += $row['dpp_tagihan'];
+						$total_ppn_tagihan += $row['ppn_tagihan'];
+						$total_jumlah_tagihan += $row['jumlah_tagihan'];
+						$total_dpp_pembayaran += $row['dpp_pembayaran'];
+						$total_ppn_pembayaran += $row['ppn_pembayaran'];
+						$total_jumlah_pembayaran += $row['jumlah_pembayaran'];
+						$total_dpp_sisa_piutang += $row['dpp_sisa_piutang'];
+						$total_ppn_sisa_piutang += $row['ppn_sisa_piutang'];
+						$total_jumlah_sisa_piutang += $row['jumlah_sisa_piutang'];
+						
+						$arr['name'] = $sups['name'];
+						
+						$mats[] = $arr;
+					}
+					$sups['mats'] = $mats;
+					$sups['no'] =$no;
+
+					$data[] = $sups;
+					$no++;
+				}
+				
+				
+			}
+		}
+
+		echo json_encode(array('data'=>$data,
+		'total_dpp_tagihan'=>number_format($total_dpp_tagihan,0,',','.'),
+		'total_ppn_tagihan'=>number_format($total_ppn_tagihan,0,',','.'),
+		'total_jumlah_tagihan'=>number_format($total_jumlah_tagihan,0,',','.'),
+		'total_dpp_pembayaran'=>number_format($total_dpp_pembayaran,0,',','.'),
+		'total_ppn_pembayaran'=>number_format($total_ppn_pembayaran,0,',','.'),
+		'total_jumlah_pembayaran'=>number_format($total_jumlah_pembayaran,0,',','.'),
+		'total_dpp_sisa_piutang'=>number_format($total_dpp_sisa_piutang,0,',','.'),
+		'total_ppn_sisa_piutang'=>number_format($total_ppn_sisa_piutang,0,',','.'),
+		'total_jumlah_sisa_piutang'=>number_format($total_jumlah_sisa_piutang,0,',','.')
+	));	
+	}
 	
 }
