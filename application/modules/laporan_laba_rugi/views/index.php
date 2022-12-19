@@ -71,7 +71,7 @@
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">Laporan Laba Rugi</h3>
-													<a href="laporan_laba_rugi">Kembali</a>
+													<a href="laporan_keuangan">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
 													<div class="row">
