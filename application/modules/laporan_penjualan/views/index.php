@@ -58,37 +58,9 @@
                                                         <a href="#laporan_pengiriman_penjualan" aria-controls="laporan_pengiriman_penjualan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>									
                                                     </div>
                                                     <div class="col-sm-5">
-														<p><h5>Laporan Pengiriman Penjualan Produk</h5></p>
-                                                        <a href="#laporan_pengiriman_penjualan_produk" aria-controls="laporan_pengiriman_penjualan_produk" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>									
-                                                    </div>
-													<div class="col-sm-5">
-														<p><h5>Laporan Sales Order</h5></p>
-                                                        <a href="#laporan_sales_order" aria-controls="laporan_sales_order" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
-                                                    </div>
-													<div class="col-sm-5">
-														<p><h5>Laporan Penjualan Per Produk</h5></p>
-                                                        <a href="#laporan_penjualan_produk" aria-controls="laporan_penjualan_produk" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-													<div class="col-sm-5">
-														<p><h5>Daftar Tagihan</h5></p>
-                                                        <a href="#laporan_daftar_tagihan_penjualan" aria-controls="laporan_daftar_tagihan_penjualan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-													<div class="col-sm-5">
 														<p><h5>Laporan Piutang</h5></p>
                                                         <a href="#laporan_piutang" aria-controls="laporan_piutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>
-													<div class="col-sm-5">
-														<p><h5>Laporan Umur Piutang</h5></p>
-                                                        <a href="#laporan_umur_piutang" aria-controls="laporan_umur_piutang" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-													<div class="col-sm-5">
-														<p><h5>Laporan Penerimaan</h5></p>
-                                                        <a href="#laporan_penerimaan" aria-controls="laporan_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-													<div class="col-sm-5">
-														<p><h5>Penyelesaian Penjualan</h5></p>
-                                                        <a href="#laporan_penyelesaian_penjualan" aria-controls="laporan_penyelesaian_penjualan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -174,212 +146,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Laporan Pengiriman Penjualan Produk -->
-									
-									<div role="tabpanel" class="tab-pane" id="laporan_pengiriman_penjualan_produk">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Pengiriman Penjualan Produk</h3>
-													<a href="laporan_penjualan">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/cetak_pengiriman_penjualan_produk');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_penjualan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-6">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-									
-									<!-- Laporan Sales Order -->
-
-                                    <div role="tabpanel" class="tab-pane" id="laporan_sales_order">
-                                        <div class="col-sm-15">
-                                            <div class="panel panel-default"> 
-												<div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Sales Order</h3>
-													<a href="laporan_penjualan">Kembali</a>
-                                                </div>
-                                                <div style="margin: 20px">
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_sales_order'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_l" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
-                                                            <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date10" style="display:none" width="100%";>
-                                                            <thead>
-                                                            <tr> 
-                                                                <th width="5%" class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
-                                                                <th class="text-center">PELANGGAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. KONTRAK</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PRODUK</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">HARGA SATUAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">DPP</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">PPN</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">JUMLAH</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="text-center">TGL. KONTRAK</th>
-                                                            </tr>
-															</thead>
-                                                            <tbody></tbody>
-															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>
-									
-									<!-- Laporan Penjualan Per Produk -->
-									
-									<div role="tabpanel" class="tab-pane" id="laporan_penjualan_produk">
-                                        <div class="col-sm-15">
-                                            <div class="panel panel-default"> 
-												<div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Penjualan Per Produk</h3>
-													<a href="laporan_penjualan">Kembali</a>
-                                                </div>
-                                                <div style="margin: 20px">
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_penjualan_per_produk'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_m" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
-                                                            <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date11" style="display:none" width="100%";>
-                                                            <thead>
-																<tr>
-																	<th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
-																	<th class="text-center">PRODUK</th>
-																	<th class="text-center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-																	<th class="text-center" colspan="3">KUANTITAS</th>
-																	<th class="text-center" colspan="3">RUPIAH</th>
-																</tr>
-																<tr>
-                                                                    <th class="text-center">PELANGGAN</th>
-																	<th class="text-center">TERKIRIM</th>
-																	<th class="text-center">DIKEMBALIKAN</th>
-																	<th class="text-center">TERJUAL</th>
-																	<th class="text-center">TERKIRIM</th>
-																	<th class="text-center">DIKEMBALIKAN</th>
-																	<th class="text-center">TERJUAL</th>
-																</tr>
-															</thead>
-                                                            <tbody></tbody>
-															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>
-									
-									<!-- Laporan Daftar Tagihan Penjualan -->
-
-                                    <div role="tabpanel" class="tab-pane" id="laporan_daftar_tagihan_penjualan">
-                                        <div class="col-sm-15">
-                                            <div class="panel panel-default">
-												<div class="panel-heading">
-                                                    <h3 class="panel-title">Daftar Tagihan</h3>
-													<a href="laporan_penjualan">Kembali</a>
-                                                </div>
-                                                <div style="margin: 20px">
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_daftar_tagihan'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_n" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
-                                                            <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date12" style="display:none" width="100%";>
-                                                            <thead>
-                                                            <tr> 
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-																<th align="center">PELANGGAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO. INVOICE</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">MEMO</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">VOLUME</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">SATUAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">DPP</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">PPN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">TOTAL</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="text-center">TGL. INVOICE</th>
-                                                            </tr>
-									
-															</thead>
-                                                            <tbody></tbody>
-															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>
-									
-									<!-- Laporan Piutang -->
-
+                                    <!-- Laporan Piutang -->
                                     <div role="tabpanel" class="tab-pane" id="laporan_piutang">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">  
@@ -389,10 +156,10 @@
                                                 </div>
                                                 <div style="margin: 20px">
                                                     <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_piutang'); ?>" target="_blank">
+                                                        <form action="<?php echo site_url('laporan/cetak_laporan_piutang'); ?>" target="_blank">
                                                             <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_o" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
+                                                                <input type="text" id="filter_date_piutang" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>                                             
                                                             <div class="col-sm-3">
                                                                 <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
                                                             </div>
@@ -406,178 +173,23 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date13" style="display:none" width="100%";>
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="laporan-piutang" style="display:none" width="100%";>
                                                             <thead>
                                                             <tr>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-																<th align="center">PELANGGAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">KETERANGAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">SISA PIUTANG</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
+                                                                <th class="text-center">REKANAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PENJUALAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN BRUTO</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
+                                                                <th class="text-center"colspan="2">SISA HUTANG</th>
                                                             </tr>
                                                             <tr>
-																<th align="center">TGL. INVOICE</th>
+                                                                <th class="text-center">NO. PESANAN PEMBELIAN</th>
+                                                                <th class="text-center">PENERIMAAN</th>
+                                                                <th class="text-center">INVOICE</th>
                                                             </tr>
 															</thead>
-                                                            <tbody></tbody>
-															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>
-									
-									<!-- Laporan Umur Piutang -->
-
-                                    <div role="tabpanel" class="tab-pane" id="laporan_umur_piutang">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Laporan Umur Piutang</h3>
-													<a href="laporan_penjualan">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/cetak_umur_piutang');?>" target="_blank">
-															<!--<div class="col-sm-3">
-																<input type="text" id="filter_date_p" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>-->
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="table-date14">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-									
-									<!-- Laporan Penerimaan -->
-									
-									<div role="tabpanel" class="tab-pane" id="laporan_penerimaan">
-                                        <div class="col-sm-15">
-                                            <div class="panel panel-default">      
-												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Penerimaan</h3>
-													<a href="laporan_penjualan">Kembali</a>
-                                                </div>
-                                                <div style="margin: 20px">
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_penerimaan'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_q" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
-                                                            <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="table-date15" style="display:none" width="100%";>
-                                                            <thead>
-                                                            <tr>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-																<th align="center">PELANGGAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TRANSAKSI</th>
-                                                                <th align="center" rowspan="2" style="vertical-align:middle;">TGL. TAGIHAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th class="text-center">TGL. BAYAR</th>
-                                                            </tr>
-															</thead>
-                                                            <tbody></tbody>
-															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-									</div>
-									
-									<!-- Laporan Penyelesaian Penjualan -->
-									
-									<div role="tabpanel" class="tab-pane" id="laporan_penyelesaian_penjualan">
-                                        <div class="col-sm-15">
-                                            <div class="panel panel-default">
-												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Laporan Penyelesaian Penjualan</h3>
-													<a href="laporan_penjualan">Kembali</a>
-                                                </div>
-                                                <div style="margin: 20px">
-                                                    <div class="row">
-                                                        <form action="<?php echo site_url('laporan/cetak_penyelesaian_penjualan'); ?>" target="_blank">
-                                                            <div class="col-sm-3">
-                                                                <input type="text" id="filter_date_r" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
-                                                            </div>                                                           
-                                                            <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <br />
-                                                    <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
-                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
-                                                            <div>
-                                                                Please Wait
-                                                            </div>
-                                                        </div>
-                                                        <table class="mytable table-bordered table-hover table-center table-condensed" id="table-date16" style="display:none" width="100%";>
-                                                            <thead>
-															<tr>
-																<th align="center" rowspan="2">NO.</th>
-																<th align="center">PELANGGAN</th>
-																<th align="center" rowspan="2">NO. ORDER</th>
-																<th align="center" colspan="2">PEMESANAN</th>
-																<th align="center" colspan="2">PENGIRIMAN</th>
-																<th align="center" colspan="2">TAGIHAN</th>
-                                                                <th align="center" colspan="2">PENERIMAAN</th>
-																<th align="center" colspan="2">HUTANG BRUTO</th>
-																<th align="center" colspan="2">PIUTANG TERHADAP TAGIHAN</th>
-                                                                <th align="center" colspan="2">TOTAL</th>
-															</tr>
-															<tr>
-                                                                <th align="center">TGL. ORDER</th>
-																<th align="center">VOL.</th>
-																<th align="center">RP.</th>
-																<th align="center">VOL.</th>
-																<th align="center">RP.</th>
-                                                                <th align="center">VOL.</th>
-																<th align="center">RP.</th>
-                                                                <th align="center">VOL.</th>
-																<th align="center">RP.</th>
-                                                                <th align="center">VOL.</th>
-																<th align="center">RP.</th>
-                                                                <th align="center">VOL.</th>
-																<th align="center">RP.</th>
-                                                                <th align="center">VOL.</th>
-																<th align="center">RP.</th>
-															</tr>
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
                                                         </table>
@@ -681,58 +293,13 @@
             }
         </script>
 
-        <!-- Script Laporan Pengiriman Penjualan Produk -->
-			
-        <script type="text/javascript">
-			$('#filter_date_penjualan').daterangepicker({
-				autoUpdateInput : false,
-				showDropdowns: true,
-				locale: {
-				  format: 'DD-MM-YYYY'
-				},
-				ranges: {
-				   'Today': [moment(), moment()],
-				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				   'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-				   'This Month': [moment().startOf('month'), moment().endOf('month')],
-				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-				}
-			});
-
-			$('#filter_date_penjualan').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TablePergerakanBahanJadi();
-			});
-			
-			function TablePergerakanBahanJadi()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/productions/laporan_pengiriman_penjualan_produk'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_penjualan').val(),
-					},
-					success : function(result){
-						$('#box-ajax-6').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TablePergerakanBahanJadi();
-			
-            </script>
-
-		<!-- Script Sales Order -->
-		
+        <!-- Script Piutang -->
 		<script type="text/javascript">
             $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_l').daterangepicker({
+            $('#filter_date_piutang').daterangepicker({
                 autoUpdateInput: false,
 				showDropdowns : true,
+                singleDatePicker: true,
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
@@ -746,247 +313,56 @@
                 }
             });
 
-            $('#filter_date_l').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate10();
+            $('#filter_date_piutang').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('01-01-2021') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                LaporanPiutang();
             });
 
-            function TableDate10() {
-                $('#table-date10').show();
+            function LaporanPiutang() {
+                $('#laporan-piutang').show();
                 $('#loader-table').fadeIn('fast');
-                $('#table-date10 tbody').html('');
+                $('#laporan-piutang tbody').html('');
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo site_url('pmm/productions/table_date10'); ?>/" + Math.random(),
+                    url: "<?php echo site_url('pmm/productions/laporan_piutang'); ?>/" + Math.random(),
                     dataType: 'json',
                     data: {
-                        filter_date: $('#filter_date_l').val(),
+                        filter_date: $('#filter_date_piutang').val(),
                     },
                     success: function(result) {
                         if (result.data) {
-                            $('#table-date10 tbody').html('');
+                            $('#laporan-piutang tbody').html('');
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#table-date10 tbody').append('<tr onclick="NextShowSalesOrder(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="9">' + val.nama + '</td></tr>');
-                                    $.each(val.mats, function(a, row) {
-                                        var a_no = a + 1;
-                                        $('#table-date10 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.contract_date + '</td><td class="text-left">' + row.contract_number + '</td><td class="text-left">' + row.nama_produk + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.qty + '</td><td class="text-right">' + row.price + '</td><td class="text-right">' + row.dpp + '</td><td class="text-right">' + row.tax + '</td><td class="text-right">' + row.total + '</td></tr>');
-                                    });
-                                    $('#table-date10 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="9"><b>JUMLAH</b></td><td class="text-right""><b>' + val.jumlah + '</b></td></tr>');
-                                });
-                                $('#table-date10 tbody').append('<tr><td class="text-right" colspan="9"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
-                            } else {
-                                $('#table-date10 tbody').append('<tr><td class="text-center" colspan="10"><b>NO DATA</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
-
-            function NextShowSalesOrder(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
-
-        </script>
-		
-		<!-- Script Penjualan Per Produk -->
-		
-		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_m').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
-                },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            });
-
-            $('#filter_date_m').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate11();
-            });
-
-            function TableDate11() {
-                $('#table-date11').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date11 tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/productions/table_date11'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_m').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date11 tbody').html('');
-
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    $('#table-date11 tbody').append('<tr onclick="NextShowPenjualanProduk(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="10">' + val.nama_produk + '</td></tr>');
-                                    $.each(val.mats, function(a, row) {
-                                        var a_no = a + 1;
-                                        $('#table-date11 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nama + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.terkirim + '</td><td class="text-right">' + row.dikembalikan + '</td><td class="text-right">' + row.terjual + '</td><td class="text-right">' + row.terkirim_rp + '</td><td class="text-right">' + row.dikembalikan_rp + '</td><td class="text-right">' + row.terjual_rp + '</td></tr>');
-                                    });
-                                });
-                                $('#table-date11 tbody').append('<tr><td class="text-right" colspan="8"><b>TOTAL</b></td><td class="text-right" ><b>' + result.all_total + '</b></td></tr>');
-                            } else {
-                                $('#table-date11 tbody').append('<tr><td class="text-center" colspan="10"><b>NO DATA</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
-
-            function NextShowPenjualanProduk(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
-
-        </script>
-		
-		<!-- Script Daftar Tagihan  Penjualan -->
-		
-		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_n').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
-                },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            });
-
-            $('#filter_date_n').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate12();
-            });
-
-            function TableDate12() {
-                $('#table-date12').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date12 tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/productions/table_date12'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_n').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date12 tbody').html('');
-
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    $('#table-date12 tbody').append('<tr onclick="NextShowDaftarTagihanPenjualan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="8">' + val.nama + '</td></tr>');
-                                    $.each(val.mats, function(a, row) {
-                                        var a_no = a + 1;
-                                        $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.qty + '</td><td class="text-center">' + row.measure + '</td><td class="text-right">' + row.jumlah + '</td><td class="text-right">' + row.ppn + '</td><td class="text-right">' + row.total_price + '</td></tr>');
-                                    });
-                                    $('#table-date12 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="8"><b>JUMLAH</b></td><td class="text-right"><b>' + val.jumlah + '</b></td></tr>');
-                                });
-                                $('#table-date12 tbody').append('<tr><td class="text-right" colspan="8"><b>TOTAL</b></td><td class="text-right"><b>' + result.total + '</b></td></tr>');
-                            } else {
-                                $('#table-date12 tbody').append('<tr><td class="text-center" colspan="9"><b>NO DATA</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
-
-            function NextShowDaftarTagihanPenjualan(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
-
-        </script>
-		
-		<!-- Script Piutang -->
-		
-		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_o').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
-                },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            });
-
-            $('#filter_date_o').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate13();
-            });
-
-            function TableDate13() {
-                $('#table-date13').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date5 tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/productions/table_date13'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_o').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date13 tbody').html('');
-
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    window.jumlah_tagihan = 0;
+                                    
                                     window.jumlah_penerimaan = 0;
-                                    window.jumlah_piutang = 0;
-                                    $('#table-date13 tbody').append('<tr onclick="NextShowLaporanPiutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="7">' + val.nama + '</td></tr>');
+                                    window.jumlah_tagihan = 0;
+                                    window.jumlah_tagihan_bruto = 0;
+                                    window.jumlah_pembayaran = 0;
+                                    window.jumlah_sisa_piutang_penerimaan = 0;
+                                    window.jumlah_sisa_piutang_tagihan = 0;
+
+                                    $.each(val.mats, function(a, row) {
+                                        window.jumlah_penerimaan += parseFloat(row.penerimaan.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_tagihan += parseFloat(row.tagihan.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_tagihan_bruto += parseFloat(row.tagihan_bruto.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_pembayaran += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_sisa_piutang_penerimaan += parseFloat(row.sisa_piutang_penerimaan.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_sisa_piutang_tagihan += parseFloat(row.sisa_piutang_tagihan.replace(/\./g,'').replace(',', '.'));
+                                    });
+
+                                    $('#laporan-piutang tbody').append('<tr onclick="NextShowHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.name + '</td><td class="text-right"><b>' + formatter.format(window.jumlah_penerimaan) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_tagihan) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_tagihan_bruto) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_pembayaran) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_sisa_piutang_penerimaan) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_sisa_piutang_tagihan) + '</b></td></tr>');
+                                    //$('#laporan-piutang tbody').append('<tr onclick="NextShowHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.name + '</td><td class="text-right">' + val.total_penerimaan + '</td><td class="text-right">' + val.total_tagihan + '</td><td class="text-right"></td><td class="text-right"></td><td class="text-right"></td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.memo + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.piutang + '</td></tr>');
-                                        window.jumlah_tagihan += parseFloat(row.tagihan.replace(/\./g,'').replace(',', '.'));
-                                        window.jumlah_penerimaan += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
-                                        window.jumlah_piutang += parseFloat(row.piutang.replace(/\./g,'').replace(',', '.'));
+                                        $('#laporan-piutang tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.salesPo_id + '</td><td class="text-right">' + row.penerimaan + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.tagihan_bruto + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.sisa_piutang_penerimaan + '</td><td class="text-right">' + row.sisa_piutang_tagihan + '</td></tr>');   
                                     });
-									$('#table-date13 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="4"><b>JUMLAH</b></td><td class="text-right""><b>' + formatter.format(window.jumlah_tagihan) + '</b></td><td class="text-right""><b>' + formatter.format(window.jumlah_penerimaan) + '</b></td><td class="text-right""><b>' + formatter.format(window.jumlah_piutang) + '</b></td></tr>');
+                                    $('#laporan-piutang tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="2"><b>JUMLAH</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_penerimaan) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_tagihan) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_tagihan_bruto) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_pembayaran) + '</b></td><td class="text-right"><b>' + formatter.format(window.jumlah_sisa_piutang_penerimaan) + '</b></td><td class="text-right"><b></b></td></tr>');
                                 });
-                                $('#table-date13 tbody').append('<tr><td class="text-right" colspan="6"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
+                                $('#laporan-piutang tbody').append('<tr><td class="text-right" colspan="2"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_penerimaan + '</b></td><td class="text-right"><b>' + result.total_tagihan + '</b></td><td class="text-right"><b>' + result.total_tagihan_bruto + '</b></td><td class="text-right"><b>' + result.total_pembayaran + '</b></td><td class="text-right"><b>' + result.total_sisa_piutang_penerimaan + '</b></td><td class="text-right"><b>' + result.total_sisa_piutang_tagihan + '</b></td></tr>');
                             } else {
-                                $('#table-date13 tbody').append('<tr><td class="text-center" colspan="7"><b>NO DATA</b></td></tr>');
+                                $('#laporan-piutang tbody').append('<tr><td class="text-center" colspan="8"><b>NO DATA</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -996,7 +372,7 @@
                 });
             }
 
-            function NextShowLaporanPiutang(id) {
+            function NextShowHutang(id) {
                 console.log('.mats-' + id);
                 $('.mats-' + id).slideToggle();
             }
@@ -1007,237 +383,6 @@
                 symbol: 'none',
 				minimumFractionDigits : '0'
             });
-
-        </script>
-		
-		<!-- Script Umur Piutang -->
-
-        <script type="text/javascript">
-			$('#filter_date_p').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-					}
-				});
-
-				$('#filter_date_p').on('apply.daterangepicker', function(ev, picker) {
-					  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-					  TableDate14();
-				});
-
-
-				function TableDate14()
-				{
-					$('#wait').fadeIn('fast');   
-					$.ajax({
-						type    : "POST",
-						url     : "<?php echo site_url('pmm/productions/umur_piutang'); ?>/"+Math.random(),
-						dataType : 'html',
-						data: {
-							filter_date : $('#filter_date_p').val(),
-						},
-						success : function(result){
-							$('#table-date14').html(result);
-							$('#wait').fadeOut('fast');
-						}
-					});
-				}
-
-				TableDate14();
-			
-            </script>
-		
-		<!-- Script Penerimaan -->
-		
-		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_q').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
-                },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            });
-
-            $('#filter_date_q').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate15();
-            });
-
-            function TableDate15() {
-                $('#table-date15').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date15 tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/productions/table_date15'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_q').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date15 tbody').html('');
-
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    $('#table-date15 tbody').append('<tr onclick="NextShowPenerimaan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="5">' + val.nama + '</td>></tr>');
-                                    $.each(val.mats, function(a, row) {
-                                        var a_no = a + 1;
-                                        $('#table-date15 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-right">' + row.penerimaan + '</td></tr>');
-                                    });
-                                });
-                                $('#table-date15 tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
-                            } else {
-                                $('#table-date15 tbody').append('<tr><td class="text-center" colspan="6"><b>NO DATA</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
-
-            function NextShowPenerimaan(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
-
-        </script>
-		
-		<!-- Script Penyelesaian Penjualan -->
-		
-		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_r').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
-                },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            });
-
-            $('#filter_date_r').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate16();
-            });
-
-            function TableDate16() {
-                $('#table-date16').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date16 tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/productions/table_date16'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_r').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date16 tbody').html('');
-
-                            if (result.data.length > 0) {
-
-                                $.each(result.data, function(i, val) {
-
-                                    window.vol_pemesanan = 0;
-                                    window.pemesanan = 0;
-                                    window.vol_pengiriman = 0;
-                                    window.pengiriman = 0;
-                                    window.vol_tagihan = 0;
-                                    window.tagihan = 0;
-                                    window.vol_pembayaran = 0;
-                                    window.pembayaran = 0;
-                                    window.vol_piutang_pengiriman = 0;
-                                    window.piutang_pengiriman = 0;
-                                    window.vol_sisa_tagihan = 0;
-                                    window.sisa_tagihan = 0;
-                                    window.vol_akhir = 0;
-                                    window.akhir = 0;
-
-                                    $('#table-date16 tbody').append('<tr onclick="NextShowPenyelesaianPenjualan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="16">' + val.nama + '</td></tr>');
-                                    $.each(val.mats, function(a, row) {
-                                        var a_no = a + 1;
-                                        $('#table-date16 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.contract_date + '</td><td class="text-center">' + row.contract_number + '</td><td class="text-right">' + row.vol_pemesanan + '</td><td class="text-right">' + row.pemesanan + '</td><td class="text-right">' + row.vol_pengiriman + '</td><td class="text-right">' + row.pengiriman + '</td><td class="text-right">' + row.vol_tagihan + '</td><td class="text-right">' + row.tagihan + '</td><td class="text-right">' + row.vol_pembayaran + '</td><td class="text-right">' + row.pembayaran + '</td><td class="text-right">' + row.vol_piutang_pengiriman + '</td><td class="text-right">' + row.piutang_pengiriman + '</td><td class="text-right">' + row.vol_sisa_tagihan + '</td><td class="text-right">' + row.sisa_tagihan + '</td><td class="text-right">' + row.vol_akhir + '</td><td class="text-right">' + row.akhir + '</td></tr>');
-                                        
-                                        window.vol_pemesanan += parseFloat(row.vol_pemesanan.replace(/\./g,'').replace(',', '.'));
-                                        window.pemesanan += parseFloat(row.pemesanan.replace(/\./g,'').replace(',', '.'));
-                                        window.vol_pengiriman += parseFloat(row.vol_pengiriman.replace(/\./g,'').replace(',', '.'));
-                                        window.pengiriman += parseFloat(row.pengiriman.replace(/\./g,'').replace(',', '.'));
-                                        window.vol_tagihan += parseFloat(row.vol_tagihan.replace(/\./g,'').replace(',', '.'));
-                                        window.tagihan += parseFloat(row.tagihan.replace(/\./g,'').replace(',', '.'));
-                                        window.vol_pembayaran += parseFloat(row.vol_pembayaran.replace(/\./g,'').replace(',', '.'));
-                                        window.pembayaran += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
-                                        console.log(pembayaran);
-                                        window.vol_piutang_pengiriman += parseFloat(row.vol_piutang_pengiriman.replace(/\./g,'').replace(',', '.'));
-                                        window.piutang_pengiriman += parseFloat(row.piutang_pengiriman.replace(/\./g,'').replace(',', '.'));
-                                        window.vol_sisa_tagihan += parseFloat(row.vol_sisa_tagihan.replace(/\./g,'').replace(',', '.'));
-                                        window.sisa_tagihan += parseFloat(row.tagihan.replace(/\./g,'').replace(',', '.'));
-                                        window.vol_akhir += parseFloat(row.vol_akhir.replace(/\./g,'').replace(',', '.'));
-                                        window.akhir += parseFloat(row.akhir.replace(/\./g,'').replace(',', '.'));
-                                       
-
-                                    });
-									$('#table-date16 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="3"><b>JUMLAH</b></td><td class="text-right"><b>' + formatter.format(window.vol_pemesanan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.pemesanan) + '</b></td><td class="text-right"><b>' + formatter.format(window.vol_pengiriman) + '</b></td><td class="text-right"><b>' + formatter2.format(window.pengiriman) + '</b></td><td class="text-right"><b>' + formatter.format(window.vol_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.tagihan) + '</b></td><td class="text-right"><b>' + formatter.format(window.vol_pembayaran) + '</b></td><td class="text-right""><b>' + formatter2.format(window.pembayaran) + '</b></td><td class="text-right"><b>' + formatter.format(window.vol_piutang_pengiriman) + '</b></td><td class="text-right"><b>' + formatter2.format(window.piutang_pengiriman) + '</b></td><td class="text-right"><b>' + formatter.format(window.vol_sisa_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.sisa_tagihan) + '</b></td><td class="text-right"><b>' + formatter.format(window.vol_akhir) + '</b></td><td class="text-right"><b>' + formatter2.format(window.akhir) + '</b></td></tr>');
-                                });
-                                $('#table-date16 tbody').append('<tr><td class="text-right" colspan="3"><b>TOTAL</b></td><td class="text-right" ><b>' + result.grand_total_vol_pemesanan + '</b></td><td class="text-right" ><b>' + result.grand_total_pemesanan + '</b></td><td class="text-right" ><b>' + result.grand_total_vol_pengiriman + '</b></td><td class="text-right" ><b>' + result.grand_total_pengiriman + '</b></td><td class="text-right" ><b>' + result.grand_total_vol_tagihan + '</b></td><td class="text-right" ><b>' + result.grand_total_tagihan + '</b></td><td class="text-right" ><b>' + result.grand_total_vol_pembayaran + '</b></td><td class="text-right" ><b>' + result.grand_total_pembayaran + '</b></td><td class="text-right" ><b>' + result.grand_total_vol_piutang_pengiriman + '</b></td><td class="text-right" ><b>' + result.grand_total_piutang_pengiriman + '</b></td><td class="text-right" ><b>' + result.grand_total_vol_sisa_tagihan + '</b></td><td class="text-right" ><b>' + result.grand_total_sisa_tagihan + '</b></td><td class="text-right" ><b>' + result.grand_total_vol_akhir + '</b></td><td class="text-right" ><b>' + result.grand_total_akhir + '</b></td></tr>');
-                            } else {
-                                $('#table-date16 tbody').append('<tr><td class="text-center" colspan="17"><b>NO DATA</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
-
-            function NextShowPenyelesaianPenjualan(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
-			
-			window.formatter = new Intl.NumberFormat('id-ID', {
-                style: 'decimal',
-                currency: 'IDR',
-                symbol: 'none',
-				minimumFractionDigits : '2'
-            });
-
-            window.formatter2 = new Intl.NumberFormat('id-ID', {
-                style: 'decimal',
-                currency: 'IDR',
-                symbol: 'none',
-				minimumFractionDigits : '0'
-            });
-			
 
         </script>
 

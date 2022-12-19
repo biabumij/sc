@@ -4356,5 +4356,81 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
+    function GetLaporanPiutang($client_id=false,$start_date=false,$end_date=false)
+    {
+        $output = array();
+
+        $this->db->select('pp.salesPo_id, p.nama_produk, SUM(pp.display_price) as penerimaan,
+        (
+            select SUM(ppd.total) 
+            from pmm_penagihan_penjualan_detail ppd 
+            inner join pmm_penagihan_penjualan ppp 
+            on ppd.penagihan_id = ppp.id 
+            where ppp.sales_po_id = pp.salesPo_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
+		) as tagihan,
+        SUM(pp.display_price) -
+        (
+            select  COALESCE(SUM(ppd.total),0) 
+            from pmm_penagihan_penjualan_detail ppd 
+            inner join pmm_penagihan_penjualan ppp 
+            on ppd.penagihan_id = ppp.id 
+            where ppp.sales_po_id = pp.salesPo_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
+		) as tagihan_bruto,
+        (
+            select COALESCE(SUM(pppp.total),0)
+            from pmm_pembayaran pppp 
+            inner join pmm_penagihan_penjualan ppp 
+            on pppp.penagihan_id = ppp.id 
+            where ppp.sales_po_id = pp.salesPo_id
+            and pppp.memo <> "PPN"
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as pembayaran,
+        SUM(pp.display_price) - 
+        (
+            select COALESCE(SUM(pppp.total),0)
+            from pmm_pembayaran pppp 
+            inner join pmm_penagihan_penjualan ppp 
+            on pppp.penagihan_id = ppp.id 
+            where ppp.sales_po_id = pp.salesPo_id
+            and pppp.memo <> "PPN"
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as sisa_piutang_penerimaan,
+        (
+            select SUM(ppd.total) 
+            from pmm_penagihan_penjualan_detail ppd 
+            inner join pmm_penagihan_penjualan ppp 
+            on ppd.penagihan_id = ppp.id 
+            where ppp.sales_po_id = pp.salesPo_id
+            and ppp.tanggal_invoice >= "'.$start_date.'"  and ppp.tanggal_invoice <= "'.$end_date.'"
+		) - 
+        (
+            select COALESCE(SUM(pppp.total),0)
+            from pmm_pembayaran pppp 
+            inner join pmm_penagihan_penjualan ppp 
+            on pppp.penagihan_id = ppp.id 
+            where ppp.sales_po_id = pp.salesPo_id
+            and pppp.memo <> "PPN"
+            and pppp.tanggal_pembayaran >= "'.$start_date.'"  and pppp.tanggal_pembayaran <= "'.$end_date.'"
+        ) as sisa_piutang_tagihan');
+        $this->db->join('produk p','pp.product_id = p.id','left');
+        $this->db->join('pmm_sales_po po','pp.salesPo_id = po.id','left');
+        if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('pp.date_production >=',$start_date);
+            $this->db->where('pp.date_production <=',$end_date);
+        }
+        if(!empty($client_id)){
+            $this->db->where('po.client_id',$client_id);
+        }
+		$this->db->where("po.status in ('OPEN','CLOSED')");
+        $this->db->order_by('po.contract_date','asc');
+        $this->db->group_by('pp.salesPo_id');
+        $query = $this->db->get('pmm_productions pp');
+        $output = $query->result_array();
+		
+        return $output;
+    }
+
 }
 ?>

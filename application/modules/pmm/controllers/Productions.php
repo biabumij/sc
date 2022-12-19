@@ -2808,5 +2808,94 @@ class Productions extends Secure_Controller {
 		
 		<?php
 	}
+
+	//Batas
+
+	function laporan_piutang()
+	{
+		$data = array();
+		$client_id = $this->input->post('client_id');
+		$start_date = false;
+		$end_date = false;
+		$total_penerimaan = 0;
+		$total_tagihan = 0;
+		$total_tagihan_bruto = 0;
+		$total_pembayaran = 0;
+		$total_sisa_piutang_penerimaan = 0;
+		$total_sisa_piutang_tagihan = 0;
+		$date = $this->input->post('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+		}
+
+		$this->db->select('po.id, po.client_id, ps.nama as name');
+		$this->db->join('pmm_sales_po po','pp.salesPo_id = po.id','left');
+
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('pp.date_production >=',$start_date);
+            $this->db->where('pp.date_production <=',$end_date);
+        }
+        if(!empty($client_id)){
+            $this->db->where('po.client_id',$client_id);
+        }
+		
+		$this->db->join('penerima ps','po.client_id = ps.id','left');
+		$this->db->where("po.status in ('OPEN','CLOSED')");
+		$this->db->group_by('po.client_id');
+		$this->db->order_by('ps.nama','asc');
+		$query = $this->db->get('pmm_productions pp');
+		
+		$no = 1;
+		if($query->num_rows() > 0){
+
+			foreach ($query->result_array() as $key => $sups) {
+
+				$mats = array();
+				$materials = $this->pmm_model->GetLaporanPiutang($sups['client_id'],$start_date,$end_date);
+				if(!empty($materials)){
+					foreach ($materials as $key => $row) {
+						$arr['no'] = $key + 1;
+						$arr['nama_produk'] = $row['nama_produk'];
+						$arr['salesPo_id'] = '<a href="'.base_url().'penjualan/dataSalesPO/'.$row['salesPo_id'].'" target="_blank">'.$row['salesPo_id'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$row['salesPo_id']),'contract_number').'</a>';
+						$arr['penerimaan'] = number_format($row['penerimaan'],0,',','.');
+						$arr['tagihan'] = number_format($row['tagihan'],0,',','.');
+						$arr['tagihan_bruto'] = number_format($row['tagihan_bruto'],0,',','.');
+						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');
+						$arr['sisa_piutang_penerimaan'] = number_format($row['sisa_piutang_penerimaan'],0,',','.');
+						$arr['sisa_piutang_tagihan'] = number_format($row['sisa_piutang_tagihan'],0,',','.');
+
+						$total_penerimaan += $row['penerimaan'];
+						$total_tagihan += $row['tagihan'];
+						$total_tagihan_bruto += $row['tagihan_bruto'];
+						$total_pembayaran += $row['pembayaran'];
+						$total_sisa_piutang_penerimaan += $row['sisa_piutang_penerimaan'];
+						$total_sisa_piutang_tagihan += $row['sisa_piutang_tagihan'];
+						
+						$arr['name'] = $sups['name'];
+						
+						$mats[] = $arr;
+					}
+					$sups['mats'] = $mats;
+					$sups['no'] =$no;
+
+					$data[] = $sups;
+					$no++;
+				}
+				
+				
+			}
+		}
+
+		echo json_encode(array('data'=>$data,
+		'total_penerimaan'=>number_format($total_penerimaan,0,',','.'),
+		'total_tagihan'=>number_format($total_tagihan,0,',','.'),
+		'total_tagihan_bruto'=>number_format($total_tagihan_bruto,0,',','.'),
+		'total_pembayaran'=>number_format($total_pembayaran,0,',','.'),
+		'total_sisa_piutang_penerimaan'=>number_format($total_sisa_piutang_penerimaan,0,',','.'),
+		'total_sisa_piutang_tagihan'=>number_format($total_sisa_piutang_tagihan,0,',','.')
+	));	
+	}
 	
 }
