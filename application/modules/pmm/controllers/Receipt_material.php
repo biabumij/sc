@@ -140,6 +140,7 @@ class Receipt_material extends CI_Controller {
 		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
 		$this->db->order_by('prm.date_receipt','DESC');
 		$query = $this->db->get('pmm_receipt_material prm');
+	
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$row['checkbox'] ='';
@@ -148,6 +149,7 @@ class Receipt_material extends CI_Controller {
 				$row['supplier_name'] = $row['supplier_name'];
 				$row['material_name'] = $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');
 				$row['volume'] = number_format($row['volume'],2,',','.');
+				$row['display_volume'] = number_format($row['display_volume'],2,',','.');
 				$row['harga_satuan'] = number_format($row['harga_satuan'],0,',','.');
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['display_price'] = number_format($row['display_price'],0,',','.');
