@@ -117,7 +117,7 @@
                   <td><?php echo $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');?></td>
 				          <td><?php echo number_format($row['volume'],2,',','.');?></td>
                   <td><?php echo $row['measure'];?></td>
-                  <td><?php echo number_format($row['harga_satuan'],2,',','.');?></td>
+                  <td style="text-align:right;"><?php echo number_format($row['harga_satuan'],2,',','.');?></td>
                   <td style="text-align:right;"><?php echo number_format($row['price'],2,',','.');?></td>
                 </tr>
                 <?php

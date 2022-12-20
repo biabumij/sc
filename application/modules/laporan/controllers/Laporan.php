@@ -1740,35 +1740,6 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
-
-	public function cetak_surat_jalan()
-    {
-        $this->load->library('pdf');
-    
-
-        $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-        $pdf->setHtmlVSpace($tagvs);
-                $pdf->AddPage('P');
-
-        $arr_date = $this->input->get('filter_date');
-
-        $dt = explode(' - ', $arr_date);
-        $start_date = date('Y-m-d',strtotime($dt[0]));
-        $end_date = date('Y-m-d',strtotime($dt[1]));
-
-        $date = array($start_date,$end_date);
-        $data['filter_date'] = $arr_date;
-		$data['biaya_langsung'] = $this->m_laporan->cetak_surat_jalan($arr_date);
-        $html = $this->load->view('laporan_biaya/print_biaya',$data,TRUE);
-
-        
-        $pdf->SetTitle('BBJ - Laporan Biaya');
-        $pdf->nsi_html($html);
-        $pdf->Output('laporan-biaya.pdf', 'I');
-    
-    }
 	
 
 }
