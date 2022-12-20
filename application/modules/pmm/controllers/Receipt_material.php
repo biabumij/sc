@@ -502,7 +502,7 @@ class Receipt_material extends CI_Controller {
 		$this->db->select('id,no_po,date_po');
 		$this->db->from('pmm_purchase_order');
 		$this->db->where('supplier_id',$supplier_id);
-		$this->db->where('status','PUBLISH');
+		//$this->db->where('status','PUBLISH');
 		$this->db->order_by('date_po','desc');
 		$query = $this->db->get()->result_array();
 		$data = [];
