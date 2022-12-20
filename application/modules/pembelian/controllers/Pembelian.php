@@ -355,7 +355,7 @@ class Pembelian extends Secure_Controller
 
         $this->db->order_by('tanggal_invoice', 'DESC');
         $query = $this->db->get('pmm_penagihan_pembelian');
-	
+		
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $key => $row) {
                 $supplier_name = $this->crud_global->GetField('penerima', array('id' => $row['supplier_id']), 'nama');
@@ -428,6 +428,7 @@ class Pembelian extends Secure_Controller
                 $this->db->where_in('prm.id', $arr_receipt);
                 $this->db->group_by('prm.material_id');
                 $detail = $this->db->get('pmm_receipt_material prm')->result_array();
+                file_put_contents("D:\\test.txt", $this->db->last_query());
                 $data['details'] = $detail;
 
                 $this->db->select('ppo.*, ps.nama as supplier_name, ps.alamat as supplier_address, ppp.syarat_pembayaran');
@@ -694,24 +695,41 @@ class Pembelian extends Secure_Controller
         $data = array();
         $id = $this->input->post('id');
 
-        $this->db->select('pp.*, ps.nama as supplier_name, po.total as total_po, po.date_po');
+        $this->db->select('pp.*, ps.nama as supplier_name, po.total as nilai_kontrak');
         $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
         $this->db->join('pmm_purchase_order po', 'po.id = pp.purchase_order_id', 'left');
         $query = $this->db->get_where('pmm_penagihan_pembelian pp', array('pp.id' => $id))->row_array();
 
-        $this->db->select('ppd.tax, p.nama_produk');
+        $this->db->select('p.nama_produk');
 		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
-        $detail = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
+        $detail_produk = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
+        $query['nama_produk'] = $detail_produk['nama_produk'];
 
+        $this->db->select('ppd.tax_id, sum(ppd.tax) as tax, p.nama_produk');
+		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
+        $this->db->where("ppd.tax_id in (3,6)");
+        $detail = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
+        
         $query['ppn'] = $detail['tax'];
-		$query['nama_produk'] = $detail['nama_produk'];
+
+        $this->db->select('ppd.tax_id, sum(ppd.tax) as tax, p.nama_produk');
+		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
+        $this->db->where("ppd.tax_id in (5)");
+        $detail_2 = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
+		
+        $query['pph'] = $detail_2['tax'];
+        $query['nilai_tagihan'] = $query['total_tagihan'] - $detail['tax'] + $detail_2['tax'];
+        $query['total_tagihan'] = $query['total_tagihan'] + $detail['tax'] - $detail_2['tax'];
+
+        
+		
 
         if (!empty($query)) {
             $receipt_material_id = explode(',', $query['surat_jalan'])[0];
             $query['date_receipt'] = $this->crud_global->GetField('pmm_receipt_material', array('id' => $receipt_material_id), 'date_receipt');
             $query['date_receipt'] = date('d-m-Y', strtotime($query['date_receipt']));
             $query['tanggal_invoice'] = date('d-m-Y', strtotime($query['tanggal_invoice']));
-            $query['date_po'] = date('d-m-Y', strtotime($query['date_po']));
+            $query['tanggal_po'] = date('d-m-Y', strtotime($query['tanggal_po']));
             $data = $query;
         }
         echo json_encode(array('data' => $data));
@@ -745,19 +763,25 @@ class Pembelian extends Secure_Controller
             $tanggal_invoice = '-';
         }
 
-        $tanggal_diterima_office = $this->input->post('tanggal_diterima_office');
-        if ($tanggal_diterima_office) {
-            $tanggal_diterima_office = date('Y-m-d', strtotime($tanggal_diterima_office));
-        } else {
-            $tanggal_diterima_office = NULL;
-        }
-
-
         $tanggal_diterima_proyek = $this->input->post('tanggal_diterima_proyek');
         if ($tanggal_diterima_proyek) {
             $tanggal_diterima_proyek = date('Y-m-d', strtotime($tanggal_diterima_proyek));
         } else {
             $tanggal_diterima_proyek = NULL;
+        }
+
+        $tanggal_lolos_verifikasi = $this->input->post('tanggal_lolos_verifikasi');
+        if ($tanggal_lolos_verifikasi) {
+            $tanggal_lolos_verifikasi = date('Y-m-d', strtotime($tanggal_lolos_verifikasi));
+        } else {
+            $tanggal_lolos_verifikasi = NULL;
+        }
+
+        $tanggal_diterima_office = $this->input->post('tanggal_diterima_office');
+        if ($tanggal_diterima_office) {
+            $tanggal_diterima_office = date('Y-m-d', strtotime($tanggal_diterima_office));
+        } else {
+            $tanggal_diterima_office = NULL;
         }
 
         $data = array(
@@ -768,9 +792,12 @@ class Pembelian extends Secure_Controller
             'nilai_kontrak' => $this->input->post('nilai_kontrak'),
             'nilai_tagihan' => $this->input->post('nilai_tagihan'),
             'ppn' => $this->input->post('ppn'),
+            'pph' => $this->input->post('pph'),
             'tanggal_invoice' => $tanggal_invoice,
-            //'tanggal_diterima_office' => $tanggal_diterima_office,
             'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
+            'tanggal_lolos_verifikasi' => $tanggal_lolos_verifikasi,
+            'status_umur_hutang' => $tanggal_lolos_verifikasi,
+            //'tanggal_diterima_office' => $tanggal_diterima_office,
             'metode_pembayaran' => $this->input->post('metode_pembayaran'),
             'invoice' => $this->input->post('invoice'),
             'invoice_keterangan' => $this->input->post('invoice_keterangan'),
@@ -1498,12 +1525,18 @@ class Pembelian extends Secure_Controller
     public function closed_pembayaran_penagihan($id)
 	{
 		$this->db->set("status", "LUNAS");
-        $this->db->set("verifikasi_dok", "LENGKAP");
         $this->db->set("updated_by", $this->session->userdata('admin_id'));
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
+        $this->db->set("verifikasi_dok", "LENGKAP");
 		$this->db->where("id", $id);
 		$this->db->update("pmm_penagihan_pembelian");
-		$this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+
+        $this->db->set("status_umur_hutang", "null", false);
+		$this->db->where("penagihan_pembelian_id", $id);
+		$this->db->update("pmm_verifikasi_penagihan_pembelian");
+
+        $this->session->set_flashdata('notif_success', 'Berhasil Menyelesaikan Penagihan');
+
 		redirect("pembelian/penagihan_pembelian_detail/$id");
 	}
 

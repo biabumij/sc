@@ -355,18 +355,19 @@
                                 <div role="tabpanel" class="tab-pane" id="settings">
                                     <div class="col-sm-3">
                                             <input type="text" id="filter_date_4" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
-                                    </div>
-                                    <br />
-                                    <br />
+                                        </div>
+                                        <br />
+                                        <br />
                                     <div class="table-responsive">
                                         <table class="table table-striped table-hover" id="table-tagihan" style="width:100%;">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th class="text-center">Tanggal Invoice</th>
-                                                    <th class="text-center">Nomor</th>
+                                                    <th class="text-center">Tgl. Invoice</th>
+                                                    <th class="text-center">No. Invoice</th>
                                                     <th class="text-center">Rekanan</th>
-                                                    <th class="text-center">Tanggal Pesanan Pembelian</th>
+                                                    <th class="text-center">Tgl. Pesanan Pembelian</th>
+                                                    <th class="text-center">No. Pesanan Pembelian</th>
                                                     <th class="text-center">Total</th>
                                                     <th class="text-center">Pembayaran</th>
                                                     <th class="text-center">Sisa Tagihan</th>
@@ -381,8 +382,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-
-                                <!-- End Tagihan Pembelian -->
 
                                 </div>
 
@@ -438,15 +437,27 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Nilai Tagihan (Net)</label>
+                            <label class="col-sm-4 control-label">Nilai Tagihan ini (DPP)</label>
                             <div class="col-sm-8">
                                 <input type="text" id="nilai_tagihan" name="nilai_tagihan" class="form-control input-sm numberformat">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">PPN / PPh 23</label>
+                            <label class="col-sm-4 control-label">PPN</label>
                             <div class="col-sm-8">
                                 <input type="text" id="ppn_tagihan" name="ppn" class="form-control input-sm numberformat">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">PPh 23</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="pph_tagihan" name="pph" class="form-control input-sm numberformat">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Total Tagihan</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="total_tagihan" name="total_tagihan" class="form-control input-sm numberformat">
                             </div>
                         </div>
                         <div class="form-group">
@@ -458,13 +469,19 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Tanggal Diterima Proyek</label>
                             <div class="col-sm-8">
-                                <input type="text" id="date_receipt_tagihan" name="tanggal_diterima_proyek" class="form-control input-sm dtpicker-single">
+                                <input type="text" id="" name="tanggal_diterima_proyek" class="form-control input-sm dtpicker-single">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Tanggal Diterima Kantor</label>
+                            <label class="col-sm-4 control-label">Tanggal Lolos Verifikasi</label>
                             <div class="col-sm-8">
-                                <input type="text" id="" name="" class="form-control input-sm" autocomplete="off" readonly="" >
+                                <input type="text" id="" name="tanggal_lolos_verifikasi" class="form-control input-sm dtpicker-single">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Tanggal Diterima Pusat</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="" name="tanggal_diterima_office" class="form-control input-sm dtpicker-single" readonly="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -644,14 +661,24 @@
                                 <td id="nilai_kontrak_d"></td>
                             </tr>
                             <tr>
-                                <th>Nilai Tagihan (Net)</th>
+                                <th>Nilai Tagihan ini (DPP)</th>
                                 <th>:</th>
                                 <td id="nilai_tagihan_d"></td>
                             </tr>
                             <tr>
-                                <th>PPN / PPh 23</th>
+                                <th>PPN</th>
                                 <th>:</th>
                                 <td id="ppn_d" class="numberformat"></td>
+                            </tr>
+                            <tr>
+                                <th>PPh 23</th>
+                                <th>:</th>
+                                <td id="pph_d" class="numberformat"></td>
+                            </tr>
+                            <tr>
+                                <th>Total Tagihan</th>
+                                <th>:</th>
+                                <td id="total_tagihan_d" class="numberformat"></td>
                             </tr>
                             <tr>
                                 <th>Tanggal Invoice</th>
@@ -664,9 +691,14 @@
                                 <td id="tanggal_diterima_proyek_d"></td>
                             </tr>
                             <tr>
-                                <th>Tanggal Diterima Office</th>
+                                <th>Tanggal Lolos Verifikasi</th>
                                 <th>:</th>
-                                <td id=""></td>
+                                <td id="tanggal_lolos_verifikasi_d"></td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal Diterima Pusat</th>
+                                <th>:</th>
+                                <td ></td>
                             </tr>
                             <tr>
                                 <th>Metode Pembayaran</th>
@@ -1300,407 +1332,377 @@
 
     <script type="text/javascript">
 
-        var table_tagihan = $('#table-tagihan').DataTable({
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('pembelian/table_penagihan_pembelian'); ?>',
-                type: 'POST',
-                data: function(d) {
-                    d.filter_date = $('#filter_date_4').val();
+    var table_tagihan = $('#table-tagihan').DataTable({
+        ajax: {
+            processing: true,
+            serverSide: true,
+            url: '<?php echo site_url('pembelian/table_penagihan_pembelian'); ?>',
+            type: 'POST',
+            data: function(d) {
+                d.filter_date = $('#filter_date_4').val();
+            }
+        },
+        columns: [
+            {
+                "data": "no"
+            },
+            {
+                "data": "tanggal_invoice"
+            },
+            {
+                "data": "nomor_invoice"
+            },
+            {
+                "data": "supplier"
+            },
+            {
+                "data": "tanggal_po"
+            },
+            {
+                "data": "no_po"
+            },
+            {
+                "data": "total"
+            },
+            {
+                "data": "pembayaran"
+            },
+            {
+                "data": "sisa_tagihan"
+            },
+            {
+                "data": "status"
+            },
+            {
+                "data": "verifikasi_dok"
+            },
+            {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            }
+        ],
+        "columnDefs": [
+            {
+            "targets": [0],
+            "className": 'text-center',
+            },
+            {
+            "targets": [7, 8, 9],
+            "className": 'text-right',
+            },
+        ],
+        responsive: true,
+        paging : false,
+    });
+
+
+    $('#btn_production').click(function() {
+        var data_receipt = table_receipt.rows({
+            selected: true
+        }).data();
+        var send_data = '';
+        bootbox.confirm("Apakah anda yakin untuk proses data ini ?", function(result) {
+            // console.log('This was logged in the callback: ' + result); 
+            if (result) {
+                $.each(data_receipt, function(i, val) {
+                    send_data += val.id + ',';
+                });
+
+                window.location.href = '<?php echo site_url('pembelian/penagihan_pembelian/'); ?>' + send_data;
+            }
+        });
+
+    });
+
+    $('#filter_date_4').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_tagihan.ajax.reload();
+    });
+
+    function VerifDok(id) {
+
+        $('#modalForm').modal('show');
+        $('#id').val('');
+        // table_detail.ajax.reload();
+
+        $('#id').val(id);
+        getData(id);
+    }
+
+    function VerifDokDetail(id) {
+
+        $('#detailVerifForm').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pembelian/get_verif_penagihan_pembelian'); ?>",
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#supplier_name_d').text(result.data.supplier_name);
+                    $('#no_po_d').text(result.data.nomor_po + ' - ' + result.data.tanggal_po);
+                    $('#nama_barang_jasa_d').text(result.data.nama_barang_jasa);
+                    $('#nilai_kontrak_d').text(result.data.nilai_kontrak);
+                    $('#nilai_tagihan_d').text(result.data.nilai_tagihan);
+                    $('#ppn_d').text(result.data.ppn);
+                    $('#pph_d').text(result.data.pph);
+                    $('#total_tagihan_d').text(result.data.total_tagihan);
+                    $('#tanggal_invoice_d').text(result.data.tanggal_invoice);
+                    $('#tanggal_diterima_proyek_d').text(result.data.tanggal_diterima_proyek);
+                    $('#tanggal_lolos_verifikasi_d').text(result.data.tanggal_lolos_verifikasi);
+                    $('#tanggal_diterima_office_d').text(result.data.tanggal_diterima_office);
+                    $('#metode_pembayaran_d').text(result.data.metode_pembayaran);
+                    $('#invoice_keterangan_d').text(result.data.invoice_keterangan);
+                    $('#kwitansi_keterangan_d').text(result.data.kwitansi_keterangan);
+                    $('#faktur_keterangan_d').text(result.data.faktur_keterangan);
+                    $('#bap_keterangan_d').text(result.data.bap_keterangan);
+                    $('#bast_keterangan_d').text(result.data.bast_keterangan);
+                    $('#surat_jalan_keterangan_d').text(result.data.surat_jalan_keterangan);
+                    $('#copy_po_keterangan_d').text(result.data.copy_po_keterangan);
+                    $('#catatan_d').text(result.data.catatan);
+                    $('#verifikator_d').text(result.data.verifikator);
+                    $('#verifikasi_penagihan_pembelian_id').val(result.data.id);
+                    if (result.data.invoice == 1) {
+                        $("#invoice_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#invoice_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.kwitansi == 1) {
+                        $("#kwitansi_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#kwitansi_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.faktur == 1) {
+                        $("#faktur_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#faktur_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.bap == 1) {
+                        $("#bap_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#bap_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.bast == 1) {
+                        $("#bast_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#bast_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.surat_jalan == 1) {
+                        $("#surat_jalan_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#surat_jalan_d").html('<i class="fa fa-close"></i>');
+                    }
+                    if (result.data.copy_po == 1) {
+                        $("#copy_po_d").html('<i class="fa fa-check"></i>');
+                    } else {
+                        $("#copy_po_d").html('<i class="fa fa-close"></i>');
+                    }
+
+
+                    if (result.data.invoice_file) {
+                        $('#lampiran_invoice').html('<a target="_blank" href="/' + result.data.invoice_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.kwitansi_file) {
+                        $('#lampiran_kwitansi').html('<a target="_blank" href="/' + result.data.kwitansi_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.faktur_file) {
+                        $('#lampiran_faktur').html('<a target="_blank" href="/' + result.data.faktur_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.bap_file) {
+                        $('#lampiran_bap').html('<a target="_blank" href="/' + result.data.bap_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.bast_file) {
+                        $('#lampiran_bast').html('<a target="_blank" href="/' + result.data.bast_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.surat_jalan_file) {
+                        $('#lampiran_surat_jalan').html('<a target="_blank" href="/' + result.data.surat_jalan_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+
+                    if (result.data.copy_po_file) {
+                        $('#lampiran_copy_po').html('<a target="_blank" href="/' + result.data.copy_po_file + '"><span class="fa fa-download"></span> Download</a>');
+                    }
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+    }
+
+    function getData(id) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pembelian/get_penagihan_pembelian'); ?>",
+            dataType: 'json',
+            data: {
+                id: id
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#penagihan_pembelian_id').val(result.data.id);
+                    $('#supplier_name').val(result.data.supplier_name);
+                    $('#no_po').val(result.data.no_po);
+                    $('#tanggal_po').val(result.data.tanggal_po);
+                    $('#nama_barang_jasa').val(result.data.nama_produk);
+                    $('#nilai_kontrak').val(result.data.nilai_kontrak);
+                    $('#nilai_tagihan').val(result.data.nilai_tagihan);
+                    $('#tanggal_invoice').val(result.data.tanggal_invoice);
+                    $('#ppn_tagihan').val(result.data.ppn);
+                    $('#pph_tagihan').val(result.data.pph);
+                    $('#total_tagihan').val(result.data.total);
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+    }
+
+    $('#form-verif-dok').submit(function(event) {
+        // $('#btn-form').button('loading');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pembelian/verif_dok_penagihan_pembelian'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: $(this).serialize(),
+            success: function(result) {
+                $('#btn-form').button('reset');
+                if (result.output) {
+                    $("#form-verif-dok").trigger("reset");
+                    table_tagihan.ajax.reload();
+                    $('#modalForm').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+
+        event.preventDefault();
+
+    });
+
+
+    function UploadDoc(id) {
+
+        $('#modalDoc').modal('show');
+        $('#id_doc').val(id);
+    }
+
+    function EditNoPo(id, no_po, status) {
+
+        $('#modalEditPo').modal('show');
+        $('#id_po').val(id);
+        $('#no_po_edit').val(no_po);
+        $('#change_status').val(status);
+    }
+
+
+    $('#modalDoc form').submit(function(event) {
+        $('#btn-form-doc').button('loading');
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/purchase_order/form_document'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-form-doc').button('reset');
+                if (result.output) {
+                    $("#modalDoc form").trigger("reset");
+                    table_po.ajax.reload();
+
+                    $('#modalDoc').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
                 }
             },
-            columns: [
-                {
-                    "data": "no"
-                },
-                {
-                    "data": "tanggal_invoice"
-                },
-                {
-                    "data": "nomor_invoice"
-                },
-                {
-                    "data": "supplier"
-                },
-                {
-                    "data": "tanggal_po"
-                },
-                {
-                    "data": "total"
-                },
-                {
-                    "data": "pembayaran"
-                },
-                {
-                    "data": "sisa_tagihan"
-                },
-                {
-                    "data": "status"
-                },
-                {
-                    "data": "verifikasi_dok"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                }
-            ],
-            "columnDefs": [
-                {
-                "targets": [0],
-                "className": 'text-center',
-                },
-                {
-                "targets": [6, 7, 8],
-                "className": 'text-right',
-                },
-            ],
-            responsive: true,
+            cache: false,
+            contentType: false,
+            processData: false
         });
 
+        event.preventDefault();
 
-        $('#btn_production').click(function() {
-            var data_receipt = table_receipt.rows({
-                selected: true
-            }).data();
-            var send_data = '';
-            bootbox.confirm("Apakah anda yakin untuk proses data ini ?", function(result) {
-                // console.log('This was logged in the callback: ' + result); 
-                if (result) {
-                    $.each(data_receipt, function(i, val) {
-                        send_data += val.id + ',';
-                    });
+    });
 
-                    window.location.href = '<?php echo site_url('pembelian/penagihan_pembelian/'); ?>' + send_data;
-                }
-            });
+    $('#modalEditPo form').submit(function(event) {
+        $('#btn-no_po').button('loading');
 
-        });
-        
-        $('#filter_date_4').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table_tagihan.ajax.reload();
-        });
-
-        function GetPO() {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/receipt_material/get_po_by_supp'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: {
-                    supplier_id: $('#filter_supplier_id').val(),
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#filter_po_id').empty();
-                        $('#filter_po_id').select2({
-                            data: result.data
-                        });
-                        $('#filter_po_id').trigger('change');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
         }
 
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/purchase_order/edit_no_po'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-no_po').button('reset');
+                if (result.output) {
+                    $("#modalEditPo form").trigger("reset");
+                    table_po.ajax.reload();
+                    // TableCustom();
 
-        $('#filter_supplier_id').on('select2:select', function(e) {
-            var data = e.params.data;
-            console.log(data);
-            table_receipt.ajax.reload();
-            //GetPO();
-
-            $('#filter_po_id option[data-client-id]').prop('disabled', true);
-            $('#filter_po_id option[data-client-id="' + data.id + '"]').prop('disabled', false);
-            $('#filter_po_id').select2('destroy');
-            $('#filter_po_id').select2();
-        });
-        $('#filter_po_id').change(function() {
-            table_receipt.ajax.reload();
-        });
-
-        function VerifDok(id) {
-
-            $('#modalForm').modal('show');
-            $('#id').val('');
-            // table_detail.ajax.reload();
-
-            $('#id').val(id);
-            getData(id);
-        }
-
-        function VerifDokDetail(id) {
-
-            $('#detailVerifForm').modal('show');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pembelian/get_verif_penagihan_pembelian'); ?>",
-                dataType: 'json',
-                data: {
-                    id: id
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#supplier_name_d').text(result.data.supplier_name);
-                        $('#no_po_d').text(result.data.nomor_po + ' - ' + result.data.tanggal_po);
-                        $('#nama_barang_jasa_d').text(result.data.nama_barang_jasa);
-                        $('#nilai_kontrak_d').text(result.data.nilai_kontrak);
-                        $('#nilai_tagihan_d').text(result.data.nilai_tagihan);
-                        $('#ppn_d').text(result.data.ppn);
-                        $('#tanggal_invoice_d').text(result.data.tanggal_invoice);
-                        $('#tanggal_diterima_proyek_d').text(result.data.tanggal_diterima_proyek);
-                        $('#tanggal_diterima_office_d').text(result.data.tanggal_diterima_office);
-                        $('#metode_pembayaran_d').text(result.data.metode_pembayaran);
-                        $('#invoice_keterangan_d').text(result.data.invoice_keterangan);
-                        $('#kwitansi_keterangan_d').text(result.data.kwitansi_keterangan);
-                        $('#faktur_keterangan_d').text(result.data.faktur_keterangan);
-                        $('#bap_keterangan_d').text(result.data.bap_keterangan);
-                        $('#bast_keterangan_d').text(result.data.bast_keterangan);
-                        $('#surat_jalan_keterangan_d').text(result.data.surat_jalan_keterangan);
-                        $('#copy_po_keterangan_d').text(result.data.copy_po_keterangan);
-                        $('#catatan_d').text(result.data.catatan);
-                        $('#verifikator_d').text(result.data.verifikator);
-                        $('#verifikasi_penagihan_pembelian_id').val(result.data.id);
-                        if (result.data.invoice == 1) {
-                            $("#invoice_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#invoice_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.kwitansi == 1) {
-                            $("#kwitansi_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#kwitansi_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.faktur == 1) {
-                            $("#faktur_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#faktur_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.bap == 1) {
-                            $("#bap_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#bap_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.bast == 1) {
-                            $("#bast_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#bast_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.surat_jalan == 1) {
-                            $("#surat_jalan_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#surat_jalan_d").html('<i class="fa fa-close"></i>');
-                        }
-                        if (result.data.copy_po == 1) {
-                            $("#copy_po_d").html('<i class="fa fa-check"></i>');
-                        } else {
-                            $("#copy_po_d").html('<i class="fa fa-close"></i>');
-                        }
-
-
-                        if (result.data.invoice_file) {
-                            $('#lampiran_invoice').html('<a target="_blank" href="/' + result.data.invoice_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.kwitansi_file) {
-                            $('#lampiran_kwitansi').html('<a target="_blank" href="/' + result.data.kwitansi_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.faktur_file) {
-                            $('#lampiran_faktur').html('<a target="_blank" href="/' + result.data.faktur_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.bap_file) {
-                            $('#lampiran_bap').html('<a target="_blank" href="/' + result.data.bap_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.bast_file) {
-                            $('#lampiran_bast').html('<a target="_blank" href="/' + result.data.bast_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.surat_jalan_file) {
-                            $('#lampiran_surat_jalan').html('<a target="_blank" href="/' + result.data.surat_jalan_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-
-                        if (result.data.copy_po_file) {
-                            $('#lampiran_copy_po').html('<a target="_blank" href="/' + result.data.copy_po_file + '"><span class="fa fa-download"></span> Download</a>');
-                        }
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
+                    $('#modalEditPo').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
                 }
-            });
-        }
-
-        function getData(id) {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pembelian/get_penagihan_pembelian'); ?>",
-                dataType: 'json',
-                data: {
-                    id: id
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#penagihan_pembelian_id').val(result.data.id);
-                        $('#supplier_name').val(result.data.supplier_name);
-                        $('#no_po').val(result.data.no_po);
-                        $('#tanggal_po').val(result.data.tanggal_po);
-						$('#nama_barang_jasa').val(result.data.nama_produk);
-                        $('#nilai_kontrak').val(result.data.total_po);
-                        $('#nilai_tagihan').val(result.data.total);
-                        $('#tanggal_invoice').val(result.data.tanggal_invoice);
-                        // $('#date_receipt_tagihan').val(result.data.date_receipt);
-                        $('#ppn_tagihan').val(result.data.ppn);
-                        $('#tanggal_po').val(result.data.date_po);
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-        }
-
-        $('#form-verif-dok').submit(function(event) {
-            // $('#btn-form').button('loading');
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pembelian/verif_dok_penagihan_pembelian'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: $(this).serialize(),
-                success: function(result) {
-                    $('#btn-form').button('reset');
-                    if (result.output) {
-                        $("#form-verif-dok").trigger("reset");
-                        table_tagihan.ajax.reload();
-                        $('#modalForm').modal('hide');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-
-            event.preventDefault();
-
+            },
+            cache: false,
+            contentType: false,
+            processData: false
         });
 
+        event.preventDefault();
 
-        function UploadDoc(id) {
-
-            $('#modalDoc').modal('show');
-            $('#id_doc').val(id);
-        }
-
-        function EditNoPo(id, no_po, status) {
-
-            $('#modalEditPo').modal('show');
-            $('#id_po').val(id);
-            $('#no_po_edit').val(no_po);
-            $('#change_status').val(status);
-        }
+    });
 
 
-        $('#modalDoc form').submit(function(event) {
-            $('#btn-form-doc').button('loading');
-
-            var form = $(this);
-            var formdata = false;
-            if (window.FormData) {
-                formdata = new FormData(form[0]);
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/purchase_order/form_document'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: formdata ? formdata : form.serialize(),
-                success: function(result) {
-                    $('#btn-form-doc').button('reset');
-                    if (result.output) {
-                        $("#modalDoc form").trigger("reset");
-                        table_po.ajax.reload();
-
-                        $('#modalDoc').modal('hide');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
-
-            event.preventDefault();
-
+    $(document).ready(function(e) {
+        $('.custom-file-select').click(function(e) {
+            $(this).closest('.custom-file').find('input[type="file"]').click();
         });
 
-        $('#modalEditPo form').submit(function(event) {
-            $('#btn-no_po').button('loading');
+        $('.custom-file-input').change(function(e) {
 
-            var form = $(this);
-            var formdata = false;
-            if (window.FormData) {
-                formdata = new FormData(form[0]);
-            }
+            let target = $(this).data('target');
+            let files = this.files;
 
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/purchase_order/edit_no_po'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: formdata ? formdata : form.serialize(),
-                success: function(result) {
-                    $('#btn-no_po').button('reset');
-                    if (result.output) {
-                        $("#modalEditPo form").trigger("reset");
-                        table_po.ajax.reload();
-                        // TableCustom();
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function() {
+                let temp = reader.result.split('base64,');
+                let param = files[0].name + '|' + temp[temp.length - 1];
+                $('#' + target).val(param);
+                $('#' + target).closest('.custom-file').find('.custom-file-select').hide();
+                $('#' + target).closest('.custom-file').find('.custom-file-remove').show();
+            };
 
-                        $('#modalEditPo').modal('hide');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
-
-            event.preventDefault();
-
+            reader.onerror = error => console.error(error);
         });
-   
-        $(document).ready(function(e) {
-            $('.custom-file-select').click(function(e) {
-                $(this).closest('.custom-file').find('input[type="file"]').click();
-            });
 
-            $('.custom-file-input').change(function(e) {
-
-                let target = $(this).data('target');
-                let files = this.files;
-
-                const reader = new FileReader();
-                reader.readAsDataURL(files[0]);
-                reader.onload = function() {
-                    let temp = reader.result.split('base64,');
-                    let param = files[0].name + '|' + temp[temp.length - 1];
-                    $('#' + target).val(param);
-                    $('#' + target).closest('.custom-file').find('.custom-file-select').hide();
-                    $('#' + target).closest('.custom-file').find('.custom-file-remove').show();
-                };
-
-                reader.onerror = error => console.error(error);
-            });
-
-            $('.custom-file-remove').click(function(e) {
-                $(this).closest('.custom-file').find('input[type="hidden"]').val('');
-                $(this).hide();
-                $(this).closest('.custom-file').find('.custom-file-select').show();
-            });
+        $('.custom-file-remove').click(function(e) {
+            $(this).closest('.custom-file').find('input[type="hidden"]').val('');
+            $(this).hide();
+            $(this).closest('.custom-file').find('.custom-file-select').show();
         });
+    });
     </script>
 
 </body>
