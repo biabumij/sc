@@ -279,40 +279,50 @@
 
                                 <div role="tabpanel" class="tab-pane" id="messages">
                                     <div class="row">
-                                    
-                                        <div class="col-sm-3">
-                                            <input type="text" id="filter_date" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <select id="filter_supplier_id" name="supplier_id" class="form-control select2">
-                                                <option value="">Pilih Rekanan</option>
-                                                <?php
-                                                foreach ($suppliers as $key => $supplier) {
-                                                ?>
-                                                    <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <select id="filter_po_id" name="purchase_order_id" class="form-control select2">
-                                                <option value="">Pilih PO</option>
-                                                <?php
-                                                foreach ($arr_po as $key => $po) {
-                                                ?>
-                                                    <option value="<?php echo $po['id']; ?>" data-client-id="<?= $po['supplier_id'] ?>" disabled><?php echo $po['no_po']; ?></option>
-                                                <?php
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="text-left">
-                                                <input type="hidden" id="val-receipt-id" name="">
-                                                <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
+                                        <form action="<?php echo site_url('pmm/receipt_material/cetak_surat_jalan');?>" method="GET" target="_blank">
+                                            <div class="col-sm-3">
+                                                <input type="text" id="filter_date" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
                                             </div>
-                                        </div>
+                                            <div class="col-sm-3">
+                                                <select id="filter_supplier_id" name="supplier_id" class="form-control select2">
+                                                    <option value="">Pilih Rekanan</option>
+                                                    <?php
+                                                    foreach ($suppliers as $key => $supplier) {
+                                                    ?>
+                                                        <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <select id="filter_po_id" name="purchase_order_id" class="form-control select2">
+                                                    <option value="">Pilih PO</option>
+                                                    <?php
+                                                    foreach ($arr_po as $key => $po) {
+                                                    ?>
+                                                        <option value="<?php echo $po['id']; ?>" data-client-id="<?= $po['supplier_id'] ?>" disabled><?php echo $po['no_po']; ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="text-left">
+                                                    <input type="hidden" id="val-receipt-id" name="">
+                                                    <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <br />
+                                            <div class="col-sm-3">
+                                                <div class="text-left">
+                                                    <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                                </div>    
+                                            </div>
+                                            <br />
+                                            <br />
+                                        </form>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped table-hover" id="table-receipt" style="width:100%;">

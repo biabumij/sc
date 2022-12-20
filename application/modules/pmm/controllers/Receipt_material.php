@@ -1669,6 +1669,59 @@ class Receipt_material extends CI_Controller {
 
 		echo json_encode(array('data'=>$data,'total'=>number_format($total,2,',','.')));		
 	}
+
+	public function cetak_surat_jalan()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',1); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('L');
+
+		$w_date = $this->input->get('filter_date');
+		$purchase_order_id = $this->input->get('purchase_order_id');
+		$supplier_id = $this->input->get('supplier_id');
+		$material_id = $this->input->get('material_id');
+		$this->db->select('prm.*,ppo.no_po, (prm.price  * prm.volume) as biaya, ppo.supplier_id');
+		$this->db->where('ppo.supplier_id',$supplier_id);
+		if(!empty($purchase_order_id)){
+			$this->db->where('prm.purchase_order_id',$purchase_order_id);
+		}
+		if(!empty($material_id) || $material_id != 0){
+			$this->db->where('prm.material_id',$material_id);
+		}
+		
+		if(!empty($w_date)){
+			$arr_date = explode(' - ', $w_date);
+			$start_date = $arr_date[0];
+			$end_date = $arr_date[1];
+			$this->db->where('prm.date_receipt  >=',date('Y-m-d',strtotime($start_date)));	
+			$this->db->where('prm.date_receipt <=',date('Y-m-d',strtotime($end_date)));	
+		}
+		$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
+		$this->db->order_by('prm.date_receipt','asc');
+		$this->db->order_by('prm.created_on','asc');
+		$query = $this->db->get('pmm_receipt_material prm');
+
+		$supplier_name = '';
+		if(!empty($supplier_id)){
+			$supplier_name = $this->crud_global->GetField('pmm_supplier',array('id'=>$supplier_id),'name');
+		}
+		$data['supplier_name'] = $supplier_name;
+		$data['data'] = $query->result_array();
+        $html = $this->load->view('pmm/receipt_material_print',$data,TRUE);
+
+        
+        $pdf->SetTitle($this->input->get('filter_date'));
+        $pdf->SetTitle('rekap_surat_jalan_pembelian');
+        $pdf->nsi_html($html);
+        $pdf->Output('rekap_surat_jalan_pembelian.pdf', 'I');
+	
+	}
 	
 
 }
