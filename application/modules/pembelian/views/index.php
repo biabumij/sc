@@ -332,7 +332,7 @@
                                                     <th class="text-center">Volume</th>
                                                     <th class="text-center">Status Pembayaran</th>
                                                     <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>   
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
