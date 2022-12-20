@@ -73,7 +73,7 @@
                             </div>
                             <div class="panel-content">
                                 <?php
-                                $arr_po = $this->db->order_by('date_po', 'desc')->get_where('pmm_purchase_order', array('status' => 'PUBLISH'))->result_array();
+                                $arr_po = $this->db->order_by('date_po', 'desc')->get_where('pmm_purchase_order')->result_array();
                                 $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
                                 $kategori  = $this->db->order_by('nama_kategori_produk', 'asc')->select('*')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
                                 ?>
