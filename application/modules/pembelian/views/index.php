@@ -1218,159 +1218,154 @@
 
     <script type="text/javascript">
 
-<!-- Script Pengiriman Pembelian -->
-
-        <script type="text/javascript">
-
-        var table_receipt = $('#table-receipt').DataTable({
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('pmm/receipt_material/table_detail'); ?>',
-                type: 'POST',
-                data: function(d) {
-                    d.purchase_order_id = $('#filter_po_id').val();
-                    d.supplier_id = $('#filter_supplier_id').val();
-                    d.filter_date = $('#filter_date').val();
-                    d.material_id = $('#filter_material').val();
-                }
+    var table_receipt = $('#table-receipt').DataTable({
+        ajax: {
+            processing: true,
+            serverSide: true,
+            url: '<?php echo site_url('pmm/receipt_material/table_detail'); ?>',
+            type: 'POST',
+            data: function(d) {
+                d.purchase_order_id = $('#filter_po_id').val();
+                d.supplier_id = $('#filter_supplier_id').val();
+                d.filter_date = $('#filter_date').val();
+                d.material_id = $('#filter_material').val();
+            }
+        },
+        "language": {
+            processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+        },
+        columns: [{
+                "data": "checkbox"
             },
-            "language": {
-                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+            {
+                "data": "no"
             },
-            columns: [{
-                    "data": "checkbox"
-                },
-                {
-                    "data": "no"
-                },
-                {
-                    "data": "date_receipt"
-                },
-                {
-                    "data": "supplier_name"
-                },
-				{
-                    "data": "no_po"
-                },
-                {
-                    "data": "surat_jalan"
-                },
-                {
-                    "data": "no_kendaraan"
-                },
-                {
-                    "data": "driver"
-                },
-                {
-                    "data": "surat_jalan_file"
-                },
-                {
-                    "data": "material_name"
-                },
-                {
-                    "data": "display_measure"
-                },
-                {
-                    "data": "display_volume"
-                },
-                {
-                    "data": "status_payment"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                }
-            ],
-            select: {
-                style: 'multi'
+            {
+                "data": "date_receipt"
             },
-            responsive: true,
-            paging : false,
-            "columnDefs": [{
-                    "targets": [0],
-                    "orderable": false,
-                    "className": 'select-checkbox',
-                },
-                {
-                    "targets": [1, 2, 6, 7, 8, 9, 10, 13, 14],
-                    "className": 'text-center',
-                },
-				{
-                    "targets": [11, 12],
-                    "className": 'text-right',
+            {
+                "data": "supplier_name"
+            },
+            {
+                "data": "no_po"
+            },
+            {
+                "data": "surat_jalan"
+            },
+            {
+                "data": "no_kendaraan"
+            },
+            {
+                "data": "driver"
+            },
+            {
+                "data": "surat_jalan_file"
+            },
+            {
+                "data": "material_name"
+            },
+            {
+                "data": "display_measure"
+            },
+            {
+                "data": "display_volume"
+            },
+            {
+                "data": "status_payment"
+            },
+            {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            }
+        ],
+        select: {
+            style: 'multi'
+        },
+        responsive: true,
+        "columnDefs": [{
+                "targets": [0],
+                "orderable": false,
+                "className": 'select-checkbox',
+            },
+            {
+                "targets": [1, 2, 6, 7, 8, 9, 10, 13, 14],
+                "className": 'text-center',
+            },
+            {
+                "targets": [11, 12],
+                "className": 'text-right',
+            }
+        ],
+        "footerCallback": function(row, data, start, end, display) {
+            var api = this.api(),
+                data;
+
+            // Remove the formatting to get integer data for summation
+            var intVal = function(i) {
+                return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                    i : 0;
+            };
+
+            // Total over all pages
+            total = api
+                .column(11)
+                .data()
+                .reduce(function(a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+
+            // Update footer
+            $(api.column(11).footer()).html($.number(total, 0, ',', '.'));
+        }
+    });
+
+    $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_receipt.ajax.reload();
+    });
+
+    function GetPO() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/receipt_material/get_po_by_supp'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: {
+                supplier_id: $('#filter_supplier_id').val(),
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#filter_po_id').empty();
+                    $('#filter_po_id').select2({
+                        data: result.data
+                    });
+                    $('#filter_po_id').trigger('change');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
                 }
-            ],
-            "footerCallback": function(row, data, start, end, display) {
-                var api = this.api(),
-                    data;
-
-                // Remove the formatting to get integer data for summation
-                var intVal = function(i) {
-                    return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '')*1 :
-                        typeof i === 'number' ?
-                        i : 0;
-                };
-
-                // Total over all pages
-                total = api
-                    .column(11)
-                    .data()
-                    .reduce(function(a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-
-                // Update footer
-                $(api.column(11).footer()).html($.number(total, 0, ',', '.'));
             }
         });
+    }
 
-        $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            table_receipt.ajax.reload();
-        });
+    $('#filter_supplier_id').on('select2:select', function(e) {
+        var data = e.params.data;
+        console.log(data);
+        table_receipt.ajax.reload();
+        //GetPO();
 
-        function GetPO() {
-            $.ajax({
-                type: "POST",
-                url: "<?php echo site_url('pmm/receipt_material/get_po_by_supp'); ?>/" + Math.random(),
-                dataType: 'json',
-                data: {
-                    supplier_id: $('#filter_supplier_id').val(),
-                },
-                success: function(result) {
-                    if (result.data) {
-                        $('#filter_po_id').empty();
-                        $('#filter_po_id').select2({
-                            data: result.data
-                        });
-                        $('#filter_po_id').trigger('change');
-                    } else if (result.err) {
-                        bootbox.alert(result.err);
-                    }
-                }
-            });
-        }
+        $('#filter_po_id option[data-client-id]').prop('disabled', true);
+        $('#filter_po_id option[data-client-id="' + data.id + '"]').prop('disabled', false);
+        $('#filter_po_id').select2('destroy');
+        $('#filter_po_id').select2();
+    });
+    $('#filter_po_id').change(function() {
+        table_receipt.ajax.reload();
+    });
 
-        $('#filter_supplier_id').on('select2:select', function(e) {
-            var data = e.params.data;
-            console.log(data);
-            table_receipt.ajax.reload();
-            //GetPO();
-
-            $('#filter_po_id option[data-client-id]').prop('disabled', true);
-            $('#filter_po_id option[data-client-id="' + data.id + '"]').prop('disabled', false);
-            $('#filter_po_id').select2('destroy');
-            $('#filter_po_id').select2();
-        });
-        $('#filter_po_id').change(function() {
-            table_receipt.ajax.reload();
-        });
-		
-        </script>
+    </script>
     
 	<!-- Script Tagihan Pembelian -->
 
@@ -1438,7 +1433,6 @@
             },
         ],
         responsive: true,
-        paging : false,
     });
 
 

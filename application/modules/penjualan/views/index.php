@@ -193,7 +193,7 @@
                                                     <tbody>
 
                                                     </tbody>
-													<!--<tfoot>
+                                                    <!--<tfoot>
                                                         <th colspan="6" style="text-align:right">TOTAL</th>
                                                         <th></th>
                                                         <th></th>
@@ -492,6 +492,63 @@
 			
         });
 
+        $('#filter_supplier_id').on('select2:select', function(e) {
+            var data = e.params.data;
+            console.log(data);
+            tableProduction.ajax.reload();
+
+            $('#sales_po_id option[data-client-id]').prop('disabled', true);
+            $('#sales_po_id option[data-client-id="' + data.id + '"]').prop('disabled', false);
+            $('#sales_po_id').select2('destroy');
+            $('#sales_po_id').select2();
+        });
+
+        $('.dtpicker').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: 'DD/MM/YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            showDropdowns: true,
+        });
+        
+        $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            tableProduction.ajax.reload();
+        });
+
+        $('#sales_po_id').change(function() {
+            tableProduction.ajax.reload();
+        });
+
+        $('#btn_production').click(function() {
+            var data_receipt = tableProduction.rows({
+                selected: true
+            }).data();
+            var send_data = '';
+            if (data_receipt.length > 0) {
+                bootbox.confirm("Apakah anda yakin untuk proses data ini ?", function(result) {
+                    // console.log('This was logged in the callback: ' + result); 
+                    if (result) {
+                        $.each(data_receipt, function(i, val) {
+                            send_data += val.id + ',';
+                        });
+
+                        window.location.href = '<?php echo site_url('penjualan/penagihan_penjualan/'); ?>' + send_data;
+                    }
+                });
+            } else {
+                bootbox.alert('Pilih Surat Jalan Terlebih Dahulu');
+            }
+        });
+
         var table = $('#table-penagihan').DataTable({
             ajax: {
                 processing: true,
@@ -555,36 +612,6 @@
             responsive: true,
         });
 
-        $('#filter_supplier_id').on('select2:select', function(e) {
-            var data = e.params.data;
-            console.log(data);
-            tableProduction.ajax.reload();
-
-            $('#sales_po_id option[data-client-id]').prop('disabled', true);
-            $('#sales_po_id option[data-client-id="' + data.id + '"]').prop('disabled', false);
-            $('#sales_po_id').select2('destroy');
-            $('#sales_po_id').select2();
-        });
-
-        $('.dtpicker').daterangepicker({
-            autoUpdateInput: false,
-            locale: {
-                format: 'DD/MM/YYYY'
-            },
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            showDropdowns: true,
-        });
-        $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            tableProduction.ajax.reload();
-        });
 		$('#filter_date_tagihan').daterangepicker({
             autoUpdateInput: false,
             locale: {
@@ -600,36 +627,11 @@
             },
             showDropdowns: true,
         });
-
 		$('#filter_date_tagihan').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
             table.ajax.reload();
         });
 
-        $('#sales_po_id').change(function() {
-            tableProduction.ajax.reload();
-        });
-
-        $('#btn_production').click(function() {
-            var data_receipt = tableProduction.rows({
-                selected: true
-            }).data();
-            var send_data = '';
-            if (data_receipt.length > 0) {
-                bootbox.confirm("Apakah anda yakin untuk proses data ini ?", function(result) {
-                    // console.log('This was logged in the callback: ' + result); 
-                    if (result) {
-                        $.each(data_receipt, function(i, val) {
-                            send_data += val.id + ',';
-                        });
-
-                        window.location.href = '<?php echo site_url('penjualan/penagihan_penjualan/'); ?>' + send_data;
-                    }
-                });
-            } else {
-                bootbox.alert('Pilih Surat Jalan Terlebih Dahulu');
-            }
-        });
     </script>
 
 </body>
