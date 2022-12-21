@@ -564,7 +564,6 @@
         }
 
         $('#sales_po_id').change(function(){
-    
         $('#sales_po_id').val($(this).val());
             tableProduction.ajax.reload();
             SelectMatByPo();

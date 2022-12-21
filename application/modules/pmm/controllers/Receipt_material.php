@@ -558,8 +558,9 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('prm.material_id');
 		$this->db->order_by('p.nama_produk','nama');
 		$query = $this->db->get()->result_array();
-		$data = [];
 		
+		$data[0]['id'] = '0';
+		$data[0]['text'] = 'Pilih Produk';
 		if (!empty($query)){
 			foreach ($query as $row){
 				$data[] = ['id' => $row['id_new'], 'text' => $row['nama_produk']];
@@ -1725,8 +1726,9 @@ class Receipt_material extends CI_Controller {
 			$this->db->where('prm.date_receipt <=',date('Y-m-d',strtotime($end_date)));	
 		}
 		$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
+		$this->db->group_by('prm.id');
 		$this->db->order_by('prm.date_receipt','asc');
-		$this->db->order_by('prm.created_on','asc');
+		$this->db->order_by('prm.material_id','asc');
 		$query = $this->db->get('pmm_receipt_material prm');
 
 		$supplier_name = '';

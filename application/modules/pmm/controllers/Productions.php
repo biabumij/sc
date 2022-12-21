@@ -1135,7 +1135,7 @@ class Productions extends Secure_Controller {
 		$filter_date = false;
 
 
-		$this->db->select('pp.*,pc.nama,ppr.product');
+		$this->db->select('pp.*,pc.nama,ppr.product, p.nama_produk');
 		if(!empty($client_id)){
 			$this->db->where('pp.client_id',$client_id);
 		}
@@ -1155,9 +1155,10 @@ class Productions extends Secure_Controller {
 		}
 		$this->db->join('pmm_product ppr','pp.product_id = ppr.id','left');
 		$this->db->join('penerima pc','pp.client_id = pc.id','left');
-		$this->db->order_by('pp.date_production','asc');
-		$this->db->order_by('pp.created_on','asc');
+		$this->db->join('produk p','pp.product_id = p.id','left');
 		$this->db->group_by('pp.id');
+		$this->db->order_by('pp.date_production','asc');
+		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_productions pp');
 		
 
@@ -1183,8 +1184,9 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('pp.product_id');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get()->result_array();
-		$data = [];
 		
+		$data[0]['id'] = '0';
+		$data[0]['text'] = 'Pilih Produk';
 		if (!empty($query)){
 			foreach ($query as $row){
 				$data[] = ['id' => $row['id_new'], 'text' => $row['nama_produk']];
