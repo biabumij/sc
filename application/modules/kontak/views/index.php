@@ -180,7 +180,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0],
@@ -209,7 +208,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0],
@@ -238,7 +236,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0],
@@ -267,7 +264,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0],

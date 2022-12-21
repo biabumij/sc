@@ -231,7 +231,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0,2,3,4],
@@ -258,7 +257,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0,2,3,4],
@@ -285,7 +283,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0,2,3,4],
@@ -312,7 +309,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0,2,3,4],
@@ -340,7 +336,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0,2,3,4],
@@ -367,7 +362,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0,2,3,4],
@@ -394,7 +388,6 @@
                 { "data": "created_on"}
             ],
             responsive: true,
-            pageLength : 25,
             "columnDefs": [
                 {
                     "targets": [0,2,3,4],

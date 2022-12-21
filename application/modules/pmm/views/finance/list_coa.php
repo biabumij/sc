@@ -174,7 +174,6 @@
                 }
             ],
             responsive: true,
-            paging : false
         });
 
 
