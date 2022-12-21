@@ -245,7 +245,7 @@
                                 <div role="tabpanel" class="tab-pane" id="profile">
                                     <div class="table-responsive">
                                         <div class="col-sm-3">
-                                                <input type="text" id="filter_date_3" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
+                                            <input type="text" id="filter_date_3" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
                                         </div>
                                         <br />
                                         <br />
@@ -980,6 +980,7 @@
                 }
             ],
             responsive: true,
+            //paging : false,
         });
 
         $('#filter_date_2').on('apply.daterangepicker', function(ev, picker) {
@@ -1051,6 +1052,7 @@
                 }
             ],
             responsive: true,
+            //paging : false,
         });
 
         $('#filter_status').change(function(){
@@ -1218,6 +1220,7 @@
                     }
                  ],
                 responsive: true,
+                //paging : false,
         });
 
         $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
@@ -1296,6 +1299,7 @@
             style: 'multi'
         },
         responsive: true,
+        //paging : false,
         "columnDefs": [{
                 "targets": [0],
                 "orderable": false,
@@ -1480,6 +1484,7 @@
             },
         ],
         responsive: true,
+        //paging : false,
     });
 
 

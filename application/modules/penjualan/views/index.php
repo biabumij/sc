@@ -329,6 +329,7 @@
 				}
 			],
             responsive: true,
+            //paging : false,
         });
 
         $('#filter_date_penawaran').on('apply.daterangepicker', function(ev, picker) {
@@ -397,6 +398,7 @@
                 }
             ],
             responsive: true,
+            //paging : false,
         });
 
         $('#filter_date_sales_order').on('apply.daterangepicker', function(ev, picker) {
@@ -461,6 +463,7 @@
                 style: 'multi'
             },
             responsive: true,
+            //paging : false,
             "columnDefs": [
 				{
                     "targets": [0],
@@ -657,6 +660,7 @@
                 },
             ],
             responsive: true,
+            //paging : false,
         });
 
 		$('#filter_date_tagihan').daterangepicker({
