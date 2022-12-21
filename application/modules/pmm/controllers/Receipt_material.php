@@ -546,6 +546,28 @@ class Receipt_material extends CI_Controller {
 		//echo json_encode(array('data'=>$data,'last_po'=>$last_po));	
 		echo json_encode(array('data'=>$data));
 	}
+
+	function get_mat_pembelian()
+	{
+		$data = array();
+		$purchase_order_id = $this->input->post('purchase_order_id');
+		$this->db->select('prm.material_id as id_new, p.nama_produk');
+		$this->db->from('pmm_receipt_material prm');
+		$this->db->join('produk p','prm.material_id = p.id','left');
+		$this->db->where('prm.purchase_order_id',$purchase_order_id);
+		$this->db->group_by('prm.material_id');
+		$this->db->order_by('p.nama_produk','nama');
+		$query = $this->db->get()->result_array();
+		$data = [];
+		
+		if (!empty($query)){
+			foreach ($query as $row){
+				$data[] = ['id' => $row['id_new'], 'text' => $row['nama_produk']];
+			}
+		}
+		
+		echo json_encode(array('data'=>$data));
+	}
 	
 	function get_po_by_supp_jasa()
 	{

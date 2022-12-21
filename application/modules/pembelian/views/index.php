@@ -308,17 +308,19 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-3">
-                                                <div class="text-left">
-                                                    <input type="hidden" id="val-receipt-id" name="">
-                                                    <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
-                                                </div>
+                                                <select id="material_id" name="material_id" class="form-control select2"">
+                                                    <option value="">Pilih Produk</option>
+                                                    
+                                                </select>
                                             </div>
                                             <br />
                                             <br />
                                             <div class="col-sm-3">
                                                 <div class="text-left">
+                                                    <input type="hidden" id="val-receipt-id" name="">
+                                                    <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
                                                     <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
-                                                </div>    
+                                                </div>
                                             </div>
                                             <br />
                                             <br />
@@ -1238,7 +1240,7 @@
                 d.purchase_order_id = $('#filter_po_id').val();
                 d.supplier_id = $('#filter_supplier_id').val();
                 d.filter_date = $('#filter_date').val();
-                d.material_id = $('#filter_material').val();
+                d.material_id = $('#material_id').val();
             }
         },
         "language": {
@@ -1371,7 +1373,42 @@
         $('#filter_po_id').select2('destroy');
         $('#filter_po_id').select2();
     });
+
     $('#filter_po_id').change(function() {
+        table_receipt.ajax.reload();
+    });
+
+    function SelectMatByPo() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/receipt_material/get_mat_pembelian'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: {
+                purchase_order_id: $('#filter_po_id').val(),
+                material_id: $('#material_id').val(),
+            },
+            success: function(result) {
+                if (result.data) {
+                    $('#material_id').empty();
+                    $('#material_id').select2({
+                        data: result.data
+                    });
+                    $('#material_id').trigger('change');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            }
+        });
+    }
+
+    $('#filter_po_id').change(function(){
+ 
+    $('#filter_po_id').val($(this).val());
+        table_receipt.ajax.reload();
+        SelectMatByPo();
+    });
+
+    $('#material_id').change(function() {
         table_receipt.ajax.reload();
     });
 

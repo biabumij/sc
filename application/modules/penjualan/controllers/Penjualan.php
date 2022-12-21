@@ -771,6 +771,7 @@ class Penjualan extends Secure_Controller
 
 		$sales_po_id = $this->input->post('sales_po_id');
 		$supplier_id = $this->input->post('supplier_id');
+		$product_id = $this->input->post('product_id');
 		$filter_date = $this->input->post('filter_date');
 
 		if (!empty($supplier_id)) {
@@ -778,6 +779,9 @@ class Penjualan extends Secure_Controller
 		}
 		if (!empty($sales_po_id)) {
 			$this->db->where('salesPo_id', $sales_po_id);
+		}
+		if (!empty($product_id)) {
+			$this->db->where('product_id', $product_id);
 		}
 		if (!empty($filter_date)) {
 			$arr_date = explode(' - ', $filter_date);

@@ -7,27 +7,24 @@
 	  <style type="text/css">
 	  	body{
 	  		font-family: "Open Sans", Arial, sans-serif;
+			font-size: 7px;
+			color: #000000;
 	  	}
 	  	table.minimalistBlack {
 		  border: 0px solid #000000;
-		  width: 100%;
 		  text-align: left;
 		}
 		table.minimalistBlack td, table.minimalistBlack th {
-		  border: 1px solid #000000;
-		  /*padding: 5px 4px;*/
+		  border: 0px solid #000000;
 		}
 		table.minimalistBlack tr td {
-		  /*font-size: 13px;*/
 		  text-align:center;
 
 		}
 		table.minimalistBlack tr th {
-		  /*font-size: 14px;*/
 		  font-weight: bold;
-		  color: #000000;
-		  text-align: center;
-		  padding: 10px;
+		  background-color: #cccccc;
+		  text-transform: uppercase;
 		}
 		hr{
 			margin-top:0;
@@ -40,10 +37,10 @@
 
 	</head>
 	<body>
-		<table width="98%" border="0" cellpadding="2">
+		<table width="98%" border="0" cellpadding="1">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 16px;">PENJUALAN</div>
+					<div style="display: block;font-weight: bold;font-size: 16px;">PENGIRIMAN</div>
 				</td>
 			</tr>
 			<?php
@@ -62,20 +59,19 @@
 		<br />
 		<table class="minimalistBlack" cellpadding="1" width="98%">
 			<tr>
-                <th width="3%">No</th>
-                <th width="7%">Tanggal</th>
-				<th width="10%">No. Sales Order</th>
-                <th width="10%">No. Surat Jalan</th>
-				<th width="10%">No. Kendaraan</th>
-				<th width="10%">Supir</th>
-                <th width="10%">Produk</th>
-                <th width="10%">Satuan</th>
-                <th width="10%">Volume</th>
-				<th width="10%">Harga Satuan</th>
-				<th width="10%">Nilai</th>
+                <th align="center" width="3%">No</th>
+                <th align="center" width="7%">Tanggal</th>
+				<th align="center" width="18%">No. Sales Order</th>
+                <th align="center" width="10%">No. Surat Jalan</th>
+				<th align="center" width="10%">No. Kendaraan</th>
+				<th align="center" width="10%">Supir</th>
+                <th align="center" width="10%">Produk</th>
+                <th align="center" width="10%">Satuan</th>
+                <th align="center" width="6%">Volume</th>
+				<th align="center" width="8%">Harga Satuan</th>
+				<th align="center" width="8%">Nilai</th>
             </tr>
             <?php
-            
             $total = 0;
 			$total_nilai = 0;
             if(!empty($data)){
@@ -83,14 +79,13 @@
             	$total_by_date = 0;
 				$total_nilai_by_date = 0;
             	foreach ($data as $key => $row) {
-
             		if($date !== false && $row['date_production'] != $date){
             			?>
 	            		<tr>
-	            			<th colspan="8" style="text-align:right">TOTAL <?php echo date('d F Y',strtotime($date));?></th>
-              				<td style="text-align:center;"><?php echo number_format($total_by_date,2,',','.');?></td>
-							<td></td>
-							<td><?php echo number_format($total_nilai_by_date,0,',','.');?></td>
+	            			<th colspan="8" style="text-align:right;"><div style="text-transform:uppercase;">TOTAL (<?php echo date('d-m-Y',strtotime($date));?>)</div></th>
+              				<th style="text-align:center;"><?php echo number_format($total_by_date,2,',','.');?></th>
+							<th></th>
+							<th style="text-align:right;"><?php echo number_format($total_nilai_by_date,0,',','.');?></th>
 	            		</tr>
 	            		<?php
 	            		$total_by_date = 0;
@@ -109,18 +104,17 @@
             			<td><?php echo $row['product_id'] = $this->crud_global->GetField('produk',array('id'=>$row['product_id']),'nama_produk');?></td>
             			<td><?php echo $row['measure'];?></td>
 						<td><?php echo number_format($row['volume'],2,',','.');?></td>
-                 		<td><?php echo number_format($row['harga_satuan'],0,',','.');?></td>
-						 <td><?php echo number_format($row['price'],0,',','.');?></td>
+                 		<td style="text-align:right;"><?php echo number_format($row['harga_satuan'],0,',','.');?></td>
+						<td style="text-align:right;"><?php echo number_format($row['price'],0,',','.');?></td>
             		</tr>
             		<?php
-
             		if($key == count($data) - 1){
             			?>
 	            		<tr>
-	            			<th colspan="8" style="text-align:right">TOTAL <?= convertDateDBtoIndo($row["date_production"]); ?></th>
-              				<td><?php echo number_format($total_by_date,2,',','.');?></td>
-							<td></td>
-							<td><?php echo number_format($total_nilai_by_date,0,',','.');?></td>
+	            			<th colspan="8" style="text-align:right;"><div style="text-transform:uppercase;">TOTAL (<?php echo date('d-m-Y',strtotime($date));?>)</div></th>
+              				<th style="text-align:center;"><?php echo number_format($total_by_date,2,',','.');?></th>
+							<th></th>
+							<th style="text-align:right;"><?php echo number_format($total_nilai_by_date,0,',','.');?></th>
 	            		</tr>
 	            		<?php
 	            		$total_by_date = 0;
@@ -128,24 +122,17 @@
             		}
             		
             		$date = $row['date_production'];
-            		
             		$total += $row['volume'];
 					$total_nilai += $row['price'];
             	}
             }
             ?>	
            	<tr>
-               <th colspan="8" style="text-align:right">TOTAL</th>
-               <td><?php echo number_format($total,2,',','.');?></td>
-			   <td></td>
-			   <td><?php echo number_format($total_nilai,0,',','.');?></td>
+               <th colspan="8" style="text-align:right;">TOTAL</th>
+               <th style="text-align:center;"><?php echo number_format($total,2,',','.');?></th>
+			   <th></th>
+			   <th style="text-align:right;"><?php echo number_format($total_nilai,0,',','.');?></th>
            </tr>
-           
-          
 		</table>
-
-			
-		
-
 	</body>
 </html>

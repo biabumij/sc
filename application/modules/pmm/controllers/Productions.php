@@ -1114,5 +1114,84 @@ class Productions extends Secure_Controller {
 		'total_jumlah_sisa_piutang'=>number_format($total_jumlah_sisa_piutang,0,',','.')
 	));	
 	}
+
+	public function cetak_surat_jalan()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetTopMargin(5);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('L');
+
+		$w_date = $this->input->get('filter_date');
+		$product_id = $this->input->get('product_id');
+		$client_id = $this->input->get('supplier_id');
+		$salesPo_id = $this->input->get('sales_po_id');
+		$filter_date = false;
+
+
+		$this->db->select('pp.*,pc.nama,ppr.product');
+		if(!empty($client_id)){
+			$this->db->where('pp.client_id',$client_id);
+		}
+		if(!empty($product_id) || $product_id != 0){
+			$this->db->where('pp.product_id',$product_id);
+		}
+		if(!empty($salesPo_id) || $salesPo_id != 0){
+			$this->db->where('pp.salesPo_id',$salesPo_id);
+		}
+		if(!empty($w_date)){
+			$arr_date = explode(' - ', $w_date);
+			$start_date = $arr_date[0];
+			$end_date = $arr_date[1];
+			$this->db->where('pp.date_production  >=',date('Y-m-d',strtotime($start_date)));	
+			$this->db->where('pp.date_production <=',date('Y-m-d',strtotime($end_date)));	
+			$filter_date = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		}
+		$this->db->join('pmm_product ppr','pp.product_id = ppr.id','left');
+		$this->db->join('penerima pc','pp.client_id = pc.id','left');
+		$this->db->order_by('pp.date_production','asc');
+		$this->db->order_by('pp.created_on','asc');
+		$this->db->group_by('pp.id');
+		$query = $this->db->get('pmm_productions pp');
+		
+
+		$data['data'] = $query->result_array();
+		$data['filter_date'] = $filter_date;
+        $html = $this->load->view('pmm/productions_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('rekap_surat_jalan_penjualan');
+        $pdf->nsi_html($html);
+        $pdf->Output('rekap_surat_jalan_penjualan.pdf', 'I');
+	
+	}
+
+	function get_mat_penjualan()
+	{
+		$data = array();
+		$sales_po_id = $this->input->post('sales_po_id');
+		$this->db->select('pp.salesPo_id as po_id, pp.product_id as id_new, p.nama_produk');
+		$this->db->from('pmm_productions pp');
+		$this->db->join('produk p','pp.product_id = p.id','left');
+		$this->db->where('pp.salesPo_id',$sales_po_id);
+		$this->db->group_by('pp.product_id');
+		$this->db->order_by('p.nama_produk','asc');
+		$query = $this->db->get()->result_array();
+		$data = [];
+		
+		if (!empty($query)){
+			foreach ($query as $row){
+				$data[] = ['id' => $row['id_new'], 'text' => $row['nama_produk']];
+			}
+		}
+		
+		echo json_encode(array('data'=>$data));
+	}
 	
 }
