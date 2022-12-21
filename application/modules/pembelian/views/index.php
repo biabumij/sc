@@ -318,8 +318,8 @@
                                             <div class="col-sm-3">
                                                 <div class="text-left">
                                                     <input type="hidden" id="val-receipt-id" name="">
-                                                    <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
                                                     <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                                    <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
                                                 </div>
                                             </div>
                                             <br />

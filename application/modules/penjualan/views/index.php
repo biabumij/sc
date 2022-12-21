@@ -175,8 +175,8 @@
                                                 <br />
                                                 <div class="col-sm-3">
                                                     <div class="text-left">
-                                                        <button type="button" id="btn_production" class="btn btn-success">Penagihan Penjualan</button>
                                                         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                                        <button type="button" id="btn_production" class="btn btn-success">Penagihan Penjualan</button>
                                                     </div>
                                                 </div>
                                                 <br />
