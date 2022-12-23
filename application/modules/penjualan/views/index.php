@@ -232,10 +232,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th class="text-center">Tanggal Invoice</th>
-                                                        <th class="text-center">Nomor</th>
+                                                        <th class="text-center">Tgl. Invoice</th>
+                                                        <th class="text-center">No. Invoice</th>
                                                         <th class="text-center">Pelanggan</th>
-                                                        <th class="text-center">Tanggal Sales Order</th>
+                                                        <th class="text-center">Tgl. Sales Order</th>
                                                         <th class="text-center">No. Sales Order</th>
                                                         <th class="text-center">Jenis Pekerjaan</th>
                                                         <th class="text-center">Total</th>
