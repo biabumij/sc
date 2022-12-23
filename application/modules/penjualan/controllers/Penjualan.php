@@ -844,7 +844,7 @@ class Penjualan extends Secure_Controller
 				$row['sisa_tagihan'] = number_format($row['total'] - $pembayaran, 0, ',', '.');
 				$row['tanggal_invoice'] = date('d/m/Y', strtotime($row['tanggal_invoice']));
 				$row['tanggal_kontrak'] = date('d/m/Y', strtotime($row['tanggal_kontrak']));
-				$row['sales_po_id'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$row['sales_po_id']),'nomor_kontrak');
+				$row['sales_po_id'] = $this->crud_global->GetField('pmm_sales_po',array('id'=>$row['sales_po_id']),'contract_number');
 				$row['status_tagihan'] = $this->pmm_model->GetStatus2($row['status']);
 				
 				if ($row["status"] === "OPEN") {
