@@ -236,6 +236,7 @@
                                                         <th class="text-center">Nomor</th>
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Tanggal Sales Order</th>
+                                                        <th class="text-center">No. Sales Order</th>
                                                         <th class="text-center">Jenis Pekerjaan</th>
                                                         <th class="text-center">Total</th>
                                                         <th class="text-center">Pembayaran</th>
@@ -621,6 +622,9 @@
                     "data": "nama_pelanggan"
                 },
                 {
+                    "data": "tanggal_invoice"
+                },
+                {
                     "data": "tanggal_kontrak"
                 },
                 {
@@ -650,11 +654,11 @@
 
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4, 5, 9, 10, 11, 12],
+                    "targets": [0, 1, 4, 5, 6, 9, 10, 11, 12, 13],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [ 6, 7, 8],
+                    "targets": [ 7, 8, 9],
                     "className": 'text-right',
                 },
             ],
