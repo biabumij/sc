@@ -622,10 +622,10 @@
                     "data": "nama_pelanggan"
                 },
                 {
-                    "data": "tanggal_invoice"
+                    "data": "tanggal_kontrak"
                 },
                 {
-                    "data": "tanggal_kontrak"
+                    "data": "sales_po_id"
                 },
                 {
                     "data": "jenis_pekerjaan"
