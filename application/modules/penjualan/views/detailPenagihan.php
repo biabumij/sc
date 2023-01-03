@@ -362,7 +362,7 @@
                                                                 <td><?= $sj['product']; ?></td>
                                                                 <td><?= $sj['nopol_truck']; ?></td>
                                                                 <td><?= $sj['driver']; ?></td>
-                                                                <td style="text-align: right !important;"><?= number_format($sj['volume'],2,',','.'); ?></td>
+                                                                <td style="text-align: right !important;"><?= number_format($sj['volume'],4,',','.'); ?></td>
                                                                 <td><?= $sj['measure']; ?></td>
                                                             </tr>
                                                     <?php  
