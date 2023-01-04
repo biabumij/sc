@@ -185,53 +185,39 @@
 				<td width="90%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
-							<td align="center" colspan="2">
+							<td align="center" >
 								Disetujui Oleh
 							</td>
-							<td align="center" colspan="2">
+							<td align="center">
 								Diperiksa Oleh
 							</td>
-							<td align="center" >
+							<td align="center">
 								Dibuat Oleh
-							</td>	
+							</td>
 						</tr>
 						<tr class="">
 							<td align="center" height="55px">
-								
+							
 							</td>
 							<td align="center">
-								
+							
 							</td>
 							<td align="center">
-								
-							</td>
-							<td align="center">
-								
-							</td>
-							<td align="center">
-								
+							
 							</td>
 						</tr>
 						<tr>
+							<td align="center">
+								<b><u>Hadi Sucipto</u><br />
+								Ka. Unit Bisnis</b>
+							</td>
+							<td align="center">
+								<b><u>Vicky Irwana Yudha</u><br />
+								 Ka. Logistik</b>
+							</td>
 							<td align="center" >
-								<b><u>Gervasius K. Limahekin</u><br />
-								Ka. Plant</b>
-							</td>
-							<td align="center" >
 								<b><br />
-								Ass. Ka. Plant</b>
-							</td>
-							<td align="center">
-								<b><br />
-								M. Keu & SDM</b>
-							</td>
-							<td align="center">
-								<b><br />
-								M. Teknik</b>
-							</td>
-							<td align="center">
-								<b><u>Agustinus Pakaenoni</u><br />
-								Pj. Logistik</b>
+								Adm. Logistik</b>
 							</td>
 						</tr>
 					</table>
