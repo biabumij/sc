@@ -74,7 +74,7 @@
 						
 					}
 					?>
-					<div style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PER <?= tgl_indo(date($date2)); ?></div>
+					<div style="display: block;font-weight: bold;font-size: 11px;">Per <?= tgl_indo(date($date2)); ?></div>
 				</td>
 			</tr>
 		</table>	
