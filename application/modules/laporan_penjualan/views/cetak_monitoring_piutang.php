@@ -81,7 +81,7 @@
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-				<th width="14%" align="center">REKANAN</th>
+				<th width="14%" align="center">PELANGGAN</th>
 				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">NO. INV</th>
 				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">TGL. INV</th>
 				<th width="17%" align="center" colspan="3">TAGIHAN</th>
@@ -190,6 +190,53 @@
 				<td align="center"></td>
 				<td align="center"></td>
             </tr>   
+		</table>
+
+		<table width="98%" border="0" cellpadding="30">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+								Disetujui Oleh
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center">
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="55px">
+							
+							</td>
+							<td align="center">
+							
+							</td>
+							<td align="center">
+							
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+							<b><u>Hadi Sucipto</u><br />
+								Ka. Unit Bisnis</b>
+							</td>
+							<td align="center">
+							<b><u>Rifka Dian B.</u><br />
+								Pj. Keuangan & SDM</b>
+							</td>
+							<td align="center">
+							<b><u>Dian Melinda S.</u><br />
+								Staff Keuangan & SDM</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
 		</table>
 		
 	</body>

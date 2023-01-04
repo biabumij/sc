@@ -310,52 +310,58 @@ class Laporan extends Secure_Controller {
 
 		//Page2
 		$pdf->AddPage('L', 'A4');
-		$pdf->SetY(23);
+		$pdf->SetY(31);
 		$pdf->SetX(6);
 		$html =
 		'<table width="98%" border="0" cellpadding="2">
 		<tr>
-			<th width="3%"rowspan="2" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
-			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">REKANAN</th>
-			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NOMOR</th>
-			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
-			<th width="7%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
-			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th width="22%" colspan="4" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PEMBAYARAN</th>
-			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">SISA HUTANG</th>
-			<th width="14%" colspan="3" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS HUTANG</th>
+			<th width="3%"rowspan="2" style="vertical-align:middle;font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
+			<th width="7%" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">REKANAN</th>
+			<th width="6%" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">NOMOR</th>
+			<th width="6%" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
+			<th width="6%" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
+			<th width="20%" colspan="3" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th width="20%" colspan="4" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PEMBAYARAN</th>
+			<th width="20%" colspan="3" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">SISA HUTANG</th>
+			<th width="12%" colspan="3" style="vertical-align:middle;font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">STATUS HUTANG</th>
 		</tr>
 		<tr>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">KETERANGAN</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">VERIFIKASI</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
-			<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">JATUH TEMPO</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">KETERANGAN</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">VERIFIKASI</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">STATUS</th>
+			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JATUH TEMPO</th>
 		</tr>
 		</table>';
 		$pdf->writeHTML($html, true, false, true, false, '');
 
 		//Page3
 		$pdf->AddPage();
-		$pdf->SetY(23);
+		$pdf->SetY(31);
 		$pdf->SetX(6);
 		$pdf->WriteHTML($html);
 
 		//Page4
 		$pdf->AddPage();
-		$pdf->SetY(23);
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page5
+		$pdf->AddPage();
+		$pdf->SetY(31);
 		$pdf->SetX(6);
 		$pdf->WriteHTML($html);
 
@@ -372,6 +378,7 @@ class Laporan extends Secure_Controller {
 		$end_date = false;
 		$total_dpp_tagihan = 0;
 		$total_ppn_tagihan = 0;
+		$total_pph_tagihan = 0;
 		$total_jumlah_tagihan = 0;
 		$total_dpp_pembayaran = 0;
 		$total_ppn_pembayaran = 0;
@@ -379,6 +386,7 @@ class Laporan extends Secure_Controller {
 		$total_jumlah_pembayaran = 0;
 		$total_dpp_sisa_hutang = 0;
 		$total_ppn_sisa_hutang = 0;
+		$total_pph_sisa_hutang = 0;
 		$total_jumlah_sisa_hutang = 0;
 		$date = $this->input->get('filter_date');
 		if(!empty($date)){
@@ -444,6 +452,7 @@ class Laporan extends Secure_Controller {
 							$arr['tanggal_lolos_verifikasi'] = date('d-m-Y',strtotime($row['tanggal_lolos_verifikasi']));
 							$arr['dpp_tagihan'] = number_format($row['dpp_tagihan'],0,',','.');
 							$arr['ppn_tagihan'] = number_format($row['ppn_tagihan'],0,',','.');
+							$arr['pph_tagihan'] = number_format($row['pph_tagihan'],0,',','.');
 							$arr['jumlah_tagihan'] = number_format($row['jumlah_tagihan'],0,',','.');
 							$arr['dpp_pembayaran'] = number_format($row['dpp_pembayaran'],0,',','.');
 							$arr['ppn_pembayaran'] = number_format($row['ppn_pembayaran'],0,',','.');
@@ -451,10 +460,12 @@ class Laporan extends Secure_Controller {
 							$arr['jumlah_pembayaran'] = number_format($row['jumlah_pembayaran'],0,',','.');
 							$arr['dpp_sisa_hutang'] = number_format($row['dpp_sisa_hutang'],0,',','.');
 							$arr['ppn_sisa_hutang'] = number_format($row['ppn_sisa_hutang'],0,',','.');
+							$arr['pph_sisa_hutang'] = number_format($row['pph_sisa_hutang'],0,',','.');
 							$arr['jumlah_sisa_hutang'] = number_format($row['jumlah_sisa_hutang'],0,',','.');
 
 							$total_dpp_tagihan += $row['dpp_tagihan'];
 							$total_ppn_tagihan += $row['ppn_tagihan'];
+							$total_pph_tagihan += $row['pph_tagihan'];
 							$total_jumlah_tagihan += $row['jumlah_tagihan'];
 							$total_dpp_pembayaran += $row['dpp_pembayaran'];
 							$total_ppn_pembayaran += $row['ppn_pembayaran'];
@@ -462,6 +473,7 @@ class Laporan extends Secure_Controller {
 							$total_jumlah_pembayaran += $row['jumlah_pembayaran'];
 							$total_dpp_sisa_hutang += $row['dpp_sisa_hutang'];
 							$total_ppn_sisa_hutang += $row['ppn_sisa_hutang'];
+							$total_pph_sisa_hutang += $row['pph_sisa_hutang'];
 							$total_jumlah_sisa_hutang += $row['jumlah_sisa_hutang'];
 							
 							
@@ -483,6 +495,7 @@ class Laporan extends Secure_Controller {
 			$data['data'] = $arr_data;
 			$data['total_dpp_tagihan'] = $total_dpp_tagihan;
 			$data['total_ppn_tagihan'] = $total_ppn_tagihan;
+			$data['total_pph_tagihan'] = $total_pph_tagihan;
 			$data['total_jumlah_tagihan'] = $total_jumlah_tagihan;
 			$data['total_dpp_pembayaran'] = $total_dpp_pembayaran;
 			$data['total_ppn_pembayaran'] = $total_ppn_pembayaran;
@@ -490,6 +503,7 @@ class Laporan extends Secure_Controller {
 			$data['total_jumlah_pembayaran'] = $total_jumlah_pembayaran;
 			$data['total_dpp_sisa_hutang'] = $total_dpp_sisa_hutang;
 			$data['total_ppn_sisa_hutang'] = $total_ppn_sisa_hutang;
+			$data['total_pph_sisa_hutang'] = $total_pph_sisa_hutang;
 			$data['total_jumlah_sisa_hutang'] = $total_jumlah_sisa_hutang;
 	        $html = $this->load->view('laporan_pembelian/cetak_monitoring_hutang',$data,TRUE);
 
@@ -730,6 +744,123 @@ class Laporan extends Secure_Controller {
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 		$pdf->AddPage('L');
+		$pdf->setPrintHeader(false);
+
+		//Page2
+		$pdf->AddPage('L', 'A4');
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$html =
+		'<table width="98%" border="0" cellpadding="2">
+		<tr>
+			<th width="5%" rowspan="2" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
+			<th width="14%" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PELANGGAN</th>
+			<th width="7%" rowspan="2" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">NO. INV</th>
+			<th width="7%" rowspan="2" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TGL. INV</th>
+			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">PEMBAYARAN</th>
+			<th width="17%" colspan="3" style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">SISA PIUTANG</th>
+			<th width="8%" rowspan="2" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS</th>
+			<th width="8%" rowspan="2" style="vertical-align:middle;font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
+		</tr>
+		
+		<tr>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">KETERANGAN</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">DPP</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">PPN</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">JUMLAH</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">DPP</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">PPN</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">JUMLAH</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">DPP</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">PPN</th>
+		<th style="font-size:7px;background-color:#e69500;font-weight:bold;text-align:center;" align="center">JUMLAH</th>
+		</tr>
+		</table>';
+		$pdf->writeHTML($html, true, false, true, false, '');
+
+		//Page3
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page4
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page5
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page6
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page7
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page8
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page9
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page10
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page11
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page12
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page13
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page14
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page15
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page1
+		$pdf->setPage(1, true);
+		$pdf->SetY(35);
+		$pdf->Cell(0, 0, '', 0, 0, 'C');
 
 		$arr_data = array();
 		$client_id = $this->input->get('client_id');

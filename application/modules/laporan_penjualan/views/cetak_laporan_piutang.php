@@ -86,13 +86,13 @@
 				<th width="12%" align="center" rowspan="2">&nbsp; <br />PENJUALAN</th>
 				<th width="12%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
 				<th width="12%" align="center">TAGIHAN</th>
-				<th width="12%" align="center" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
+				<th width="12%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN PEMBAYARAN</th>
 				<th width="24%" align="center"colspan="2">SISA HUTANG</th>
 			</tr>
 			<tr class="table-judul">
 				<th align="center">BRUTO</th>
 				<th align="center">PENERIMAAN</th>
-				<th align="center">INVOICE</th>
+				<th align="center">TAGIHAN</th>
 			</tr>			
             <?php   
             if(!empty($data)){
@@ -160,6 +160,53 @@
 				<th align="right"><?php echo number_format($total_sisa_piutang_penerimaan,0,',','.');?></th>
 				<th align="right"><?php echo number_format($total_sisa_piutang_tagihan,0,',','.');?></th>
             </tr>   
+		</table>
+
+		<table width="98%" border="0" cellpadding="30">
+			<tr >
+				<td width="5%"></td>
+				<td width="90%">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center" >
+								Disetujui Oleh
+							</td>
+							<td align="center" >
+								Diperiksa Oleh
+							</td>
+							<td align="center">
+								Dibuat Oleh
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="55px">
+							
+							</td>
+							<td align="center">
+							
+							</td>
+							<td align="center">
+							
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+							<b><u>Hadi Sucipto</u><br />
+								Ka. Unit Bisnis</b>
+							</td>
+							<td align="center">
+							<b><u>Rifka Dian B.</u><br />
+								Pj. Keuangan & SDM</b>
+							</td>
+							<td align="center">
+							<b><u>Dian Melinda S.</u><br />
+								Staff Keuangan & SDM</b>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td width="5%"></td>
+			</tr>
 		</table>
 		
 	</body>
