@@ -154,7 +154,7 @@
             $('#wait').fadeIn('fast');   
             $.ajax({
                 type    : "POST",
-                url     : "<?php echo site_url('pmm/reports/report_production'); ?>/"+Math.random(),
+                url     : "<?php echo site_url('pmm/reports/laba_rugi'); ?>/"+Math.random(),
                 dataType : 'html',
                 data: {
                     filter_date : $('#filter_date').val(),

@@ -15,7 +15,1259 @@ class Reports extends CI_Controller {
 		$this->load->library('session');
 		$this->m_admin->check_login();
 	}
+
+	public function revenues()
+	{
+
+		
+		$arr_date = $this->input->post('filter_date');
+		if(empty($filter_date)){
+			$filter_date = '-';
+		}else {
+			$filter_date = $arr_date;
+		}
+		$alphas = range('A', 'Z');
+		$data['alphas'] = $alphas;
+		$data['clients'] = $this->db->get_where('pmm_client',array('status'=>'PUBLISH'))->result_array();
+		$data['arr_date'] = $arr_date;
+		$this->load->view('pmm/ajax/reports/revenues',$data);
+	}
+
+	public function receipt_materials()
+	{
+		
+		$arr_date = $this->input->post('filter_date');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	}
+
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		$data['arr'] =  $this->pmm_reports->ReceiptMaterialTagDetails($arr_date);
+		$this->load->view('pmm/ajax/reports/receipt_materials',$data);
+
+	}
+
+	public function receipt_material_detail()
+	{
+		$id = $this->input->post('id');	
+		$arr_date = $this->input->post('filter_date');
+		$type = $this->input->post('type');
+		$data['type'] = $type;
+		$data['arr'] =  $this->pmm_reports->ReceiptMaterialTagDetails($id,$arr_date);
+		$data['name'] = $this->input->post('name'); 
+		$this->load->view('pmm/ajax/reports/receipt_materials_detail',$data);
+	}
+
+
+	public function material_usage()
+	{
+
+		$product_id = $this->input->post('product_id');
+		$arr_date = $this->input->post('filter_date');
+
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+
+    		$arr_date_2 = $start_date.' - '.$end_date;
+
+    		$total_revenue_now = $this->pmm_model->getRevenueAll($arr_date_2);
+    		$total_revenue_before = $this->pmm_model->getRevenueAll($arr_date_2,true);
+    	}else {
+
+
+
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+
+    		$total_revenue_now = $this->pmm_model->getRevenueAll($arr_date);
+    		$total_revenue_before = $this->pmm_model->getRevenueAll($arr_date,true);
+    	} 
+
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+
+		if(!empty($product_id)){
+			$data['product'] = $this->crud_global->GetField('pmm_product',array('id'=>$product_id),'product');
+			$data['total_production'] = $this->pmm_reports->TotalProductions($product_id,$arr_date);
+			$data['arr_compo'] = $this->pmm_reports->MaterialUsageCompoProduct($arr_date,$product_id);
+			$this->load->view('pmm/ajax/reports/material_usage_product',$data);
+		}else {
+
+			$data['arr'] =  $this->pmm_reports->MaterialUsageReal($arr_date);
+			$data['arr_compo'] = $this->pmm_reports->MaterialUsageCompo($arr_date);
+			$data['total_revenue_now'] = $total_revenue_now;
+			$data['total_revenue_before'] =  $total_revenue_before;
+			$this->load->view('pmm/ajax/reports/material_usage',$data);	
+		}
+		
+	}
+
+	public function material_usage_detail()
+	{
+		$id = $this->input->post('id');	
+		$arr_date = $this->input->post('filter_date');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	} 
+
+		$type = $this->input->post('type');
+		$product_id = $this->input->post('product_id');
+		$data['type'] = $type;
+		if($type == 'compo' || $type == 'compo_cost' || $type == 'compo_now'){
+			$data['arr'] =  $this->pmm_reports->MaterialUsageCompoDetails($id,$arr_date,$product_id);
+		}else {
+			$data['arr'] =  $this->pmm_reports->MaterialUsageDetails($id,$arr_date);	
+		}
+
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		$data['product_id'] = $product_id;
+		$data['name'] = $this->input->post('name'); 
+		$this->load->view('pmm/ajax/reports/material_usage_detail',$data);
+	}
+
+	public function material_remaining()
+	{
+		$arr_date = $this->input->post('filter_date');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	} 
+
+    	$date = array($start_date,$end_date);
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+
+		$data['arr'] =  $this->pmm_reports->MaterialRemainingReal($date);
+		$data['arr_compo'] = $this->pmm_reports->MaterialRemainingCompo($date);
+		$this->load->view('pmm/ajax/reports/material_remaining',$data);	
+		
+
+	}
+
+	public function material_remaining_detail()
+	{
+		$id = $this->input->post('id');	
+		$arr_date = $this->input->post('filter_date');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	} 
+    	$date = array($start_date,$end_date);
+		$type = $this->input->post('type');
+		$data['type'] = $type;
+		if($type == 'compo'){
+			$data['arr'] =  $this->pmm_reports->MaterialRemainingCompoDetails($id,$date);
+		}else {
+			$data['arr'] =  $this->pmm_reports->MaterialRemainingDetails($id,$arr_date);	
+		}
+
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		$data['name'] = $this->input->post('name'); 
+		$this->load->view('pmm/ajax/reports/material_remaining_detail',$data);
+	}
+
+	public function equipments()
+	{
+		$arr_date = $this->input->post('filter_date');
+		$supplier_id = $this->input->post('supplier_id');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	}
+
+    	$date = array($start_date,$end_date);
+    	$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		$data['arr'] =  $this->pmm_reports->EquipmentProd($date);
+		$data['equipments'] =  $this->pmm_reports->EquipmentReports($date,$supplier_id);
+		$data['solar'] =  $this->pmm_reports->EquipmentUsageReal($date,true);
+		$this->load->view('pmm/ajax/reports/equipments',$data);
+
+	}
+
+	public function equipments_detail()
+	{
+		$id = $this->input->post('id');	
+		$arr_date = $this->input->post('filter_date');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	}
+    	$date = array($start_date,$end_date);
+		$supplier_id = $this->input->post('supplier_id');
+		$data['equipments'] = $this->pmm_reports->EquipmentReportsDetails($id,$date,$supplier_id);
+		$data['name'] = $this->input->post('name');
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		$this->load->view('pmm/ajax/reports/equipments_detail',$data);
+	}
+
+
+	public function equipments_data_print()
+	{
+		$this->load->library('pdf');
 	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_data = array();
+		$date = $this->input->get('filter_date');
+		$supplier_id = $this->input->get('supplier_id');
+		$tool_id = $this->input->get('tool_id');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+
+			$filter_date = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+			$data['filter_date'] = $filter_date;
+			$date = explode(' - ',$start_date.' - '.$end_date);
+			$arr_data = $this->pmm_reports->EquipmentsData($date,$supplier_id,$tool_id);
+
+			$data['data'] = $arr_data;
+			$data['solar'] =  $this->pmm_reports->EquipmentUsageReal($date);
+	        $html = $this->load->view('pmm/equipments_data_print',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('Data Alat');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('Data-Alat.pdf', 'I');
+
+		}else {
+			echo 'Please Filter Date First';
+		}
+	}
+
+	public function revenues_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+		$alphas = range('A', 'Z');
+		$data['alphas'] = $alphas;
+		$data['arr_date'] = $arr_date;
+		$data['clients'] = $this->db->get_where('pmm_client',array('status'=>'PUBLISH'))->result_array();
+        $html = $this->load->view('pmm/revenues_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('LAPORAN PENDAPATAN USAHA');
+        $pdf->nsi_html($html);
+        $pdf->Output('LAPORAN-PENDAPATAN-USAHA.pdf', 'I');
+	
+	}
+	
+	public function monitoring_receipt_materials_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	}
+
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		$data['arr'] =  $this->pmm_reports->ReceiptMaterialTagDetails($arr_date);
+        $html = $this->load->view('pmm/monitoring_receipt_materials_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('LAPORAN PENERIMAAN BAHAN');
+        $pdf->nsi_html($html);
+        $pdf->Output('LAPORAN-PENERIMAAN-BAHAN.pdf', 'I');
+	
+	}
+
+	public function material_usage_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$product_id = $this->input->get('product_id');
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+
+    		$arr_date_2 = $start_date.' - '.$end_date;
+
+    		$total_revenue_now = $this->pmm_model->getRevenueAll($arr_date_2);
+    		$total_revenue_before = $this->pmm_model->getRevenueAll($arr_date_2,true);
+
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+
+    		$total_revenue_now = $this->pmm_model->getRevenueAll($arr_date);
+    		$total_revenue_before = $this->pmm_model->getRevenueAll($arr_date,true);
+    	}
+    	
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		if(empty($product_id)){
+			$data['arr'] =  $this->pmm_reports->MaterialUsageReal($arr_date);
+			$data['arr_compo'] = $this->pmm_reports->MaterialUsageCompo($arr_date);
+			$data['total_revenue_now'] = $total_revenue_now;
+			$data['total_revenue_before'] =  $total_revenue_before;
+	        $html = $this->load->view('pmm/material_usage_print',$data,TRUE);
+		}else {
+			$data['product'] = $this->crud_global->GetField('pmm_product',array('id'=>$product_id),'product');
+			$data['total_production'] = $this->pmm_reports->TotalProductions($product_id,$arr_date);
+			$data['arr_compo'] = $this->pmm_reports->MaterialUsageCompoProduct($arr_date,$product_id);
+
+			
+
+	        $html = $this->load->view('pmm/material_usage_product_print',$data,TRUE);
+		}
+		 
+        $pdf->SetTitle('LAPORAN PEMAKAIAN MATERIAL');
+        $pdf->nsi_html($html);
+        $pdf->Output('LAPORAN-PEMAKAIAN-MATERIAL.pdf', 'I');
+	
+	}
+
+	public function material_remaining_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	} 
+
+    	$date = array($start_date,$end_date);
+		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+
+		$data['arr'] =  $this->pmm_reports->MaterialRemainingReal($date);
+		$data['arr_compo'] = $this->pmm_reports->MaterialRemainingCompo($date);
+
+        $html = $this->load->view('pmm/material_remaining_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Materials Remaining');
+        $pdf->nsi_html($html);
+        $pdf->Output('Materials-Remaining.pdf', 'I');
+	
+	}
+
+	public function monitoring_equipments_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		$supplier_id = $this->input->get('supplier_id');
+		if(empty($arr_date)){
+    		$month = date('Y-m');
+    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
+    		$end_date = $month.'-26';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    	}
+
+    	$date = array($start_date,$end_date);
+    	$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+		$data['arr'] =  $this->pmm_reports->EquipmentProd($date);
+		$data['equipments'] =  $this->pmm_reports->EquipmentReports($date,$supplier_id);
+		$data['supplier'] = $this->crud_global->GetField('pmm_supplier',array('id'=>$supplier_id),'name');
+
+        $html = $this->load->view('pmm/monitoring_equipments_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('LAPORAN PEMAKAIAN ALAT');
+        $pdf->nsi_html($html);
+        $pdf->Output('LAPORAN-PEMAKAIAN-ALAT.pdf', 'I');
+	
+	}
+
+	public function general_cost_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(false);
+        $pdf->SetTopMargin(0);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		$filter_type = $this->input->get('filter_type');
+		if(empty($arr_date)){
+    		$data['filter_date'] = '-';
+    	}else {
+    		$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
+    	} 
+
+		
+
+
+		if(!empty($arr_date)){
+			$dt = explode(' - ', $arr_date);
+    		$start_date = date('Y-m-d',strtotime($dt[0]));
+    		$end_date = date('Y-m-d',strtotime($dt[1]));
+    		$this->db->where('date >=',$start_date);
+    		$this->db->where('date <=',$end_date);	
+		}
+		if(!empty($filter_type)){
+			$this->db->where('type',$filter_type);
+		}
+		$this->db->order_by('date','desc');
+		$this->db->where('status !=','DELETED');
+		$arr = $this->db->get_where('pmm_general_cost');
+		$data['arr'] =  $arr->result_array();
+
+        $html = $this->load->view('pmm/general_cost_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('General Cost');
+        $pdf->nsi_html($html);
+        $pdf->Output('General-Cost.pdf', 'I');
+	
+	}
+
+	public function purchase_order_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+		$data['w_date'] = $arr_date;
+		$data['status'] = $this->input->post('status');
+		$data['supplier_id'] = $this->input->post('supplier_id');
+		$this->db->select('supplier_id');
+		$this->db->where('status !=','DELETED');
+		if(!empty($data['status'])){
+			$this->db->where('supplier_id',$data['status']);
+		}
+		$this->db->group_by('supplier_id');
+		$this->db->order_by('created_on','desc');
+		$query = $this->db->get('pmm_purchase_order');
+
+		$data['data'] = $query->result_array();
+        $html = $this->load->view('pmm/purchase_order_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Purchase Order');
+        $pdf->nsi_html($html);
+        $pdf->Output('Purchase-Order.pdf', 'I');
+	
+	}
+
+	public function product_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_data = array();
+		$tag_id = $this->input->get('product_id');
+
+		if(!empty($tag_id)){
+			$this->db->where('tag_id',$tag_id);	
+		}
+		$this->db->where('status !=','DELETED');
+		$this->db->order_by('product','asc');
+		$query = $this->db->get('pmm_product');
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$name = "'".$row['product']."'";
+				$row['no'] = $key+1;
+				$row['created_on'] = date('d F Y',strtotime($row['created_on']));
+				$contract_price = $this->pmm_model->GetContractPrice($row['contract_price']);
+				$row['contract_price'] = number_format($contract_price,2,',','.');
+				$row['riel_price'] = number_format($this->pmm_model->GetRielPrice($row['id']),2,',','.');
+				$row['composition'] = $this->crud_global->GetField('pmm_composition',array('id'=>$row['composition_id']),'composition_name');
+				$row['tag_name'] = $this->crud_global->GetField('pmm_tags',array('id'=>$row['tag_id']),'tag_name');
+				$arr_data[] = $row;
+			}
+
+		}
+
+		$data['data'] = $arr_data;
+        $html = $this->load->view('pmm/product_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Product');
+        $pdf->nsi_html($html);
+        $pdf->Output('Product.pdf', 'I');
+	
+	}
+
+	public function product_hpp_print()
+	{
+		$id = $this->input->get('id');
+		$name = $this->input->get('name');
+		if(!empty($id)){
+			$this->load->library('pdf');
+		
+
+			$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+	        $pdf->setPrintHeader(true);
+	        $pdf->SetFont('helvetica','',7); 
+	        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+			$pdf->setHtmlVSpace($tagvs);
+			        $pdf->AddPage('P');
+
+			$arr_data = array();
+
+			$output = $this->pmm_model->GetRielPriceDetail($id);
+
+			$data['data'] = $output;
+			$data['name'] = $name;
+	        $html = $this->load->view('pmm/product_hpp_print',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('Product-HPP');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('Product-HPP-'.$name.'.pdf', 'I');
+		}else {
+			echo "Product Not Found";
+		}
+		
+	
+	}
+
+	public function materials_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		
+		$pdf->AddPage('P');
+
+		$arr_data = array();
+		$tag_id = $this->input->get('tag_id');
+
+		$this->db->where('status !=','DELETED');
+		if(!empty($tag_id)){
+			$this->db->where('tag_id',$tag_id);
+		}
+		$this->db->order_by('material_name','asc');
+		$query = $this->db->get('pmm_materials');
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['no'] = $key+1;
+				$row['price'] = number_format($row['price'],2,',','.');
+				$row['cost'] = number_format($row['cost'],2,',','.');
+				$row['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure']),'measure_name');
+ 				$row['created_on'] = date('d F Y',strtotime($row['created_on']));
+ 				$row['tag_name'] = $this->crud_global->GetField('pmm_tags',array('id'=>$row['tag_id']),'tag_name');
+				$arr_data[] = $row;
+			}
+
+		}
+
+		$data['data'] = $arr_data;
+        $html = $this->load->view('pmm/materials_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Materials');
+        $pdf->nsi_html($html);
+        $pdf->Output('Materials.pdf', 'I');
+	
+	}
+
+	public function tools_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_data = array();
+		$this->db->where('status !=','DELETED');
+		$this->db->order_by('tool','asc');
+		$query = $this->db->get('pmm_tools');
+
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['no'] = $key+1;
+				$name = "'".$row['tool']."'";
+				$total_cost = $this->db->select('SUM(cost) as total')->get_where('pmm_tool_detail',array('status'=>'PUBLISH','tool_id'=>$row['id']))->row_array();
+				$row['total_cost'] = number_format($total_cost['total'],2,',','.');
+				$row['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_id']),'measure_name');
+				$row['tag'] = $this->crud_global->GetField('pmm_tags',array('id'=>$row['tag_id']),'tag_name');
+ 				$row['created_on'] = date('d F Y',strtotime($row['created_on']));
+				$row['actions'] = '<a href="javascript:void(0);" onclick="FormDetail('.$row['id'].','.$name.')" class="btn btn-info"><i class="fa fa-search"></i> Detail</a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$arr_data[] = $row;
+			}
+
+		}
+		$data['data'] = $arr_data;
+        $html = $this->load->view('pmm/tools_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Tools');
+        $pdf->nsi_html($html);
+        $pdf->Output('Tools.pdf', 'I');
+	
+	}
+
+	public function measures_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_data = array();
+		$this->db->where('status !=','DELETED');
+		$query = $this->db->get('pmm_measures');
+		$data['data'] = $query->result_array();
+        $html = $this->load->view('pmm/measures_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Satuan');
+        $pdf->nsi_html($html);
+        $pdf->Output('satuan.pdf', 'I');
+	
+	}
+
+	public function composition_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$tag_id = $this->input->get('filter_product');
+		$arr_tag = array();
+		if(!empty($tag_id)){
+			$query_tag = $this->db->select('id')->get_where('pmm_product',array('status'=>'PUBLISH','tag_id'=>$tag_id))->result_array();
+			foreach ($query_tag as $pid) {
+				$arr_tag[] = $pid['id'];
+			}
+		}
+		$this->db->select('pc.*, pp.product');
+		$this->db->where('pc.status !=','DELETED');
+		if(!empty($tag_id)){
+			$this->db->where_in('product_id',$arr_tag);
+		}
+		$this->db->join('pmm_product pp','pc.product_id = pp.id','left');
+		$this->db->order_by('pc.created_on','desc');
+		$query = $this->db->get('pmm_composition pc');
+		$data['data'] = $query->result_array();
+        $html = $this->load->view('pmm/composition_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Composition');
+        $pdf->nsi_html($html);
+        $pdf->Output('Composition.pdf', 'I');
+	
+	}
+
+	public function supplier_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_data = array();
+		$this->db->where('status !=','DELETED');
+		$this->db->order_by('name','asc');
+		$query = $this->db->get('pmm_supplier');
+		$data['data'] = $query->result_array();
+        $html = $this->load->view('pmm/supplier_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Supplier');
+        $pdf->nsi_html($html);
+        $pdf->Output('Supplier.pdf', 'I');
+	
+	}
+
+	public function client_print()
+	{
+		$arr_data = array();
+		$this->db->where('status !=','DELETED');
+		$this->db->order_by('client_name','asc');
+		$query = $this->db->get('pmm_client');
+		$data['data'] = $query->result_array();	
+	
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan-client.pdf";
+		$this->pdf->load_view('pmm/client_print', $data);
+	
+	}
+	
+	public function slump_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_data = array();
+		$this->db->where('status !=','DELETED');
+		$query = $this->db->get('pmm_slump');
+		$data['data'] = $query->result_array();
+        $html = $this->load->view('pmm/slump_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Slump');
+        $pdf->nsi_html($html);
+        $pdf->Output('Slump.pdf', 'I');
+	
+	}
+
+	public function tags_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('P');
+
+		$arr_data = array();
+		$type = $this->input->get('type');
+		$this->db->where('status !=','DELETED');
+		if(!empty($type)){
+			$this->db->where('tag_type',$type);
+		}
+		$this->db->order_by('tag_name','asc');
+		$query = $this->db->get('pmm_tags');
+
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['no'] = $key+1;
+				$price = 0;
+				if($row['tag_type'] == 'MATERIAL'){
+					$get_price = $this->db->select('AVG(cost) as cost')->get_where('pmm_materials',array('status'=>'PUBLISH','tag_id'=>$row['id']))->row_array();
+					if(!empty($get_price)){
+						$price = $get_price['cost'];
+					}
+				}
+				$row['price'] = number_format($price,2,',','.');
+				$arr_data[] = $row;
+			}
+
+		}
+		$data['data'] = $arr_data;
+        $html = $this->load->view('pmm/tags_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('Tags');
+        $pdf->nsi_html($html);
+        $pdf->Output('Tags.pdf', 'I');
+	
+	}
+
+	public function production_planning_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_data = array();
+		$this->db->where('status !=','DELETED');
+		$this->db->order_by('created_on','desc');
+		$query = $this->db->get('pmm_schedule');
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['no'] = $key+1;
+				$arr_date = explode(' - ', $row['schedule_date']);
+				$row['schedule_name'] = $row['schedule_name'];
+				$row['client_name'] = $this->crud_global->GetField('pmm_client',array('id'=>$row['client_id']),'client_name');
+				$row['schedule_date'] = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+				$row['created_on'] = date('d F Y',strtotime($row['created_on']));
+				$row['week_1'] = $this->pmm_model->TotalSPOWeek($row['id'],1);
+				$row['week_2'] = $this->pmm_model->TotalSPOWeek($row['id'],2);
+				$row['week_3'] = $this->pmm_model->TotalSPOWeek($row['id'],3);
+				$row['week_4'] = $this->pmm_model->TotalSPOWeek($row['id'],4);
+				$row['status'] = $this->pmm_model->GetStatus($row['status']);
+				
+				$arr_data[] = $row;
+			}
+
+		}
+		$data['data'] = $arr_data;
+        $html = $this->load->view('pmm/production_planning_print',$data,TRUE);
+
+        
+        $pdf->SetTitle('cetak_poduction_planning');
+        $pdf->nsi_html($html);
+        $pdf->Output('production_planning.pdf', 'I');
+	
+	}
+	
+	public function receipt_matuse_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$purchase_order_no = $this->input->get('purchase_order_no');
+		$filter_material = $this->input->get('filter_material');
+		$start_date = false;
+		$end_date = false;
+		$total = 0;
+		$total_convert = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
+			
+			$data['filter_date'] = $filter_date;
+
+			$arr_filter_mats = array();
+
+			$no = 1;
+			$this->db->select('ppo.supplier_id,prm.measure,ps.name,SUM(prm.volume) as total, SUM((prm.cost / prm.convert_value) * prm.display_volume) as total_price, prm.convert_value, SUM(prm.volume * prm.convert_value) as total_convert');
+			if(!empty($start_date) && !empty($end_date)){
+	            $this->db->where('prm.date_receipt >=',$start_date);
+	            $this->db->where('prm.date_receipt <=',$end_date);
+	        }
+	        if(!empty($supplier_id)){
+	            $this->db->where('ppo.supplier_id',$supplier_id);
+	        }
+	        if(!empty($filter_material)){
+	            $this->db->where_in('prm.material_id',$filter_material);
+	        }
+	        if(!empty($purchase_order_no)){
+	            $this->db->where('prm.purchase_order_id',$purchase_order_no);
+	        }
+			$this->db->where('ps.status','PUBLISH');
+			$this->db->join('pmm_supplier ps','ppo.supplier_id = ps.id','left');
+			$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id');
+			$this->db->group_by('ppo.supplier_id');
+			$this->db->order_by('ps.name','asc');
+			$query = $this->db->get('pmm_purchase_order ppo');
+			
+			if($query->num_rows() > 0){
+
+				foreach ($query->result_array() as $key => $sups) {
+
+					$mats = array();
+					$materials = $this->pmm_model->GetReceiptMatUse($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$arr_filter_mats);
+					if(!empty($materials)){
+						foreach ($materials as $key => $row) {
+							$arr['no'] = $key + 1;
+							$arr['measure'] = $row['measure'];
+							$arr['material_name'] = $row['material_name'];
+							
+							$arr['real'] = number_format($row['total'],2,',','.');
+							$arr['convert_value'] = number_format($row['convert_value'],2,',','.');
+							$arr['total_convert'] = number_format($row['total_convert'],2,',','.');
+							$arr['total_price'] = number_format($row['total_price'],2,',','.');
+							$mats[] = $arr;
+						}
+						$sups['mats'] = $mats;
+						$total += $sups['total_price'];
+						$total_convert += $sups['total_convert'];
+						$sups['no'] =$no;
+						$sups['real'] = number_format($sups['total'],2,',','.');
+						$sups['convert_value'] = number_format($sups['convert_value'],2,',','.');
+						$sups['total_convert'] = number_format($sups['total_convert'],2,',','.');
+						$sups['total_price'] = number_format($sups['total_price'],2,',','.');
+						$sups['measure'] = '';
+						$arr_data[] = $sups;
+						$no++;
+					}
+					
+					
+				}
+			}
+			if(!empty($filter_material)){
+				$total_convert = number_format($total_convert,0,',','.');
+			}else {
+				$total_convert = '';
+			}
+
+			
+			$data['data'] = $arr_data;
+			$data['total'] = $total;
+			$data['total_convert'] = $total_convert;
+	        $html = $this->load->view('pmm/receipt_matuse_report_print',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('Penerimaan Bahan');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('Penerimaan-Bahan.pdf', 'I');
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
+
+	public function data_material_usage()
+	{
+		$supplier_id = $this->input->post('supplier_id');
+		$filter_material = $this->input->post('filter_material');
+		$start_date = false;
+		$end_date = false;
+		$total = 0;
+		$total_convert = 0;
+		$query = array();
+		$date = $this->input->post('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+		}
+
+    	$this->db->where(array(
+    		'status'=>'PUBLISH',
+    	));
+    	if(!empty($filter_material)){
+    		$this->db->where('id',$filter_material);
+    	}
+    	$this->db->order_by('nama_produk','asc');
+    	$tags = $this->db->get_where('produk',array('status'=>'PUBLISH','bahanbaku'=>1))->result_array();
+
+    	if(!empty($tags)){
+    		?>
+	        <table class="table table-center table-bordered table-condensed">
+	        	<thead>
+	        		<tr >
+		        		<th class="text-center">No</th>
+		        		<th class="text-center">Bahan</th>
+		        		<th class="text-center">Rekanan</th>
+		        		<th class="text-center">Satuan</th>
+		        		<th class="text-center">Volume</th>
+		        		<th class="text-center">Total</th>
+		        	</tr>	
+	        	</thead>
+	        	<tbody>
+	        		<?php
+	        		$no=1;
+	        		$total_total = 0;
+	        		foreach ($tags as $tag) {
+		    			$now = $this->pmm_reports->SumMaterialUsage($tag['id'],array($start_date,$end_date));
+
+		    			
+		    			$measure_name = $this->crud_global->GetField('pmm_measures',array('id'=>$tag['satuan']),'measure_name');
+		    			if($now['volume'] > 0){
+				        	
+				        	?>
+				        	<tr class="active" style="font-weight:bold;">
+				        		<td class="text-center"><?php echo $no;?></td>
+				        		<td colspan="2"><?php echo $tag['nama_produk'];?></td>
+				        		<td class="text-center"><?php echo $measure_name;?></td>
+				        		<td class="text-right"><?php echo number_format($now['volume'],2,',','.');?></td>
+				        		<td class="text-right"><span class="pull-left">Rp. </span><?php echo number_format($now['total'],0,',','.');?></td>
+				        	</tr>
+				        	<?php
+				        	$now_new = $this->pmm_reports->MatUseBySupp($tag['id'],array($start_date,$end_date),$now['volume'],$now['total']);
+				        	if(!empty($now_new)){
+				        		$no_2 = 1;
+				        		foreach ($now_new as $new) {
+					        		
+					        		?>
+					        		<!--<tr>
+					        			<td class="text-center"><?= $no.'.'.$no_2;?></td>
+					        			<td></td>
+					        			<td><?php echo $new['supplier'];?></td>
+					        			<td class="text-center"><?php echo $measure_name;?></td>
+						        		<td class="text-right"><?php echo number_format($new['volume'],2,',','.');?></td>
+						        		<td class="text-right"><span class="pull-left">Rp. </span><?php echo number_format($new['total'],0,',','.');?></td>
+					        		</tr>-->
+					        		<?php
+					        		$no_2 ++;
+					        	}
+				        	}
+				        	
+				        	?>
+				        	<tr style="height: 20px">
+				        		<td colspan="6"></td>
+				        	</tr>
+				        	<?php
+
+				        	$no++;
+				        	$total_total += $now['total'];
+					        
+		    			}
+		    		}
+	        		?>
+	        		<tr>
+	        			<th colspan="5" class="text-right">TOTAL</th>
+	        			<th class="text-right"><span class="pull-left">Rp. </span><?php echo number_format($total_total,0,',','.');?></th>
+	        		</tr>
+	        	</tbody>
+	        </table>
+	        <?php	
+    	}
+
+
+	}
+
+
+	public function material_usage_prod_print()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$purchase_order_no = $this->input->get('purchase_order_no');
+		$filter_material = $this->input->get('filter_material');
+		$start_date = false;
+		$end_date = false;
+		$total = 0;
+		$total_convert = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+
+			
+			$data['filter_date'] = $filter_date;
+
+			$no = 1;
+	    	$this->db->where(array(
+	    		'status'=>'PUBLISH',
+				'bahanbaku'=>1,
+	    	));
+	    	if(!empty($filter_material)){
+	    		$this->db->where('id',$filter_material);
+	    	}
+	    	$this->db->order_by('nama_produk','asc');
+	    	$query = $this->db->get('produk');
+			
+			if($query->num_rows() > 0){
+
+				foreach ($query->result_array() as $key => $tag) {
+
+					$now = $this->pmm_reports->SumMaterialUsage($tag['id'],array($start_date,$end_date));
+	    			$measure_name = $this->crud_global->GetField('pmm_measures',array('id'=>$tag['satuan']),'measure_name');
+	    			if($now['volume'] > 0){
+	    				$tags['tag_name'] = $tag['nama_produk'];
+	    				$tags['no'] = $no;
+	    				$tags['volume'] = number_format($now['volume'],2,',','.');
+	    				$tags['total'] = number_format($now['total'],2,',','.');
+	    				$tags['measure'] = $measure_name;
+
+	    				$now_new = $this->pmm_reports->MatUseBySupp($tag['id'],array($start_date,$end_date),$now['volume'],$now['total']);
+			        	if(!empty($now_new)){
+			        		$no_2 = 1;
+			        		$supps = array();
+			        		foreach ($now_new as $new) {
+
+			        			$arr_supps['no'] = $no_2;
+			        			$arr_supps['supplier'] = $new['supplier'];
+			        			$arr_supps['volume'] = number_format($new['volume'],2,',','.');
+			        			$arr_supps['total'] = number_format($new['total'],2,',','.');
+			        			$supps[] = $arr_supps;
+			        			$no_2 ++;
+			        		}
+
+			        		$tags['supps'] = $supps;
+			        	}
+
+						$arr_data[] = $tags;	
+						$total += $now['total'];
+	    			}
+					$no++;
+					
+				}
+			}
+
+			
+			$data['data'] = $arr_data;
+			$data['total'] = $total;
+			$data['custom_date'] = $this->input->get('custom_date');
+	        $html = $this->load->view('produksi/material_usage_prod_print',$data,TRUE);
+
+	        
+	        $pdf->SetTitle('pemakaian-material');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('pemakaian-material', 'I');
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
+
+	public function exec()
+	{
+		
+	}
+
+
+	//BATAS RUMUS LAMA
+
 	public function pergerakan_bahan_baku($arr_date)
 	{
 		$data = array();
@@ -8441,7 +9693,7 @@ class Reports extends CI_Controller {
 	}
 
 
-	public function report_production($arr_date)
+	public function laba_rugi($arr_date)
 	{
 		$data = array();
 		
@@ -8887,1262 +10139,6 @@ class Reports extends CI_Controller {
 	        </tr>
 	    </table>
 		<?php
-	}
-
-	public function revenues()
-	{
-
-		
-		$arr_date = $this->input->post('filter_date');
-		if(empty($filter_date)){
-			$filter_date = '-';
-		}else {
-			$filter_date = $arr_date;
-		}
-		$alphas = range('A', 'Z');
-		$data['alphas'] = $alphas;
-		$data['clients'] = $this->db->get_where('pmm_client',array('status'=>'PUBLISH'))->result_array();
-		$data['arr_date'] = $arr_date;
-		$this->load->view('pmm/ajax/reports/revenues',$data);
-	}
-
-	public function receipt_materials()
-	{
-		
-		$arr_date = $this->input->post('filter_date');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	}
-
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-		$data['arr'] =  $this->pmm_reports->ReceiptMaterialTagDetails($arr_date);
-		$this->load->view('pmm/ajax/reports/receipt_materials',$data);
-
-	}
-
-	public function receipt_material_detail()
-	{
-		$id = $this->input->post('id');	
-		$arr_date = $this->input->post('filter_date');
-		$type = $this->input->post('type');
-		$data['type'] = $type;
-		$data['arr'] =  $this->pmm_reports->ReceiptMaterialTagDetails($id,$arr_date);
-		$data['name'] = $this->input->post('name'); 
-		$this->load->view('pmm/ajax/reports/receipt_materials_detail',$data);
-	}
-
-
-	public function material_usage()
-	{
-
-		$product_id = $this->input->post('product_id');
-		$arr_date = $this->input->post('filter_date');
-
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-
-    		$arr_date_2 = $start_date.' - '.$end_date;
-
-    		$total_revenue_now = $this->pmm_model->getRevenueAll($arr_date_2);
-    		$total_revenue_before = $this->pmm_model->getRevenueAll($arr_date_2,true);
-    	}else {
-
-
-
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-
-    		$total_revenue_now = $this->pmm_model->getRevenueAll($arr_date);
-    		$total_revenue_before = $this->pmm_model->getRevenueAll($arr_date,true);
-    	} 
-
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-
-		if(!empty($product_id)){
-			$data['product'] = $this->crud_global->GetField('pmm_product',array('id'=>$product_id),'product');
-			$data['total_production'] = $this->pmm_reports->TotalProductions($product_id,$arr_date);
-			$data['arr_compo'] = $this->pmm_reports->MaterialUsageCompoProduct($arr_date,$product_id);
-			$this->load->view('pmm/ajax/reports/material_usage_product',$data);
-		}else {
-
-			$data['arr'] =  $this->pmm_reports->MaterialUsageReal($arr_date);
-			$data['arr_compo'] = $this->pmm_reports->MaterialUsageCompo($arr_date);
-			$data['total_revenue_now'] = $total_revenue_now;
-			$data['total_revenue_before'] =  $total_revenue_before;
-			$this->load->view('pmm/ajax/reports/material_usage',$data);	
-		}
-		
-	}
-
-	public function material_usage_detail()
-	{
-		$id = $this->input->post('id');	
-		$arr_date = $this->input->post('filter_date');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	} 
-
-		$type = $this->input->post('type');
-		$product_id = $this->input->post('product_id');
-		$data['type'] = $type;
-		if($type == 'compo' || $type == 'compo_cost' || $type == 'compo_now'){
-			$data['arr'] =  $this->pmm_reports->MaterialUsageCompoDetails($id,$arr_date,$product_id);
-		}else {
-			$data['arr'] =  $this->pmm_reports->MaterialUsageDetails($id,$arr_date);	
-		}
-
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-		$data['product_id'] = $product_id;
-		$data['name'] = $this->input->post('name'); 
-		$this->load->view('pmm/ajax/reports/material_usage_detail',$data);
-	}
-
-	public function material_remaining()
-	{
-		$arr_date = $this->input->post('filter_date');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	} 
-
-    	$date = array($start_date,$end_date);
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-
-		$data['arr'] =  $this->pmm_reports->MaterialRemainingReal($date);
-		$data['arr_compo'] = $this->pmm_reports->MaterialRemainingCompo($date);
-		$this->load->view('pmm/ajax/reports/material_remaining',$data);	
-		
-
-	}
-
-	public function material_remaining_detail()
-	{
-		$id = $this->input->post('id');	
-		$arr_date = $this->input->post('filter_date');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	} 
-    	$date = array($start_date,$end_date);
-		$type = $this->input->post('type');
-		$data['type'] = $type;
-		if($type == 'compo'){
-			$data['arr'] =  $this->pmm_reports->MaterialRemainingCompoDetails($id,$date);
-		}else {
-			$data['arr'] =  $this->pmm_reports->MaterialRemainingDetails($id,$arr_date);	
-		}
-
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-		$data['name'] = $this->input->post('name'); 
-		$this->load->view('pmm/ajax/reports/material_remaining_detail',$data);
-	}
-
-	public function equipments()
-	{
-		$arr_date = $this->input->post('filter_date');
-		$supplier_id = $this->input->post('supplier_id');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	}
-
-    	$date = array($start_date,$end_date);
-    	$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-		$data['arr'] =  $this->pmm_reports->EquipmentProd($date);
-		$data['equipments'] =  $this->pmm_reports->EquipmentReports($date,$supplier_id);
-		$data['solar'] =  $this->pmm_reports->EquipmentUsageReal($date,true);
-		$this->load->view('pmm/ajax/reports/equipments',$data);
-
-	}
-
-	public function equipments_detail()
-	{
-		$id = $this->input->post('id');	
-		$arr_date = $this->input->post('filter_date');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	}
-    	$date = array($start_date,$end_date);
-		$supplier_id = $this->input->post('supplier_id');
-		$data['equipments'] = $this->pmm_reports->EquipmentReportsDetails($id,$date,$supplier_id);
-		$data['name'] = $this->input->post('name');
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-		$this->load->view('pmm/ajax/reports/equipments_detail',$data);
-	}
-
-
-	public function equipments_data_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		$pdf->AddPage('P');
-
-		$arr_data = array();
-		$date = $this->input->get('filter_date');
-		$supplier_id = $this->input->get('supplier_id');
-		$tool_id = $this->input->get('tool_id');
-		if(!empty($date)){
-			$arr_date = explode(' - ',$date);
-			$start_date = date('Y-m-d',strtotime($arr_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_date[1]));
-
-			$filter_date = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-			$data['filter_date'] = $filter_date;
-			$date = explode(' - ',$start_date.' - '.$end_date);
-			$arr_data = $this->pmm_reports->EquipmentsData($date,$supplier_id,$tool_id);
-
-			$data['data'] = $arr_data;
-			$data['solar'] =  $this->pmm_reports->EquipmentUsageReal($date);
-	        $html = $this->load->view('pmm/equipments_data_print',$data,TRUE);
-
-	        
-	        $pdf->SetTitle('Data Alat');
-	        $pdf->nsi_html($html);
-	        $pdf->Output('Data-Alat.pdf', 'I');
-
-		}else {
-			echo 'Please Filter Date First';
-		}
-		
-
-		
-	
-	}
-
-	public function revenues_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-			$filter_date = '-';
-		}else {
-			$arr_filter_date = explode(' - ', $arr_date);
-			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
-		}
-		$data['filter_date'] = $filter_date;
-		$alphas = range('A', 'Z');
-		$data['alphas'] = $alphas;
-		$data['arr_date'] = $arr_date;
-		$data['clients'] = $this->db->get_where('pmm_client',array('status'=>'PUBLISH'))->result_array();
-        $html = $this->load->view('pmm/revenues_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('LAPORAN PENDAPATAN USAHA');
-        $pdf->nsi_html($html);
-        $pdf->Output('LAPORAN-PENDAPATAN-USAHA.pdf', 'I');
-	
-	}
-	
-	public function monitoring_receipt_materials_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	}
-
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-		$data['arr'] =  $this->pmm_reports->ReceiptMaterialTagDetails($arr_date);
-        $html = $this->load->view('pmm/monitoring_receipt_materials_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('LAPORAN PENERIMAAN BAHAN');
-        $pdf->nsi_html($html);
-        $pdf->Output('LAPORAN-PENERIMAAN-BAHAN.pdf', 'I');
-	
-	}
-
-	public function material_usage_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$product_id = $this->input->get('product_id');
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-
-    		$arr_date_2 = $start_date.' - '.$end_date;
-
-    		$total_revenue_now = $this->pmm_model->getRevenueAll($arr_date_2);
-    		$total_revenue_before = $this->pmm_model->getRevenueAll($arr_date_2,true);
-
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-
-    		$total_revenue_now = $this->pmm_model->getRevenueAll($arr_date);
-    		$total_revenue_before = $this->pmm_model->getRevenueAll($arr_date,true);
-    	}
-    	
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-		if(empty($product_id)){
-			$data['arr'] =  $this->pmm_reports->MaterialUsageReal($arr_date);
-			$data['arr_compo'] = $this->pmm_reports->MaterialUsageCompo($arr_date);
-			$data['total_revenue_now'] = $total_revenue_now;
-			$data['total_revenue_before'] =  $total_revenue_before;
-	        $html = $this->load->view('pmm/material_usage_print',$data,TRUE);
-		}else {
-			$data['product'] = $this->crud_global->GetField('pmm_product',array('id'=>$product_id),'product');
-			$data['total_production'] = $this->pmm_reports->TotalProductions($product_id,$arr_date);
-			$data['arr_compo'] = $this->pmm_reports->MaterialUsageCompoProduct($arr_date,$product_id);
-
-			
-
-	        $html = $this->load->view('pmm/material_usage_product_print',$data,TRUE);
-		}
-		 
-        $pdf->SetTitle('LAPORAN PEMAKAIAN MATERIAL');
-        $pdf->nsi_html($html);
-        $pdf->Output('LAPORAN-PEMAKAIAN-MATERIAL.pdf', 'I');
-	
-	}
-
-	public function material_remaining_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	} 
-
-    	$date = array($start_date,$end_date);
-		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-
-		$data['arr'] =  $this->pmm_reports->MaterialRemainingReal($date);
-		$data['arr_compo'] = $this->pmm_reports->MaterialRemainingCompo($date);
-
-        $html = $this->load->view('pmm/material_remaining_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Materials Remaining');
-        $pdf->nsi_html($html);
-        $pdf->Output('Materials-Remaining.pdf', 'I');
-	
-	}
-
-
-	public function monitoring_equipments_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		$supplier_id = $this->input->get('supplier_id');
-		if(empty($arr_date)){
-    		$month = date('Y-m');
-    		$start_date = date('Y-m',strtotime('- 1month '.$month)).'-27';
-    		$end_date = $month.'-26';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    	}
-
-    	$date = array($start_date,$end_date);
-    	$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-		$data['arr'] =  $this->pmm_reports->EquipmentProd($date);
-		$data['equipments'] =  $this->pmm_reports->EquipmentReports($date,$supplier_id);
-		$data['supplier'] = $this->crud_global->GetField('pmm_supplier',array('id'=>$supplier_id),'name');
-
-        $html = $this->load->view('pmm/monitoring_equipments_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('LAPORAN PEMAKAIAN ALAT');
-        $pdf->nsi_html($html);
-        $pdf->Output('LAPORAN-PEMAKAIAN-ALAT.pdf', 'I');
-	
-	}
-
-	public function general_cost_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(false);
-        $pdf->SetTopMargin(0);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		$filter_type = $this->input->get('filter_type');
-		if(empty($arr_date)){
-    		$data['filter_date'] = '-';
-    	}else {
-    		$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    		$data['filter_date'] = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
-    	} 
-
-		
-
-
-		if(!empty($arr_date)){
-			$dt = explode(' - ', $arr_date);
-    		$start_date = date('Y-m-d',strtotime($dt[0]));
-    		$end_date = date('Y-m-d',strtotime($dt[1]));
-    		$this->db->where('date >=',$start_date);
-    		$this->db->where('date <=',$end_date);	
-		}
-		if(!empty($filter_type)){
-			$this->db->where('type',$filter_type);
-		}
-		$this->db->order_by('date','desc');
-		$this->db->where('status !=','DELETED');
-		$arr = $this->db->get_where('pmm_general_cost');
-		$data['arr'] =  $arr->result_array();
-
-        $html = $this->load->view('pmm/general_cost_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('General Cost');
-        $pdf->nsi_html($html);
-        $pdf->Output('General-Cost.pdf', 'I');
-	
-	}
-
-
-	public function purchase_order_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_date = $this->input->get('filter_date');
-		if(empty($arr_date)){
-			$filter_date = '-';
-		}else {
-			$arr_filter_date = explode(' - ', $arr_date);
-			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
-		}
-		$data['filter_date'] = $filter_date;
-		$data['w_date'] = $arr_date;
-		$data['status'] = $this->input->post('status');
-		$data['supplier_id'] = $this->input->post('supplier_id');
-		$this->db->select('supplier_id');
-		$this->db->where('status !=','DELETED');
-		if(!empty($data['status'])){
-			$this->db->where('supplier_id',$data['status']);
-		}
-		$this->db->group_by('supplier_id');
-		$this->db->order_by('created_on','desc');
-		$query = $this->db->get('pmm_purchase_order');
-
-		$data['data'] = $query->result_array();
-        $html = $this->load->view('pmm/purchase_order_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Purchase Order');
-        $pdf->nsi_html($html);
-        $pdf->Output('Purchase-Order.pdf', 'I');
-	
-	}
-
-
-	public function product_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_data = array();
-		$tag_id = $this->input->get('product_id');
-
-		if(!empty($tag_id)){
-			$this->db->where('tag_id',$tag_id);	
-		}
-		$this->db->where('status !=','DELETED');
-		$this->db->order_by('product','asc');
-		$query = $this->db->get('pmm_product');
-		if($query->num_rows() > 0){
-			foreach ($query->result_array() as $key => $row) {
-				$name = "'".$row['product']."'";
-				$row['no'] = $key+1;
-				$row['created_on'] = date('d F Y',strtotime($row['created_on']));
-				$contract_price = $this->pmm_model->GetContractPrice($row['contract_price']);
-				$row['contract_price'] = number_format($contract_price,2,',','.');
-				$row['riel_price'] = number_format($this->pmm_model->GetRielPrice($row['id']),2,',','.');
-				$row['composition'] = $this->crud_global->GetField('pmm_composition',array('id'=>$row['composition_id']),'composition_name');
-				$row['tag_name'] = $this->crud_global->GetField('pmm_tags',array('id'=>$row['tag_id']),'tag_name');
-				$arr_data[] = $row;
-			}
-
-		}
-
-		$data['data'] = $arr_data;
-        $html = $this->load->view('pmm/product_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Product');
-        $pdf->nsi_html($html);
-        $pdf->Output('Product.pdf', 'I');
-	
-	}
-
-	public function product_hpp_print()
-	{
-		$id = $this->input->get('id');
-		$name = $this->input->get('name');
-		if(!empty($id)){
-			$this->load->library('pdf');
-		
-
-			$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-	        $pdf->setPrintHeader(true);
-	        $pdf->SetFont('helvetica','',7); 
-	        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-			$pdf->setHtmlVSpace($tagvs);
-			        $pdf->AddPage('P');
-
-			$arr_data = array();
-
-			$output = $this->pmm_model->GetRielPriceDetail($id);
-
-			$data['data'] = $output;
-			$data['name'] = $name;
-	        $html = $this->load->view('pmm/product_hpp_print',$data,TRUE);
-
-	        
-	        $pdf->SetTitle('Product-HPP');
-	        $pdf->nsi_html($html);
-	        $pdf->Output('Product-HPP-'.$name.'.pdf', 'I');
-		}else {
-			echo "Product Not Found";
-		}
-		
-	
-	}
-
-	public function materials_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		
-		$pdf->AddPage('P');
-
-		$arr_data = array();
-		$tag_id = $this->input->get('tag_id');
-
-		$this->db->where('status !=','DELETED');
-		if(!empty($tag_id)){
-			$this->db->where('tag_id',$tag_id);
-		}
-		$this->db->order_by('material_name','asc');
-		$query = $this->db->get('pmm_materials');
-		if($query->num_rows() > 0){
-			foreach ($query->result_array() as $key => $row) {
-				$row['no'] = $key+1;
-				$row['price'] = number_format($row['price'],2,',','.');
-				$row['cost'] = number_format($row['cost'],2,',','.');
-				$row['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure']),'measure_name');
- 				$row['created_on'] = date('d F Y',strtotime($row['created_on']));
- 				$row['tag_name'] = $this->crud_global->GetField('pmm_tags',array('id'=>$row['tag_id']),'tag_name');
-				$arr_data[] = $row;
-			}
-
-		}
-
-		$data['data'] = $arr_data;
-        $html = $this->load->view('pmm/materials_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Materials');
-        $pdf->nsi_html($html);
-        $pdf->Output('Materials.pdf', 'I');
-	
-	}
-
-	public function tools_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_data = array();
-		$this->db->where('status !=','DELETED');
-		$this->db->order_by('tool','asc');
-		$query = $this->db->get('pmm_tools');
-
-		if($query->num_rows() > 0){
-			foreach ($query->result_array() as $key => $row) {
-				$row['no'] = $key+1;
-				$name = "'".$row['tool']."'";
-				$total_cost = $this->db->select('SUM(cost) as total')->get_where('pmm_tool_detail',array('status'=>'PUBLISH','tool_id'=>$row['id']))->row_array();
-				$row['total_cost'] = number_format($total_cost['total'],2,',','.');
-				$row['measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_id']),'measure_name');
-				$row['tag'] = $this->crud_global->GetField('pmm_tags',array('id'=>$row['tag_id']),'tag_name');
- 				$row['created_on'] = date('d F Y',strtotime($row['created_on']));
-				$row['actions'] = '<a href="javascript:void(0);" onclick="FormDetail('.$row['id'].','.$name.')" class="btn btn-info"><i class="fa fa-search"></i> Detail</a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-				$arr_data[] = $row;
-			}
-
-		}
-		$data['data'] = $arr_data;
-        $html = $this->load->view('pmm/tools_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Tools');
-        $pdf->nsi_html($html);
-        $pdf->Output('Tools.pdf', 'I');
-	
-	}
-
-	public function measures_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_data = array();
-		$this->db->where('status !=','DELETED');
-		$query = $this->db->get('pmm_measures');
-		$data['data'] = $query->result_array();
-        $html = $this->load->view('pmm/measures_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Satuan');
-        $pdf->nsi_html($html);
-        $pdf->Output('satuan.pdf', 'I');
-	
-	}
-
-	public function composition_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$tag_id = $this->input->get('filter_product');
-		$arr_tag = array();
-		if(!empty($tag_id)){
-			$query_tag = $this->db->select('id')->get_where('pmm_product',array('status'=>'PUBLISH','tag_id'=>$tag_id))->result_array();
-			foreach ($query_tag as $pid) {
-				$arr_tag[] = $pid['id'];
-			}
-		}
-		$this->db->select('pc.*, pp.product');
-		$this->db->where('pc.status !=','DELETED');
-		if(!empty($tag_id)){
-			$this->db->where_in('product_id',$arr_tag);
-		}
-		$this->db->join('pmm_product pp','pc.product_id = pp.id','left');
-		$this->db->order_by('pc.created_on','desc');
-		$query = $this->db->get('pmm_composition pc');
-		$data['data'] = $query->result_array();
-        $html = $this->load->view('pmm/composition_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Composition');
-        $pdf->nsi_html($html);
-        $pdf->Output('Composition.pdf', 'I');
-	
-	}
-
-	public function supplier_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		$pdf->AddPage('P');
-
-		$arr_data = array();
-		$this->db->where('status !=','DELETED');
-		$this->db->order_by('name','asc');
-		$query = $this->db->get('pmm_supplier');
-		$data['data'] = $query->result_array();
-        $html = $this->load->view('pmm/supplier_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Supplier');
-        $pdf->nsi_html($html);
-        $pdf->Output('Supplier.pdf', 'I');
-	
-	}
-
-	public function client_print()
-	{
-		$arr_data = array();
-		$this->db->where('status !=','DELETED');
-		$this->db->order_by('client_name','asc');
-		$query = $this->db->get('pmm_client');
-		$data['data'] = $query->result_array();	
-	
-		$this->load->library('pdf');
-		$this->pdf->setPaper('A4', 'potrait');
-		$this->pdf->filename = "laporan-client.pdf";
-		$this->pdf->load_view('pmm/client_print', $data);
-	
-	}
-	
-	public function slump_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_data = array();
-		$this->db->where('status !=','DELETED');
-		$query = $this->db->get('pmm_slump');
-		$data['data'] = $query->result_array();
-        $html = $this->load->view('pmm/slump_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Slump');
-        $pdf->nsi_html($html);
-        $pdf->Output('Slump.pdf', 'I');
-	
-	}
-
-	public function tags_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
-
-		$arr_data = array();
-		$type = $this->input->get('type');
-		$this->db->where('status !=','DELETED');
-		if(!empty($type)){
-			$this->db->where('tag_type',$type);
-		}
-		$this->db->order_by('tag_name','asc');
-		$query = $this->db->get('pmm_tags');
-
-		if($query->num_rows() > 0){
-			foreach ($query->result_array() as $key => $row) {
-				$row['no'] = $key+1;
-				$price = 0;
-				if($row['tag_type'] == 'MATERIAL'){
-					$get_price = $this->db->select('AVG(cost) as cost')->get_where('pmm_materials',array('status'=>'PUBLISH','tag_id'=>$row['id']))->row_array();
-					if(!empty($get_price)){
-						$price = $get_price['cost'];
-					}
-				}
-				$row['price'] = number_format($price,2,',','.');
-				$arr_data[] = $row;
-			}
-
-		}
-		$data['data'] = $arr_data;
-        $html = $this->load->view('pmm/tags_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('Tags');
-        $pdf->nsi_html($html);
-        $pdf->Output('Tags.pdf', 'I');
-	
-	}
-
-	public function production_planning_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		$pdf->AddPage('P');
-
-		$arr_data = array();
-		$this->db->where('status !=','DELETED');
-		$this->db->order_by('created_on','desc');
-		$query = $this->db->get('pmm_schedule');
-		if($query->num_rows() > 0){
-			foreach ($query->result_array() as $key => $row) {
-				$row['no'] = $key+1;
-				$arr_date = explode(' - ', $row['schedule_date']);
-				$row['schedule_name'] = $row['schedule_name'];
-				$row['client_name'] = $this->crud_global->GetField('pmm_client',array('id'=>$row['client_id']),'client_name');
-				$row['schedule_date'] = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
-				$row['created_on'] = date('d F Y',strtotime($row['created_on']));
-				$row['week_1'] = $this->pmm_model->TotalSPOWeek($row['id'],1);
-				$row['week_2'] = $this->pmm_model->TotalSPOWeek($row['id'],2);
-				$row['week_3'] = $this->pmm_model->TotalSPOWeek($row['id'],3);
-				$row['week_4'] = $this->pmm_model->TotalSPOWeek($row['id'],4);
-				$row['status'] = $this->pmm_model->GetStatus($row['status']);
-				
-				$arr_data[] = $row;
-			}
-
-		}
-		$data['data'] = $arr_data;
-        $html = $this->load->view('pmm/production_planning_print',$data,TRUE);
-
-        
-        $pdf->SetTitle('cetak_poduction_planning');
-        $pdf->nsi_html($html);
-        $pdf->Output('production_planning.pdf', 'I');
-	
-	}
-	
-	public function receipt_matuse_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		$pdf->AddPage('P');
-
-		$arr_data = array();
-		$supplier_id = $this->input->get('supplier_id');
-		$purchase_order_no = $this->input->get('purchase_order_no');
-		$filter_material = $this->input->get('filter_material');
-		$start_date = false;
-		$end_date = false;
-		$total = 0;
-		$total_convert = 0;
-		$date = $this->input->get('filter_date');
-		if(!empty($date)){
-			$arr_date = explode(' - ',$date);
-			$start_date = date('Y-m-d',strtotime($arr_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_date[1]));
-			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
-
-			
-			$data['filter_date'] = $filter_date;
-
-			$arr_filter_mats = array();
-
-			$no = 1;
-			$this->db->select('ppo.supplier_id,prm.measure,ps.name,SUM(prm.volume) as total, SUM((prm.cost / prm.convert_value) * prm.display_volume) as total_price, prm.convert_value, SUM(prm.volume * prm.convert_value) as total_convert');
-			if(!empty($start_date) && !empty($end_date)){
-	            $this->db->where('prm.date_receipt >=',$start_date);
-	            $this->db->where('prm.date_receipt <=',$end_date);
-	        }
-	        if(!empty($supplier_id)){
-	            $this->db->where('ppo.supplier_id',$supplier_id);
-	        }
-	        if(!empty($filter_material)){
-	            $this->db->where_in('prm.material_id',$filter_material);
-	        }
-	        if(!empty($purchase_order_no)){
-	            $this->db->where('prm.purchase_order_id',$purchase_order_no);
-	        }
-			$this->db->where('ps.status','PUBLISH');
-			$this->db->join('pmm_supplier ps','ppo.supplier_id = ps.id','left');
-			$this->db->join('pmm_receipt_material prm','ppo.id = prm.purchase_order_id');
-			$this->db->group_by('ppo.supplier_id');
-			$this->db->order_by('ps.name','asc');
-			$query = $this->db->get('pmm_purchase_order ppo');
-			
-			if($query->num_rows() > 0){
-
-				foreach ($query->result_array() as $key => $sups) {
-
-					$mats = array();
-					$materials = $this->pmm_model->GetReceiptMatUse($sups['supplier_id'],$purchase_order_no,$start_date,$end_date,$arr_filter_mats);
-					if(!empty($materials)){
-						foreach ($materials as $key => $row) {
-							$arr['no'] = $key + 1;
-							$arr['measure'] = $row['measure'];
-							$arr['material_name'] = $row['material_name'];
-							
-							$arr['real'] = number_format($row['total'],2,',','.');
-							$arr['convert_value'] = number_format($row['convert_value'],2,',','.');
-							$arr['total_convert'] = number_format($row['total_convert'],2,',','.');
-							$arr['total_price'] = number_format($row['total_price'],2,',','.');
-							$mats[] = $arr;
-						}
-						$sups['mats'] = $mats;
-						$total += $sups['total_price'];
-						$total_convert += $sups['total_convert'];
-						$sups['no'] =$no;
-						$sups['real'] = number_format($sups['total'],2,',','.');
-						$sups['convert_value'] = number_format($sups['convert_value'],2,',','.');
-						$sups['total_convert'] = number_format($sups['total_convert'],2,',','.');
-						$sups['total_price'] = number_format($sups['total_price'],2,',','.');
-						$sups['measure'] = '';
-						$arr_data[] = $sups;
-						$no++;
-					}
-					
-					
-				}
-			}
-			if(!empty($filter_material)){
-				$total_convert = number_format($total_convert,0,',','.');
-			}else {
-				$total_convert = '';
-			}
-
-			
-			$data['data'] = $arr_data;
-			$data['total'] = $total;
-			$data['total_convert'] = $total_convert;
-	        $html = $this->load->view('pmm/receipt_matuse_report_print',$data,TRUE);
-
-	        
-	        $pdf->SetTitle('Penerimaan Bahan');
-	        $pdf->nsi_html($html);
-	        $pdf->Output('Penerimaan-Bahan.pdf', 'I');
-		}else {
-			echo 'Please Filter Date First';
-		}
-	
-	}
-
-	public function data_material_usage()
-	{
-		$supplier_id = $this->input->post('supplier_id');
-		$filter_material = $this->input->post('filter_material');
-		$start_date = false;
-		$end_date = false;
-		$total = 0;
-		$total_convert = 0;
-		$query = array();
-		$date = $this->input->post('filter_date');
-		if(!empty($date)){
-			$arr_date = explode(' - ',$date);
-			$start_date = date('Y-m-d',strtotime($arr_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_date[1]));
-		}
-
-    	$this->db->where(array(
-    		'status'=>'PUBLISH',
-    	));
-    	if(!empty($filter_material)){
-    		$this->db->where('id',$filter_material);
-    	}
-    	$this->db->order_by('nama_produk','asc');
-    	$tags = $this->db->get_where('produk',array('status'=>'PUBLISH','bahanbaku'=>1))->result_array();
-
-    	if(!empty($tags)){
-    		?>
-	        <table class="table table-center table-bordered table-condensed">
-	        	<thead>
-	        		<tr >
-		        		<th class="text-center">No</th>
-		        		<th class="text-center">Bahan</th>
-		        		<th class="text-center">Rekanan</th>
-		        		<th class="text-center">Satuan</th>
-		        		<th class="text-center">Volume</th>
-		        		<th class="text-center">Total</th>
-		        	</tr>	
-	        	</thead>
-	        	<tbody>
-	        		<?php
-	        		$no=1;
-	        		$total_total = 0;
-	        		foreach ($tags as $tag) {
-		    			$now = $this->pmm_reports->SumMaterialUsage($tag['id'],array($start_date,$end_date));
-
-		    			
-		    			$measure_name = $this->crud_global->GetField('pmm_measures',array('id'=>$tag['satuan']),'measure_name');
-		    			if($now['volume'] > 0){
-				        	
-				        	?>
-				        	<tr class="active" style="font-weight:bold;">
-				        		<td class="text-center"><?php echo $no;?></td>
-				        		<td colspan="2"><?php echo $tag['nama_produk'];?></td>
-				        		<td class="text-center"><?php echo $measure_name;?></td>
-				        		<td class="text-right"><?php echo number_format($now['volume'],2,',','.');?></td>
-				        		<td class="text-right"><span class="pull-left">Rp. </span><?php echo number_format($now['total'],0,',','.');?></td>
-				        	</tr>
-				        	<?php
-				        	$now_new = $this->pmm_reports->MatUseBySupp($tag['id'],array($start_date,$end_date),$now['volume'],$now['total']);
-				        	if(!empty($now_new)){
-				        		$no_2 = 1;
-				        		foreach ($now_new as $new) {
-					        		
-					        		?>
-					        		<!--<tr>
-					        			<td class="text-center"><?= $no.'.'.$no_2;?></td>
-					        			<td></td>
-					        			<td><?php echo $new['supplier'];?></td>
-					        			<td class="text-center"><?php echo $measure_name;?></td>
-						        		<td class="text-right"><?php echo number_format($new['volume'],2,',','.');?></td>
-						        		<td class="text-right"><span class="pull-left">Rp. </span><?php echo number_format($new['total'],0,',','.');?></td>
-					        		</tr>-->
-					        		<?php
-					        		$no_2 ++;
-					        	}
-				        	}
-				        	
-				        	?>
-				        	<tr style="height: 20px">
-				        		<td colspan="6"></td>
-				        	</tr>
-				        	<?php
-
-				        	$no++;
-				        	$total_total += $now['total'];
-					        
-		    			}
-		    		}
-	        		?>
-	        		<tr>
-	        			<th colspan="5" class="text-right">TOTAL</th>
-	        			<th class="text-right"><span class="pull-left">Rp. </span><?php echo number_format($total_total,0,',','.');?></th>
-	        		</tr>
-	        	</tbody>
-	        </table>
-	        <?php	
-    	}
-
-
-	}
-
-
-	public function material_usage_prod_print()
-	{
-		$this->load->library('pdf');
-	
-
-		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(true);
-        
-        $pdf->SetFont('helvetica','',7); 
-        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
-		$pdf->setHtmlVSpace($tagvs);
-		$pdf->AddPage('P');
-
-		$arr_data = array();
-		$supplier_id = $this->input->get('supplier_id');
-		$purchase_order_no = $this->input->get('purchase_order_no');
-		$filter_material = $this->input->get('filter_material');
-		$start_date = false;
-		$end_date = false;
-		$total = 0;
-		$total_convert = 0;
-		$date = $this->input->get('filter_date');
-		if(!empty($date)){
-			$arr_date = explode(' - ',$date);
-			$start_date = date('Y-m-d',strtotime($arr_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_date[1]));
-			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
-
-			
-			$data['filter_date'] = $filter_date;
-
-			$no = 1;
-	    	$this->db->where(array(
-	    		'status'=>'PUBLISH',
-				'bahanbaku'=>1,
-	    	));
-	    	if(!empty($filter_material)){
-	    		$this->db->where('id',$filter_material);
-	    	}
-	    	$this->db->order_by('nama_produk','asc');
-	    	$query = $this->db->get('produk');
-			
-			if($query->num_rows() > 0){
-
-				foreach ($query->result_array() as $key => $tag) {
-
-					$now = $this->pmm_reports->SumMaterialUsage($tag['id'],array($start_date,$end_date));
-	    			$measure_name = $this->crud_global->GetField('pmm_measures',array('id'=>$tag['satuan']),'measure_name');
-	    			if($now['volume'] > 0){
-	    				$tags['tag_name'] = $tag['nama_produk'];
-	    				$tags['no'] = $no;
-	    				$tags['volume'] = number_format($now['volume'],2,',','.');
-	    				$tags['total'] = number_format($now['total'],2,',','.');
-	    				$tags['measure'] = $measure_name;
-
-	    				$now_new = $this->pmm_reports->MatUseBySupp($tag['id'],array($start_date,$end_date),$now['volume'],$now['total']);
-			        	if(!empty($now_new)){
-			        		$no_2 = 1;
-			        		$supps = array();
-			        		foreach ($now_new as $new) {
-
-			        			$arr_supps['no'] = $no_2;
-			        			$arr_supps['supplier'] = $new['supplier'];
-			        			$arr_supps['volume'] = number_format($new['volume'],2,',','.');
-			        			$arr_supps['total'] = number_format($new['total'],2,',','.');
-			        			$supps[] = $arr_supps;
-			        			$no_2 ++;
-			        		}
-
-			        		$tags['supps'] = $supps;
-			        	}
-
-						$arr_data[] = $tags;	
-						$total += $now['total'];
-	    			}
-					$no++;
-					
-				}
-			}
-
-			
-			$data['data'] = $arr_data;
-			$data['total'] = $total;
-			$data['custom_date'] = $this->input->get('custom_date');
-	        $html = $this->load->view('produksi/material_usage_prod_print',$data,TRUE);
-
-	        
-	        $pdf->SetTitle('pemakaian-material');
-	        $pdf->nsi_html($html);
-	        $pdf->Output('pemakaian-material', 'I');
-		}else {
-			echo 'Please Filter Date First';
-		}
-	
-	}
-
-	public function exec()
-	{
-		
 	}
 
 	function buku_besar()
