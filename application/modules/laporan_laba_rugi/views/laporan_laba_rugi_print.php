@@ -409,7 +409,7 @@
 				$styleColor = $laba_usaha < 0 ? 'color:red' : 'color:black';
 			?>	
 			<tr class="table-active3">
-	            <th width="70%" align="left"><b>Laba Usaha</b></th>
+	            <th width="70%" align="left"><b>Laba Rugi Usaha</b></th>
 	            <th width="30%" align="right" style="<?php echo $styleColor ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
