@@ -315,33 +315,35 @@ class Laporan extends Secure_Controller {
 		$html =
 		'<table width="98%" border="0" cellpadding="2">
 		<tr>
-			<th width="3%"rowspan="2" style="vertical-align:middle;font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
-			<th width="7%" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">REKANAN</th>
-			<th width="6%" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">NOMOR</th>
-			<th width="6%" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
-			<th width="6%" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
-			<th width="20%" colspan="3" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th width="20%" colspan="4" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PEMBAYARAN</th>
-			<th width="20%" colspan="3" style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">SISA HUTANG</th>
-			<th width="12%" colspan="3" style="vertical-align:middle;font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">STATUS HUTANG</th>
+			<th width="3%"rowspan="2" style="vertical-align:middle;font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
+			<th width="7%" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">REKANAN</th>
+			<th width="6%" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">NOMOR</th>
+			<th width="6%" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
+			<th width="6%" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
+			<th width="20%" colspan="4" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th width="20%" colspan="4" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PEMBAYARAN</th>
+			<th width="20%" colspan="4" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">SISA HUTANG</th>
+			<th width="12%" colspan="3" style="vertical-align:middle;font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS HUTANG</th>
 		</tr>
 		<tr>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">KETERANGAN</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">VERIFIKASI</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">STATUS</th>
-			<th style="font-size:6px;;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">KETERANGAN</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">VERIFIKASI</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS</th>
+			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
 			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JATUH TEMPO</th>
 		</tr>
 		</table>';
