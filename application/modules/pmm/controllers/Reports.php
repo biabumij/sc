@@ -10051,7 +10051,7 @@ class Reports extends CI_Controller {
 				$styleColor = $laba_usaha < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Laba Rugi Usaha</th>
+	            <th colspan="4" class="text-left">Laba Usaha</th>
 	            <th class="text-right" style="<?php echo $styleColor ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
