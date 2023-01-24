@@ -190,7 +190,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-center">NO. PESANAN PEMBELIAN</th>
-                                                                <th class="text-center">PENERIMAAN</th>
+                                                                <th class="text-center">PENJUALAN</th>
                                                                 <th class="text-center">TAGIHAN</th>
                                                             </tr>
 															</thead>

@@ -357,16 +357,16 @@
 
 
             $('#tax-val-3').val(tax_3);
-            $('#tax-total-3 h5').text($.number( tax_3, 0,',','.' ));
+            $('#tax-total-3 h5').text($.number( tax_3, 2,',','.' ));
 
             $('#tax-val-4').val(tax_4);
-            $('#tax-total-4 h5').text($.number( tax_4, 0,',','.' ));
+            $('#tax-total-4 h5').text($.number( tax_4, 2,',','.' ));
 
             $('#tax-val-5').val(tax_5);
-            $('#tax-total-5 h5').text($.number( tax_5, 0,',','.' ));
+            $('#tax-total-5 h5').text($.number( tax_5, 2,',','.' ));
 
             $('#tax-val-6').val(tax_6);
-            $('#tax-total-6 h5').text($.number( tax_6, 0,',','.' ));
+            $('#tax-total-6 h5').text($.number( tax_6, 2,',','.' ));
 
             total_total = parseInt(sub_total) + parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5) + parseInt(tax_6);
             $('#total-val').val(total_total);

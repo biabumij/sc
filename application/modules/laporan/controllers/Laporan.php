@@ -1464,7 +1464,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_laba_rugi/laporan_laba_rugi_print',$data,TRUE);
+        $html = $this->load->view('laporan_keuangan/laporan_laba_rugi_print',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Laporan Laba Rugi');
@@ -1730,7 +1730,7 @@ class Laporan extends Secure_Controller {
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
         $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
 		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
-        $html = $this->load->view('laporan_laba_rugi/cetak_biaya_umum_administratif',$data,TRUE);
+        $html = $this->load->view('laporan_keuangan/cetak_biaya_umum_administratif',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Biaya Umum & Administratif');
@@ -1763,7 +1763,7 @@ class Laporan extends Secure_Controller {
 		$data['biaya_jurnal'] = $this->m_laporan->showBiayaJurnal_print($arr_date);
         $data['biaya_lainnya'] = $this->m_laporan->showBiayaLainnya_print($arr_date);
 		$data['biaya_lainnya_jurnal'] = $this->m_laporan->showBiayaLainnyaJurnal_print($arr_date);
-        $html = $this->load->view('laporan_laba_rugi/cetak_biaya_lainnya',$data,TRUE);
+        $html = $this->load->view('laporan_keuangan/cetak_biaya_lainnya',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Biaya Lainnya');
