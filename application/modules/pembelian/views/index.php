@@ -1327,14 +1327,14 @@
 
             // Total over all pages
             total = api
-                .column(9)
+                .column(10)
                 .data()
                 .reduce(function(a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
 
             // Update footer
-            $(api.column(9).footer()).html($.number(total, 0, ',', '.'));
+            $(api.column(10).footer()).html($.number(total, 0, ',', '.'));
         }
     });
 
