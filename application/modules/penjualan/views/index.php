@@ -204,15 +204,6 @@
                                                 <tbody>
 
                                                 </tbody>
-                                                <!--<tfoot>
-                                                    <th colspan="6" style="text-align:right">TOTAL</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tfoot>-->
                                             </table>
                                         </div>
                                     </div>
@@ -480,29 +471,6 @@
                     "className": 'text-right',
                 }
             ],
-			"footerCallback": function ( row, data, start, end, display ) {
-                var api = this.api(), data;
-     
-                // Remove the formatting to get integer data for summation
-                var intVal = function ( i ) {
-                    return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '')*1 :
-                        typeof i === 'number' ?
-                            i : 0;
-                };
-     
-                // Total over all pages
-                total = api
-                    .column( 7 )
-                    .data()
-                    .reduce( function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0 );
-     
-                // Update footer
-                $( api.column( 7 ).footer() ).html($.number( total));
-            }
-			
         });
 
         $('#filter_supplier_id').on('select2:select', function(e) {
@@ -689,5 +657,4 @@
     </script>
 
 </body>
-
 </html>

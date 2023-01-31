@@ -350,13 +350,6 @@
                                             <tbody>
 
                                             </tbody>
-                                            <tfoot>
-                                                <th></th>
-                                                <th colspan="10" style="font-weight:bold;text-align:center !important;">TOTAL : </th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>
@@ -1313,29 +1306,6 @@
                 "className": 'text-right',
             }
         ],
-        "footerCallback": function(row, data, start, end, display) {
-            var api = this.api(),
-                data;
-
-            // Remove the formatting to get integer data for summation
-            var intVal = function(i) {
-                return typeof i === 'string' ?
-                    i.replace(/\./g,'').replace(',', '.') * 1 :
-                    typeof i === 'number' ?
-                    i : 0;
-            };
-
-            // Total over all pages
-            total = api
-                .column(10)
-                .data()
-                .reduce(function(a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-            // Update footer
-            $(api.column(10).footer()).html($.number(total, 0, ',', '.'));
-        }
     });
 
     $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
