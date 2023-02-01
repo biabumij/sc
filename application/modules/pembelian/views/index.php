@@ -262,7 +262,7 @@
                                                     <th class="text-center">Terima</th>
                                                     <th class="text-center">Total Pesanan Pembelian</th>
                                                     <th class="text-center">Total Terima</th>
-                                                    <th class="text-center">Status PO</th>
+                                                    <th class="text-center">Status Pesanan Pembelian</th>
                                                     <th class="text-center">Tindakan</th>
                                                     <th class="text-center">Dibuat Oleh</th>
                                                     <th class="text-center">Dibuat Tanggal</th>   
