@@ -87,13 +87,13 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-2">
-                                        <label>Tanggal Purchase Order</label>
+                                        <label>Tanggal Pesanan Pembelian</label>
                                         <input type="text" class="form-control" value="<?= $row['tanggal_po']; ?>" readonly>
                                     </div>
                                     <div class="col-sm-8">
-                                        <label>Nomor Purchase Order</label>
-                                        <input type="text" class="form-control" value="<?= $row['no_po']; ?>" readonly>
-                                    </div>  
+                                        <label>Nomor Pesanan Pembelian</label>
+                                        <div class="form-control" readonly><a target="_blank" href="<?= base_url("pmm/purchase_order/manage/".$row['purchase_order_id']) ?>"><?php echo $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');?></a></div>
+                                    </div> 
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-2">
