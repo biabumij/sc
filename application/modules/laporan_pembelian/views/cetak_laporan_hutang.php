@@ -84,12 +84,11 @@
 				<th width="23%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
 				<th width="12%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN</th>
 				<th width="12%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
-				<th width="12%" align="center">TAGIHAN</th>
+				<th width="12%" align="center" rowspan="2">&nbsp; <br />TAGIHAN BRUTO</th>
 				<th width="12%" align="center" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
 				<th width="24%" align="center"colspan="2">SISA HUTANG</th>
 			</tr>
 			<tr class="table-judul">
-				<th align="center">BRUTO</th>
 				<th align="center">PENERIMAAN</th>
 				<th align="center">TAGIHAN</th>
 			</tr>			
