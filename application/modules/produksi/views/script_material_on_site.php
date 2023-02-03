@@ -63,7 +63,7 @@
                 "data": "notes"
             },
             {
-                "data": "actions"
+                "data": "delete"
             },
         ],
         responsive: true,
