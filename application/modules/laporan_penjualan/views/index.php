@@ -186,7 +186,7 @@
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN BRUTO</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN PEMBAYARAN</th>
-                                                                <th class="text-center"colspan="2">SISA HUTANG</th>
+                                                                <th class="text-center"colspan="2">SISA PIUTANG</th>
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-center">NO. PESANAN PEMBELIAN</th>
