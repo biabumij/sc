@@ -264,7 +264,7 @@
                                         <div class="row">
                                             <h4 class="col-sm-7 control-label">Total</h4>
                                             <div class="col-sm-5 text-right">
-                                                <h4 id="total"><?= number_format($row['total'],0,',','.'); ?></h4>
+                                                <h4 id="total"><?= number_format($total,0,',','.'); ?></h4>
                                             </div>
                                         </div>
                                         <br />
@@ -277,7 +277,7 @@
                                         <div class="row">
                                             <h4 class="col-sm-7 control-label">Sisa Tagihan</h4>
                                             <div class="col-sm-5 text-right">
-                                                <h4 id="total"><?= number_format($row['total'] - $row['uang_muka']); ?></h4>
+                                                <h4 id="total"><?= number_format($total - $row['uang_muka']); ?></h4>
                                             </div>
                                         </div>
                                     </div>
