@@ -46,9 +46,14 @@
                                     <td><?php echo $data['request_no'];?></td>
                                 </tr>
                                 <tr>
+                                    <th width="150px">No. Penawaran</th>
+                                    <th width="50px">:</th>
+                                    <td><a target="_blank" href="<?= base_url("pembelian/penawaran_pembelian_detail/".$detail['penawaran_id'])?>"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$detail['penawaran_id']),'nomor_penawaran');?></a></td>
+                                </tr>
+                                <tr>
                                     <th width="150px">Tanggal Permintaan</th>
                                     <th width="50px">:</th>
-                                    <td><?php echo date('l d F Y',strtotime($data['request_date']));?></td>
+                                    <td><?php echo date('d/m/Y',strtotime($data['request_date']));?></td>
                                 </tr>
                                 <tr>
                                     <th width="150px">Rekanan</th>

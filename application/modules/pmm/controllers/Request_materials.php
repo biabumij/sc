@@ -25,8 +25,10 @@ class Request_materials extends CI_Controller {
 			$id = $this->uri->segment(4);
 			$data['id'] = $id;
 			$get_data = $this->db->get_where('pmm_request_materials',array('id'=>$id,'status !='=>'DELETED'))->row_array();
+			$get_data_detail = $this->db->get_where('pmm_request_material_details',array('request_material_id'=>$id))->row_array();
 			if(!empty($get_data)){
 				$data['data'] = $get_data;
+				$data['detail'] = $get_data_detail;
 				$data['products'] = $this->pmm_model->SelectScheduleProduct($get_data['schedule_id']);
 				// $data['materials'] = $this->pmm_model->GetMaterialsOnRequest($get_data['schedule_id']);
 				$data['materials'] = $this->pmm_model->getMatByPenawaran($get_data['supplier_id']);
