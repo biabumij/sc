@@ -63,7 +63,7 @@
                                         <td>: <?= convertDateDBtoIndo($penawaran["tanggal"]); ?></td>
                                     </tr>
                                     <tr>
-                                        <th >Perihal </th>
+                                        <th >Syarat Pembayaran</th>
                                         <td>: <?= $penawaran["syarat_pembayaran"]; ?> Hari</td>
                                     </tr>
                                     <tr>
