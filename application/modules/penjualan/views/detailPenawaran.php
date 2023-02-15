@@ -67,7 +67,7 @@
                                         <td>: <?= $penawaran["syarat_pembayaran"]; ?> Hari</td>
                                     </tr>
                                     <tr>
-                                        <th >Perihal </th>
+                                        <th >Perihal</th>
                                         <td>: <?= $penawaran["perihal"]; ?></td>
                                     </tr>
                                     <tr>
