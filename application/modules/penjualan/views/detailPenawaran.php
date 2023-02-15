@@ -47,16 +47,16 @@
                             <div class="panel-content">
                                 <table class="table table-bordered table-striped">
                                     <tr>
+                                        <th width="200px">Nomor</th>
+                                        <td>: <?= $penawaran["nomor"] ?></td>
+                                    </tr>
+                                    <tr>
                                         <th >Perihal</th>
                                         <td>: <?= $penawaran["perihal"]; ?></td>
                                     </tr>
                                     <tr>
                                         <th >Tanggal</th>
                                         <td>: <?= convertDateDBtoIndo($penawaran["tanggal"]); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th width="200px">Nomor</th>
-                                        <td>: <?= $penawaran["nomor"] ?></td>
                                     </tr>
                                     <tr>
                                         <th width="200px">Nama Pelanggan </th>
