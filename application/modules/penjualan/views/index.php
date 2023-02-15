@@ -75,7 +75,8 @@
                                                         <th>No</th>
 														<th class="text-center">Tanggal Penawaran</th>
 														<th class="text-center">Nomor Penawaran</th>
-                                                        <th class="text-center">Pelanggan</th>          
+                                                        <th class="text-center">Pelanggan</th>
+                                                        <th class="text-center">Perihal</th>        
                                                         <th class="text-center">Total</th>
                                                         <th class="text-center">Status Penawaran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
@@ -298,6 +299,9 @@
                     "data": "nama"
                 },
                 {
+                    "data": "perihal"
+                },
+                {
                     "data": "total"
                 },
                 {
@@ -312,11 +316,11 @@
             ],
             "columnDefs": [
 				{
-                "targets": [0, 1, 5, 6, 7],
+                "targets": [0, 1, 6, 7, 8],
                 "className": 'text-center',
 				},
 				{
-                "targets": [4],
+                "targets": [5],
                 "className": 'text-right',
 				}
 			],

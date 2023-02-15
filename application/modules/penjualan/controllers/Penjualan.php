@@ -39,6 +39,7 @@ class Penjualan extends Secure_Controller
 				$row['no'] = $key + 1;
 				$row['tanggal'] = date('d/m/Y', strtotime($row['tanggal']));
 				$row['nomor'] = "<a href=" . base_url('penjualan/detailPenawaran/' . $row["id"]) . ">" . $row["nomor"] . "</a>";
+				$row['perihal'] = $row['perihal'];
 				$row['total'] = number_format($row['total'],0,',','.');
 				$row['status'] = $this->pmm_model->GetStatus2($row['status']);
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
