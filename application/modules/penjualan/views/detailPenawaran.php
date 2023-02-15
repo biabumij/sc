@@ -47,6 +47,10 @@
                             <div class="panel-content">
                                 <table class="table table-bordered table-striped">
                                     <tr>
+                                        <th >Perihal</th>
+                                        <td>: <?= $penawaran["perihal"]; ?></td>
+                                    </tr>
+                                    <tr>
                                         <th width="200px">Nomor</th>
                                         <td>: <?= $penawaran["nomor"] ?></td>
                                     </tr>
@@ -65,10 +69,6 @@
                                     <tr>
                                         <th >Syarat Pembayaran</th>
                                         <td>: <?= $penawaran["syarat_pembayaran"]; ?> Hari</td>
-                                    </tr>
-                                    <tr>
-                                        <th >Perihal</th>
-                                        <td>: <?= $penawaran["perihal"]; ?></td>
                                     </tr>
                                     <tr>
                                         <th >Total</th>
