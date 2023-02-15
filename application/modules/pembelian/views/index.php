@@ -103,7 +103,7 @@
                                                         <th class="text-center">Tanggal Penawaran</th>
                                                         <th class="text-center">Nomor Penawaran</th>
                                                         <th class="text-center">Rekanan</th>
-                                                        <th class="text-center">Jenis</th>
+                                                        <th class="text-center">Jenis Pembelian</th>
                                                         <th class="text-center">Berlaku Hingga</th>
 														<th class="text-center">Jumlah</th>
                                                         <th class="text-center">Status Penawaran</th>
