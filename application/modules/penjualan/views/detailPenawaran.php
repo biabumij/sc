@@ -51,6 +51,10 @@
                                         <td>: <?= $penawaran["perihal"]; ?></td>
                                     </tr>
                                     <tr>
+                                        <th >Tanggal</th>
+                                        <td>: <?= convertDateDBtoIndo($penawaran["tanggal"]); ?></td>
+                                    </tr>
+                                    <tr>
                                         <th width="200px">Nomor</th>
                                         <td>: <?= $penawaran["nomor"] ?></td>
                                     </tr>
@@ -61,10 +65,6 @@
                                     <tr>
                                         <th >Alamat </th>
                                         <td>: <?= $penawaran["client_address"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th >Tanggal</th>
-                                        <td>: <?= convertDateDBtoIndo($penawaran["tanggal"]); ?></td>
                                     </tr>
                                     <tr>
                                         <th >Syarat Pembayaran</th>
