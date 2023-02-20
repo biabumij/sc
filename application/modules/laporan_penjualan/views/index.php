@@ -83,7 +83,6 @@
                                                     <?php
                                                     $product = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
                                                     $client = $this->db->order_by('nama', 'asc')->get_where('penerima', array('status' => 'PUBLISH', 'pelanggan' => 1))->result_array();
-                                                    $status_pembayaran = $this->db->group_by('status_pembayaran', 'asc')->get_where('pmm_penagihan_penjualan')->result_array();
                                                     ?>
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_pengiriman_penjualan'); ?>" target="_blank">
@@ -213,8 +212,9 @@
 													<a href="laporan_penjualan">Kembali</a>
                                                 </div>
                                                 <?php
-                                                    $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
-                                                    ?>
+                                                $kategori = $this->db->order_by('nama_kategori_produk', 'asc')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
+                                                $status_pembayaran = $this->db->group_by('status_pembayaran', 'asc')->get_where('pmm_penagihan_penjualan')->result_array();
+                                                ?>
                                                 <div style="margin: 20px">
                                                     <div class="row">
                                                         <form action="<?php echo site_url('laporan/cetak_monitoring_piutang'); ?>" target="_blank">
