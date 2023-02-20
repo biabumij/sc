@@ -3652,7 +3652,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function GetLaporanMonitoringPiutang($client_id=false,$start_date=false,$end_date=false,$filter_kategori=false)
+    function GetLaporanMonitoringPiutang($client_id=false,$start_date=false,$end_date=false,$filter_kategori=false,$filter_status=false)
     {
         $output = array();
 
@@ -3681,6 +3681,9 @@ class Pmm_model extends CI_Model {
         }
         if(!empty($filter_kategori)){
             $this->db->where_in('po.kategori_id',$filter_kategori);
+        }
+        if(!empty($filter_status)){
+            $this->db->where_in('ppp.status_pembayaran',$filter_status);
         }
         $this->db->order_by('ppp.tanggal_invoice','asc');
         $this->db->group_by('ppp.id');

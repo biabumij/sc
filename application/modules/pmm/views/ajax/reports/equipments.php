@@ -206,7 +206,7 @@
 		        }else {
 		        	?>
 		        	<tr>
-		        		<td colspan="8" align="center"> -- No Data --</td>
+		        		<td colspan="8" align="center">Tidak Ada Data</td>
 		        	</tr>
 		        	<?php
 		        }

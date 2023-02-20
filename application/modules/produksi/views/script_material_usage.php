@@ -52,7 +52,7 @@
                         });
                         $('#table-date tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td></td><td class="text-center" ><b>' + result.total_convert + '</b></td><td class="text-right" ><b><span class="pull-left">Rp. </span>' + result.total + '</b></td></tr>');
                     } else {
-                        $('#table-date tbody').append('<tr><td class="text-center" colspan="6"><b>No Data</b></td></tr>');
+                        $('#table-date tbody').append('<tr><td class="text-center" colspan="6"><b>Tidak Ada Data</b></td></tr>');
                     }
                     $('#loader-table').fadeOut('fast');
                 } else if (result.err) {

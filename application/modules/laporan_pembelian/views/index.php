@@ -422,7 +422,7 @@
                                 });
                                 $('#penerimaan-pembelian tbody').append('<tr><td class="text-right" colspan="3"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total_volume + '</b></td><td class="text-right" ></td><td class="text-right" ><b>' + result.total_nilai + '</b></td></tr>');
                             } else {
-                                $('#penerimaan-pembelian tbody').append('<tr><td class="text-center" colspan="6"><b>NO DATA</b></td></tr>');
+                                $('#penerimaan-pembelian tbody').append('<tr><td class="text-center" colspan="6"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -551,7 +551,7 @@
                                 $('#laporan-hutang tbody').append('<tr><td class="text-right" colspan="2"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_penerimaan + '</b></td><td class="text-right"><b>' + result.total_tagihan + '</b></td><td class="text-right"><b>' + result.total_tagihan_bruto + '</b></td><td class="text-right"><b>' + result.total_pembayaran + '</b></td><td class="text-right"><b>' + result.total_sisa_hutang_penerimaan + '</b></td><td class="text-right"><b>' + result.total_sisa_hutang_tagihan + '</b></td></tr>');
                                 $('#laporan-hutang tbody').append('<tr><td class="text-center" style="background-color:red;color:white;"colspan="8"><blink><b>* Exclude PPN & PPH</b></blink></td></tr>');
                             } else {
-                                $('#laporan-hutang tbody').append('<tr><td class="text-center" colspan="8"><b>NO DATA</b></td></tr>');
+                                $('#laporan-hutang tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
@@ -661,7 +661,7 @@
                                 });
                                 $('#monitoring-hutang tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_dpp_tagihan + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_pph_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_pph_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td><td class="text-right"></td></tr>');
                             } else {
-                                $('#monitoring-hutang tbody').append('<tr><td class="text-center" colspan="20"><b>NO DATA</b></td></tr>');
+                                $('#monitoring-hutang tbody').append('<tr><td class="text-center" colspan="20"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {

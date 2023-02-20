@@ -1631,7 +1631,7 @@ class Pmm extends CI_Controller {
 					}else {
 						?>
 						<tr>
-							<td class="text-center" colspan="3">No Data</td>
+							<td class="text-center" colspan="3">Tidak Ada Data</td>
 						</tr>
 						<?php
 					}

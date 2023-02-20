@@ -867,6 +867,7 @@ class Laporan extends Secure_Controller {
 		$arr_data = array();
 		$client_id = $this->input->get('client_id');
 		$filter_kategori = $this->input->get('filter_kategori');
+		$filter_status = $this->input->get('filter_status');
 		$start_date = false;
 		$end_date = false;
 		$total_dpp_tagihan = 0;
@@ -900,6 +901,9 @@ class Laporan extends Secure_Controller {
             if(!empty($client_id)){
                 $this->db->where('ppp.client_id',$client_id);
             }
+			if(!empty($filter_status)){
+                $this->db->where('ppp.status_pembayaran',$filter_status);
+            }
             
             $this->db->group_by('ppp.client_id');
             $this->db->order_by('ps.nama','asc');
@@ -911,7 +915,7 @@ class Laporan extends Secure_Controller {
 				foreach ($query->result_array() as $key => $sups) {
 
 					$mats = array();
-					$materials = $this->pmm_model->GetLaporanMonitoringPiutang($sups['client_id'],$start_date,$end_date,$filter_kategori);
+					$materials = $this->pmm_model->GetLaporanMonitoringPiutang($sups['client_id'],$start_date,$end_date,$filter_kategori,$filter_status);
 					if(!empty($materials)){
 						foreach ($materials as $key => $row) {
 							

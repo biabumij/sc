@@ -111,7 +111,7 @@
 	        }else {
 	        	?>
 	            <tr>
-	            	<th class="text-center" colspan="6">No Data</th>
+	            	<th class="text-center" colspan="6">Tidak Ada Data</th>
 		        </tr>
 	            <?php
 	        }
@@ -158,7 +158,7 @@
 	        }else {
 	        	?>
 	            <tr>
-	            	<th class="text-center" colspan="6">No Data</th>
+	            	<th class="text-center" colspan="6">Tidak Ada Data</th>
 		        </tr>
 	            <?php
 	        }
@@ -264,7 +264,7 @@
 	        }else {
 	        	?>
 	            <tr>
-	            	<th class="text-center" colspan="6">No Data</th>
+	            	<th class="text-center" colspan="6">Tidak Ada Data</th>
 		        </tr>
 	            <?php
 	        }
@@ -310,7 +310,7 @@
 	        }else {
 	        	?>
 	            <tr>
-	            	<th class="text-center" colspan="6">No Data</th>
+	            	<th class="text-center" colspan="6">Tidak Ada Data</th>
 		        </tr>
 	            <?php
 	        }
@@ -410,7 +410,7 @@
 	        }else {
 	        	?>
 	            <tr>
-	            	<th class="text-center" colspan="6">No Data</th>
+	            	<th class="text-center" colspan="6">Tidak Ada Data</th>
 		        </tr>
 	            <?php
 	        }
@@ -452,7 +452,7 @@
 	        }else {
 	        	?>
 	            <tr>
-	            	<th class="text-center" colspan="6">No Data</th>
+	            	<th class="text-center" colspan="6">Tidak Ada Data</th>
 		        </tr>
 	            <?php
 	        }
