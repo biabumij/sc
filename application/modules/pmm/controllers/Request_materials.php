@@ -29,10 +29,10 @@ class Request_materials extends CI_Controller {
 			if(!empty($get_data)){
 				$data['data'] = $get_data;
 				$data['detail'] = $get_data_detail;
-				$data['products'] = $this->pmm_model->SelectScheduleProduct($get_data['schedule_id']);
-				// $data['materials'] = $this->pmm_model->GetMaterialsOnRequest($get_data['schedule_id']);
 				$data['materials'] = $this->pmm_model->getMatByPenawaran($get_data['supplier_id']);
-				$data['materials_need'] = $this->pmm_model->GetScheduleDetail($get_data['schedule_id']);
+				//$data['products'] = $this->pmm_model->SelectScheduleProduct($get_data['schedule_id']);
+				// $data['materials'] = $this->pmm_model->GetMaterialsOnRequest($get_data['schedule_id']);
+				//$data['materials_need'] = $this->pmm_model->GetScheduleDetail($get_data['schedule_id']);
 				$this->load->view('pmm/request_material_add',$data);
 			}else {
 				redirect('admin/pembelian');
@@ -51,11 +51,7 @@ class Request_materials extends CI_Controller {
 		$supplier_id = $this->input->post('supplier_id');
 		$w_date = $this->input->post('filter_date');
 
-		$this->db->select('prm.*, ps.schedule_name,ps.no_spo');
-		$this->db->join('pmm_schedule ps','prm.schedule_id = ps.id','left');
-		if(!empty($schedule_id)){
-			$this->db->where('prm.schedule_id',$schedule_id);
-		}
+		$this->db->select('prm.*');
 		if(!empty($supplier_id)){
 			$this->db->where('prm.supplier_id',$supplier_id);
 		}

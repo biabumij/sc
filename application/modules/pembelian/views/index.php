@@ -121,11 +121,8 @@
 									<!-- Permintaan Bahan & Alat -->
 									
 									<div role="tabpanel" class="tab-pane" id="chart">
-									 <?php
-										$this->db->select('id,no_spo,schedule_name');
-										$this->db->where_in('status',array('WAITING','APPROVED'));
-										$arr_schedule = $this->db->get('pmm_schedule')->result_array();
-										$suppliers= $this->db->order_by('nama','asc')->get_where('penerima',array('status'=>'PUBLISH','rekanan'=>1))->result_array();
+									<?php
+									    $suppliers= $this->db->order_by('nama','asc')->get_where('penerima',array('status'=>'PUBLISH','rekanan'=>1))->result_array();
 									?>
                                     
                                     <div class="row">
