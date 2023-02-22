@@ -132,7 +132,6 @@
                             ?>  
                             
                             <input type="hidden" name="request_material_id" value="<?php echo $id;?>" id="request_material_id">
-                            <input type="hidden" name="request_material_id" value="<?php echo $data['schedule_id'];?>" id="schedule_id">
                             
                             <?php
                             if($data['status'] == 'DRAFT'){
