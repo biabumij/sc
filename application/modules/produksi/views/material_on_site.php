@@ -21,6 +21,8 @@
                 <th class="text-center">Satuan</th>
                 <th class="text-center">Volume</th>
                 <th class="text-center">Catatan</th>
+                <th class="text-center">Dibuat Oleh</th>
+                <th class="text-center">Dibuat Tanggal</th>
                 <th class="text-center">Hapus</th>
             </tr>
         </thead>

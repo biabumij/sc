@@ -63,20 +63,22 @@
                 "data": "notes"
             },
             {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            },
+            {
                 "data": "delete"
             },
         ],
         responsive: true,
         "columnDefs": [{
-            "targets": [0],
+            "targets": [0, 1, 3, 4],
             "className": 'text-center',
         },
-		{
-			"targets": [2],
-			"className": 'text-left',
-        },
         {
-			"targets": [4],
+			"targets": [7, 8],
 			"className": 'text-right',
          }
 		]
