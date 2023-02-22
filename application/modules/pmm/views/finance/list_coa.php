@@ -60,7 +60,7 @@
                                             <th>Nama</th>
                                             <th>Kode Akun</th>
                                             <th>Kategori AKun</th>
-                                            <th>Action</th>
+                                            <th>Tindakan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -165,6 +165,8 @@
                 { "data": "coa" },
                 { "data": "coa_number" },
                 { "data": "coa_category" },
+                { "data": "created_by" },
+                { "data": "created_on" },
                 { "data": "action" },
             ],
             "columnDefs": [
