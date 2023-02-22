@@ -82,11 +82,11 @@
 		<table cellpadding="4" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" rowspan="2">&nbsp; <br />NO.</th>
-				<th width="30%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
+				<th width="28%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
 				<th width="10%" align="center" rowspan="2">&nbsp; <br />PENJUALAN</th>
 				<th width="10%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
 				<th width="10%" align="center" rowspan="2">&nbsp; <br />TAGIHAN BRUTO</th>
-				<th width="10%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN PEMBAYARAN</th>
+				<th width="12%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN PEMBAYARAN</th>
 				<th width="25%" align="center"colspan="2">SISA PIUTANG</th>
 			</tr>
 			<tr class="table-judul">
