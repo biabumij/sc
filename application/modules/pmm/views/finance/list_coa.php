@@ -59,7 +59,9 @@
                                             <th>No</th>
                                             <th>Nama</th>
                                             <th>Kode Akun</th>
-                                            <th>Kategori AKun</th>
+                                            <th>Kategori Akun</th>
+                                            <th>Dibuat Oleh</th>
+                                            <th>Dibuat Tanggal</th>
                                             <th>Tindakan</th>
                                         </tr>
                                     </thead>
