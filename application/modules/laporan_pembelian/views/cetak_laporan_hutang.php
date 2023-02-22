@@ -7,28 +7,28 @@
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 7px;
 		}
 
 		table tr.table-baris1-bold{
 			background-color: #F0F0F0;
-			font-size: 8px;
+			font-size: 7px;
 			font-weight: bold;
 		}
 			
 		table tr.table-baris2{
-			font-size: 8px;
+			font-size: 7px;
 			background-color: #E8E8E8;
 		}
 
 		table tr.table-baris2-bold{
-			font-size: 8px;
+			font-size: 7px;
 			background-color: #E8E8E8;
 			font-weight: bold;
 		}
@@ -36,7 +36,7 @@
 		table tr.table-total{
 			background-color: #cccccc;
 			font-weight: bold;
-			font-size: 8px;
+			font-size: 7px;
 			color: black;
 		}
 	  </style>
@@ -78,15 +78,15 @@
 				</td>
 			</tr>
 		</table>	
-		<table cellpadding="2" width="98%">
+		<table cellpadding="4" width="98%">
 			<tr class="table-judul">
 				<th width="5%" align="center" rowspan="2">&nbsp; <br />NO.</th>
-				<th width="23%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
-				<th width="12%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN</th>
-				<th width="12%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
-				<th width="12%" align="center" rowspan="2">&nbsp; <br />TAGIHAN BRUTO</th>
-				<th width="12%" align="center" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
-				<th width="24%" align="center"colspan="2">SISA HUTANG</th>
+				<th width="30%" align="center" rowspan="2">&nbsp; <br />REKANAN</th>
+				<th width="10%" align="center" rowspan="2">&nbsp; <br />PENERIMAAN</th>
+				<th width="10%" align="center" rowspan="2">&nbsp; <br />TAGIHAN</th>
+				<th width="10%" align="center" rowspan="2">&nbsp; <br />TAGIHAN BRUTO</th>
+				<th width="10%" align="center" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
+				<th width="25%" align="center"colspan="2">SISA HUTANG</th>
 			</tr>
 			<tr class="table-judul">
 				<th align="center">PENERIMAAN</th>
@@ -94,8 +94,9 @@
 			</tr>			
             <?php   
             if(!empty($data)){
-            	foreach ($data as $key => $row) {
-            		?>
+            	foreach ($data as $key => $row) :
+				$i++;
+				$bg=($i%2==0?'#F0F0F0':'#E8E8E8') ?>   
             		<!--<tr class="table-baris1-bold">
             			<td align="center"><?php echo $key + 1;?></td>
             			<td align="left" colspan="7"><?php echo $row['name'];?></td>
@@ -127,10 +128,10 @@
 					$jumlah_pembayaran += str_replace(['.', ','], ['', '.'], $mat['pembayaran']);
 					$jumlah_sisa_hutang_penerimaan += str_replace(['.', ','], ['', '.'], $mat['sisa_hutang_penerimaan']);
 					$jumlah_sisa_hutang_tagihan += str_replace(['.', ','], ['', '.'], $mat['sisa_hutang_tagihan']);
-					}	
+					}
 					?>
-					<tr class="table-baris2">
-						<td align="right"><?php echo $key + 1;?></td>
+					<tr class="table-baris2" style="background-color:<?php echo $bg; ?>;">
+						<td align="center"><?php echo $key + 1;?></td>
 						<td align="left"><?php echo $row['name'];?></td>
 						<td align="right"><?php echo number_format($jumlah_penerimaan,0,',','.');?></td>
 						<td align="right"><?php echo number_format($jumlah_tagihan,0,',','.');?></td>
@@ -140,7 +141,7 @@
 						<td align="right"><?php echo number_format($jumlah_sisa_hutang_tagihan,0,',','.');?></td>
             		</tr>
 					<?php
-            		}
+					endforeach; 
             }else {
             	?>
             	<tr>
@@ -160,7 +161,6 @@
             </tr>   
 		</table>
 		<p>* Exclude PPN & PPH</p>
-
 		<table width="98%" border="0" cellpadding="30">
 			<tr >
 				<td width="5%"></td>
