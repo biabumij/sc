@@ -31,8 +31,6 @@
         showDropdowns: true,
     });
 
-
-
     var table = $('#on-site-table').DataTable({
         ajax: {
             processing: true,
@@ -76,6 +74,10 @@
         "columnDefs": [{
             "targets": [0, 1, 3, 4],
             "className": 'text-center',
+        },
+        {
+			"targets": [2],
+			"className": 'text-left',
         },
         {
 			"targets": [7, 8],
