@@ -93,7 +93,8 @@
 				<th align="center">PENJUALAN</th>
 				<th align="center">TAGIHAN</th>
 			</tr>			
-            <?php   
+            <?php
+			$i=0;
             if(!empty($data)){
             	foreach ($data as $key => $row) :
 				$i++;

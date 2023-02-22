@@ -105,10 +105,12 @@
 				$subtotal_used = 0;
 				$subtotal_capacity = 0;
 			?>
-            <?php   
+            <?php
+			$i=0;
             if(!empty($data)){
-            	foreach ($data as $key => $row) {
-            		?>
+            	foreach ($data as $key => $row) :
+				$i++;
+				$bg=($i%2==0?'#F0F0F0':'#E8E8E8') ?> 
 					
 					<?php 
 					$subtotal_duration += $row['jumlah_duration'];
@@ -116,7 +118,7 @@
 					$hasil_capacity = ($row['jumlah_duration']!=0)?($row['jumlah_used'] / $row['jumlah_duration'])  * 1:0;	
 					$subtotal_avg_capacity = ($subtotal_duration!=0)?($subtotal_used / $subtotal_duration)  * 1:0;	
 					?>
-            		<tr class="table-baris1">
+            		<tr class="table-baris1" style="background-color:<?php echo $bg; ?>;">
             			<td align="center"><?php echo $key + 1;?></td>
 						<td align="center"><?php echo date('d/m/Y',strtotime($row['date_prod']));?></td>
 						<td align="center"><?php echo $row['no_prod'];?></td>
@@ -125,7 +127,7 @@
 						<td align="center"><?= number_format($hasil_capacity,2,',','.');?></td>
             		</tr>
             		<?php
-            	}
+            	endforeach; 
             }
             ?>
             <tr class="table-total">
