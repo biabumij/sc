@@ -328,7 +328,7 @@ html.right-sidebar-opened .right-sidebar {
 /* PAGE HEADER */
 /*================================================*/
 .page-header {
-  background: linear-gradient(110deg, #fdcd3b 70%, #ffed4b 60%);
+  background: linear-gradient(110deg, #e69500 70%, #fdcd3b 60%);
   color: #ffffff;
 }
 
