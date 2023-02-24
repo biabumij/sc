@@ -339,7 +339,7 @@ class Request_materials extends CI_Controller {
 		// $data['data_week'] = $this->pmm_model->GetScheduleProduct($id);
 		$data['row'] = $row;
 		$data['id'] = $id;
-		$data['no_spo'] = $this->crud_global->GetField('pmm_schedule',array('id'=>$row['schedule_id']),'no_spo');
+		//$data['no_spo'] = $this->crud_global->GetField('pmm_schedule',array('id'=>$row['schedule_id']),'no_spo');
 		
         $html = $this->load->view('pmm/request_material_pdf',$data,TRUE);
 
