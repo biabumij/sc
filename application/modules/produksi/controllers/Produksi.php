@@ -1378,7 +1378,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_hpp >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_hpp <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_hpp, pp.boulder, pp.bbm, pp.status');
+        $this->db->select('pp.id, pp.date_hpp, pp.boulder, pp.bbm, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_hpp','desc');
 		$query = $this->db->get('hpp_bahan_baku pp');
 		
@@ -1389,6 +1389,8 @@ class Produksi extends Secure_Controller {
                 $row['boulder'] = number_format($row['boulder'],0,',','.');
 				$row['bbm'] = number_format($row['bbm'],0,',','.');
 				$row['status'] = $row['status'];
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataHppBahanBaku('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
@@ -1475,7 +1477,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_hpp >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_hpp <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030, pp.status');
+        $this->db->select('pp.id, pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_hpp','desc');
 		$query = $this->db->get('hpp pp');
 		
@@ -1488,6 +1490,8 @@ class Produksi extends Secure_Controller {
 				$row['batu1020'] = number_format($row['batu1020'],0,',','.');
 				$row['batu2030'] = number_format($row['batu2030'],0,',','.');
 				$row['status'] = $row['status'];
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataHpp('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
@@ -1573,7 +1577,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, , pp.total_nilai_keluar_2, pp.total_nilai_akhir, pp.status');
+        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, , pp.total_nilai_keluar_2, pp.total_nilai_akhir, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_akumulasi','desc');
 		$query = $this->db->get('akumulasi_bahan_baku pp');
 		
@@ -1585,6 +1589,8 @@ class Produksi extends Secure_Controller {
 				$row['total_nilai_keluar_2'] = number_format($row['total_nilai_keluar_2'],0,',','.');
 				$row['total_nilai_akhir'] = number_format($row['total_nilai_akhir'],0,',','.');
 				$row['status'] = $row['status'];
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasiBahanBaku('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
@@ -1666,7 +1672,7 @@ class Produksi extends Secure_Controller {
 			$this->db->where('pp.date_akumulasi >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('pp.date_akumulasi <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
-        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, pp.total_nilai_akhir, pp.status');
+        $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, pp.total_nilai_akhir, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_akumulasi','desc');
 		$query = $this->db->get('akumulasi pp');
 		
@@ -1677,6 +1683,8 @@ class Produksi extends Secure_Controller {
                 $row['total_nilai_keluar'] = number_format($row['total_nilai_keluar'],0,',','.');
 				$row['total_nilai_akhir'] = number_format($row['total_nilai_akhir'],0,',','.');
 				$row['status'] = $row['status'];
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataAkumulasi('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';

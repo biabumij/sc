@@ -76,6 +76,8 @@
 														<th>Boulder</th>
                                                         <th>BBM</th>
 														<th>Status</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
                                                         <th>Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -110,6 +112,8 @@
 														<th>Batu 10 - 20</th>
                                                         <th>Batu 20 - 30</th>
 														<th>Status</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
                                                         <th>Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -143,6 +147,8 @@
                                                         <th>Total Nilai Keluar Solar</th>
                                                         <th>Total Nilai Persediaan Akhir</th>
 														<th>Status</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
                                                         <th>Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -175,6 +181,8 @@
 														<th>Total Nilai Keluar</th>
                                                         <th>Total Nilai Akhir</th>
 														<th>Status</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
                                                         <th>Hapus</th>
                                                     </tr>
                                                 </thead>
@@ -261,11 +269,17 @@
                     "data": "status"
                 },
                 {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
+                },
+                {
                     "data": "actions"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4, 5],
+                    "targets": [0, 2, 3, 4, 5, 6, 7],
                     "className": 'text-center',
                 }
             ],
@@ -340,11 +354,17 @@
                     "data": "status"
                 },
                 {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
+                },
+                {
                     "data": "actions"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 6, 7],
+                    "targets": [0, 1, 6, 7, 8, 9],
                     "className": 'text-center',
                 },
                 {
@@ -419,11 +439,17 @@
                     "data": "status"
                 },
                 {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
+                },
+                {
                     "data": "actions"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 5, 6],
+                    "targets": [0, 1, 5, 6, 7, 8],
                     "className": 'text-center',
                 },
                 {
@@ -496,11 +522,17 @@
                     "data": "status"
                 },
                 {
+                    "data": "admin_name"
+                },
+                {
+                    "data": "created_on"
+                },
+                {
                     "data": "actions"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4, 5],
+                    "targets": [0, 1, 4, 5, 6, 7],
                     "className": 'text-center',
                 },
                 {
@@ -538,77 +570,6 @@
             }
             });
         }
-
-        var table_akumulasi_biaya = $('#table_akumulasi_biaya').DataTable({
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('produksi/table_akumulasi_biaya'); ?>',
-                type: 'POST',
-                data: function(d) {
-                    d.filter_date = $('#filter_date_akumulasi_biaya').val();
-                }
-            },
-            responsive: true,
-            paging: false,
-            "deferRender": true,
-            "language": {
-                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
-            },
-            columns: [
-				{
-                    "data": "no"
-                },
-				{
-                    "data": "date_akumulasi"
-                },
-				{
-                    "data": "total_nilai_biaya"
-                },
-                {
-                    "data": "status"
-                },
-                {
-                    "data": "actions"
-                }
-            ],
-            "columnDefs": [{
-                    "targets": [0, 2, 3, 4],
-                    "className": 'text-center',
-                }
-            ],
-        });
-		
-		$('#filter_date_akumulasi_biaya').on('apply.daterangepicker', function(ev, picker) {
-        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-        table_akumulasi_biaya.ajax.reload();
-		});
-        
-
-        function DeleteDataAkumulasiBiaya(id) {
-        bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
-            // console.log('This was logged in the callback: ' + result); 
-            if (result) {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('produksi/delete_akumulasi_biaya'); ?>",
-                    dataType: 'json',
-                    data: {
-                        id: id
-                    },
-                    success: function(result) {
-                        if (result.output) {
-                            table_akumulasi_biaya.ajax.reload();
-                            bootbox.alert('Berhasil Menghapus Akumulasi Biaya Produksi !!');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
-            });
-        }
-	
     </script>
 
 </body>
