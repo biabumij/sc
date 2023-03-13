@@ -23,7 +23,7 @@
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li>
-                                <a href="<?php echo site_url('admin/biaya');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Pesanan Pembelian</a></li>
+                                <a href="<?php echo site_url('admin/pembelian');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Pesanan Pembelian</a></li>
                             <li><a>Detail Pesanan Pembelian</a></li>
                         </ul>
                     </div>
