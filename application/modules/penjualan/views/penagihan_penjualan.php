@@ -159,6 +159,7 @@
                                                         
                                                         $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
                                                     ?>
+                                                }
                                             </tbody>
                                         </table>
                                     </div>

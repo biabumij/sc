@@ -133,7 +133,7 @@
                                                     <td><?= $taxs; ?></td>
                                                     <td style="text-align: right !important;"><?= number_format($row['total'],0,',','.'); ?></td>
                                                 </tr>
-                                            <?php
+                                                <?php
 													$sub_total += ($row['price'] * $row['qty']);
 													$tax_id = $row['tax_id'];
 													//$tax_name = $row['tax_name'];
@@ -152,7 +152,8 @@
 													}
 													
 													$total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
-												} ?>
+												 ?>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>

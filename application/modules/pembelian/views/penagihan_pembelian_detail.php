@@ -164,21 +164,22 @@
 													<input type="hidden" value="<?= $this->filter->Rupiah($dt['tax_id']); ?>">
                                                     <td style="text-align: right !important;"><?= number_format($dt['total'],0,',','.'); ?></td>
                                                 </tr>
-                                            <?php
-                                                $sub_total += $dt['total'];
-                                                if ($dt['tax_id'] == 4) {
-                                                    $tax_0 = true;
-                                                }
-                                                if ($dt['tax_id'] == 3) {
-                                                    $tax_ppn += $dt['tax'];
-                                                }
-                                                if ($dt['tax_id'] == 5) {
-                                                    $tax_pph += $dt['tax'];
-                                                }
-                                                if ($dt['tax_id'] == 6) {
-                                                    $tax_ppn11 += $dt['tax'];
-                                                }
-                                            ?>
+                                                <?php
+                                                    $sub_total += $dt['total'];
+                                                    if ($dt['tax_id'] == 4) {
+                                                        $tax_0 = true;
+                                                    }
+                                                    if ($dt['tax_id'] == 3) {
+                                                        $tax_ppn += $dt['tax'];
+                                                    }
+                                                    if ($dt['tax_id'] == 5) {
+                                                        $tax_pph += $dt['tax'];
+                                                    }
+                                                    if ($dt['tax_id'] == 6) {
+                                                        $tax_ppn11 += $dt['tax'];
+                                                    }
+                                                ?>
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
