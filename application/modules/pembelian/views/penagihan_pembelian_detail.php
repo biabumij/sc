@@ -178,8 +178,8 @@
                                                     if ($dt['tax_id'] == 6) {
                                                         $tax_ppn11 += $dt['tax'];
                                                     }
+                                                }
                                                 ?>
-                                            }
                                         </tbody>
                                     </table>
                                 </div>
