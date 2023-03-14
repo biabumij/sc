@@ -141,24 +141,24 @@
                                                         </td>
 														<input type="hidden" name="tax_id_<?= $key + 1; ?>" id="tax-id-<?= $key; ?>" class="form-control" value="<?= $row['tax_id'];?>" readonly =""/>
                                                     </tr>
-                                                <?php 
-													$sub_total += ($row['hargaProduk'] * $row['volume']);
-													
-													if($row['tax_id'] == 4){
-														$tax_0 = false;
-													}
-													if($row['tax_id'] == 3){
-														$tax_ppn = $sub_total * 10 / 100;
-													}
-													if($row['tax_id'] == 5){
-														$tax_pph = $sub_total * 2 / 100;
-													}
-                                                    if($row['tax_id'] == 6){
-														$tax_ppn11 = $sub_total * 11 / 100;
-													}
-													
-													$total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
-												} ?>
+                                                    <?php 
+                                                        $sub_total += ($row['hargaProduk'] * $row['volume']);
+                                                        
+                                                        if($row['tax_id'] == 4){
+                                                            $tax_0 = false;
+                                                        }
+                                                        if($row['tax_id'] == 3){
+                                                            $tax_ppn = $sub_total * 10 / 100;
+                                                        }
+                                                        if($row['tax_id'] == 5){
+                                                            $tax_pph = $sub_total * 2 / 100;
+                                                        }
+                                                        if($row['tax_id'] == 6){
+                                                            $tax_ppn11 = $sub_total * 11 / 100;
+                                                        }
+                                                        
+                                                        $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
+                                                    ?>
                                             </tbody>
                                         </table>
                                     </div>
