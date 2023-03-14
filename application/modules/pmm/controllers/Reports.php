@@ -9985,7 +9985,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($laba_kotor,0,',','.');?></span>
+									<span><?php echo $laba_kotor < 0 ? "(".number_format(-$laba_kotor,0,',','.').")" : number_format($laba_kotor,0,',','.');?></span>
 								</th>
 							</tr>
 					</table>
@@ -10059,7 +10059,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($laba_usaha,0,',','.');?></span>
+									<span><?php echo $laba_usaha < 0 ? "(".number_format(-$laba_usaha,0,',','.').")" : number_format($laba_usaha,0,',','.');?></span>
 								</th>
 							</tr>
 					</table>
