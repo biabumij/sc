@@ -62,7 +62,7 @@
       <tr>
                 <th align="center" width="3%">No</th>
                 <th align="center" width="7%">Tanggal</th>
-				        <th align="center" width="22%">No. Sales Order</th>
+				        <th align="center" width="22%">No. Pesanan Pembelian</th>
                 <th align="center" width="10%">No. Surat Jalan</th>
                 <th align="center" width="10%">No. Kendaraan</th>
                 <th align="center" width="10%">Supir</th>
