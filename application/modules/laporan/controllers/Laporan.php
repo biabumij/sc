@@ -361,12 +361,6 @@ class Laporan extends Secure_Controller {
 		$pdf->SetX(6);
 		$pdf->WriteHTML($html);
 
-		//Page5
-		$pdf->AddPage();
-		$pdf->SetY(29);
-		$pdf->SetX(6);
-		$pdf->WriteHTML($html);
-
 		//Page1
 		$pdf->setPage(1, true);
 		$pdf->SetY(35);
@@ -854,6 +848,12 @@ class Laporan extends Secure_Controller {
 		$pdf->WriteHTML($html);
 
 		//Page15
+		$pdf->AddPage();
+		$pdf->SetY(31);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page16
 		$pdf->AddPage();
 		$pdf->SetY(31);
 		$pdf->SetX(6);
