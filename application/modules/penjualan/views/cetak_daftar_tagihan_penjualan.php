@@ -74,7 +74,7 @@
 
 		table tr.table-judul{
 			border: 1px solid;
-			background-color: #e5e500;
+			background-color: #e69500;
 			font-weight: bold;
 			font-size: 8px;
 			color: black;
@@ -114,7 +114,7 @@
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
 		<br /><br /><br />
 		<table cellpadding="3" width="98%">
-			<tr class="table-judul">
+			<tr class="table-total">
 				<th align="center" width="5%" class="table-border-atas-kiri">NO.</th>
                 <th align="center" width="25%" class="table-border-atas-tengah">PELANGGAN / NOMOR INVOICE</th>
 				<th align="center" width="14%" class="table-border-atas-tengah">TGL. INVOICE</th>
@@ -172,7 +172,7 @@
             	<?php
             }
             ?>
-            <tr class="table-judul">
+            <tr class="table-total">
             	<th align="right" colspan="6" class="table-border-atas-kiri">TOTAL</th>
             	<th align="right" class="table-border-atas-tengah"><?php echo number_format($total,0,',','.');?></th>
 				<th align="right" class="table-border-atas-tengah"><?php echo number_format($total_2,0,',','.');?></th>
