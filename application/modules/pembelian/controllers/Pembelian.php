@@ -1251,6 +1251,8 @@ class Pembelian extends Secure_Controller
             $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
             $data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian pp', ["pp.id" => $id])->row_array();
             $data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $id))->row_array();
+            $data['dpp'] = $this->db->select("SUM(total) as total")->get_where('pmm_penagihan_pembelian_detail ppd', ["ppd.penagihan_pembelian_id" => $id])->row_array();
+            $data['tax'] = $this->db->select("SUM(tax) as total")->get_where('pmm_penagihan_pembelian_detail ppd', ["ppd.penagihan_pembelian_id" => $id])->row_array();
 
             // Setor Bank
             $data['setor_bank'] = $this->pmm_finance->BankCash();
@@ -1277,6 +1279,7 @@ class Pembelian extends Secure_Controller
             'bayar_dari' => $this->input->post('bayar_dari'),
             'tanggal_pembayaran' => date('Y-m-d', strtotime($this->input->post('tanggal_pembayaran'))),
             'nomor_transaksi' => $this->input->post('nomor_transaksi'),
+            'cek_nomor' => $this->input->post('cek_nomor'),
             'memo' => $this->input->post('memo'),
             'status' => 'TIDAK DISETUJUI',
             'total' => $pembayaran_pro,
@@ -1348,8 +1351,11 @@ class Pembelian extends Secure_Controller
 		if ($check == true) {
 
 			$data['bayar'] = $this->db->get_where('pmm_pembayaran_penagihan_pembelian', ["id" => $id])->row_array();
-			$data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian', ["id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
-			$data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $id))->row_array();
+            $data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian', ["id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
+            $data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('id' => $id))->row_array();
+            $data['total_bayar_all'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $data['bayar']['penagihan_pembelian_id']))->row_array();
+            $data['dpp'] = $this->db->select("SUM(total) as total")->get_where('pmm_penagihan_pembelian_detail ppd', ["ppd.penagihan_pembelian_id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
+            $data['tax'] = $this->db->select("SUM(tax) as total")->get_where('pmm_penagihan_pembelian_detail ppd', ["ppd.penagihan_pembelian_id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
             $data['dataLampiran'] = $this->db->get_where('pmm_lampiran_pembayaran_penagihan_pembelian', ["pembayaran_penagihan_pembelian_id" => $id])->result_array();
 			
             // Setor Bank
@@ -1397,8 +1403,11 @@ class Pembelian extends Secure_Controller
 		if ($check == true) {
 
 			$data['bayar'] = $this->db->get_where('pmm_pembayaran_penagihan_pembelian', ["id" => $id])->row_array();
-			$data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian', ["id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
-			$data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('id' => $id))->row_array();
+            $data['pembayaran'] = $this->db->get_where('pmm_penagihan_pembelian', ["id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
+            $data['total_bayar'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('id' => $id))->row_array();
+            $data['total_bayar_all'] = $this->db->select("SUM(total) as total")->get_where('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $data['bayar']['penagihan_pembelian_id']))->row_array();
+            $data['dpp'] = $this->db->select("SUM(total) as total")->get_where('pmm_penagihan_pembelian_detail ppd', ["ppd.penagihan_pembelian_id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
+            $data['tax'] = $this->db->select("SUM(tax) as total")->get_where('pmm_penagihan_pembelian_detail ppd', ["ppd.penagihan_pembelian_id" => $data['bayar']['penagihan_pembelian_id']])->row_array();
 
 			// Setor Bank
 			$this->db->select('c.*');
@@ -1434,6 +1443,7 @@ class Pembelian extends Secure_Controller
 				'bayar_dari' => $this->input->post('bayar_dari'),
 				'tanggal_pembayaran' => date('Y-m-d', strtotime($this->input->post('tanggal_pembayaran'))),
 				'nomor_transaksi' => $this->input->post('nomor_transaksi'),
+                'cek_nomor' => $this->input->post('cek_nomor'),
 				'memo' => $this->input->post('memo'),
 				'total' => $pembayaran_pro,
 				'created_by' => $this->session->userdata('admin_id'),

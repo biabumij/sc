@@ -23,7 +23,7 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                        <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
+                            <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Tagihan Pembelian</a></li>
                             <li><a>Detail Penerimaan Pembelian</a></li>
@@ -42,13 +42,9 @@
                             <br />
                             <div class="panel-content">
                                     <div class="row">
+                                        <div class="col-sm-2"><label>Pembayaran Melalui</label></div>
                                         <div class="col-sm-3">
-                                            <label>Pelanggan</label>
-                                            <input type="text" class="form-control" name="supplier_name" required="" readonly value="<?= $bayar['supplier_name'] ?>" />
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <label>Bayar Dari</label>
-                                            <select disabled class="form-control" name="bayar_dari" required="">
+                                            <select disabled class="form-control" name="bayar_dari" readonly="">
                                                 <option selected readonly value="">Bayar Dari</option>
                                                 <?php
                                                 if(!empty($setor_bank)){
@@ -62,40 +58,80 @@
                                             </select>
                                             
                                         </div>
-                                        <div class="col-sm-2">
-                                            <label>Tanggal Pembayaran</label>
-                                            <input type="text" disabled class="form-control dtpicker" name="tanggal_pembayaran" required="" readonly value="<?= $bayar['tanggal_pembayaran'] ?>" />
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-2"><label>Penerima</label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" value="<?= $bayar["supplier_name"] ?>" name="supplier_name" readonly=""/>
                                         </div>
-                                        <div class="col-sm-2">
-                                            <label>Nomor Transaksi</label>
-                                            <input type="text" class="form-control" name="nomor_transaksi" required="" readonly value="<?= $bayar['nomor_transaksi'] ?>" />
+                                        <div class="col-sm-2"><label>Nomor Transaksi</label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" name="nomor_transaksi" value="<?= $bayar['nomor_transaksi'] ?>" readonly=""/>
+                                        </div>
+                                        
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                     <div class="col-sm-2"><label></label></div>
+                                        <div class="col-sm-3">
+                                            <label></label>
+                                            
+                                        </div>
+                                        <div class="col-sm-2"><label>Cek Nomor</label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" name="cek_nomor" value="<?= $bayar['cek_nomor'] ?>" readonly=""/>
                                         </div>
                                     </div>
                                     <br />
-                                    <br>
-                                    <?php
-                                    $sisa_tagihan = $pembayaran['total'] - $total_bayar['total'];
-                                    // echo $sisa_tagihan;
-
+                                    <div class="row">
+                                        <div class="col-sm-2"><label></label></div>
+                                        <div class="col-sm-3">
+                                            <label></label>
+                                            
+                                        </div>
+                                        <div class="col-sm-2"><label>Tanggal Pembayaran</label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control dtpicker" name="tanggal_pembayaran" value="<?= date('d/m/Y',strtotime($bayar["tanggal_pembayaran"])) ?>" readonly=""/>
+                                        </div>
+                                    </div>
+                                    </br />
+                                    <div class="row">
+                                        <div class="col-sm-2"><label>Pembayaran</label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" value="<?= $pembayaran["nomor_invoice"] ?>" readonly=""/>
+                                        </div>
+                                    </div>
+                                    </br />
+                                    <div class="row">
+                                        <div class="col-sm-2"><label></label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" value="<?= date('d/m/Y',strtotime($pembayaran["tanggal_invoice"])) ?>" readonly=""/>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <?php 
+                                    $total_invoice = $dpp['total'] + $tax['total'];
+                                    $sisa_tagihan = ($dpp['total'] + $tax['total']) - $total_bayar_all['total'] - $pembayaran['uang-muka'];
                                     ?>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-condensed">
+                                        <table class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center">Tanggal Invoice</th>
-                                                    <th class="text-center">Nomor Invoice</th>
-                                                    <th class="text-center">Total Invoice</th>
-                                                    <th class="text-center">Sisa Tagihan</th>
-                                                    <th class="text-center" width="25%">Jumlah Pembayaran</th>
+                                                    <th>Nilai Invoice</th>
+                                                    <th>Pembayaran s/d. lalu</th>
+                                                    <th>Pembayaran Saat Ini</th>
+                                                    <th>Total Pembayaran</th>
+                                                    <th>Sisa Invoice</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td class="text-center"><?= date('d-m-Y', strtotime($pembayaran["tanggal_invoice"])) ?></td>
-                                                    <td class="text-center"><?= $pembayaran["nomor_invoice"] ?></td>
-                                                    <td class="text-right"><?= number_format($pembayaran['total'],0,',','.'); ?></td>
+                                                    <td class="text-right"><?= number_format($total_invoice,0,',','.'); ?></td>
+                                                    <td class="text-center"><?= number_format($total_bayar_all['total'] - $bayar['total'],0,',','.'); ?></td>
+                                                    <td class="text-right"><?= number_format($total_bayar['total'],0,',','.'); ?></td>
+                                                    <td class="text-right"><?= number_format($total_bayar_all['total'],0,',','.'); ?></td>
                                                     <td class="text-right"><?= number_format($sisa_tagihan,0,',','.'); ?></td>
-                                                    <td class="text-right"><?= number_format($bayar['total'],0,',','.'); ?></td>
                                                 </tr>
                                             </tbody>
                                             <tfoot style="font-size:15px;">
@@ -128,8 +164,13 @@
                                         <div class="col-sm-12 text-right">
                                             <a href="<?= base_url('pembelian/penagihan_pembelian_detail/' . $bayar["penagihan_pembelian_id"]) ?>" class="btn btn-info" style="margin-bottom:0;"> Kembali</a>
                                             <a href="<?= base_url('pembelian/cetak_pembayaran_penagihan_pembelian/' . $bayar["id"]) ?>" target="_blank" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                            <?php
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 19){
+                                            ?>
                                             <a href="<?= base_url('pembelian/sunting_pembayaran_pembelian/' . $bayar["id"]) ?>" class="btn btn-warning" style="margin-bottom:0;"><i class="fa fa-check"></i> Edit</a>
-
+                                            <?php
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                 </form>

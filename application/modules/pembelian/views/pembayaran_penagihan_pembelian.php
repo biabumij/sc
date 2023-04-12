@@ -42,14 +42,10 @@
                                     <input type="hidden" name="supplier_id" value="<?= $pembayaran['supplier_name'];?>">
                                     <br />
                                     <div class="row">
+                                        <div class="col-sm-2"><label>Pembayaran Melalui</label></div>
                                         <div class="col-sm-3">
-                                            <label>Rekanan</label>
-                                            <input type="text" class="form-control" value="<?= $pembayaran["supplier_name"] ?>" name="supplier_name" required="" />
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <label>Bayar Dari</label>
                                             <select class="form-control" name="bayar_dari" required="">
-                                                <option value="">Bayar Dari</option>
+                                                <option value="">Pembayaran Melalui</option>
                                                 <?php
                                                 if(!empty($setor_bank)){
                                                     foreach ($setor_bank as $key => $sb) {
@@ -62,40 +58,81 @@
                                             </select>
                                             
                                         </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-2"><label>Penerima</label></div>
                                         <div class="col-sm-3">
-                                            <label>Tanggal Pembayaran</label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal_pembayaran" required="" />
+                                            <input type="text" class="form-control" value="<?= $pembayaran["supplier_name"] ?>" name="supplier_name" readonly=""/>
                                         </div>
+                                        <div class="col-sm-2"><label>Nomor Transaksi</label></div>
                                         <div class="col-sm-3">
-                                            <label>Nomor Transaksi</label>
-                                            <input type="text" class="form-control" name="nomor_transaksi" required="" />
+                                            <input type="text" class="form-control" name="nomor_transaksi" required=""/>
+                                        </div>
+                                        
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                     <div class="col-sm-2"><label></label></div>
+                                        <div class="col-sm-3">
+                                            <label></label>
+                                            
+                                        </div>
+                                        <div class="col-sm-2"><label>Cek Nomor</label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" name="cek_nomor"/>
                                         </div>
                                     </div>
                                     <br />
-                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2"><label></label></div>
+                                        <div class="col-sm-3">
+                                            <label></label>
+                                            
+                                        </div>
+                                        <div class="col-sm-2"><label>Tanggal Pembayaran</label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control dtpicker" name="tanggal_pembayaran" required="" />
+                                        </div>
+                                    </div>
+                                    </br />
+                                    <div class="row">
+                                        <div class="col-sm-2"><label>Pembayaran</label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" value="<?= $pembayaran["nomor_invoice"] ?>" readonly=""/>
+                                        </div>
+                                    </div>
+                                    </br />
+                                    <div class="row">
+                                        <div class="col-sm-2"><label></label></div>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" value="<?= date('d/m/Y',strtotime($pembayaran["tanggal_invoice"])) ?>" readonly=""/>
+                                        </div>
+                                    </div>
+                                    <br />
                                     <?php 
-                                    $sisa_tagihan = $pembayaran['total'] - $total_bayar['total'];
-                                    // echo $sisa_tagihan;
-
-                                     ?>
+                                    $total_invoice = $dpp['total'] + $tax['total'];
+                                    $sisa_tagihan = ($dpp['total'] + $tax['total']) - $total_bayar['total'] - $pembayaran['uang-muka'];
+                                    ?>
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr>
-                                                    <th>Tanggal Invoice</th>
-                                                    <th>Nomor Invoice</th>
-                                                    <th>Total Invoice</th>
-                                                    <th>Sisa Tagihan</th>
-                                                    <th width="25%">Pembayaran saat ini</th>
+                                                    <th>Nilai Invoice</th>
+                                                    <th>Pembayaran s/d. lalu</th>
+                                                    <th>Pembayaran Saat Ini</th>
+                                                    <th>Total Pembayaran</th>
+                                                    <th>Sisa Invoice</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><?= date('d/m/Y',strtotime($pembayaran["tanggal_invoice"])) ?></td>
-                                                    <td><?= $pembayaran["nomor_invoice"] ?></td>
-                                                    <td style="text-align: right !important;"><?= number_format($pembayaran['total'],0,',','.'); ?></td>
-                                                    <td style="text-align: right !important;"><?= number_format($sisa_tagihan,0,',','.'); ?></td>
-                                                    <td style="text-align: right !important;"><input type="text" name="pembayaran" id="pembayaran" class="form-control numberformat text-center" ></td>
+                                                    <td style="text-align: right !important;"><input type="text" id="total_invoice" class="form-control numberformat text-center" onchange="changeData(1)" value="<?= intval($total_invoice) ?>" readonly=""></td>
+                                                    <td style="text-align: right !important;"><input type="text" id="total_bayar" class="form-control numberformat text-center" onchange="changeData(1)" value="<?= intval($total_bayar['total']) ?>" readonly=""></td>
+                                                    <td style="text-align: right !important;"><input type="text" name="pembayaran" id="pembayaran" class="form-control numberformat text-center" onchange="changeData(1)" value="<?= intval($sisa_tagihan) ?>"></td>
+                                                    <td style="text-align: right !important;"><input type="text" id="total_bayar_all" class="form-control numberformat text-center" value="" readonly=""></td>
+                                                    <td style="text-align: right !important;"><input type="text" id="sisa_invoice" class="form-control numberformat text-center" value="" readonly=""></td>
+                                                    
                                                 </tr>
                                             </tbody>
                                             <tfoot style="font-size:15px;">
@@ -157,19 +194,14 @@
             showDropdowns : false,
             locale: {
               format: 'DD-MM-YYYY'
-            }
+            },
+            minDate: new Date()+0, 
+			maxDate: new Date()+1
         });
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
               $(this).val(picker.startDate.format('DD-MM-YYYY'));
               // table.ajax.reload();
-        });
-
-        $('#pembayaran').keyup(function(){
-            console.log($(this).val());
-            $('#total-bayar').text($.number($(this).val(),2,',','.'));
-        });
-
-        
+        });        
 
         $('#form-po').submit(function(e){
             e.preventDefault();
@@ -194,7 +226,24 @@
                 }
             });
             
-        }); 
+        });
+
+        function changeData(id)
+        {
+            var $total_invoice = $('#total_invoice').val();
+			var total_bayar = $('#total_bayar').val();
+            var pembayaran = $('#pembayaran').val();
+
+            total_bayar_all = parseFloat($('#total_bayar').val()) + parseFloat($('#pembayaran').val());
+
+            $('#total_bayar_all').val(total_bayar_all);
+            $('#total_bayar_all').text($.number(total_bayar_all, 0,',','.' ));
+
+            sisa_invoice = parseFloat($('#total_invoice').val()) - parseFloat($('#pembayaran').val()) -  parseFloat($('#total_bayar').val());
+
+            $('#sisa_invoice').val(sisa_invoice);
+            $('#sisa_invoice').text($.number(sisa_invoice, 0,',','.' ));
+        }
     </script>
 
 
