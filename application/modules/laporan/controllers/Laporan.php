@@ -1883,9 +1883,9 @@ class Laporan extends Secure_Controller {
 		$this->load->library('pdf');
 	
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(10, 10, 5);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+		//$pdf->SetMargins(10, 10, 5);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 
@@ -1894,8 +1894,7 @@ class Laporan extends Secure_Controller {
 		$pdf->setPrintFooter(false);
 		//$pdf->SetY(45);
 		//$pdf->SetX(6);
-		//$pdf->SetMargins(10, 10); 
-		
+		//$pdf->SetMargins(10, 10);
 		
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
@@ -1998,11 +1997,10 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(10, 10, 5);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+		//$pdf->SetMargins(10, 10, 5);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 
@@ -2011,7 +2009,7 @@ class Laporan extends Secure_Controller {
 		$pdf->setPrintFooter(false);
 		//$pdf->SetY(45);
 		//$pdf->SetX(6);
-		//$pdf->SetMargins(10, 10); 
+		//$pdf->SetMargins(10, 10);
 		
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
