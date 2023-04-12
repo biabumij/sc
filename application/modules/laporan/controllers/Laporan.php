@@ -1882,14 +1882,20 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->SetPrintHeader(false);
-		$pdf->SetPrintFooter(false);
+        $pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		$pdf->SetMargins(10, 10, 5);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		$pdf->SetMargins(3, 0, 0, true);
+
 		$pdf->AddPage('L');
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		//$pdf->SetY(45);
+		//$pdf->SetX(6);
+		//$pdf->SetMargins(10, 10); 
+		
 		
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
@@ -1941,16 +1947,16 @@ class Laporan extends Secure_Controller {
 						$arr['harsat'] = number_format($row['harsat'],0,',','.');
 						$arr['dpp'] = number_format($row['dpp'],0,',','.');
 						$arr['tax_ppn'] = number_format($row['tax_ppn'],0,',','.');
-						$arr['tax_pph'] = number_format($row['tax_pph'],0,',','.');
-						$arr['total'] = number_format(($row['volume'] * $row['harsat']) + $row['tax_ppn'] - $row['tax_pph'],0,',','.');
+						//$arr['tax_pph'] = number_format($row['tax_pph'],0,',','.');
+						$arr['total'] = number_format(($row['volume'] * $row['harsat']) + $row['tax_ppn'],0,',','.');
 						
 						
 						$arr['nama'] = $sups['nama'];
 
 						$total_dpp += $row['dpp'];
 						$total_ppn += $row['tax_ppn'];
-						$total_pph += $row['tax_pph'];
-						$total_total += ($row['dpp'] + $row['tax_ppn']) - $row['tax_pph'];
+						//$total_pph += $row['tax_pph'];
+						$total_total += ($row['dpp'] + $row['tax_ppn']);
 
 						$mats[] = $arr;
 					}
@@ -1958,7 +1964,7 @@ class Laporan extends Secure_Controller {
 					$sups['no'] =$no;
 					$total = $total_dpp;
 					$total_2 = $total_ppn;
-					$total_3 = $total_pph;
+					//$total_3 = $total_pph;
 					$total_4 = $total_total;
 
 					$arr_data[] = $sups;
@@ -1994,12 +2000,18 @@ class Laporan extends Secure_Controller {
 	
 
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
-        $pdf->SetPrintHeader(false);
-		$pdf->SetPrintFooter(false);
+        $pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		$pdf->SetMargins(10, 10, 5);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		$pdf->SetMargins(3, 0, 0, true);
+
 		$pdf->AddPage('L');
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		//$pdf->SetY(45);
+		//$pdf->SetX(6);
+		//$pdf->SetMargins(10, 10); 
 		
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
