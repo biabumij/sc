@@ -823,14 +823,19 @@ class Penjualan extends Secure_Controller
 		$data = array();
 		
 		$w_date = $this->input->post('filter_date');
+		$supplier_id = $this->input->post('supplier_id');
 
         if (!empty($w_date)) {
             $arr_date = explode(' - ', $w_date);
             $start_date = $arr_date[0];
             $end_date = $arr_date[1];
-            $this->db->where('tanggal_invoice  >=', date('Y-m-d', strtotime($start_date)));
-            $this->db->where('tanggal_invoice <=', date('Y-m-d', strtotime($end_date)));
+            $this->db->where('created_on  >=', date('Y-m-d', strtotime($start_date)));
+            $this->db->where('created_on <=', date('Y-m-d', strtotime($end_date)));
         }
+
+		if(!empty($supplier_id)){
+			$this->db->where('client_id',$supplier_id);
+		}
 				
 		$this->db->order_by('tanggal_invoice', 'DESC');
 		$this->db->order_by('created_on', 'DESC');

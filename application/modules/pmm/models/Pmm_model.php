@@ -3823,5 +3823,56 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
+    function GetReceiptTagihanPembelian($supplier_id=false,$start_date=false,$end_date=false)
+    {
+        $output = array();
+
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, SUM(ppd.volume) as volume, ppd.measure, (SUM(ppd.total)/SUM(ppd.volume)) as harsat, SUM(ppd.total) as dpp,
+        (select COALESCE(sum(ppn),0) from pmm_verifikasi_penagihan_pembelian ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.created_on >= "'.$start_date.'"  and ppp.created_on <= "'.$end_date.'") as tax_ppn,
+        (select COALESCE(sum(pph),0) from pmm_verifikasi_penagihan_pembelian ppd where ppd.penagihan_pembelian_id = ppp.id and ppp.created_on >= "'.$start_date.'"  and ppp.created_on <= "'.$end_date.'") as tax_pph,
+        ');
+		$this->db->join('pmm_penagihan_pembelian_detail ppd', 'ppp.id = ppd.penagihan_pembelian_id', 'left');
+        
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('ppp.created_on >=',$start_date);
+            $this->db->where('ppp.created_on <=',$end_date);
+        }
+		
+		if(!empty($supplier_id)){
+            $this->db->where('ppp.supplier_id',$supplier_id);
+        }
+        
+        $this->db->group_by('ppp.id');
+		$this->db->order_by('ppp.tanggal_invoice','asc');
+        $query = $this->db->get('pmm_penagihan_pembelian ppp');
+		
+        $output = $query->result_array();
+        return $output;
+    }
+
+    function GetReceiptTagihanPenjualan($supplier_id=false,$start_date=false,$end_date=false)
+    {
+        $output = array();
+
+        $this->db->select('ppp.id, ppp.tanggal_invoice, ppp.nomor_invoice, SUM(ppd.qty) as volume, ppd.measure, (SUM(ppd.total)/SUM(ppd.qty)) as harsat, SUM(ppd.total) as dpp, SUM(ppd.tax) as tax');
+		$this->db->join('pmm_penagihan_penjualan_detail ppd', 'ppp.id = ppd.penagihan_id', 'left');
+        
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('ppp.created_on >=',$start_date);
+            $this->db->where('ppp.created_on <=',$end_date);
+        }
+		
+		if(!empty($supplier_id)){
+            $this->db->where('ppp.client_id',$supplier_id);
+        }
+		
+        $this->db->group_by('ppp.id');
+		$this->db->order_by('ppp.tanggal_invoice','asc');
+        $query = $this->db->get('pmm_penagihan_penjualan ppp');
+		
+        $output = $query->result_array();
+        return $output;
+    }
+
 }
 ?>

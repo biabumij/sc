@@ -354,11 +354,29 @@
                                 <!-- Tagihan Pembelian -->
 
                                 <div role="tabpanel" class="tab-pane" id="settings">
-                                    <div class="col-sm-3">
-                                            <input type="text" id="filter_date_4" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
+                                    <form action="<?php echo site_url('laporan/cetak_daftar_tagihan_pembelian');?>" method="GET" target="_blank">
+                                        <div class="col-sm-3">
+                                                <input type="text" id="filter_date_4" name="filter_date" class="form-control dtpicker input-sm" value="" placeholder="Filter by Date" autocomplete="off">
                                         </div>
-                                        <br />
-                                        <br />
+                                        <div class="col-sm-3">
+                                            <select id="filter_supplier_tagihan" name="supplier_id" class="form-control select2">
+                                                <option value="">Pilih Rekanan</option>
+                                                <?php
+                                                foreach ($suppliers as $key => $supplier) {
+                                                ?>
+                                                    <option value="<?php echo $supplier['id']; ?>"><?php echo $supplier['nama']; ?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="text-left">
+                                                <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                            </div>
+                                        </div>
+                                    </form>   
+                                    <br /><br />
                                     <div class="table-responsive">
                                         <table class="table table-striped table-hover" id="table-tagihan" style="width:100%;">
                                             <thead>
@@ -1396,6 +1414,7 @@
             type: 'POST',
             data: function(d) {
                 d.filter_date = $('#filter_date_4').val();
+                d.supplier_id = $('#filter_supplier_tagihan').val();
             }
         },
         columns: [
@@ -1474,6 +1493,10 @@
 
     $('#filter_date_4').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_tagihan.ajax.reload();
+    });
+
+    $('#filter_supplier_tagihan').change(function() {
         table_tagihan.ajax.reload();
     });
 
