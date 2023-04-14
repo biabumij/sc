@@ -108,12 +108,16 @@
 
 	</head>
 	<body>
-		<br /><br /><br />
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DAFTAR TAGIHAN PEMBELIAN</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI STONE CRUSHER</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
-		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
-		<br /><br /><br />
+		<table width="98%" border="0" cellpadding="15">
+		<tr>
+			<td width="100%" align="center">
+				<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DAFTAR TAGIHAN PEMBELIAN</div>
+				<div align="center" style="display: block;font-weight: bold;font-size: 11px;">DIVISI BETON PROYEK BENDUNGAN TEMEF</div>
+				<div align="center" style="display: block;font-weight: bold;font-size: 11px;">PT. BIA BUMI JAYENDRA</div>
+				<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
+				</td>
+		</tr>
+		</table>
 		<table cellpadding="3" width="98%">
 			<tr class="table-total">
 				<th align="center" width="5%" class="table-border-atas-kiri">NO.</th>
