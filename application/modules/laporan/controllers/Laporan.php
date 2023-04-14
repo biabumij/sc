@@ -1885,130 +1885,16 @@ class Laporan extends Secure_Controller {
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
 		$pdf->setPrintFooter(true);
+		//$pdf->SetMargins(10, 10, 5);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
+
 		$pdf->AddPage('L');
 		$pdf->setPrintHeader(false);
-
-		//Page2
-		$pdf->AddPage('L', 'A4');
-		$pdf->SetY(30);
-		$pdf->SetX(6);
-		$html =
-		'<style type="text/css">
-		body {
-			font-family: helvetica;
-		}
-
-		table.table-border-atas-kiri, th.table-border-atas-kiri, td.table-border-atas-kiri {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-		}
-
-		table.table-border-atas-tengah, th.table-border-atas-tengah, td.table-border-atas-tengah {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-		}
-
-		table.table-border-atas-kanan, th.table-border-atas-kanan, td.table-border-atas-kanan {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-		}
-
-		table.table-border-pojok-kiri, th.table-border-pojok-kiri, td.table-border-pojok-kiri {
-			border-top: 1px solid black;
-		}
-
-		table.table-border-pojok-tengah, th.table-border-pojok-tengah, td.table-border-pojok-tengah {
-			border-top: 1px solid black;
-		}
-
-		table.table-border-pojok-kanan, th.table-border-pojok-kanan, td.table-border-pojok-kanan {
-			border-top: 1px solid black;
-		}
-
-		table tr.table-judul{
-			border: 1px solid;
-			background-color: #e69500;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-			
-		table tr.table-baris1{
-			background-color: none;
-			font-size: 8px;
-		}
-
-		table tr.table-baris1-bold{
-			background-color: none;
-			font-size: 8px;
-			font-weight: bold;
-		}
-			
-		table tr.table-total{
-			background-color: #FFFF00;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-
-		table tr.table-total2{
-			background-color: #eeeeee;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-	 	 </style>
-		<table width="98%" border="0" cellpadding="2">
-			<tr class="table-total">
-				<th align="center" width="5%" class="table-border-atas-kiri">NO.</th>
-				<th align="center" width="25%" class="table-border-atas-tengah">REKANAN / NOMOR INVOICE</th>
-				<th align="center" width="14%" class="table-border-atas-tengah">TGL. INVOICE</th>
-				<th align="center" width="6%" class="table-border-atas-tengah">VOLUME</th>
-				<th align="center" width="10%" class="table-border-atas-tengah">SATUAN</th>
-				<th align="center" width="10%" class="table-border-atas-tengah">HARGA SATUAN</th>
-				<th align="center" width="10%" class="table-border-atas-tengah">DPP</th>
-				<th align="center" width="10%" class="table-border-atas-tengah">PPN</th>
-				<th align="center" width="10%" class="table-border-atas-kanan">TOTAL</th>
-			</tr>
-		</table>';
-		$pdf->writeHTML($html, true, false, true, false, '');
-
-		//Page3
-		$pdf->AddPage();
-		$pdf->SetY(30);
-		$pdf->SetX(6);
-		$pdf->WriteHTML($html);
-
-		//Page4
-		$pdf->AddPage();
-		$pdf->SetY(30);
-		$pdf->SetX(6);
-		$pdf->WriteHTML($html);
-
-		//Page5
-		$pdf->AddPage();
-		$pdf->SetY(30);
-		$pdf->SetX(6);
-		$pdf->WriteHTML($html);
-
-		//Page6
-		$pdf->AddPage();
-		$pdf->SetY(30);
-		$pdf->SetX(6);
-		$pdf->WriteHTML($html);
-
-		//Page7
-		$pdf->AddPage();
-		$pdf->SetY(30);
-		$pdf->SetX(6);
-		$pdf->WriteHTML($html);
-
-		//Page1
-		$pdf->setPage(1, true);
-		$pdf->SetY(35);
-		$pdf->Cell(0, 0, '', 0, 0, 'C');
+		$pdf->setPrintFooter(false);
+		//$pdf->SetY(45);
+		//$pdf->SetX(6);
+		//$pdf->SetMargins(10, 10);
 		
 		$arr_data = array();
 		$supplier_id = $this->input->get('supplier_id');
