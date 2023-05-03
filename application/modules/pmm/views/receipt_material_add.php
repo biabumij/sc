@@ -34,7 +34,7 @@
                         <div class="panel-content">
                             <table class="table">
                                 <tr>
-                                    <th>Rekanan</th>
+                                    <th>Rekanan<span class="required" aria-required="true">*</span></th>
                                     <th>:</th>
                                     <td>
                                         <select id="supplier_id" class="form-control select2">
@@ -51,7 +51,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th width="200px">No. Pesanan Pembelian</th>
+                                    <th width="200px">No. Pesanan Pembelian<span class="required" aria-required="true">*</span></th>
                                     <th width="20px">:</th>
                                     <td >
                                         <select id="purchase_order" class="form-control select2">
@@ -72,17 +72,17 @@
                                 <input type="hidden" name="select_operation" id="select_operation" value="*">
                                 <div class="row">
 									<div class="col-sm-4">
-										<label for="inputEmail3" class="control-label">Tanggal * </label>
+										<label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="date_receipt" name="date_receipt" class="form-control dtpicker" required="" autocomplete="off" placeholder="Tanggal Penerimaan" value="<?php echo date('d-m-Y');?>"" />
                                     </div>
                                     <div class="col-sm-8">
-										<label for="inputEmail3" class="control-label">No. Surat Jalan * </label>
+										<label for="inputEmail3" class="control-label">No. Surat Jalan<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="surat_jalan" name="surat_jalan" class="form-control" required="" autocomplete="off" placeholder="No. Surat Jalan" />
                                     </div>
                                 </div>    
                                 <div class="row">
                                     <div class="col-sm-4">
-										<label for="inputEmail3" class="control-label">Pilih Produk * </label>
+										<label for="inputEmail3" class="control-label">Pilih Produk<span class="required" aria-required="true">*</span></label>
                                         <select id="material_id" name="material_id" class="form-control" required="" >
                                             <option value="">Pilih Produk</option>
                                             
@@ -92,11 +92,11 @@
                                 </div>    
                                 <div class="row">
                                     <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Volume * </label>
+										<label for="inputEmail3" class="control-label">Volume<span class="required" aria-required="true">*</span></label>
 										<input type="text" id="volume" name="volume" class="form-control numberformat" value="" placeholder="Volume" required="" autocomplete="off">
                                         </div>
                                     <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Satuan * </label>
+										<label for="inputEmail3" class="control-label">Satuan<span class="required" aria-required="true">*</span></label>
                                         <select id="measure_id" name="measure_id" class="form-control" readonly="" required="">
                                             <option value="">Pilih Satuan</option>
                                             <?php
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4">
-										<label for="inputEmail3" class="control-label">Konversi * </label>
+										<label for="inputEmail3" class="control-label">Konversi<span class="required" aria-required="true">*</span></label>
 										<input type="text" id="berat_isi" name="berat_isi" class="form-control numberformat" value="1" placeholder="Konversi" required="" autocomplete="off">
                                     </div>
                                 </div>
@@ -122,7 +122,7 @@
 										<input type="text" id="display_volume" name="display_volume" class="form-control numberformat" value="" placeholder="Volume Konversi" required="" autocomplete="off">
                                         </div>
                                     <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Satuan Konversi * </label>
+										<label for="inputEmail3" class="control-label">Satuan Konversi<span class="required" aria-required="true">*</span></label>
                                         <select id="display_measure" name="display_measure" class="form-control" required="">
                                             <option value="">Pilih Satuan</option>
                                             <?php
@@ -138,11 +138,11 @@
                                 </div>
                                 <div class="row">
 									<div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">No. Kendaraan * </label>
+										<label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" required="" autocomplete="off" placeholder="No. Kendaraan"/>
                                     </div>
                                     <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Supir * </label>
+										<label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="driver" name="driver" class="form-control" required="" autocomplete="off" placeholder="Supir" />
                                     </div>
                                 </div>

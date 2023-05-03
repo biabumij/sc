@@ -59,11 +59,11 @@
                                     <br />
 									<div class="row">
 										<div class="col-sm-2">
-                                            <label>Tanggal Purchase Order</label>
+                                            <label>Tanggal Pesanan Pembelian</label>
                                             <input type="text" class="form-control" name="tanggal_po" required="" value="<?= date("d-m-Y", strtotime($po['date_po'])) ?>" required="" readonly=""/>
                                         </div>
                                         <div class="col-sm-8">
-                                            <label>Nomor Purchase Order</label>
+                                            <label>Nomor Pesanan Pembelian</label>
                                             <input type="text" class="form-control" name="no_po" value="<?= $po['no_po'];?>" readonly="" >
                                             <input type="hidden" name="purchase_order_id" value="<?= $po['id'];?>">
                                         </div>
@@ -71,11 +71,11 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <label>Tanggal Invoice</label>
+                                            <label>Tanggal Invoice<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control dtpicker" name="tanggal_invoice" id="tanggal_invoice" required="" >
                                         </div>
                                         <div class="col-sm-8">
-                                            <label>Nomor Invoice</label>
+                                            <label>Nomor Invoice<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control" name="nomor_invoice" required=""/>
                                         </div>
                                     </div>
