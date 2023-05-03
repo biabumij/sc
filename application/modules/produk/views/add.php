@@ -45,7 +45,7 @@
                                         <h5>Info Produk</h5>
                                         <hr />
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nama</label>
+                                            <label class="col-sm-2 control-label">Nama<span class="required" aria-required="true">*</span></label>
                                             <div class="col-sm-10">
                                               <input type="text" class="form-control input-sm" name="nama_produk" value="<?= (isset($edit)) ? $edit['nama_produk'] : '' ;?>" />
                                             </div>
@@ -57,7 +57,7 @@
                                             </div>
                                         </div>-->
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Kategori</label>
+                                            <label class="col-sm-2 control-label">Kategori<span class="required" aria-required="true">*</span></label>
                                             <div class="col-sm-10">
                                                 <select id="kategori" class="form-control form-select2" name="kategori_produk">
                                                     <option>Pilih Kategori</option>
@@ -102,7 +102,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Unit/Satuan</label>
+                                            <label class="col-sm-2 control-label">Unit/Satuan<span class="required" aria-required="true">*</span></label>
                                             <div class="col-sm-10">
                                                 <select id="satuan" class="form-control form-select2" name="satuan">
                                                     <option>Pilih Satuan</option>
