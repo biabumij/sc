@@ -45,7 +45,7 @@
                                         <h5>Info Kontak</h5>
                                         <hr />
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Tipe Kontak *</label>
+                                            <label class="col-sm-2 control-label">Tipe Kontak<span class="required" aria-required="true">*</span></label>
                                             <div class="col-sm-2">
                                               <input type="checkbox" name="pelanggan" id="pelanggan" value="1" <?= (isset($edit) && $edit['pelanggan'] == 1) ? 'checked' : '' ;?> > Pelanggan
                                             </div>
@@ -60,7 +60,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nama *</label>
+                                            <label class="col-sm-2 control-label">Nama<span class="required" aria-required="true">*</span></label>
                                             <div class="col-sm-10">
                                               <input type="text" class="form-control input-sm" name="nama" value="<?= (isset($edit)) ? $edit['nama'] : '' ;?>" placeholder="Isikan Nama Kontak / Nama Perusahaan" required=""/>
                                             </div>

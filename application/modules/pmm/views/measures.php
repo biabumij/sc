@@ -86,11 +86,11 @@
                     <form class="form-horizontal" style="padding: 0 10px 0 20px;" >
                         <input type="hidden" name="id" id="id">
                         <div class="form-group">
-                            <label>Nama Satuan *</label>
+                            <label>Nama Satuan<span class="required" aria-required="true">*</span></label>
                             <input type="text" id="measure_name" name="measure_name" class="form-control" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <label>Status *</label>
+                            <label>Status<span class="required" aria-required="true">*</span></label>
                             <select id="status" name="status" class="form-control" required="">
                                 <option value="PUBLISH">PUBLISH</option>
                                 <option value="UNPUBLISH">UNPUBLISH</option>
