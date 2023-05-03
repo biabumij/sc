@@ -221,7 +221,7 @@
 														</select>
 													</div>
 													<div class="form-group">
-														<label>Memo<span class="required" aria-required="true">*</span></label>
+														<label>Memo</label>
 														<input type="text" id="memo" name="memo" class="form-control" autocomplete="off"  />
 													</div>
 													
