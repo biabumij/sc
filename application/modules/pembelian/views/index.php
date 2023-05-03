@@ -183,15 +183,15 @@
 												<form class="form-horizontal" style="padding: 0 10px 0 20px;" >
 													<input type="hidden" name="id" id="id_Request">
 													<div class="form-group">
-														<label>Tanggal Permintaan</label>
+														<label>Tanggal Permintaan<span class="required" aria-required="true">*</span></label>
 														<input type="text" id="request_date" name="request_date" class="form-control dtpicker-single" required="" autocomplete="off" value="<?php echo date('d-m-Y');?>" />
 													</div>
 													<div class="form-group">
-														<label>Subyek</label>
+														<label>Subyek<span class="required" aria-required="true">*</span></label>
 														<input type="text" id="subject" name="subject" class="form-control" required="" autocomplete="off"  />
 													</div>
 													<div class="form-group">
-														<label>Rekanan</label>
+														<label>Rekanan<span class="required" aria-required="true">*</span></label>
 														<?php
 														 
 
@@ -208,7 +208,7 @@
 														</select>
 													</div>
                                                     <div class="form-group">
-														<label>Kategori</label>
+														<label>Kategori<span class="required" aria-required="true">*</span></label>
 														<select id="kategori_id" name="kategori_id" class="form-control select2">
 															<option>Pilih Kategori</option>
 															<?php
@@ -221,7 +221,7 @@
 														</select>
 													</div>
 													<div class="form-group">
-														<label>Memo</label>
+														<label>Memo<span class="required" aria-required="true">*</span></label>
 														<input type="text" id="memo" name="memo" class="form-control" autocomplete="off"  />
 													</div>
 													
