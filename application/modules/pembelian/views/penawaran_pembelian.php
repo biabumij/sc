@@ -40,7 +40,7 @@
                                 <form method="POST" action="<?php echo site_url('pembelian/submit_penawaran_pembelian');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label>Rekanan</label>
+                                            <label>Rekanan<span class="required" aria-required="true">*</span></label>
                                             <select class="form-control form-select2" name="supplier_id" id="supplier_id" required="">
                                                 <option value="">Pilih Rekanan</option>
                                                 <?php
@@ -55,26 +55,26 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
-                                            <label>Tanggal Penawaran</label>
+                                            <label>Tanggal Penawaran<span class="required" aria-required="true">*</span></label>
 
                                             <input type="date" class="form-control" name="tanggal_penawaran" required="">
                                         </div>
                                         <div class="col-sm-3">
-                                            <label>Berlaku Hingga</label>
+                                            <label>Berlaku Hingga<span class="required" aria-required="true">*</span></label>
                                             <input type="date" class="form-control" name="berlaku_hingga" required="">
                                         </div>
                                         <div class="col-sm-10">
-                                            <label >Alamat Rekanan</label>
+                                            <label >Alamat Rekanan<span class="required" aria-required="true">*</span></label>
                                             <textarea class="form-control" rows="4" name="alamat_supplier" id="alamat_supplier" readonly=""></textarea>
                                         </div>
                                         <br />
                                         <div class="col-sm-10">
-                                            <label>Nomor Penawaran</label>
+                                            <label>Nomor Penawaran<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control" name="nomor_penawaran" required="" value="<?= $this->pmm_model->GetNoPenawaranPembelian();?>">
                                         </div>
                                         <br />
                                         <div class="col-sm-3">
-                                            <label>Syarat Pembayaran</label>
+                                            <label>Syarat Pembayaran<span class="required" aria-required="true">*</span></label>
                                             <select name="syarat_pembayaran" class="form-control form-select2" required="">
                                                 <option value="">Pilih Pembayaran</option>
                                                 <option value="14">14 hari</option>
@@ -86,7 +86,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-7">
-                                            <label>Jenis Pembelian</label>
+                                            <label>Jenis Pembelian<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control" name="jenis_pembelian" required="">
                                         </div>
                                     </div>
