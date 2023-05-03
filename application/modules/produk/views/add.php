@@ -78,7 +78,7 @@
                                             </div>
 										</div>
                                         <div class="form-group">
-                                             <label class="col-sm-2 control-label">Tipe Produk</label>
+                                             <label class="col-sm-2 control-label">Tipe Produk<span class="required" aria-required="true">*</span></label>
                                             <div class="col-sm-2">
                                               <input type="checkbox" name="bahanbaku" id="bahanbaku" value="1" <?= (isset($edit) && $edit['bahanbaku'] == 1) ? 'checked' : '' ;?> > Bahan Baku
                                             </div>
