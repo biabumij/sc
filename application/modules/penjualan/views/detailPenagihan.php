@@ -281,7 +281,7 @@
                                         <?php
                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                         ?>
-                                        <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-warning"><i class="fa fa-money"></i> Terima Penjualan</a>
+                                        <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-warning"><i class="fa fa-money"></i> Terima Pembayaran</a>
                                         <?php
                                         ?>
                                         <a href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Pembayaran Lunas</a>
