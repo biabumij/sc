@@ -42,7 +42,7 @@
                                     <input type="hidden" name="supplier_id" value="<?= $pembayaran['supplier_name'];?>">
                                     <br />
                                     <div class="row">
-                                        <div class="col-sm-2"><label>Pembayaran Melalui</label></div>
+                                        <div class="col-sm-2"><label>Pembayaran Melalui</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <select class="form-control" name="bayar_dari" required="">
                                                 <option value="">Pembayaran Melalui</option>
@@ -61,11 +61,11 @@
                                     </div>
                                     <br />
                                     <div class="row">
-                                        <div class="col-sm-2"><label>Penerima</label></div>
+                                        <div class="col-sm-2"><label>Penerima</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" value="<?= $pembayaran["supplier_name"] ?>" name="supplier_name" readonly=""/>
                                         </div>
-                                        <div class="col-sm-2"><label>Nomor Transaksi</label></div>
+                                        <div class="col-sm-2"><label>Nomor Transaksi</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" name="nomor_transaksi" required=""/>
                                         </div>
@@ -90,14 +90,14 @@
                                             <label></label>
                                             
                                         </div>
-                                        <div class="col-sm-2"><label>Tanggal Pembayaran</label></div>
+                                        <div class="col-sm-2"><label>Tanggal Pembayaran</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control dtpicker" name="tanggal_pembayaran" required="" />
                                         </div>
                                     </div>
                                     </br />
                                     <div class="row">
-                                        <div class="col-sm-2"><label>Pembayaran</label></div>
+                                        <div class="col-sm-2"><label>Nomor Invoice</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" value="<?= $pembayaran["nomor_invoice"] ?>" readonly=""/>
                                         </div>

@@ -42,7 +42,7 @@
                                     <input type="hidden" name="id" value="<?= $bayar["id"] ?>">
                                     <input type="hidden" name="id_penagihan" value="<?= $bayar["penagihan_pembelian_id"] ?>">
                                     <div class="row">
-                                        <div class="col-sm-2"><label>Pembayaran Melalui</label></div>
+                                        <div class="col-sm-2"><label>Pembayaran Melalui</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                         <select class="form-control" name="bayar_dari" required="">
                                                 <option value="">Bayar Dari</option>
@@ -60,11 +60,11 @@
                                     </div>
                                     <br />
                                     <div class="row">
-                                        <div class="col-sm-2"><label>Penerima</label></div>
+                                        <div class="col-sm-2"><label>Penerima</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" value="<?= $bayar["supplier_name"] ?>" name="supplier_name" readonly=""/>
                                         </div>
-                                        <div class="col-sm-2"><label>Nomor Transaksi</label></div>
+                                        <div class="col-sm-2"><label>Nomor Transaksi</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" name="nomor_transaksi" value="<?= $bayar['nomor_transaksi'] ?>"/>
                                         </div>
@@ -89,14 +89,14 @@
                                             <label></label>
                                             
                                         </div>
-                                        <div class="col-sm-2"><label>Tanggal Pembayaran</label></div>
+                                        <div class="col-sm-2"><label>Tanggal Pembayaran</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control dtpicker" name="tanggal_pembayaran" value="<?= date('d/m/Y',strtotime($bayar["tanggal_pembayaran"])) ?>"/>
                                         </div>
                                     </div>
                                     </br />
                                     <div class="row">
-                                        <div class="col-sm-2"><label>Pembayaran</label></div>
+                                        <div class="col-sm-2"><label>Nomor Invoice</label><span class="required" aria-required="true">*</span></div>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control" value="<?= $pembayaran["nomor_invoice"] ?>" readonly=""/>
                                         </div>
@@ -149,7 +149,6 @@
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
                                             <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-times"></i> Kembali</a>
-                                            <button type="button" id="tombol_hapus" class="btn btn-danger"><i class="fa fa-times"></i> Hapus</button>
                                             <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>
@@ -220,30 +219,6 @@
                 }
             });
             
-        });
-
-        $('#tombol_hapus').click(function() {
-            bootbox.confirm({
-                message: "Apakah anda yakin untuk menghapus data ini?",
-                buttons: {
-                    confirm: {
-                        label: 'Yes',
-                        className: 'btn-success'
-                    },
-                    cancel: {
-                        label: 'No',
-                        className: 'btn-danger'
-                    }
-                },
-                callback: function(result) {
-                    if (result) {
-                        $.post('<?= base_url() . 'pembelian/hapus_pembayaran_pembelian/' . $bayar['id'] ?>', {}, function($response) {
-                            top.location.href = '<?= base_url() . 'pembelian/penagihan_pembelian_detail/' . $bayar['penagihan_pembelian_id'] ?>';
-                        });
-                    }
-
-                }
-            });
         });
 
     </script>

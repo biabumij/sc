@@ -429,13 +429,13 @@
                         <div>DIISI OLEH VERIFIKATOR :</div>
                         <hr />
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Nama Rekanan</label>
+                            <label class="col-sm-4 control-label">Nama Rekanan<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="supplier_name" name="supplier_name" class="form-control input-sm">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Nomor Kontrak / PO</label>
+                            <label class="col-sm-4 control-label">Nomor Kontrak / PO<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-5">
                                 <input type="text" id="no_po" name="nomor_po" class="form-control input-sm">
                             </div>
@@ -444,19 +444,19 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Nama Barang / Jasa</label>
+                            <label class="col-sm-4 control-label">Nama Barang / Jasa<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="nama_barang_jasa" name="nama_barang_jasa" class="form-control input-sm">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Nilai Kontrak / PO</label>
+                            <label class="col-sm-4 control-label">Nilai Kontrak / PO<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="nilai_kontrak" name="nilai_kontrak" class="form-control input-sm numberformat">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Nilai Tagihan ini (DPP)</label>
+                            <label class="col-sm-4 control-label">Nilai Tagihan ini (DPP)<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="nilai_tagihan" name="nilai_tagihan" class="form-control input-sm numberformat">
                             </div>
@@ -474,37 +474,37 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Total Tagihan</label>
+                            <label class="col-sm-4 control-label">Total Tagihan<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="total_tagihan" name="total_tagihan" class="form-control input-sm numberformat">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Tanggal Invoice</label>
+                            <label class="col-sm-4 control-label">Tanggal Invoice<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="tanggal_invoice" name="tanggal_invoice" class="form-control input-sm dtpicker-single">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Tanggal Diterima Proyek</label>
+                            <label class="col-sm-4 control-label">Tanggal Diterima Proyek<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="" name="tanggal_diterima_proyek" class="form-control input-sm dtpicker-single">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Tanggal Lolos Verifikasi</label>
+                            <label class="col-sm-4 control-label">Tanggal Lolos Verifikasi<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="" name="tanggal_lolos_verifikasi" class="form-control input-sm dtpicker-single">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Tanggal Diterima Pusat</label>
+                            <label class="col-sm-4 control-label">Tanggal Diterima Pusat<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="" name="tanggal_diterima_office" class="form-control input-sm dtpicker-single" readonly="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label">Metode Pembayaran</label>
+                            <label class="col-sm-4 control-label">Metode Pembayaran<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="metode_pembayaran" name="metode_pembayaran" class="form-control input-sm">
                             </div>
