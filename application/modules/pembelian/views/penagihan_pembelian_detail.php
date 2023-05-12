@@ -366,7 +366,7 @@
                                     if ($row['verifikasi_dok'] == 'BELUM') { ?>
                                         <blink><p style='color:red; font-weight:bold;'> Verifikasi Dokumen Tagihan Terlebih Dahulu !!</p></blink>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                         ?>
                                         <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <?php
@@ -377,7 +377,7 @@
                                     <?php
                                     if ($row['verifikasi_dok'] == 'SUDAH') { ?>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                         ?>
                                             <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-warning"><i class="fa fa-money"></i> Kirim Pembayaran</a>
                                             <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Pembayaran Lunas</a>
@@ -391,7 +391,7 @@
                                     <?php
                                     if ($row['verifikasi_dok'] == 'LENGKAP') { ?>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 15){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                         ?>
                                         <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-warning"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
