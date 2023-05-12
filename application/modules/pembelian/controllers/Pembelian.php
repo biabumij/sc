@@ -456,7 +456,6 @@ class Pembelian extends Secure_Controller
                 $this->db->where_in('prm.id', $arr_receipt);
                 $this->db->group_by('prm.material_id');
                 $detail = $this->db->get('pmm_receipt_material prm')->result_array();
-                file_put_contents("D:\\test.txt", $this->db->last_query());
                 $data['details'] = $detail;
 
                 $this->db->select('ppo.*, ps.nama as supplier_name, ps.alamat as supplier_address, ppp.syarat_pembayaran');
