@@ -289,20 +289,21 @@
                                         <table class="table table-striped table-hover" id="table-po" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
+                                                    <th>No.</th>
+                                                    <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
                                                     <th class="text-center">No. Pesanan Pembelian</th>
                                                     <th class="text-center">Subyek</th>
-                                                    <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Vol PO</th>
                                                     <th class="text-center">Presentase Penerimaan Terhadap Vol. PO</th>
                                                     <th class="text-center">Terima</th>
                                                     <th class="text-center">Total Pesanan Pembelian</th>
                                                     <th class="text-center">Total Terima</th>
                                                     <th class="text-center">Status Pesanan Pembelian</th>
+                                                    <th class="text-center">Lampiran</th>
                                                     <th class="text-center">Tindakan</th>
                                                     <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>   
+                                                    <th class="text-center">Dibuat Tanggal</th>  
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1310,6 +1311,9 @@
                     "data": "no"
                 },
                 {
+                    "data": "date_po"
+                },
+                {
                     "data": "supplier"
                 },
                 {
@@ -1317,9 +1321,6 @@
                 },
                 {
                     "data": "subject"
-                },
-                {
-                    "data": "date_po"
                 },
                 {
                     "data": "volume"
@@ -1338,6 +1339,9 @@
                 },
                 {
                     "data": "status"
+                },
+                {
+                    "data": "document_po"
                 },
                 {
                     "data": "actions"
