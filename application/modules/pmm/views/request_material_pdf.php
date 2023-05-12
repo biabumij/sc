@@ -55,28 +55,22 @@
 		<br /><br />
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
-				<th>No. Permintaan</th>
-				<th width="10px">:</th>
-				<th align="left"><?php echo $row['request_no'];?></th>
+				<th width="20%">No. Permintaan</th>
+				<th width="2%">:</th>
+				<th width="78%" align="left"><?php echo $row['request_no'];?></th>
 			</tr>
 			<tr>
-				<th>Tanggal Permintaan</th>
-				<th width="10px">:</th>
-				<th align="left"><?= convertDateDBtoIndo($row["request_date"]); ?></th>
+				<th width="20%">Tanggal Permintaan</th>
+				<th width="2%">:</th>
+				<th width="78%" align="left"><?= convertDateDBtoIndo($row["request_date"]); ?></th>
 			</tr>
 			<tr>
-				<th>Rekanan</th>
-				<th width="10px">:</th>
-				<th align="left"><?php echo $row['supplier_id'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');;?></th>
-			</tr>
-			<tr>
-				<th>Memo</th>
-				<th width="10px">:</th>
-				<th align="left"><?php echo $row['memo'];?></th>
+				<th width="20%">Rekanan</th>
+				<th width="2%">:</th>
+				<th width="78%" align="left"><?php echo $row['supplier_id'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');;?></th>
 			</tr>
 		</table>
-		<br />
-		<br />
+		<br /><br />
 		<table class="minimalistBlack" cellpadding="5" width="98%">
 			<tr  class="table-head">
 				<th width="5%">No</th>

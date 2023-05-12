@@ -129,21 +129,26 @@
                                         <thead>
                                             <tr>
                                                 <th width="5%">No</th>
-                                                <th width="22%">Produk</th>
-                                                <th width="12%">Volume</th>
+                                                <th width="25%">Produk</th>
+                                                <th width="10%">Volume</th>
                                                 <th width="10%">Satuan</th>
-                                                <th width="15%">Harga Satuan</th>
+                                                <th width="10%">Harga Satuan</th>
                                                 <th width="10%">Pajak</th>
+                                                <th width="10%">Pajak (2)</th>
                                                 <th width="20%">Nilai</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
+                                        <?php
                                             $sub_total = 0;
                                             $tax_pph = 0;
                                             $tax_ppn = 0;
                                             $tax_ppn11 = 0;
                                             $tax_0 = false;
+                                            $pajak_pph = 0;
+                                            $pajak_ppn = 0;
+                                            $pajak_ppn11 = 0;
+                                            $pajak_0 = false;
                                             $total = 0;
                                             $details = $this->db->get_where('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $row['id']))->result_array();
                                             ?>
@@ -151,6 +156,7 @@
                                                 <?php
                                                 $material = $this->crud_global->GetField('produk', array('id' => $dt['material_id']), 'nama_produk');
                                                 $tax = $this->crud_global->GetField('pmm_taxs', array('id' => $dt['tax_id']), 'tax_name');
+                                                $pajak = $this->crud_global->GetField('pmm_taxs', array('id' => $dt['pajak_id']), 'tax_name');
                                                 ?>
                                                 <tr>
                                                     <td><?= $key + 1 ?>.</td>
@@ -162,24 +168,38 @@
                                                     <td style="text-align: right !important;"><?= number_format($dt['price'],0,',','.'); ?></td>
                                                     <td> <?= $tax; ?></td>
 													<input type="hidden" value="<?= $this->filter->Rupiah($dt['tax_id']); ?>">
+                                                    <td> <?= $pajak; ?></td>
+                                                    <input type="hidden" value="<?= $this->filter->Rupiah($dt['pajak_id']); ?>">
                                                     <td style="text-align: right !important;"><?= number_format($dt['total'],0,',','.'); ?></td>
                                                 </tr>
-                                                <?php
-                                                    $sub_total += $dt['total'];
-                                                    if ($dt['tax_id'] == 4) {
-                                                        $tax_0 = true;
-                                                    }
-                                                    if ($dt['tax_id'] == 3) {
-                                                        $tax_ppn += $dt['tax'];
-                                                    }
-                                                    if ($dt['tax_id'] == 5) {
-                                                        $tax_pph += $dt['tax'];
-                                                    }
-                                                    if ($dt['tax_id'] == 6) {
-                                                        $tax_ppn11 += $dt['tax'];
-                                                    }
+                                            <?php
+                                                $sub_total += $dt['total'];
+                                                if ($dt['tax_id'] == 4) {
+                                                    $tax_0 = true;
                                                 }
-                                                ?>
+                                                if ($dt['tax_id'] == 3) {
+                                                    $tax_ppn += $dt['tax'];
+                                                }
+                                                if ($dt['tax_id'] == 5) {
+                                                    $tax_pph += $dt['tax'];
+                                                }
+                                                if ($dt['tax_id'] == 6) {
+                                                    $tax_ppn11 += $dt['tax'];
+                                                }
+                                                if ($dt['pajak_id'] == 4) {
+                                                    $pajak_0 = true;
+                                                }
+                                                if ($dt['pajak_id'] == 3) {
+                                                    $pajak_ppn += $dt['pajak'];
+                                                }
+                                                if ($dt['pajak_id'] == 5) {
+                                                    $pajak_pph += $dt['pajak'];
+                                                }
+                                                if ($dt['pajak_id'] == 6) {
+                                                    $pajak_ppn11 += $dt['pajak'];
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -257,8 +277,55 @@
                                             </div>
                                         <?php
                                         }
-
-                                        $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
+                                        ?>
+                                        <?php
+                                        if ($pajak_ppn > 0) {
+                                        ?>
+                                            <div class="row">
+                                                <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
+                                                <div class="col-sm-5 text-right">
+                                                    <h5 id="sub-total"><?= number_format($pajak_ppn,0,',','.'); ?></h5>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php
+                                        if ($pajak_0) {
+                                        ?>
+                                            <div class="row">
+                                                <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
+                                                <div class="col-sm-5 text-right">
+                                                    <h5 id="sub-total"><?= number_format(0,0,',','.'); ?></h5>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php
+                                        if ($pajak_pph > 0) {
+                                        ?>
+                                            <div class="row">
+                                                <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
+                                                <div class="col-sm-5 text-right">
+                                                    <h5 id="sub-total"><?= number_format($pajak_pph,0,',','.'); ?></h5>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                        <?php
+                                        if ($pajak_ppn11 > 0) {
+                                        ?>
+                                            <div class="row">
+                                                <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
+                                                <div class="col-sm-5 text-right">
+                                                    <h5 id="sub-total"><?= number_format($pajak_ppn11,0,',','.'); ?></h5>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        }
+                                        $total = $sub_total + ($tax_ppn - $tax_pph + $tax_ppn11) + ($pajak_ppn - $pajak_pph + $pajak_ppn11);
                                         $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPembelian($row['id']);
                                         ?>
                                         <div class="row">

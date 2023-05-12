@@ -33,14 +33,14 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Penawaran Pembelian <?php echo $this->pmm_model->GetStatus2($row['status']);?></h3>
+                                    <h3 class="">Detail Penawaran Pembelian <?php echo $this->pmm_model->GetStatus2($row['status']);?></h3>
                                 </div>
                             </div>
                             <div class="panel-content">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <label>Rekanan</label>
-                                            <input type="text" class="form-control" value="<?= $row['supplier'];?>" readonly>
+                                            <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');?>" readonly>
                                         </div>
                                         <div class="col-sm-3">
                                             <label>Tanggal Penawaran</label>
@@ -67,7 +67,7 @@
                                             <input type="text" class="form-control" value="<?= $row['jenis_pembelian'];?>" readonly>
                                         </div>
                                     </div>
-                                    </br >
+                                        </br >
                                         <div class="col-sm-16">
                                             <label>Dibuat Oleh : <?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');?></label>
                                         </div>
@@ -80,12 +80,13 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center" width="5%">No</th>
-                                                    <th class="text-center" width="22%">Produk</th>
-                                                    <th class="text-center" width="12%">Volume</th>
+                                                    <th class="text-center" width="25%">Produk</th>
+                                                    <th class="text-center" width="10%">Volume</th>
                                                     <th class="text-center" width="10%">Satuan</th>
-                                                    <th class="text-center" width="15%">Harga Satuan</th>
+                                                    <th class="text-center" width="10%">Harga Satuan</th>
                                                     <th class="text-center" width="20%">Nilai</th>
 													<th class="text-center" width="10%">Pajak</th>
+                                                    <th class="text-center" width="10%">Pajak (2)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,6 +96,10 @@
                                     $tax_ppn = 0;
                                     $tax_0 = false;
                                     $tax_ppn11 = 0;
+                                    $pajak_pph = 0;
+                                    $pajak_ppn = 0;
+                                    $pajak_0 = false;
+                                    $pajak_ppn11 = 0;
                                     $total = 0;
 									$details = $this->db->get_where('pmm_penawaran_pembelian_detail',array('penawaran_pembelian_id'=>$row['id']))->result_array();
 									?>
@@ -103,6 +108,7 @@
 										$produk = $this->crud_global->GetField('produk',array('id'=>$dt['material_id']),'nama_produk');
 										$measure = $this->crud_global->GetField('pmm_measures',array('id'=>$dt['measure']),'measure_name');
 										$tax = $this->crud_global->GetField('pmm_taxs',array('id'=>$dt['tax_id']),'tax_name');
+                                        $pajak = $this->crud_global->GetField('pmm_taxs',array('id'=>$dt['pajak_id']),'tax_name');
 									?>
                                         <tr>
                                             <td class="text-center"><?= $key + 1;?></td>
@@ -112,6 +118,7 @@
                                             <td class="text-right"><?= number_format($dt['price'],0,',','.'); ?></td>
                                             <td class="text-right"><?= number_format($dt['total'],0,',','.'); ?></td>
 											<td class="text-center"><?= $tax ?></td>
+                                            <td class="text-center"><?= $pajak ?></td>
                                         </tr>
 
                                         <?php
@@ -128,14 +135,25 @@
                                         if($dt['tax_id'] == 6){
                                             $tax_ppn11 += $dt['tax'];
                                         }
-										
+                                        if($dt['pajak_id'] == 4){
+                                            $pajak_0 = true;
+                                        }
+                                        if($dt['pajak_id'] == 3){
+                                            $pajak_ppn += $dt['tax'];
+                                        }
+                                        if($dt['pajak_id'] == 5){
+                                            $pajak_pph += $dt['tax'];
+                                        }
+                                        if($dt['pajak_id'] == 6){
+                                            $pajak_ppn11 += $dt['tax'];
+                                        }
                                         }
                                         ?>
                                 </tbody>
 								</table>    
                                     
                                     <div class="row">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label>Memo :</label>
                                                 <td><?= $row["memo"]; ?></td>
@@ -158,59 +176,61 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-
                                             <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
                                             <?php if($row["status"] === "DRAFT") : ?>
                                                 <?php
-                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                                 ?>
                                                     <form class="form-approval" action="<?= base_url("pembelian/approve_penawaran_pembelian/".$row["id"]) ?>">
-                                                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
-                                                </form>
-                                                <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/".$row["id"]) ?>">
-                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
-                                                </form>
+                                                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
+                                                    </form>
+                                                    <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/".$row["id"]) ?>">
+                                                        <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
+                                                    </form>
                                                 <?php
                                                 }
                                                 ?>
                                             <?php endif; ?>
 
                                             <?php if($row["status"] === "OPEN") : ?>
-                                                <?php
-                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                            <?php
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
                                                 ?>
-                                                <form class="form-approval" action="<?= base_url("pembelian/closed_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>      
-                                                </form>		
+                                                    <form class="form-approval" action="<?= base_url("pembelian/closed_penawaran_pembelian/".$row["id"]) ?>">
+                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>      
+                                                    </form>		
                                                 <?php
                                                 }
                                                 ?>
                                             <?php endif; ?>
 
                                             <?php if($row["status"] === "CLOSED") : ?>
-                                            <?php
-                                            if($this->session->userdata('admin_group_id') == 1){
-                                                ?>
-                                                <form class="form-approval" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
-                                            </form>	
                                                 <?php
-                                            }
-                                            ?>
+                                                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
+                                                ?>
+                                                    <!--<form class="form-approval" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
+                                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                                    </form>-->
+                                                    <form class="form-approval" action="<?= base_url("pembelian/open_penawaran_pembelian/".$row["id"]) ?>">
+                                                        <button type="submit" class="btn btn-success"><i class="fa fa-folder-open-o"></i> Open</button>        
+                                                    </form>	
+                                                <?php
+                                                }
+                                                ?>
                                             <?php endif; ?>
 
                                             <?php if($row["status"] === "REJECT") : ?>
-                                            <?php
-                                            if($this->session->userdata('admin_group_id') == 1){
-                                                ?>
-                                                <form class="form-approval" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
-                                            </form>	
                                                 <?php
-                                            }
-                                            ?>
+                                                if($this->session->userdata('admin_group_id') == 1){
+                                                ?>
+                                                    <form class="form-approval" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
+                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
+                                                    </form>	
+                                                <?php
+                                                }
+                                                ?>
                                             <?php endif; ?>
-                                        
+                                            
                                         </div>
                                     </div>
                             </div>

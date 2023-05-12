@@ -35,6 +35,34 @@
         height: 0;
         visibility: hidden !important;
     }
+
+    blink {
+    -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+    animation: 2s linear infinite kedip;
+    }
+    /* for Safari 4.0 - 8.0 */
+    @-webkit-keyframes kedip { 
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+    }
+    @keyframes kedip {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+    }
 </style>
 
 <body>
@@ -83,6 +111,18 @@
                                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Pesanan Pembelian</a></li>
                                     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Penerimaan Pembelian</a></li>
                                     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Tagihan Pembelian</a></li>
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 ){
+                                    ?>
+                                        <li role="presentation"><a href="#verifikasi" aria-controls="verifikasi" role="tab" data-toggle="tab" style='background-color:#5bc0de; color:white;'><blink>Butuh Persetujuan 
+                                            (<?php
+                                            $query = $this->db->query('SELECT * FROM pmm_verifikasi_penagihan_pembelian where approve_unit_head = "TIDAK DISETUJUI" ');
+                                            echo $query->num_rows();
+                                            ?>)
+                                        </blink></a></li>			
+                                    <?php
+                                    }
+                                    ?>
                                 </ul>
 
                                 <div class="tab-content">
@@ -328,26 +368,55 @@
                                             <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th>No</th>
+                                                    <th>No.</th>
+                                                    <th class="text-center">Tagihan</th>
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
                                                     <th class="text-center">No. Pesanan Pembelian</th>
                                                     <th class="text-center">No. Surat Jalan</th>
+                                                    <th class="text-center">Surat Jalan</th>
                                                     <th class="text-center">No. Kendaraan</th>
                                                     <th class="text-center">Nama Supir</th>
-                                                    <th class="text-center">Surat Jalan</th>
                                                     <th class="text-center">Produk</th>
                                                     <th class="text-center">Satuan</th>                                                   
                                                     <th class="text-center">Volume</th>
-                                                    <th class="text-center">Status Pembayaran</th>
                                                     <th class="text-center">Dibuat Oleh</th>
                                                     <th class="text-center">Dibuat Tanggal</th>
+                                                    <th class="text-center">Upload Surat Jalan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                             </tbody>
                                         </table>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade bd-example-modal-lg" id="modalDocSuratJalan" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="modal-title">Upload Surat Jalan</span>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
+                                                    <input type="hidden" name="id" id="id_doc_surat_jalan">
+                                                    <div class="form-group">
+                                                        <label>Upload Surat Jalan</label>
+                                                        <input type="file" id="file" name="file" class="form-control" required="" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan"><i class="fa fa-send"></i> Kirim</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -402,6 +471,70 @@
                                         </table>
                                     </div>
 
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="verifikasi">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover" id="table-verifikasi" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th width="5%">No.</th>
+                                                    <th class="text-center">Kategori Persetujuan</th>
+                                                    <th class="text-center">Nomor Dokumen</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>                                       
+                                                </tr>
+                                            </thead>
+                                            <?php
+                                            $waiting_po = $this->db->select('*')
+                                            ->from('pmm_purchase_order')
+                                            ->where("status = 'WAITING'")
+                                            ->get()->result_array();
+
+                                            $permintaan = $this->db->select('*')
+                                            ->from('pmm_request_materials')
+                                            ->where("status = 'WAITING'")
+                                            ->get()->result_array();
+
+                                            $verifikasi = $this->db->select('v.*, ppp.nomor_invoice')
+                                            ->from('pmm_verifikasi_penagihan_pembelian v')
+                                            ->join('pmm_penagihan_pembelian ppp','v.penagihan_pembelian_id = ppp.id','left')
+                                            ->where("v.approve_unit_head = 'TIDAK DISETUJUI'")
+                                            ->get()->result_array();
+                                            ?>
+                                            <tbody>
+                                                <?php $no=1; foreach ($waiting_po as $x): ?>
+                                                <tr>
+                                                    <th width="5%"><?php echo $no++;?></th>
+                                                    <th class="text-left"><?= $x['kategori_persetujuan'] = $this->pmm_model->GetStatusKategoriPersetujuan($x['kategori_persetujuan']); ?></th>
+                                                    <th class="text-left"><?= $x['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$x['id']).'" target="_blank">'.$x['no_po'].'</a>';?></th>
+                                                    <th class="text-left"><?= $x['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$x['created_by']),'admin_name'); ?></th>
+                                                    <th class="text-left"><?= $x['created_on'] = date('d/m/Y H:i:s',strtotime($x['created_on'])); ?></th>
+                                                </tr>
+                                                <?php endforeach; ?>
+
+                                                <?php foreach ($permintaan as $x): ?>
+                                                <tr>
+                                                    <th width="5%"><?php echo $no++;?></th>
+                                                    <th class="text-left"><?= $x['kategori_persetujuan'] = $this->pmm_model->GetStatusKategoriPersetujuan($x['kategori_persetujuan']); ?></th>
+                                                    <th class="text-left"><?= $x['request_no'] = '<a href="'.site_url('pmm/request_materials/manage/'.$x['id']).'" target="_blank">'.$x['request_no'].'</a>';?></th>
+                                                    <th class="text-left"><?= $x['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$x['created_by']),'admin_name'); ?></th>
+                                                    <th class="text-left"><?= $x['created_on'] = date('d/m/Y H:i:s',strtotime($x['created_on'])); ?></th>
+                                                </tr>
+                                                <?php endforeach; ?>
+
+                                                <?php foreach ($verifikasi as $x): ?>
+                                                <tr>
+                                                    <th width="5%"><?php echo $no++;?></th>
+                                                    <th class="text-left"><?= $x['kategori_persetujuan'] = $this->pmm_model->GetStatusKategoriPersetujuan($x['kategori_persetujuan']); ?></th>
+                                                    <th class="text-left"><?= $x['nomor_invoice'] = '<a href="'.base_url('pembelian/read_notification/'.$x['id']).'" target="_blank">'.$x['nomor_invoice'].'</a>';?></th>
+                                                    <th class="text-left"><?= $x['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$x['created_by']),'admin_name'); ?></th>
+                                                    <th class="text-left"><?= $x['created_on'] = date('d/m/Y H:i:s',strtotime($x['created_on'])); ?></th>
+                                                </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
 
                             </div>
@@ -1263,6 +1396,9 @@
                 "data": "no"
             },
             {
+                "data": "status_payment"
+            },
+            {
                 "data": "date_receipt"
             },
             {
@@ -1275,13 +1411,13 @@
                 "data": "surat_jalan"
             },
             {
+                "data": "surat_jalan_file"
+            },
+            {
                 "data": "no_kendaraan"
             },
             {
                 "data": "driver"
-            },
-            {
-                "data": "surat_jalan_file"
             },
             {
                 "data": "material_name"
@@ -1293,13 +1429,13 @@
                 "data": "display_volume"
             },
             {
-                "data": "status_payment"
-            },
-            {
                 "data": "admin_name"
             },
             {
                 "data": "created_on"
+            },
+            {
+                "data": "uploads_surat_jalan"
             }
         ],
         select: {
@@ -1781,6 +1917,46 @@
             $(this).hide();
             $(this).closest('.custom-file').find('.custom-file-select').show();
         });
+    });
+
+    function UploadDocSuratJalan(id) {
+
+    $('#modalDocSuratJalan').modal('show');
+    $('#id_doc_surat_jalan').val(id);
+    }
+
+    $('#modalDocSuratJalan form').submit(function(event) {
+        $('#btn-form-doc-surat-jalan').button('loading');
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/receipt_material/form_document'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-form-doc-surat-jalan').button('reset');
+                if (result.output) {
+                    $("#modalDocSuratJalan form").trigger("reset");
+                    table_receipt.ajax.reload();
+
+                    $('#modalDocSuratJalan').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        event.preventDefault();
+
     });
     </script>
 

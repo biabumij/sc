@@ -128,6 +128,7 @@ class Request_materials extends CI_Controller {
 				'kategori_id' => $this->input->post('kategori_id'),
 				'subject' => $this->input->post('subject'),
 				'memo' => $this->input->post('memo'),
+				'kategori_persetujuan' => 'PERMINTAAN BAHAN & ALAT',
 				//'week'	=> $week
 	 		);
 
@@ -214,7 +215,6 @@ class Request_materials extends CI_Controller {
 	public function product_process()
 	{
 		$output['output'] = false;
-
 		
 		$request_material_detail_id = $this->input->post('request_material_detail_id');
 		$request_material_id = $this->input->post('request_material_id');
@@ -222,6 +222,8 @@ class Request_materials extends CI_Controller {
 		$penawaran_id = $this->input->post('penawaran_id');
 		$tax_id = $this->input->post('tax_id');
 		$tax = str_replace(',', '.', $this->input->post('tax'));
+		$pajak_id = $this->input->post('pajak_id');
+		$pajak = str_replace(',', '.', $this->input->post('pajak'));
 		$volume = str_replace(',', '.', $this->input->post('volume'));
 		$supplier_id = $this->input->post('supplier_id');
 		$measure = $this->input->post('measure_id');
@@ -247,6 +249,8 @@ class Request_materials extends CI_Controller {
 				'penawaran_id' => $penawaran_id,
 				'tax_id' => $tax_id,
 				'tax' => $tax * $volume,
+				'pajak_id' => $pajak_id,
+				'pajak' => $pajak * $volume,
 				'volume' => $volume,
 				'measure_id' => $measure,
 				'price' => $price,

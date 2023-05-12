@@ -46,6 +46,8 @@ class Receipt_material extends CI_Controller {
 			$arr['measure'] = $row['measure'];
 			$arr['tax_id'] = $row['tax_id'];
 			$arr['tax'] = $row['tax'];
+			$arr['pajak_id'] = $row['pajak_id'];
+			$arr['pajak'] = $row['pajak'];
 			$arr['display_measure'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['display_measure']),'measure_name');
 			$arr['total_po'] = number_format($row['volume'],2,',','.');
 			$receipt_material = $this->db->select('SUM(volume) as volume')->get_where('pmm_receipt_material',array('purchase_order_id'=>$purchase_order_id,'material_id'=>$row['material_id']))->row_array();
@@ -166,12 +168,61 @@ class Receipt_material extends CI_Controller {
 				
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+
+				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-primary" title="Upload Surat Jalan" ><i class="fa fa-upload"></i> </a>';
+				$row['uploads_surat_jalan'] = $uploads_surat_jalan.' ';
 				
 				$data[] = $row;
 			}
 
 		}
 		echo json_encode(array('data'=>$data));
+	}
+
+	public function form_document()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+
+			$file = '';
+			$error_file = false;
+
+			if (!file_exists('./uploads/surat_jalan_penerimaan/')) {
+			    mkdir('./uploads/surat_jalan_penerimaan/', 0777, true);
+			}
+			// Upload email
+			$config['upload_path']          = './uploads/surat_jalan_penerimaan/';
+	        $config['allowed_types']        = 'jpg|png|jpeg|JPG|PNG|JPEG|pdf';
+
+	        $this->load->library('upload', $config);
+
+			if($_FILES["file"]["error"] == 0) {
+				if (!$this->upload->do_upload('file'))
+				{
+						$error = $this->upload->display_errors();
+						$file = $error;
+						$error_file = true;
+				}else{
+						$data = $this->upload->data();
+						$file = $data['file_name'];
+				}
+			}
+
+			if($error_file){
+				$output['output'] = false;
+				$output['err'] = $file;
+				echo json_encode($output);
+				exit();
+			}
+
+			$arr_data['surat_jalan_file'] = $file;
+
+			if($this->db->update('pmm_receipt_material',$arr_data,array('id'=>$id))){
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
 	}
 
 	public function table_detail2()
@@ -282,6 +333,7 @@ class Receipt_material extends CI_Controller {
 		$purchase_order_id = $this->input->post('purchase_order_id');
 		$material_id = $this->input->post('material_id');
 		$tax_id = $this->input->post('tax_id');
+		$pajak_id = $this->input->post('pajak_id');
 		$date_receipt = $this->input->post('date_receipt_val');
 		$volume = str_replace('.', '', $this->input->post('volume'));
 		$volume = str_replace(',', '.', $volume);
@@ -361,6 +413,7 @@ class Receipt_material extends CI_Controller {
 			'date_receipt' => date('Y-m-d',strtotime($date_receipt)),
 			'material_id' => $material_id,
 			'tax_id' => $tax_id,
+			'pajak_id' => $pajak_id,
 			'measure' => $measure,
 			'volume' => $volume,
 			'convert_value' => $convert_value,

@@ -34,6 +34,7 @@ class Pembelian extends Secure_Controller
             $data['supplier'] = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
             $data['products'] = $this->db->order_by('nama_produk', 'asc')->select('*')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
             $data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
+            $data['taxs_2'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH', 'id' => '5'))->result_array();
             $data['measures'] = $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
             $this->load->view('pembelian/penawaran_pembelian', $data);
         } else {
@@ -93,13 +94,13 @@ class Pembelian extends Secure_Controller
         $sub_total = $this->input->post('sub_total');
         $total = $this->input->post('total');
 
-        $supplier = $this->crud_global->GetField('penerima', array('id' => $supplier_id), 'nama');
+        //$supplier = $this->crud_global->GetField('penerima', array('id' => $supplier_id), 'nama');
 
         $arr_insert = array(
+            //'supplier' => $supplier,
             'supplier_id' => $supplier_id,
-            'supplier' => $supplier,
-            'tanggal_penawaran' => $tanggal_penawaran,
-            'berlaku_hingga' => $berlaku_hingga,
+            'tanggal_penawaran' => date('Y-m-d', strtotime($tanggal_penawaran)),
+            'berlaku_hingga' => date('Y-m-d', strtotime($berlaku_hingga)),
             'jenis_pembelian' => $jenis_pembelian,
             'client_address' => $client_address,
             'nomor_penawaran' => $nomor_penawaran,
@@ -164,6 +165,7 @@ class Pembelian extends Secure_Controller
 				$price = str_replace('.', '', $price);
 				$price = str_replace(',', '.', $price);
 				$tax_id = $this->input->post('tax_' . $i);
+                $pajak_id = $this->input->post('pajak_' . $i);
 				$total_pro = $this->input->post('total_' . $i);
 				$total_pro = str_replace('.', '', $total_pro);
 				$total_pro = str_replace(',', '.', $total_pro);
@@ -171,6 +173,7 @@ class Pembelian extends Secure_Controller
 				if (!empty($product_id)) {
 
 					$tax = 0;
+                    $pajak = 0;
 					if ($tax_id == 3) {
 						$tax = ($total_pro * 10) / 100;
 					}
@@ -186,6 +189,23 @@ class Pembelian extends Secure_Controller
                     if ($tax_id == 6) {
 						$tax = ($total_pro * 11) / 100;
 					}
+
+					if ($pajak_id == 3) {
+						$pajak = ($total_pro * 10) / 100;
+					}
+
+					if ($pajak_id == 4) {
+						$pajak = ($total_pro * 0) / 100;
+					}
+
+					if ($pajak_id == 5) {
+						$pajak = ($total_pro * 2) / 100;
+					}
+
+                    if ($pajak_id == 6) {
+						$pajak = ($total_pro * 11) / 100;
+					}
+                    
                     $arr_detail = array(
                         'penawaran_pembelian_id' => $penawaran_pembelian_id,
                         'material_id' => $product_id,
@@ -194,6 +214,8 @@ class Pembelian extends Secure_Controller
                         'price' => $price,
                         'tax_id' => $tax_id,
 						'tax' => $tax,
+                        'pajak_id' => $pajak_id,
+						'pajak' => $pajak,
                         'total' => $total_pro,
                         'status' => 'DRAFT'
                     );
@@ -268,6 +290,7 @@ class Pembelian extends Secure_Controller
                 $row['no'] = $key + 1;
                 $row['tanggal_penawaran'] = date('d/m/Y', strtotime($row['tanggal_penawaran']));
                 $row['berlaku_hingga'] = date('d/m/Y', strtotime($row['berlaku_hingga']));
+                $row['supplier'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
 
                 $url_detail = site_url('pembelian/penawaran_pembelian_detail/' . $row['id']);
                 $row['nomor_penawaran'] = '<a href="' . $url_detail . '">' . $row['nomor_penawaran'] . '</a>';
@@ -553,6 +576,8 @@ class Pembelian extends Secure_Controller
                 $price = str_replace(',', '.', $price);
                 $tax = $this->input->post('tax_' . $i);
 				$tax_id = $this->input->post('tax_id_' . $i);
+                $pajak = $this->input->post('pajak_' . $i);
+				$pajak_id = $this->input->post('pajak_id_' . $i);
                 $total_pro = $this->input->post('total_' . $i);
                 $total_pro = str_replace('.', '', $total_pro);
                 $total_pro = str_replace(',', '.', $total_pro);
@@ -560,6 +585,7 @@ class Pembelian extends Secure_Controller
                 if (!empty($material_id)) {
 
                     $tax = 0;
+                    $pajak = 0;
 					if ($tax_id == 3) {
 						$tax = ($total_pro * 10) / 100;
 					}
@@ -576,6 +602,22 @@ class Pembelian extends Secure_Controller
 						$tax = ($total_pro * 11) / 100;
 					}
 
+                    if ($pajak_id == 3) {
+						$pajak = ($total_pro * 10) / 100;
+					}
+
+					if ($pajak_id == 4) {
+						$pajak = ($total_pro * 0) / 100;
+					}
+
+					if ($pajak_id == 5) {
+						$pajak = ($total_pro * 2) / 100;
+					}
+
+                    if ($pajak_id == 6) {
+						$pajak = ($total_pro * 11) / 100;
+					}
+
 
                     $arr_detail = array(
                         'penagihan_pembelian_id' => $tagihan_id,
@@ -585,6 +627,8 @@ class Pembelian extends Secure_Controller
                         'price' => $price,
                         'tax_id' => $tax_id,
                         'tax' => $tax,
+                        'pajak_id' => $pajak_id,
+                        'pajak' => $pajak,
                         'total' => $total_pro
                     );
 
@@ -717,14 +761,14 @@ class Pembelian extends Secure_Controller
         
         $query['ppn'] = $detail['tax'];
 
-        $this->db->select('ppd.tax_id, sum(ppd.tax) as tax, p.nama_produk');
+        $this->db->select('ppd.pajak_id, sum(ppd.pajak) as pajak, p.nama_produk');
 		$this->db->join('produk p', 'ppd.material_id = p.id', 'left');
-        $this->db->where("ppd.tax_id in (5)");
+        $this->db->where("ppd.pajak_id in (5)");
         $detail_2 = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
 		
-        $query['pph'] = $detail_2['tax'];
-        $query['nilai_tagihan'] = $query['total_tagihan'] - $detail['tax'] + $detail_2['tax'];
-        $query['total_tagihan'] = $query['total_tagihan'] + $detail['tax'] - $detail_2['tax'];
+        $query['pph'] = $detail_2['pajak'];
+        $query['nilai_tagihan'] = $query['total_tagihan'] - $detail['tax'] + $detail_2['pajak'];
+        $query['total_tagihan'] = $query['total_tagihan'] + $detail['tax'] - $detail_2['pajak'];
 
         
 		
@@ -819,6 +863,8 @@ class Pembelian extends Secure_Controller
             'copy_po' => $this->input->post('copy_po'),
             'copy_po_keterangan' => $this->input->post('copy_po_keterangan'),
             'catatan' => $this->input->post('catatan'),
+            'kategori_persetujuan' => 'VERIFIKASI PEMBELIAN',
+            'approve_unit_head' => 'TIDAK DISETUJUI',
             'created_by' => $this->session->userdata('admin_id')
         );
 
@@ -1053,6 +1099,7 @@ class Pembelian extends Secure_Controller
         $nama = $this->input->post('nama');
         $products = $this->db->order_by('nama_produk', 'asc')->select('*')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
         $taxs = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
+        $taxs_2 = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH', 'id' => '5'))->result_array();
 		$measures= $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 	?>
         <tr>
@@ -1098,6 +1145,20 @@ class Pembelian extends Secure_Controller
 					<?php
 					if (!empty($taxs)) {
 						foreach ($taxs as $row) {
+					?>
+							<option value="<?php echo $row['id']; ?>"><?php echo $row['tax_name']; ?></option>
+					<?php
+						}
+					}
+					?>
+				</select>
+			</td>
+            <td>
+				<select id="pajak-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control form-select2" name="pajak_<?php echo $no; ?>" required="">
+					<option value="">Pilih Pajak (2)</option>
+					<?php
+					if (!empty($taxs_2)) {
+						foreach ($taxs_2 as $row) {
 					?>
 							<option value="<?php echo $row['id']; ?>"><?php echo $row['tax_name']; ?></option>
 					<?php
@@ -1642,5 +1703,32 @@ class Pembelian extends Secure_Controller
 		}
 		
 		echo json_encode($output);	
+	}
+
+    public function read_notification($id)
+    {
+        $check = $this->m_admin->check_login();
+        if($check == true){
+
+            $this->db->select('pvp.*, ppp.nomor_invoice');
+            $this->db->join('pmm_penagihan_pembelian ppp', 'pvp.penagihan_pembelian_id = ppp.id','left');
+            $this->db->where('pvp.id',$id);
+			$this->db->order_by('pvp.created_on', 'DESC');
+            $query = $this->db->get('pmm_verifikasi_penagihan_pembelian pvp');
+            $data['row'] = $query->result_array();
+            $this->load->view('pembelian/read_notification',$data);
+            
+        }else {
+            redirect('admin');
+        }
+    }
+
+    public function closed_verifikasi($id)
+	{
+		$this->db->set("approve_unit_head", "SETUJUI");
+		$this->db->where("id", $id);
+		$this->db->update("pmm_verifikasi_penagihan_pembelian");
+		$this->session->set_flashdata('notif_success', 'Berhasil Menutup Verifikasi');
+		redirect("admin/pembelian");
 	}
 }
