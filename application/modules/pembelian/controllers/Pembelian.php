@@ -34,7 +34,10 @@ class Pembelian extends Secure_Controller
             $data['supplier'] = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
             $data['products'] = $this->db->order_by('nama_produk', 'asc')->select('*')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
             $data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
-            $data['taxs_2'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH', 'id' => '5'))->result_array();
+            $data['taxs_2'] = $this->db->select('id,tax_name')
+			->from('pmm_taxs')
+			->where("id in ('4','5')")
+			->get()->result_array();
             $data['measures'] = $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
             $this->load->view('pembelian/penawaran_pembelian', $data);
         } else {
