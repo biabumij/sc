@@ -5,12 +5,48 @@
 </head>
 <style type="text/css">
     .chart-container{
-        position: relative; width:100%;height:350px;background: #fff;
+        position: relative; max-width: 100%; height:350px; background: #fff;
     }
-    .loading-chart{
-        text-align: center;
-        align-content: center;
-        display: none;
+    .highcharts-figure,
+    .highcharts-data-table table {
+    min-width: 65%;
+    max-width: 100%;
+    }
+
+    .highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    }
+
+    .highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+    }
+
+    .highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+    }
+
+    .highcharts-data-table td,
+    .highcharts-data-table th,
+    .highcharts-data-table caption {
+    padding: 0.5em;
+    }
+
+    .highcharts-data-table thead tr,
+    .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+    }
+
+    .highcharts-data-table tr:hover {
+    background: #f1f7ff;
     }
 </style>
 <body>
@@ -18,16 +54,6 @@
     
     <?php echo $this->Templates->PageHeader();?>
     
-    <?php
-    $get_date = $this->input->get('dt');
-    if(!empty($get_date)){
-        $arr_date = $get_date;
-    }else {
-         // gmdate('F j, Y', strtotime('first day of january this year'));;
-        $arr_date = date("d-m-Y", strtotime('first day of january this year')).' - '.date("d-m-Y", strtotime('last day of december this year'));
-    }
-
-    ?>
     <div class="page-body">
         <?php echo $this->Templates->LeftBar();?>
         <div class="content">
@@ -40,6 +66,17 @@
             </div>
             <div class="content-body">
                 <div class="row animated fadeInUp">
+
+                    <?php include_once("script_dashboard.php"); ?>
+
+                    <div class="col-sm-12">
+                        <figure class="highcharts-figure">
+                            <div id="container_laba_rugi"></div>
+                            
+                        </figure>
+                        <br />
+                    </div>
+
                     <div class="col-sm-8">
                         <div class="panel panel-default">
                             <div class="panel-header">                                
@@ -303,6 +340,252 @@
 <script src="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
 <script type="text/javascript" src="<?php echo base_url();?>assets/back/theme/vendor/chart-js/chart.min.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var chart;
+            $(document).ready(function() {
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'container_laba_rugi',
+                        type: 'line',
+                        marginRight: 130,
+                        marginBottom: 75,
+                        backgroundColor: {
+                            linearGradient: [500, 0, 0, 700],
+                            stops: [
+                                [0, 'rgb(255,255,255)'],
+                                [1, 'rgb(188,188,188)']
+                            ]
+                        },
+                    },
+                    title: {
+                        style: {
+                            color: '#000000',
+                            fontWeight: 'bold',
+                            fontSize: '14px',
+                            fontFamily: 'arial'
+                        },
+                        text: 'LABA RUGI',
+                        x: -20 //center            
+                    },
+                    subtitle: {
+                        style: {
+                            color: '#000000',
+                            fontWeight: 'bold',
+                            fontSize: '14px',
+                            fontFamily: 'arial'
+                        },
+                        text: 'PT. BIA BUMI JAYENDRA - SC (<?php echo $date_now = date('Y', strtotime($date_now));?>)',
+                        x: -20
+                    },
+                    xAxis: { //X axis menampilkan data bulan
+                        labels: {
+                            style: {
+                                color: '#000000',
+                                fontWeight: 'bold',
+                                fontSize: '10px',
+                                fontFamily: 'arial'
+                            }
+                        },
+                        categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi <br />2021-2023']
+                    },
+                    yAxis: {
+                        //title: {  //label yAxis
+                            //text: 'RAP <br /><?php echo number_format(0,0,',','.'); ?>'
+                            //text: 'Presentase'
+                        //},
+                        title: {
+                            style: {
+                                color: '#000000',
+                                fontWeight: 'bold',
+                                fontSize: '10px',
+                                fontFamily: 'arial'
+                            },
+                            text: 'Presentase'           
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080' //warna dari grafik line
+                        }],
+                        labels: {
+                            style: {
+                                color: '#000000',
+                                fontWeight: 'bold',
+                                fontSize: '10px',
+                                fontFamily: 'arial'
+                            },
+                            format: '{value} %'
+                        },
+                        min: -10000,
+                        max: 10000,
+                        tickInterval: 1000,
+                    },
+                    tooltip: { 
+                    //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
+                    //akan menampikan data di titik tertentu di grafik saat mouseover
+                        formatter: function() {
+                                return '<b>'+ this.series.name +'</b><br/>'+ 
+                                ''+ 'Presentase' +': '+ this.y + '%<br/>';
+                                //''+ 'Vol' +': '+ this.x + '';
+
+                                //'<b>'+ 'Presentase' +': '+ this.y +'%'</b><br/>'+ 
+                                //'<b>'+ 'Penjualan' +': '+ this.y +'</b><br/>';
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -10,
+                        y: 100,
+                        borderWidth: 0
+                    },
+
+                    plotOptions: {
+                        spline: {
+                            lineWidth: 4,
+                            states: {
+                                hover: {
+                                    lineWidth: 5
+                                }
+                            },
+                            marker: {
+                                enabled: true
+                            }
+                        }
+                    },
+            
+                    series: [{  
+                        name: '0 %',  
+                        
+                        data: [0,0,0,0,0,0,0,0,0,0,0,0,0],
+
+                        color: '#000000',
+                        fontWeight: 'bold',
+                        fontSize: '10px',
+                        fontFamily: 'arial'
+                    },
+                    {  
+                        name: 'Laba Rugi %',  
+                        
+                        data: [ <?php echo json_encode($persentase_jan_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_feb_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mar_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_apr_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mei_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jun_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jul_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_agu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_sep_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_okt_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_nov_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_des_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_aku_fix, JSON_NUMERIC_CHECK); ?>],
+
+                        color: '#FF0000',
+                        fontWeight: 'bold',
+                        fontSize: '10px',
+                        fontFamily: 'arial',
+
+                        zones: [{
+                            value: [<?php echo json_encode(0, JSON_NUMERIC_CHECK); ?>],
+                            }, {
+                                dashStyle: 'dot'
+                            }]
+                    }
+                    ]
+                });
+            });
+            
+        });
+    </script>
+
+    <!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->
+    <script type="text/javascript">
+        $('#filter_date_bahan_jadi_penyesuaian').daterangepicker({
+            autoUpdateInput : false,
+            showDropdowns: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
+
+        $('#filter_date_bahan_jadi_penyesuaian').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                TablePergerakanBahanJadiPenyesuaian();
+        });
+        
+        function TablePergerakanBahanJadiPenyesuaian()
+        {
+            $('#wait').fadeIn('fast');   
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo site_url('pmm/reports/nilai_persediaan_bahan_jadi_dashboard'); ?>/"+Math.random(),
+                dataType : 'html',
+                data: {
+                    filter_date : $('#filter_date_bahan_jadi_penyesuaian').val(),
+                },
+                success : function(result){
+                    $('#box-ajax-6c').html(result);
+                    $('#wait').fadeOut('fast');
+                }
+            });
+        }
+
+        TablePergerakanBahanJadiPenyesuaian();
+        
+    </script>
+
+    <!-- Script Nilai Persediaan Bahan Baku -->
+    <script type="text/javascript">
+    $('#filter_date_nilai').daterangepicker({
+    autoUpdateInput : false,
+    showDropdowns: true,
+    locale: {
+        format: 'DD-MM-YYYY'
+    },
+    ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+        'This Month': [moment().startOf('month'), moment().endOf('month')],
+        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
+
+        $('#filter_date_nilai').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                TableNilaiPersediaanBarang();
+        });
+
+
+        function TableNilaiPersediaanBarang()
+        {
+            $('#wait').fadeIn('fast');   
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo site_url('pmm/reports/nilai_persediaan_bahan_baku_dashboard'); ?>/"+Math.random(),
+                dataType : 'html',
+                data: {
+                    filter_date : $('#filter_date_nilai').val(),
+                },
+                success : function(result){
+                    $('#box-ajax-3').html(result);
+                    $('#wait').fadeOut('fast');
+                }
+            });
+        }
+
+        TableNilaiPersediaanBarang();
+    
+    </script>
+
+    <!-- Script Laba Rugi Old -->
     <script type="text/javascript">
         
         $('.dtpicker').daterangepicker({
@@ -399,95 +682,6 @@
                 getLostProfit();
         });
         
-    </script>
-
-    <!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->
-    <script type="text/javascript">
-        $('#filter_date_bahan_jadi_penyesuaian').daterangepicker({
-            autoUpdateInput : false,
-            showDropdowns: true,
-            locale: {
-                format: 'DD-MM-YYYY'
-            },
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        });
-
-        $('#filter_date_bahan_jadi_penyesuaian').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TablePergerakanBahanJadiPenyesuaian();
-        });
-        
-        function TablePergerakanBahanJadiPenyesuaian()
-        {
-            $('#wait').fadeIn('fast');   
-            $.ajax({
-                type    : "POST",
-                url     : "<?php echo site_url('pmm/reports/nilai_persediaan_bahan_jadi_dashboard'); ?>/"+Math.random(),
-                dataType : 'html',
-                data: {
-                    filter_date : $('#filter_date_bahan_jadi_penyesuaian').val(),
-                },
-                success : function(result){
-                    $('#box-ajax-6c').html(result);
-                    $('#wait').fadeOut('fast');
-                }
-            });
-        }
-
-        TablePergerakanBahanJadiPenyesuaian();
-        
-    </script>
-
-    <!-- Script Nilai Persediaan Bahan Baku -->
-    <script type="text/javascript">
-    $('#filter_date_nilai').daterangepicker({
-    autoUpdateInput : false,
-    showDropdowns: true,
-    locale: {
-        format: 'DD-MM-YYYY'
-    },
-    ranges: {
-        'Today': [moment(), moment()],
-        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-        'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        });
-
-        $('#filter_date_nilai').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableNilaiPersediaanBarang();
-        });
-
-
-        function TableNilaiPersediaanBarang()
-        {
-            $('#wait').fadeIn('fast');   
-            $.ajax({
-                type    : "POST",
-                url     : "<?php echo site_url('pmm/reports/nilai_persediaan_bahan_baku_dashboard'); ?>/"+Math.random(),
-                dataType : 'html',
-                data: {
-                    filter_date : $('#filter_date_nilai').val(),
-                },
-                success : function(result){
-                    $('#box-ajax-3').html(result);
-                    $('#wait').fadeOut('fast');
-                }
-            });
-        }
-
-        TableNilaiPersediaanBarang();
-    
     </script>
 
 </body>
