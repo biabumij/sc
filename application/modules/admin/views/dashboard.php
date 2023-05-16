@@ -69,7 +69,7 @@
 
                     <?php include_once("script_dashboard.php"); ?>
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-8">
                         <figure class="highcharts-figure">
                             <div id="container_laba_rugi"></div>
                             
@@ -373,7 +373,7 @@
                             fontFamily: 'arial'
                         },
                         text: 'LABA RUGI',
-                        x: -20 //center            
+                        x: -20            
                     },
                     subtitle: {
                         style: {
@@ -385,7 +385,7 @@
                         text: 'PT. BIA BUMI JAYENDRA - SC (<?php echo $date_now = date('Y', strtotime($date_now));?>)',
                         x: -20
                     },
-                    xAxis: { //X axis menampilkan data bulan
+                    xAxis: {
                         labels: {
                             style: {
                                 color: '#000000',
@@ -397,10 +397,6 @@
                         categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi <br />2021-2023']
                     },
                     yAxis: {
-                        //title: {  //label yAxis
-                            //text: 'RAP <br /><?php echo number_format(0,0,',','.'); ?>'
-                            //text: 'Presentase'
-                        //},
                         title: {
                             style: {
                                 color: '#000000',
@@ -463,16 +459,16 @@
                         }
                     },
             
-                    series: [{  
-                        name: '0 %',  
+                    series: [//{  
+                        //name: '0 %',  
                         
-                        data: [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                        //data: [0,0,0,0,0,0,0,0,0,0,0,0,0],
 
-                        color: '#000000',
-                        fontWeight: 'bold',
-                        fontSize: '10px',
-                        fontFamily: 'arial'
-                    },
+                        //color: '#000000',
+                        //fontWeight: 'bold',
+                        //fontSize: '10px',
+                        //fontFamily: 'arial'
+                    //},
                     {  
                         name: 'Laba Rugi %',  
                         
