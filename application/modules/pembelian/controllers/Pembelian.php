@@ -1543,7 +1543,7 @@ class Pembelian extends Secure_Controller
 
 
 							$data[$i] = array(
-								'pembayaran_id' => $id,
+								'pembayaran_penagihan_pembelian_id' => $id,
 								'lampiran'  => $data['totalFiles'][$i]
 							);
 
