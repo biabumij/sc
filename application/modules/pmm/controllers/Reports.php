@@ -2391,12 +2391,6 @@ class Reports extends CI_Controller {
 	    ?>
 		
 		<table class="table table-bordered" width="100%">
-		<style type="text/css">
-			table tr.table-active{
-				background-color: #ffb732;
-				color: black;
-			}
-		</style>
 
 		<?php
 
@@ -2564,7 +2558,7 @@ class Reports extends CI_Controller {
 		?>
 
 		<tr class="table-active">
-			<th class="text-center" colspan="6" style="text-transform:uppercase">
+			<th class="text-center" colspan="6" style='background-color:#5B5B5B; color:white; text-transform:uppercase;'>
 			<marquee>Nilai Persediaan Bahan Baku
 			(<?php
 			$search = array(
@@ -2605,12 +2599,12 @@ class Reports extends CI_Controller {
 			</th>
 		</tr>
 	<tr>
-		<th width="5%" class="text-center" style='background-color:rgb(0,206,209); color:black'>NO.</th>
-		<th class="text-center" style='background-color:rgb(0,206,209); color:black'>URAIAN</th>
-		<th class="text-center" style='background-color:rgb(0,206,209); color:black'>SATUAN</th>
-		<th class="text-center" style='background-color:rgb(0,206,209); color:black'>STOK BARANG</th>
-		<th class="text-center" style='background-color:rgb(0,206,209); color:black'>HARGA SATUAN</th>
-		<th class="text-center" style='background-color:rgb(0,206,209); color:black'>NILAI</th>
+		<th width="5%" class="text-center" style='background-color:rgb(188,188,188); color:black'>NO.</th>
+		<th class="text-center" style='background-color:rgb(188,188,188); color:black'>URAIAN</th>
+		<th class="text-center" style='background-color:rgb(188,188,188); color:black'>SATUAN</th>
+		<th class="text-center" style='background-color:rgb(188,188,188); color:black'>STOK BARANG</th>
+		<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA SATUAN</th>
+		<th class="text-center" style='background-color:rgb(188,188,188); color:black'>NILAI</th>
 	</tr>
 	<tr>
 		<th class="text-center">1.</th>
@@ -6342,12 +6336,6 @@ class Reports extends CI_Controller {
 		?>
 		
 		<table class="table table-bordered" width="100%">
-		<style type="text/css">
-		table tr.table-active{
-			background-color: #ffb732;
-			color: black;
-		}
-		</style>
 
 		<?php
 
@@ -7238,7 +7226,7 @@ class Reports extends CI_Controller {
 		?>
 
 		<tr class="table-active">
-			<th class="text-center" colspan="6" style="text-transform:uppercase">
+			<th class="text-center" colspan="6" style='background-color:#5B5B5B; color:white; text-transform:uppercase;'>
 				<marquee>Nilai Persediaan Bahan Jadi
 				(<?php
 				$search = array(
@@ -7280,12 +7268,12 @@ class Reports extends CI_Controller {
 			</th>
 		</tr>
 		<tr>
-			<th width="5%" class="text-center" style='background-color:rgb(0,206,209); color:black'>NO.</th>
-			<th class="text-center" style='background-color:rgb(0,206,209); color:black'>URAIAN</th>
-			<th class="text-center" style='background-color:rgb(0,206,209); color:black'>SATUAN</th>
-			<th class="text-center" style='background-color:rgb(0,206,209); color:black'>STOK BARANG</th>
-			<th class="text-center" style='background-color:rgb(0,206,209); color:black'>HARGA SATUAN</th>
-			<th class="text-center" style='background-color:rgb(0,206,209); color:black'>NILAI</th>
+			<th width="5%" class="text-center" style='background-color:rgb(188,188,188); color:black'>NO.</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>URAIAN</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>SATUAN</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>STOK BARANG</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA SATUAN</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>NILAI</th>
 		</tr>
 		<tr>
 			<th class="text-center">1.</th>

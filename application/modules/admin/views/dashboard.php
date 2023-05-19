@@ -137,7 +137,7 @@
                                     <div class="col-sm-12">
                                         <table class="table table-bordered">
                                             <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HARGA JUAL (TERMASUK LABA 10% DARI HPP DASAR) -  
+                                                <th class="text-left" style='background-color:#5B5B5B; color:white; text-transform:uppercase;' colspan="4">HARGA JUAL (TERMASUK LABA 10% DARI HPP DASAR) -  
                                                 Harga Update (<?php
                                                     $search = array(
                                                     'January',
@@ -177,10 +177,10 @@
                                                     ?>)</th>
                                             </tr> 
                                             <tr>
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,5 - 10</th> 
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20</th> 
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30</th>  
+                                                <th class="text-center" style='background-color:rgb(188,188,188); color:black'>Batu Split 0,0 - 0,5</th>
+                                                <th class="text-center" style='background-color:rgb(188,188,188); color:black'>Batu Split 0,5 - 10</th> 
+                                                <th class="text-center" style='background-color:rgb(188,188,188); color:black'>Batu Split 10 - 20</th> 
+                                                <th class="text-center" style='background-color:rgb(188,188,188); color:black'>Batu Split 20 - 30</th>  
                                             </tr> 
                                             <tr>
                                                 <th class="text-right"><?php echo number_format($harga_jual_abubatu,0,',','.');?></th>
@@ -189,7 +189,7 @@
                                                 <th class="text-right"><?php echo number_format($harga_jual_batu2030,0,',','.');?></th>  
                                             </tr> 
                                             <tr>
-                                                <th class="text-left" style='background-color:#ffb732; color:black; text-transform:uppercase;' colspan="4">HPP DASAR -  
+                                                <th class="text-left" style='background-color:#5B5B5B; color:white; text-transform:uppercase;' colspan="4">HPP DASAR -  
                                                 Harga Update (<?php
                                                     $search = array(
                                                     'January',
@@ -230,10 +230,10 @@
                                             </th>
                                             </tr> 
                                             <tr>
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,0 - 0,5</th>
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 0,5 - 10</th> 
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 10 - 20</th> 
-                                                <th class="text-center" style='background-color:rgb(0,206,209); color:black'>Batu Split 20 - 30</th>  
+                                                <th class="text-center" style='background-color:rgb(188,188,188); color:black'>Batu Split 0,0 - 0,5</th>
+                                                <th class="text-center" style='background-color:rgb(188,188,188); color:black'>Batu Split 0,5 - 10</th> 
+                                                <th class="text-center" style='background-color:rgb(188,188,188); color:black'>Batu Split 10 - 20</th> 
+                                                <th class="text-center" style='background-color:rgb(188,188,188); color:black'>Batu Split 20 - 30</th>  
                                             </tr> 
                                             <tr>
                                                 <th class="text-right"><?php echo number_format($hpp['abubatu'],0,',','.');?></th>
