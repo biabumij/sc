@@ -77,7 +77,7 @@
                         <br />
                     </div>
 
-                    <div class="col-sm-8">
+                    <!--<div class="col-sm-8">
                         <div class="panel panel-default">
                             <div class="panel-header">                                
                                 <div class="row">
@@ -103,7 +103,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- Harga Jual - Bahan Jadi -->
                     <?php
