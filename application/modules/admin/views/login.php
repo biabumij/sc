@@ -84,7 +84,7 @@
 	    
 			<div class="box">
 				<div class="tomorrow"
-					data-location-id=""
+					data-location-id="057045"
 					data-language="ID"
 					data-unit-system="METRIC"
 					data-skin="light"
