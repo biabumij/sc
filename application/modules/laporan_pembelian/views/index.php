@@ -311,22 +311,24 @@
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
                                                                 <th class="text-center">REKANAN</th>
-                                                                <th class="text-center">NOMOR</th>
                                                                 <th class="text-center">TANGGAL</th>
+                                                                <th class="text-center">JENIS</th>
 																<th class="text-center">TANGGAL</th>
-                                                                <th class="text-center" colspan="4">TAGIHAN</th>
+                                                                <th class="text-center">SYARAT</th>
+                                                                <th class="text-center" colspan="3">TAGIHAN</th>
                                                                 <th class="text-center" colspan="4">PEMBAYARAN</th>
-                                                                <th class="text-center" colspan="4">SISA HUTANG</th>
-                                                                <th class="text-center" colspan="3" style="vertical-align:middle;">STATUS</th>
+                                                                <th class="text-center" colspan="3">SISA HUTANG</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">STATUS</th>
+                                                                <th class="text-center">TANGGAL</th>
                                                             </tr>
                                                             <tr>
-                                                                <th class="text-center">KETERANGAN</th>
+                                                                <th class="text-center">NO. TAGIHAN</th>
                                                                 <th class="text-center">TAGIHAN</th>
-                                                                <th class="text-center">TAGIHAN</th>
+                                                                <th class="text-center">PEMBELIAN</th>
                                                                 <th class="text-center">VERIFIKASI</th>
+                                                                <th class="text-center">PEMBAYARAN</th>
                                                                 <th class="text-center">DPP</th>
                                                                 <th class="text-center">PPN</th>
-                                                                <th class="text-center">PPH</th>
                                                                 <th class="text-center">JUMLAH</th>
                                                                 <th class="text-center">DPP</th>
                                                                 <th class="text-center">PPN</th>
@@ -334,10 +336,7 @@
                                                                 <th class="text-center">JUMLAH</th>
                                                                 <th class="text-center">DPP</th>
                                                                 <th class="text-center">PPN</th>
-                                                                <th class="text-center">PPH</th>
                                                                 <th class="text-center">JUMLAH</th>
-                                                                <th class="text-center">STATUS</th>
-                                                                <th class="text-center">UMUR</th>
                                                                 <th class="text-center">JATUH TEMPO</th>
                                                             </tr>
 															</thead>
@@ -626,7 +625,6 @@
                                     
                                     window.jumlah_dpp_tagihan = 0;
                                     window.jumlah_ppn_tagihan = 0;
-                                    window.jumlah_pph_tagihan = 0;
                                     window.jumlah_jumlah_tagihan = 0;
                                     window.jumlah_dpp_pembayaran = 0;
                                     window.jumlah_ppn_pembayaran = 0;
@@ -634,13 +632,11 @@
                                     window.jumlah_jumlah_pembayaran = 0;
                                     window.jumlah_dpp_sisa_hutang = 0;
                                     window.jumlah_ppn_sisa_hutang = 0;
-                                    window.jumlah_pph_sisa_hutang = 0;
                                     window.jumlah_jumlah_sisa_hutang = 0;
 
                                     $.each(val.mats, function(a, row) {
                                         window.jumlah_dpp_tagihan += parseFloat(row.dpp_tagihan.replace(/\./g,'').replace(',', '.'));
                                         window.jumlah_ppn_tagihan += parseFloat(row.ppn_tagihan.replace(/\./g,'').replace(',', '.'));
-                                        window.jumlah_pph_tagihan += parseFloat(row.pph_tagihan.replace(/\./g,'').replace(',', '.'));
                                         window.jumlah_jumlah_tagihan += parseFloat(row.jumlah_tagihan.replace(/\./g,'').replace(',', '.'));
                                         window.jumlah_dpp_pembayaran += parseFloat(row.dpp_pembayaran.replace(/\./g,'').replace(',', '.'));
                                         window.jumlah_ppn_pembayaran += parseFloat(row.ppn_pembayaran.replace(/\./g,'').replace(',', '.'));
@@ -648,20 +644,19 @@
                                         window.jumlah_jumlah_pembayaran += parseFloat(row.jumlah_pembayaran.replace(/\./g,'').replace(',', '.'));
                                         window.jumlah_dpp_sisa_hutang += parseFloat(row.dpp_sisa_hutang.replace(/\./g,'').replace(',', '.'));
                                         window.jumlah_ppn_sisa_hutang += parseFloat(row.ppn_sisa_hutang.replace(/\./g,'').replace(',', '.'));
-                                        window.jumlah_pph_sisa_hutang += parseFloat(row.pph_sisa_hutang.replace(/\./g,'').replace(',', '.'));
                                         window.jumlah_jumlah_sisa_hutang += parseFloat(row.jumlah_sisa_hutang.replace(/\./g,'').replace(',', '.'));
                                     });
 
-                                    $('#monitoring-hutang tbody').append('<tr onclick="NextShowMonitoringHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="4">' + val.name + '</td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_sisa_hutang) + '</b></td><td class="text-right"></td></td><td class="text-right"></td><td class="text-right"></td></tr>');
+                                    $('#monitoring-hutang tbody').append('<tr onclick="NextShowMonitoringHutang(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;background-color:#FF0000"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="5">' + val.name + '</td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_sisa_hutang) + '</b></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#monitoring-hutang tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.subject + '</td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-right">' + row.tanggal_invoice + '</td><td class="text-right">' + row.tanggal_lolos_verifikasi + '</td><td class="text-right">' + row.dpp_tagihan + '</td><td class="text-right">' + row.ppn_tagihan + '</td><td class="text-right">' + row.pph_tagihan + '</td><td class="text-right">' + row.jumlah_tagihan + '</td><td class="text-right">' + row.dpp_pembayaran + '</td><td class="text-right">' + row.ppn_pembayaran + '</td><td class="text-right">' + row.pph_pembayaran + '</td><td class="text-right">' + row.jumlah_pembayaran + '</td><td class="text-right">' + row.dpp_sisa_hutang + '</td><td class="text-right">' + row.ppn_sisa_hutang + '</td><td class="text-right">' + row.pph_sisa_hutang + '</td><td class="text-right">' + row.jumlah_sisa_hutang + '</td><td class="text-right">' + row.status + '</td><td class="text-center">' + row.syarat_pembayaran + '</td><td class="text-center">' + row.jatuh_tempo + '</td></tr>');   
+                                        $('#monitoring-hutang tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-left">' + row.tanggal_invoice + '</td><td class="text-right">' + row.subject + '</td><td class="text-right">' + row.tanggal_lolos_verifikasi + '</td><td class="text-right">' + row.syarat_pembayaran + '</td><td class="text-right">' + row.dpp_tagihan + '</td><td class="text-right">' + row.ppn_tagihan + '</td><td class="text-right">' + row.jumlah_tagihan + '</td><td class="text-right">' + row.dpp_pembayaran + '</td><td class="text-right">' + row.ppn_pembayaran + '</td><td class="text-right">' + row.pph_pembayaran + '</td><td class="text-right">' + row.jumlah_pembayaran + '</td><td class="text-right">' + row.dpp_sisa_hutang + '</td><td class="text-right">' + row.ppn_sisa_hutang + '</td><td class="text-right">' + row.jumlah_sisa_hutang + '</td><td class="text-right">' + row.status + '</td><td class="text-center">' + row.jatuh_tempo + '</td></tr>');   
                                     });
-                                    $('#monitoring-hutang tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="5"><b>JUMLAH</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_sisa_hutang) + '</b></td><td class="text-right"></td></td><td class="text-right"></td>td class="text-right"></td></tr>');
+                                    $('#monitoring-hutang tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="5"><b>JUMLAH</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_tagihan) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pph_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_pembayaran) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_dpp_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_ppn_sisa_hutang) + '</b></td><td class="text-right"><b>' + formatter2.format(window.jumlah_jumlah_sisa_hutang) + '</b></td></td><td class="text-right"></td>td class="text-right"></td></tr>');
                                 });
-                                $('#monitoring-hutang tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_dpp_tagihan + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_pph_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_pph_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td><td class="text-right"></td></tr>');
+                                $('#monitoring-hutang tbody').append('<tr><td class="text-right" colspan="6"><b>TOTAL</b></td><td class="text-right"><b>' + result.total_dpp_tagihan + '</b></td><td class="text-right"><b>' + result.total_ppn_tagihan + '</b></td><td class="text-right"><b>' + result.total_jumlah_tagihan + '</b></td><td class="text-right"><b>' + result.total_dpp_pembayaran + '</b></td><td class="text-right"><b>' + result.total_ppn_pembayaran + '</b></td><td class="text-right"><b>' + result.total_pph_pembayaran + '</b></td><td class="text-right"><b>' + result.total_jumlah_pembayaran + '</b></td><td class="text-right"><b>' + result.total_dpp_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_ppn_sisa_hutang + '</b></td><td class="text-right"><b>' + result.total_jumlah_sisa_hutang + '</b></td></td><td class="text-right"></td></td><td class="text-right"></td></tr>');
                             } else {
-                                $('#monitoring-hutang tbody').append('<tr><td class="text-center" colspan="20"><b>Tidak Ada Data</b></td></tr>');
+                                $('#monitoring-hutang tbody').append('<tr><td class="text-center" colspan="18"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
