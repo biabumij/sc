@@ -2099,6 +2099,125 @@ class Laporan extends Secure_Controller {
 		}
 	
 	}
+
+	public function cetak_rencana_kerja()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		        $pdf->AddPage('L');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('Y-m-d',strtotime($arr_filter_date[0])).' - '.date('Y-m-d',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+        $html = $this->load->view('laporan_rencana_kerja/cetak_rencana_kerja',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Rencana Kerja Produksi');
+        $pdf->nsi_html($html);
+        $pdf->Output('rencana_kerja_produksi.pdf', 'I');
+	}
+
+	public function cetak_prognosa_produksi()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('L');
+
+		$arr_date = $this->input->get('filter_date');
+		if(empty($arr_date)){
+			$filter_date = '-';
+		}else {
+			$arr_filter_date = explode(' - ', $arr_date);
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		$data['filter_date'] = $filter_date;
+        $html = $this->load->view('laporan_rencana_kerja/cetak_prognosa_produksi',$data,TRUE);
+
+        
+        $pdf->SetTitle('BBJ - Prognosa Produksi');
+        $pdf->nsi_html($html);
+        $pdf->Output('prognosa_produksi.pdf', 'I');
+	
+	}
+
+	public function pesanan_pembelian($rencana_kerja_1,$date_1_awal,$date_1_akhir,$kebutuhan,$material_id)
+    {
+        $check = $this->m_admin->check_login();
+        if ($check == true) {
+			$data['row'] = $this->db->get_where('pmm_penawaran_pembelian pp', array('pp.id' => $rencana_kerja_1))->row_array();
+			$data['details'] = $this->db->get_where('pmm_penawaran_pembelian_detail ppd', array('ppd.penawaran_pembelian_id' => $rencana_kerja_1))->row_array();
+			$data['no_po'] = $this->pmm_model->GetNoPONew();
+			$data['request_no'] = $this->pmm_model->GetNoRMNew();
+			$data['produk'] = $this->pmm_model->getMatByPenawaranRencanaKerjaAll();
+
+			$data['stock_opname'] = $this->db->select('(cat.display_volume) as display_volume')
+			->from('pmm_remaining_materials_cat cat ')
+			->where("(cat.date < '$date_1_awal')")
+			->where("cat.material_id = $material_id")
+			->where("cat.status = 'PUBLISH'")
+			->order_by('cat.date','desc')->limit(1)
+			->get()->row_array();
+
+			$total_po = $this->db->select('sum(pod.volume) as volume')
+			->from('pmm_purchase_order ppo')
+			->join('pmm_purchase_order_detail pod','ppo.id = pod.purchase_order_id','left')
+			->where("(ppo.date_po between '$date_1_awal' and '$date_1_akhir')")
+			->where("pod.material_id = $material_id")
+			->get()->row_array();
+			
+			$data['purchase_order'] = $total_po['volume'];
+			$data['kebutuhan'] = $kebutuhan;
+
+			$total_penerimaan = $this->db->select('sum(prm.volume) as volume')
+			->from('pmm_receipt_material prm')
+			->where("(prm.date_receipt between '$date_1_awal' and '$date_1_akhir')")
+			->where("prm.material_id = $material_id")
+			->get()->row_array();
+
+			$data['total_receipt'] = $total_penerimaan['volume'];
+
+			$this->load->view('laporan_rencana_kerja/pesanan_pembelian', $data);
+        } else {
+            redirect('admin');
+        }
+    }
+
+	public function cetak_kebutuhan_bahan_alat($rencana_kerja_1)
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+		$pdf->setPrintFooter(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$data['rak'] = $this->db->get_where('rak',array('id'=>$rencana_kerja_1))->row_array();
+        $html = $this->load->view('laporan_rencana_kerja/cetak_kebutuhan_bahan_alat',$data,TRUE);
+        $rak = $this->db->get_where('rak',array('id'=>$rencana_kerja_1))->row_array();
+
+        $pdf->SetTitle('BBJ - Kebutuhan Bahan & Alat');
+        $pdf->nsi_html($html);
+        $pdf->Output('kebutuhan_bahan_alat.pdf', 'I');
+	}
 	
 
 }
