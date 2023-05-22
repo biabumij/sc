@@ -2165,7 +2165,7 @@ class Laporan extends Secure_Controller {
 			$data['request_no'] = $this->pmm_model->GetNoRMNew();
 			$data['produk'] = $this->pmm_model->getMatByPenawaranRencanaKerjaAll();
 
-			$data['stock_opname'] = $this->db->select('(cat.display_volume) as display_volume')
+			$data['stock_opname'] = $this->db->select('(cat.volume) as display_volume')
 			->from('pmm_remaining_materials_cat cat ')
 			->where("(cat.date < '$date_1_awal')")
 			->where("cat.material_id = $material_id")
