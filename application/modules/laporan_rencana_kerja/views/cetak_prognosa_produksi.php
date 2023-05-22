@@ -4481,11 +4481,11 @@
 			
 			<tr class="table-judul">
 				<th width="3%" align="center" rowspan="2" class="table-border-pojok-kiri">&nbsp; <br /><br />NO.</th>
-				<th width="14%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />URAIAN</th>
+				<th width="11%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />URAIAN</th>
 				<th width="5%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />SATUAN</th>
 				<th width="7%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />ADEDENDUM RAP</th>
 				<th width="7%" align="center" rowspan="2" class="table-border-pojok-tengah">&nbsp; <br /><br />REALISASI SD.<br><div style="text-transform:uppercase;"><?php echo $last_opname = date('F Y', strtotime('0 days', strtotime($last_opname)));?></div></th>
-				<th width="57%" align="center" colspan="7" class="table-border-pojok-tengah">&nbsp; <br />PROGNOSA</th>
+				<th width="60%" align="center" colspan="7" class="table-border-pojok-tengah">&nbsp; <br />PROGNOSA</th>
 				<th width="7%" align="center" rowspan="2" class="table-border-pojok-kanan">&nbsp; <br /><br />TOTAL</th>
 	        </tr>
 			<tr class="table-judul">
