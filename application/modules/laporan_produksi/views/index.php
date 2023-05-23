@@ -129,11 +129,7 @@
 													<div class="col-sm-5">
 														<p><h5>Nilai Persediaan Bahan Jadi</h5></p>
                                                         <a href="#nilai_persediaan_bahan_jadi" aria-controls="nilai_persediaan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-                                                    <div class="col-sm-5">
-														<p><h5>Evaluasi Nilai Persediaan</h5></p>
-                                                        <a href="#evaluasi_nilai_persediaan" aria-controls="evaluasi_nilai_persediaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>        													
+													</div>      													
                                                 </div>
                                             </div>
                                         </div>
@@ -583,44 +579,6 @@
 														</div>
 													</div>				
 													<div class="table-responsive" id="box-ajax-6d">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-
-                                    <!-- Evaluasi Nilai Persediaan -->
-									
-									<div role="tabpanel" class="tab-pane" id="evaluasi_nilai_persediaan">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Evaluasi Nilai Persediaan</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/evaluasi_nilai_persediaan_print');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_evaluasi_nilai_persediaan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-6b">													
 													
                     
 													</div>
@@ -1234,51 +1192,6 @@
 			}
 
 			//TableNilaiPersediaanBahanJadi();
-			
-            </script>
-
-            <!-- Script Evaluasi Nilai Persediaan -->
-			
-            <script type="text/javascript">
-			$('#filter_date_evaluasi_nilai_persediaan').daterangepicker({
-				autoUpdateInput : false,
-				showDropdowns: true,
-				locale: {
-				  format: 'DD-MM-YYYY'
-				},
-				ranges: {
-				   'Today': [moment(), moment()],
-				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				   'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-				   'This Month': [moment().startOf('month'), moment().endOf('month')],
-				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-				}
-			});
-
-			$('#filter_date_evaluasi_nilai_persediaan').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableEvaluasiNilaiPersediaan();
-			});
-			
-			function TableEvaluasiNilaiPersediaan()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/evaluasi_nilai_persediaan'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_evaluasi_nilai_persediaan').val(),
-					},
-					success : function(result){
-						$('#box-ajax-6b').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TableEvaluasiNilaiPersediaan();
 			
             </script>			
 
