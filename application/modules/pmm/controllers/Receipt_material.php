@@ -179,6 +179,81 @@ class Receipt_material extends CI_Controller {
 		echo json_encode(array('data'=>$data));
 	}
 
+	public function table_receipt()
+	{	
+		$data = array();
+		$w_date = $this->input->post('filter_date');
+		$single_date = $this->input->post('single_date');
+		$purchase_order_id = $this->input->post('purchase_order_id');
+		$supplier_id = $this->input->post('supplier_id');
+		$material_id = $this->input->post('material_id');
+		$date_now = date('Y-m-d');
+		//$awal_bulan = date('Y-m-01', strtotime($date_now));
+		//$akhir_bulan = date('Y-m-d', strtotime('-1 days +1 months', strtotime($awal_bulan)));
+		$awal_bulan = date('Y-m-01', strtotime('-1 months', strtotime($date_now)));
+		$akhir_bulan = date('Y-m-d', strtotime($date_now));
+
+		$this->db->select('prm.*,ppo.no_po,ps.nama as supplier_name');
+		if(!empty($supplier_id)){
+			$this->db->where('ppo.supplier_id',$supplier_id);
+		}
+		
+		if(!empty($purchase_order_id)){
+			$this->db->where('prm.purchase_order_id',$purchase_order_id);
+		}
+		if(!empty($material_id) || $material_id != 0){
+			$this->db->where('prm.material_id',$material_id);
+		}
+		
+		if(!empty($w_date)){
+			$arr_date = explode(' - ', $w_date);
+			$start_date = $arr_date[0];
+			$end_date = $arr_date[1];
+			$this->db->where('prm.date_receipt  >=',date('Y-m-d',strtotime($start_date)));	
+			$this->db->where('prm.date_receipt <=',date('Y-m-d',strtotime($end_date)));	
+		}
+		$this->db->where("(date_receipt between '$awal_bulan' and '$akhir_bulan')");
+		$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
+		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
+		$this->db->where('prm.status_payment','UNCREATED');
+		$this->db->order_by('prm.date_receipt','DESC');
+		$query = $this->db->get('pmm_receipt_material prm');
+		if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+				$row['checkbox'] ='';
+				$row['no'] = $key+1;
+				$row['date_receipt'] = date('d F Y',strtotime($row['date_receipt']));
+				$row['supplier_name'] = $row['supplier_name'];
+				$row['material_name'] = $this->crud_global->GetField('produk',array('id'=>$row['material_id']),'nama_produk');
+				$row['volume'] = number_format($row['volume'],2,',','.');
+				$row['display_volume'] = number_format($row['display_volume'],2,',','.');
+				$row['harga_satuan'] = number_format($row['harga_satuan'],0,',','.');
+				$row['price'] = number_format($row['price'],0,',','.');
+				$row['display_price'] = number_format($row['display_price'],0,',','.');
+				$row['surat_jalan_file'] = '<a href="'.base_url().'uploads/surat_jalan_penerimaan/'.$row['surat_jalan_file'].'" target="_blank">'.$row['surat_jalan_file'].'</a>';
+
+				$row['status_payment'] = $this->pmm_model->StatusPayment($row['status_payment']);
+				$edit = false;
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
+					$edit = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';			
+				}
+
+				$row['actions'] = ' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				//$row['actions'] = $edit.' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+
+				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-primary" title="Upload Surat Jalan" ><i class="fa fa-upload"></i> </a>';
+				$row['uploads_surat_jalan'] = $uploads_surat_jalan.' ';
+				
+				$data[] = $row;
+			}
+
+		}
+		echo json_encode(array('data'=>$data));
+	}
+
 	public function form_document()
 	{
 		$output['output'] = false;

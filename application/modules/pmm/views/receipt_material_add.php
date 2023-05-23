@@ -470,7 +470,7 @@
             ajax: {
                 processing: true,
                 serverSide: true,
-                url: '<?php echo site_url('pmm/receipt_material/table_detail');?>',
+                url: '<?php echo site_url('pmm/receipt_material/table_receipt');?>',
                 type : 'POST',
                 data: function ( d ) {
                     d.purchase_order_id = $('#purchase_order_id').val();
