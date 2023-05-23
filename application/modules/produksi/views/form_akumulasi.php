@@ -71,7 +71,15 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                        </table>    
+                                        </table>
+                                        <div class="col-sm-12">
+											<div class="form-group">
+                                                <label>Memo</label>
+                                                <textarea class="form-control" name="memo" data-required="false" id="about_text">
+
+                                                </textarea>
+                                            </div>
+										</div>
                                     </div>
 									<br />
                                     <div class="row">

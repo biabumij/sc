@@ -180,6 +180,7 @@
 														<th>Tanggal</th>
 														<th>Total Nilai Keluar</th>
                                                         <th>Total Nilai Akhir</th>
+                                                        <th>Catatan</th>
 														<th>Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
@@ -519,6 +520,9 @@
                     "data": "total_nilai_akhir"
                 },
                 {
+                    "data": "memo"
+                },
+                {
                     "data": "status"
                 },
                 {
@@ -532,7 +536,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4, 5, 6, 7],
+                    "targets": [0, 1, 5, 6, 7, 8],
                     "className": 'text-center',
                 },
                 {

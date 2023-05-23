@@ -91,6 +91,11 @@
                                             <label>Jenis Pembelian<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control" name="jenis_pembelian" required="">
                                         </div>
+                                        <br />
+                                        <div class="col-sm-3">
+                                            <label>Metode Pembayaran<span class="required" aria-required="true">*</span></label>
+                                            <input type="text" class="form-control" name="metode_pembayaran" required="" value="">
+                                        </div>
                                     </div>
                                     <br />
                                     <div class="table-responsive">

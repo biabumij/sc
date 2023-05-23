@@ -90,6 +90,7 @@ class Pembelian extends Secure_Controller
         $jenis_pembelian = $this->input->post('jenis_pembelian');
         $client_address = $this->input->post('alamat_supplier');
         $nomor_penawaran = $this->input->post('nomor_penawaran');
+        $metode_pembayaran = $this->input->post('metode_pembayaran');
         $syarat_pembayaran = $this->input->post('syarat_pembayaran');
         $total_product = $this->input->post('total_product');
         $memo = $this->input->post('memo');
@@ -107,6 +108,7 @@ class Pembelian extends Secure_Controller
             'jenis_pembelian' => $jenis_pembelian,
             'client_address' => $client_address,
             'nomor_penawaran' => $nomor_penawaran,
+            'metode_pembayaran' => $metode_pembayaran,
             'syarat_pembayaran' => $syarat_pembayaran,
             'total' => $total,
             'memo' => $memo,

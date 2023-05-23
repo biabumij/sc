@@ -66,6 +66,10 @@
                                             <label>Jenis Pembelian</label>
                                             <input type="text" class="form-control" value="<?= $row['jenis_pembelian'];?>" readonly>
                                         </div>
+                                        <div class="col-sm-3">
+                                            <label>Metode Pembayaran</label>
+                                            <input type="text" class="form-control" value="<?= $row['metode_pembayaran'];?>" readonly>
+                                        </div>
                                     </div>
                                         </br >
                                         <div class="col-sm-16">
