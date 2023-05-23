@@ -202,7 +202,7 @@
 
                                 <?php if($sales_po["status"] === "DRAFT") : ?>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                     ?>
                                         <form class="form-approval" action="<?= base_url("penjualan/approvalSalesPO/".$sales_po["id"]) ?>">
                                             <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
@@ -220,7 +220,7 @@
                                 <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success"><i class="fa fa-truck"></i> Surat Jalan Pengiriman Penjualan</a>
 								<a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-primary"><i class="fa fa-truck"></i> Retur</a>
                                     <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 16){
                                     ?>
                                         <br />
                                         <form class="form-approval" action="<?= base_url("penjualan/closed_sales_order/".$sales_po["id"]) ?>">

@@ -42,7 +42,7 @@
                                 <form method="POST" action="<?php echo site_url('penjualan/submit_penawaran_penjualan');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <label>Pelanggan</label>
+                                            <label>Pelanggan<span class="required" aria-required="true">*</span></label>
 											<?php
 											$product = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
 											?>
@@ -60,19 +60,19 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
-                                            <label text>Tanggal</label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal" required="">
+                                            <label text>Tanggal<span class="required" aria-required="true">*</span></label>
+                                            <input type="date" class="form-control" name="tanggal" required="">
                                         </div>
                                         <div class="col-sm-10">
-                                            <label >Alamat Pelanggan</label>
+                                            <label >Alamat Pelanggan<span class="required" aria-required="true">*</span></label>
                                             <textarea class="form-control text" rows="4" name="alamat_client" id="alamat_client" readonly=""></textarea>
                                         </div>
 										 <div class="col-sm-10">
-                                            <label>Nomor</label>
+                                            <label>Nomor<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control" name="nomor" required="">
                                         </div>
 										<div class="col-sm-3">
-                                            <label>Syarat Pembayaran</label>
+                                            <label>Syarat Pembayaran<span class="required" aria-required="true">*</span></label>
                                             <select name="syarat_pembayaran" class="form-control form-select2" required="">
                                                 <option value="">Pilih Pembayaran</option>
                                                 <option value="14">14 hari</option>

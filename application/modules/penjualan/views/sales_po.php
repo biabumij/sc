@@ -41,7 +41,7 @@
                                 <form method="POST" action="<?php echo site_url('penjualan/submit_sales_po');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <label>Pelanggan</label>
+                                            <label>Pelanggan<span class="required" aria-required="true">*</span></label>
                                             <select id="client" class="form-control form-select2" name="client_id" required="">
                                                 <option value="">Pilih Pelanggan</option>
                                                 <?php
@@ -56,19 +56,19 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-2">
-                                            <label>Tanggal Kontrak</label>
-                                            <input type="text" class="form-control dtpicker" name="contract_date" required="" value=""/>
+                                            <label>Tanggal Kontrak<span class="required" aria-required="true">*</span></label>
+                                            <input type="date" class="form-control" name="contract_date" required="" value=""/>
                                         </div>
                                         <div class="col-sm-6">
-                                            <label>Nomor Kontrak</label>
+                                            <label>Nomor Kontrak<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control" name="contract_number" required="" value=""/>
                                         </div>
 										<div class="col-sm-10" style="padding-top:10px">
-											<label>Alamat Pelanggan</label>
+											<label>Alamat Pelanggan<span class="required" aria-required="true">*</span></label>
 											<textarea id="client_address" class="form-control" rows="4" name="client_address" readonly=""></textarea>
 										</div>
 										<div class="col-sm-10" style="padding-top:10px">
-											<label>Jenis Pekerjaan</label>
+											<label>Jenis Pekerjaan<span class="required" aria-required="true">*</span></label>
 											<input type="text" class="form-control" name="jobs_type" required="" value=""/>
 										</div>									
                                     </div>
