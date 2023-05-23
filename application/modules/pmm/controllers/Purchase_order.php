@@ -233,6 +233,41 @@ class Purchase_order extends CI_Controller {
 	
 	}
 
+	public function get_pdf_draft()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->SetPrintFooter(false);
+		$pdf->AddPage('P');
+
+        $id = $this->uri->segment(4);
+		$row = $this->db->get_where('pmm_purchase_order',array('id'=>$id))->row_array();
+		$data['details'] = $this->pmm_model->GetPODetail($id);
+		$sp = $this->db->get_where('penerima',array('id'=>$row['supplier_id']))->row_array();
+		$row['address_supplier'] = $sp['alamat'];
+		$row['npwp_supplier'] = $sp['npwp'];
+		$row['supplier_name'] = $sp['nama'];
+		$row['pic'] = $sp['nama_kontak'];
+		$row['position'] = $sp['posisi'];
+		$row['date_pkp_supp'] = '-';
+		$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+		$data['row'] = $row;
+		$data['id'] = $id;
+        $html = $this->load->view('pembelian/cetak_pesanan_pembelian_draft',$data,TRUE);
+
+        
+        $pdf->SetTitle($row['no_po']);
+        $pdf->nsi_html($html);
+        $pdf->Output($row['no_po'].'.pdf', 'I');
+	
+	}
+
 	public function receipt_material_pdf()
 	{
 		$this->load->library('pdf');

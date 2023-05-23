@@ -115,7 +115,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Memo</label>
-                                                <textarea class="form-control" name="memo" rows="3" value="<?= $bayar['memo'] ?>"></textarea>
+                                                <input type="text" class="form-control" readonly value="<?= $bayar['memo'] ?>" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Lampiran</label>

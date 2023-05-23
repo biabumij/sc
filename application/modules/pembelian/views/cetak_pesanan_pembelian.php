@@ -218,46 +218,50 @@
 		<br />
 		<?php
         $ka_plant = $this->pmm_model->GetNameGroup(15);
-        ?> 
+        ?>
 		<table width="98%" border="0" cellpadding="0">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
-					<table width="100%" border="1" cellpadding="2">
-						<tr class="table-active3">
+					<table width="100%" border="0" cellpadding="2">
+						<tr>
+							<td align="center">
+								Penerima Order
+							</td>
 							<td align="center" >
+								Pemberi Order
+							</td>	
+						</tr>
+						<tr>
+							<td align="center">
 								<b><?php echo $row['supplier_name'];?></b>
 							</td>
 							<td align="center" >
-								<b>PT BIA BUMI JAYENDRA</b>
-							</td>
-						</tr>
-						<tr class="table-active3">
-							<td align="center" >
-								PENERIMA ORDER
-							</td>
-							<td align="center" >
-								PEMBERI ORDER
-							</td>
+								<b>PT. Bia Bumi Jayendra</b>
+							</td>	
 						</tr>
 						<tr class="">
-							<td align="center" height="75px">
+							<td align="center" height="40px">
 								
 							</td>
 							<td align="center">
 								
 							</td>
 						</tr>
-						<tr class="table-active3">
-							<td align="center"><?php echo $row['pic'];?></td>
-							<td align="center"><?= $ka_plant['admin_name'];?></td>
-						</tr>
-						<tr class="table-active3">
-							<td align="center" >
+						<tr>
+							<td align="center">
+								<u><b><?php echo $row['pic'];?></b></u><br />
 								<b><?php echo $row['position'];?></b>
 							</td>
+							<?php
+                                $this->db->select('g.admin_group_name, a.admin_ttd');
+                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+                                $this->db->where('a.admin_id',$row['unit_head']);
+                                $created_group = $this->db->get('tbl_admin a')->row_array();
+                            ?>
 							<td align="center" >
-								<b>Ka. Unit Bisnis</b>
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['unit_head']),'admin_name');?></u><br />
+								<?= $created_group['admin_group_name']?></b>
 							</td>
 						</tr>
 					</table>
@@ -265,9 +269,5 @@
 				<td width="5%"></td>
 			</tr>
 		</table>
-
-			
-		
-
 	</body>
 </html>

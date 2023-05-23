@@ -127,7 +127,7 @@
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label>Memo</label>
-                                                <textarea class="form-control" name="memo" rows="3" value="<?= $bayar['memo'] ?>"></textarea>
+                                                <input type="text" rows="3" class="form-control" name="memo" value="<?= $bayar['memo'] ?>" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Lampiran</label>

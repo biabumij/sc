@@ -247,6 +247,9 @@
                                     <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/3');?>')" class="btn btn-warning check-btn" id="btn-po"><i class="fa fa-send"></i> Buat PO</a>
                                     <?php
                                 }else if($data['status'] == 'WAITING'){
+                                    ?>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf_draft/'.$id);?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak (Draft)</a><br />
+                                    <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15 || $this->session->userdata('admin_group_id') == 16){
                                         ?>
                                         <a onclick="CreatePO()" class="btn btn-success"><i class="fa fa-check"></i> Setujui</a>

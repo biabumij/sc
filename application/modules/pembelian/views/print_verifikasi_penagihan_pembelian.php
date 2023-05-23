@@ -228,57 +228,60 @@
 		</table>
 		<br />
 		<br />
+        <?php
+		$admin = $this->pmm_model->GetNameGroup(20);
+        ?>  
         <table width="98%" border="0" cellpadding="0">
-            <tr>
+            <tr border="1">
                 <td width="100%">
-                     <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
-                            <td align="center" colspan="2" width="60%">
-                                Diperiksa Oleh
+				<table width="100%" border="1" cellpadding="2">
+                        <tr>
+                            <td align="center">
+                                Diterima
                             </td>
-                            <td align="center" width="20%">
-                                Disetujui Oleh
+                            <td align="center" colspan="2">
+                                Diperiksa
                             </td>
-                            <td align="center" width="20%">
-                                Mengetahui
+                            <td align="center">
+                                Disetujui
                             </td>
                         </tr>
-                        <tr class="">
+                        <tr>
                             <td align="center" height="75px">
                             </td>
                             <td align="center">
                             </td>
+							<td align="center">
+                            </td>
                             <td align="center">           
-                            </td>       
-                            <td align="center">   
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr>
                             <td align="center">
-                                <?= $row['verifikator'];?>
+								Dian Melinda Sari<!--<?= $row['verifikator'];?>-->
                             </td>
                             <td align="center">
+								Rifka Dian B
+                            </td>
+							<td align="center">
 								Vicky Irwana Yudha
                             </td>
                             <td align="center">
-								Hadi Sucipto
-                            </td>
-                            <td align="center">
-								Debi Khania
+								Hadi Sucipto 
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr>
                             <td align="center">
-                                Keuangan Proyek 
+								<b>Staff Keuangan & SDM</b> 
                             </td>
                             <td align="center">
-            					Ka. Logistik
-                               </td>
-                            <td align="center">
-            					Ka. Unit Bisnis
+								<b>Pj. Keuangan & SDM</b> 
                             </td>
-                            <td align="center" > 
-                                Keuangan dan SDM Pusat
+							<td align="center">
+								<b>Pj. Logistik</b> 
+                            </td>
+                            <td align="center">
+								<b>Kepala Unit Bisnis</b> 
                             </td>
                         </tr>
                     </table>
