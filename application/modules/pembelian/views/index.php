@@ -263,22 +263,24 @@
 													<div class="form-group">
 														<label>Memo<span class="required" aria-required="true">*</span></label>
                                                         <textarea id="memo" name="memo" class="form-control" data-required="false" rows="20">
-<p style="font-size:6;"><b>Syarat &amp; Ketentuan :</b></p>
-<p style="font-size:6;">1.&nbsp;Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
-<p style="font-size:6;">2.&nbsp;Tempat Penyerahan : Divisi Stone Crushing PT. Bia Bumi Jayendra, Tulungagung</p>
-<p style="font-size:6;">3.&nbsp;Cara Pembayaran : 30 (tiga puluh) hari kerja setelah berkas tagihan dinyatakan lolos verifikasi keuangan PT. Bia Bumi Jayendra, dengan melampirkan</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp; dokumen sebagai berikut :</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.1 Tagihan</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.2 Kwitansi</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.3 BAP (Berita Acara Pembayaran)</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.4 BAST (Berita Acara Serah Terima) &amp; rekap surat jalan yang ditandatangani oleh pihak pemberi order dan penerima order</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.5 Surat Jalan Asli (Nomor PO harus tercantum pada setiap surat jalan)</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.6 PO</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;3.7 Faktur Pajak (Jika Ada)</p>
+                                                        <p style="font-size:6;"><b>Syarat & Ketentuan :</b></p>
+<p style="font-size:6;">1. Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
+<p style="font-size:6;">2. Tempat Penyerahan : Divisi Stone Crushing PT. Bia Bumi Jayendra, Tulungagung</p>
+<p style="font-size:6;">3. Cara Pembayaran : 30 (tiga puluh) hari kerja setelah berkas tagihan dinyatakan lolos verifikasi keuangan PT. Bia Bumi Jayendra, dengan melampirkan</p>
+<p style="font-size:6;">   dokumen sebagai berikut :</p>
+<p style="font-size:6;">   3.1 Tagihan</p>
+<p style="font-size:6;">   3.2 Kwitansi</p>
+<p style="font-size:6;">   3.3 BAP (Berita Acara Pembayaran)</p>
+<p style="font-size:6;">   3.4 BAST (Berita Acara Serah Terima) & rekap surat jalan yang ditandatangani oleh pihak pemberi order dan penerima order</p>
+<p style="font-size:6;">   3.5 Surat Jalan Asli (Nomor PO harus tercantum pada setiap surat jalan)</p>
+<p style="font-size:6;">   3.6 PO</p>
+<p style="font-size:6;">   3.7 Faktur Pajak (Jika Ada)</p>
 <p style="font-size:6;">4. Lain-lain :</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;4.1 Barang harus dalam kondisi 100% baik</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;4.2 Barang dikembalikan apabila tidak sesuai dengan pesanan</p>
-<p style="font-size:6;">&nbsp;&nbsp;&nbsp;4.3 Perselisihan yang timbul agar diselesaikan secara musyawarah, apabila tidak tercapai para pihak setuju menyelesaikannya melalui KUH Perdata & KUH pidana. Peraturan dari KUH Perdata & KUH Pidana merupakan putusan yang bersifat final serta mengikat para pihak</p></textarea>
+<p style="font-size:6;">   4.1 Barang harus dalam kondisi 100% baik</p>
+<p style="font-size:6;">   4.2 Barang dikembalikan apabila tidak sesuai dengan pesanan</p>
+<p style="font-size:6;">   4.3 Perselisihan yang timbul agar diselesaikan secara musyawarah, apabila tidak tercapai para pihak setuju menyelesaikannya</p>
+<p style="font-size:6;">   melalui KUH Perdata & KUH pidana. Peraturan dari KUH Perdata & KUH Pidana merupakan putusan yang bersifat final</p>
+<p style="font-size:6;">   serta mengikat para pihak</p></textarea>
 														
 													</div>
 													

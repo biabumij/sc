@@ -120,10 +120,10 @@
 						</tr>
 						<tr class="">
 							<td align="center" height="75px">
-								
+								<img src="uploads/ttd_hadi.png" width="100px">
 							</td>
 							<td align="center">
-								
+								<img src="uploads/ttd_vicky.png" width="100px">
 							</td>
 							<td align="center">
 								

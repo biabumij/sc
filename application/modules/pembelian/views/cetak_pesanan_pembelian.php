@@ -192,11 +192,8 @@
                 <th align="right"><?= number_format($total,0,',','.'); ?></th>
             </tr>
 		</table>
-		<!--<p><b>Memo</b></p>
-		<p><?= $row["memo"] ?></p>-->
-		<br />
-		<br />
-		<table>
+		<p><?= $row["memo"] ?></p>
+		<!--<table>
 			<?php
 			$memo = $this->db->select('memo')
 			->from('pmm_penawaran_pembelian')
@@ -210,12 +207,7 @@
 			<tr>
 				<th><?php echo $memo['memo'];?></th>
 			</tr>			
-		</table>
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
+		</table>-->
 		<?php
         $ka_plant = $this->pmm_model->GetNameGroup(15);
         ?>
@@ -240,12 +232,18 @@
 								<b>PT. Bia Bumi Jayendra</b>
 							</td>	
 						</tr>
+						<?php
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$row['unit_head']);
+							$created_group = $this->db->get('tbl_admin a')->row_array();
+						?>
 						<tr class="">
-							<td align="center" height="40px">
+							<td align="center" height="30px">
 								
 							</td>
 							<td align="center">
-								
+								<img src="<?= $created_group['admin_ttd']?>" width="30px">
 							</td>
 						</tr>
 						<tr>
@@ -253,12 +251,6 @@
 								<u><b><?php echo $row['pic'];?></b></u><br />
 								<b><?php echo $row['position'];?></b>
 							</td>
-							<?php
-                                $this->db->select('g.admin_group_name, a.admin_ttd');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$row['unit_head']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-                            ?>
 							<td align="center" >
 								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['unit_head']),'admin_name');?></u><br />
 								<?= $created_group['admin_group_name']?></b>
