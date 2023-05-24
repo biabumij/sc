@@ -103,6 +103,27 @@
                                     </div>
 									
 									<!-- End Laporan Laba Rugi -->
+
+                                    <!-- Laporan Biaya -->
+								
+                                    <div role="tabpanel" class="tab-pane active" id="bisnis">
+                                        
+										<div role="tabpanel" class="tab-pane active" id="pembelian">
+                                        <br />
+											<div class="row">
+												<div width="100%">
+													<div class="panel panel-default">                                            
+														<div class="col-sm-5">
+														<p><h5>Biaya</h5></p>
+                                                        <a href="<?= site_url('laporan/laporan_biaya'); ?>" class="btn btn-primary">Lihat Laporan</a>
+														</div>													
+													</div>
+												</div>
+											</div>
+										</div>
+                                    </div>
+									
+									<!-- End Laporan Biaya -->
 									
                                 </div>
                             </div>
