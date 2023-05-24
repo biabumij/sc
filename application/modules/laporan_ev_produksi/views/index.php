@@ -81,6 +81,10 @@
                                         <div class="row">
                                             <div width="100%">
                                                 <div class="panel panel-default">
+													<div class="col-sm-5">
+														<p><h5>Laporan Evaluasi Kapasitas Produksi</h5></p>
+                                                        <a href="#laporan_evaluasi_produksi" aria-controls="laporan_evaluasi_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Evaluasi Nilai Persediaan</h5></p>
                                                         <a href="#evaluasi_nilai_persediaan" aria-controls="evaluasi_nilai_persediaan" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
@@ -89,6 +93,52 @@
                                             </div>
                                         </div>
                                     </div>
+
+									<!-- Laporan Evaluasi Produksi -->
+									
+									<div role="tabpanel" class="tab-pane" id="laporan_evaluasi_produksi">
+                                        <div class="col-sm-15">
+                                            <div class="panel panel-default"> 
+												<div class="panel-heading">												
+                                                    <h3 class="panel-title">Laporan Evaluasi Kapasitas Produksi</h3>
+													<a href="laporan_produksi">Kembali</a>
+                                                </div>
+                                                <div style="margin: 20px">
+                                                    <div class="row">
+                                                        <form action="<?php echo site_url('laporan/laporan_evaluasi_produksi_print'); ?>" target="_blank">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>                                                           
+                                                            <div class="col-sm-3">
+                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <br />
+                                                    <div id="box-print" class="table-responsive">
+                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
+                                                            <div>
+                                                                Please Wait
+                                                            </div>
+                                                        </div>
+                                                        <table class="mytable table-hover table-center table-condensed" id="table-date8" style="display:none" width="100%";>
+                                                            <thead>
+																<th align="center" rowspan="2">No</th>
+																<th align="center">Tanggal</th>
+																<th align="center">Nomor Produksi / Tanggal Produksi</th>
+																<th align="center">Durasi Produksi (Jam)</th>
+																<th align="center">Pemakaian Bahan Baku (Ton)</th>
+																<th align="center">Kapasitas Produksi (Ton/Jam)</th>
+															</thead>
+                                                            <tbody></tbody>
+															<tfoot class="mytable table-hover table-center table-condensed"></tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
 
                                     <!-- Evaluasi Nilai Persediaan -->
 									
