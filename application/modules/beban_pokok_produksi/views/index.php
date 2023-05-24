@@ -101,8 +101,8 @@
                                                         <a href="#pergerakan_bahan_jadi" aria-controls="pergerakan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>-->
                                                     <div class="col-sm-5">
-														<!--<p><h5>Pergerakan Bahan Jadi</h5></p>-->
-														<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. sekarang</blink></p>
+														<p><h5>Pergerakan Bahan Jadi</h5></p>
+														<!--<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. sekarang</blink></p>-->
                                                         <a href="#pergerakan_bahan_jadi_penyesuaian" aria-controls="pergerakan_bahan_jadi_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
 													</div>   													
                                                 </div>
