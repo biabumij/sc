@@ -60,12 +60,6 @@
                                                         <a href="#laporan-laba-rugi" aria-controls="laporan-laba-rugi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>													
                                                 </div>
-                                                <div class="panel panel-default">                                            
-                                                    <div class="col-sm-5">
-                                                    <p><h5>Biaya</h5></p>
-                                                    <a href="<?= site_url('laporan/laporan_biaya'); ?>" class="btn btn-primary">Lihat Laporan</a>
-                                                    </div>													
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
