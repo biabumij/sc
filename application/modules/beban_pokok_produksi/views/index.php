@@ -192,7 +192,7 @@
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">Pergerakan Bahan Baku (Penyesuaian)</h3>
+                                                    <h3 class="panel-title">Pergerakan Bahan Baku</h3>
 													<a href="beban_pokok_produksi">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">
@@ -268,7 +268,7 @@
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">Pergerakan Bahan Jadi (Penyesuaian Stok)</h3>
+                                                    <h3 class="panel-title">Pergerakan Bahan Jadi</h3>
 													<a href="beban_pokok_produksi">Kembali</a>
                                                 </div>
 												<div style="margin: 20px">

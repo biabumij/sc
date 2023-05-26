@@ -1399,6 +1399,9 @@ class Pmm extends CI_Controller {
 				}else {
 					$row['edit'] = '-';
 				}
+				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-primary" title="Upload Lampiran" ><i class="fa fa-upload"></i> </a>';
+				$row['actions'] = $uploads_surat_jalan;
+				$row['lampiran'] = '<a href="'.base_url().'uploads/stock_opname/'.$row['lampiran'].'" target="_blank">'.$row['lampiran'].'</a>';
 				
 				$data[] = $row;
 			}
@@ -1775,6 +1778,52 @@ class Pmm extends CI_Controller {
         $labels = $label_chart;
         $datasets = $datasets_laba;
 		echo json_encode(array('labels'=>$labels,'datasets'=>$datasets));
+	}
+
+	public function form_document()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+
+			$file = '';
+			$error_file = false;
+
+			if (!file_exists('./uploads/stock_opname/')) {
+			    mkdir('./uploads/stock_opname/', 0777, true);
+			}
+			// Upload email
+			$config['upload_path']          = './uploads/stock_opname/';
+	        $config['allowed_types']        = 'jpg|png|jpeg|JPG|PNG|JPEG|pdf';
+
+	        $this->load->library('upload', $config);
+
+			if($_FILES["file"]["error"] == 0) {
+				if (!$this->upload->do_upload('file'))
+				{
+						$error = $this->upload->display_errors();
+						$file = $error;
+						$error_file = true;
+				}else{
+						$data = $this->upload->data();
+						$file = $data['file_name'];
+				}
+			}
+
+			if($error_file){
+				$output['output'] = false;
+				$output['err'] = $file;
+				echo json_encode($output);
+				exit();
+			}
+
+			$arr_data['lampiran'] = $file;
+
+			if($this->db->update('pmm_remaining_materials_cat',$arr_data,array('id'=>$id))){
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
 	}
 
 }	

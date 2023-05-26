@@ -61,6 +61,9 @@
                 "data": "notes"
             },
             {
+                "data": "lampiran"
+            },
+            {
                 "data": "admin_name"
             },
             {
@@ -69,20 +72,23 @@
             {
                 "data": "delete"
             },
+            {
+                "data": "actions"
+            }
         ],
         responsive: true,
         "columnDefs": [{
-            "targets": [0, 1, 3, 4],
+            "targets": [0, 1, 3, 6, 7, 8, 9],
             "className": 'text-center',
         },
-        {
+		{
 			"targets": [2],
 			"className": 'text-left',
         },
         {
-			"targets": [7, 8],
+			"targets": [4, 5],
 			"className": 'text-right',
-         }
+        }
 		]
     });
 
@@ -198,5 +204,84 @@
     $('#material_id').change(function() {
         var measure = $(this).find(':selected').data('measure');
         $('#measure_id').val(measure);
+    });
+
+    function UploadDoc(id) {
+        $('#modalDoc').modal('show');
+        $('#id_doc').val(id);
+    }
+
+    $('#modalDoc form').submit(function(event) {
+        $('#btn-form-doc').button('loading');
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/pmm/form_document'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-form-doc').button('reset');
+                if (result.output) {
+                    $("#modalDoc form").trigger("reset");
+                    table.ajax.reload();
+
+                    $('#modalDoc').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        event.preventDefault();
+
+    });
+    
+    function UploadDocSuratJalan(id) {
+
+    $('#modalDocSuratJalan').modal('show');
+    $('#id_doc_surat_jalan').val(id);
+    }
+
+    $('#modalDocSuratJalan form').submit(function(event) {
+        $('#btn-form-doc-surat-jalan').button('loading');
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData) {
+            formdata = new FormData(form[0]);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url('pmm/pmm/form_document'); ?>/" + Math.random(),
+            dataType: 'json',
+            data: formdata ? formdata : form.serialize(),
+            success: function(result) {
+                $('#btn-form-doc-surat-jalan').button('reset');
+                if (result.output) {
+                    $("#modalDocSuratJalan form").trigger("reset");
+                    table.ajax.reload();
+
+                    $('#modalDocSuratJalan').modal('hide');
+                } else if (result.err) {
+                    bootbox.alert(result.err);
+                }
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+
+        event.preventDefault();
+
     });
     </script>

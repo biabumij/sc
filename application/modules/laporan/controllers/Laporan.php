@@ -1493,7 +1493,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_produksi/cetak_beban_pokok_produksi',$data,TRUE);
+        $html = $this->load->view('beban_pokok_produksi/cetak_beban_pokok_produksi',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Beban Pokok Produksi');
@@ -1522,7 +1522,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_produksi/cetak_pergerakan_bahan_baku',$data,TRUE);
+        $html = $this->load->view('beban_pokok_produksi/cetak_pergerakan_bahan_baku',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Pergerakan Bahan Baku');
@@ -1551,7 +1551,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_produksi/cetak_pergerakan_bahan_baku_penyesuaian',$data,TRUE);
+        $html = $this->load->view('beban_pokok_produksi/cetak_pergerakan_bahan_baku_penyesuaian',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Pergerakan Bahan Baku');
@@ -1609,7 +1609,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_produksi/cetak_pergerakan_bahan_jadi',$data,TRUE);
+        $html = $this->load->view('beban_pokok_produksi/cetak_pergerakan_bahan_jadi',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Pergerakan Bahan Jadi');
@@ -1638,7 +1638,7 @@ class Laporan extends Secure_Controller {
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_produksi/cetak_pergerakan_bahan_jadi_penyesuaian',$data,TRUE);
+        $html = $this->load->view('beban_pokok_produksi/cetak_pergerakan_bahan_jadi_penyesuaian',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Pergerakan Bahan Jadi');
