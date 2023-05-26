@@ -1898,11 +1898,11 @@ class Reports extends CI_Controller {
 
 			$total_volume_produksi_loss_akhir = $stock_opname_batu_boulder['volume'] + $stock_opname_batu_boulder_2['volume'];
 			$total_harga_produksi_loss_akhir = round($total_harga_pembelian_akhir,0);
-			$total_nilai_produksi_loss_akhir = $total_volume_produksi_akhir * $total_harga_produksi_akhir;
+			$total_nilai_produksi_loss_akhir = $total_volume_produksi_loss_akhir * $total_harga_produksi_loss_akhir;
 
-			$total_volume_produksi_loss = round($total_volume_produksi_loss_akhir - $total_volume_produksi_akhir,2);
+			$total_volume_produksi_loss = round($total_volume_produksi_akhir - $total_volume_produksi_loss_akhir,2);
 			$total_harga_produksi_loss = $total_harga_produksi_akhir;
-			$total_nilai_produksi_loss = $total_volume_produksi * $total_harga_produksi;
+			$total_nilai_produksi_loss = $total_volume_produksi_loss * $total_harga_produksi_loss;
 
 			//BBM Solar
 			$pergerakan_bahan_baku_solar = $this->db->select('
@@ -1945,7 +1945,7 @@ class Reports extends CI_Controller {
 			->order_by('date','desc')->limit(1)
 			->get()->row_array();
 
-			$total_volume_produksi_akhir_solar = $total_volume_pembelian_akhir_solar - $total_volume_produksi_solar;
+			$total_volume_produksi_akhir_solar = $stock_opname_solar['volume'] + $stock_opname_solar_2['volume'];
 			$total_harga_produksi_akhir_solar = round($total_harga_pembelian_akhir_solar,0);
 			$total_nilai_produksi_akhir_solar = $total_volume_produksi_akhir_solar * $total_harga_produksi_akhir_solar;
 
@@ -1953,14 +1953,18 @@ class Reports extends CI_Controller {
 			$total_harga_produksi_solar =  $total_harga_produksi_akhir_solar;
 			$total_nilai_produksi_solar =  $total_volume_produksi_solar * $total_harga_produksi_solar;
 
+			//Total
+			$total_volume_produksi_boulder = round($total_volume_produksi + $total_volume_produksi_loss,2);
+			$total_harga_produksi_boulder = $total_harga_produksi_loss_akhir;
+			$total_nilai_produksi_boulder = $total_nilai_produksi + $total_nilai_produksi_loss;
+
 			//Total Opening Balance
 			$opening_balance_bahan_baku = $nilai_opening_balance + $nilai_opening_balance_solar;
 
 			//Total
 			$total_nilai_masuk = $total_nilai_pembelian + $total_nilai_pembelian_solar;
-			$total_nilai_keluar = $total_nilai_produksi + $total_nilai_produksi_solar;
-			$total_nilai_akhir = $total_nilai_produksi_akhir + $total_nilai_produksi_akhir_solar;
-
+			$total_nilai_keluar = $total_nilai_produksi + $total_nilai_produksi_loss + $total_nilai_produksi_solar;
+			$total_nilai_akhir = $total_nilai_produksi_loss_akhir + $total_nilai_produksi_akhir_solar;
 	        ?>
 			
 			<tr class="table-active4">
@@ -2003,7 +2007,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_akhir,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_harga_pembelian_akhir,0,',','.');?></th>
+				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_pembelian_akhir,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
@@ -2017,7 +2021,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_produksi,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format($total_volume_produksi_akhir,2,',','.');?></th>
-				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_produksi_akhir,0,',','.');?></blink></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active3">
@@ -2031,7 +2035,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_produksi_loss,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi_loss,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format($total_volume_produksi_loss_akhir,2,',','.');?></th>
-				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_produksi_loss_akhir,0,',','.');?></blink></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_loss_akhir,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi_loss_akhir,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active2">
@@ -2055,7 +2059,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"></th>
 				<th class="text-right"></th>
 				<th class="text-center"><?php echo number_format($total_volume_pembelian_akhir_solar,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_harga_pembelian_akhir_solar,0,',','.');?></th>
+				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_pembelian_akhir_solar,0,',','.');?></blink></th>
 				<th class="text-right"><?php echo number_format($total_nilai_pembelian_akhir_solar,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
@@ -2069,7 +2073,7 @@ class Reports extends CI_Controller {
 				<th class="text-right"><?php echo number_format($total_harga_produksi_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi_solar,0,',','.');?></th>
 				<th class="text-center"><?php echo number_format($total_volume_produksi_akhir_solar,2,',','.');?></th>
-				<th class="text-right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></blink></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>
 	        </tr>
 			<tr class="table-active2">
@@ -2089,12 +2093,12 @@ class Reports extends CI_Controller {
 				<th class="text-center"><?php echo number_format($pergerakan_bahan_baku['volume'],2,',','.');?></th>
 				<th class="text-right"><?php echo number_format($total_harga_pembelian,0,',','.');?></th>
 				<th class="text-right"><?php echo number_format($pergerakan_bahan_baku['nilai'],0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_produksi,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_harga_produksi,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_produksi,0,',','.');?></th>
-				<th class="text-center"><?php echo number_format($total_volume_produksi_akhir,2,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_harga_produksi_akhir,0,',','.');?></th>
-				<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir,0,',','.');?></th>		
+				<th class="text-center"><?php echo number_format($total_volume_produksi_boulder,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_boulder,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_boulder,0,',','.');?></th>
+				<th class="text-center"><?php echo number_format($total_volume_produksi_loss_akhir,2,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_harga_produksi_loss_akhir,0,',','.');?></th>
+				<th class="text-right"><?php echo number_format($total_nilai_produksi_loss_akhir,0,',','.');?></th>		
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
@@ -4966,8 +4970,8 @@ class Reports extends CI_Controller {
 		$total_volume_keluar = $volume_penjualan_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini_2 + $volume_penjualan_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini_2 + $volume_penjualan_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini_2 + $volume_penjualan_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini_2 + $volume_abubatu_loss + $volume_batu0510_loss + $volume_batu1020_loss + $volume_batu2030_loss;
 		$total_nilai_keluar = $nilai_penjualan_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini_2 +  $nilai_penjualan_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini_2 + $nilai_penjualan_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini_2 + $nilai_penjualan_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini_2 + $nilai_abubatu_loss + $nilai_batu0510_loss + $nilai_batu1020_loss + $nilai_batu2030_loss;
 		
-		$total_volume_akhir = $volume_akhir_agregat_abubatu_bulan_ini_2 + $volume_akhir_agregat_batu0510_bulan_ini_2 + $volume_akhir_agregat_batu1020_bulan_ini_2 + $volume_akhir_agregat_batu2030_bulan_ini_2;
-		$total_nilai_akhir = $nilai_akhir_agregat_abubatu_bulan_ini_2 + $nilai_akhir_agregat_batu0510_bulan_ini_2 + $nilai_akhir_agregat_batu1020_bulan_ini_2 + $nilai_akhir_agregat_batu2030_bulan_ini_2;
+		$total_volume_akhir = $volume_akhir_abubatu_loss + $volume_akhir_batu0510_loss + $volume_akhir_batu1020_loss + $volume_akhir_batu2030_loss;
+		$total_nilai_akhir = $nilai_akhir_abubatu_loss + $nilai_akhir_batu0510_loss + $nilai_akhir_batu1020_loss + $nilai_akhir_batu2030_loss;
 		
 		?>
 
@@ -5330,9 +5334,9 @@ class Reports extends CI_Controller {
 			<th class="text-center"><?php echo number_format($volume_penjualan_abubatu,2,',','.');?></th>
 			<th class="text-right"><?php echo number_format($harga_penjualan_abubatu,0,',','.');?></th>
 			<th class="text-right"><?php echo number_format($nilai_penjualan_abubatu,0,',','.');?></th>
-			<th class="text-center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+			<th class="text-center"><?php echo number_format($volume_akhir_abubatu_loss,2,',','.');?></th>
+			<th class="text-right"><?php echo number_format($harga_akhir_abubatu_loss,0,',','.');?></th>
+			<th class="text-right"><?php echo number_format($nilai_akhir_abubatu_loss,0,',','.');?></th>
 		</tr>
 		<tr class="table-active3">		
 			<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
@@ -5344,9 +5348,9 @@ class Reports extends CI_Controller {
 			<th class="text-center"><?php echo number_format($volume_penjualan_batu0510,2,',','.');?></th>
 			<th class="text-right"><?php echo number_format($harga_penjualan_batu0510,0,',','.');?></th>
 			<th class="text-right"><?php echo number_format($nilai_penjualan_batu0510,0,',','.');?></th>
-			<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+			<th class="text-center"><?php echo number_format($volume_akhir_batu0510_loss,2,',','.');?></th>
+			<th class="text-right"><?php echo number_format($harga_akhir_batu0510_loss,0,',','.');?></th>
+			<th class="text-right"><?php echo number_format($nilai_akhir_batu0510_loss,0,',','.');?></th>
 		</tr>
 		<tr class="table-active3">		
 			<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
@@ -5358,9 +5362,9 @@ class Reports extends CI_Controller {
 			<th class="text-center"><?php echo number_format($volume_penjualan_batu1020,2,',','.');?></th>
 			<th class="text-right"><?php echo number_format($harga_penjualan_batu1020,0,',','.');?></th>
 			<th class="text-right"><?php echo number_format($nilai_penjualan_batu1020,0,',','.');?></th>
-			<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+			<th class="text-center"><?php echo number_format($volume_akhir_batu1020_loss,2,',','.');?></th>
+			<th class="text-right"><?php echo number_format($harga_akhir_batu1020_loss,0,',','.');?></th>
+			<th class="text-right"><?php echo number_format($nilai_akhir_batu1020_loss,0,',','.');?></th>
 		</tr>
 		<tr class="table-active3">		
 			<th class="text-center"style="vertical-align:middle"><?php echo $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
@@ -5372,9 +5376,9 @@ class Reports extends CI_Controller {
 			<th class="text-center"><?php echo number_format($volume_penjualan_batu2030,2,',','.');?></th>
 			<th class="text-right"><?php echo number_format($harga_penjualan_batu2030,0,',','.');?></th>
 			<th class="text-right"><?php echo number_format($nilai_penjualan_batu2030,0,',','.');?></th>
-			<th class="text-center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+			<th class="text-center"><?php echo number_format($volume_akhir_batu2030_loss,2,',','.');?></th>
+			<th class="text-right"><?php echo number_format($harga_akhir_batu2030_loss,0,',','.');?></th>
+			<th class="text-right"><?php echo number_format($nilai_akhir_batu2030_loss,0,',','.');?></th>
 		</tr>
 		<tr class="table-active5">
 			<th class="text-center" colspan="3">TOTAL</th>

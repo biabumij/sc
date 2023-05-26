@@ -1027,8 +1027,8 @@
 		$total_volume_keluar = $volume_penjualan_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini + $volume_agregat_abubatu_bulan_ini_2 + $volume_penjualan_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini + $volume_agregat_batu0510_bulan_ini_2 + $volume_penjualan_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini + $volume_agregat_batu1020_bulan_ini_2 + $volume_penjualan_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini + $volume_agregat_batu2030_bulan_ini_2 + $volume_abubatu_loss + $volume_batu0510_loss + $volume_batu1020_loss + $volume_batu2030_loss;
 		$total_nilai_keluar = $nilai_penjualan_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini + $nilai_agregat_abubatu_bulan_ini_2 +  $nilai_penjualan_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini + $nilai_agregat_batu0510_bulan_ini_2 + $nilai_penjualan_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini + $nilai_agregat_batu1020_bulan_ini_2 + $nilai_penjualan_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini + $nilai_agregat_batu2030_bulan_ini_2 + $nilai_abubatu_loss + $nilai_batu0510_loss + $nilai_batu1020_loss + $nilai_batu2030_loss;
 		
-		$total_volume_akhir = $volume_akhir_agregat_abubatu_bulan_ini_2 + $volume_akhir_agregat_batu0510_bulan_ini_2 + $volume_akhir_agregat_batu1020_bulan_ini_2 + $volume_akhir_agregat_batu2030_bulan_ini_2;
-		$total_nilai_akhir = $nilai_akhir_agregat_abubatu_bulan_ini_2 + $nilai_akhir_agregat_batu0510_bulan_ini_2 + $nilai_akhir_agregat_batu1020_bulan_ini_2 + $nilai_akhir_agregat_batu2030_bulan_ini_2;
+		$total_volume_akhir = $volume_akhir_abubatu_loss + $volume_akhir_batu0510_loss + $volume_akhir_batu1020_loss + $volume_akhir_batu2030_loss;
+		$total_nilai_akhir = $nilai_akhir_abubatu_loss + $nilai_akhir_batu0510_loss + $nilai_akhir_batu1020_loss + $nilai_akhir_batu2030_loss;
 		
 		?>
 
@@ -1068,9 +1068,9 @@
 			<th align = "center"><?php echo number_format($volume_penjualan_abubatu,2,',','.');?></th>
 			<th align = "right"><?php echo number_format($harga_penjualan_abubatu,0,',','.');?></th>
 			<th align = "right"><?php echo number_format($nilai_penjualan_abubatu,0,',','.');?></th>
-			<th align = "center"><?php echo number_format($volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
-			<th align = "right"><?php echo number_format($harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
-			<th align = "right"><?php echo number_format($nilai_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_akhir_abubatu_loss,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_akhir_abubatu_loss,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_akhir_abubatu_loss,0,',','.');?></th>
 		</tr>
 		<tr class="table-baris1">
 			<th align = "left"><i>Batu 0,5 - 10</i></th>
@@ -1081,9 +1081,9 @@
 			<th align = "center"><?php echo number_format($volume_penjualan_batu0510,2,',','.');?></th>
 			<th align = "right"><?php echo number_format($harga_penjualan_batu0510,0,',','.');?></th>
 			<th align = "right"><?php echo number_format($nilai_penjualan_batu0510,0,',','.');?></th>
-			<th align = "center"><?php echo number_format($volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
-			<th align = "right"><?php echo number_format($harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
-			<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_akhir_batu0510_loss,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_akhir_batu0510_loss,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_akhir_batu0510_loss,0,',','.');?></th>
 		</tr>
 		<tr class="table-baris1">
 			<th align = "left"><i>Batu 10 - 20</i></th>
@@ -1094,9 +1094,9 @@
 			<th align = "center"><?php echo number_format($volume_penjualan_batu1020,2,',','.');?></th>
 			<th align = "right"><?php echo number_format($harga_penjualan_batu1020,0,',','.');?></th>
 			<th align = "right"><?php echo number_format($nilai_penjualan_batu1020,0,',','.');?></th>
-			<th align = "center"><?php echo number_format($volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
-			<th align = "right"><?php echo number_format($harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
-			<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_akhir_batu1020_loss,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_akhir_batu1020_loss,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_akhir_batu1020_loss,0,',','.');?></th>
 		</tr>
 		<tr class="table-baris1">		
 			<th align = "left"><i>Batu 20 - 30</i></th>
@@ -1107,9 +1107,9 @@
 			<th align = "center"><?php echo number_format($volume_penjualan_batu2030,2,',','.');?></th>
 			<th align = "right"><?php echo number_format($harga_penjualan_batu2030,0,',','.');?></th>
 			<th align = "right"><?php echo number_format($nilai_penjualan_batu2030,0,',','.');?></th>
-			<th align = "center"><?php echo number_format($volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
-			<th align = "right"><?php echo number_format($harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
-			<th align = "right"><?php echo number_format($nilai_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>
+			<th align = "center"><?php echo number_format($volume_akhir_batu2030_loss,2,',','.');?></th>
+			<th align = "right"><?php echo number_format($harga_akhir_batu2030_loss,0,',','.');?></th>
+			<th align = "right"><?php echo number_format($nilai_akhir_batu2030_loss,0,',','.');?></th>
 		</tr>
 		<tr class="table-total">
 			<th align = "center" colspan="2">TOTAL</th>

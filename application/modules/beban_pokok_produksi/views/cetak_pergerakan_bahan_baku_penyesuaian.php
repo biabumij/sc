@@ -217,11 +217,11 @@
 
 		$total_volume_produksi_loss_akhir = $stock_opname_batu_boulder['volume'] + $stock_opname_batu_boulder_2['volume'];
 		$total_harga_produksi_loss_akhir = round($total_harga_pembelian_akhir,0);
-		$total_nilai_produksi_loss_akhir = $total_volume_produksi_akhir * $total_harga_produksi_akhir;
+		$total_nilai_produksi_loss_akhir = $total_volume_produksi_loss_akhir * $total_harga_produksi_loss_akhir;
 
-		$total_volume_produksi_loss = round($total_volume_produksi_loss_akhir - $total_volume_produksi_akhir,2);
+		$total_volume_produksi_loss = round($total_volume_produksi_akhir - $total_volume_produksi_loss_akhir,2);
 		$total_harga_produksi_loss = $total_harga_produksi_akhir;
-		$total_nilai_produksi_loss = $total_volume_produksi * $total_harga_produksi;
+		$total_nilai_produksi_loss = $total_volume_produksi_loss * $total_harga_produksi_loss;
 
 		//BBM Solar
 		$pergerakan_bahan_baku_solar = $this->db->select('
@@ -272,14 +272,18 @@
 		$total_harga_produksi_solar =  $total_harga_produksi_akhir_solar;
 		$total_nilai_produksi_solar =  $total_volume_produksi_solar * $total_harga_produksi_solar;
 
+		//Total
+		$total_volume_produksi_boulder = round($total_volume_produksi + $total_volume_produksi_loss,2);
+		$total_harga_produksi_boulder = $total_harga_produksi_loss_akhir;
+		$total_nilai_produksi_boulder = $total_nilai_produksi + $total_nilai_produksi_loss;
+
 		//Total Opening Balance
 		$opening_balance_bahan_baku = $nilai_opening_balance + $nilai_opening_balance_solar;
 
 		//Total
 		$total_nilai_masuk = $total_nilai_pembelian + $total_nilai_pembelian_solar;
-		$total_nilai_keluar = $total_nilai_produksi + $total_nilai_produksi_solar;
-		$total_nilai_akhir = $total_nilai_produksi_akhir + $total_nilai_produksi_akhir_solar;
-
+		$total_nilai_keluar = $total_nilai_produksi + $total_nilai_produksi_loss + $total_nilai_produksi_solar;
+		$total_nilai_akhir = $total_nilai_produksi_loss_akhir + $total_nilai_produksi_akhir_solar;
 		?>
 			
 		<tr class="table-judul">
@@ -314,12 +318,12 @@
 			<th align="center"><?php echo number_format($pergerakan_bahan_baku['volume'],2,',','.');?></th>
 			<th align="right"><?php echo number_format($total_harga_pembelian,0,',','.');?></th>
 			<th align="right"><?php echo number_format($pergerakan_bahan_baku['nilai'],0,',','.');?></th>
-			<th align="center"><?php echo number_format($total_volume_produksi,2,',','.');?></th>
-			<th align="right"><?php echo number_format($total_harga_produksi,0,',','.');?></th>
-			<th align="right"><?php echo number_format($total_nilai_produksi,0,',','.');?></th>
-			<th align="center"><?php echo number_format($total_volume_produksi_akhir,2,',','.');?></th>
-			<th align="right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_produksi_akhir,0,',','.');?></blink></th>
-			<th align="right"><?php echo number_format($total_nilai_produksi_akhir,0,',','.');?></th>		
+			<th align="center"><?php echo number_format($total_volume_produksi_boulder,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_produksi_boulder,0,',','.');?></th>
+			<th align="right"><?php echo number_format($total_nilai_produksi_boulder,0,',','.');?></th>
+			<th align="center"><?php echo number_format($total_volume_produksi_loss_akhir,2,',','.');?></th>
+			<th align="right" style='background-color:red; color:white'><blink><?php echo number_format($total_harga_produksi_loss_akhir,0,',','.');?></blink></th>
+			<th align="right"><?php echo number_format($total_nilai_produksi_loss_akhir,0,',','.');?></th>		
 		</tr>
 		<tr class="table-baris1">
 			<th align="left"><i>BBM Solar</i></th>
