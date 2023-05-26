@@ -1521,6 +1521,7 @@ class Receipt_material extends CI_Controller {
 					$sups['jumlah_pemakaian_c'] = number_format($sups['jumlah_pemakaian_c'],2,',','.');
 					$sups['jumlah_pemakaian_d'] = number_format($sups['jumlah_pemakaian_d'],2,',','.');
 					$sups['jumlah_pemakaian_e'] = number_format($sups['jumlah_pemakaian_e'],2,',','.');
+					$sups['total_pemakaian'] = number_format($sups['jumlah_pemakaian_a'] + $sups['jumlah_pemakaian_b'] + $sups['jumlah_pemakaian_c'] + $sups['jumlah_pemakaian_d'] + $sups['jumlah_pemakaian_e'],2,',','.');
 					$sups['date_prod'] = date('d/m/Y',strtotime($sups['date_prod']));
 					
 
