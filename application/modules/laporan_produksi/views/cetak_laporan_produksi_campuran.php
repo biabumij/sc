@@ -192,7 +192,7 @@
 						<?php
 							$create = $this->db->select('id, unit_head, logistik, admin')
 							->from('akumulasi')
-							->where("(date_akumulasi <= '$end_date')")
+							->where("(date_akumulasi between '$start_date' and '$end_date')")
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
 

@@ -808,9 +808,10 @@
 						<?php
 							$create = $this->db->select('id, unit_head, logistik, admin')
 							->from('akumulasi')
-							->where("(date_akumulasi <= '$end_date')")
+							->where("(date_akumulasi between '$start_date' and '$end_date')")
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
+
 
 							$this->db->select('g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
@@ -818,17 +819,11 @@
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
 						?>
 						<tr class="">
-							<td align="center" height="70px">
+							<td align="center" height="55px">
 							
 							</td>
 							<td align="center">
-							
-							</td>
-							<td align="center">
-							
-							</td>
-							<td align="center">
-							
+							<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>

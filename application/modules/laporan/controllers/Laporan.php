@@ -1499,16 +1499,20 @@ class Laporan extends Secure_Controller {
 		$pdf->setPrintFooter(true);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		        $pdf->AddPage('P');
+		$pdf->AddPage('P');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
         $html = $this->load->view('beban_pokok_produksi/cetak_beban_pokok_produksi',$data,TRUE);
 
         
@@ -1708,7 +1712,6 @@ class Laporan extends Secure_Controller {
 		if(empty($arr_date)){
 			$filter_date = '-';
 		}else {
-
 			$arr_date = explode(' - ',$arr_date);
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
