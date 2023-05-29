@@ -69,7 +69,7 @@
 
                     <?php include_once("script_dashboard.php"); ?>
 
-                    <div class="col-sm-8">
+                    <div class="col-sm-12">
                         <figure class="highcharts-figure">
                             <div id="container_laba_rugi"></div>
                             

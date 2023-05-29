@@ -158,16 +158,16 @@
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="7" align="center">Tidak Ada Data</td>
+            		<td width="100%" colspan="7" align="center">(Tidak Ada Data)</td>
             	</tr>
             	<?php
             }
             ?>	
             <tr class="table-total">
-				<th align="right" colspan="3">TOTAL</th>
-				<th align="right"><?php echo number_format($total_vol,2,',','.');?></th>
-				<th align="right"></th>
-            	<th align="right">
+				<th align="right" colspan="3" width="45%">TOTAL</th>
+				<th align="right" width="15%"><?php echo number_format($total_vol,2,',','.');?></th>
+				<th align="right" width="20%"></th>
+            	<th align="right" width="20%">
             		<table cellpadding="0" width="100%" border="0">
     					<tr>
     						<td width="20%" align="left">Rp.</td>
@@ -179,11 +179,11 @@
 		</table>
 		<br />
 		<br />
-		<table width="98%" border="0" cellpadding="0">
+		<table width="98%">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
-					<table width="100%" border="0" cellpadding="2">
+					<table width="100%" border="0" cellpadding="3">
 						<tr>
 							<td align="center" >
 								Disetujui Oleh
@@ -195,28 +195,50 @@
 								Dibuat Oleh
 							</td>
 						</tr>
+						<?php
+							$create = $this->db->select('id, unit_head, logistik, admin')
+							->from('akumulasi')
+							->where("(date_akumulasi between '$start_date' and '$end_date')")
+							->order_by('id','desc')->limit(1)
+							->get()->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['unit_head']);
+							$unit_head = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['logistik']);
+							$logistik = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['admin']);
+							$admin = $this->db->get('tbl_admin a')->row_array();
+						?>
 						<tr class="">
-							<td align="center" height="55px">
-							
+							<td align="center" height="70px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-							
+								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-							
+								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>
-							<td align="center">
-								<b><u>Hadi Sucipto</u><br />
-								Ka. Unit Bisnis</b>
-							</td>
-							<td align="center">
-								<b><u>Vicky Irwana Yudha</u><br />
-								 Ka. Logistik</b>
+							<td align="center" >
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
+								<?= $unit_head['admin_group_name']?></b>
 							</td>
 							<td align="center" >
-								<b><br />
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['logistik']),'admin_name');?></u><br />
+								<?= $logistik['admin_group_name']?></b>
+							</td>
+							<td align="center" >
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['logistik']),'admin_name');?></u><br />
 								Adm. Logistik</b>
 							</td>
 						</tr>

@@ -102,6 +102,8 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 
 			$this->db->select('ppo.supplier_id,prm.display_measure as measure,ps.nama as name, prm.display_harga_satuan as price,SUM(prm.display_volume) as volume, SUM(prm.display_price) as total_price');
 			
@@ -212,6 +214,8 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 			$data['date2'] = $end_date;
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 
 			$this->db->select('ppo.id, ppo.supplier_id, ps.nama as name');
 			$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
@@ -394,6 +398,8 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 			$data['date2'] = $end_date;
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 
 			$this->db->select('ppp.id, ppp.supplier_id, ps.nama as name');
 			$this->db->join('penerima ps','ppp.supplier_id = ps.id','left');
@@ -540,6 +546,8 @@ class Laporan extends Secure_Controller {
 
 			
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 		
 		$this->db->select('ppo.client_id, pp.convert_measure as convert_measure, ps.nama as name, SUM(pp.display_volume) as total, SUM(pp.display_price) as total_price');
 		if(!empty($start_date) && !empty($end_date)){
@@ -645,6 +653,8 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 			$data['date2'] = $end_date;
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 
 		$this->db->select('po.id, po.client_id, ps.nama as name');
 		$this->db->join('pmm_sales_po po','pp.salesPo_id = po.id','left');
@@ -885,6 +895,8 @@ class Laporan extends Secure_Controller {
 			
 			$data['filter_date'] = $filter_date;
 			$data['date2'] = $end_date;
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 
 			$this->db->select('ppp.id, ppp.client_id, ps.nama as name');
             $this->db->join('penerima ps','ppp.client_id = ps.id','left');

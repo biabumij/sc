@@ -1644,6 +1644,9 @@ class Produksi extends Secure_Controller {
 			'total_nilai_keluar' => $total_nilai_keluar,
 			'total_nilai_akhir' => $total_nilai_akhir,
 			'memo' => $memo,
+			'unit_head' => 34,
+			'losgistik' => 27,
+			'admin' => 27,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
