@@ -886,7 +886,48 @@ class Rap extends Secure_Controller {
         $pdf->nsi_html($html);
 		$pdf->Output('rap_bua.pdf', 'I');
 	}
+
+	public function table_rap()
+	{   
+        $data = array();
+		$filter_date = $this->input->post('filter_date');
+		if(!empty($filter_date)){
+			$arr_date = explode(' - ', $filter_date);
+			$this->db->where('r.tanggal_rap >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('r.tanggal_rap <=',date('Y-m-d',strtotime($arr_date[1])));
+		}
+        $this->db->select('r.*');
+		$this->db->order_by('r.tanggal_rap','desc');	
+		$query = $this->db->get('rap r');
+		
+       if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['tanggal_rap'] = date('d F Y',strtotime($row['tanggal_rap']));
+			
+				$data[] = $row;
+            }
+
+        }
+        echo json_encode(array('data'=>$data));
+    }
 	
+	public function form_rap()
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
+			$data['mutu_beton'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'betonreadymix' => 1))->result_array();
+			$data['measures'] = $this->db->select('*')->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
+			$data['boulder'] = $this->pmm_model->getMatByPenawaranBoulder();
+			$data['stone_crusher'] = $this->pmm_model->getMatByPenawaranSC();
+			$data['wheel_loader'] = $this->pmm_model->getMatByPenawaranWL();
+			$data['genset'] = $this->pmm_model->getMatByPenawaranGNS();
+			$this->load->view('rap/form_rap', $data);
+		} else {
+			redirect('admin');
+		}
+	}
 
 }
 ?>
