@@ -1025,7 +1025,8 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
-		
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 		
 		$this->db->select('pph.date_prod, pph.no_prod, SUM(pphd.duration) as jumlah_duration, SUM(pphd.use) as jumlah_used, pphd.duration, pphd.capacity, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e');
 		if(!empty($start_date) && !empty($end_date)){
@@ -1139,7 +1140,8 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
-		
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 		
 		$this->db->select('pph.date_prod, pph.no_prod, pk.jobs_type as agregat, pphd.measure as satuan, SUM(pphd.volume_convert) as volume, (SUM(pphd.volume_convert) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.volume_convert) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.volume_convert) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.volume_convert) * pk.presentase_d) / 100 AS jumlah_pemakaian_d, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d');
 		if(!empty($start_date) && !empty($end_date)){
@@ -1250,7 +1252,8 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
-		
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 		
 		$this->db->select('pph.date_prod, pph.no_prod, SUM(pphd.duration) as jumlah_duration, SUM(pphd.use) as jumlah_used, SUM(pphd.capacity) as jumlah_capacity');
 		if(!empty($start_date) && !empty($end_date)){
@@ -1311,7 +1314,7 @@ class Laporan extends Secure_Controller {
 			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
-	        $html = $this->load->view('laporan_produksi/cetak_laporan_evaluasi_produksi',$data,TRUE);
+	        $html = $this->load->view('laporan_ev_produksi/cetak_laporan_evaluasi_produksi',$data,TRUE);
 
 	        
 	        $pdf->SetTitle('BBJ - Laporan Evaluasi Produksi');
@@ -1352,7 +1355,8 @@ class Laporan extends Secure_Controller {
 
 			
 			$data['filter_date'] = $filter_date;
-		
+			$data['start_date'] = $start_date;
+			$data['end_date'] = $end_date;
 		
 		$this->db->select('pph.no_prod, SUM(pphd.use) as jumlah_used, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d,  (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e');
 		if(!empty($start_date) && !empty($end_date)){
@@ -1704,11 +1708,16 @@ class Laporan extends Secure_Controller {
 		if(empty($arr_date)){
 			$filter_date = '-';
 		}else {
-			$arr_filter_date = explode(' - ', $arr_date);
+
+			$arr_date = explode(' - ',$arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
-        $html = $this->load->view('laporan_produksi/cetak_evaluasi_nilai_persediaan',$data,TRUE);
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
+        $html = $this->load->view('laporan_ev_produksi/cetak_evaluasi_nilai_persediaan',$data,TRUE);
 
         
         $pdf->SetTitle('BBJ - Evaluasi Nilai Persediaan');

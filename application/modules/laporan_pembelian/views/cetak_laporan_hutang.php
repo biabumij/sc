@@ -202,9 +202,9 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="center">
-							<b><u>Hadi Sucipto</u><br />
-								Ka. Unit Bisnis</b>
+							<td align="center" >
+								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
+								<?= $unit_head['admin_group_name']?></b>
 							</td>
 							<td align="center">
 							<b><u>Rifka Dian B.</u><br />
