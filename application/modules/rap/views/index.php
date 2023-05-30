@@ -143,14 +143,14 @@
                     "data": "tanggal_rap"
                 },
                 {
-                    "data": "print"
-                },
-                {
 					"data": "updated_by"
 				},
 				{
 					"data": "updated_on"
-				}
+				},
+                {
+                    "data": "print"
+                },
             ],
             "columnDefs": [{
                     "targets": [0, 1, 2, 3, 4],
