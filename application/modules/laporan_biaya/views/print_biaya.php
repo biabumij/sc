@@ -227,7 +227,7 @@
 
 							$this->db->select('g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-							$this->db->where('a.admin_id',$create['keu_3']);
+							$this->db->where('a.admin_id',$create['keu_2']);
 							$keu_2 = $this->db->get('tbl_admin a')->row_array();
 						?>
 						<tr class="">
