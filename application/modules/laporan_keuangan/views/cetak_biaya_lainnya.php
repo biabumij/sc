@@ -55,10 +55,10 @@
 		<br />
 		<table class="table-lap" width="98%" border="0" cellpadding="3">
 			<tr class="table-active" style="">
-				<td width="80%" colspan="5">
+				<td width="50%" colspan="5">
 					<div style="display: block;font-weight: bold;font-size: 8px;">PERIODE</div>
 				</td>
-				<td align="right" width="20%">
+				<td align="right" width="50%">
 					<div style="display: block;font-weight: bold;font-size: 8px;"><?php echo $filter_date;?></div>
 				</td>
 			</tr>

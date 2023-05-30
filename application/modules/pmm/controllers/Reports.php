@@ -9802,13 +9802,16 @@ class Reports extends CI_Controller {
 		
 		$arr_date = $this->input->post('filter_date');
 		$arr_filter_date = explode(' - ', $arr_date);
+		$date3 = '';
 		$date1 = '';
 		$date2 = '';
 
 		if(count($arr_filter_date) == 2){
+			$date3 	= date('2021-01-01',strtotime($date3));
 			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
 			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+			$filter_date_2 = date('Y-m-d',strtotime($date3)).' - '.date('Y-m-d',strtotime($arr_filter_date[1]));
 		}
 		
 		?>
@@ -9841,14 +9844,12 @@ class Reports extends CI_Controller {
 	        <tr class="table-active4">
 	            <th colspan="2">PERIODE</th>
 				<th class="text-center"></th>
-				<th class="text-center"></th>
-	            <th class="text-center"><?php echo $filter_date;?></th>
+				<th class="text-center"><?php echo $filter_date = $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center">SD. <?php echo $filter_date_2 = date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
 	        </tr>
 
-			<!-- Akumulasi --->
-
 			<?php
-
+			//AKUMULASI
 			$akumulasi = $this->db->select('pp.date_akumulasi, (pp.total_nilai_keluar) as total, SUM(pp.total_nilai_keluar_2) as total_2, SUM(pp.total_nilai_akhir) as total_akhir')
 			->from('akumulasi_bahan_baku pp')
 			->where("(pp.date_akumulasi = '$date2')")
@@ -9865,37 +9866,8 @@ class Reports extends CI_Controller {
 			->from('akumulasi pp')
 			->where("(pp.date_akumulasi between '$date1' and '$date2')")
 			->get()->row_array();
-
-			//BPP
-			$pergerakan_bahan_baku = $this->db->select('
-			p.nama_produk, 
-			prm.display_measure as satuan, 
-			SUM(prm.display_volume) as volume, 
-			(prm.display_price / prm.display_volume) as harga, 
-			SUM(prm.display_price) as nilai')
-			->from('pmm_receipt_material prm')
-			->join('pmm_purchase_order po', 'prm.purchase_order_id = po.id','left')
-			->join('produk p', 'prm.material_id = p.id','left')
-			->where("prm.date_receipt between '$date1' and '$date2'")
-			->where("prm.material_id = 15")
-			->group_by('prm.material_id')
-			->get()->row_array();
-
-			$total_volume_pembelian = $pergerakan_bahan_baku['volume'];
-			$total_nilai_pembelian =  $pergerakan_bahan_baku['nilai'];
-			$total_harga_pembelian = ($total_volume_pembelian!=0)?($total_nilai_pembelian / $total_volume_pembelian)  * 1:0;
-
-			$abu_batu = $this->db->select('pph.no_prod, SUM(pphd.use) as jumlah_used, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d,  (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e, (pk.presentase_a + pk.presentase_b + pk.presentase_c + pk.presentase_d + pk.presentase_e) as jumlah_presentase')
-			->from('pmm_produksi_harian pph ')
-			->join('pmm_produksi_harian_detail pphd','pphd.produksi_harian_id = pph.id','left')
-			->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left')	
-			->where("(pph.date_prod between '$date1' and '$date2')")
-			->where("pph.status = 'PUBLISH'")
-			->get()->row_array();
-
-			$nilai_abu_batu_total = $abu_batu['jumlah_used'] * $total_harga_pembelian;
-			//END BPP
 			
+			//PENJUALAN
 			$penjualan_limbah = $this->db->select('SUM(pp.display_price) as price')
 			->from('pmm_productions pp')
 			->join('penerima p', 'pp.client_id = p.id','left')
@@ -9972,58 +9944,134 @@ class Reports extends CI_Controller {
 			->get()->row_array();
 
 			$biaya_umum_administratif = $biaya_umum_administratif_biaya['total'] + $biaya_umum_administratif_jurnal['total'];
-
 			$biaya_lainnya = $biaya_lainnya_biaya['total'] + $biaya_lainnya_jurnal['total'];
 
 			$total_harga_pokok_pendapatan = $akumulasi_hpp['total'];
-
 			$laba_kotor = $total_penjualan_all - $total_harga_pokok_pendapatan;
-
 			$total_biaya = $biaya_umum_administratif + $biaya_lainnya;
-
 			$laba_usaha = $laba_kotor - $total_biaya;
-
 			$nilai_persediaan_bahan_baku = $akumulasi['total_akhir'];
-
 			$nilai_persediaan_barang_jadi = $akumulasi2['total_akhir'];
-
 			$total = $laba_usaha + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
-
 			$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
+
+			//AKUMULASI 2
+			$akumulasi_2 = $this->db->select('pp.date_akumulasi, (pp.total_nilai_keluar) as total, SUM(pp.total_nilai_keluar_2) as total_2, SUM(pp.total_nilai_akhir) as total_akhir')
+			->from('akumulasi_bahan_baku pp')
+			->where("(pp.date_akumulasi = '$date2')")
+			->order_by('pp.date_akumulasi','desc')->limit(1)
+			->get()->row_array();
+
+			$akumulasi2_2 = $this->db->select('pp.date_akumulasi, (pp.total_nilai_akhir) as total_akhir')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi = '$date2')")
+			->order_by('pp.date_akumulasi','desc')->limit(1)
+			->get()->row_array();
+
+			$akumulasi_hpp_2 = $this->db->select('pp.date_akumulasi, SUM(pp.total_nilai_keluar) as total')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			//AKUMULASI PENJUALAN
+			$penjualan_limbah_2 = $this->db->select('SUM(pp.display_price) as price')
+			->from('pmm_productions pp')
+			->join('penerima p', 'pp.client_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("pp.date_production between '$date3' and '$date2'")
+			->where("pp.product_id = 9 ")
+			->where("pp.status = 'PUBLISH'")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.client_id")
+			->get()->result_array();
+
+			$total_penjualan_limbah_2 = 0;
+			foreach ($penjualan_limbah_2 as $y){
+				$total_penjualan_limbah_2 += $y['price'];
+			}
+
+			$penjualan_2 = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
+			->from('pmm_productions pp')
+			->join('penerima p', 'pp.client_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("pp.date_production between '$date3' and '$date2'")
+			->where("pp.product_id in (3,4,7,8,14,24)")
+			->where("pp.status = 'PUBLISH'")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.client_id")
+			->get()->result_array();
 			
+			$total_penjualan_2 = 0;
+			$total_volume_2 = 0;
+
+			foreach ($penjualan_2 as $x){
+				$total_penjualan_2 += $x['price'];
+				$total_volume_2 += $x['volume'];
+			}
+
+			$total_penjualan_all_2 = 0;
+			$total_penjualan_all_2 = $total_penjualan_2 + $total_penjualan_limbah_2;
+
+			$biaya_umum_administratif_biaya_2 = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$biaya_umum_administratif_jurnal_2 = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$biaya_lainnya_biaya_2 = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$biaya_lainnya_jurnal_2 = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$biaya_umum_administratif_2 = $biaya_umum_administratif_biaya_2['total'] + $biaya_umum_administratif_jurnal_2['total'];
+			$biaya_lainnya_2 = $biaya_lainnya_biaya_2['total'] + $biaya_lainnya_jurnal_2['total'];
+		
+			$total_harga_pokok_pendapatan_2 = $akumulasi_hpp_2['total'];
+			$laba_kotor_2 = $total_penjualan_all_2 - $total_harga_pokok_pendapatan_2;
+			$total_biaya_2 = $biaya_umum_administratif_2 + $biaya_lainnya_2;
+			$laba_usaha_2 = $laba_kotor_2 - $total_biaya_2;
+			$nilai_persediaan_bahan_baku_2 = $akumulasi_2['total_akhir'];
+			$nilai_persediaan_barang_jadi_2 = $akumulasi2_2['total_akhir'];
+			$total_2 = $laba_usaha_2 + $nilai_persediaan_bahan_baku_2 + $nilai_persediaan_barang_jadi_2;
+			$persentase_2 = ($total_penjualan_all_2!=0)?($total_2 / $total_penjualan_all_2)  * 100:0;
 	        ?>
 
 			<tr class="table-active">
-	            <th width="100%" class="text-left" colspan="5">PENDAPATAN ATAS PENJUALAN</th>
+	            <th width="100%" class="text-left" colspan="5">Pendapatan Penjualan</th>
 	        </tr>
 			<tr class="table-active3">
-	            <th width="10%" class="text-center">4-40000</th>
+	            <th width="10%" class="text-center"></th>
 				<th width="90%" class="text-left" colspan="4">Pendapatan</th>
 	        </tr>
-			<?php foreach ($penjualan as $x): ?>
 			<tr class="table-active3">
-	            <th width="10%"></th>
-				<th width="40%"><?= $x['nama'] ?></th>
-				<th width="10%" class="text-right"><?php echo number_format($x['volume'],2,',','.');?></th>
-				<th width="10%" class="text-center"><?= $x['measure'];?></th>
-	            <th width="30%" class="text-right">
-					<table width="100%" border="0" cellpadding="0">
-						<tr>
-								<th class="text-left" width="10%">
-									<span>Rp.</span>
-								</th>
-								<th class="text-right" width="90%">
-									<span><?php echo number_format($x['price'],0,',','.');?></span>
-								</th>
-							</tr>
-					</table>
-				</th>
-	        </tr>
-			<?php endforeach; ?>
-			<tr class="table-active3">
-				<th class="text-left" colspan="2">Total Pendapatan</th>
+				<th class="text-left"></th>
+				<th class="text-left"></th>
 				<th class="text-right"><?php echo number_format($total_volume,2,',','.');?></th>
-				<th class="text-center">Ton</th>
 	            <th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10036,16 +10084,56 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_penjualan_all_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-left" colspan="2">Total Pendapatan</th>
+				<th class="text-right"><?php echo number_format($total_volume,2,',','.');?></th>
+	            <th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_penjualan_all,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_penjualan_all_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
 	        </tr>
 			<tr class="table-active3">
 				<th colspan="5"></th>
 			</tr>
 			<tr class="table-active">
-				<th class="text-left" colspan="5">BEBAN POKOK PENJUALAN</th>
+				<th class="text-left" colspan="5">Beban Pokok Penjualan</th>
 	        </tr>
 			<tr class="table-active3">
-	            <th class="text-center">5-50000</th>
-				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/pergerakan_bahan_jadi_penyesuaian_print?filter_date=".$filter_date) ?>">Beban Pokok Penjualan</a></th>
+	            <th class="text-center"></th>
+				<th class="text-left" colspan="2"><a target="_blank" href="<?= base_url("laporan/pergerakan_bahan_jadi_penyesuaian_print?filter_date=".$filter_date) ?>">Beban Pokok Penjualan</a></th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10056,10 +10144,23 @@ class Reports extends CI_Controller {
 									<span><?php echo number_format($total_harga_pokok_pendapatan,0,',','.');?></span>
 								</th>
 							</tr>
-					</table></th>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_harga_pokok_pendapatan_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
 	        </tr>
 			<tr class="table-active3">
-				<th class="text-left" colspan="4">Total Beban Pokok Penjualan</th>
+				<th class="text-left" colspan="3">Total Beban Pokok Penjualan</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10072,15 +10173,28 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>				
 				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left"width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_harga_pokok_pendapatan_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>				
+				</th>
 	        </tr>
 			<tr class="table-active3">
 				<th colspan="5"></th>
 			</tr>
 			<?php
 				$styleColor = $laba_kotor < 0 ? 'color:red' : 'color:black';
+				$styleColor2 = $laba_kotor_2 < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
-				<th class="text-left" colspan="4">Laba / Rugi Kotor</th>
+				<th class="text-left" colspan="3">Laba / Rugi Kotor</th>
 	            <th class="text-right" style="<?php echo $styleColor ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10093,68 +10207,85 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right" style="<?php echo $styleColor2 ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $laba_kotor_2 < 0 ? "(".number_format(-$laba_kotor_2,0,',','.').")" : number_format($laba_kotor_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
 	        </tr>
 			<tr class="table-active3">
 				<th colspan="5"></th>
 			</tr>
 			<tr class="table-active">
-	            <th class="text-left" colspan="5">BIAYA OPERASIONAL</th>
-	        </tr>
-			<tr class="table-active3">
-				<th>6-60100</th>
-				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/cetak_biaya_umum_administratif?filter_date=".$filter_date) ?>">Biaya Umum & Administratif<a/></th>
-	            <th class="text-right">
+	            <th class="text-left" colspan="3">Biaya Umum & Administratif</th>
+				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
 								<th class="text-left" width="10%">
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($biaya_umum_administratif,0,',','.');?></span>
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_biaya_umum_administratif?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($biaya_umum_administratif,0,',','.');?></a></span>
 								</th>
 							</tr>
 					</table>
 				</th>
-			</tr>
-			<tr class="table-active3">
-				<th>8-80100</th>
-				<th class="text-left" colspan="3"><a target="_blank" href="<?= base_url("laporan/cetak_biaya_lainnya?filter_date=".$filter_date) ?>">Biaya Lainnya<a/></th>
-	            <th class="text-right">
+				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
 								<th class="text-left" width="10%">
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($biaya_lainnya,0,',','.');?></span>
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_biaya_umum_administratif?filter_date=".$filter_date_2 = date('d F Y',strtotime($date3)).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($biaya_umum_administratif_2,0,',','.');?></a></span>
 								</th>
 							</tr>
 					</table>
 				</th>
 			</tr>
-			<tr class="table-active3">
-	            <th class="text-left" colspan="4">Total Biaya</th>
-	            <th class="text-right">
+			<tr class="table-active">
+	            <th class="text-left" colspan="3">Biaya Lainnya</th>
+				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
-								<th class="text-left"width="10%">
+								<th class="text-left" width="10%">
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($total_biaya,0,',','.');?></span>
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_biaya_lainnya?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($biaya_lainnya,0,',','.');?></a></span>
 								</th>
 							</tr>
-					</table>				
+					</table>
 				</th>
-	        </tr>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_biaya_lainnya?filter_date=".$filter_date_2 = date('d F Y',strtotime($date3)).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($biaya_lainnya_2,0,',','.');?></a></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+			</tr>
 			<tr class="table-active3">
 				<th colspan="5"></th>
 			</tr>
 			<?php
 				$styleColor = $laba_usaha < 0 ? 'color:red' : 'color:black';
+				$styleColor2 = $laba_usaha_2 < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Laba / Rugi Usaha</th>
+	            <th colspan="3" class="text-left">Laba / Rugi Usaha</th>
 	            <th class="text-right" style="<?php echo $styleColor ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10167,12 +10298,24 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right" style="<?php echo $styleColor ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $laba_usaha_2 < 0 ? "(".number_format(-$laba_usaha_2,0,',','.').")" : number_format($laba_usaha_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
 	        </tr>
 			<tr class="table-active3">
 				<th colspan="5"></th>
 			</tr>
-			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Persediaan Bahan Baku</th>
+			<tr class="table-active">
+	            <th colspan="3" class="text-left">Persediaan Bahan Baku</th>
 	            <th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10185,9 +10328,21 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_persediaan_bahan_baku_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
 	        </tr>
-			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Persediaan Barang Jadi</th>
+			<tr class="table-active">
+	            <th colspan="3" class="text-left">Persediaan Barang Jadi</th>
 	            <th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10200,15 +10355,28 @@ class Reports extends CI_Controller {
 							</tr>
 					</table>
 				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_persediaan_barang_jadi_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
 	        </tr>
 			<tr class="table-active3">
 				<th colspan="5"></th>
 			</tr>
 			<?php
 				$styleColor = $total < 0 ? 'color:red' : 'color:black';
+				$styleColor2 = $total_2 < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Total</th>
+	            <th colspan="3" class="text-left">Total</th>
 	            <th class="text-right" style="<?php echo $styleColor ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10216,7 +10384,19 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo number_format($total,0,',','.');?></span>
+									<span><?php echo $total < 0 ? "(".number_format(-$total,0,',','.').")" : number_format($total,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right" style="<?php echo $styleColor2 ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $total_2 < 0 ? "(".number_format(-$total_2,0,',','.').")" : number_format($total_2,0,',','.');?></span>
 								</th>
 							</tr>
 					</table>
@@ -10224,9 +10404,10 @@ class Reports extends CI_Controller {
 	        </tr>
 			<?php
 				$styleColor = $persentase < 0 ? 'color:red' : 'color:black';
+				$styleColor2 = $persentase_2 < 0 ? 'color:red' : 'color:black';
 			?>
 			<tr class="table-active3">
-	            <th colspan="4" class="text-left">Presentase</th>
+	            <th colspan="3" class="text-left">Presentase</th>
 	            <th class="text-right" style="<?php echo $styleColor ?>">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
@@ -10235,6 +10416,679 @@ class Reports extends CI_Controller {
 								</th>
 								<th class="text-right" width="90%">
 									<span><?php echo $persentase < 0 ? "(".number_format(-$persentase,0,',','.').")" : number_format($persentase,0,',','.');?> %</span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right" style="<?php echo $styleColor2 ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $persentase_2 < 0 ? "(".number_format(-$persentase_2,0,',','.').")" : number_format($persentase_2,0,',','.');?> %</span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+	    </table>
+		<?php
+	}
+
+	public function laba_rugi_new($arr_date)
+	{
+		$data = array();
+		
+		$arr_date = $this->input->post('filter_date');
+		$arr_filter_date = explode(' - ', $arr_date);
+		$date3 = '';
+		$date1 = '';
+		$date2 = '';
+
+		if(count($arr_filter_date) == 2){
+			$date3 	= date('2022-01-01',strtotime($date3));
+			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
+			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
+			$filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));
+			$filter_date_2 = date('Y-m-d',strtotime($date3)).' - '.date('Y-m-d',strtotime($arr_filter_date[1]));
+		}
+		
+		?>
+		
+		<table class="table table-bordered" width="100%">
+		 <style type="text/css">
+			table tr.table-active{
+				background-color: #F0F0F0;
+				font-size: 12px;
+				font-weight: bold;
+			}
+				
+			table tr.table-active2{
+				background-color: #A9A9A9;
+				font-size: 12px;
+				font-weight: bold;
+			}
+				
+			table tr.table-active3{
+				font-size: 12px;
+			}
+				
+			table tr.table-active4{
+				background-color: #D3D3D3;
+				font-weight: bold;
+				font-size: 12px;
+				color: black;
+			}
+		 </style>
+	        <tr class="table-active4">
+	            <th colspan="2">PERIODE</th>
+				<th class="text-center"></th>
+				<th class="text-center"><?php echo $filter_date = $filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	            <th class="text-center">SD. <?php echo $filter_date_2 = date('d/m/Y',strtotime($arr_filter_date[1]));?></th>
+	        </tr>
+
+			<?php
+			$penjualan_limbah = $this->db->select('SUM(pp.display_price) as price')
+			->from('pmm_productions pp')
+			->join('penerima p', 'pp.client_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("pp.date_production between '$date1' and '$date2'")
+			->where("pp.product_id = 9 ")
+			->where("pp.status = 'PUBLISH'")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.client_id")
+			->get()->result_array();
+
+			$total_penjualan_limbah = 0;
+			foreach ($penjualan_limbah as $y){
+				$total_penjualan_limbah += $y['price'];
+			}
+
+			$penjualan = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
+			->from('pmm_productions pp')
+			->join('penerima p', 'pp.client_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("pp.date_production between '$date1' and '$date2'")
+			->where("pp.product_id in (3,4,7,8,14,24)")
+			->where("pp.status = 'PUBLISH'")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.client_id")
+			->get()->result_array();
+			
+			$total_penjualan = 0;
+			$total_volume = 0;
+			$measure = 0;
+
+			foreach ($penjualan as $x){
+				$total_penjualan += $x['price'];
+				$total_volume += $x['volume'];
+			}
+
+			$total_penjualan_all = 0;
+			$total_penjualan_all = $total_penjualan + $total_penjualan_limbah;
+
+			//HARGA RAP
+			$harga_rap = $this->db->select('*')
+			->from('rap')
+			->order_by('id','desc')->limit(1)
+			->get()->row_array();
+
+			$vol_boulder = round($harga_rap['vol_boulder'],4);
+			$nilai_boulder = $vol_boulder * $harga_rap['price_boulder'];
+
+			$sc_a = round($harga_rap['kapasitas_alat_sc'] * $harga_rap['efisiensi_alat_sc'],4);
+			$sc_b = $sc_a / round($harga_rap['berat_isi_batu_pecah'],4);
+			$vol_sc = round(1 / $sc_b,4);
+			$nilai_sc = $vol_sc * $harga_rap['price_sc'];
+
+			$vol_tangki = $vol_sc;
+			$nilai_tangki = $vol_tangki * $harga_rap['price_tangki'];
+
+			$vol_gns = $vol_sc;
+			$nilai_gns = $vol_gns * $harga_rap['price_gns'];
+
+			$wl_a = round($harga_rap['kapasitas_alat_wl'] * $harga_rap['efisiensi_alat_wl'],4);
+			$wl_b = (60 / round($harga_rap['waktu_siklus'],4)) * $wl_a;
+			$vol_wl = round(1 / $wl_b,4);
+
+			$vol_timbangan =  $vol_sc;
+			$nilai_timbangan = $vol_timbangan * $harga_rap['price_timbangan'];
+
+			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $harga_rap['overhead'];
+			//HARGA RAP
+
+			$nilai_rap = $total_volume * $total;
+			
+			$biaya_umum_administratif_biaya = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$biaya_umum_administratif_jurnal = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$biaya_lainnya_biaya = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$biaya_lainnya_jurnal = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date1' and '$date2')")
+			->get()->row_array();
+
+			$akumulasi_bahan_baku = $this->db->select('pp.date_akumulasi, (pp.total_nilai_keluar) as total, SUM(pp.total_nilai_keluar_2) as total_2, SUM(pp.total_nilai_akhir) as total_akhir')
+			->from('akumulasi_bahan_baku pp')
+			->where("(pp.date_akumulasi = '$date2')")
+			->order_by('pp.date_akumulasi','desc')->limit(1)
+			->get()->row_array();
+
+			$akumulasi_bahan_jadi = $this->db->select('pp.date_akumulasi, (pp.total_nilai_akhir) as total_akhir')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi = '$date2')")
+			->order_by('pp.date_akumulasi','desc')->limit(1)
+			->get()->row_array();
+
+			$biaya_umum_administratif = $biaya_umum_administratif_biaya['total'] + $biaya_umum_administratif_jurnal['total'];
+			$biaya_lainnya = $biaya_lainnya_biaya['total'] + $biaya_lainnya_jurnal['total'];
+
+			$total_harga_pokok_pendapatan = $nilai_rap;
+			$laba_kotor = $total_penjualan_all - $total_harga_pokok_pendapatan;
+			$laba_usaha = $laba_kotor - ($biaya_umum_administratif + $biaya_lainnya);
+			$nilai_persediaan_bahan_baku = $akumulasi_bahan_baku['total_akhir'];
+			$nilai_persediaan_barang_jadi = $akumulasi_bahan_jadi['total_akhir'];
+			$total = $laba_usaha + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
+			$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
+
+			//AKUMULASI 2
+			$penjualan_limbah_2 = $this->db->select('SUM(pp.display_price) as price')
+			->from('pmm_productions pp')
+			->join('penerima p', 'pp.client_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("pp.date_production between '$date3' and '$date2'")
+			->where("pp.product_id = 9 ")
+			->where("pp.status = 'PUBLISH'")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.client_id")
+			->get()->result_array();
+
+			$total_penjualan_limbah_2 = 0;
+			foreach ($penjualan_limbah_2 as $y){
+				$total_penjualan_limbah_2 += $y['price'];
+			}
+
+			$penjualan_2 = $this->db->select('p.nama, pp.client_id, SUM(pp.display_price) as price, SUM(pp.display_volume) as volume, pp.convert_measure as measure')
+			->from('pmm_productions pp')
+			->join('penerima p', 'pp.client_id = p.id','left')
+			->join('pmm_sales_po ppo', 'pp.salesPo_id = ppo.id','left')
+			->where("pp.date_production between '$date3' and '$date2'")
+			->where("pp.product_id in (3,4,7,8,14,24)")
+			->where("pp.status = 'PUBLISH'")
+			->where("ppo.status in ('OPEN','CLOSED')")
+			->group_by("pp.client_id")
+			->get()->result_array();
+			
+			$total_penjualan_2 = 0;
+			$total_volume_2 = 0;
+
+			foreach ($penjualan_2 as $x){
+				$total_penjualan_2 += $x['price'];
+				$total_volume_2 += $x['volume'];
+			}
+
+			$total_penjualan_all_2 = 0;
+			$total_penjualan_all_2 = $total_penjualan_2 + $total_penjualan_limbah_2;
+
+			//HARGA RAP
+			$harga_rap_2 = $this->db->select('*')
+			->from('rap')
+			->order_by('id','desc')->limit(1)
+			->get()->row_array();
+
+			$vol_boulder_2 = round($harga_rap_2['vol_boulder'],4);
+			$nilai_boulder_2 = $vol_boulder_2 * $harga_rap_2['price_boulder'];
+
+			$sc_a_2 = round($harga_rap_2['kapasitas_alat_sc'] * $harga_rap_2['efisiensi_alat_sc'],4);
+			$sc_b_2 = $sc_a_2 / round($harga_rap_2['berat_isi_batu_pecah'],4);
+			$vol_sc_2 = round(1 / $sc_b_2,4);
+			$nilai_sc_2 = $vol_sc_2 * $harga_rap_2['price_sc'];
+
+			$vol_tangki_2 = $vol_sc_2;
+			$nilai_tangki_2 = $vol_tangki_2 * $harga_rap_2['price_tangki'];
+
+			$vol_gns_2 = $vol_sc_2;
+			$nilai_gns_2 = $vol_gns_2 * $harga_rap_2['price_gns'];
+
+			$wl_a_2 = round($harga_rap_2['kapasitas_alat_wl'] * $harga_rap_2['efisiensi_alat_wl'],4);
+			$wl_b_2 = (60 / round($harga_rap_2['waktu_siklus'],4)) * $wl_a_2;
+			$vol_wl_2 = round(1 / $wl_b_2,4);
+
+			$vol_timbangan_2 =  $vol_sc_2;
+			$nilai_timbangan_2 = $vol_timbangan_2 * $harga_rap_2['price_timbangan'];
+
+			$total_2 = $nilai_boulder_2 + $nilai_tangki_2 + $nilai_sc_2 + $nilai_gns_2 + $nilai_wl_2 + $nilai_timbangan_2 + $harga_rap_2['overhead'];
+			//HARGA RAP
+
+			$nilai_rap_2 = $total_volume_2 * $total_2;
+
+			$biaya_umum_administratif_biaya_2 = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$biaya_umum_administratif_jurnal_2 = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',16)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$biaya_lainnya_biaya_2 = $this->db->select('sum(pdb.jumlah) as total')
+			->from('pmm_biaya pb ')
+			->join('pmm_detail_biaya pdb','pb.id = pdb.biaya_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$biaya_lainnya_jurnal_2 = $this->db->select('sum(pdb.debit) as total')
+			->from('pmm_jurnal_umum pb ')
+			->join('pmm_detail_jurnal pdb','pb.id = pdb.jurnal_id','left')
+			->join('pmm_coa c','pdb.akun = c.id','left')
+			->where('c.coa_category',17)
+			->where("pb.status = 'PAID'")
+			->where("(tanggal_transaksi between '$date3' and '$date2')")
+			->get()->row_array();
+
+			$akumulasi_bahan_baku_2 = $this->db->select('pp.date_akumulasi, (pp.total_nilai_keluar) as total, SUM(pp.total_nilai_keluar_2) as total_2, SUM(pp.total_nilai_akhir) as total_akhir')
+			->from('akumulasi_bahan_baku pp')
+			->where("(pp.date_akumulasi = '$date2')")
+			->order_by('pp.date_akumulasi','desc')->limit(1)
+			->get()->row_array();
+
+			$akumulasi_bahan_jadi_2 = $this->db->select('pp.date_akumulasi, (pp.total_nilai_akhir) as total_akhir')
+			->from('akumulasi pp')
+			->where("(pp.date_akumulasi = '$date2')")
+			->order_by('pp.date_akumulasi','desc')->limit(1)
+			->get()->row_array();
+
+			$biaya_umum_administratif_2 = $biaya_umum_administratif_biaya_2['total'] + $biaya_umum_administratif_jurnal_2['total'];
+			$biaya_lainnya_2 = $biaya_lainnya_biaya_2['total'] + $biaya_lainnya_jurnal_2['total'];
+
+			$total_harga_pokok_pendapatan_2 = $nilai_rap_2;
+			$laba_kotor_2 = $total_penjualan_all_2 - $total_harga_pokok_pendapatan_2;
+			$laba_usaha_2 = $laba_kotor_2 - ($biaya_umum_administratif_2 + $biaya_lainnya_2);
+			$nilai_persediaan_bahan_baku_2 = $akumulasi_bahan_baku_2['total_akhir'];
+			$nilai_persediaan_barang_jadi_2 = $akumulasi_bahan_jadi_2['total_akhir'];
+			$total_2 = $laba_usaha_2 + $nilai_persediaan_bahan_baku_2 + $nilai_persediaan_barang_jadi_2;
+			$persentase_2 = ($total_penjualan_all_2!=0)?($total_2 / $total_penjualan_all_2)  * 100:0;
+	        ?>
+
+			<tr class="table-active">
+	            <th width="100%" class="text-left" colspan="5">Pendapatan Penjualan</th>
+	        </tr>
+			<tr class="table-active3">
+	            <th width="10%" class="text-center"></th>
+				<th width="90%" class="text-left" colspan="4">Pendapatan</th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-left" colspan="2">Total Pendapatan</th>
+				<th class="text-right"><?php echo number_format($total_volume,2,',','.');?></th>
+	            <th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_penjualan_all,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_penjualan_all_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th colspan="5"></th>
+			</tr>
+			<tr class="table-active">
+				<th class="text-left" colspan="5">BEBAN POKOK PENJUALAN</th>
+	        </tr>
+			<tr class="table-active3">
+	            <th class="text-center"></th>
+				<th class="text-left" colspan="2">Beban Pokok Penjualan</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_rap,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_rap_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th class="text-left" colspan="3">Total Beban Pokok Penjualan</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left"width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_harga_pokok_pendapatan,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>				
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left"width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($total_harga_pokok_pendapatan_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>				
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th colspan="5"></th>
+			</tr>
+			<?php
+				$styleColor = $laba_kotor < 0 ? 'color:red' : 'color:black';
+				$styleColor2 = $laba_kotor_2 < 0 ? 'color:red' : 'color:black';
+			?>
+			<tr class="table-active3">
+				<th class="text-left" colspan="3">Laba / Rugi Kotor</th>
+	            <th class="text-right" style="<?php echo $styleColor ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $laba_kotor < 0 ? "(".number_format(-$laba_kotor,0,',','.').")" : number_format($laba_kotor,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right" style="<?php echo $styleColor2 ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $laba_kotor_2 < 0 ? "(".number_format(-$laba_kotor_2,0,',','.').")" : number_format($laba_kotor_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th colspan="5"></th>
+			</tr>
+			<tr class="table-active">
+	            <th class="text-left" colspan="3">Biaya Umum & Administratif</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_biaya_umum_administratif?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($biaya_umum_administratif,0,',','.');?></a></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_biaya_umum_administratif?filter_date=".$filter_date_2 = date('d F Y',strtotime($date3)).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($biaya_umum_administratif_2,0,',','.');?></a></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+			</tr>
+			<tr class="table-active">
+	            <th class="text-left" colspan="3">Biaya Lainnya</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_biaya_lainnya?filter_date=".$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($biaya_lainnya,0,',','.');?></a></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><a target="_blank" href="<?= base_url("laporan/cetak_biaya_lainnya?filter_date=".$filter_date_2 = date('d F Y',strtotime($date3)).' - '.date('d F Y',strtotime($arr_filter_date[1]))) ?>"><?php echo number_format($biaya_lainnya_2,0,',','.');?></a></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+			</tr>
+			<tr class="table-active3">
+				<th colspan="5"></th>
+			</tr>
+			<?php
+				$styleColor = $laba_usaha < 0 ? 'color:red' : 'color:black';
+				$styleColor2 = $laba_usaha_2 < 0 ? 'color:red' : 'color:black';
+			?>
+			<tr class="table-active3">
+	            <th colspan="3" class="text-left">Laba / Rugi Usaha</th>
+	            <th class="text-right" style="<?php echo $styleColor ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $laba_usaha < 0 ? "(".number_format(-$laba_usaha,0,',','.').")" : number_format($laba_usaha,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right" style="<?php echo $styleColor ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $laba_usaha_2 < 0 ? "(".number_format(-$laba_usaha_2,0,',','.').")" : number_format($laba_usaha_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th colspan="5"></th>
+			</tr>
+			<tr class="table-active">
+	            <th colspan="3" class="text-left">Persediaan Bahan Baku</th>
+	            <th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_persediaan_bahan_baku,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_persediaan_bahan_baku_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active">
+	            <th colspan="3" class="text-left">Persediaan Barang Jadi</th>
+	            <th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_persediaan_barang_jadi,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo number_format($nilai_persediaan_barang_jadi_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<tr class="table-active3">
+				<th colspan="5"></th>
+			</tr>
+			<?php
+				$styleColor = $total < 0 ? 'color:red' : 'color:black';
+				$styleColor2 = $total_2 < 0 ? 'color:red' : 'color:black';
+			?>
+			<tr class="table-active3">
+	            <th colspan="3" class="text-left">Total</th>
+	            <th class="text-right" style="<?php echo $styleColor ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $total < 0 ? "(".number_format(-$total,0,',','.').")" : number_format($total,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right" style="<?php echo $styleColor2 ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $total_2 < 0 ? "(".number_format(-$total_2,0,',','.').")" : number_format($total_2,0,',','.');?></span>
+								</th>
+							</tr>
+					</table>
+				</th>
+	        </tr>
+			<?php
+				$styleColor = $persentase < 0 ? 'color:red' : 'color:black';
+				$styleColor2 = $persentase_2 < 0 ? 'color:red' : 'color:black';
+			?>
+			<tr class="table-active3">
+	            <th colspan="3" class="text-left">Presentase</th>
+	            <th class="text-right" style="<?php echo $styleColor ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $persentase < 0 ? "(".number_format(-$persentase,0,',','.').")" : number_format($persentase,0,',','.');?> %</span>
+								</th>
+							</tr>
+					</table>
+				</th>
+				<th class="text-right" style="<?php echo $styleColor2 ?>">
+					<table width="100%" border="0" cellpadding="0">
+						<tr>
+								<th class="text-left" width="10%">
+									<span>Rp.</span>
+								</th>
+								<th class="text-right" width="90%">
+									<span><?php echo $persentase_2 < 0 ? "(".number_format(-$persentase_2,0,',','.').")" : number_format($persentase_2,0,',','.');?> %</span>
 								</th>
 							</tr>
 					</table>

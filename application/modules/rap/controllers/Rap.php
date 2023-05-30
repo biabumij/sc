@@ -1010,6 +1010,10 @@ class Rap extends Secure_Controller {
 		if ($this->db->insert('rap', $arr_insert)) {
 			$rap_id = $this->db->insert_id();
 
+			if (!file_exists('uploads/rap')) {
+			    mkdir('uploads/rap', 0777, true);
+			}
+
 			$data = [];
 			$count = count($_FILES['files']['name']);
 			for ($i = 0; $i < $count; $i++) {
@@ -1022,7 +1026,7 @@ class Rap extends Secure_Controller {
 					$_FILES['file']['error'] = $_FILES['files']['error'][$i];
 					$_FILES['file']['size'] = $_FILES['files']['size'][$i];
 
-					$config['upload_path'] = 'uploads/agregat';
+					$config['upload_path'] = 'uploads/rap';
 					$config['allowed_types'] = 'jpg|jpeg|png|pdf';
 					$config['file_name'] = $_FILES['files']['name'][$i];
 
@@ -1051,13 +1055,13 @@ class Rap extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal Membuat RAP !!');
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat Analisa Harga Satuan !!');
 			redirect('rap/rap');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil Membuat RAP !!');
+			$this->session->set_flashdata('notif_success', 'Berhasil Analisa Harga Satuan !!');
 			redirect('admin/rap');
 		}
 	}
