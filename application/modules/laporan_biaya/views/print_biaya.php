@@ -209,7 +209,7 @@
 							</td>
 						</tr>
 						<?php
-							$create = $this->db->select('id, unit_head, logistik, admin')
+							$create = $this->db->select('*')
 							->from('akumulasi')
 							->where("(date_akumulasi = '$end_date')")
 							->order_by('id','desc')->limit(1)
