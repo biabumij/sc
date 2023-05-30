@@ -192,7 +192,7 @@
 				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
 			</tr>
 		</table>
-		<table width="98%" border="0" cellpadding="30">
+		<table width="98%" border="0" cellpadding="50">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
