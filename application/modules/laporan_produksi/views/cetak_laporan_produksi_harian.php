@@ -232,7 +232,7 @@
 								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="70px">
+								<img src="<?= $admin['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>
