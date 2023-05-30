@@ -229,17 +229,17 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								<?= $unit_head['admin_group_name']?></b>
+							<td align="center">
+								<b><u>Hadi Sucipto</u><br />
+								Kepala Unit Bisnis</b>
 							</td>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['logistik']),'admin_name');?></u><br />
-								<?= $logistik['admin_group_name']?></b>
+							<td align="center">
+								<b><u>Vicky Irwana Yudha</u><br />
+								Ka. Logistik</b>
 							</td>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['logistik']),'admin_name');?></u><br />
-								Adm. Logistik</b>
+							<td align="center">
+								<b><u>Vicky Irwana Yudha</u><br />
+								Ka. Logistik</b>
 							</td>
 						</tr>
 					</table>
