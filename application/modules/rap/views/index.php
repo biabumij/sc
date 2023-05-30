@@ -40,7 +40,7 @@
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="<?= site_url('rap/form_rap'); ?>">RAP</a></li>
+                                            <li><a href="<?= site_url('rap/form_rap'); ?>">Analisa Harga Satuan</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#rap" aria-controls="rap" role="tab" data-toggle="tab">RAP</a></li>
+                                    <li role="presentation" class="active"><a href="#rap" aria-controls="rap" role="tab" data-toggle="tab">Analisa Harga Satuan</a></li>
                                 </ul>
 
                                 <div class="tab-content">
@@ -63,8 +63,9 @@
                                             <table class="table table-striped table-hover" id="table_rap" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center">No</th>
+                                                        <th width="5%" class="text-center">No</th>
 														<th class="text-center">Tanggal</th>
+                                                        <th width="5%" class="text-center">Cetak</th>
 														
                                                     </tr>
                                                 </thead>
@@ -139,10 +140,13 @@
                 },
 				{
                     "data": "tanggal_rap"
+                },
+                {
+                    "data": "print"
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1],
+                    "targets": [0, 1, 2],
                     "className": 'text-center',
                 }
             ],

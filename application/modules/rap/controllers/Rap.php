@@ -904,6 +904,7 @@ class Rap extends Secure_Controller {
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
                 $row['tanggal_rap'] = date('d F Y',strtotime($row['tanggal_rap']));
+				$row['print'] = '<a href="'.site_url().'rap/cetak_rap/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 			
 				$data[] = $row;
             }
@@ -916,17 +917,170 @@ class Rap extends Secure_Controller {
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
-			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'kategori_produk' => 1))->result_array();
-			$data['mutu_beton'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'betonreadymix' => 1))->result_array();
 			$data['measures'] = $this->db->select('*')->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 			$data['boulder'] = $this->pmm_model->getMatByPenawaranBoulder();
-			$data['stone_crusher'] = $this->pmm_model->getMatByPenawaranSC();
-			$data['wheel_loader'] = $this->pmm_model->getMatByPenawaranWL();
-			$data['genset'] = $this->pmm_model->getMatByPenawaranGNS();
 			$this->load->view('rap/form_rap', $data);
 		} else {
 			redirect('admin');
 		}
+	}
+
+	public function submit_rap()
+	{
+		$jobs_type = $this->input->post('jobs_type');
+		$tanggal_rap = $this->input->post('tanggal_rap');
+
+		$penawaran_id_boulder = $this->input->post('penawaran_id_boulder');
+
+		$vol_boulder =  str_replace('.', '', $this->input->post('vol_boulder'));
+		$vol_boulder =  str_replace(',', '.', $vol_boulder);
+
+		$price_boulder = str_replace('.', '', $this->input->post('price_boulder'));
+		$supplier_id_boulder = $this->input->post('supplier_id_boulder');
+		$measure_boulder = $this->input->post('measure_boulder');
+		$tax_id_boulder = $this->input->post('tax_id_boulder');
+		$pajak_id_boulder = $this->input->post('pajak_id_boulder');
+		$overhead = str_replace('.', '', $this->input->post('overhead'));
+
+		$kapasitas_alat_sc =  str_replace('.', '', $this->input->post('kapasitas_alat_sc'));
+		$kapasitas_alat_sc =  str_replace(',', '.', $kapasitas_alat_sc);
+		$efisiensi_alat_sc =  str_replace('.', '', $this->input->post('efisiensi_alat_sc'));
+		$efisiensi_alat_sc =  str_replace(',', '.', $efisiensi_alat_sc);
+		$berat_isi_batu_pecah =  str_replace('.', '', $this->input->post('berat_isi_batu_pecah'));
+		$berat_isi_batu_pecah =  str_replace(',', '.', $berat_isi_batu_pecah);
+
+		$kapasitas_alat_wl =  str_replace('.', '', $this->input->post('kapasitas_alat_wl'));
+		$kapasitas_alat_wl =  str_replace(',', '.', $kapasitas_alat_wl);
+		$efisiensi_alat_wl =  str_replace('.', '', $this->input->post('efisiensi_alat_wl'));
+		$efisiensi_alat_wl =  str_replace(',', '.', $efisiensi_alat_wl);
+		$waktu_siklus =  str_replace('.', '', $this->input->post('waktu_siklus'));
+		$waktu_siklus =  str_replace(',', '.', $waktu_siklus);
+
+		$price_tangki = str_replace('.', '', $this->input->post('price_tangki'));
+		$price_sc = str_replace('.', '', $this->input->post('price_sc'));
+		$price_gns = str_replace('.', '', $this->input->post('price_gns'));
+		$price_wl = str_replace('.', '', $this->input->post('price_wl'));
+		$price_timbangan = str_replace('.', '', $this->input->post('price_timbangan'));
+
+		$memo = $this->input->post('memo');
+		$attach = $this->input->post('files[]');
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
+
+		$arr_insert = array(
+			'tanggal_rap' => date('Y-m-d', strtotime($tanggal_rap)),	
+			'jobs_type' => $jobs_type,
+
+			'penawaran_id_boulder' => $penawaran_id_boulder,
+			'supplier_id_boulder' => $supplier_id_boulder,
+
+			'vol_boulder' => $vol_boulder,
+
+			'price_boulder' => $price_boulder,
+			'measure_boulder' => $measure_boulder,
+			'tax_id_boulder' => $tax_id_boulder,
+			'pajak_id_boulder' => $pajak_id_boulder,
+			'overhead' => $overhead,
+
+			'kapasitas_alat_sc' => $kapasitas_alat_sc,
+			'efisiensi_alat_sc' => $efisiensi_alat_sc,
+			'berat_isi_batu_pecah' => $berat_isi_batu_pecah,
+
+			'kapasitas_alat_wl' => $kapasitas_alat_wl,
+			'efisiensi_alat_wl' => $efisiensi_alat_wl,
+			'waktu_siklus' => $waktu_siklus,
+
+			'price_tangki' => $price_tangki,
+			'price_sc' => $price_sc,
+			'price_gns' => $price_gns,
+			'price_wl' => $price_wl,
+			'price_timbangan' => $price_timbangan,
+			
+			'status' => 'PUBLISH',
+			'memo' => $memo,
+			'attach' => $attach,
+			'status' => 'PUBLISH',
+			'created_by' => $this->session->userdata('admin_id'),
+			'created_on' => date('Y-m-d H:i:s')
+		);
+
+		if ($this->db->insert('rap', $arr_insert)) {
+			$rap_id = $this->db->insert_id();
+
+			$data = [];
+			$count = count($_FILES['files']['name']);
+			for ($i = 0; $i < $count; $i++) {
+
+				if (!empty($_FILES['files']['name'][$i])) {
+
+					$_FILES['file']['name'] = $_FILES['files']['name'][$i];
+					$_FILES['file']['type'] = $_FILES['files']['type'][$i];
+					$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+					$_FILES['file']['error'] = $_FILES['files']['error'][$i];
+					$_FILES['file']['size'] = $_FILES['files']['size'][$i];
+
+					$config['upload_path'] = 'uploads/agregat';
+					$config['allowed_types'] = 'jpg|jpeg|png|pdf';
+					$config['file_name'] = $_FILES['files']['name'][$i];
+
+					$this->load->library('upload', $config);
+
+					if ($this->upload->do_upload('file')) {
+						$uploadData = $this->upload->data();
+						$filename = $uploadData['file_name'];
+
+						$data['totalFiles'][] = $filename;
+
+
+						$data[$i] = array(
+							'rap_id' => $rap_id,
+							'lampiran'  => $data['totalFiles'][$i]
+						);
+
+						$this->db->insert('lampiran_rap', $data[$i]);
+						
+					} 
+				}
+			}
+		}
+
+
+		if ($this->db->trans_status() === FALSE) {
+			# Something went wrong.
+			$this->db->trans_rollback();
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat RAP !!');
+			redirect('rap/rap');
+		} else {
+			# Everything is Perfect. 
+			# Committing data to the database.
+			$this->db->trans_commit();
+			$this->session->set_flashdata('notif_success', 'Berhasil Membuat RAP !!');
+			redirect('admin/rap');
+		}
+	}
+
+	public function cetak_rap($id){
+
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$data['row'] = $this->db->get_where('rap',array('id'=>$id))->row_array();
+        $html = $this->load->view('rap/cetak_rap',$data,TRUE);
+        $row = $this->db->get_where('rap',array('id'=>$id))->row_array();
+
+
+        
+        $pdf->SetTitle($row['jobs_type']);
+        $pdf->nsi_html($html);
+        $pdf->Output($row['jobs_type'].'.pdf', 'I');
 	}
 
 }

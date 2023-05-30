@@ -23,7 +23,7 @@
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-money" aria-hidden="true"></i>RAP</li>
                             
-                            <li><a>RAP</a></li>
+                            <li><a>Analisa Harga Satuan</a></li>
                         </ul>
                     </div>
                 </div>
@@ -32,14 +32,14 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">RAP</h3>                                
+                                    <h3 class="">Analisa Harga Satuan</h3>                                
                                 </div>
                             </div>
                             <div class="panel-content">
-                                <form method="POST" action="<?php echo site_url('rap/submit_agregat');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
+                                <form method="POST" action="<?php echo site_url('rap/submit_rap');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
 										<div class="col-sm-2">
-                                            <label>Judul</label>
+                                            <label>Jenis Pekerjaan</label>
                                         </div>
 										<div class="col-sm-6">
                                             <input type="text" class="form-control" name="jobs_type" required="" />
@@ -50,16 +50,16 @@
                                             <label>Tanggal</label>
                                         </div>
 										<div class="col-sm-6">
-                                            <input type="text" class="form-control dtpicker" name="date_agregat" required="" value=""/>
+                                            <input type="text" class="form-control dtpicker" name="tanggal_rap" required="" value=""/>
                                         </div>
-										<!--<br />
 										<br />
-										<div class="col-sm-2">
+										<br />
+										<!--<div class="col-sm-2">
                                             <label>Volume</label>
                                         </div>
 										<div class="col-sm-2">
 										<input type="text" id="volume" name="volume" class="form-control numberformat text-left" required="">
-                                        </div>-->
+                                        </div>
 										<br />
 										<br />
 										<div class="col-sm-2">
@@ -78,7 +78,7 @@
 												}
 												?>
 											</select>
-                                        </div>            
+                                        </div>-->            
                                     </div>
 									<br />
 										<div class="table-responsive">
@@ -87,8 +87,8 @@
 													<tr class="text-center">
 														<th width="5%">NO.</th>
 														<th width="15%">KEBUTUHAN BAHAN</th>
-														<th width="10%">VOLUME</th>
-														<th width="40%">PENAWARAN</th>
+														<th width="30%">PENAWARAN</th>
+														<th width="20%">PERKIRAAN KUANTITAS (M3)</th>
 														<th width="30%">HARGA SATUAN</th>                                 
 													</tr>
 												</thead>
@@ -96,7 +96,6 @@
 													<tr>
 														<td class="text-center">1.</td>
 														<td>Boulder</td>
-														<td></td>
 														<td class="text-center"><select id="penawaran_boulder" class="form-control">
 															<option value="">Pilih Penawaran</option>
 															<?php
@@ -108,6 +107,9 @@
 															}
 															?>
 														</select>
+														</td>
+														<td>
+															<input type="text" id="vol_boulder" name="vol_boulder" class="form-control numberformat text-right" value="" autocomplete="off">
 														</td>
 														<td>
 															<input type="text" id="price_boulder" name="price_boulder" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
@@ -127,41 +129,137 @@
 												<thead>
 													<tr class="text-center">
 														<th width="5%">NO.</th>
-														<th width="15%">KEBUTUHAN ALAT</th>
-														<th width="10%">VOLUME</th>
-														<th width="40%">PENAWARAN</th>
-														<th width="30%">HARGA SATUAN</th>                                 
+														<th width="45%">URAIAN</th>
+														<th width="50%">NILAI</th>                                 
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="text-center" rowspan="3" style="vertical-align:middle;">1.</td>
+														<td style="text-align: left !important;">Kapasitas Alat (Pemecah Batu) - Stone Crusher</td>
+														<td colspan="2">
+															<input type="text" id="kapasitas_alat_sc" name="kapasitas_alat_sc" class="form-control numberformat text-right" value=""  autocomplete="off">
+														</td>
+													</tr>
+													<tr>
+														<td style="text-align: left !important;">Faktor Efisiensi Alat (Pemecah Batu) - Stone Crusher</td>
+														<td colspan="2">
+															<input type="text" id="efisiensi_alat_sc" name="efisiensi_alat_sc" class="form-control numberformat text-right" value=""  autocomplete="off">
+														</td>
+													</tr>
+													<tr>
+														<td style="text-align: left !important;">Berat Isi -Batu Pecah</td>
+														<td colspan="2">
+															<input type="text" id="berat_isi_batu_pecah" name="berat_isi_batu_pecah" class="form-control numberformat text-right" value=""  autocomplete="off">
+														</td>
+													</tr>
+													
+													<tr>
+														<td class="text-center" rowspan="3" style="vertical-align:middle;">2.</td>
+														<td style="text-align: left !important;">Kapasitas Alat - Wheel Loader</td>
+														<td colspan="2">
+															<input type="text" id="kapasitas_alat_wl" name="kapasitas_alat_wl" class="form-control numberformat text-right" value=""  autocomplete="off">
+														</td>
+													</tr>
+													<tr>
+														<td style="text-align: left !important;">Faktor Efisiensi Alat - Wheel Loader</td>
+														<td colspan="2">
+															<input type="text" id="efisiensi_alat_wl" name="efisiensi_alat_wl" class="form-control numberformat text-right" value=""  autocomplete="off">
+														</td>
+													</tr>
+													<tr>
+														<td style="text-align: left !important;">Waktu Siklus (Muat, Tuang, Tunggu, dll)</td>
+														<td colspan="2">
+															<input type="text" id="waktu_siklus" name="waktu_siklus" class="form-control numberformat text-right" value=""  autocomplete="off">
+														</td>
+													</tr>
+												</tbody>
+											</table>    
+										</div>
+
+										<div class="table-responsive">
+											<table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+												<thead>
+													<tr class="text-center">
+														<th width="5%">NO.</th>
+														<th width="45%">URAIAN</th>
+														<th width="50%">NILAI</th>                                 
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<td class="text-center">1.</td>
-														<td>Boulder</td>
-														<td></td>
-														<td class="text-center"><select id="penawaran_boulder" class="form-control">
-															<option value="">Pilih Penawaran</option>
-															<?php
-
-															foreach ($boulder as $key => $sm) {
-																?>
-																<option value="<?php echo $sm['penawaran_id'];?>" data-supplier_id="<?php echo $sm['supplier_id'];?>" data-measure="<?php echo $sm['measure'];?>" data-price="<?php echo $sm['price'];?>" data-tax_id="<?php echo $sm['tax_id'];?>" data-tax="<?php echo $sm['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $sm['penawaran_id'];?>" data-id_penawaran="<?php echo $sm['id_penawaran'];?>"><?php echo $sm['nama'];?> - <?php echo $sm['nomor_penawaran'];?></option>
-																<?php
-															}
-															?>
-														</select>
-														</td>
-														<td>
-															<input type="text" id="price_boulder" name="price_boulder" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
-															<input type="hidden" id="measure_boulder" name="measure_boulder" class="form-control text-right" value=""  readonly="" autocomplete="off">
-															<input type="hidden" id="tax_id_boulder" name="tax_id_boulder" class="form-control text-right" value=""  readonly="" autocomplete="off">
-															<input type="hidden" id="pajak_id_boulder" name="pajak_id_boulder" class="form-control text-right" value=""  readonly="" autocomplete="off">
-															<input type="hidden" id="supplier_id_boulder" name="supplier_id_boulder" class="form-control text-right" value=""  readonly="" autocomplete="off">
-															<input type="hidden" id="penawaran_id_boulder" name="penawaran_id_boulder" class="form-control text-right" value=""  readonly="" autocomplete="off">
+														<td style="text-align: left !important;">Overhead</td>
+														<td colspan="2">
+															<input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value=""  autocomplete="off">
 														</td>
 													</tr>		
 												</tbody>
 											</table>    
 										</div>
+
+										<div class="table-responsive">
+											<table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+												<thead>
+													<tr class="text-center">
+														<th width="5%">NO.</th>
+														<th width="50%">KEBUTUHAN BAHAN</th>
+														<th width="45%">HARGA SATUAN (Rp.)</th>                           
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="text-center">1.</td>
+														<td style="text-align: left !important;">Tangki Solar</td>
+														</td>
+														<td>
+															<input type="text" id="price_tangki" name="price_tangki" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+														</td>
+														<td>
+													</tr>
+
+													<tr>
+														<td class="text-center">2.</td>
+														<td style="text-align: left !important;">Stone Crusher</td>
+														</td>
+														<td>
+															<input type="text" id="price_sc" name="price_sc" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+														</td>
+														<td>
+													</tr>
+
+													<tr>
+														<td class="text-center">3.</td>
+														<td style="text-align: left !important;">Genset</td>
+														</td>
+														<td>
+															<input type="text" id="price_gns" name="price_gns" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+														</td>
+													</tr>
+													
+													<tr>
+														<td class="text-center">4.</td>
+														<td style="text-align: left !important;">Wheel Loader</td>
+														</td>
+														<td>
+															<input type="text" id="price_wl" name="price_wl" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+														</td>
+														<td>
+													</tr>
+
+													<tr>
+														<td class="text-center">5.</td>
+														<td style="text-align: left !important;">Timbangan</td>
+														</td>
+														<td>
+															<input type="text" id="price_timbangan" name="price_timbangan" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+														</td>
+													</tr>
+
+												</tbody>
+											</table>    
+										</div>
+
 											<br />
 											<div class="col-sm-12">
 													<div class="form-group">
@@ -261,85 +359,24 @@
             });
             
         });
-	
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_a').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_b').prop('selectedIndex', 2).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_c').prop('selectedIndex', 3).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_d').prop('selectedIndex', 4).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#measure_a').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#measure_b').prop('selectedIndex', 4).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#measure_c').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#measure_d').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
 
-		function changeData(id)
-        {
-			var presentase_a = $('#presentase_a').val();
-			var presentase_b = $('#presentase_b').val();
-			var presentase_c = $('#presentase_c').val();
-			var presentase_d = $('#presentase_d').val();
+		$('#penawaran_boulder').change(function(){
+			var penawaran_id = $(this).find(':selected').data('penawaran_id');
+			$('#penawaran_boulder').val(penawaran_id);
+			var price = $(this).find(':selected').data('price');
+			$('#price_boulder').val(price);
+			var supplier_id = $(this).find(':selected').data('supplier_id');
+			$('#supplier_id_boulder').val(supplier_id);
+			var measure = $(this).find(':selected').data('measure');
+			$('#measure_boulder').val(measure);
+			var tax_id = $(this).find(':selected').data('tax_id');
+			$('#tax_id_boulder').val(tax_id);
+			var pajak_id = $(this).find(':selected').data('pajak_id');
+			$('#pajak_id_boulder').val(pajak_id);
+			var id_penawaran = $(this).find(':selected').data('id_penawaran');
+			$('#penawaran_id_boulder').val(penawaran_id);
+		});
 
-			var price_a = $('#price_a').val();
-			var price_b = $('#price_b').val();
-			var price_c = $('#price_c').val();
-			var price_d = $('#price_d').val();
-            				
-			total_a = ( presentase_a * price_a );
-			$('#total_a').val(total_a);
-			total_b = ( presentase_b * price_b );
-			$('#total_b').val(total_b);
-			total_c = ( presentase_c * price_c );
-			$('#total_c').val(total_c);
-			total_d = ( presentase_d * price_d );
-			$('#total_d').val(total_d);
-			getTotal();
-        }
-
-		function getTotal()
-        {
-            var sub_total = $('#sub-total-val').val();
-
-            sub_total = parseInt($('#total_a').val()) + parseInt($('#total_b').val()) + parseInt($('#total_c').val()) + parseInt($('#total_d').val());
-            
-            $('#sub-total-val').val(sub_total);
-            $('#sub-total').text($.number( sub_total, 0,',','.' ));
-
-            total_total = parseInt(sub_total);
-            $('#total-val').val(total_total);
-            $('#total').text($.number( total_total, total_d,',','.' ));
-        }
-		
     </script>
 
 
