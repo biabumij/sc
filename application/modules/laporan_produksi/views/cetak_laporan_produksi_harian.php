@@ -203,7 +203,7 @@
 							</td>
 						</tr>
 						<?php
-							$create = $this->db->select('id, unit_head, logistik, admin')
+							$create = $this->db->select('*')
 							->from('akumulasi')
 							->where("(date_akumulasi between '$start_date' and '$end_date')")
 							->order_by('id','desc')->limit(1)
@@ -213,16 +213,26 @@
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['unit_head']);
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['logistik']);
+							$logistik = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['admin']);
+							$admin = $this->db->get('tbl_admin a')->row_array();
 						?>
 						<tr class="">
 							<td align="center" height="70px">
 								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_vicky.png" width="70px">
+								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_vicky.png" width="70px">
+								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>
@@ -234,9 +244,9 @@
 								<b><u>Vicky Irwana Yudha</u><br />
 								Ka. Produksi</b>
 							</td>
-							<td align="center" >
+							<td align="center">
 								<b><u>Vicky Irwana Yudha</u><br />
-								Produksi</b>
+								Admin Produksi</b>
 							</td>
 						</tr>
 					</table>
