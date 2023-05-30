@@ -179,7 +179,7 @@
 							</td>
 						</tr>
 						<?php
-							$create = $this->db->select('id, unit_head, logistik, admin')
+							$create = $this->db->select('*')
 							->from('akumulasi')
 							->where("(date_akumulasi <= '$end_date')")
 							->order_by('id','desc')->limit(1)
@@ -189,22 +189,32 @@
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['unit_head']);
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['keu_1']);
+							$keu_1 = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['keu_2']);
+							$keu_2 = $this->db->get('tbl_admin a')->row_array();
 						?>
 						<tr class="">
 							<td align="center" height="70px">
 								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_rifka.png" width="70px">
+								<img src="<?= $keu_1['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_dian.png" width="70px">
+								<img src="<?= $keu_2['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								<?= $unit_head['admin_group_name']?></b>
+							<td align="center">
+								<b><u>Hadi Sucipto</u><br />
+								Kepala Unit Bisnis</b>
 							</td>
 							<td align="center">
 							<b><u>Rifka Dian B.</u><br />
