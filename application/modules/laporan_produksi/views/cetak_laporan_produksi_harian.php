@@ -246,7 +246,7 @@
 							</td>
 							<td align="center">
 								<b><u>Vicky Irwana Yudha</u><br />
-								Admin Produksi</b>
+								Produksi</b>
 							</td>
 						</tr>
 					</table>
