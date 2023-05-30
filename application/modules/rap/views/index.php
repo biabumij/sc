@@ -65,8 +65,9 @@
                                                     <tr>
                                                         <th width="5%" class="text-center">No</th>
 														<th class="text-center">Tanggal</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
                                                         <th width="5%" class="text-center">Cetak</th>
-														
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -143,10 +144,16 @@
                 },
                 {
                     "data": "print"
-                }
+                },
+                {
+					"data": "updated_by"
+				},
+				{
+					"data": "updated_on"
+				}
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2],
+                    "targets": [0, 1, 2, 3, 4],
                     "className": 'text-center',
                 }
             ],
