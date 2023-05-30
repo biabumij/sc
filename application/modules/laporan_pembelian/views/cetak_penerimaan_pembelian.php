@@ -239,7 +239,7 @@
 							</td>
 							<td align="center">
 								<b><u>Vicky Irwana Yudha</u><br />
-								Ka. Logistik</b>
+								Admin Logistik</b>
 							</td>
 						</tr>
 					</table>
