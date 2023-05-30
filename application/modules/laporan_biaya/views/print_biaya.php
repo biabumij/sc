@@ -211,7 +211,7 @@
 						<?php
 							$create = $this->db->select('id, unit_head, logistik, admin')
 							->from('akumulasi')
-							->where("(date_akumulasi <= '$end_date')")
+							->where("(date_akumulasi = '$end_date')")
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
 
@@ -232,9 +232,9 @@
 							</td>
 						</tr>
 						<tr>
-							<td align="center" >
-								<b><u><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$create['unit_head']),'admin_name');?></u><br />
-								<?= $unit_head['admin_group_name']?></b>
+							<td align="center">
+								<b><u>Hadi Sucipto</u><br />
+								Kepala Unit Bisnis</b>
 							</td>
 							<td align="center">
 							<b><u>Rifka Dian B.</u><br />
