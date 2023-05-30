@@ -143,10 +143,10 @@
                     "data": "tanggal_rap"
                 },
                 {
-					"data": "updated_by"
+					"data": "created_by"
 				},
 				{
-					"data": "updated_on"
+					"data": "created_on"
 				},
                 {
                     "data": "print"
