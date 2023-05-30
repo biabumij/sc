@@ -238,7 +238,7 @@
 								<img src="<?= $keu_1['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $keu_2['admin_ttd']?>" width="70px">
+								<img src="uploads/ttd_dian.png" width="70px">
 							</td>
 						</tr>
 						<tr>
