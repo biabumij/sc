@@ -1103,7 +1103,10 @@ class Pembelian extends Secure_Controller
         $nama = $this->input->post('nama');
         $products = $this->db->order_by('nama_produk', 'asc')->select('*')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
         $taxs = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
-        $taxs_2 = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH', 'id' => '5'))->result_array();
+        $taxs_2 = $this->db->select('id,tax_name')
+        ->from('pmm_taxs')
+        ->where("id in ('4','5')")
+        ->get()->result_array();
 		$measures= $this->db->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 	?>
         <tr>
