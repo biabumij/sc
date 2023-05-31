@@ -232,7 +232,7 @@ class Biaya extends CI_Controller {
             # Committing data to the database.
             $this->db->trans_commit();
              $this->session->set_flashdata('notif_success','Berhasil membuat Biaya !!');
-            redirect('admin/biaya');
+            redirect('admin/biaya_umum_&_adm.');
         }
 
     }
@@ -308,15 +308,15 @@ class Biaya extends CI_Controller {
             if ($this->db->trans_status() === FALSE) {
                 # Something went wrong.
                 $this->db->trans_rollback();
-                $this->session->set_flashdata('notif_error','Gagal hapus jurnal !!');
+                $this->session->set_flashdata('notif_error','Gagal hapus Biaya !!');
                 redirect('pmm/biaya/detail_biaya/'.$id);
             } 
             else {
                 # Everything is Perfect. 
                 # Committing data to the database.
                 $this->db->trans_commit();
-                $this->session->set_flashdata('notif_success','Berhasil hapus jurnal !!');
-                redirect('admin/biaya');
+                $this->session->set_flashdata('notif_success','Berhasil hapus Biaya !!');
+                redirect('admin/biaya_umum_&_adm.');
             }
         }
     }
@@ -632,7 +632,7 @@ class Biaya extends CI_Controller {
 		$this->db->where("id", $id);
 		$this->db->update("pmm_biaya");
 		$this->session->set_flashdata('notif_success', 'Berhasil menyetujui Biaya');
-		redirect("admin/biaya");
+		redirect("admin/biaya_umum_&_adm.");
 	}
 	
 	public function rejectedBiaya($id)
@@ -641,7 +641,7 @@ class Biaya extends CI_Controller {
 		$this->db->where("id", $id);
 		$this->db->update("pmm_biaya");
 		$this->session->set_flashdata('notif_success', 'Berhasil Menolak Biaya');
-		redirect("admin/biaya");
+		redirect("admin/biaya_umum_&_adm.");
 	}
 
 	public function form($id)
