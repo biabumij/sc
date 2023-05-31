@@ -10133,7 +10133,7 @@ class Reports extends CI_Controller {
 	        </tr>
 			<tr class="table-active3">
 	            <th class="text-center"></th>
-				<th class="text-left" colspan="2"><a target="_blank" href="<?= base_url("laporan/pergerakan_bahan_jadi_penyesuaian_print?filter_date=".$filter_date) ?>">Beban Pokok Penjualan</a></th>
+				<th class="text-left" colspan="2">Beban Pokok Penjualan</th>
 				<th class="text-right">
 					<table width="100%" border="0" cellpadding="0">
 						<tr>
