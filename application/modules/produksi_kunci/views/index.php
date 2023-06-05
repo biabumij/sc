@@ -221,21 +221,33 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     
     <script type="text/javascript">
-	$('#dtpickerange').daterangepicker({
-        autoUpdateInput: false,
-        locale: {
-            format: 'DD-MM-YYYY'
-        },
-        ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        showDropdowns: true,
-		});
+	$('input.numberformat').number( true, 2,',','.' );
+        $('.dtpicker').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        });
+        $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('.dtpickerange').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            showDropdowns: true,
+        });
 
         var table_hpp_bahan_baku = $('#table_hpp_bahan_baku').DataTable({
             ajax: {
@@ -285,12 +297,11 @@
                 }
             ],
         });
-		
-		
-		$('#filter_date_hpp_bahan_baku').on('apply.daterangepicker', function(ev, picker) {
+
+        $('.dtpickerange').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_hpp_bahan_baku.ajax.reload();
-		});
+        });
 
         function DeleteDataHppBahanBaku(id) {
         bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
@@ -374,11 +385,11 @@
                 }
             ],
         });
-		
-		$('#filter_date_hpp').on('apply.daterangepicker', function(ev, picker) {
+
+        $('.dtpickerange').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_hpp.ajax.reload();
-		});
+        });
 
         function DeleteDataHpp(id) {
         bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
@@ -459,12 +470,11 @@
                 }
             ],
         });
-		
-		
-		$('#filter_date_akumulasi_bahan_baku').on('apply.daterangepicker', function(ev, picker) {
+	
+        $('.dtpickerange').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_akumulasi_bahan_baku.ajax.reload();
-		});
+        });
 
         function DeleteDataAkumulasiBahanBaku(id) {
         bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
@@ -545,11 +555,11 @@
                 }
             ],
         });
-		
-		$('#filter_date_akumulasi').on('apply.daterangepicker', function(ev, picker) {
+
+        $('.dtpickerange').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_akumulasi.ajax.reload();
-		});
+        });
 
         function DeleteDataAkumulasi(id) {
         bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
