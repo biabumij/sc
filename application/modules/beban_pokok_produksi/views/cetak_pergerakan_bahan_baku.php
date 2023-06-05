@@ -400,7 +400,7 @@
 						</td>
 						<td align="center">
 							<b><br />
-							Ka. Produksi</b>
+							Pj. Produksi dan HSE</b>
 						</td>
 						<td align="center" >
 							<b><u>Vicky Irwana Yudha</u><br />
