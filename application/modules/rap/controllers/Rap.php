@@ -69,6 +69,8 @@ class Rap extends Secure_Controller {
 		$measure_boulder = $this->input->post('measure_boulder');
 		$tax_id_boulder = $this->input->post('tax_id_boulder');
 		$pajak_id_boulder = $this->input->post('pajak_id_boulder');
+		$berat_isi_boulder =  str_replace('.', '', $this->input->post('berat_isi_boulder'));
+		$berat_isi_boulder =  str_replace(',', '.', $berat_isi_boulder);
 		$overhead = str_replace('.', '', $this->input->post('overhead'));
 
 		$kapasitas_alat_sc =  str_replace('.', '', $this->input->post('kapasitas_alat_sc'));
@@ -84,12 +86,6 @@ class Rap extends Secure_Controller {
 		$efisiensi_alat_wl =  str_replace(',', '.', $efisiensi_alat_wl);
 		$waktu_siklus =  str_replace('.', '', $this->input->post('waktu_siklus'));
 		$waktu_siklus =  str_replace(',', '.', $waktu_siklus);
-
-		$price_tangki = str_replace('.', '', $this->input->post('price_tangki'));
-		$price_sc = str_replace('.', '', $this->input->post('price_sc'));
-		$price_gns = str_replace('.', '', $this->input->post('price_gns'));
-		$price_wl = str_replace('.', '', $this->input->post('price_wl'));
-		$price_timbangan = str_replace('.', '', $this->input->post('price_timbangan'));
 
 		$memo = $this->input->post('memo');
 		$attach = $this->input->post('files[]');
@@ -110,6 +106,7 @@ class Rap extends Secure_Controller {
 			'measure_boulder' => $measure_boulder,
 			'tax_id_boulder' => $tax_id_boulder,
 			'pajak_id_boulder' => $pajak_id_boulder,
+			'berat_isi_boulder' => $berat_isi_boulder,
 			'overhead' => $overhead,
 
 			'kapasitas_alat_sc' => $kapasitas_alat_sc,
@@ -119,12 +116,6 @@ class Rap extends Secure_Controller {
 			'kapasitas_alat_wl' => $kapasitas_alat_wl,
 			'efisiensi_alat_wl' => $efisiensi_alat_wl,
 			'waktu_siklus' => $waktu_siklus,
-
-			'price_tangki' => $price_tangki,
-			'price_sc' => $price_sc,
-			'price_gns' => $price_gns,
-			'price_wl' => $price_wl,
-			'price_timbangan' => $price_timbangan,
 			
 			'status' => 'PUBLISH',
 			'memo' => $memo,
@@ -214,6 +205,152 @@ class Rap extends Secure_Controller {
         $pdf->SetTitle($row['jobs_type']);
         $pdf->nsi_html($html);
         $pdf->Output($row['jobs_type'].'.pdf', 'I');
+	}
+
+	public function form_penyusutan()
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+			$data['products'] = $this->db->select('*')->order_by('nama_produk','asc')->get_where('produk', array('status' => 'PUBLISH', 'peralatan' => 1))->result_array();
+			$this->load->view('rap/form_penyusutan', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+	public function submit_penyusutan()
+	{
+		$tanggal_penyusutan = $this->input->post('tanggal_penyusutan');
+		$produk = $this->input->post('produk');
+		$nilai_penyusutan = str_replace('.', '', $this->input->post('nilai_penyusutan'));
+		$memo = $this->input->post('memo');
+		$attach = $this->input->post('files[]');
+
+		$this->db->trans_start(); # Starting Transaction
+		$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
+
+		$arr_insert = array(
+			'tanggal_penyusutan' => date('Y-m-d', strtotime($tanggal_penyusutan)),	
+			'produk' => $produk,
+			'nilai_penyusutan' => $nilai_penyusutan,
+			'status' => 'PUBLISH',
+			'memo' => $memo,
+			'attach' => $attach,
+			'status' => 'PUBLISH',
+			'created_by' => $this->session->userdata('admin_id'),
+			'created_on' => date('Y-m-d H:i:s')
+		);
+
+		if ($this->db->insert('penyusutan', $arr_insert)) {
+			$penyusutan_id = $this->db->insert_id();
+
+			if (!file_exists('uploads/penyusutan')) {
+			    mkdir('uploads/penyusutan', 0777, true);
+			}
+
+			$data = [];
+			$count = count($_FILES['files']['name']);
+			for ($i = 0; $i < $count; $i++) {
+
+				if (!empty($_FILES['files']['name'][$i])) {
+
+					$_FILES['file']['name'] = $_FILES['files']['name'][$i];
+					$_FILES['file']['type'] = $_FILES['files']['type'][$i];
+					$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+					$_FILES['file']['error'] = $_FILES['files']['error'][$i];
+					$_FILES['file']['size'] = $_FILES['files']['size'][$i];
+
+					$config['upload_path'] = 'uploads/penyusutan';
+					$config['allowed_types'] = 'jpg|jpeg|png|pdf';
+					$config['file_name'] = $_FILES['files']['name'][$i];
+
+					$this->load->library('upload', $config);
+
+					if ($this->upload->do_upload('file')) {
+						$uploadData = $this->upload->data();
+						$filename = $uploadData['file_name'];
+
+						$data['totalFiles'][] = $filename;
+
+
+						$data[$i] = array(
+							'penyusutan_id' => $penyusutan_id,
+							'lampiran'  => $data['totalFiles'][$i]
+						);
+
+						$this->db->insert('lampiran_penyusutan', $data[$i]);
+						
+					} 
+				}
+			}
+		}
+
+
+		if ($this->db->trans_status() === FALSE) {
+			# Something went wrong.
+			$this->db->trans_rollback();
+			$this->session->set_flashdata('notif_error', 'Gagal Membuat Input Penyusutan !!');
+			redirect('rap/rap');
+		} else {
+			# Everything is Perfect. 
+			# Committing data to the database.
+			$this->db->trans_commit();
+			$this->session->set_flashdata('notif_success', 'Berhasil Input Penyusutan !!');
+			redirect('admin/rap');
+		}
+	}
+
+	public function table_penyusutan()
+	{   
+        $data = array();
+		$filter_date = $this->input->post('filter_date');
+		if(!empty($filter_date)){
+			$arr_date = explode(' - ', $filter_date);
+			$this->db->where('r.tanggal_penyusutan >=',date('Y-m-d',strtotime($arr_date[0])));
+			$this->db->where('r.tanggal_penyusutan <=',date('Y-m-d',strtotime($arr_date[1])));
+		}
+        $this->db->select('r.*');
+		$this->db->order_by('r.tanggal_penyusutan','desc');	
+		$query = $this->db->get('penyusutan r');
+		
+       if($query->num_rows() > 0){
+			foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['tanggal_penyusutan'] = date('d F Y',strtotime($row['tanggal_penyusutan']));
+				$row['produk'] = $this->crud_global->GetField('produk',array('id'=>$row['produk']),'nama_produk');
+				$row['nilai_penyusutan'] = number_format($row['nilai_penyusutan'],0,',','.');
+				$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$row['print'] = '<a href="'.site_url().'rap/cetak_penyusutan/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+			
+				$data[] = $row;
+            }
+
+        }
+        echo json_encode(array('data'=>$data));
+    }
+
+	public function cetak_penyusutan($id){
+
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$data['row'] = $this->db->get_where('penyusutan',array('id'=>$id))->row_array();
+        $html = $this->load->view('rap/cetak_penyusutan',$data,TRUE);
+        $row = $this->db->get_where('penyusutan',array('id'=>$id))->row_array();
+
+
+        
+        $pdf->SetTitle('Penyusutan');
+        $pdf->nsi_html($html);
+        $pdf->Output('penyusutan'.'.pdf', 'I');
 	}
 
 }

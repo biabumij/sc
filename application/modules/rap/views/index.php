@@ -41,6 +41,7 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= site_url('rap/form_rap'); ?>">Analisa Harga Satuan</a></li>
+                                            <li><a href="<?= site_url('rap/form_penyusutan'); ?>">Penyusutan</a></li>
                                         </ul>
                                     </div>
                                 </h3>
@@ -49,12 +50,12 @@
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#rap" aria-controls="rap" role="tab" data-toggle="tab">Analisa Harga Satuan</a></li>
+                                    <li role="presentation"><a href="#penyusutan" aria-controls="penyusutan" role="tab" data-toggle="tab">Penyusutan</a></li>
                                 </ul>
 
                                 <div class="tab-content">
-									
-                                <div role="tabpanel" class="tab-pane active" id="rap">
-										<div class="col-sm-4">
+                                    <div role="tabpanel" class="tab-pane active" id="rap">
+                                        <div class="col-sm-4">
 											<input type="text" id="filter_date_rap" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
 										</div>
 										<br />
@@ -79,8 +80,42 @@
                                             </table>
                                         </div>
 									</div>
-									
-										           
+                                    
+                                    <div role="tabpanel" class="tab-pane" id="penyusutan">
+                                        <form action="<?php echo site_url('laporan/cetak_penyusutan_rekap');?>" method="GET" target="_blank">
+                                            <div class="col-sm-4">
+                                                <input type="text" id="filter_date_penyusutan" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="text-left">
+                                                    <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <br />
+                                        </form>   								
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="table_penyusutan" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="5%" class="text-center">No</th>
+														<th class="text-center">Tanggal</th>
+                                                        <th class="text-center">Produk</th>
+                                                        <th class="text-center">Nilai Penyusutan</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                        <th width="5%" class="text-center">Cetak</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                                <tfoot>
+                                                    
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,21 +138,33 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     
     <script type="text/javascript">
-	$('#dtpickerange').daterangepicker({
-        autoUpdateInput: false,
-        locale: {
-            format: 'DD-MM-YYYY'
-        },
-        ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        showDropdowns: true,
-		});
+	$('input.numberformat').number( true, 2,',','.' );
+        $('.dtpicker').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        });
+        $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('.dtpickerange').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            showDropdowns: true,
+        });
 		
 		var table_rap = $('#table_rap').DataTable({
             ajax: {
@@ -158,11 +205,66 @@
                 }
             ],
         });
-		
-		$('#filter_date_rap').on('apply.daterangepicker', function(ev, picker) {
+
+        $('.dtpickerange').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_rap.ajax.reload();
-		});
+        });
+
+        var table_penyusutan = $('#table_penyusutan').DataTable({
+            ajax: {
+                processing: true,
+                serverSide: true,
+                url: '<?php echo site_url('rap/table_penyusutan'); ?>',
+                type: 'POST',
+                data: function(d) {
+                    d.filter_date = $('#filter_date_penyusutan').val();
+                }
+            },
+            responsive: true,
+            paging : false,
+            "deferRender": true,
+            "language": {
+                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+            },
+            columns: [
+				{
+                    "data": "no"
+                },
+				{
+                    "data": "tanggal_penyusutan"
+                },
+                {
+                    "data": "produk"
+                },
+                {
+                    "data": "nilai_penyusutan"
+                },
+                {
+					"data": "created_by"
+				},
+				{
+					"data": "created_on"
+				},
+                {
+                    "data": "print"
+                },
+            ],
+            "columnDefs": [{
+                    "targets": [0, 1, 4, 5, 6],
+                    "className": 'text-center',
+                },
+                {
+                    "targets": [3],
+                    "className": 'text-center',
+                }
+            ],
+        });
+
+        $('.dtpickerange').on('apply.daterangepicker', function(ev, picker) {
+        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+        table_penyusutan.ajax.reload();
+        });
 	
     </script>
 

@@ -85,42 +85,131 @@
 				<th align="center" rowspan="2" width="5%">&nbsp; <br />NO.</th>
 				<th align="center" rowspan="2"  width="20%">&nbsp; <br />KOMPONEN</th>
 				<th align="center" rowspan="2"  width="15%">&nbsp; <br />SATUAN</th>
-				<th align="center" width="20%">PERKIRAAN KUANTITAS</th>
-				<th align="center" rowspan="2"  width="20%">&nbsp; <br />HARGA SATUAN<br />(Rp.)</th>
-				<th align="center" width="20%">JUMLAH HARGA</th>
+				<th align="center" width="20%" colspan="2">PERKIRAAN KUANTITAS</th>
+				<th align="center" width="20%" rowspan="2">&nbsp; <br />HARGA SATUAN <br />(Rp.)</th>
+				<th align="center" width="20%" colspan="2">JUMLAH HARGA</th>
             </tr>
 			<tr class="table-active">
 				<th align="center">(M3)</th>
+				<th align="center">(Ton)</th>
 				<th align="center">(M3)</th>
+				<th align="center">(Ton)</th>
             </tr>
 			<?php
-			$vol_boulder = round($row['vol_boulder'],4);
-			$nilai_boulder = $vol_boulder * $row['price_boulder'];
+			$penyusutan_tangki = $this->db->select('r.*, p.nama_produk')
+			->from('penyusutan r')
+			->join('produk p','r.produk = p.id','left')
+			->where("r.status = 'PUBLISH'")
+			->where("r.produk = '23'")
+			->order_by('p.nama_produk','asc')
+			->group_by("p.nama_produk")->limit(1)
+			->get()->row_array();
+			$penyusutan_tangki = (($penyusutan_tangki['nilai_penyusutan'] / 48) / 25) / 7;
 
-			$sc_a = round($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'],4);
-			$sc_b = $sc_a / round($row['berat_isi_batu_pecah'],4);
-			$vol_sc = round(1 / $sc_b,4);
+			$penyusutan_sc = $this->db->select('r.*, p.nama_produk')
+			->from('penyusutan r')
+			->join('produk p','r.produk = p.id','left')
+			->where("r.status = 'PUBLISH'")
+			->where("r.produk = '16'")
+			->order_by('p.nama_produk','asc')
+			->group_by("p.nama_produk")->limit(1)
+			->get()->row_array();
+			$penyusutan_sc = (($penyusutan_sc['nilai_penyusutan'] / 48) / 25) / 7;
+
+			$penyusutan_gns = $this->db->select('r.*, p.nama_produk')
+			->from('penyusutan r')
+			->join('produk p','r.produk = p.id','left')
+			->where("r.status = 'PUBLISH'")
+			->where("r.produk = '19'")
+			->order_by('p.nama_produk','asc')
+			->group_by("p.nama_produk")->limit(1)
+			->get()->row_array();
+			$penyusutan_gns = (($penyusutan_gns['nilai_penyusutan'] / 48) / 25) / 7;
+
+			$penyusutan_wl = $this->db->select('r.*, p.nama_produk')
+			->from('penyusutan r')
+			->join('produk p','r.produk = p.id','left')
+			->where("r.status = 'PUBLISH'")
+			->where("r.produk = '17'")
+			->order_by('p.nama_produk','asc')
+			->group_by("p.nama_produk")->limit(1)
+			->get()->row_array();
+			$penyusutan_wl = (($penyusutan_wl['nilai_penyusutan'] / 48) / 25) / 7;
+
+			$penyusutan_timbangan = $this->db->select('r.*, p.nama_produk')
+			->from('penyusutan r')
+			->join('produk p','r.produk = p.id','left')
+			->where("r.status = 'PUBLISH'")
+			->where("r.produk = '39'")
+			->order_by('p.nama_produk','asc')
+			->group_by("p.nama_produk")->limit(1)
+			->get()->row_array();
+			$penyusutan_timbangan = (($penyusutan_timbangan['nilai_penyusutan'] / 48) / 25) / 7;
+			
+
+			//M3
+			$berat_isi_boulder = 1/$row['berat_isi_boulder'];
+			$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
+			$nilai_boulder = $harsat_boulder * $row['vol_boulder'];
+			//Ton
+			$vol_boulder = $row['vol_boulder'];
+			$nilai_boulder_ton = $vol_boulder * $row['price_boulder'];
+			
+			//M3
+			$sc_a = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
+			$sc_b = $sc_a / $row['berat_isi_batu_pecah'];
+			$vol_sc = 1 / $sc_b;
 			$nilai_sc = $vol_sc * $row['price_sc'];
-
+			//Ton
+			$vol_sc_ton = 1 / $sc_a;
+			$nilai_sc_ton = $vol_sc_ton * $row['price_sc'];
+			
+			//M3
 			$vol_tangki = $vol_sc;
 			$nilai_tangki = $vol_tangki * $row['price_tangki'];
-
+			//Ton
+			$vol_tangki_ton = $vol_sc_ton;
+			$nilai_tangki_ton = $vol_tangki_ton * $row['price_tangki'];
+			
+			//M3
 			$vol_gns = $vol_sc;
 			$nilai_gns = $vol_gns * $row['price_gns'];
+			//Ton
+			$vol_gns_ton = $vol_sc_ton;
+			$nilai_gns_ton = $vol_gns_ton * $row['price_gns'];
 
-			$wl_a = round($row['kapasitas_alat_wl'] * $row['efisiensi_alat_wl'],4);
-			$wl_b = (60 / round($row['waktu_siklus'],4)) * $wl_a;
-			$vol_wl = round(1 / $wl_b,4);
+			//M3
+			$wl_a = $row['kapasitas_alat_wl'] * $row['efisiensi_alat_wl'];
+			$wl_b = (60 / $row['waktu_siklus']) * $wl_a;
+			$vol_wl = 1 / $wl_b;
+			$nilai_wl = $vol_wl * $row['price_wl'];
+			//Ton
+			$vol_wl_ton_rumus = (($wl_a / $row['waktu_siklus']) * 60) * $row['berat_isi_batu_pecah'];
+			$vol_wl_ton = 1 / $vol_wl_ton_rumus;
+			$nilai_wl_ton = $vol_wl_ton * $row['price_wl'];
 
+			//M3
 			$vol_timbangan =  $vol_sc;
 			$nilai_timbangan = $vol_timbangan * $row['price_timbangan'];
+			//Ton
+			$vol_timbangan_ton = $vol_sc_ton;
+			$nilai_timbangan_ton = $vol_timbangan_ton * $row['price_timbangan'];
 
-			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $row['overhead'];
+			$rumus_overhead = ($row['overhead'] / 25) / 8;
+			$rumus_overhead_1 = ($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc']) / $row['berat_isi_batu_pecah'] ;
+			$overhead = $rumus_overhead / $rumus_overhead_1;
 
+			$rumus_overhead_ton = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
+			$overhead_ton = $rumus_overhead / $rumus_overhead_ton;
+
+
+			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $overhead;
+			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $overhead_ton;
 			?>
 			<tr class="table-active2">
 				<td align="center">A.</td>
 				<td align="left"><u>BAHAN</u></td>
+				<td align="center"></td>
 				<td align="center"></td>
 				<td align="center"></td>
 				<td align="center"></td>
@@ -130,17 +219,22 @@
 				<td align="center">1.</td>
 				<td align="left">Boulder</td>
 				<td align="center"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_boulder']),'measure_name');?></td>
+				<td align="center"><?php echo number_format($berat_isi_boulder,4,',','.');?></td>
 				<td align="center"><?php echo number_format($row['vol_boulder'],4,',','.');?></td>
 				<td align="right"><?php echo number_format($row['price_boulder'],0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_boulder,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_boulder_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active3">
-				<td align="right" colspan="5">JUMLAH HARGA BAHAN</td>
+				<td align="right" colspan="6">JUMLAH HARGA BAHAN</td>
 				<td align="right"><?php echo number_format($nilai_boulder,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_boulder_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active2">
 				<td align="center">B.</td>
 				<td align="left"><u>PERALATAN</u></td>
+				<td align="center"></td>
+				<td align="center"></td>
 				<td align="center"></td>
 				<td align="center"></td>
 				<td align="center"></td>
@@ -151,44 +245,55 @@
 				<td align="left">Tangki Solar</td>
 				<td align="center">Jam</td>
 				<td align="center"><?php echo number_format($vol_tangki,4,',','.');?></td>
-				<td align="right"><?php echo number_format($row['price_tangki'],0,',','.');?></td>
+				<td align="center"><?php echo number_format($vol_tangki_ton,4,',','.');?></td>
+				<td align="right"><?php echo number_format($penyusutan_tangki,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_tangki,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_tangki_ton,0,',','.');?></td>
 			</tr>
 			<tr>
 				<td align="center">2.</td>
 				<td align="left">Stone Crusher</td>
 				<td align="center">Jam</td>
 				<td align="center"><?php echo number_format($vol_sc,4,',','.');?></td>
-				<td align="right"><?php echo number_format($row['price_sc'],0,',','.');?></td>
+				<td align="center"><?php echo number_format($vol_sc_ton,4,',','.');?></td>
+				<td align="right"><?php echo number_format($penyusutan_sc,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_sc,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_sc_ton,0,',','.');?></td>
 			</tr>
 			<tr>
 				<td align="center">3.</td>
 				<td align="left">Genset</td>
 				<td align="center">Jam</td>
 				<td align="center"><?php echo number_format($vol_gns,4,',','.');?></td>
-				<td align="right"><?php echo number_format($row['price_gns'],0,',','.');?></td>
+				<td align="center"><?php echo number_format($vol_gns_ton,4,',','.');?></td>
+				<td align="right"><?php echo number_format($penyusutan_gns,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_gns,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_gns_ton,0,',','.');?></td>
 			</tr>
 			<tr>
 				<td align="center">4.</td>
 				<td align="left">Wheel Loader</td>
 				<td align="center">Jam</td>
 				<td align="center"><?php echo number_format($vol_wl,4,',','.');?></td>
-				<td align="right"><?php echo number_format($row['price_wl'],0,',','.');?></td>
+				<td align="center"><?php echo number_format($vol_wl_ton,4,',','.');?></td>
+				<td align="right"><?php echo number_format($penyusutan_wl,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_wl,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_wl_ton,0,',','.');?></td>
 			</tr>
 			<tr>
 				<td align="center">5.</td>
 				<td align="left">Timbangan</td>
 				<td align="center">Jam</td>
 				<td align="center"><?php echo number_format($vol_timbangan,4,',','.');?></td>
-				<td align="right"><?php echo number_format($row['price_timbangan'],0,',','.');?></td>
+				<td align="center"><?php echo number_format($vol_timbangan_ton,4,',','.');?></td>
+				<td align="right"><?php echo number_format($penyusutan_timbangan,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_timbangan,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_timbangan_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active3">
-				<td align="right" colspan="5">JUMLAH HARGA PERALATAN</td>
+				<td align="right" colspan="6">JUMLAH HARGA PERALATAN</td>
 				<td align="right"><?php echo number_format($nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active2">
 				<td align="center">C.</td>
@@ -196,27 +301,32 @@
 				<td align="center"></td>
 				<td align="center"></td>
 				<td align="right"></td>
-				<td align="right"><?php echo number_format($row['overhead'],0,',','.');?></td>
+				<td align="right"></td>
+				<td align="right"><?php echo number_format($overhead,0,',','.');?></td>
+				<td align="right"><?php echo number_format($overhead_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active3">
-				<td align="right" colspan="5">JUMLAH HARGA OVERHEAD</td>
-				<td align="right"><?php echo number_format($row['overhead'],0,',','.');?></td>
+				<td align="right" colspan="6">JUMLAH HARGA OVERHEAD</td>
+				<td align="right"><?php echo number_format($overhead,0,',','.');?></td>
+				<td align="right"><?php echo number_format($overhead_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active2">
-				<td align="center" colspan="6"></td>
+				<td align="center" colspan="8"></td>
 			</tr>
 			<tr class="table-active3">
 				<td align="right">D</td>
-				<td align="right" colspan="4">JUMLAH A+B+C</td>
+				<td align="right" colspan="5">JUMLAH A+B+C</td>
 				<td align="right"><?php echo number_format($total,0,',','.');?></td>
+				<td align="right"><?php echo number_format($total_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active2">
-				<td align="center" colspan="6"></td>
+				<td align="center" colspan="7"></td>
 			</tr>
 			<tr class="table-active">
 				<td align="right">E.</td>
-				<td align="right" colspan="4">HARGA SATUAN PEKERJAAN</td>
+				<td align="right" colspan="5">HARGA SATUAN PEKERJAAN</td>
 				<td align="right"><?php echo number_format($total,0,',','.');?></td>
+				<td align="right"><?php echo number_format($total_ton,0,',','.');?></td>
 			</tr>
 		</table>
 		

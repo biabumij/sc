@@ -53,32 +53,7 @@
                                             <input type="text" class="form-control dtpicker" name="tanggal_rap" required="" value=""/>
                                         </div>
 										<br />
-										<br />
-										<!--<div class="col-sm-2">
-                                            <label>Volume</label>
-                                        </div>
-										<div class="col-sm-2">
-										<input type="text" id="volume" name="volume" class="form-control numberformat text-left" required="">
-                                        </div>
-										<br />
-										<br />
-										<div class="col-sm-2">
-                                            <label>Satuan</label>
-                                        </div>
-										<div class="col-sm-2">
-											<select id="measure" class="form-control form-select2" name="measure" required="" >
-												<option value="">Pilih Satuan</option>
-												<?php
-												if(!empty($measures)){
-													foreach ($measures as $row) {
-														?>
-														<option value="<?php echo $row['id'];?>"><?php echo $row['measure_name'];?></option>
-														<?php
-													}
-												}
-												?>
-											</select>
-                                        </div>-->            
+										<br />         
                                     </div>
 									<br />
 										<div class="table-responsive">
@@ -119,7 +94,14 @@
 															<input type="hidden" id="supplier_id_boulder" name="supplier_id_boulder" class="form-control text-right" value=""  readonly="" autocomplete="off">
 															<input type="hidden" id="penawaran_id_boulder" name="penawaran_id_boulder" class="form-control text-right" value=""  readonly="" autocomplete="off">
 														</td>
-													</tr>		
+													</tr>
+													<tr>
+														<td class="text-center">2.</td>
+														<td>Berat Isi Boulder</td>
+														<td><input type="text" id="berat_isi_boulder" name="berat_isi_boulder" class="form-control numberformat text-right" value=""  autocomplete="off"></td>
+														<td></td>
+														<td></td>
+													</tr>			
 												</tbody>
 											</table>    
 										</div>
@@ -148,7 +130,7 @@
 														</td>
 													</tr>
 													<tr>
-														<td style="text-align: left !important;">Berat Isi -Batu Pecah</td>
+														<td style="text-align: left !important;">Berat Isi - Batu Pecah</td>
 														<td colspan="2">
 															<input type="text" id="berat_isi_batu_pecah" name="berat_isi_batu_pecah" class="form-control numberformat text-right" value=""  autocomplete="off">
 														</td>
@@ -197,92 +179,30 @@
 												</tbody>
 											</table>    
 										</div>
+										<br />
+										<br />
+										<div class="col-sm-12">
+												<div class="form-group">
+													<label>Keterangan</label>
+													<textarea class="form-control" name="memo" data-required="false" id="about_text">
 
-										<div class="table-responsive">
-											<table id="table-product" class="table table-bordered table-striped table-condensed table-center">
-												<thead>
-													<tr class="text-center">
-														<th width="5%">NO.</th>
-														<th width="50%">KEBUTUHAN BAHAN</th>
-														<th width="45%">HARGA SATUAN (Rp.)</th>                           
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td class="text-center">1.</td>
-														<td style="text-align: left !important;">Tangki Solar</td>
-														</td>
-														<td>
-															<input type="text" id="price_tangki" name="price_tangki" class="form-control rupiahformat text-right" value=""  autocomplete="off">
-														</td>
-														<td>
-													</tr>
-
-													<tr>
-														<td class="text-center">2.</td>
-														<td style="text-align: left !important;">Stone Crusher</td>
-														</td>
-														<td>
-															<input type="text" id="price_sc" name="price_sc" class="form-control rupiahformat text-right" value=""  autocomplete="off">
-														</td>
-														<td>
-													</tr>
-
-													<tr>
-														<td class="text-center">3.</td>
-														<td style="text-align: left !important;">Genset</td>
-														</td>
-														<td>
-															<input type="text" id="price_gns" name="price_gns" class="form-control rupiahformat text-right" value=""  autocomplete="off">
-														</td>
-													</tr>
-													
-													<tr>
-														<td class="text-center">4.</td>
-														<td style="text-align: left !important;">Wheel Loader</td>
-														</td>
-														<td>
-															<input type="text" id="price_wl" name="price_wl" class="form-control rupiahformat text-right" value=""  autocomplete="off">
-														</td>
-														<td>
-													</tr>
-
-													<tr>
-														<td class="text-center">5.</td>
-														<td style="text-align: left !important;">Timbangan</td>
-														</td>
-														<td>
-															<input type="text" id="price_timbangan" name="price_timbangan" class="form-control rupiahformat text-right" value=""  autocomplete="off">
-														</td>
-													</tr>
-
-												</tbody>
-											</table>    
+													</textarea>
+												</div>
 										</div>
-
-											<br />
-											<div class="col-sm-12">
-													<div class="form-group">
-														<label>Keterangan</label>
-														<textarea class="form-control" name="memo" data-required="false" id="about_text">
-
-														</textarea>
-													</div>
-											</div>
-											<div class="row">
-												<div class="col-sm-4">
-													<div class="form-group">
-														<label>Lampiran</label>
-														<input type="file" class="form-control" name="files[]"  multiple="" />
-													</div>
+										<div class="row">
+											<div class="col-sm-4">
+												<div class="form-group">
+													<label>Lampiran</label>
+													<input type="file" class="form-control" name="files[]"  multiple="" />
 												</div>
 											</div>
-											<div class="row">
-												<div class="col-sm-12 text-right">
-													<a href="<?= site_url('admin/rap');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-													<button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
-												</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12 text-right">
+												<a href="<?= site_url('admin/rap');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
+												<button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
 											</div>
+										</div>
 										</form>
 									</div>
 								</div>
