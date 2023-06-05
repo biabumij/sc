@@ -1364,7 +1364,6 @@ class Reports extends CI_Controller {
 	        </tr>
 			
 			<?php
-
 			//Opening Balance
 			$date1_ago = date('2020-01-01');
 			$date2_ago = date('Y-m-d', strtotime('-1 days', strtotime($date1)));
@@ -1543,7 +1542,6 @@ class Reports extends CI_Controller {
 			$total_nilai_masuk = $total_nilai_pembelian + $total_nilai_pembelian_solar;
 			$total_nilai_keluar = $total_nilai_produksi + $total_nilai_produksi_solar;
 			$total_nilai_akhir = $total_nilai_produksi_akhir + $total_nilai_produksi_akhir_solar;
-
 	        ?>
 			
 			<tr class="table-active4">
