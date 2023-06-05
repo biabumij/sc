@@ -159,41 +159,41 @@
 			$sc_a = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
 			$sc_b = $sc_a / $row['berat_isi_batu_pecah'];
 			$vol_sc = 1 / $sc_b;
-			$nilai_sc = $vol_sc * $row['price_sc'];
+			$nilai_sc = $vol_sc * $penyusutan_sc;
 			//Ton
 			$vol_sc_ton = 1 / $sc_a;
-			$nilai_sc_ton = $vol_sc_ton * $row['price_sc'];
+			$nilai_sc_ton = $vol_sc_ton * $penyusutan_sc;
 			
 			//M3
 			$vol_tangki = $vol_sc;
-			$nilai_tangki = $vol_tangki * $row['price_tangki'];
+			$nilai_tangki = $vol_tangki * $penyusutan_tangki;
 			//Ton
 			$vol_tangki_ton = $vol_sc_ton;
-			$nilai_tangki_ton = $vol_tangki_ton * $row['price_tangki'];
+			$nilai_tangki_ton = $vol_tangki_ton * $penyusutan_tangki;
 			
 			//M3
 			$vol_gns = $vol_sc;
-			$nilai_gns = $vol_gns * $row['price_gns'];
+			$nilai_gns = $vol_gns * $penyusutan_gns;
 			//Ton
 			$vol_gns_ton = $vol_sc_ton;
-			$nilai_gns_ton = $vol_gns_ton * $row['price_gns'];
+			$nilai_gns_ton = $vol_gns_ton * $penyusutan_gns;
 
 			//M3
 			$wl_a = $row['kapasitas_alat_wl'] * $row['efisiensi_alat_wl'];
 			$wl_b = (60 / $row['waktu_siklus']) * $wl_a;
 			$vol_wl = 1 / $wl_b;
-			$nilai_wl = $vol_wl * $row['price_wl'];
+			$nilai_wl = $vol_wl * $penyusutan_wl;
 			//Ton
 			$vol_wl_ton_rumus = (($wl_a / $row['waktu_siklus']) * 60) * $row['berat_isi_batu_pecah'];
 			$vol_wl_ton = 1 / $vol_wl_ton_rumus;
-			$nilai_wl_ton = $vol_wl_ton * $row['price_wl'];
+			$nilai_wl_ton = $vol_wl_ton * $penyusutan_wl;
 
 			//M3
 			$vol_timbangan =  $vol_sc;
-			$nilai_timbangan = $vol_timbangan * $row['price_timbangan'];
+			$nilai_timbangan = $vol_timbangan * $penyusutan_timbangan;
 			//Ton
 			$vol_timbangan_ton = $vol_sc_ton;
-			$nilai_timbangan_ton = $vol_timbangan_ton * $row['price_timbangan'];
+			$nilai_timbangan_ton = $vol_timbangan_ton * $penyusutan_timbangan;
 
 			$rumus_overhead = ($row['overhead'] / 25) / 8;
 			$rumus_overhead_1 = ($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc']) / $row['berat_isi_batu_pecah'] ;
