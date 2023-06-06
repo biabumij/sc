@@ -271,7 +271,7 @@ class Jurnal_umum extends CI_Controller {
 
             $nomor_transaksi = $this->crud_global->GetField('pmm_jurnal_umum',array('id'=>$id),'nomor_transaksi');
             $deskripsi = 'Nomor Transaksi '.$nomor_transaksi;
-            $this->pmm_finance->InsertLogs('DELETE','pmm_jurnal_umum',$id,$deskripsi);
+            //$this->pmm_finance->InsertLogs('DELETE','pmm_jurnal_umum',$id,$deskripsi);
             $this->db->delete('transactions',array('jurnal_id'=>$id));
             $this->db->delete('pmm_detail_jurnal',array('jurnal_id'=>$id));
             $this->db->delete('pmm_lampiran_jurnal',array('jurnal_id'=>$id));

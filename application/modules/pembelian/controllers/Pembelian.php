@@ -1065,7 +1065,7 @@ class Pembelian extends Secure_Controller
 
             $penagihan_pembelian = $this->db->get_where('pmm_penagihan_pembelian', array('id' => $id))->row_array();
             $deskripsi = 'Nomor Invoice ' . $penagihan_pembelian['nomor_invoice'];
-            $this->pmm_finance->InsertLogs('DELETE', 'pmm_penagihan_pembelian', $id, $deskripsi);
+            //$this->pmm_finance->InsertLogs('DELETE', 'pmm_penagihan_pembelian', $id, $deskripsi);
             $this->db->delete('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_verifikasi_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
