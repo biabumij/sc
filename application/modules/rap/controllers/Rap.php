@@ -48,6 +48,7 @@ class Rap extends Secure_Controller {
 		if ($check == true) {
 			$data['measures'] = $this->db->select('*')->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 			$data['boulder'] = $this->pmm_model->getMatByPenawaranBoulder();
+			$data['bbm'] = $this->pmm_model->getMatByPenawaranBBM();
 			$this->load->view('rap/form_rap', $data);
 		} else {
 			redirect('admin');
@@ -60,10 +61,8 @@ class Rap extends Secure_Controller {
 		$tanggal_rap = $this->input->post('tanggal_rap');
 
 		$penawaran_id_boulder = $this->input->post('penawaran_id_boulder');
-
 		$vol_boulder =  str_replace('.', '', $this->input->post('vol_boulder'));
 		$vol_boulder =  str_replace(',', '.', $vol_boulder);
-
 		$price_boulder = str_replace('.', '', $this->input->post('price_boulder'));
 		$supplier_id_boulder = $this->input->post('supplier_id_boulder');
 		$measure_boulder = $this->input->post('measure_boulder');
@@ -71,6 +70,16 @@ class Rap extends Secure_Controller {
 		$pajak_id_boulder = $this->input->post('pajak_id_boulder');
 		$berat_isi_boulder =  str_replace('.', '', $this->input->post('berat_isi_boulder'));
 		$berat_isi_boulder =  str_replace(',', '.', $berat_isi_boulder);
+
+		$penawaran_id_bbm_solar = $this->input->post('penawaran_id_bbm_solar');
+		$vol_bbm_solar =  str_replace('.', '', $this->input->post('vol_bbm_solar'));
+		$vol_bbm_solar =  str_replace(',', '.', $vol_bbm_solar);
+		$price_bbm_solar = str_replace('.', '', $this->input->post('price_bbm_solar'));
+		$supplier_id_bbm_solar = $this->input->post('supplier_id_bbm_solar');
+		$measure_bbm_solar = $this->input->post('measure_bbm_solar');
+		$tax_id_bbm_solar = $this->input->post('tax_id_bbm_solar');
+		$pajak_id_bbm_solar = $this->input->post('pajak_id_bbm_solar');
+		
 		$overhead = str_replace('.', '', $this->input->post('overhead'));
 
 		$kapasitas_alat_sc =  str_replace('.', '', $this->input->post('kapasitas_alat_sc'));
@@ -99,14 +108,21 @@ class Rap extends Secure_Controller {
 
 			'penawaran_id_boulder' => $penawaran_id_boulder,
 			'supplier_id_boulder' => $supplier_id_boulder,
-
 			'vol_boulder' => $vol_boulder,
-
 			'price_boulder' => $price_boulder,
 			'measure_boulder' => $measure_boulder,
 			'tax_id_boulder' => $tax_id_boulder,
 			'pajak_id_boulder' => $pajak_id_boulder,
 			'berat_isi_boulder' => $berat_isi_boulder,
+
+			'penawaran_id_bbm_solar' => $penawaran_id_bbm_solar,
+			'supplier_id_bbm_solar' => $supplier_id_bbm_solar,
+			'vol_bbm_solar' => $vol_bbm_solar,
+			'price_bbm_solar' => $price_bbm_solar,
+			'measure_bbm_solar' => $measure_bbm_solar,
+			'tax_id_bbm_solar' => $tax_id_bbm_solar,
+			'pajak_id_bbm_solar' => $pajak_id_bbm_solar,
+
 			'overhead' => $overhead,
 
 			'kapasitas_alat_sc' => $kapasitas_alat_sc,

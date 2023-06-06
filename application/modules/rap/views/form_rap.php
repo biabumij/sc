@@ -70,7 +70,7 @@
 												<tbody>
 													<tr>
 														<td class="text-center">1.</td>
-														<td>Boulder</td>
+														<td style="text-align: left !important;">Boulder</td>
 														<td class="text-center"><select id="penawaran_boulder" class="form-control">
 															<option value="">Pilih Penawaran</option>
 															<?php
@@ -97,11 +97,38 @@
 													</tr>
 													<tr>
 														<td class="text-center">2.</td>
-														<td>Berat Isi Boulder</td>
+														<td style="text-align: left !important;">Berat Isi Boulder</td>
 														<td><input type="text" id="berat_isi_boulder" name="berat_isi_boulder" class="form-control numberformat text-right" value=""  autocomplete="off"></td>
 														<td></td>
 														<td></td>
-													</tr>			
+													</tr>
+													<tr>
+														<td class="text-center">3.</td>
+														<td style="text-align: left !important;">BBM Solar</td>
+														<td class="text-center"><select id="penawaran_bbm_solar" class="form-control">
+															<option value="">Pilih Penawaran</option>
+															<?php
+
+															foreach ($bbm as $key => $sm) {
+																?>
+																<option value="<?php echo $sm['penawaran_id'];?>" data-supplier_id="<?php echo $sm['supplier_id'];?>" data-measure="<?php echo $sm['measure'];?>" data-price="<?php echo $sm['price'];?>" data-tax_id="<?php echo $sm['tax_id'];?>" data-tax="<?php echo $sm['tax'];?>" data-pajak_id="<?php echo $sm['pajak_id'];?>" data-pajak="<?php echo $sm['pajak'];?>" data-penawaran_id="<?php echo $sm['penawaran_id'];?>" data-id_penawaran="<?php echo $sm['id_penawaran'];?>"><?php echo $sm['nama'];?> - <?php echo $sm['nomor_penawaran'];?></option>
+																<?php
+															}
+															?>
+														</select>
+														</td>
+														<td>
+															<input type="text" id="vol_bbm_solar" name="vol_bbm_solar" class="form-control numberformat text-right" value="" autocomplete="off">
+														</td>
+														<td>
+															<input type="text" id="price_bbm_solar" name="price_bbm_solar" class="form-control rupiahformat text-right" value=""  readonly="" autocomplete="off">
+															<input type="hidden" id="measure_bbm_solar" name="measure_bbm_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
+															<input type="hidden" id="tax_id_bbm_solar" name="tax_id_bbm_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
+															<input type="hidden" id="pajak_id_bbm_solar" name="pajak_id_bbm_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
+															<input type="hidden" id="supplier_id_bbm_solar" name="supplier_id_bbm_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
+															<input type="hidden" id="penawaran_id_bbm_solar" name="penawaran_id_bbm_solar" class="form-control text-right" value=""  readonly="" autocomplete="off">
+														</td>
+													</tr>		
 												</tbody>
 											</table>    
 										</div>
@@ -295,6 +322,23 @@
 			$('#pajak_id_boulder').val(pajak_id);
 			var id_penawaran = $(this).find(':selected').data('id_penawaran');
 			$('#penawaran_id_boulder').val(penawaran_id);
+		});
+
+		$('#penawaran_bbm_solar').change(function(){
+			var penawaran_id = $(this).find(':selected').data('penawaran_id');
+			$('#penawaran_bbm_solar').val(penawaran_id);
+			var price = $(this).find(':selected').data('price');
+			$('#price_bbm_solar').val(price);
+			var supplier_id = $(this).find(':selected').data('supplier_id');
+			$('#supplier_id_bbm_solar').val(supplier_id);
+			var measure = $(this).find(':selected').data('measure');
+			$('#measure_bbm_solar').val(measure);
+			var tax_id = $(this).find(':selected').data('tax_id');
+			$('#tax_id_bbm_solar').val(tax_id);
+			var pajak_id = $(this).find(':selected').data('pajak_id');
+			$('#pajak_id_bbm_solar').val(pajak_id);
+			var id_penawaran = $(this).find(':selected').data('id_penawaran');
+			$('#penawaran_id_bbm_solar').val(penawaran_id);
 		});
 
     </script>

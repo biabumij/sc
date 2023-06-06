@@ -145,7 +145,6 @@
 			->group_by("p.nama_produk")->limit(1)
 			->get()->row_array();
 			$penyusutan_timbangan = (($penyusutan_timbangan['nilai_penyusutan'] / 48) / 25) / 7;
-			
 
 			//M3
 			$berat_isi_boulder = 1/$row['berat_isi_boulder'];
@@ -195,6 +194,13 @@
 			$vol_timbangan_ton = $vol_sc_ton;
 			$nilai_timbangan_ton = $vol_timbangan_ton * $penyusutan_timbangan;
 
+			//M3
+			$vol_bbm_solar =  $row['vol_bbm_solar'];
+			$nilai_bbm_solar = $row['vol_bbm_solar'] * $row['price_bbm_solar'];
+			//Ton
+			$vol_bbm_solar_ton = 1.5;
+			$nilai_bbm_solar_ton = 1.5 * $row['price_bbm_solar'];
+
 			$rumus_overhead = ($row['overhead'] / 25) / 8;
 			$rumus_overhead_1 = ($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc']) / $row['berat_isi_batu_pecah'] ;
 			$overhead = $rumus_overhead / $rumus_overhead_1;
@@ -203,8 +209,8 @@
 			$overhead_ton = $rumus_overhead / $rumus_overhead_ton;
 
 
-			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $overhead;
-			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $overhead_ton;
+			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $nilai_bbm_solar + $overhead;
+			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $nilai_bbm_solar_ton + $overhead_ton;
 			?>
 			<tr class="table-active2">
 				<td align="center">A.</td>
@@ -219,9 +225,9 @@
 				<td align="center">1.</td>
 				<td align="left">Boulder</td>
 				<td align="center"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_boulder']),'measure_name');?></td>
-				<td align="center"><?php echo number_format($berat_isi_boulder,4,',','.');?></td>
+				<td align="center"></td>
 				<td align="center"><?php echo number_format($row['vol_boulder'],4,',','.');?></td>
-				<td align="right"><?php echo number_format($row['price_boulder'],0,',','.');?></td>
+				<td align="left"><?php echo number_format($row['price_boulder'] / $berat_isi_boulder,0,',','.');?> (M3) / <?php echo number_format($row['price_boulder'],0,',','.');?> (Ton)</td>
 				<td align="right"><?php echo number_format($nilai_boulder,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_boulder_ton,0,',','.');?></td>
 			</tr>
@@ -289,6 +295,16 @@
 				<td align="right"><?php echo number_format($penyusutan_timbangan,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_timbangan,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_timbangan_ton,0,',','.');?></td>
+			</tr>
+			<tr>
+				<td align="center">6.</td>
+				<td align="left">BBM Solar</td>
+				<td align="center">Jam</td>
+				<td align="center"><?php echo number_format($vol_bbm_solar,4,',','.');?></td>
+				<td align="center"><?php echo number_format($vol_bbm_solar_ton,4,',','.');?></td>
+				<td align="right"><?php echo number_format($row['price_bbm_solar'],0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_bbm_solar,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_bbm_solar_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active3">
 				<td align="right" colspan="6">JUMLAH HARGA PERALATAN</td>
