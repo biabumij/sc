@@ -69,6 +69,7 @@
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                         <th width="5%" class="text-center">Cetak</th>
+                                                        <th width="5%" class="text-center">Edit</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -197,6 +198,9 @@
 				},
                 {
                     "data": "print"
+                },
+                {
+                    "data": "edit"
                 },
             ],
             "columnDefs": [{
