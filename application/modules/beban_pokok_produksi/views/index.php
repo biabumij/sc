@@ -85,11 +85,11 @@
 														<p><h5>Beban Pokok Produksi</h5></p>
                                                         <a href="#beban_pokok_produksi" aria-controls="beban_pokok_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
                                                     </div>
-													<!--<div class="col-sm-5">
+													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku (Rumus)</h5></p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Februari 2021 sd. Mei 2022</blink></p>
                                                         <a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>-->
+													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku</h5></p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. sekarang</blink></p>
