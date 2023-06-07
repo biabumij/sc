@@ -32,9 +32,13 @@ class Produksi extends Secure_Controller {
 			$filter_date = '-';
 		}else {
 			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;
+		$data['start_date'] = $start_date;
+		$data['end_date'] = $end_date;
 
 		$this->db->where('status','PUBLISH');
 		$this->db->order_by('date','desc');

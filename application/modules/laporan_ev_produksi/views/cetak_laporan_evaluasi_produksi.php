@@ -137,9 +137,7 @@
 				<th width="20%" align="center"><?= number_format($subtotal_avg_capacity,2,',','.');?></th>
             </tr>	
 		</table>
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="50">
+		<table width="98%" border="0" cellpadding="100">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
