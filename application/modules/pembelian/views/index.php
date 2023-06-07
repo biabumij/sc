@@ -1787,6 +1787,7 @@
                 if (result.data) {
                     $('#penagihan_pembelian_id').val(result.data.id);
                     $('#supplier_name').val(result.data.supplier_name);
+                    $('#metode_pembayaran').val(result.data.metode_pembayaran);
                     $('#no_po').val(result.data.no_po);
                     $('#tanggal_po').val(result.data.tanggal_po);
                     $('#nama_barang_jasa').val(result.data.nama_produk);

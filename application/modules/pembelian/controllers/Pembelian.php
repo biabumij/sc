@@ -770,12 +770,15 @@ class Pembelian extends Secure_Controller
         $this->db->where("ppd.pajak_id in (5)");
         $detail_2 = $this->db->get_where('pmm_penagihan_pembelian_detail ppd', ['penagihan_pembelian_id' => $id])->row_array();
 		
+        $this->db->select('ppd.*');
+        $penawaran = $this->db->get_where('pmm_purchase_order_detail ppd', ['purchase_order_id' => $query['purchase_order_id']])->row_array();
+
+        $this->db->select('ppp.*');
+        $metode_pembayaran = $this->db->get_where('pmm_penawaran_pembelian ppp', ['id' => $penawaran['penawaran_id']])->row_array();
+
         $query['pph'] = $detail_2['pajak'];
         $query['nilai_tagihan'] = $query['total_tagihan'] - $detail['tax'] + $detail_2['pajak'];
         $query['total_tagihan'] = $query['total_tagihan'] + $detail['tax'] - $detail_2['pajak'];
-
-        
-		
 
         if (!empty($query)) {
             $receipt_material_id = explode(',', $query['surat_jalan'])[0];
@@ -783,6 +786,7 @@ class Pembelian extends Secure_Controller
             $query['date_receipt'] = date('d-m-Y', strtotime($query['date_receipt']));
             $query['tanggal_invoice'] = date('d-m-Y', strtotime($query['tanggal_invoice']));
             $query['tanggal_po'] = date('d-m-Y', strtotime($query['tanggal_po']));
+            $query['metode_pembayaran'] = $metode_pembayaran['metode_pembayaran'];
             $data = $query;
         }
         echo json_encode(array('data' => $data));
