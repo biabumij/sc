@@ -4,43 +4,56 @@
 	  <title>MONITORING HUTANG</title>
 	  
 	  <style type="text/css">
+		 body {
+			font-family: helvetica;
+		}
+
+		table.table-border-atas-full, th.table-border-atas-full, td.table-border-atas-full {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		table.table-border-atas-only, th.table-border-atas-only, td.table-border-atas-only {
+			border-top: 1px solid black;
+		}
+
+		table.table-border-bawah-only, th.table-border-bawah-only, td.table-border-bawah-only {
+			border-bottom: 1px solid black;
+		}
+
 		table tr.table-judul{
+			border: 1px solid;
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 6px;
+			font-size: 5px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 6px;
+			background-color: none;
+			font-size: 5px;
 		}
 
 		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 6px;
-			font-weight: bold;
-		}
-			
-		table tr.table-baris2{
-			font-size: 6px;
-			background-color: #E8E8E8;
-		}
-
-		table tr.table-baris2-bold{
-			font-size: 6px;
-			background-color: #E8E8E8;
+			background-color: none;
+			font-size: 5px;
 			font-weight: bold;
 		}
 			
 		table tr.table-total{
-			background-color: #cccccc;
+			background-color: #FFFF00;
 			font-weight: bold;
-			font-size: 6px;
+			font-size: 5px;
+			color: black;
+		}
+
+		table tr.table-total2{
+			background-color: #eeeeee;
+			font-weight: bold;
+			font-size: 5px;
 			color: black;
 		}
 	  </style>
-
 	</head>
 	<body>
 		<table width="98%" border="0" cellpadding="15">
