@@ -319,39 +319,83 @@ class Laporan extends Secure_Controller {
 		$pdf->SetY(29);
 		$pdf->SetX(6);
 		$html =
-		'<table width="98%" border="0" cellpadding="2">
-		<tr>
-			<th width="3%"rowspan="2" style="vertical-align:middle;font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">NO.</th>
-			<th width="7%" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">REKANAN</th>
-			<th width="6%" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">NOMOR</th>
-			<th width="6%" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
-			<th width="6%" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TANGGAL</th>
-			<th width="20%" colspan="4" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th width="20%" colspan="4" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PEMBAYARAN</th>
-			<th width="20%" colspan="4" style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">SISA HUTANG</th>
-			<th width="12%" colspan="3" style="vertical-align:middle;font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS HUTANG</th>
-		</tr>
-		<tr>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">KETERANGAN</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">TAGIHAN</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">VERIFIKASI</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">DPP</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPN</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">PPH</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JUMLAH</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">STATUS</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">UMUR</th>
-			<th style="font-size:6px;background-color:#e69500;font-weight:bold;text-align:center;">JATUH TEMPO</th>
-		</tr>
+		'<style type="text/css">
+		body {
+		   font-family: helvetica;
+		}
+
+		table.table-border-atas-full, th.table-border-atas-full, td.table-border-atas-full {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		table.table-border-atas-only, th.table-border-atas-only, td.table-border-atas-only {
+			border-top: 1px solid black;
+		}
+
+		table.table-border-bawah-only, th.table-border-bawah-only, td.table-border-bawah-only {
+			border-bottom: 1px solid black;
+		}
+
+		table tr.table-judul{
+			border: 1px solid;
+			background-color: #e69500;
+			font-weight: bold;
+			font-size: 5px;
+			color: black;
+		}
+			
+		table tr.table-baris1{
+			background-color: none;
+			font-size: 5px;
+		}
+
+		table tr.table-baris1-bold{
+			background-color: none;
+			font-size: 5px;
+			font-weight: bold;
+		}
+			
+		table tr.table-total{
+			background-color: #FFFF00;
+			font-weight: bold;
+			font-size: 5px;
+			color: black;
+		}
+
+		table tr.table-total2{
+			background-color: #eeeeee;
+			font-weight: bold;
+			font-size: 5px;
+			color: black;
+		}
+		 </style>
+		 <table width="98%" border="0" cellpadding="2">
+			<tr class="table-judul">
+				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; NO.</th>
+				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; REKANAN / NO. TAGIHAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. TAGIHAN</th>
+				<th width="10%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; JENIS PEMBELIAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. VERIFIKASI</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; SYARAT PEMBAYARAN</th>
+				<th width="15%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
+				<th width="20%" align="center" colspan="4" class="table-border-atas-only">PEMBAYARAN</th>
+				<th width="15%" align="center" colspan="3" class="table-border-atas-only">SISA HUTANG</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />STATUS</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. JATUH TEMPO</th>
+			</tr>
+			<tr class="table-judul">
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">PPH</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+			</tr>	
 		</table>';
 		$pdf->writeHTML($html, true, false, true, false, '');
 
