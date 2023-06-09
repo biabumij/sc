@@ -1502,8 +1502,10 @@ class Pmm extends CI_Controller {
 			'volume' => $volume,
 			'notes' => $notes,
 			'reset' => 1,
-			'price' => $price,
-			'total' => $volume * $price,
+			//'price' => $price,
+			//'total' => $volume * $price,
+			'price' => 0,
+			'total' => 0,
 			'status' => 'PUBLISH'
 		);
 
