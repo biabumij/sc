@@ -52,7 +52,7 @@
 												<tr class="text-center">
 													<th width="5%">NO.</th>
 													<th width="50%">PRODUK</th>
-													<th width="45%">NILAI PENYUSUTAN</th>                           
+													<th width="45%">HARGA PEROLEHAN</th>                           
 												</tr>
 											</thead>
 											<tbody>
