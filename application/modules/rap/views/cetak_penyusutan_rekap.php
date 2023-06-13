@@ -91,7 +91,7 @@
 			->join('produk p','r.produk = p.id','left')
 			->where("r.tanggal_penyusutan between '$date1' and '$date2'")
 			->where("r.status = 'PUBLISH'")
-			->order_by('p.nama_produk','asc')
+			->order_by('r.tanggal_penyusutan','asc')
 			->group_by("p.nama_produk")
 			->get()->result_array();
 
@@ -111,12 +111,7 @@
 				<th align="center" width="12%">NILAI PENYUSUTAN /HARI (Rp.)</th>
 				<th align="center" width="12%">NILAI PENYUSUTAN /JAM (Rp.)</th>
             </tr>
-			<?php $no=1; foreach ($penyusutan as $x):
-			$awal  = date_create($x['tanggal_penyusutan']);
-			$akhir = date_create($date2);
-			$diff  = date_diff($awal, $akhir);
-			$penyusutan =  ((($diff->days . '') * $x['nilai_penyusutan'] / 48) / 25);
-			?>
+			<?php $no=1; foreach ($penyusutan as $x):?>
 			<tr class="table-active2">
 				<td align="center"><?php echo $no++;?></td>
 				<td align="left"><?= $x['nama_produk'];?></td>
