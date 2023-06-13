@@ -2340,6 +2340,8 @@ class Laporan extends Secure_Controller {
 		$pdf->setPrintFooter(true);
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('L');
+		$pdf->setPrintHeader(false);
 		
 		//Page2
 		$pdf->AddPage('L', 'A4');
@@ -2410,6 +2412,23 @@ class Laporan extends Secure_Controller {
 			</tr>
 		</table>';
 		$pdf->writeHTML($html, true, false, true, false, '');
+
+		//Page3
+		$pdf->AddPage();
+		$pdf->SetY(29);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page4
+		$pdf->AddPage();
+		$pdf->SetY(29);
+		$pdf->SetX(6);
+		$pdf->WriteHTML($html);
+
+		//Page1
+		$pdf->setPage(1, true);
+		$pdf->SetY(35);
+		$pdf->Cell(0, 0, '', 0, 0, 'C');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
