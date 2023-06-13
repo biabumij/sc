@@ -91,6 +91,7 @@
 			->join('produk p','r.produk = p.id','left')
 			->where("r.tanggal_penyusutan between '$date1' and '$date2'")
 			->where("r.status = 'PUBLISH'")
+			->where("p.kategori_produk = 7 ")
 			->order_by('r.tanggal_penyusutan','asc')
 			->group_by("p.nama_produk")
 			->get()->result_array();
@@ -135,10 +136,59 @@
 			</tr>
 		</table>
 		
-		<br />
-		
-	    <p><b>Keterangan</b> :</p>
-		<p><?= $row["memo"] ?></p>
+		<br pagebreak="true"/>
+
+		<table class="minimalistBlack" cellpadding="5" width="98%">
+			<?php
+			$penyusutan = $this->db->select('r.*, p.nama_produk')
+			->from('penyusutan r')
+			->join('produk p','r.produk = p.id','left')
+			->where("r.tanggal_penyusutan between '$date1' and '$date2'")
+			->where("r.status = 'PUBLISH'")
+			->where("p.kategori_produk = 4 ")
+			->order_by('r.tanggal_penyusutan','asc')
+			->group_by("p.nama_produk")
+			->get()->result_array();
+
+			$total_harga_perolehan = 0;
+			foreach ($penyusutan as $x){
+				$total_harga_perolehan += $x['nilai_penyusutan'];
+			}
+			?>
+			<tr class="table-active">
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="25%">PRODUK</th>
+				<th align="center" width="10%">MASA MANFAAT</th>
+				<th align="center" width="10%">HARGA PEROLEHAN (Rp.)</th>
+				<th align="center" width="10%">TAHUN PEROLEHAN</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /TAHUN (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /BULAN (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /HARI (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /JAM (Rp.)</th>
+            </tr>
+			<?php $no=1; foreach ($penyusutan as $x):?>
+			<tr class="table-active2">
+				<td align="center"><?php echo $no++;?></td>
+				<td align="left"><?= $x['nama_produk'];?></td>
+				<td align="center">4 Tahun</td>
+				<td align="right"><?php echo number_format($x['nilai_penyusutan'],0,',','.');?></td>
+				<td align="center"><?= date('d/m/Y',strtotime($x['tanggal_penyusutan']));;?></td>
+				<td align="right"><?php echo number_format($x['nilai_penyusutan'] / 4,0,',','.');?></td>
+				<td align="right"><?php echo number_format($x['nilai_penyusutan'] / 48,0,',','.');?></td>
+				<td align="right"><?php echo number_format((($x['nilai_penyusutan'] / 48) / 25),0,',','.');?></td>
+				<td align="right"><?php echo number_format((($x['nilai_penyusutan'] / 48) / 25) / 7,0,',','.');?></td>
+			</tr>
+			<?php endforeach; ?>
+			<tr class="table-active2">
+				<td align="center" colspan="3">TOTAL</td>
+				<td align="right"><?php echo number_format($total_harga_perolehan,0,',','.');?></td>
+				<td align="right"></td>
+				<td align="right"><?php echo number_format($total_harga_perolehan / 4,0,',','.');?></td>
+				<td align="right"><?php echo number_format($total_harga_perolehan / 48,0,',','.');?></td>
+				<td align="right"><?php echo number_format(($total_harga_perolehan / 48) / 5,0,',','.');?></td>
+				<td align="right"><?php echo number_format((($total_harga_perolehan / 48) / 25) / 7,0,',','.');?></td>
+			</tr>
+		</table>
 
 	</body>
 </html>

@@ -2342,8 +2342,14 @@ class Laporan extends Secure_Controller {
 		$pdf->setHtmlVSpace($tagvs);
 		$pdf->AddPage('L');
 		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
 		
 		//Page2
+		$pdf->AddPage('L', 'A4');
+		$pdf->SetY(27);
+		$pdf->SetX(5);
+		
+		//Page3
 		$pdf->AddPage('L', 'A4');
 		$pdf->SetY(27);
 		$pdf->SetX(5);
