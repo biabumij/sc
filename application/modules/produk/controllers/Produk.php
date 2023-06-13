@@ -33,6 +33,8 @@ class Produk extends Secure_Controller {
 			$this->db->where('bahanbakar',1);
 		}else if($tipe == 7){
 			$this->db->where('laboratorium',1);
+		}else if($tipe == 8){
+			$this->db->where('asset',1);
 		}
 		
 		$this->db->where('status','PUBLISH');

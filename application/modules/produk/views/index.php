@@ -45,6 +45,7 @@
                                 <li role="presentation"><a href="#peralatan" aria-controls="peralatan" role="tab" data-toggle="tab">Peralatan</a></li>
                                 <li role="presentation"><a href="#bahanbakar" aria-controls="bahanbakar" role="tab" data-toggle="tab">Bahan Bakar</a></li>
                                 <li role="presentation"><a href="#laboratorium" aria-controls="laboratorium" role="tab" data-toggle="tab">Laboratorium</a></li>
+                                <li role="presentation"><a href="#asset" aria-controls="asset" role="tab" data-toggle="tab">Asset</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="bahanbaku">
@@ -172,6 +173,26 @@
                                 	<br />
                                     <div class="table-responsive">
                                         <table class="table table-striped table-hover table-center" id="table-laboratorium" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th width="5%">No</th>
+                                                    <th>Nama</th>
+                                                    <th>Satuan</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="asset">
+                                	<br />
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover table-center" id="table-asset" style="width:100%;">
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
@@ -378,6 +399,32 @@
                 type : 'POST',
                 data: function ( d ) {
                     d.tipe = 7
+                }
+            },
+            columns: [
+                { "data": "no" },
+                { "data": "nama_produk" },
+                { "data": "satuan" },
+                { "data": "admin_name"},
+                { "data": "created_on"}
+            ],
+            responsive: true,
+            "columnDefs": [
+                {
+                    "targets": [0,2,3,4],
+                    "className": 'text-center',
+                }
+            ],
+        });
+
+        var table_laboratorium = $('#table-asset').DataTable( {
+            ajax: {
+                processing: true,
+                serverSide: true,
+                url: '<?php echo site_url('produk/table_product');?>',
+                type : 'POST',
+                data: function ( d ) {
+                    d.tipe = 8
                 }
             },
             columns: [
