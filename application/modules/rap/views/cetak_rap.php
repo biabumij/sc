@@ -350,8 +350,8 @@
 			</tr>
 			<tr class="table-active">
 				<td align="right" colspan="7">LABA (<?php echo number_format($row['laba'],0,',','.');?>%)</td>
-				<td align="right"><?php echo number_format(($total + ($total * 10) / 100),0,',','.');?></td>
-				<td align="right"><?php echo number_format(($total_ton + ($total_ton * 10) / 100),0,',','.');?></td>
+				<td align="right"><?php echo number_format(($total + ($total * $row['laba']) / 100),0,',','.');?></td>
+				<td align="right"><?php echo number_format(($total_ton + ($total_ton * $row['laba']) / 100),0,',','.');?></td>
 			</tr>
 		</table>
 		
