@@ -2345,7 +2345,7 @@ class Laporan extends Secure_Controller {
 		
 		//Page2
 		$pdf->AddPage('L', 'A4');
-		$pdf->SetY(50);
+		$pdf->SetY(27);
 		$pdf->SetX(6);
 		$html =
 		'<style type="text/css">
