@@ -213,7 +213,14 @@
 														<td class="text-center">1.</td>
 														<td style="text-align: left !important;">Overhead</td>
 														<td colspan="2">
-															<input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="<?php echo number_format($rap['overhead'],0,',','.');?>"  autocomplete="off">
+															<input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="<?php echo number_format($rap['overhead'],0,',','.');?>" autocomplete="off">
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">2.</td>
+														<td style="text-align: left !important;">Laba<div style="color:red; font-weight:bold;">(Isi Angka Saja, Tanpa %)</div></td>
+														<td colspan="2">
+															<input type="text" id="laba" name="laba" class="form-control rupiahformat text-right" value="<?php echo number_format($rap['laba'],0,',','.');?>" autocomplete="off">
 														</td>
 													</tr>		
 												</tbody>

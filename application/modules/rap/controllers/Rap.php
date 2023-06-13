@@ -87,6 +87,7 @@ class Rap extends Secure_Controller {
 		$pajak_id_bbm_solar = $this->input->post('pajak_id_bbm_solar');
 		
 		$overhead = str_replace('.', '', $this->input->post('overhead'));
+		$laba = str_replace('.', '', $this->input->post('laba'));
 
 		$kapasitas_alat_sc =  str_replace('.', '', $this->input->post('kapasitas_alat_sc'));
 		$kapasitas_alat_sc =  str_replace(',', '.', $kapasitas_alat_sc);
@@ -130,6 +131,7 @@ class Rap extends Secure_Controller {
 			'pajak_id_bbm_solar' => $pajak_id_bbm_solar,
 
 			'overhead' => $overhead,
+			'laba' => $laba,
 
 			'kapasitas_alat_sc' => $kapasitas_alat_sc,
 			'efisiensi_alat_sc' => $efisiensi_alat_sc,
@@ -271,6 +273,7 @@ class Rap extends Secure_Controller {
 		$pajak_id_bbm_solar = $this->input->post('pajak_id_bbm_solar');
 		
 		$overhead = str_replace('.', '', $this->input->post('overhead'));
+		$laba = str_replace('.', '', $this->input->post('laba'));
 
 		$kapasitas_alat_sc =  str_replace('.', '', $this->input->post('kapasitas_alat_sc'));
 		$kapasitas_alat_sc =  str_replace(',', '.', $kapasitas_alat_sc);
@@ -312,6 +315,7 @@ class Rap extends Secure_Controller {
 			'pajak_id_bbm_solar' => $pajak_id_bbm_solar,
 
 			'overhead' => $overhead,
+			'laba' => $laba,
 
 			'kapasitas_alat_sc' => $kapasitas_alat_sc,
 			'efisiensi_alat_sc' => $efisiensi_alat_sc,

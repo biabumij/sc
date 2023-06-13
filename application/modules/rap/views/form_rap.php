@@ -98,7 +98,7 @@
 													<tr>
 														<td class="text-center">2.</td>
 														<td style="text-align: left !important;">Berat Isi Boulder</td>
-														<td><input type="text" id="berat_isi_boulder" name="berat_isi_boulder" class="form-control numberformat text-right" value=""  autocomplete="off"></td>
+														<td><input type="text" id="berat_isi_boulder" name="berat_isi_boulder" class="form-control numberformat text-right" value="" autocomplete="off"></td>
 														<td></td>
 														<td></td>
 													</tr>
@@ -147,19 +147,19 @@
 														<td class="text-center" rowspan="3" style="vertical-align:middle;">1.</td>
 														<td style="text-align: left !important;">Kapasitas Alat (Pemecah Batu) - Stone Crusher</td>
 														<td colspan="2">
-															<input type="text" id="kapasitas_alat_sc" name="kapasitas_alat_sc" class="form-control numberformat text-right" value=""  autocomplete="off">
+															<input type="text" id="kapasitas_alat_sc" name="kapasitas_alat_sc" class="form-control numberformat text-right" value="" autocomplete="off">
 														</td>
 													</tr>
 													<tr>
 														<td style="text-align: left !important;">Faktor Efisiensi Alat (Pemecah Batu) - Stone Crusher</td>
 														<td colspan="2">
-															<input type="text" id="efisiensi_alat_sc" name="efisiensi_alat_sc" class="form-control numberformat text-right" value=""  autocomplete="off">
+															<input type="text" id="efisiensi_alat_sc" name="efisiensi_alat_sc" class="form-control numberformat text-right" value="" autocomplete="off">
 														</td>
 													</tr>
 													<tr>
 														<td style="text-align: left !important;">Berat Isi - Batu Pecah</td>
 														<td colspan="2">
-															<input type="text" id="berat_isi_batu_pecah" name="berat_isi_batu_pecah" class="form-control numberformat text-right" value=""  autocomplete="off">
+															<input type="text" id="berat_isi_batu_pecah" name="berat_isi_batu_pecah" class="form-control numberformat text-right" value="" autocomplete="off">
 														</td>
 													</tr>
 													
@@ -167,19 +167,19 @@
 														<td class="text-center" rowspan="3" style="vertical-align:middle;">2.</td>
 														<td style="text-align: left !important;">Kapasitas Alat - Wheel Loader</td>
 														<td colspan="2">
-															<input type="text" id="kapasitas_alat_wl" name="kapasitas_alat_wl" class="form-control numberformat text-right" value=""  autocomplete="off">
+															<input type="text" id="kapasitas_alat_wl" name="kapasitas_alat_wl" class="form-control numberformat text-right" value="" autocomplete="off">
 														</td>
 													</tr>
 													<tr>
 														<td style="text-align: left !important;">Faktor Efisiensi Alat - Wheel Loader</td>
 														<td colspan="2">
-															<input type="text" id="efisiensi_alat_wl" name="efisiensi_alat_wl" class="form-control numberformat text-right" value=""  autocomplete="off">
+															<input type="text" id="efisiensi_alat_wl" name="efisiensi_alat_wl" class="form-control numberformat text-right" value="" autocomplete="off">
 														</td>
 													</tr>
 													<tr>
 														<td style="text-align: left !important;">Waktu Siklus (Muat, Tuang, Tunggu, dll)</td>
 														<td colspan="2">
-															<input type="text" id="waktu_siklus" name="waktu_siklus" class="form-control numberformat text-right" value=""  autocomplete="off">
+															<input type="text" id="waktu_siklus" name="waktu_siklus" class="form-control numberformat text-right" value="" autocomplete="off">
 														</td>
 													</tr>
 												</tbody>
@@ -200,7 +200,14 @@
 														<td class="text-center">1.</td>
 														<td style="text-align: left !important;">Overhead</td>
 														<td colspan="2">
-															<input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value=""  autocomplete="off">
+															<input type="text" id="overhead" name="overhead" class="form-control rupiahformat text-right" value="" autocomplete="off">
+														</td>
+													</tr>
+													<tr>
+														<td class="text-center">2.</td>
+														<td style="text-align: left !important;">Laba<div style="color:red; font-weight:bold;">(Isi Angka Saja, Tanpa %)</div></td>
+														<td colspan="2">
+															<input type="text" id="laba" name="laba" class="form-control rupiahformat text-right" value="" autocomplete="off">
 														</td>
 													</tr>		
 												</tbody>

@@ -345,6 +345,14 @@
 				<td align="right"><?php echo number_format($total,0,',','.');?></td>
 				<td align="right"><?php echo number_format($total_ton,0,',','.');?></td>
 			</tr>
+			<tr class="table-active2">
+				<td align="center" colspan="8"></td>
+			</tr>
+			<tr class="table-active">
+				<td align="right" colspan="7">LABA (<?php echo number_format($row['laba'],0,',','.');?>%)</td>
+				<td align="right"><?php echo number_format(($total + ($total * 10) / 100),0,',','.');?></td>
+				<td align="right"><?php echo number_format(($total_ton + ($total_ton * 10) / 100),0,',','.');?></td>
+			</tr>
 		</table>
 		
 		<br />
