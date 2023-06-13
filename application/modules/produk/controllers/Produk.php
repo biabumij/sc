@@ -119,6 +119,7 @@ class Produk extends Secure_Controller {
     	$peralatan = $this->input->post('peralatan');
     	$bahanbakar = $this->input->post('bahanbakar');
     	$laboratorium = $this->input->post('laboratorium');
+		$asset = $this->input->post('asset');
     	$satuan = $this->input->post('satuan');
     	$deskripsi = $this->input->post('deskripsi');
 		$kategori_produk = $this->input->post('kategori_produk');
@@ -160,6 +161,7 @@ class Produk extends Secure_Controller {
     		'peralatan' => $peralatan,
     		'bahanbakar' => $bahanbakar,
     		'laboratorium' => $laboratorium,
+			'asset' => $asset,
     		'satuan' => $satuan,
     		'deskripsi' => $deskripsi,
 			'kategori_produk' => $kategori_produk,
