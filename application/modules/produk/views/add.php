@@ -100,6 +100,9 @@
                                             <div class="col-sm-2">
                                               <input type="checkbox" name="laboratorium" id="laboratorium" value="1" <?= (isset($edit) && $edit['laboratorium'] == 1) ? 'checked' : '' ;?> > Laboratorium
                                             </div>
+                                            <div class="col-sm-2">
+                                              <input type="checkbox" name="asset" id="asset" value="1" <?= (isset($edit) && $edit['asset'] == 1) ? 'checked' : '' ;?> > Asset
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Unit/Satuan<span class="required" aria-required="true">*</span></label>
