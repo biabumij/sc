@@ -2345,7 +2345,7 @@ class Laporan extends Secure_Controller {
 		
 		//Page2
 		$pdf->AddPage('L', 'A4');
-		$pdf->SetY(29);
+		$pdf->SetY(50);
 		$pdf->SetX(6);
 		$html =
 		'<style type="text/css">
@@ -2398,7 +2398,7 @@ class Laporan extends Secure_Controller {
 			margin-top:0;
 		}
 		</style>
-		<table class="minimalistBlack" cellpadding="5" width="98%">
+		<table class="minimalistBlack" cellpadding="5" width="100%">
 			<tr class="table-active">
 				<th align="center" width="5%">NO.</th>
 				<th align="center" width="19%">PRODUK</th>
