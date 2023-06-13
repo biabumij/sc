@@ -102,7 +102,7 @@
                                                         <th width="5%" class="text-center">No</th>
 														<th class="text-center">Tanggal</th>
                                                         <th class="text-center">Produk</th>
-                                                        <th class="text-center">Nilai Penyusutan</th>
+                                                        <th class="text-center">Harga Perolehan</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                         <th width="5%" class="text-center">Cetak</th>
