@@ -100,7 +100,7 @@
 		
 		<table width="98%" border="0" cellpadding="3">
 		
-			<?php
+		<?php
 			$penjualan_limbah = $this->db->select('SUM(pp.display_price) as price')
 			->from('pmm_productions pp')
 			->join('penerima p', 'pp.client_id = p.id','left')
@@ -244,12 +244,13 @@
 			$vol_timbangan_ton = $vol_sc_ton;
 			$nilai_timbangan_ton = $vol_timbangan_ton * $penyusutan_timbangan;
 
-			//M3
-			$vol_bbm_solar =  $harga_rap['vol_bbm_solar'];
-			$nilai_bbm_solar = $harga_rap['vol_bbm_solar'] * $harga_rap['price_bbm_solar'];
 			//Ton
-			$vol_bbm_solar_ton = 1.5;
-			$nilai_bbm_solar_ton = 1.5 * $harga_rap['price_bbm_solar'];
+			$vol_bbm_solar_ton = $harga_rap['vol_bbm_solar'];
+			$nilai_bbm_solar_ton = $vol_bbm_solar_ton * $harga_rap['price_bbm_solar'];
+
+			//M3
+			$vol_bbm_solar =  $vol_bbm_solar_ton * $harga_rap['berat_isi_boulder'];
+			$nilai_bbm_solar = $vol_bbm_solar * $harga_rap['price_bbm_solar'];
 
 			$rumus_overhead = ($harga_rap['overhead'] / 25) / 8;
 			$rumus_overhead_1 = ($harga_rap['kapasitas_alat_sc'] * $harga_rap['efisiensi_alat_sc']) / $harga_rap['berat_isi_batu_pecah'] ;

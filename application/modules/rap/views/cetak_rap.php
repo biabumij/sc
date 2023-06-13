@@ -199,7 +199,7 @@
 			$nilai_bbm_solar_ton = $vol_bbm_solar_ton * $row['price_bbm_solar'];
 
 			//M3
-			$vol_bbm_solar =  $vol_bbm_solar_ton / $row['berat_isi_boulder'];
+			$vol_bbm_solar =  $vol_bbm_solar_ton * $row['berat_isi_boulder'];
 			$nilai_bbm_solar = $vol_bbm_solar * $row['price_bbm_solar'];
 
 			$rumus_overhead = ($row['overhead'] / 25) / 8;
@@ -209,7 +209,6 @@
 			$rumus_overhead_ton = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
 			$overhead_ton = $rumus_overhead / $rumus_overhead_ton;
 			$overhead = $overhead_ton;
-
 
 			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $nilai_bbm_solar + $overhead;
 			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $nilai_bbm_solar_ton + $overhead_ton;
