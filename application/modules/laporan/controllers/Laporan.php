@@ -2411,11 +2411,6 @@ class Laporan extends Secure_Controller {
 		</table>';
 		$pdf->writeHTML($html, true, false, true, false, '');
 
-		//Page1
-		$pdf->setPage(1, true);
-		$pdf->SetY(35);
-		$pdf->Cell(0, 0, '', 0, 0, 'C');
-
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
 			$filter_date = '-';
