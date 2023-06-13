@@ -2341,13 +2341,80 @@ class Laporan extends Secure_Controller {
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
 		
-		// add a page
-		$pdf->AddPage('L');
-		$pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->SetY(45);
+		//Page2
+		$pdf->AddPage('L', 'A4');
+		$pdf->SetY(29);
 		$pdf->SetX(6);
-		$pdf->SetMargins(10, 10);
+		$html =
+		'<style type="text/css">
+		body{
+			font-family: "Open Sans", Arial, sans-serif;
+		}
+		table.minimalistBlack {
+		border: 0px solid #000000;
+		width: 100%;
+		text-align: left;
+		}
+		table.minimalistBlack td, table.minimalistBlack th {
+			border: 0px solid #000000;
+			padding: 5px 4px;
+		}
+		table.minimalistBlack tr td {
+			/*font-size: 13px;*/
+			text-align:center;
+		}
+		table.minimalistBlack tr th {
+			/*font-size: 14px;*/
+			font-weight: bold;
+			color: #000000;
+			text-align: center;
+			padding: 8px;
+		}
+		table.head tr th {
+			/*font-size: 14px;*/
+			font-weight: bold;
+			color: #000000;
+			text-align: left;
+			padding: 8px;
+		}
+		table tr.table-active{
+			background-color: #e69500 ;
+			font-weight: bold;
+		}
+		table tr.table-active2{
+			font-weight: bold;
+		}
+		table tr.table-active3{
+			background-color: #FFFF00;
+			font-weight: bold;
+		}
+		hr{
+			margin-top:0;
+			margin-bottom:30px;
+		}
+		h3{
+			margin-top:0;
+		}
+		</style>
+		<table class="minimalistBlack" cellpadding="5" width="98%">
+			<tr class="table-active">
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="19%">PRODUK</th>
+				<th align="center" width="10%">MASA MANFAAT</th>
+				<th align="center" width="11%">HARGA PEROLEHAN (Rp.)</th>
+				<th align="center" width="11%">TAHUN PEROLEHAN</th>
+				<th align="center" width="11%">NILAI PENYUSUTAN /TAHUN (Rp.)</th>
+				<th align="center" width="11%">NILAI PENYUSUTAN /BULAN (Rp.)</th>
+				<th align="center" width="11%">NILAI PENYUSUTAN /HARI (Rp.)</th>
+				<th align="center" width="11%">NILAI PENYUSUTAN /JAM (Rp.)</th>
+			</tr>
+		</table>';
+		$pdf->writeHTML($html, true, false, true, false, '');
+
+		//Page1
+		$pdf->setPage(1, true);
+		$pdf->SetY(35);
+		$pdf->Cell(0, 0, '', 0, 0, 'C');
 
 		$arr_date = $this->input->get('filter_date');
 		if(empty($arr_date)){
