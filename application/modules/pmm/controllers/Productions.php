@@ -1146,7 +1146,7 @@ class Productions extends Secure_Controller {
 		$filter_date = false;
 
 
-		$this->db->select('pp.*, pc.nama, p.nama_produk as product, p.nama_produk');
+		$this->db->select('pp.*,pc.nama, p.nama_produk');
 		if(!empty($client_id)){
 			$this->db->where('pp.client_id',$client_id);
 		}
