@@ -39,7 +39,7 @@
                                 <form method="POST" action="<?php echo site_url('rap/submit_penyusutan');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <div class="row">
 										<div class="col-sm-2">
-                                            <label>Tanggal Penyusutan</label>
+                                            <label>Tanggal Perolehan</label>
                                         </div>
 										<div class="col-sm-6">
                                             <input type="text" class="form-control dtpicker" name="tanggal_penyusutan" required="" value=""/>
