@@ -14,7 +14,7 @@
 		  text-align: left;
 		}
 		table.minimalistBlack td, table.minimalistBlack th {
-		  border: 1px solid #000000;
+		  border: 0px solid #000000;
 		  padding: 5px 4px;
 		}
 		table.minimalistBlack tr td {
@@ -26,14 +26,14 @@
 		  font-weight: bold;
 		  color: #000000;
 		  text-align: center;
-		  padding: 10px;
+		  padding: 8px;
 		}
 		table.head tr th {
 		  /*font-size: 14px;*/
 		  font-weight: bold;
 		  color: #000000;
 		  text-align: left;
-		  padding: 10px;
+		  padding: 8px;
 		}
 		table tr.table-active{
             background-color: #e69500 ;
