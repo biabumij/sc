@@ -201,9 +201,11 @@
 			$vol_bbm_solar_ton = 1.5;
 			$nilai_bbm_solar_ton = 1.5 * $row['price_bbm_solar'];
 
-			$rumus_overhead = ($row['overhead'] / 25) / 8;
-			$rumus_overhead_1 = ($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc']) / $row['berat_isi_batu_pecah'] ;
-			$overhead = $rumus_overhead / $rumus_overhead_1;
+			//$rumus_overhead = ($row['overhead'] / 25) / 8;
+			//$rumus_overhead_1 = ($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc']) / $row['berat_isi_batu_pecah'] ;
+			//$overhead = $rumus_overhead / $rumus_overhead_1;
+
+			$overhead = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
 
 			$rumus_overhead_ton = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
 			$overhead_ton = $rumus_overhead / $rumus_overhead_ton;
