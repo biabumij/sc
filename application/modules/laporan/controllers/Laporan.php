@@ -2345,12 +2345,12 @@ class Laporan extends Secure_Controller {
 		
 		//Page2
 		$pdf->AddPage('L', 'A4');
-		$pdf->SetY(29);
-		$pdf->SetX(6);
+		$pdf->SetY(27);
+		$pdf->SetX(5);
 		$html =
 		'<style type="text/css">
 		body{
-			font-family: "Open Sans", Arial, sans-serif;
+			font-family: "Times New Roman", Times, serif;
 		}
 		table.minimalistBlack {
 		border: 0px solid #000000;
@@ -2401,14 +2401,14 @@ class Laporan extends Secure_Controller {
 		<table class="minimalistBlack" cellpadding="5" width="98%">
 			<tr class="table-active">
 				<th align="center" width="5%">NO.</th>
-				<th align="center" width="19%">PRODUK</th>
+				<th align="center" width="25%">PRODUK</th>
 				<th align="center" width="10%">MASA MANFAAT</th>
-				<th align="center" width="11%">HARGA PEROLEHAN (Rp.)</th>
-				<th align="center" width="11%">TAHUN PEROLEHAN</th>
-				<th align="center" width="11%">NILAI PENYUSUTAN /TAHUN (Rp.)</th>
-				<th align="center" width="11%">NILAI PENYUSUTAN /BULAN (Rp.)</th>
-				<th align="center" width="11%">NILAI PENYUSUTAN /HARI (Rp.)</th>
-				<th align="center" width="11%">NILAI PENYUSUTAN /JAM (Rp.)</th>
+				<th align="center" width="10%">HARGA PEROLEHAN (Rp.)</th>
+				<th align="center" width="10%">TAHUN PEROLEHAN</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /TAHUN (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /BULAN (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /HARI (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /JAM (Rp.)</th>
 			</tr>
 		</table>';
 		$pdf->writeHTML($html, true, false, true, false, '');

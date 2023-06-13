@@ -6,7 +6,7 @@
 	  
 	  <style type="text/css">
 	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
+			font-family: "Times New Roman", Times, serif;
 	  	}
 	  	table.minimalistBlack {
 		  border: 0px solid #000000;
@@ -102,14 +102,14 @@
 			?>
 			<tr class="table-active">
 				<th align="center" width="5%">NO.</th>
-				<th align="center" width="19%">PRODUK</th>
+				<th align="center" width="25%">PRODUK</th>
 				<th align="center" width="10%">MASA MANFAAT</th>
-				<th align="center" width="11%">HARGA PEROLEHAN (Rp.)</th>
-				<th align="center" width="11%">TAHUN PEROLEHAN</th>
-				<th align="center" width="11%">NILAI PENYUSUTAN /TAHUN (Rp.)</th>
-				<th align="center" width="11%">NILAI PENYUSUTAN /BULAN (Rp.)</th>
-				<th align="center" width="11%">NILAI PENYUSUTAN /HARI (Rp.)</th>
-				<th align="center" width="11%">NILAI PENYUSUTAN /JAM (Rp.)</th>
+				<th align="center" width="10%">HARGA PEROLEHAN (Rp.)</th>
+				<th align="center" width="10%">TAHUN PEROLEHAN</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /TAHUN (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /BULAN (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /HARI (Rp.)</th>
+				<th align="center" width="10%">NILAI PENYUSUTAN /JAM (Rp.)</th>
             </tr>
 			<?php $no=1; foreach ($penyusutan as $x):?>
 			<tr class="table-active2">
