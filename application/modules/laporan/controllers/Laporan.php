@@ -2398,7 +2398,7 @@ class Laporan extends Secure_Controller {
 			margin-top:0;
 		}
 		</style>
-		<table class="minimalistBlack" cellpadding="5" width="100%">
+		<table class="minimalistBlack" cellpadding="5" width="98%">
 			<tr class="table-active">
 				<th align="center" width="5%">NO.</th>
 				<th align="center" width="19%">PRODUK</th>
