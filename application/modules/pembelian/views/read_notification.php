@@ -45,6 +45,34 @@
                                                 <th width = "50%"><a href="<?= site_url('pembelian/closed_verifikasi/' . $x['id']); ?>" class="btn btn-warning"><i class="fa fa-envelope-open-o"></i> Tandai Sudah Dibaca - (<?= $x['nomor_invoice'];?>)</a></th>
                                                 <th width = "50%"><a target="_blank" a href="<?= site_url('pembelian/print_verifikasi_penagihan_pembelian/?id='.$x['id']); ?>" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a></th>
                                             </tr>
+                                            <tr>
+                                                <th>Lampiran - Invoice</th>
+                                                <th><a href="<?= site_url($x['invoice_file']); ?>"><?= $x['invoice_file']; ?></a></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Lampiran - Kwitansi</th>
+                                                <th><a href="<?= site_url($x['kwitansi_file']); ?>"><?= $x['kwitansi_file']; ?></a></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Lampiran - Faktur Pajak</th>
+                                                <th><a href="<?= site_url($x['faktur_file']); ?>"><?= $x['faktur_file']; ?></a></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Lampiran - Berita Acara Pembayaran (BAP)</th>
+                                                <th><a href="<?= site_url($x['bap_file']); ?>"><?= $x['bap_file']; ?></a></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Lampiran - Berita Acara Serah Terima (BAST)</th>
+                                                <th><a href="<?= site_url($x['bast_file']); ?>"><?= $x['bast_file']; ?></a></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Lampiran - Surat Jalan</th>
+                                                <th><a href="<?= site_url($x['surat_jalan_file']); ?>"><?= $x['surat_jalan_file']; ?></a></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Lampiran - Copy Kontrak/ PO</th>
+                                                <th><a href="<?= site_url($x['copy_po_file']); ?>"><?= $x['copy_po_file']; ?></a></th>
+                                            </tr>
                                             <?php
                                             }
                                             ?>
