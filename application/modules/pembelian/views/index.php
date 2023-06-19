@@ -471,6 +471,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
+                                                    <th class="text-center">Dibuat Oleh</th>
+                                                    <th class="text-center">Dibuat Tanggal</th>
                                                     <th class="text-center">Tgl. Invoice</th>
                                                     <th class="text-center">No. Invoice</th>
                                                     <th class="text-center">Rekanan</th>
@@ -481,8 +483,6 @@
                                                     <th class="text-center">Sisa Tagihan</th>
                                                     <th class="text-center">Status Tagihan</th>
                                                     <th class="text-center">Verifikasi Dok</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1581,6 +1581,12 @@
                 "data": "no"
             },
             {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            },
+            {
                 "data": "tanggal_invoice"
             },
             {
@@ -1609,21 +1615,15 @@
             },
             {
                 "data": "verifikasi_dok"
-            },
-            {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
             }
         ],
         "columnDefs": [
             {
-            "targets": [0],
+            "targets": [0, 1, 2, 3, 6],
             "className": 'text-center',
             },
             {
-            "targets": [7, 8, 9],
+            "targets": [8, 9],
             "className": 'text-right',
             },
         ],
