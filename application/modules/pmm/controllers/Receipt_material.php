@@ -1328,8 +1328,8 @@ class Receipt_material extends CI_Controller {
 		$this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
 
 		if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.created_on >=',$start_date);
-            $this->db->where('ppp.created_on <=',$end_date);
+			$this->db->where('ppp.created_on >=',$start_date.' 23:59:59');
+            $this->db->where('ppp.created_on <=',$end_date.' 23:59:59');
         }
         if(!empty($supplier_id)){
             $this->db->where('ppp.supplier_id',$supplier_id);
