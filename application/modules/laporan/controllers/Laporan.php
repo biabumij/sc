@@ -2021,8 +2021,8 @@ class Laporan extends Secure_Controller {
 
 		$this->db->select('ppp.supplier_id, ps.nama');
 		if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.created_on >=',$start_date);
-            $this->db->where('ppp.created_on <=',$end_date);
+            $this->db->where('ppp.created_on >=',$start_date.' 23:59:59');
+            $this->db->where('ppp.created_on <=',$end_date.' 23:59:59');
         }
         if(!empty($supplier_id)){
             $this->db->where('ppp.supplier_id',$supplier_id);
