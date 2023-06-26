@@ -70,6 +70,7 @@
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                         <th width="5%" class="text-center">Cetak</th>
                                                         <th width="5%" class="text-center">Edit</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -106,6 +107,7 @@
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                         <th width="5%" class="text-center">Cetak</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -202,9 +204,12 @@
                 {
                     "data": "edit"
                 },
+                {
+                    "data": "delete"
+                }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 4],
+                    "targets": [0, 1, 2, 3, 4, 5],
                     "className": 'text-center',
                 }
             ],
@@ -214,6 +219,30 @@
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_rap.ajax.reload();
         });
+
+        function DeleteRAP(id) {
+        bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
+            // console.log('This was logged in the callback: ' + result); 
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('rap/delete_rap'); ?>",
+                    dataType: 'json',
+                    data: {
+                        id: id
+                    },
+                    success: function(result) {
+                        if (result.output) {
+                            table_rap.ajax.reload();
+                            bootbox.alert('Berhasil Menghapus RAP !!');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+            });
+        }
 
         var table_penyusutan = $('#table_penyusutan').DataTable({
             ajax: {
@@ -253,14 +282,17 @@
                 {
                     "data": "print"
                 },
+                {
+                    "data": "delete"
+                }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4, 5, 6],
+                    "targets": [0, 1, 4, 5, 6, 7],
                     "className": 'text-center',
                 },
                 {
                     "targets": [3],
-                    "className": 'text-center',
+                    "className": 'text-right',
                 }
             ],
         });
@@ -269,6 +301,30 @@
         $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
         table_penyusutan.ajax.reload();
         });
+
+        function DeletePenyusutan(id) {
+        bootbox.confirm("Anda yakin akan menghapus data ini ?", function(result) {
+            // console.log('This was logged in the callback: ' + result); 
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('rap/delete_penyusutan'); ?>",
+                    dataType: 'json',
+                    data: {
+                        id: id
+                    },
+                    success: function(result) {
+                        if (result.output) {
+                            table_penyusutan.ajax.reload();
+                            bootbox.alert('Berhasil Menghapus Penyusutan !!');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+            });
+        }
 	
     </script>
 
