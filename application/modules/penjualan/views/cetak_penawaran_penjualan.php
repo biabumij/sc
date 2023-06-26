@@ -138,7 +138,7 @@
             </tr>
             <tr>
             	<td>
-					<b><u>Hadi Sucipto</u><br />
+					<b><u></u><br />
 					Ka. Unit Bisnis</b>
 				</td>
             </tr>

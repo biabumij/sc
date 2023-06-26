@@ -140,7 +140,7 @@
                                 Rifka Dian B.
                             </td>
                             <td align="center">
-                                Hadi Sucipto
+                                
                             </td>
                             <td align="center">
                                 Erika Sinaga

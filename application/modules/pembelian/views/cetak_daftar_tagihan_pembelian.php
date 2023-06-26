@@ -212,7 +212,7 @@
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u>Hadi Sucipto</u><br />
+								<b><u></u><br />
 								Kepala Unit Proyek</b>
 							</td>
 							<td align="center">

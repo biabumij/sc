@@ -267,7 +267,7 @@
 								Vicky Irwana Yudha
                             </td>
                             <td align="center">
-								Hadi Sucipto 
+								 
                             </td>
                         </tr>
                         <tr>

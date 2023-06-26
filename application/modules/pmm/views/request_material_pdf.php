@@ -120,7 +120,7 @@
 						</tr>
 						<tr class="">
 							<td align="center" height="75px">
-								<img src="uploads/ttd_hadi.png" width="100px">
+								<!--<img src="uploads/ttd_hadi.png" width="100px">-->
 							</td>
 							<td align="center">
 								<img src="uploads/ttd_vicky.png" width="100px">
@@ -131,7 +131,7 @@
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								<b><u>Hadi Sucipto</u></b>
+								<b><u></u></b>
 							</td>
 							<td align="center" >
 								<b><u>Vicky Irwana Yudha</u></b>

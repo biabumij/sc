@@ -819,7 +819,7 @@
 								Direktur Utama</b>
 							</td>
 							<td align="center">
-								<b><u>Hadi Sucipto</u><br />
+								<b><u></u><br />
 								Kepala Unit Bisnis</b>
 							</td>
 						</tr>

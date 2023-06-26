@@ -696,7 +696,7 @@
 							
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
+								<!--<img src="<?= $unit_head['admin_ttd']?>" width="70px">-->
 							</td>
 						</tr>
 						<tr>
@@ -705,7 +705,7 @@
 								Direktur Utama</b>
 							</td>
 							<td align="center">
-								<b><u>Hadi Sucipto</u><br />
+								<b><u></u><br />
 								Kepala Unit Bisnis</b>
 							</td>
 						</tr>

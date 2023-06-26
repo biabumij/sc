@@ -1077,7 +1077,7 @@
 					</tr>
 					<tr>
 						<td align="center">
-							<b><u>Hadi Sucipto</u><br />
+							<b><u></u><br />
 							Ka. Unit Bisnis</b>
 						</td>
 						<td align="center">
