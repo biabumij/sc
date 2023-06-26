@@ -16,7 +16,7 @@
                 <div class="leftside-content-header">
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                        <a href="<?php echo site_url('admin/laporan_keuangan');?>">Kembali</a>
+                        <li><a>Laporan Biaya</a></li>
                     </ul>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <div class="panel">
                         <div class="panel-header">
                             <h3 class="section-subtitle">Laporan Biaya</h3>
-                            <a href="laporan_keuangan">Kembali</a>
+                            <a href="<?php echo site_url('admin/laporan_keuangan');?>">Kembali</a>
                         </div>
                         <div class="panel-content">
                             <form action="<?= site_url('laporan/print_biaya');?>" target="_blank">
@@ -36,7 +36,7 @@
                                     <div class="col-sm-2">
                                         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak</button>
                                     </div>
-                                </div>
+                                </div>    
                             </form>
                             
                             <br />
