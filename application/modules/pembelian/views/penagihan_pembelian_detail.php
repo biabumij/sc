@@ -109,6 +109,25 @@
                                         <th><?= date('d/m/Y', strtotime($row['tanggal_jatuh_tempo'])); ?></th>
                                     </tr>-->
                                     <tr>
+                                        <th>Memo</th>
+                                        <th><?= $row["memo"]; ?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Lampiran</th>
+                                        <th>
+                                        <?php
+                                            $dataLampiran = $this->db->get_where('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $row['id']))->result_array();
+                                            if (!empty($dataLampiran)) {
+                                                foreach ($dataLampiran as $key => $lampiran) {
+                                            ?>
+                                                    <div><a href="<?= base_url() . 'uploads/penagihan_pembelian/' . $lampiran['lampiran']; ?>" target="_blank"><?= $lampiran['lampiran']; ?></a></div>
+                                            <?php
+                                                }
+                                            }
+                                        ?>
+                                        </th>
+                                    </tr>
+                                    <tr>
                                         <th>Dibuat Oleh</th>
                                         <th><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');?></th>
                                     </tr>
@@ -198,25 +217,6 @@
                                 </table>
                             </div>
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Memo</label>
-                                        <textarea class="form-control" name="memo" rows="3" value="" readonly><?= $row["memo"]; ?></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Lampiran</label>
-                                        <?php
-                                        $dataLampiran = $this->db->get_where('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $row['id']))->result_array();
-                                        if (!empty($dataLampiran)) {
-                                            foreach ($dataLampiran as $key => $lampiran) {
-                                        ?>
-                                                <div><a href="<?= base_url() . 'uploads/penagihan_pembelian/' . $lampiran['lampiran']; ?>" target="_blank"><?= $lampiran['lampiran']; ?></a></div>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
                                 <div class="col-sm-8 form-horizontal">
                                     <div class="row">
                                         <label class="col-sm-7 control-label">Sub Total</label>
