@@ -720,11 +720,17 @@ class Pembelian extends Secure_Controller
 
     public function hapus_penawaran_pembelian($id)
     {
-
-
         $this->db->trans_start(); # Starting Transaction
 
+        $file = $this->db->select('pp.lampiran')
+		->from('pmm_lampiran_penawaran_pembelian pp')
+		->where("pp.penawaran_pembelian_id = $id")
+		->get()->row_array();
 
+		$path = './uploads/penawaran_pembelian/'.$file['lampiran'];
+		chmod($path, 0777);
+		unlink($path);
+        
         $this->db->delete('pmm_penawaran_pembelian_detail', array('penawaran_pembelian_id' => $id));
         $this->db->delete("pmm_penawaran_pembelian", array('id' => $id));
 
