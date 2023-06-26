@@ -47,8 +47,8 @@
                                     <form id="form-po" class="form-horizontal">
                                         <table class="table table-striped table-bordered" width="100%">
                                             <tr>
-                                                <th width="25%" align="left">Rekanan</th>
-                                                <th width="75%" align="left"><label class="label label-default" style="font-size:14px;"><?php echo $supplier_name;?></label></th>
+                                                <th width="20%" align="left">Rekanan</th>
+                                                <th width="80%" align="left"><label class="label label-default" style="font-size:14px;"><?php echo $supplier_name;?></label></th>
                                                 <input type="hidden" id="supplier_id" name="supplier_id" class="form-control" value="<?php echo $data['supplier_id'];?>">
                                                 <input type="hidden" class="form-control" id="date_pkp" value="<?php echo date('d-m-Y',strtotime('10-02-2021'));?>" readonly="">
                                             </tr>
@@ -63,8 +63,8 @@
                                         </table>
                                         <table class="table table-striped table-bordered" width="100%">
                                             <tr>
-                                                <th width="25%" align="left">No. Pesanan Pembelian</th>
-                                                <th width="75%" align="left"><label class="label label-info" style="font-size:14px;"><?php echo $data['no_po'];?></label></th>
+                                                <th width="20%" align="left">No. Pesanan Pembelian</th>
+                                                <th width="80%" align="left"><label class="label label-info" style="font-size:14px;"><?php echo $data['no_po'];?></label></th>
                                             </tr>
                                             <tr>
                                                 <th>Perihal</th>

@@ -74,8 +74,8 @@
                             <div class="panel-content">
                                 <table class="table table-striped table-bordered" width="100%">
                                     <tr>
-                                        <th width="25%" align="left">Rekanan</th>
-                                        <th width="75%" align="left"><label class="label label-default" style="font-size:14px;"><?= $row['supplier']; ?></label></th>
+                                        <th width="20%" align="left">Rekanan</th>
+                                        <th width="80%" align="left"><label class="label label-default" style="font-size:14px;"><?= $row['supplier']; ?></label></th>
                                     </tr>
                                     <tr>
                                         <th>Alamat</th>
@@ -93,8 +93,8 @@
                                 <br />
                                 <table class="table table-striped table-bordered" width="100%">
                                     <tr>
-                                        <th width="25%" align="left">Nomor Invoice</th>
-                                        <th width="75%" align="left"><label class="label label-info" style="font-size:14px;"><?= $row['nomor_invoice']; ?></label></th>
+                                        <th width="20%" align="left">Nomor Invoice</th>
+                                        <th width="80%" align="left"><label class="label label-info" style="font-size:14px;"><?= $row['nomor_invoice']; ?></label></th>
                                     </tr>
                                     <tr>
                                         <th>Tanggal Invoice</th>
