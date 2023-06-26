@@ -62,6 +62,9 @@ class Productions extends Secure_Controller {
 		$product_id = $this->input->post('product_id');
 		$sales_po_id = $this->input->post('salesPo_id');
 		$w_date = $this->input->post('filter_date');
+		$date_now = date('Y-m-d');
+		$awal_bulan = date('Y-m-01', strtotime($date_now));
+		$akhir_bulan = date('Y-m-d', strtotime('-1 days +1 months', strtotime($awal_bulan)));
 
 		$this->db->select('');
 		$this->db->where('status !=','DELETED');
@@ -81,6 +84,7 @@ class Productions extends Secure_Controller {
 			$this->db->where('date_production  >=',date('Y-m-d',strtotime($start_date)));	
 			$this->db->where('date_production <=',date('Y-m-d',strtotime($end_date)));	
 		}
+		$this->db->where("(date_production between '$awal_bulan' and '$akhir_bulan')");
 		$this->db->order_by('date_production','desc');
 		$this->db->order_by('created_on','desc');
 		$query = $this->db->get('pmm_productions');
@@ -666,6 +670,15 @@ class Productions extends Secure_Controller {
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		
+		$file = $this->db->select('pp.surat_jalan')
+		->from('pmm_productions pp')
+		->where("pp.id = $id")
+		->get()->row_array();
+
+		$path = './uploads/surat_jalan_penjualan/'.$file['surat_jalan'];
+		chmod($path, 0777);
+		unlink($path);
+
 		$this->db->delete('pmm_productions',array('id'=>$id));
 		$output['output'] = true;
 			

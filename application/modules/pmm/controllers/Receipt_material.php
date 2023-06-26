@@ -188,8 +188,6 @@ class Receipt_material extends CI_Controller {
 		$supplier_id = $this->input->post('supplier_id');
 		$material_id = $this->input->post('material_id');
 		$date_now = date('Y-m-d');
-		//$awal_bulan = date('Y-m-01', strtotime($date_now));
-		//$akhir_bulan = date('Y-m-d', strtotime('-1 days +1 months', strtotime($awal_bulan)));
 		$awal_bulan = date('Y-m-01', strtotime('-1 months', strtotime($date_now)));
 		$akhir_bulan = date('Y-m-d', strtotime($date_now));
 
@@ -533,6 +531,16 @@ class Receipt_material extends CI_Controller {
 	{
 		$output['output'] = false;
 		$id = $this->input->post('id');
+
+		$file = $this->db->select('prm.surat_jalan_file')
+		->from('pmm_receipt_material prm')
+		->where("prm.id = $id")
+		->get()->row_array();
+
+		$path = './uploads/surat_jalan_pembelian/'.$file['surat_jalan_file'];
+		chmod($path, 0777);
+		unlink($path);
+
 		if(!empty($id)){
 			
 			if($this->db->delete('pmm_receipt_material',array('id'=>$id))){
