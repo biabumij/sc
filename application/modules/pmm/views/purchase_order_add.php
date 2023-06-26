@@ -37,83 +37,63 @@
                 <div class="col-sm-12 col-lg-12">
                     <div class="panel">
                         <div class="panel-header">
-                            
                             <div class="">
                                 <h3 class="">Detail Pesanan Pembelian <?php echo $this->pmm_model->GetStatus($data['status']);?></h3>
-                                
                             </div>
                         </div>
                         <div class="panel-content">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-12">
                                     <form id="form-po" class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label text-align:right">No PO : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="no_po" value="<?php echo $data['no_po'];?>" readonly="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label">Tanggal PO : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" id="date_po" class="form-control dtpicker" value="<?php echo date('d-m-Y',strtotime($data['date_po']));?>" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label">Perihal : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" id="subject" value="<?php echo $data['subject'];?>">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label">Lampiran : </label>
-                                            <div class="col-sm-8">
-                                                <a href="<?= base_url("uploads/purchase_order/".$data["document_po"]) ?>" target="_blank"><?php echo $data['document_po'];?></a>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label">Dibuat Oleh : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$data['created_by']),'admin_name');?>" readonly="">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label">Dibuat Tanggal : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" value="<?= date('d/m/Y H:i:s',strtotime($data['created_on']));?>" readonly="">
-                                            </div>
-                                        </div>
-									
-                                                <input type="hidden" class="form-control" id="date_pkp" value="<?php echo date('d-m-Y',strtotime('10-02-2021'));?>" readonly="">
-                                         
-                                    </form>
-                                </div>
-                                <div class="col-sm-6">
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label">Rekanan : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" id="supplier" name="supplier" class="form-control" value="<?php echo $supplier_name;?>" readonly="">
+                                        <table class="table table-striped table-bordered" width="100%">
+                                            <tr>
+                                                <th width="25%" align="left">Rekanan</th>
+                                                <th width="75%" align="left"><label class="label label-default" style="font-size:14px;"><?php echo $supplier_name;?></label></th>
                                                 <input type="hidden" id="supplier_id" name="supplier_id" class="form-control" value="<?php echo $data['supplier_id'];?>">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label">Alamat : </label>
-                                            <div class="col-sm-8">
-                                                <textarea id="address_supplier"  class="form-control" rows="5" readonly=""><?php echo $address_supplier;?></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputEmail3" class="col-sm-3 control-label">NPWP : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" id="npwp_supplier" class="form-control" value="<?php echo $npwp_supplier;?>" readonly="">
-                                            </div>
-                                        </div>
+                                                <input type="hidden" class="form-control" id="date_pkp" value="<?php echo date('d-m-Y',strtotime('10-02-2021'));?>" readonly="">
+                                            </tr>
+                                            <tr>
+                                                <th>Alamat</th>
+                                                <th><textarea id="address_supplier"  class="form-control" rows="5" readonly=""><?php echo $address_supplier;?></textarea></th>
+                                            </tr>
+                                            <tr>
+                                                <th>NPWP</th>
+                                                <th><?php echo $npwp_supplier;?></th>
+                                            </tr>
+                                        </table>
+                                        <table class="table table-striped table-bordered" width="100%">
+                                            <tr>
+                                                <th width="25%" align="left">No. Pesanan Pembelian</th>
+                                                <th width="75%" align="left"><label class="label label-info" style="font-size:14px;"><?php echo $data['no_po'];?></label></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Perihal</th>
+                                                <th><?php echo $data['subject'];?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Tanggal Pesanan Pembelian</th>
+                                                <th><?php echo date('d/m/Y',strtotime($data['date_po']));?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Memo</th>
+                                                <th class="text-left" colspan="6"><?php echo $data['memo'];?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Lampiran</th>
+                                                <th><a href="<?= base_url("uploads/purchase_order/".$data["document_po"]) ?>" target="_blank"><?php echo $data['document_po'];?></a></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Dibuat Oleh</th>
+                                                <th><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$data['created_by']),'admin_name');?></th>
+                                            </tr>
+                                            <tr>
+                                                <th>Dibuat Tanggal</th>
+                                                <th><?= date('d/m/Y H:i:s',strtotime($data['created_on']));?></th>
+                                            </tr>
+                                        </table>                
                                     </form>
                                 </div>
                             </div>
-                            
-                            
                             <br />
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover table-center" id="guest-table">
@@ -218,14 +198,6 @@
                                         <th  class="text-right"><?= number_format($total,0,',','.'); ?></th>
                                     </tr>
                                 </tfoot>
-                                </table>
-                                <table class="table table-striped table-bordered"> 
-                                    <tr>
-                                        <th class="text-left" colspan="6">Memo :</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-left" colspan="6"><?php echo $data['memo'];?></th>
-                                    </tr>
                                 </table>
                             </div>
 

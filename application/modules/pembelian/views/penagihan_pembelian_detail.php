@@ -67,344 +67,338 @@
                             <div class="panel-header">
                                 <div class="">
                                     <h3 class="">
-                                        Detail Tagihan Pembelian
-                                        <small>(<i><?= $row['status']; ?></i>)</small>
+                                        Detail Tagihan Pembelian <?php echo $this->pmm_model->GetStatus3($row['status']);?>
                                     </h3>
                                 </div>
                             </div>
                             <div class="panel-content">
-                                <div class="row">
-                                    <div class="col-sm-10">
-                                        <label>Rekanan</label>
-                                        <input type="text" class="form-control" value="<?= $row['supplier']; ?>" readonly>
-                                    </div>
-								</div>
-								<div class="row">
-									<div class="col-sm-10">
-                                        <label>Alamat Rekanan</label>
-                                        <textarea class="form-control" name="alamat_supplier" id="alamat_supplier" required="" readonly=""><?= $row['supplier_address']; ?></textarea>
-                                    </div>
-								</div>
-								<div class="row">
-									<div class="col-sm-2">
-                                        <label>Tgl. Pesanan Pembelian</label>
-                                        <input type="text" class="form-control" value="<?= $row['tanggal_po']; ?>" readonly>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <label>No. Pesanan Pembelian</label>
-                                        <div class="form-control" readonly><a target="_blank" href="<?= base_url("pmm/purchase_order/manage/".$row['purchase_order_id']) ?>"><?php echo $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');?></a></div>
-                                    </div> 
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label>Tanggal Invoice</label>
-                                        <input type="text" class="form-control" value="<?= date('d/m/Y', strtotime($row['tanggal_invoice'])); ?>" readonly>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <label>Nomor Invoice</label>
-                                        <input type="text" class="form-control" value="<?= $row['nomor_invoice']; ?>" readonly>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label>Syarat Pembayaran</label>
-                                        <input type="text" class="form-control" value="<?= $row['syarat_pembayaran']; ?> hari" readonly="">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Dibuat Oleh</label>
-                                        <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');?>" readonly="">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Dibuat Tanggal</label>
-                                        <input type="text" class="form-control" value="<?= date('d/m/Y H:i:s',strtotime($row['created_on']));?>" readonly="">
-                                    </div>
-                                    <!--<div class="col-sm-3">
-                                        <label>Tanggal Jatuh Tempo</label>
-                                        <input type="text" class="form-control" value="<?= date('d/m/Y', strtotime($row['tanggal_jatuh_tempo'])); ?>" readonly>
-                                    </div>-->
-                                </div>
+                                <table class="table table-striped table-bordered" width="100%">
+                                    <tr>
+                                        <th width="25%" align="left">Rekanan</th>
+                                        <th width="75%" align="left"><label class="label label-default" style="font-size:14px;"><?= $row['supplier']; ?></label></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat</th>
+                                        <th><textarea class="form-control" name="alamat_supplier" id="alamat_supplier"  rows="5" readonly=""><?= $row['supplier_address']; ?></textarea></th>
+                                    </tr>
+                                    <tr>
+                                        <th>No. Pesanan Pembelian</th>
+                                        <th><a target="_blank" href="<?= base_url("pmm/purchase_order/manage/".$row['purchase_order_id']) ?>"><?php echo $this->crud_global->GetField('pmm_purchase_order',array('id'=>$row['purchase_order_id']),'no_po');?></a></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Tanggal Pesanan Pembelian</th>
+                                        <th><?php echo date('d/m/Y',strtotime($row['tanggal_po']));?></th>
+                                    </tr>
+                                </table>
                                 <br />
-                                <div class="table-responsive">
-                                    <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
-                                        <thead>
+                                <table class="table table-striped table-bordered" width="100%">
+                                    <tr>
+                                        <th width="25%" align="left">Nomor Invoice</th>
+                                        <th width="75%" align="left"><label class="label label-info" style="font-size:14px;"><?= $row['nomor_invoice']; ?></label></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Tanggal Invoice</th>
+                                        <th><?= date('d/m/Y', strtotime($row['tanggal_invoice'])); ?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Syarat Pembayaran</th>
+                                        <th><?= $row['syarat_pembayaran']; ?> Hari</th>
+                                    </tr>
+                                    <!--<tr>
+                                        <th>Tanggal Jatuh Tempo</th>
+                                        <th><?= date('d/m/Y', strtotime($row['tanggal_jatuh_tempo'])); ?></th>
+                                    </tr>-->
+                                    <tr>
+                                        <th>Dibuat Oleh</th>
+                                        <th><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Dibuat Tanggal</th>
+                                        <th><?= date('d/m/Y H:i:s',strtotime($row['created_on']));?></th>
+                                    </tr>
+                                </table>
+
+                            <div class="table-responsive">
+                                <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%">No</th>
+                                            <th width="25%">Produk</th>
+                                            <th width="10%">Volume</th>
+                                            <th width="10%">Satuan</th>
+                                            <th width="10%">Harga Satuan</th>
+                                            <th width="10%">Pajak</th>
+                                            <th width="10%">Pajak (2)</th>
+                                            <th width="20%">Nilai</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                        $sub_total = 0;
+                                        $tax_pph = 0;
+                                        $tax_ppn = 0;
+                                        $tax_ppn11 = 0;
+                                        $tax_0 = false;
+                                        $pajak_pph = 0;
+                                        $pajak_ppn = 0;
+                                        $pajak_ppn11 = 0;
+                                        $pajak_0 = false;
+                                        $total = 0;
+                                        $details = $this->db->get_where('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $row['id']))->result_array();
+                                        ?>
+                                        <?php foreach ($details as $key => $dt) { ?>
+                                            <?php
+                                            $material = $this->crud_global->GetField('produk', array('id' => $dt['material_id']), 'nama_produk');
+                                            $tax = $this->crud_global->GetField('pmm_taxs', array('id' => $dt['tax_id']), 'tax_name');
+                                            $pajak = $this->crud_global->GetField('pmm_taxs', array('id' => $dt['pajak_id']), 'tax_name');
+                                            ?>
                                             <tr>
-                                                <th width="5%">No</th>
-                                                <th width="25%">Produk</th>
-                                                <th width="10%">Volume</th>
-                                                <th width="10%">Satuan</th>
-                                                <th width="10%">Harga Satuan</th>
-                                                <th width="10%">Pajak</th>
-                                                <th width="10%">Pajak (2)</th>
-                                                <th width="20%">Nilai</th>
+                                                <td><?= $key + 1 ?>.</td>
+                                                <td style="text-align: left !important;">
+                                                    <?= $material; ?>
+                                                </td>
+                                                <td><?= $dt['volume']; ?></td>
+                                                <td><?= $dt['measure']; ?></td>
+                                                <td style="text-align: right !important;"><?= number_format($dt['price'],0,',','.'); ?></td>
+                                                <td> <?= $tax; ?></td>
+                                                <input type="hidden" value="<?= $this->filter->Rupiah($dt['tax_id']); ?>">
+                                                <td> <?= $pajak; ?></td>
+                                                <input type="hidden" value="<?= $this->filter->Rupiah($dt['pajak_id']); ?>">
+                                                <td style="text-align: right !important;"><?= number_format($dt['total'],0,',','.'); ?></td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
                                         <?php
-                                            $sub_total = 0;
-                                            $tax_pph = 0;
-                                            $tax_ppn = 0;
-                                            $tax_ppn11 = 0;
-                                            $tax_0 = false;
-                                            $pajak_pph = 0;
-                                            $pajak_ppn = 0;
-                                            $pajak_ppn11 = 0;
-                                            $pajak_0 = false;
-                                            $total = 0;
-                                            $details = $this->db->get_where('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $row['id']))->result_array();
-                                            ?>
-                                            <?php foreach ($details as $key => $dt) { ?>
-                                                <?php
-                                                $material = $this->crud_global->GetField('produk', array('id' => $dt['material_id']), 'nama_produk');
-                                                $tax = $this->crud_global->GetField('pmm_taxs', array('id' => $dt['tax_id']), 'tax_name');
-                                                $pajak = $this->crud_global->GetField('pmm_taxs', array('id' => $dt['pajak_id']), 'tax_name');
-                                                ?>
-                                                <tr>
-                                                    <td><?= $key + 1 ?>.</td>
-                                                    <td style="text-align: left !important;">
-                                                        <?= $material; ?>
-                                                    </td>
-                                                    <td><?= $dt['volume']; ?></td>
-                                                    <td><?= $dt['measure']; ?></td>
-                                                    <td style="text-align: right !important;"><?= number_format($dt['price'],0,',','.'); ?></td>
-                                                    <td> <?= $tax; ?></td>
-													<input type="hidden" value="<?= $this->filter->Rupiah($dt['tax_id']); ?>">
-                                                    <td> <?= $pajak; ?></td>
-                                                    <input type="hidden" value="<?= $this->filter->Rupiah($dt['pajak_id']); ?>">
-                                                    <td style="text-align: right !important;"><?= number_format($dt['total'],0,',','.'); ?></td>
-                                                </tr>
-                                            <?php
-                                                $sub_total += $dt['total'];
-                                                if ($dt['tax_id'] == 4) {
-                                                    $tax_0 = true;
-                                                }
-                                                if ($dt['tax_id'] == 3) {
-                                                    $tax_ppn += $dt['tax'];
-                                                }
-                                                if ($dt['tax_id'] == 5) {
-                                                    $tax_pph += $dt['tax'];
-                                                }
-                                                if ($dt['tax_id'] == 6) {
-                                                    $tax_ppn11 += $dt['tax'];
-                                                }
-                                                if ($dt['pajak_id'] == 4) {
-                                                    $pajak_0 = true;
-                                                }
-                                                if ($dt['pajak_id'] == 3) {
-                                                    $pajak_ppn += $dt['pajak'];
-                                                }
-                                                if ($dt['pajak_id'] == 5) {
-                                                    $pajak_pph += $dt['pajak'];
-                                                }
-                                                if ($dt['pajak_id'] == 6) {
-                                                    $pajak_ppn11 += $dt['pajak'];
-                                                }
+                                            $sub_total += $dt['total'];
+                                            if ($dt['tax_id'] == 4) {
+                                                $tax_0 = true;
                                             }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Memo</label>
-                                            <textarea class="form-control" name="memo" rows="3" value="" readonly><?= $row["memo"]; ?></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Lampiran</label>
-                                            <?php
-                                            $dataLampiran = $this->db->get_where('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $row['id']))->result_array();
-                                            if (!empty($dataLampiran)) {
-                                                foreach ($dataLampiran as $key => $lampiran) {
-                                            ?>
-                                                    <div><a href="<?= base_url() . 'uploads/penagihan_pembelian/' . $lampiran['lampiran']; ?>" target="_blank"><?= $lampiran['lampiran']; ?></a></div>
-                                            <?php
-                                                }
+                                            if ($dt['tax_id'] == 3) {
+                                                $tax_ppn += $dt['tax'];
                                             }
-                                            ?>
-                                        </div>
+                                            if ($dt['tax_id'] == 5) {
+                                                $tax_pph += $dt['tax'];
+                                            }
+                                            if ($dt['tax_id'] == 6) {
+                                                $tax_ppn11 += $dt['tax'];
+                                            }
+                                            if ($dt['pajak_id'] == 4) {
+                                                $pajak_0 = true;
+                                            }
+                                            if ($dt['pajak_id'] == 3) {
+                                                $pajak_ppn += $dt['pajak'];
+                                            }
+                                            if ($dt['pajak_id'] == 5) {
+                                                $pajak_pph += $dt['pajak'];
+                                            }
+                                            if ($dt['pajak_id'] == 6) {
+                                                $pajak_ppn11 += $dt['pajak'];
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Memo</label>
+                                        <textarea class="form-control" name="memo" rows="3" value="" readonly><?= $row["memo"]; ?></textarea>
                                     </div>
-                                    <div class="col-sm-8 form-horizontal">
-                                        <div class="row">
-                                            <label class="col-sm-7 control-label">Sub Total</label>
-                                            <div class="col-sm-5 text-right">
-                                                <h5 id="sub-total"><?= number_format($sub_total,0,',','.'); ?></h5>
-                                            </div>
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Lampiran</label>
                                         <?php
-                                        if ($tax_ppn > 0) {
+                                        $dataLampiran = $this->db->get_where('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $row['id']))->result_array();
+                                        if (!empty($dataLampiran)) {
+                                            foreach ($dataLampiran as $key => $lampiran) {
                                         ?>
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
-                                                <div class="col-sm-5 text-right">
-                                                    <h5 id="sub-total"><?= number_format($tax_ppn,0,',','.'); ?></h5>
-                                                </div>
-                                            </div>
+                                                <div><a href="<?= base_url() . 'uploads/penagihan_pembelian/' . $lampiran['lampiran']; ?>" target="_blank"><?= $lampiran['lampiran']; ?></a></div>
                                         <?php
+                                            }
                                         }
                                         ?>
-                                        <?php
-                                        if ($tax_0) {
-                                        ?>
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
-                                                <div class="col-sm-5 text-right">
-                                                    <h5 id="sub-total"><?= number_format(0,0,',','.'); ?></h5>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if ($tax_pph > 0) {
-                                        ?>
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
-                                                <div class="col-sm-5 text-right">
-                                                    <h5 id="sub-total"><?= number_format($tax_pph,0,',','.'); ?></h5>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if ($tax_ppn11 > 0) {
-                                        ?>
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
-                                                <div class="col-sm-5 text-right">
-                                                    <h5 id="sub-total"><?= number_format($tax_ppn11,0,',','.'); ?></h5>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if ($pajak_ppn > 0) {
-                                        ?>
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
-                                                <div class="col-sm-5 text-right">
-                                                    <h5 id="sub-total"><?= number_format($pajak_ppn,0,',','.'); ?></h5>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if ($pajak_0) {
-                                        ?>
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
-                                                <div class="col-sm-5 text-right">
-                                                    <h5 id="sub-total"><?= number_format(0,0,',','.'); ?></h5>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if ($pajak_pph > 0) {
-                                        ?>
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
-                                                <div class="col-sm-5 text-right">
-                                                    <h5 id="sub-total"><?= number_format($pajak_pph,0,',','.'); ?></h5>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php
-                                        if ($pajak_ppn11 > 0) {
-                                        ?>
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
-                                                <div class="col-sm-5 text-right">
-                                                    <h5 id="sub-total"><?= number_format($pajak_ppn11,0,',','.'); ?></h5>
-                                                </div>
-                                            </div>
-                                        <?php
-                                        }
-                                        $total = $sub_total + ($tax_ppn - $tax_pph + $tax_ppn11) + ($pajak_ppn - $pajak_pph + $pajak_ppn11);
-                                        $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPembelian($row['id']);
-                                        ?>
-                                        <div class="row">
-                                            <h4 class="col-sm-7 control-label">Total</h4>
-                                            <div class="col-sm-5 text-right">
-                                                <h4 id="total"><?= number_format($total,0,',','.'); ?></h4>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="row">
-                                            <label class="col-sm-7 control-label">Uang Muka</label>
-                                            <div class="col-sm-5 text-right">
-                                                <h5 id="sub-total"><?= number_format($row['uang_muka'],0,',','.'); ?></h5>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <h4 class="col-sm-7 control-label">Sisa Tagihan</h4>
-                                            <div class="col-sm-5 text-right">
-                                                <h4 id="total"><?= number_format($total - $row['uang_muka']); ?></h4>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                                <br />
-                                <div class="text-center">
-                                    <div class="col-sm-12 text-right">
-                                        <?php if ($row["status"] === "DRAFT") : ?>
-                                            <form class="form-approval" action="<?= base_url("pembelian/approve_payment/" . $row["id"]) ?>">
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button></blink>
-                                            </form>
-                                            <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/" . $row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>
-                                            </form>
-
-                                        <?php endif; ?>
+                                <div class="col-sm-8 form-horizontal">
+                                    <div class="row">
+                                        <label class="col-sm-7 control-label">Sub Total</label>
+                                        <div class="col-sm-5 text-right">
+                                            <h5 id="sub-total"><?= number_format($sub_total,0,',','.'); ?></h5>
+                                        </div>
                                     </div>
                                     <?php
-                                    if ($row['verifikasi_dok'] == 'BELUM') { ?>
-                                        <blink><p style='color:red; font-weight:bold;'> Verifikasi Dokumen Tagihan Terlebih Dahulu !!</p></blink>
-                                        <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
-                                        ?>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
-                                        <?php
-                                        }
+                                    if ($tax_ppn > 0) {
+                                    ?>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="sub-total"><?= number_format($tax_ppn,0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                    <?php
                                     }
                                     ?>
+                                    <?php
+                                    if ($tax_0) {
+                                    ?>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="sub-total"><?= number_format(0,0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($tax_pph > 0) {
+                                    ?>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="sub-total"><?= number_format($tax_pph,0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($tax_ppn11 > 0) {
+                                    ?>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="sub-total"><?= number_format($tax_ppn11,0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($pajak_ppn > 0) {
+                                    ?>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="sub-total"><?= number_format($pajak_ppn,0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($pajak_0) {
+                                    ?>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="sub-total"><?= number_format(0,0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($pajak_pph > 0) {
+                                    ?>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="sub-total"><?= number_format($pajak_pph,0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php
+                                    if ($pajak_ppn11 > 0) {
+                                    ?>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
+                                            <div class="col-sm-5 text-right">
+                                                <h5 id="sub-total"><?= number_format($pajak_ppn11,0,',','.'); ?></h5>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    }
+                                    $total = $sub_total + ($tax_ppn - $tax_pph + $tax_ppn11) + ($pajak_ppn - $pajak_pph + $pajak_ppn11);
+                                    $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPembelian($row['id']);
+                                    ?>
+                                    <div class="row">
+                                        <h4 class="col-sm-7 control-label">Total</h4>
+                                        <div class="col-sm-5 text-right">
+                                            <h4 id="total"><?= number_format($total,0,',','.'); ?></h4>
+                                        </div>
+                                    </div>
                                     <br />
-                                    <?php
-                                    if ($row['verifikasi_dok'] == 'SUDAH') { ?>
-                                        <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
-                                        ?>
-                                            <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-warning"><i class="fa fa-money"></i> Kirim Pembayaran</a>
-                                            <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Pembayaran Lunas</a>
-                                            <!--<a href="<?= base_url('pembelian/sunting_tagihan/' . $row["id"]) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>-->
-                                            <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
-                                        <?php
-                                        }
-                                    }
-                                    ?>
+                                    <div class="row">
+                                        <label class="col-sm-7 control-label">Uang Muka</label>
+                                        <div class="col-sm-5 text-right">
+                                            <h5 id="sub-total"><?= number_format($row['uang_muka'],0,',','.'); ?></h5>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <h4 class="col-sm-7 control-label">Sisa Tagihan</h4>
+                                        <div class="col-sm-5 text-right">
+                                            <h4 id="total"><?= number_format($total - $row['uang_muka']); ?></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="text-center">
+                                <div class="col-sm-12 text-right">
+                                    <?php if ($row["status"] === "DRAFT") : ?>
+                                        <form class="form-approval" action="<?= base_url("pembelian/approve_payment/" . $row["id"]) ?>">
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button></blink>
+                                        </form>
+                                        <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/" . $row["id"]) ?>">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>
+                                        </form>
 
+                                    <?php endif; ?>
+                                </div>
+                                <?php
+                                if ($row['verifikasi_dok'] == 'BELUM') { ?>
+                                    <blink><p style='color:red; font-weight:bold;'> Verifikasi Dokumen Tagihan Terlebih Dahulu !!</p></blink>
                                     <?php
-                                    if ($row['verifikasi_dok'] == 'LENGKAP') { ?>
-                                        <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
-                                        ?>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
-                                        <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-warning"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                    ?>
+                                    <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                                <br />
+                                <?php
+                                if ($row['verifikasi_dok'] == 'SUDAH') { ?>
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                    ?>
+                                        <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-warning"><i class="fa fa-money"></i> Kirim Pembayaran</a>
+                                        <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Pembayaran Lunas</a>
                                         <!--<a href="<?= base_url('pembelian/sunting_tagihan/' . $row["id"]) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>-->
-                                        <?php
-                                        }
+                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                    <?php
                                     }
-                                    ?>
+                                }
+                                ?>
 
-                                </div>
-                                <div class="text-center">
-                                    <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                </div>
+                                <?php
+                                if ($row['verifikasi_dok'] == 'LENGKAP') { ?>
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                    ?>
+                                    <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                    <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-warning"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
+                                    <!--<a href="<?= base_url('pembelian/sunting_tagihan/' . $row["id"]) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>-->
+                                    <?php
+                                    }
+                                }
+                                ?>
+
+                            </div>
+                            <div class="text-center">
+                                <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                            </div>
                             <div class="container-fluid">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#menu1" aria-controls="menu2" role="tab" data-toggle="tab">Daftar Surat Jalan</a></li>

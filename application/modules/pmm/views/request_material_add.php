@@ -25,59 +25,48 @@
                 <div class="col-sm-12 col-lg-12">
                     <div class="panel">
                         <div class="panel-header">
-                            
                             <div class="">
-                                <h3 class=""><?php echo $this->pmm_model->GetStatus($data['status']);?></h3>
-                                
+                                <h3 class="">Detail Permintaan Bahan & Alat <?php echo $this->pmm_model->GetStatus($data['status']);?></h3>
                             </div>
-                            
                         </div>
-
                         <div class="panel-content">
                             <table class="table table-striped table-bordered">
                                 <tr>
-                                    <th width="150px">Subyek</th>
-                                    <th width="50px">:</th>
+                                    <th width="15%" align="left">Rekanan</th>
+                                    <td width="85% align="left"><label class="label label-default" style="font-size:14px;"><?php echo $this->crud_global->GetField('penerima',array('id'=>$data['supplier_id']),'nama');?></label></td>
+                                </tr>
+                                <tr>
+                                    <th>No. Penawaran</th>
+                                    <td><a target="_blank" href="<?= base_url("pembelian/penawaran_pembelian_detail/".$detail['penawaran_id'])?>"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$detail['penawaran_id']),'nomor_penawaran');?></a></td>
+                                </tr>
+                            </table>
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <th width="15%" align="left">No. Permintaan</th>
+                                    <td width="85% align="left"><label class="label label-info" style="font-size:14px;"><?php echo $data['request_no'];?></label></td>
+                                </tr>
+                                <tr>
+                                    <th>Perihal</th>
                                     <td><?php echo $data['subject'];?></td>
                                 </tr>
                                 <tr>
-                                    <th width="150px">No. Request</th>
-                                    <th width="50px">:</th>
-                                    <td><?php echo $data['request_no'];?></td>
-                                </tr>
-                                <tr>
-                                    <th width="150px">No. Penawaran</th>
-                                    <th width="50px">:</th>
-                                    <td><a target="_blank" href="<?= base_url("pembelian/penawaran_pembelian_detail/".$detail['penawaran_id'])?>"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$detail['penawaran_id']),'nomor_penawaran');?></a></td>
-                                </tr>
-                                <tr>
-                                    <th width="150px">Tanggal Permintaan</th>
-                                    <th width="50px">:</th>
+                                    <th>Tanggal Permintaan</th>
                                     <td><?php echo date('d/m/Y',strtotime($data['request_date']));?></td>
                                 </tr>
                                 <tr>
-                                    <th width="150px">Rekanan</th>
-                                    <th width="50px">:</th>
-                                    <td><?php echo $this->crud_global->GetField('penerima',array('id'=>$data['supplier_id']),'nama');?></td>
-                                </tr>
-                                <tr>
-                                    <th width="150px">Kategori</th>
-                                    <th width="50px">:</th>
+                                    <th>Kategori</th>
                                     <td><?php echo $this->crud_global->GetField('kategori_produk',array('id'=>$data['kategori_id']),'nama_kategori_produk');?></td>
                                 </tr>
                                 <tr>
-                                    <th width="150px">Memo</th>
-                                    <th width="50px">:</th>
+                                    <th>Memo</th>
                                     <td><?php echo $data['memo'];?></td>
                                 </tr>
                                 <tr>
-                                    <th width="150px">Dibuat Oleh</th>
-                                    <th width="50px">:</th>
+                                    <th>Dibuat Oleh</th>
                                     <td><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$data['created_by']),'admin_name');?></td>
                                 </tr>
                                 <tr>
-                                    <th width="150px">Dibuat Tanggal</th>
-                                    <th width="50px">:</th>
+                                    <th>Dibuat Tanggal</th>
                                     <td><?= date('d/m/Y H:i:s',strtotime($data['created_on']));?></td>
                                 </tr>
                             </table>
