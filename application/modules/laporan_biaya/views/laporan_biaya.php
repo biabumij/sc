@@ -17,6 +17,7 @@
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                         <li><a>Laporan Biaya</a></li>
+                        <a href="laporan_keuangan">Kembali</a>
                     </ul>
                 </div>
             </div>
