@@ -810,7 +810,7 @@
 							
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
+								<!--<img src="<?= $unit_head['admin_ttd']?>" width="70px">-->
 							</td>
 						</tr>
 						<tr>
