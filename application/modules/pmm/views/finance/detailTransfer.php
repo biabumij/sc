@@ -91,7 +91,7 @@
                                         <a href="<?= base_url('admin/kas_&_bank') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
                                         <a target="_blank" href="<?= base_url('pmm/finance/cetakTransferCoa/'.$detail["id"]) ?>" class="btn btn-success"><i class="fa fa-print"></i> Cetak</a>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 10){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 14){
                                             ?>
                                             <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pmm/finance/deleteTransferCoa/'.$detail['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                             <!-- <a  class="btn btn-primary"><i class="fa fa-edit"></i> Ubah</a> -->

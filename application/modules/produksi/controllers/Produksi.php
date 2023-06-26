@@ -1648,7 +1648,7 @@ class Produksi extends Secure_Controller {
 			'total_nilai_keluar' => $total_nilai_keluar,
 			'total_nilai_akhir' => $total_nilai_akhir,
 			'memo' => $memo,
-			'unit_head' => 34,
+			'unit_head' => 0,
 			'logistik' => 27,
 			'admin' => 27,
 			'keu_1' => 37,
