@@ -53,7 +53,7 @@
                                         <th width="85%" align="left"><label class="label label-info" style="font-size:14px;"><?= $row['nomor_penawaran'];?></label></th>
                                     </tr>
                                     <tr>
-                                        <th>Jenis Pembelian</th>
+                                        <th>Perihal</th>
                                         <th><?= $row['jenis_pembelian'];?></th>
                                     </tr>
                                     <tr>
