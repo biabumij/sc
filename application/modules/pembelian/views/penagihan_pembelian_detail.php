@@ -217,6 +217,9 @@
                                 </table>
                             </div>
                             <div class="row">
+                                <div class="col-sm-4">
+                                    
+                                </div>
                                 <div class="col-sm-8 form-horizontal">
                                     <div class="row">
                                         <label class="col-sm-7 control-label">Sub Total</label>
