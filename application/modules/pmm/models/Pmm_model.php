@@ -3862,6 +3862,8 @@ class Pmm_model extends CI_Model {
         if(!empty($filter_status)){
             $this->db->where_in('ppp.status',$filter_status);
         }
+        
+        $this->db->where("ppp.verifikasi_dok in ('SUDAH','LENGKAP')");
         $this->db->order_by('ppp.tanggal_invoice','asc');
         $this->db->group_by('ppp.id');
         $query = $this->db->get('pmm_penagihan_pembelian ppp');
