@@ -17,7 +17,6 @@
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                         <li><a>Laporan Biaya</a></li>
-                        <a href="laporan_keuangan">Kembali</a>
                     </ul>
                 </div>
             </div>
@@ -36,7 +35,12 @@
                                     <div class="col-sm-2">
                                         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak</button>
                                     </div>
-                                </div>    
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <a href="laporan_keuangan">Kembali</a>
+                                    </div>
+                                </div>
                             </form>
                             
                             <br />
