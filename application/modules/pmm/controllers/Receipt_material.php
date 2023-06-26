@@ -537,7 +537,7 @@ class Receipt_material extends CI_Controller {
 		->where("prm.id = $id")
 		->get()->row_array();
 
-		$path = './uploads/surat_jalan_pembelian/'.$file['surat_jalan_file'];
+		$path = './uploads/surat_jalan_penerimaan/'.$file['surat_jalan_file'];
 		chmod($path, 0777);
 		unlink($path);
 
