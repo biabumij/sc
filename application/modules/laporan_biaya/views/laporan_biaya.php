@@ -25,6 +25,7 @@
                     <div class="panel">
                         <div class="panel-header">
                             <h3 class="section-subtitle">Laporan Biaya</h3>
+                            <a href="laporan_keuangan">Kembali</a>
                         </div>
                         <div class="panel-content">
                             <form action="<?= site_url('laporan/print_biaya');?>" target="_blank">
@@ -34,11 +35,6 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <a href="laporan_keuangan">Kembali</a>
                                     </div>
                                 </div>
                             </form>
