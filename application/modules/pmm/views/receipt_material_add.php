@@ -697,7 +697,7 @@
                         success : function(result){
                             if(result.output){
                                 table.ajax.reload();
-                                // bootbox.alert('Berhasil menghapus!!');
+                                bootbox.alert('Berhasil Menghapus Data Surat Jalan !!');
                             }else if(result.err){
                                 bootbox.alert(result.err);
                             }
