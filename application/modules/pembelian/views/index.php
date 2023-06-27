@@ -115,10 +115,10 @@
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 13 ){
                                     ?>
                                         <li role="presentation"><a href="#verifikasi" aria-controls="verifikasi" role="tab" data-toggle="tab">Approval & Notification 
-                                        (<blink><?php
+                                        <blink><b><?php
                                             $query = $this->db->query('SELECT * FROM pmm_verifikasi_penagihan_pembelian where approve_unit_head = "TIDAK DISETUJUI" ');
                                             echo $query->num_rows();
-                                            ?></blink>)
+                                            ?></b></blink>
                                         </a></li>			
                                     <?php
                                     }
