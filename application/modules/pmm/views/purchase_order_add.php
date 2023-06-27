@@ -80,7 +80,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Perihal</th>
-                                                <th><input type="text" class="form-control" id="subject" value="<?php echo $data['subject'];?>"></th>
+                                                <th><input type="text" class="form-control text-left" id="subject" value="<?php echo $data['subject'];?>"></th>
                                             </tr>
                                             <tr>
                                                 <th>Tanggal Pesanan Pembelian</th>
