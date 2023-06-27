@@ -927,6 +927,20 @@ class Pmm_model extends CI_Model {
         return $query;
     }
 
+    function GetPORequest($id)
+    {
+        $output = false;
+        $this->db->select('rq.*');
+        $this->db->join('pmm_penawaran_pembelian ppp','pp.penawaran_id = ppp.id','left');
+        $this->db->join('pmm_request_material_details prm','pp.penawaran_id = prm.penawaran_id','left');
+        $this->db->join('pmm_request_materials rq','prm.request_material_id = rq.id','left');
+        $this->db->where('pp.purchase_order_id',$id);
+        $this->db->group_by('pp.material_id');
+        $query = $this->db->get('pmm_purchase_order_detail pp')->result_array();
+
+        return $query;
+    }
+
     function GetReceiptByPO($id)
     {
         $output = false;
