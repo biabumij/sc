@@ -66,9 +66,11 @@ class Pembelian extends Secure_Controller
         $check = $this->m_admin->check_login();
         if ($check == true) {
 
-            $this->db->select('pp.*, ps.nama as supplier, ps.alamat as supplier_address');
+            $this->db->select('pp.*, ps.nama as supplier, ps.alamat as supplier_address,SUM(ppp.total) as pembayaran');
             $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
+            $this->db->join('pmm_pembayaran_penagihan_pembelian ppp', 'pp.id = ppp.penagihan_pembelian_id', 'left');
             $data['row'] = $this->db->get_where('pmm_penagihan_pembelian pp', array('pp.id' => $id))->row_array();
+            
             if (!empty($data['row'])) {
 
 
