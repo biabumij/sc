@@ -46,7 +46,7 @@
                                     <td width="85% align="left"><label class="label label-info" style="font-size:14px;"><?php echo $data['request_no'];?></label></td>
                                 </tr>
                                 <tr>
-                                    <th>Perihal</th>
+                                    <th>Subyek</th>
                                     <td><?php echo $data['subject'];?></td>
                                 </tr>
                                 <tr>
