@@ -79,7 +79,7 @@
                                                 <th width="80%" align="left"><label class="label label-info" style="font-size:14px;"><?php echo $data['no_po'];?></label></th>
                                             </tr>
                                             <tr>
-                                                <th>Perihal</th>
+                                                <th>Subjek</th>
                                                 <th><input type="text" class="form-control text-left" id="subject" value="<?php echo $data['subject'];?>" readonly=""></th>
                                             </tr>
                                             <tr>
