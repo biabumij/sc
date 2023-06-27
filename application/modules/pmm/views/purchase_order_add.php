@@ -80,11 +80,11 @@
                                             </tr>
                                             <tr>
                                                 <th>Perihal</th>
-                                                <th><input type="text" class="form-control text-left" id="subject" value="<?php echo $data['subject'];?>"></th>
+                                                <th><input type="text" class="form-control text-left" id="subject" value="<?php echo $data['subject'];?>" readonly=""></th>
                                             </tr>
                                             <tr>
                                                 <th>Tanggal Pesanan Pembelian</th>
-                                                <th><input type="text" id="date_po" class="form-control dtpicker" value="<?php echo date('d-m-Y',strtotime($data['date_po']));?>" ></th>
+                                                <th><input type="text" id="date_po" class="form-control dtpicker" value="<?php echo date('d-m-Y',strtotime($data['date_po']));?>" readonly=""></th>
                                             </tr>
                                             <tr>
                                                 <th>Memo</th>
