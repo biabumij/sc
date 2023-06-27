@@ -217,17 +217,17 @@
                             </div>
                             <br />
                             <div class="text-right">
-                                <a href="<?php echo site_url('admin/pembelian#chart');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                <a href="<?php echo site_url('admin/pembelian#chart');?>" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 <?php
                                 if($data['status'] == 'DRAFT'){
                                     ?>
-                                    <a onclick="ProcessForm('<?php echo site_url('pmm/request_materials/process/'.$id.'/3');?>')" class="btn btn-success check-btn"><i class="fa fa-send"></i> Kirim Permintaan</a>
+                                    <a onclick="ProcessForm('<?php echo site_url('pmm/request_materials/process/'.$id.'/3');?>')" class="btn btn-success check-btn" style="width:200px; font-weight:bold;"><i class="fa fa-send"></i> Kirim Permintaan</a>
                                     <?php
                                 }else if($data['status'] == 'WAITING'){
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                         ?>
-                                        <a onclick="ProcessForm('<?php echo site_url('pmm/request_materials/process/'.$id.'/1');?>')" class="btn btn-success"><i class="fa fa-check"></i> Setujui</a>
-                                        <a onclick="ProcessForm('<?php echo site_url('pmm/request_materials/process/'.$id.'/2');?>')" class="btn btn-danger check-btn"><i class="fa fa-close"></i> Tolak</a>
+                                        <a onclick="ProcessForm('<?php echo site_url('pmm/request_materials/process/'.$id.'/1');?>')" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</a>
+                                        <a onclick="ProcessForm('<?php echo site_url('pmm/request_materials/process/'.$id.'/2');?>')" class="btn btn-danger check-btn" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</a>
                                         <?php
                                     }
                                 }

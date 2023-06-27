@@ -83,12 +83,12 @@ class Request_materials extends CI_Controller {
 				$delete = '<a href="javascript:void(0);" onclick="DeleteDataRequest('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				if($row['status'] == 'DRAFT'){
 					
-					$edit = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';
+					$edit = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
 				}else {
 					$edit = false;
 				}
 				$row['status'] = $this->pmm_model->GetStatus($row['status']);
-				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-info"><i class="fa fa-gears"></i> </a> '.$edit.' ';
+				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a> '.$edit.' ';
 
 				$row['delete'] = '-';
 				if(in_array($this->session->userdata('admin_group_id'), array(1))){

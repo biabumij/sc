@@ -1075,13 +1075,102 @@ class Pembelian extends Secure_Controller
 
             $penagihan_pembelian = $this->db->get_where('pmm_penagihan_pembelian', array('id' => $id))->row_array();
             $deskripsi = 'Nomor Invoice ' . $penagihan_pembelian['nomor_invoice'];
-            //$this->pmm_finance->InsertLogs('DELETE', 'pmm_penagihan_pembelian', $id, $deskripsi);
             $this->db->delete('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $id));
+
+            $invoice_file = $this->db->select('lk.invoice_file')
+            ->from('pmm_verifikasi_penagihan_pembelian lk')
+            ->where("lk.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $path_1 = $invoice_file['invoice_file'];
+            chmod($path_1, 0777);
+            unlink($path_1);
+
+            $kwitansi_file = $this->db->select('lk.kwitansi_file')
+            ->from('pmm_verifikasi_penagihan_pembelian lk')
+            ->where("lk.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $path_2 = $kwitansi_file['kwitansi_file'];
+            chmod($path_2, 0777);
+            unlink($path_2);
+
+            $faktur_file = $this->db->select('lk.faktur_file')
+            ->from('pmm_verifikasi_penagihan_pembelian lk')
+            ->where("lk.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $path_3 = $faktur_file['faktur_file'];
+            chmod($path_3, 0777);
+            unlink($path_3);
+
+            $bap_file = $this->db->select('lk.bap_file')
+            ->from('pmm_verifikasi_penagihan_pembelian lk')
+            ->where("lk.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $path_4 = $bap_file['bap_file'];
+            chmod($path_4, 0777);
+            unlink($path_4);
+
+            $bast_file = $this->db->select('lk.bast_file')
+            ->from('pmm_verifikasi_penagihan_pembelian lk')
+            ->where("lk.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $path_5 = $bast_file['bast_file'];
+            chmod($path_5, 0777);
+            unlink($path_5);
+
+            $surat_jalan_file = $this->db->select('lk.surat_jalan_file')
+            ->from('pmm_verifikasi_penagihan_pembelian lk')
+            ->where("lk.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $path_6 = $surat_jalan_file['surat_jalan_file'];
+            chmod($path_6, 0777);
+            unlink($path_6);
+
+            $copy_po_file = $this->db->select('lk.copy_po_file')
+            ->from('pmm_verifikasi_penagihan_pembelian lk')
+            ->where("lk.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $path_7 = $copy_po_file['copy_po_file'];
+            chmod($path_7, 0777);
+            unlink($path_7);
+
             $this->db->delete('pmm_verifikasi_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
+
+            $file = $this->db->select('lk.lampiran')
+            ->from('pmm_lampiran_penagihan_pembelian lk')
+            ->where("lk.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $path = './uploads/penagihan_pembelian/'.$file['lampiran'];
+            chmod($path, 0777);
+            unlink($path);
+
             $this->db->delete('pmm_lampiran_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
+
+            $pembayaran_pembelian = $this->db->select('pp.id')
+            ->from('pmm_pembayaran_penagihan_pembelian pp')
+            ->where("pp.penagihan_pembelian_id = $id")
+            ->get()->row_array();
+
+            $pembayaran_pembelian_id = $pembayaran_pembelian['id'];
+
+            $file = $this->db->select('pp.lampiran')
+            ->from('pmm_lampiran_pembayaran_penagihan_pembelian pp')
+            ->where("pp.pembayaran_penagihan_pembelian_id = $pembayaran_pembelian_id")
+            ->get()->row_array();
+
+            $path = './uploads/pembayaran_penagihan_pembelian/'.$file['lampiran'];
+            chmod($path, 0777);
+            unlink($path);
+
             $this->db->delete('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $id));
             $this->db->delete('pmm_penagihan_pembelian', array('id' => $id));
-
 
             $arr_detail = explode(',', $penagihan_pembelian['surat_jalan']);
             if (!empty($arr_detail)) {
@@ -1600,6 +1689,18 @@ class Pembelian extends Secure_Controller
 
     public function hapus_pembayaran_pembelian($id)
 	{
+
+        $file = $this->db->select('pp.lampiran')
+		->from('pmm_lampiran_pembayaran_penagihan_pembelian pp')
+		->where("pp.pembayaran_penagihan_pembelian_id = $id")
+		->get()->row_array();
+
+		$path = './uploads/pembayaran_penagihan_pembelian/'.$file['lampiran'];
+		chmod($path, 0777);
+		unlink($path);
+
+        $this->db->delete('pmm_lampiran_pembayaran_penagihan_pembelian', array('pembayaran_penagihan_pembelian_id' => $id));
+
         $penagihan_pembelian_id = $this->db->select('(ppp.id) as id')
         ->from('pmm_pembayaran_penagihan_pembelian pppp')
         ->join('pmm_penagihan_pembelian ppp', 'pppp.penagihan_pembelian_id = ppp.id','left')
@@ -1612,6 +1713,8 @@ class Pembelian extends Secure_Controller
         $this->db->update('pmm_penagihan_pembelian');
 
         $this->db->where('id', $id);
+
+        
 		$this->db->delete('pmm_pembayaran_penagihan_pembelian');
 	}
 

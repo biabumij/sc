@@ -177,16 +177,16 @@
                                     
                                 <div class="row">
                                     <div class="col-sm-12 text-right">
-                                        <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                        <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="margin-top: 10px; width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                         <?php if($row["status"] === "DRAFT") : ?>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                             ?>
                                                 <form class="form-approval" action="<?= base_url("pembelian/approve_penawaran_pembelian/".$row["id"]) ?>">
-                                                    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
+                                                    <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>        
                                                 </form>
                                                 <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/".$row["id"]) ?>">
-                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
+                                                    <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>        
                                                 </form>
                                             <?php
                                             }
@@ -198,7 +198,7 @@
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                             ?>
                                                 <form class="form-approval" action="<?= base_url("pembelian/closed_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed</button>      
+                                                <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Closed</button>      
                                                 </form>		
                                             <?php
                                             }
@@ -210,7 +210,7 @@
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                             ?>
                                                 <form class="form-approval" action="<?= base_url("pembelian/open_penawaran_pembelian/".$row["id"]) ?>">
-                                                    <button type="submit" class="btn btn-success"><i class="fa fa-folder-open-o"></i> Open</button>        
+                                                    <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-folder-open-o"></i> Open</button>        
                                                 </form>	
                                             <?php
                                             }
@@ -219,7 +219,7 @@
                                             if($this->session->userdata('admin_group_id') == 1){
                                             ?>
                                                 <form class="form-approval" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
-                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>
+                                                    <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</button>
                                                 </form>
                                             <?php
                                             }
@@ -231,7 +231,7 @@
                                             if($this->session->userdata('admin_group_id') == 1){
                                             ?>
                                                 <form class="form-approval" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</button>        
+                                                <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</button>        
                                                 </form>	
                                             <?php
                                             }

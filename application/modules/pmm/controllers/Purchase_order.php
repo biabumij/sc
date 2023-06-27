@@ -449,25 +449,20 @@ class Purchase_order extends CI_Controller {
 		echo json_encode(array('data'=>$data,'a'=>$arr_date));
 	}
 
-	
-
 	public function delete($id)
     {
     	$this->db->trans_start(); # Starting Transaction
 
+		$file = $this->db->select('po.document_po')
+		->from('pmm_purchase_order po')
+		->where("po.id = $id")
+		->get()->row_array();
+
+		$path = './uploads/purchase_order/'.$file['document_po'];
+		chmod($path, 0777);
+		unlink($path);
+
 		$this->db->delete('pmm_purchase_order_detail', array('purchase_order_id'=>$id));
-
-		$penagihan = $this->db->get_where('pmm_penagihan_pembelian', array('purchase_order_id' => $id))->row_array();
-
-		$this->db->delete('pmm_penagihan_pembelian_detail',array('penagihan_pembelian_id'=>$penagihan['id']));
-
-		$this->db->delete('pmm_lampiran_penagihan_pembelian',array('penagihan_pembelian_id'=>$penagihan['id']));
-
-		$this->db->delete('pmm_pembayaran_penagihan_pembelian', array('penagihan_pembelian_id' => $penagihan['id']));
-
-		$this->db->delete('pmm_receipt_material', array('purchase_order_id'=>$id));
-
-		$this->db->delete('pmm_penagihan_pembelian',array('purchase_order_id'=>$id));
 
 		$request = $this->db->get_where('pmm_purchase_order', array('id' => $id))->row_array();
 
@@ -491,6 +486,17 @@ class Purchase_order extends CI_Controller {
             $this->session->set_flashdata('notif_success','Berhasil Hapus Pesanan Pembelian');
             redirect('admin/pembelian');
         }
+    }
+
+	public function open_pesanan_pembelian($id)
+    {
+        $this->db->set("status", "PUBLISH");
+        $this->db->set("updated_by", $this->session->userdata('admin_id'));
+        $this->db->set("updated_on", date('Y-m-d H:i:s'));
+        $this->db->where("id", $id);
+        $this->db->update("pmm_purchase_order");
+        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Open Pesanan Pembelian');
+        redirect("admin/pembelian");
     }
 	
 

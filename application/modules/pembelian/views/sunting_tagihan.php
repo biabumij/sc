@@ -57,7 +57,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Tagihan Pembelian</a></li>
-                            <li><a>Detail Tagihan Pembelian</a></li>
+                            <li><a>Edit Tagihan Pembelian</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,10 +66,7 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div class="">
-                                    <h3 class="">
-                                        Detail Tagihan Pembelian
-                                        <small>(<i><?= $row['status']; ?></i>)</small>
-                                    </h3>
+                                    <h3 class="">Edit Tagihan Pembelian</h3>
                                 </div>
                             </div>
                             <div class="panel-content">
@@ -89,14 +86,27 @@
                                         
                                     </table>
                                 </div>
-                                
-                                <?php
-                                $url = htmlspecialchars($_SERVER['HTTP_REFERER']);
-                                ?>
-                                <div class="text-right">
-                                    <a href="<?=$url?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                <br /><br />
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td width="30%"></td>
+                                                <td width="10%"></td>
+                                                <?php
+                                                $url = htmlspecialchars($_SERVER['HTTP_REFERER']);
+                                                ?>
+                                                <td width="10%"><a href="<?=$url?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
+                                                <td width="10%"></td>
+                                                <td width="10%"></td>
+                                                <td width="30%"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
