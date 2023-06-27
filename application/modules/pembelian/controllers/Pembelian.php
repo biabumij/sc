@@ -70,7 +70,6 @@ class Pembelian extends Secure_Controller
             $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
             $this->db->join('pmm_pembayaran_penagihan_pembelian ppp', 'pp.id = ppp.penagihan_pembelian_id', 'left');
             $data['row'] = $this->db->get_where('pmm_penagihan_pembelian pp', array('pp.id' => $id))->row_array();
-            file_put_contents("D:\\test.txt", $this->db->last_query());
             if (!empty($data['row'])) {
 
 
