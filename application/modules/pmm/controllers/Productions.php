@@ -66,8 +66,7 @@ class Productions extends Secure_Controller {
 		$awal_bulan = date('Y-m-01', strtotime($date_now));
 		$akhir_bulan = date('Y-m-d', strtotime('-1 days +1 months', strtotime($awal_bulan)));
 
-		$this->db->select('');
-		$this->db->where('status !=','DELETED');
+		$this->db->select('*');
 		if (!empty($client_id)) {
 			$this->db->where('client_id', $client_id);
 		}
@@ -85,6 +84,7 @@ class Productions extends Secure_Controller {
 			$this->db->where('date_production <=',date('Y-m-d',strtotime($end_date)));	
 		}
 		$this->db->where("(date_production between '$awal_bulan' and '$akhir_bulan')");
+		$this->db->where('status_payment','UNCREATED');
 		$this->db->order_by('date_production','desc');
 		$this->db->order_by('created_on','desc');
 		$query = $this->db->get('pmm_productions');
@@ -742,7 +742,7 @@ class Productions extends Secure_Controller {
 		$filter_date = false;
 
 
-		$this->db->select('pp.*,pc.nama,ppr.product');
+		$this->db->select('pp.*,pc.nama');
 		if(!empty($client_id)){
 			$this->db->where('pp.client_id',$client_id);
 		}
@@ -760,8 +760,8 @@ class Productions extends Secure_Controller {
 			$this->db->where('pp.date_production <=',date('Y-m-d',strtotime($end_date)));	
 			$filter_date = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
 		}
-		$this->db->join('pmm_product ppr','pp.product_id = ppr.id','left');
 		$this->db->join('penerima pc','pp.client_id = pc.id','left');
+		$this->db->where('status_payment','UNCREATED');
 		$this->db->order_by('pp.date_production','asc');
 		$this->db->order_by('pp.created_on','asc');
 		$this->db->group_by('pp.id');
