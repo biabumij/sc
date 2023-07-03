@@ -467,9 +467,9 @@ class Purchase_order extends CI_Controller {
 
 		$request = $this->db->get_where('pmm_purchase_order', array('id' => $id))->row_array();
 
-		$this->db->delete('pmm_request_materials',array('id'=>$request['request_material_id']));
-
 		$this->db->delete('pmm_request_material_details',array('request_material_id'=>$request['request_material_id']));
+
+		$this->db->delete('pmm_request_materials',array('id'=>$request['request_material_id']));
 
 		$this->db->delete('pmm_purchase_order', array('id'=>$id));
 
