@@ -69,7 +69,7 @@
                                             <?php foreach ($details2 as $x): ?>
                                             <tr>
                                                 <th>No. Permintaan</th>
-                                                <th><a target="_blank" href="<?= base_url("pmm/request_materials/manage/".$x['id']) ?>"><?php echo $x['request_no'];?></a></th>   
+                                                <th><a target="_blank" href="<?= base_url("pmm/request_materials/manage/".$x['request_material_id']) ?>"><?php echo $this->crud_global->GetField('pmm_request_materials',array('id'=>$x['request_material_id']),'request_no');?></a></th>   
                                             </tr>
                                             <?php endforeach; ?>
                                         </table>
