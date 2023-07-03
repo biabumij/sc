@@ -130,7 +130,7 @@
                                     <div class="col-sm-12 text-right">
                                         <a href="<?= base_url('admin/biaya_umum_&_adm.') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
 										<?php
-											if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 15){
+											if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
                                         ?>
 										<?php if($row["status"] === "UNPAID") : ?>
 											<a href="<?= base_url("pmm/biaya/approvalBiaya/".$row["id"]) ?>" class="btn btn-success"><i class="fa fa-check"></i> Approve</a>
@@ -143,14 +143,14 @@
                                         <?php if($row["status"] === "PAID") : ?>
                                             <a target="_blank" href="<?= base_url('pmm/biaya/cetakBiaya/'.$row["id"]) ?>" class="btn btn-success"><i class="fa fa-print"></i> Cetak</a>
                                             <?php
-                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
                                             ?>
                                             <a  href="<?= base_url('pmm/biaya/form/'.$row['id']) ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
                                             <?php
                                             }
                                             ?>
                                             <?php
-                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
                                             ?>
                                             <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pmm/biaya/delete/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                             <?php
