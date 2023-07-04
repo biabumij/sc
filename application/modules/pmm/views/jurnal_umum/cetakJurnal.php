@@ -173,7 +173,7 @@
                         </tr>
                         <tr class="table-active3">
                            <td align="center">
-                                <b><?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$biaya['created_by']),'admin_name'); ?></b>
+                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$biaya['created_by']),'admin_name'); ?>
                             </td>
                             <?php
                             if(!empty($arr_no_trans)){
@@ -190,24 +190,24 @@
                             }
                             ?>
                             <td align="center">
-                                <b><?=  $manager_keuangan['admin_name'];?></b>
+								<?=  $manager_keuangan['admin_name'];?>
                             </td>
                             
                             <td align="center" >
-                                <b><?=  $kepala_divisi['admin_name'];?></b>
+								<?=  $kepala_divisi['admin_name'];?>
                             </td>
                             <td align="center" >  
                             </td>
                         </tr>
                          <tr class="table-active3">
-                            <td align="center"><b>
+                            <td align="center">
                                  <?php
                                 $this->db->select('g.admin_group_name');
                                 $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
                                 $this->db->where('a.admin_id',$biaya['created_by']);
                                 $created_group = $this->db->get('tbl_admin a')->row_array();
                                 ?>
-                                <?= $created_group['admin_group_name']?></b>
+                                <?= $created_group['admin_group_name']?>
                             </td>
                             <?php
                             if(!empty($arr_no_trans)){
@@ -225,14 +225,14 @@
                             }
                             ?>
                             <td align="center">
-                                <b><?=  $manager_keuangan['admin_group_name'];?></b>
+                                <?=  $manager_keuangan['admin_group_name'];?>
                             </td>
                             <td align="center" >
-                                <!--<b><?=  $kepala_divisi['admin_group_name'];?></b>-->
-                                <b>Kepala Unit Bisnis</b>
+                                <!--<?=  $kepala_divisi['admin_group_name'];?>-->
+                                Kepala Unit Bisnis
                             </td>
                             <td align="center" >
-                                <b>Penerima</b> 
+                               Penerima 
                             </td>
                         </tr>
                     </table>
