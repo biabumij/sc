@@ -41,7 +41,6 @@
             background-color: #cac8c8;
         }
         table tr.table-active3{
-            background-color: #eee;
         }
         hr{
             margin-top:0;
