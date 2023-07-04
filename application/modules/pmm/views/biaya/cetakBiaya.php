@@ -146,7 +146,7 @@
             <tr>
                 <td width="100%">
                     <table width="100%" border="1" cellpadding="2">
-                        <tr class="table-active3">
+                        <tr class="">
                             <td align="center">
                                 Dibuat Oleh
                             </td>
@@ -200,7 +200,7 @@
                             
                             </td>
                         </tr>
-                        <tr class="table-active3">
+                        <tr class="">
                             
                             <td align="center">
                                 <b><?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$biaya['created_by']),'admin_name'); ?></b>
@@ -230,7 +230,7 @@
                                 <b><?= $biaya["penerima"];?></b>
                             </td>
                         </tr>
-                         <tr class="table-active3">
+                         <tr class="">
                             <td align="center"><b>
                                 <?php
                                 $this->db->select('g.admin_group_name');
