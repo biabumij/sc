@@ -34,63 +34,51 @@
                             <div class="panel-header">
                                 <div class="text-right">
                                     <h3 class="pull-left">Penagihan Penjualan</h3>
-                                    <a href="<?php echo site_url('admin/penjualan'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Back</a>
                                 </div>
                             </div>
                             <form id="form-po" action="<?= base_url('penjualan/submit_penagihan_penjualan') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
                                 <input type="hidden" name="surat_jalan" value="<?= $id; ?>">
                                 <input type="hidden" name="sales_po_id" value="<?= $sales['id']; ?>">
                                 <div class="panel-content">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <label>Pelanggan<span class="required" aria-required="true">*</span></label>
-                                            <input type="text" class="form-control" name="pelanggan" value="<?= $clients['nama'] ?>" required="" readonly=""/>
+                                    <table class="table table-striped table-bordered" width="100%">
+                                        <tr>
+                                            <th width="20%" align="left">Pelanggan</th>
+                                            <th width="80%" align="left"><label class="label label-default" style="font-size:14px;"><?= $clients['nama'] ?></label>
                                             <input type="hidden" name="client_id" value="<?= $query['client_id']; ?>">
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <label>Tanggal Kontrak<span class="required" aria-required="true">*</span></label>
-                                            <input type="text" class="form-control dtpicker" name="tanggal_kontrak" required="" value="<?= date("d-m-Y", strtotime($sales['contract_date'])) ?>" readonly=""/>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <label>Tanggal Invoice<span class="required" aria-required="true">*</span></label>
-                                            <input type="date" class="form-control" name="tanggal_invoice" id="tanggal_invoice" required=""/>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <label>Nomor Invoice<span class="required" aria-required="true">*</span></label>
-                                            <input type="text" class="form-control" value="" name="nomor_invoice" required=""/>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div class="row">
-                                        <div class="col-sm-10">
-                                            <label>Alamat Pelanggan<span class="required" aria-required="true">*</span></label>
-                                            <textarea class="form-control" name="alamat_pelanggan" rows="4" readonly=""><?= $clients['alamat']; ?></textarea>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div class="row">
-                                        <div class="col-sm-10">
-                                            <label>Nomor Kontrak<span class="required" aria-required="true">*</span></label>
-                                            <input type="text" class="form-control" value="<?= $sales['contract_number']; ?>" name="nomor_kontrak" readonly=""/>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <div class="row">
-										<div class="col-sm-4">
-                                            <label>Syarat Pembayaran (Ketik Angka Saja, Tanpa Hari)<span class="required" aria-required="true">*</span></label>
-                                            <input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $syarat_pembayaran['syarat_pembayaran'];?>" required=""/>
-                                        </div>
-                                        <!--<div class="col-sm-3">
-                                            <label>Tanggal Jatuh Tempo</label>
-                                            <input type="text" class="form-control" name="tanggal_jatuh_tempo" id="tanggal_jatuh_tempo" required="" readonly />
-                                        </div> -->                                     
-                                        <div class="col-sm-6">
-                                            <label>Jenis Pekerjaan<span class="required" aria-required="true">*</span></label>
-                                            <input type="text" class="form-control" value="<?= $sales['jobs_type']; ?>" name="jenis_pekerjaan" readonly=""/>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <br />
+                                            <input type="hidden" name="pelanggan" value="<?= $clients['nama'] ?>">
+                                            <input type="hidden" name="jenis_pekerjaan" value="<?= $sales['jobs_type']; ?>">
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>Alamat Pelanggan</th>
+                                            <th><textarea class="form-control" name="alamat_pelanggan" rows="5" readonly=""><?= $clients['alamat']; ?></textarea></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Tanggal Sales Order</th>
+                                            <th><input type="text" class="form-control dtpicker" name="tanggal_kontrak" required="" value="<?= date("d-m-Y", strtotime($sales['contract_date'])) ?>" readonly=""/></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Nomor Sales Order</th>
+                                            <th><input type="text" class="form-control" value="<?= $sales['contract_number']; ?>" name="nomor_kontrak" readonly=""/>
+                                            </th>
+                                        </tr>
+                                    </table>
+                                    <table class="table table-striped table-bordered" width="100%">
+                                        <tr>
+                                            <th width="20%" align="left">Tanggal Invoice<span class="required" aria-required="true">*</span></th>
+                                            <th width="80%" align="left"> <input type="date" class="form-control" name="tanggal_invoice" id="tanggal_invoice" required=""/></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Nomor Invoice<span class="required" aria-required="true">*</span></th>
+                                            <th> <input type="text" class="form-control" value="" name="nomor_invoice" required=""/></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Syarat Pembayaran<span class="required" aria-required="true">*</span><br>(Ketik Angka Saja, Tanpa Hari)</th>
+                                            <th><input type="text" class="form-control" name="syarat_pembayaran" id="syarat_pembayaran" value="<?= $syarat_pembayaran['syarat_pembayaran'];?>" required=""/></th>
+                                        </tr>
+                                        </tr>
+                                    </table>
+                                    <br /><br />
                                     <div class="table-responsive">
                                         <table id="table-product" class="table table-bordered table-striped table-condensed text-center">
                                             <thead>
@@ -245,11 +233,23 @@
                                             <input type="hidden" name="total_product" id="total-product" value="<?= $key + 1 ?>">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
-                                        </div>
+                                    <br /><br />
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="30%"></td>
+                                                    <td width="10%"></td>
+                                                    <td width="10%"><a href="<?= site_url('admin/penjualan');?>" class="btn btn-danger" style="width:100%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a></td>
+                                                    <td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
+                                                    <td width="10%"></td>
+                                                    <td width="30%"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                             </form>
                         </div>

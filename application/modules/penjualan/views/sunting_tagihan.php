@@ -90,11 +90,23 @@
                                     </table>
                                 </div>
                                 
-                                <?php
-                                $url = htmlspecialchars($_SERVER['HTTP_REFERER']);
-                                ?>
-                                <div class="text-right">
-                                    <a href="<?=$url?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                <br /><br />
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td width="30%"></td>
+                                                <td width="10%"></td>
+                                                <td width="10%"><a href="<?= site_url('penjualan/detailPenagihan/'.$row['id']);?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
+                                                <td width="10%"></td>
+                                                <td width="10%"></td>
+                                                <td width="30%"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                             </div>

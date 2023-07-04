@@ -1,23 +1,27 @@
 <!doctype html>
 <html lang="en" class="fixed">
+    
+<?php include 'lib.php'; ?>
+
 <head>
     <?php echo $this->Templates->Header();?>
-
+    
     <style type="text/css">
-        .form-approval{
+        .form-check {
             display: inline-block;
         }
+
     </style>
 </head>
 
 <body>
     <div class="wrap">
-        
-        <?php echo $this->Templates->PageHeader();?>
 
+        <?php echo $this->Templates->PageHeader();?>
+        
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
-            <div class="content" style="padding:0;">
+            <div class="content">
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
@@ -31,7 +35,7 @@
                 <div class="row animated fadeInUp">
                     <div class="col-sm-12 col-lg-12">
                         <div class="panel">
-                            <div class="panel-header"> 
+                            <div class="panel-header">
                                 <div class="">
                                     <h3 class="">Detail Penawaran Pembelian <?php echo $this->pmm_model->GetStatus2($row['status']);?></h3>
                                 </div>
@@ -248,16 +252,22 @@
             
         </div>
     </div>
-    
+
+
+
     <script type="text/javascript">
         var form_control = '';
     </script>
-    <?php echo $this->Templates->Footer();?>
 
+	<?php echo $this->Templates->Footer();?>
+
+	<script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
+    <script src="<?php echo base_url();?>assets/back/theme/vendor/jquery.number.min.js"></script>
     <script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
 
     <script type="text/javascript">
-        $('.form-approval').submit(function(e){
+
+        $('.form-check').click(function(e){
             e.preventDefault();
             var currentForm = this;
             bootbox.confirm({
@@ -276,11 +286,35 @@
                     if(result){
                         currentForm.submit();
                     }
+
+                }
+            });
+
+        });
+
+        function DeleteData(href)
+        {
+            bootbox.confirm({
+                message: "Apakah anda yakin untuk proses data ini ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+                        window.location.href = href;
+                    }
                     
                 }
             });
-            
-        }); 
+        }
+
     </script>
 
 </body>

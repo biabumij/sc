@@ -34,7 +34,6 @@
                             <div class="panel-header"> 
                                 <div class="text-right">
                                     <h3 class="pull-left">Penerimaan Penjualan</h3>
-                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Back</a>
                                 </div>
                             </div>
                             <div class="panel-content">
@@ -129,11 +128,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?= base_url('penjualan/detailPenagihan/' . $pembayaran["id"]) ?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
-                                        </div>
+                                    <br /><br />
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="30%"></td>
+                                                    <td width="10%"></td>
+                                                    <td width="10%"><a href="<?= site_url('penjualan/detailPenagihan/'.$pembayaran["id"]);?>" class="btn btn-danger" style="width:100%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a></td>
+                                                    <td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
+                                                    <td width="10%"></td>
+                                                    <td width="30%"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </form>
                             </div>

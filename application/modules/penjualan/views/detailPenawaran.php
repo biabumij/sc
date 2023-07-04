@@ -6,7 +6,6 @@
 <head>
     <?php echo $this->Templates->Header();?>
     
-
     <style type="text/css">
         .form-check {
             display: inline-block;
@@ -20,9 +19,6 @@
 
         <?php echo $this->Templates->PageHeader();?>
         
-        
-
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
             <div class="content">
@@ -45,53 +41,52 @@
                                     </div>
                             </div>
                             <div class="panel-content">
-                                <table class="table table-bordered table-striped">
+                                <table class="table table-striped table-bordered" width="100%">
                                     <tr>
-                                        <th width="200px">Nomor</th>
-                                        <td>: <?= $penawaran["nomor"] ?></td>
+                                        <th width="15%" align="left">Rekanan</th>
+                                        <th width="85%" align="left"><label class="label label-default" style="font-size:14px;"><?= $penawaran["nama"] ?></label></th>
                                     </tr>
                                     <tr>
-                                        <th >Perihal</th>
-                                        <td>: <?= $penawaran["perihal"]; ?></td>
+                                        <th>Alamat Rekanan</th>
+                                        <th><textarea class="form-control" rows="5" readonly=""><?= $penawaran["client_address"] ?></textarea></th>
+                                    </tr>
+                                </table>
+                                <table class="table table-striped table-bordered" width="100%">
+                                    <tr>
+                                        <th width="15%" align="left">Nomor Penawaran</th>
+                                        <th width="85%" align="left"><label class="label label-info" style="font-size:14px;"><?= $penawaran["nomor"] ?></label></th>
                                     </tr>
                                     <tr>
-                                        <th >Tanggal</th>
-                                        <td>: <?= convertDateDBtoIndo($penawaran["tanggal"]); ?></td>
+                                        <th>Perihal</th>
+                                        <th><?= $penawaran["perihal"]; ?></th>
                                     </tr>
                                     <tr>
-                                        <th width="200px">Nama Pelanggan </th>
-                                        <td>: <?= $penawaran["nama"] ?></td>
+                                        <th>Tanggal Penawaran</th>
+                                        <th><?= date('d/m/Y',strtotime($penawaran["tanggal"]));?></th>
                                     </tr>
                                     <tr>
-                                        <th >Alamat </th>
-                                        <td>: <?= $penawaran["client_address"] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th >Syarat Pembayaran</th>
-                                        <td>: <?= $penawaran["syarat_pembayaran"]; ?> Hari</td>
-                                    </tr>
-                                    <tr>
-                                        <th >Total</th>
-                                        <td>: <?= $this->filter->Rupiah($penawaran["sub_total"]); ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th width="100px">Lampiran</th>
-                                        <td>:
-                                            <?php foreach($lampiran as $l) : ?>
-                                            <a href="<?= base_url("uploads/penawaran_penjualan/".$l["lampiran"]) ?>" target="_blank">Lihat bukti  <?= $l["lampiran"] ?> <br></a></td>
-                                        <?php endforeach; ?>
+                                        <th>Syarat Pembayaran</th>
+                                        <th><?= $penawaran['syarat_pembayaran'];?> Hari</th>
                                     </tr>
                                     <tr>
                                         <th>Persyaratan Harga</th>
-                                        <td>: <?= $penawaran["persyaratan_harga"] ?></td>
+                                        <th><?= $penawaran["persyaratan_harga"];?></th>
                                     </tr>
                                     <tr>
-                                        <th >Dibuat Oleh</th>
-                                        <td>: <?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$penawaran['created_by']),'admin_name');?></td>
+                                        <th>Lampiran</th>
+                                        <th>
+                                            <?php foreach($lampiran as $l) : ?>
+                                            <a href="<?= base_url("uploads/penawaran_penjualan/".$l["lampiran"]) ?>" target="_blank">Lihat bukti  <?= $l["lampiran"] ?> <br></a></td>
+                                            <?php endforeach; ?>
+                                        </th>
                                     </tr>
                                     <tr>
-                                        <th >Dibuat Tanggal</th>
-                                        <td>: <?= date('d/m/Y H:i:s',strtotime($penawaran['created_on']));?></td>
+                                        <th>Dibuat Oleh</th>
+                                        <th><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$penawaran['created_by']),'admin_name');?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Dibuat Tanggal</th>
+                                        <th><?= date('d/m/Y H:i:s',strtotime($penawaran['created_on']));?></th>
                                     </tr>
                                 </table>
 
@@ -190,17 +185,17 @@
                                 </table>
                                         
                                 <div class="text-right">  
-                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                    <a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
 
                                     <?php if($penawaran["status"] === "DRAFT") : ?>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                             ?>
                                             <form class="form-check" action="<?= base_url("penjualan/approvalPenawaran/".$penawaran["id"]) ?>">
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
+                                                <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>        
                                             </form>
                                             <form class="form-check" action="<?= base_url("penjualan/rejectedPenawaran/".$penawaran["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
+                                                <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>        
                                             </form>
                                             <?php
                                         }
@@ -208,11 +203,11 @@
                                     <?php endif; ?>
 
                                     <?php if($penawaran["status"] === "OPEN") : ?>
-                                        <a href="<?= base_url("penjualan/cetak_penawaran_penjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-info" style="margin-top: 10px;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                        <a href="<?= base_url("penjualan/cetak_penawaran_penjualan/".$penawaran["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                             ?>
-                                            <a href="<?= base_url("penjualan/closed_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-danger" style="margin-top: 10px;"><i class="fa fa-close"></i> Closed</a>			
+                                            <a href="<?= base_url("penjualan/closed_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-close"></i> Closed</a>			
                                             <?php
                                         }
                                         ?>
@@ -224,7 +219,7 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1){
                                             ?>
-                                            <a class="btn btn-danger" style="margin-top: 10px;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
+                                            <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
                                             <?php
                                         }
                                         ?>

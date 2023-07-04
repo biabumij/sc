@@ -166,11 +166,23 @@
 										<input type="hidden" name="total_product" id="total-product" value="1">
 										
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('admin/penjualan');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
-                                        </div>
+                                    <br /><br />
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="30%"></td>
+                                                    <td width="10%"></td>
+                                                    <td width="10%"><a href="<?php echo site_url('admin/penjualan');?>" class="btn btn-danger" style="width:100%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a></td>
+                                                    <td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i>  Kirim</button></td>
+                                                    <td width="10%"></td>
+                                                    <td width="30%"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </form>
                             </div>

@@ -30,7 +30,7 @@
                         <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
                         <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
                         <li><a href="<?php echo site_url('admin/penjualan');?>"> Sales Order</a></li>
-                        <li><a>Detail Sales Order</a></li>
+                        <li><a href="">Detail Sales Order</a></li>
                     </ul>
                 </div>
             </div>
@@ -43,56 +43,54 @@
                                 </div>
                         </div>
                         <div class="panel-content">
-                            <table class="table table-bordered table-striped">
+                            <table class="table table-striped table-bordered" width="100%">
                                 <tr>
-                                    <th width="200px">Pelanggan </th>
-                                    <td>: <?= $client["nama"] ?></td>
+                                    <th width="20%" align="left">Rekanan</th>
+                                    <th width="80%" align="left"><label class="label label-default" style="font-size:14px;"><?= $client["nama"] ?></label></th>
                                 </tr>
                                 <tr>
-                                    <th >Alamat </th>
-                                    <td>: <?= $sales_po["client_address"] ?></td>
+                                    <th>Alamat</th>
+                                    <th><textarea class="form-control" rows="5" readonly=""><?= $sales_po["client_address"] ?></textarea></th>
                                 </tr>
                                 <tr>
-                                    <th >Tanggal Kontrak</th>
-                                    <td>: <?= convertDateDBtoIndo($sales_po["contract_date"]); ?></td>
+                                    <th>No. Penawaran</th>
+                                    <th><a target="_blank" href="<?= base_url("penjualan/detailPenawaran/".$sales_po_detail['penawaran_id']) ?>"><?php echo $this->crud_global->GetField('pmm_penawaran_penjualan',array('id'=>$sales_po_detail['penawaran_id']),'nomor');?></a></th>   
+                                </tr>
+                            </table>
+                            <table class="table table-striped table-bordered" width="100%">
+                                <tr>
+                                    <th width="20%" align="left">No. Sales Order</th>
+                                    <th width="80%" align="left"><label class="label label-info" style="font-size:14px;"><?= $sales_po["contract_number"]; ?></label></th>
                                 </tr>
                                 <tr>
-                                    <th >Nomor Kontrak </th>
-                                    <td>: <?= $sales_po["contract_number"]; ?></td>
+                                    <th>Jenis Pekerjaan</th>
+                                    <th><?= $sales_po["jobs_type"]; ?></th>
                                 </tr>
                                 <tr>
-                                    <th >Jenis Pekerjaan </th>
-                                    <td>: <?= $sales_po["jobs_type"]; ?></td>
-                                </tr>
-                                <tr>
-                                    <th >Total </th>
-                                    <td>: Rp.<?= $this->filter->Rupiah($sales_po["total"]); ?></td>
-                                </tr>
-                                <tr>
-                                    <th >Status</th>
-                                    <td>: <?= $sales_po["status"]; ?></td>
-                                </tr>
-                                <tr>
-                                    <th width="100px">Lampiran</th>
-                                    <td>:  
-                                        <?php foreach($lampiran as $l) : ?>                                    
-                                        <a href="<?= base_url("uploads/sales_po/".$l["lampiran"]) ?>" target="_blank">Lihat bukti  <?= $l["lampiran"] ?> <br></a></td>
-                                        <?php endforeach; ?>
+                                    <th>Tanggal Kontrak</th>
+                                    <th><?= $sales_po["contract_number"]; ?></th>
                                 </tr>
                                 <tr>
                                     <th>Memo</th>
-                                    <td>: <?= $sales_po["memo"] ?></td>
+                                    <th class="text-left" colspan="6"><?= $sales_po["memo"] ?></th>
                                 </tr>
                                 <tr>
-                                    <th >Dibuat Oleh</th>
-                                    <td>: <?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$sales_po['created_by']),'admin_name');?></td>
+                                    <th>Lampiran</th>
+                                    <th>
+                                        <?php foreach($lampiran as $l) : ?>                                    
+                                        <a href="<?= base_url("uploads/sales_po/".$l["lampiran"]) ?>" target="_blank">Lihat bukti  <?= $l["lampiran"] ?> <br></a></td>
+                                        <?php endforeach; ?>
+                                    </th>
                                 </tr>
                                 <tr>
-                                    <th >Dibuat Tanggal</th>
-                                    <td>: <?= date('d/m/Y H:i:s',strtotime($sales_po['created_on']));?></td>
+                                    <th>Dibuat Oleh</th>
+                                    <th><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$sales_po['created_by']),'admin_name');?></th>
                                 </tr>
-                            </table>
-                            
+                                <tr>
+                                    <th>Dibuat Tanggal</th>
+                                    <th><?= date('d/m/Y H:i:s',strtotime($sales_po['created_on']));?></th>
+                                </tr>
+                            </table>    
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
@@ -197,9 +195,7 @@
                                 </tfoot>
                             </table>
                             
-                            
                             <div class="text-right">
-
                                 <?php if($sales_po["status"] === "DRAFT") : ?>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
@@ -216,52 +212,50 @@
                                 <?php endif; ?>
                             
                                 <?php if($sales_po["status"] === "OPEN") : ?>
-                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
-                                <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success"><i class="fa fa-truck"></i> Surat Jalan Pengiriman Penjualan</a>
-								<a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-primary"><i class="fa fa-truck"></i> Retur</a>
-                                    <?php
+                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-truck"></i> Kirim Produk</a>
+								<a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-primary" style="width:200px; font-weight:bold;"><i class="fa fa-truck"></i> Retur</a>
+                                
+                                <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                     ?>
-                                        <br />
-                                        <form class="form-approval" action="<?= base_url("penjualan/closed_sales_order/".$sales_po["id"]) ?>">
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Closed Sales Order</button>        
-                                        </form>					
+                                    <br />
+                                    <form class="form-approval" action="<?= base_url("penjualan/closed_sales_order/".$sales_po["id"]) ?>">
+                                        <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Closed Sales Order</button>        
+                                    </form>					
                                     <?php
                                     }
                                     ?>
-                                <?php endif; ?>
+                                    <?php endif;
+                                ?>
                            
                                 <?php if($sales_po["status"] === "CLOSED") : ?>
-                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
                                     ?>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
-                                                        
+                                    <a class="btn btn-danger" style="width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>            
                                     <?php
                                     }
                                     ?>
-                                <?php endif; ?>
+                                    <?php endif;
+                                ?>
                     
                                 <?php if($sales_po["status"] === "REJECT") : ?>
-                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
                                 <?php
-                                if($this->session->userdata('admin_group_id') == 1){
+                                    if($this->session->userdata('admin_group_id') == 1){
                                     ?>
-                                    <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
-                                    				
+                                    <a class="btn btn-danger" style="width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>			
                                     <?php
                                     }
                                     ?>
-                                <?php endif; ?>
+                                    <?php endif;
+                                ?>
                             
                                 <form>
-                                    <br />
-                                    <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                    <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top: 10px; width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 </form>
                             </div>
-                            
-                            
                             
                         </div>
                     </div>

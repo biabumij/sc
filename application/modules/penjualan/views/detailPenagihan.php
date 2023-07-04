@@ -38,65 +38,74 @@
                         <div class="panel">
                             <div class="panel-header">
                                 <div class="">
-                                    <h3 class="">Detail Tagihan Penjualan <small>(<i><?= $penagihan['status']; ?></i>)</small></h3>
+                                    <h3 class="">Detail Tagihan Penjualan <?php echo $this->pmm_model->GetStatus2($penagihan['status']);?></h3>
                                 </div>
                             </div>
                             <div class="panel-content">
-                                <div class="row">
-                                    <div class="col-sm-10">
-                                        <label>Pelanggan</label>
-                                        <input type="text" class="form-control" name="pelanggan" value="<?= $penagihan["nama_pelanggan"] ?>" readonly />
-                                    </div>
-								</div>
-								<div class="row">
-									<div class="col-sm-10">
-                                        <label>Alamat Pelanggan</label>
-                                        <input type="text" class="form-control" name="alamat_pelanggan" value="<?= $penagihan["alamat_pelanggan"] ?>" readonly required="" />
-                                    </div>
-								</div>
-								<div class="row">
-                                    <div class="col-sm-2">
-                                        <label>Tanggal Kontrak</label>
-                                        <input type="text" class="form-control" name="tanggal_kontrak" value="<?= date('d-m-Y', strtotime($penagihan["tanggal_kontrak"])) ?>" readonly />
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <label>Nomor Kontrak</label>
-                                        <input type="text" class="form-control" name="nomor_kontrak" value="<?= $penagihan["nomor_kontrak"] ?>" readonly />
-                                    </div>
-								</div>
-								<div class="row">
-									<div class="col-sm-2">
-                                        <label>Tanggal Invoice</label>
-                                        <input type="text" class="form-control" name="tanggal_invoice" value="<?= date('d-m-Y', strtotime($penagihan["tanggal_invoice"])) ?>" readonly />
-                                    </div>
-									<div class="col-sm-8">
-                                        <label>Nomor Invoice</label>
-                                        <input type="text" class="form-control" name="nomor_invoice" value="<?= $penagihan["nomor_invoice"] ?>" readonly />
-                                    </div>
-								</div>
-								<div class="row">
-									<div class="col-sm-10">
-                                        <label>Jenis Pekerjaan</label>
-                                        <input type="text" class="form-control" name="jenis_pekerjaan" value="<?= $penagihan["jenis_pekerjaan"] ?>" readonly />
-                                    </div>
-								</div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label>Syarat Pembayaran</label>
-                                        <select name="syarat_pembayaran" disabled class="form-control" required="">
-                                            <option selected readonly value="<?= $penagihan["syarat_pembayaran"] ?>"><?= $penagihan["syarat_pembayaran"] ?></option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Dibuat Oleh</label>
-                                        <input type="text" class="form-control" value="<?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$penagihan['created_by']),'admin_name');?>" readonly="">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Dibuat Tanggal</label>
-                                        <input type="text" class="form-control" value="<?= date('d/m/Y H:i:s',strtotime($penagihan['created_on']));?>" readonly="">
-                                    </div>
-                                </div>
+                                <table class="table table-striped table-bordered" width="100%">
+                                    <tr>
+                                        <th width="20%" align="left">Pelanggan</th>
+                                        <th width="80%" align="left"><label class="label label-default" style="font-size:14px;"><?= $penagihan["nama_pelanggan"] ?></label></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat Pelanggan</th>
+                                        <th><textarea class="form-control" name="alamat_pelanggan" rows="5" readonly=""><?= $penagihan['alamat_pelanggan']; ?></textarea></th>
+                                    </tr>
+                                    <tr>
+                                        <th>No. Sales Order</th>
+                                        <th><a target="_blank" href="<?= base_url("penjualan/dataSalesPO/".$penagihan['sales_po_id']) ?>"><?php echo $this->crud_global->GetField('pmm_sales_po',array('id'=>$penagihan['sales_po_id']),'contract_number');?></a></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Tanggal Sales Order</th>
+                                        <th><?= date('d-m-Y', strtotime($penagihan["tanggal_kontrak"])) ?></th>
+                                    </tr>
+                                </table>
                                 <br />
+                                <table class="table table-striped table-bordered" width="100%">
+                                    <tr>
+                                        <th width="20%" align="left">Nomor Invoice</th>
+                                        <th width="80%" align="left"><label class="label label-info" style="font-size:14px;"><?= $penagihan["tanggal_invoice"]; ?></label></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Tanggal Invoice</th>
+                                        <th><?= date('d/m/Y', strtotime($penagihan['tanggal_invoice'])); ?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Syarat Pembayaran</th>
+                                        <th><?= $penagihan['syarat_pembayaran']; ?> Hari</th>
+                                    </tr>
+                                    <!--<tr>
+                                        <th>Tanggal Jatuh Tempo</th>
+                                        <th><?= date('d/m/Y', strtotime($penagihan['tanggal_jatuh_tempo'])); ?></th>
+                                    </tr>-->
+                                    <tr>
+                                        <th>Memo</th>
+                                        <th><?= $penagihan["memo"]; ?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Lampiran</th>
+                                        <th>
+                                            <?php
+                                            if (!empty($dataLampiran)) {
+                                                foreach ($dataLampiran as $key => $lampiran) {
+                                            ?>
+                                                    <div><a href="<?= base_url() . 'uploads/penagihan/' . $lampiran['lampiran']; ?>" target="_blank"><?= $lampiran['lampiran']; ?></a></div>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Dibuat Oleh</th>
+                                        <th><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$penagihan['created_by']),'admin_name');?></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Dibuat Tanggal</th>
+                                        <th><?= date('d/m/Y H:i:s',strtotime($penagihan['created_on']));?></th>
+                                    </tr>
+                                </table>
+                                <br /><br />
                                 <div class="table-responsive">
                                     <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                         <thead>
@@ -161,25 +170,17 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="form-group">
-                                            <label>Memo</label>
-                                            <textarea class="form-control" name="memo" rows="3" value="" readonly><?= $penagihan["memo"]; ?></textarea>
+                                            <label></label>
+                                            
                                         </div>
                                         <div class="form-group">
-                                            <label>Lampiran</label>
-                                            <?php
-                                            if (!empty($dataLampiran)) {
-                                                foreach ($dataLampiran as $key => $lampiran) {
-                                            ?>
-                                                    <div><a href="<?= base_url() . 'uploads/penagihan/' . $lampiran['lampiran']; ?>" target="_blank"><?= $lampiran['lampiran']; ?></a></div>
-                                            <?php
-                                                }
-                                            }
-                                            ?>
+                                            <label></label>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-sm-8 form-horizontal">
                                             <div class="form-group">
-                                                <label class="col-sm-7 control-label">Sub Total</label>
+                                                <label class="col-sm-7 control-label">SUB TOTAL</label>
 													<div class="col-sm-5 text-right">
 														<label><?= number_format($sub_total,0,',','.'); ?></label>													
 															<input type="hidden" name="total_1" value="<?= $sub_total;?>">
@@ -189,7 +190,7 @@
 												if($tax_ppn > 0){
 													?>
 													<div class="form-group">                                                   
-                                                        <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
+                                                        <label class="col-sm-7 control-label">PAJAK (PPN 10%)</label>
 															<div class="col-sm-5 text-right">
 																<label><?= number_format($tax_ppn,0,',','.'); ?></label>
 																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_ppn;?>">
@@ -202,7 +203,7 @@
 												if($tax_0 > 0){
 													?>
 													<div class="form-group">                                                   
-                                                        <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
+                                                        <label class="col-sm-7 control-label">PAJAK (PPN 0%)</label>
 															<div class="col-sm-5 text-right">
 																<label><?= number_format(0,0,',','.'); ?></label>
 																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_0;?>">
@@ -215,7 +216,7 @@
 												if($tax_pph > 0){
 													?>
 													<div class="form-group">                                                   
-                                                        <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
+                                                        <label class="col-sm-7 control-label">PAJAK (PPh 23)</label>
 															<div class="col-sm-5 text-right">															
 																<label><?= number_format($tax_pph,0,',','.'); ?></label>
 																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_pph;?>">
@@ -228,47 +229,52 @@
 												if($tax_ppn11 > 0){
 													?>
 													<div class="form-group">                                                   
-                                                        <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
+                                                        <label class="col-sm-7 control-label">PAJAK (PPN 11%)</label>
 															<div class="col-sm-5 text-right">															
 																<label><?= number_format($tax_ppn11,0,',','.'); ?></label>
 																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_ppn11;?>">
 															</div>
 													</div>
                                               
-                                        <?php
-                                        }
-
+                                            <?php
+                                            }
                                         $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
                                         $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPenjualan($penagihan['id']);
                                         ?>
 
                                         <div class="row">
-                                            <h4 class="col-sm-7 control-label">Total</h4>
+                                            <label class="col-sm-7 control-label">TOTAL</label>
                                             <div class="col-sm-5 text-right">
-                                                <h4 id="total"><?= number_format($total,0,',','.'); ?></h4>
+                                                <label id="total"><?= number_format($total,0,',','.'); ?></label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <h4 class="col-sm-7 control-label">Sisa Tagihan</h4>
+                                        <label class="col-sm-7 control-label">PEMBAYARAN</label>
+                                        <div class="col-sm-5 text-right">
+                                            <label id="sub-total"><?= number_format($penagihan['pembayaran'],0,',','.'); ?></label>
+                                        </div>
+                                    </div>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">SISA TAGIHAN</label>
                                             <div class="col-sm-5 text-right">
-                                                <h4 id="total"><?= number_format($total - $sisa_tagihan); ?></h4>
+                                                <label id="total"><?= number_format($total - $sisa_tagihan - $penagihan['pembayaran']); ?></label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <br />
+                                <br /><br />
                                 <div class="text-center">
                                     <div class="col-sm-12 text-right">
                                         <?php if ($penagihan["status"] === "DRAFT") : ?>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                                 ?>
-                                            <form class="form-approval" action="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>">
-                                                <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Setujui</button>
-                                            </form>
-                                            <form class="form-approval" action="<?= base_url("penjualan/rejectPenagihan/" . $penagihan["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-close"></i> Tolak</button>
-                                            </form>
+                                                <form class="form-approval" action="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>">
+                                                    <button type="submit" class="btn btn-success btn-sm" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>
+                                                </form>
+                                                <form class="form-approval" action="<?= base_url("penjualan/rejectPenagihan/" . $penagihan["id"]) ?>">
+                                                    <button type="submit" class="btn btn-danger btn-sm" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>
+                                                </form>
                                             <?php
                                             }
                                             ?>
@@ -277,20 +283,19 @@
                                 </div>
                                 <div class="text-center">
                                     <?php if ($penagihan["status"] === "OPEN") : ?>
-                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
                                         <?php
-                                       if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
+                                            ?>
+                                            <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-money"></i> Terima Pembayaran</a>
+                                            <a href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Pembayaran Lunas</a>
+                                            <a href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>" class="btn btn-warning" style="width:200px; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
+                                            <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>	
+                                            <?php
+                                            }
+                                            ?>
+                                            <?php endif;
                                         ?>
-                                        <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-warning"><i class="fa fa-money"></i> Terima Pembayaran</a>
-                                        <?php
-                                        ?>
-                                        <a href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>" class="btn btn-success"><i class="fa fa-check"></i> Pembayaran Lunas</a>
-                                        <!--<a href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>-->
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
-                                        <?php
-                                        }
-                                        ?>
-                                        <?php endif; ?>
                                 </div>
                                 <div class="text-center">
                                     <?php if ($penagihan["status"] === "CLOSED") : ?>
@@ -299,9 +304,8 @@
                                         ?>
                                         <?php
                                         ?>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
-                                        <a href="<?= site_url('penjualan/open_penagihan/' . $penagihan['id']); ?>" class="btn btn-warning"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
-                                         <!--<a href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>-->
+                                        <a class="btn btn-danger"  style="width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                        <a href="<?= site_url('penjualan/open_penagihan/' . $penagihan['id']); ?>" class="btn btn-warning" style="width:200px; font-weight:bold;"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
                                         <?php
                                         }
                                         ?>
@@ -312,15 +316,15 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                         ?>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
+                                        <a class="btn btn-danger" style="width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
                                         <?php
                                         }
                                         ?>
                                         <?php endif; ?>
                                 </div>
+                                <br /><br /><br />
                                 <div class="text-center">
-                                    <a href="<?php echo site_url('admin/penjualan#settings'); ?>" class="btn btn-info"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                    <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</a>
+                                    <a href="<?php echo site_url('admin/penjualan#settings'); ?>" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 </div>
                                 <br />
                                 <br />
