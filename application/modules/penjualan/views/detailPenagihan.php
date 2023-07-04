@@ -169,78 +169,78 @@
 
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <div class="form-group">
+                                        <div class="row">
                                             <label></label>
                                             
                                         </div>
-                                        <div class="form-group">
+                                        <div class="row">
                                             <label></label>
                                             
                                         </div>
                                     </div>
                                     <div class="col-sm-8 form-horizontal">
-                                            <div class="row">
-                                                <label class="col-sm-7 control-label">SUB TOTAL</label>
-													<div class="col-sm-5 text-right">
-														<label><?= number_format($sub_total,0,',','.'); ?></label>													
-															<input type="hidden" name="total_1" value="<?= $sub_total;?>">
-													</div>
-                                            </div>
-                                            <?php
-												if($tax_ppn > 0){
-													?>
-													<div class="form-group">                                                   
-                                                        <label class="col-sm-7 control-label">PAJAK (PPN 10%)</label>
-															<div class="col-sm-5 text-right">
-																<label><?= number_format($tax_ppn,0,',','.'); ?></label>
-																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_ppn;?>">
-															</div>
-													</div>
-                                                    <?php
-												}
-											?>
-											<?php
-												if($tax_0 > 0){
-													?>
-													<div class="form-group">                                                   
-                                                        <label class="col-sm-7 control-label">PAJAK (PPN 0%)</label>
-															<div class="col-sm-5 text-right">
-																<label><?= number_format(0,0,',','.'); ?></label>
-																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_0;?>">
-															</div>
-													</div>                                                  
-                                                    <?php
-												}
-											?>
-											<?php
-												if($tax_pph > 0){
-													?>
-													<div class="form-group">                                                   
-                                                        <label class="col-sm-7 control-label">PAJAK (PPh 23)</label>
-															<div class="col-sm-5 text-right">															
-																<label><?= number_format($tax_pph,0,',','.'); ?></label>
-																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_pph;?>">
-															</div>
-													</div>
-                                                    <?php
-												}
-											?>
-                                            <?php
-												if($tax_ppn11 > 0){
-													?>
-													<div class="form-group">                                                   
-                                                        <label class="col-sm-7 control-label">PAJAK (PPN 11%)</label>
-															<div class="col-sm-5 text-right">															
-																<label><?= number_format($tax_ppn11,0,',','.'); ?></label>
-																	<input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_ppn11;?>">
-															</div>
-													</div>
-                                              
-                                            <?php
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">SUB TOTAL</label>
+                                                <div class="col-sm-5 text-right">
+                                                    <label><?= number_format($sub_total,0,',','.'); ?></label>													
+                                                        <input type="hidden" name="total_1" value="<?= $sub_total;?>">
+                                                </div>
+                                        </div>
+                                        <?php
+                                            if($tax_ppn > 0){
+                                                ?>
+                                                <div class="row">                                                   
+                                                    <label class="col-sm-7 control-label">PAJAK (PPN 10%)</label>
+                                                        <div class="col-sm-5 text-right">
+                                                            <label><?= number_format($tax_ppn,0,',','.'); ?></label>
+                                                                <input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_ppn;?>">
+                                                        </div>
+                                                </div>
+                                                <?php
                                             }
-                                        $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
-                                        $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPenjualan($penagihan['id']);
                                         ?>
+                                        <?php
+                                            if($tax_0 > 0){
+                                                ?>
+                                                <div class="row">                                                   
+                                                    <label class="col-sm-7 control-label">PAJAK (PPN 0%)</label>
+                                                        <div class="col-sm-5 text-right">
+                                                            <label><?= number_format(0,0,',','.'); ?></label>
+                                                                <input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_0;?>">
+                                                        </div>
+                                                </div>                                                  
+                                                <?php
+                                            }
+                                        ?>
+                                        <?php
+                                            if($tax_pph > 0){
+                                                ?>
+                                                <div class="row">                                                   
+                                                    <label class="col-sm-7 control-label">PAJAK (PPh 23)</label>
+                                                        <div class="col-sm-5 text-right">															
+                                                            <label><?= number_format($tax_pph,0,',','.'); ?></label>
+                                                                <input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_pph;?>">
+                                                        </div>
+                                                </div>
+                                                <?php
+                                            }
+                                        ?>
+                                        <?php
+                                            if($tax_ppn11 > 0){
+                                                ?>
+                                                <div class="row">                                                   
+                                                    <label class="col-sm-7 control-label">PAJAK (PPN 11%)</label>
+                                                        <div class="col-sm-5 text-right">															
+                                                            <label><?= number_format($tax_ppn11,0,',','.'); ?></label>
+                                                                <input type="hidden" id="tax_1" name="tax_1" value="<?= $tax_ppn11;?>">
+                                                        </div>
+                                                </div>
+                                            
+                                        <?php
+                                        }
+                                    $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
+                                    $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPenjualan($penagihan['id']);
+                                    ?>
 
                                     <div class="row">
                                         <label class="col-sm-7 control-label">TOTAL</label>
