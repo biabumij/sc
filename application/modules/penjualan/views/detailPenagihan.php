@@ -238,22 +238,22 @@
                                             
                                         <?php
                                         }
-                                    $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
-                                    $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPenjualan($penagihan['id']);
-                                    ?>
+                                        $total = $sub_total + $tax_ppn - $tax_pph + $tax_ppn11;
+                                        $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPenjualan($penagihan['id']);
+                                        ?>
 
-                                    <div class="row">
-                                        <label class="col-sm-7 control-label">TOTAL</label>
-                                        <div class="col-sm-5 text-right">
-                                            <label id="total"><?= number_format($total,0,',','.'); ?></label>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">TOTAL</label>
+                                            <div class="col-sm-5 text-right">
+                                                <label id="total"><?= number_format($total,0,',','.'); ?></label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-7 control-label">PEMBAYARAN</label>
-                                        <div class="col-sm-5 text-right">
-                                            <label id="sub-total"><?= number_format($penagihan['pembayaran'],0,',','.'); ?></label>
+                                        <div class="row">
+                                            <label class="col-sm-7 control-label">PEMBAYARAN</label>
+                                            <div class="col-sm-5 text-right">
+                                                <label id="sub-total"><?= number_format($penagihan['pembayaran'],0,',','.'); ?></label>
+                                            </div>
                                         </div>
-                                    </div>
                                         <div class="row">
                                             <label class="col-sm-7 control-label">SISA TAGIHAN</label>
                                             <div class="col-sm-5 text-right">
