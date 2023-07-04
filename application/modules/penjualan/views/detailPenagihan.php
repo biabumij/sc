@@ -179,7 +179,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-8 form-horizontal">
-                                            <div class="form-group">
+                                            <div class="row">
                                                 <label class="col-sm-7 control-label">SUB TOTAL</label>
 													<div class="col-sm-5 text-right">
 														<label><?= number_format($sub_total,0,',','.'); ?></label>													
@@ -242,13 +242,13 @@
                                         $sisa_tagihan = $this->pmm_finance->getTotalPembayaranPenagihanPenjualan($penagihan['id']);
                                         ?>
 
-                                        <div class="row">
-                                            <label class="col-sm-7 control-label">TOTAL</label>
-                                            <div class="col-sm-5 text-right">
-                                                <label id="total"><?= number_format($total,0,',','.'); ?></label>
-                                            </div>
+                                    <div class="row">
+                                        <label class="col-sm-7 control-label">TOTAL</label>
+                                        <div class="col-sm-5 text-right">
+                                            <label id="total"><?= number_format($total,0,',','.'); ?></label>
                                         </div>
-                                        <div class="row">
+                                    </div>
+                                    <div class="row">
                                         <label class="col-sm-7 control-label">PEMBAYARAN</label>
                                         <div class="col-sm-5 text-right">
                                             <label id="sub-total"><?= number_format($penagihan['pembayaran'],0,',','.'); ?></label>
