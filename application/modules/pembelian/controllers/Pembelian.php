@@ -732,6 +732,7 @@ class Pembelian extends Secure_Controller
 		chmod($path, 0777);
 		unlink($path);
         
+        $this->db->delete('pmm_lampiran_penawaran_pembelian', array('penawaran_pembelian_id' => $id));
         $this->db->delete('pmm_penawaran_pembelian_detail', array('penawaran_pembelian_id' => $id));
         $this->db->delete("pmm_penawaran_pembelian", array('id' => $id));
 

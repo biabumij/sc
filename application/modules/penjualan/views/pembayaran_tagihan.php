@@ -24,7 +24,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/penjualan'); ?>"> Penjualan</a></li>
                             <li><a href="<?= base_url('penjualan/detailPenagihan/' . $pembayaran["id"]) ?>"> Tagihan Penjualan</a></li>
-                            <li><a>Penerimaan Penjualan</a></li>
+                            <li><a href="">Buat Penerimaan Penjualan</a></li>
                         </ul>
                     </div>
                 </div>
@@ -36,6 +36,7 @@
                                     <h3 class="pull-left">Penerimaan Penjualan</h3>
                                 </div>
                             </div>
+                            <br />
                             <div class="panel-content">
                                 <form method="POST" action="<?php echo site_url('penjualan/submit_pembayaran');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
                                     <input type="hidden" name="id_penagihan" value="<?= $pembayaran["id"] ?>">

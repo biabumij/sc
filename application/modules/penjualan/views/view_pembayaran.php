@@ -131,18 +131,39 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?= base_url('penjualan/detailPenagihan/' . $bayar["penagihan_id"]) ?>" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-mail-replay"></i> Kembali</a>
-                                            <a href="<?= base_url('penjualan/cetak_pembayaran/' . $bayar["id"]) ?>" target="_blank" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-print"></i> Cetak PDF</a>
-                                            <?php
-                                            if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 19){
-                                            ?>
-                                            <a href="<?= base_url('penjualan/sunting_pembayaran/' . $bayar["id"]) ?>" class="btn btn-warning" style="margin-bottom:0;"><i class="fa fa-check"></i> Edit</a>
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
+                                    <br /><br />
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="30%"></td>
+                                                    <td width="10%"><a href="<?= base_url('penjualan/detailPenagihan/' . $bayar["penagihan_id"]) ?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-mail-replay"></i> Kembali</a></td>
+                                                    <td width="10%">
+                                                    <?php
+                                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 19){
+                                                    ?>
+                                                    <a href="<?= base_url('penjualan/sunting_pembayaran/' . $bayar["id"]) ?>" class="btn btn-warning" style="width:100%; font-weight:bold;"><i class="fa fa-check"></i> Edit</a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    </td>
+                                                    <td width="10%"><a href="<?= base_url('penjualan/cetak_pembayaran/' . $bayar["id"]) ?>" target="_blank" class="btn btn-default" style="width:100%; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a></td>
+                                                    <td width="10%">
+                                                    <?php
+                                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 19){
+                                                    ?>
+                                                    <button type="button" id="tombol_hapus" class="btn btn-danger" style="width:100%; font-weight:bold;"><i class="fa fa-times"></i> Hapus</button>
+                                                    <?php
+                                                    }
+                                                    ?>  
+                                                    </td>
+                                                    <td width="30%"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </form>
                             </div>
@@ -167,5 +188,30 @@
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/bootbox.min.js"></script>
 
 </body>
+<script type="text/javascript">
+$('#tombol_hapus').click(function() {
+    bootbox.confirm({
+        message: "Apakah anda yakin untuk menghapus data ini?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function(result) {
+            if (result) {
+                $.post('<?= base_url() . 'penjualan/hapus_pembayaran/' . $bayar['id'] ?>', {}, function($response) {
+                    top.location.href = '<?= base_url() . 'penjualan/detailPenagihan/' . $bayar['penagihan_id'] ?>';
+                });
+            }
+
+        }
+    });
+});
+</script>
 
 </html>

@@ -320,6 +320,16 @@ class Penjualan extends Secure_Controller
 
 	public function hapusPenawaranPenjualan($id)
 	{
+		$file = $this->db->select('pp.lampiran')
+		->from('pmm_lampiran_penawaran_penjualan pp')
+		->where("pp.penawaran_penjualan_id = $id")
+		->get()->row_array();
+
+		$path = './uploads/penawaran_penjualan/'.$file['lampiran'];
+		chmod($path, 0777);
+		unlink($path);
+        
+        $this->db->delete('pmm_lampiran_penawaran_penjualan', array('penawaran_penjualan_id' => $id));
 		$this->db->delete('pmm_penawaran_penjualan', array('id' => $id));
 		$this->db->delete('pmm_penawaran_penjualan_detail', array('penawaran_penjualan_id' => $id));
 		$this->session->set_flashdata('notif_success', 'Berhasil Mengahapus Penawaran Penjualan');
@@ -1128,10 +1138,19 @@ class Penjualan extends Secure_Controller
 
 			$penagihan = $this->db->get_where('pmm_penagihan_penjualan', array('id' => $id))->row_array();
 			$deskripsi = 'Nomor Invoice ' . $penagihan['nomor_invoice'];
-			//$this->pmm_finance->InsertLogs('DELETE', 'pmm_penagihan_penjualan', $id, $deskripsi);
+
+			$file = $this->db->select('lk.lampiran')
+            ->from('pmm_lampiran_penagihan lk')
+            ->where("lk.penagihan_id = $id")
+            ->get()->row_array();
+
+            $path = './uploads/penagihan/'.$file['lampiran'];
+            chmod($path, 0777);
+            unlink($path);
+
+            $this->db->delete('pmm_lampiran_penagihan', array('penagihan_id' => $id));
 			$this->db->delete('pmm_penagihan_penjualan_detail', array('penagihan_id' => $id));
 			$this->db->delete('pmm_pembayaran', array('penagihan_id' => $id));
-			$this->db->delete('pmm_lampiran_penagihan', array('penagihan_id' => $id));
 			$this->db->delete('pmm_penagihan_penjualan', array('id' => $id));
 
 
@@ -1427,6 +1446,17 @@ class Penjualan extends Secure_Controller
 
 	public function hapus_pembayaran($id)
 	{
+		$file = $this->db->select('pp.lampiran')
+		->from('pmm_lampiran_pembayaran pp')
+		->where("pp.pembayaran_id = $id")
+		->get()->row_array();
+		
+		$path = './uploads/pembayaran/'.$file['lampiran'];
+		chmod($path, 0777);
+		unlink($path);
+
+        $this->db->delete('pmm_lampiran_pembayaran', array('pembayaran_id' => $id));
+
 		$penagihan_id = $this->db->select('(ppp.id) as id')
         ->from('pmm_pembayaran pppp')
         ->join('pmm_penagihan_penjualan ppp', 'pppp.penagihan_id = ppp.id','left')
@@ -1529,6 +1559,15 @@ class Penjualan extends Secure_Controller
 	public function hapus_sales_po($id)
     {
     	$this->db->trans_start(); # Starting Transaction
+
+		$file = $this->db->select('po.lampiran')
+		->from('pmm_lampiran_sales_po po')
+		->where("po.sales_po_id = $id")
+		->get()->row_array();
+
+		$path = './uploads/sales_po/'.$file['lampiran'];
+		chmod($path, 0777);
+		unlink($path);
 
 		$this->db->delete('pmm_sales_po_detail', array('sales_po_id'=>$id));
 

@@ -690,6 +690,15 @@ class Productions extends Secure_Controller {
 	{
 		$output['output'] = false;
 		$id = $this->input->post('id');
+
+		$file = $this->db->select('pp.surat_jalan')
+		->from('pmm_productions_retur pp')
+		->where("pp.id = $id")
+		->get()->row_array();
+
+		$path = './uploads/surat_jalan_penjualan_retur/'.$file['surat_jalan'];
+		chmod($path, 0777);
+		unlink($path);
 		
 		$this->db->delete('pmm_productions_retur',$data,array('id'=>$id));
 		$output['output'] = true;

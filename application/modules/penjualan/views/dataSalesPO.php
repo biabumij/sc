@@ -201,10 +201,10 @@
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                     ?>
                                         <form class="form-approval" action="<?= base_url("penjualan/approvalSalesPO/".$sales_po["id"]) ?>">
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button>        
+                                            <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>        
                                         </form>
                                         <form class="form-approval" action="<?= base_url("penjualan/rejectedSalesPO/".$sales_po["id"]) ?>">
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>        
                                         </form>
                                     <?php
                                     }

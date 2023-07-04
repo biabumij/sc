@@ -26,8 +26,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/penjualan'); ?>"> Penjualan</a></li>
                             <li><a href="<?php echo site_url('admin/penjualan'); ?>"> Tagihan Penjualan</a></li>
-                            <li><a href="<?= base_url('penjualan/detailPenagihan/' . $bayar["penagihan_id"]) ?>"> Penerimaan Penjualan</a></li>
-                            <li><a>Edit Penerimaan Penjualan</a></li>
+                            <li><a href="">Edit Penerimaan Penjualan</a></li>
                         </ul>
                     </div>
                 </div>
@@ -135,13 +134,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?= base_url('penjualan/detailPenagihan/' . $bayar["penagihan_id"]) ?>" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-times"></i> Kembali</a>
-                                            <button type="button" id="tombol_hapus" class="btn btn-danger"><i class="fa fa-times"></i> Hapus</button>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
-
-                                        </div>
+                                    <br /><br />
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td width="30%"></td>
+                                                    <td width="10%"></td>
+                                                    <td width="10%"><a href="<?= site_url('penjualan/detailPenagihan/'.$bayar["penagihan_id"]);?>" class="btn btn-danger" style="width:100%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a></td>
+                                                    <td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
+                                                    <td width="10%"></td>
+                                                    <td width="30%"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </form>
                             </div>
@@ -211,31 +220,6 @@
                 }
             });
 
-        });
-
-
-        $('#tombol_hapus').click(function() {
-            bootbox.confirm({
-                message: "Apakah anda yakin untuk menghapus data ini?",
-                buttons: {
-                    confirm: {
-                        label: 'Yes',
-                        className: 'btn-success'
-                    },
-                    cancel: {
-                        label: 'No',
-                        className: 'btn-danger'
-                    }
-                },
-                callback: function(result) {
-                    if (result) {
-                        $.post('<?= base_url() . 'penjualan/hapus_pembayaran/' . $bayar['id'] ?>', {}, function($response) {
-                            top.location.href = '<?= base_url() . 'penjualan/detailPenagihan/' . $bayar['penagihan_id'] ?>';
-                        });
-                    }
-
-                }
-            });
         });
 
         $(document).ready(function() {

@@ -298,7 +298,18 @@ class Biaya extends CI_Controller {
 
             $biaya = $this->db->get_where('pmm_biaya',array('id'=>$id))->row_array();
             $deskripsi = 'Nomor Transaksi '.$biaya['nomor_transaksi'];
-            //$this->pmm_finance->InsertLogs('DELETE','pmm_biaya',$id,$deskripsi);
+            
+            $file = $this->db->select('pp.lampiran')
+            ->from('pmm_lampiran_biaya pp')
+            ->where("pp.biaya_id = $id")
+            ->get()->row_array();
+
+            $path = './uploads/biaya/'.$file['lampiran'];
+            chmod($path, 0777);
+            unlink($path);
+            
+            $this->db->delete('pmm_lampiran_biaya', array('biaya_id' => $id));
+            
             $this->db->delete('transactions',array('biaya_id'=>$biaya['id']));
             $this->db->delete('pmm_detail_biaya',array('biaya_id'=>$id));
             $this->db->delete('pmm_lampiran_biaya',array('biaya_id'=>$id));
