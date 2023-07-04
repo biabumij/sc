@@ -263,6 +263,7 @@
                                 <?=  $manager_keuangan['admin_group_name'];?>
                             </td>
                             <td align="center" >
+                                <!--<?=  $kepala_divisi['admin_group_name'];?>-->
                                 Kepala Unit Bisnis
                             </td>
                             <td align="center" >
