@@ -215,7 +215,10 @@
 
                             <br />
                             <div class="text-right">
-
+                                <form>
+                                    <br />
+                                    <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                </form>
                                 <?php
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
@@ -278,12 +281,6 @@
                                     }
                                     ?>
                                 <?php endif; ?>
-
-                                <form>
-                                    <br />
-                                    <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
-                                </form>
-                            
                             </div>
                         </div>
                     </div>
