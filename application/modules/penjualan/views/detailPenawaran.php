@@ -207,7 +207,7 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                             ?>
-                                            <a href="<?= base_url("penjualan/closed_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-close"></i> Closed</a>			
+                                            <a href="<?= base_url("penjualan/closed_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-briefcase"></i> Closed</a>			
                                             <?php
                                         }
                                         ?>

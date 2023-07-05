@@ -221,7 +221,7 @@
                                     ?>
                                     <br />
                                     <form class="form-approval" action="<?= base_url("penjualan/closed_sales_order/".$sales_po["id"]) ?>">
-                                        <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Closed Sales Order</button>        
+                                        <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-briefcase"></i> Closed</button>        
                                     </form>					
                                     <?php
                                     }
