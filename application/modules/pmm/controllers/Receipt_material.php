@@ -232,12 +232,14 @@ class Receipt_material extends CI_Controller {
 
 				$row['status_payment'] = $this->pmm_model->StatusPayment($row['status_payment']);
 				$edit = false;
-				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){
+				if($this->session->userdata('admin_group_id') == 1){
 					$edit = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';			
 				}
 
-				$row['actions'] = ' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-				//$row['actions'] = $edit.' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
+					$row['actions'] = $edit.' <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '-';
 				
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
