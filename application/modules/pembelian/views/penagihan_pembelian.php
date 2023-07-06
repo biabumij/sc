@@ -26,7 +26,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Tagihan Pembelian</a></li>
-                            <li><a>Penagihan Pembelian</a></li>
+                            <li><a href="">Tagihan Pembelian</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,8 +43,8 @@
                             <div class="panel-content">
                                     <table class="table table-striped table-bordered" width="100%">
                                         <tr>
-                                            <th width="20%" align="left">Rekanan</th>
-                                            <th width="80%" align="left"><label class="label label-default" style="font-size:14px;"><?= $po["supplier_name"] ?></label>
+                                            <th width="35%" align="left">Rekanan</th>
+                                            <th width="65%" align="left"><label class="label label-default" style="font-size:14px;"><?= $po["supplier_name"] ?></label>
                                             <input type="hidden" name="supplier_name" value="<?= $po['supplier_name'];?>">
                                             <input type="hidden" name="supplier_id" value="<?= $po['supplier_id'];?>">
                                             </th>
@@ -67,8 +67,8 @@
 
                                     <table class="table table-striped table-bordered" width="100%">
                                         <tr>
-                                            <th width="20%" align="left">Tanggal Invoice<span class="required" aria-required="true">*</span></th>
-                                            <th width="80%" align="left"><input type="text" class="form-control dtpicker" name="tanggal_invoice" id="tanggal_invoice" required="" ></th>
+                                            <th width="35%" align="left">Tanggal Invoice<span class="required" aria-required="true">*</span></th>
+                                            <th width="65%" align="left"><input type="text" class="form-control dtpicker" name="tanggal_invoice" id="tanggal_invoice" required="" ></th>
                                         </tr>
                                         <tr>
                                             <th>Nomor Invoice<span class="required" aria-required="true">*</span></th>

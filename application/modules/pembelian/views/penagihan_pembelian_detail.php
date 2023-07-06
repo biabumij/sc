@@ -57,7 +57,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Tagihan Pembelian</a></li>
-                            <li><a>Detail Tagihan Pembelian</a></li>
+                            <li><a href="">Detail Tagihan Pembelian</a></li>
                         </ul>
                     </div>
                 </div>

@@ -57,7 +57,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin'); ?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
                             <li><a href="<?php echo site_url('admin/pembelian');?>"> Tagihan Pembelian</a></li>
-                            <li><a>Edit Tagihan Pembelian</a></li>
+                            <li><a href="">Edit Tagihan Pembelian</a></li>
                         </ul>
                     </div>
                 </div>
@@ -96,10 +96,7 @@
                                             <tr>
                                                 <td width="30%"></td>
                                                 <td width="10%"></td>
-                                                <?php
-                                                $url = htmlspecialchars($_SERVER['HTTP_REFERER']);
-                                                ?>
-                                                <td width="10%"><a href="<?=$url?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
+                                                <td width="10%"><a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$row['id']);?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
                                                 <td width="10%"></td>
                                                 <td width="10%"></td>
                                                 <td width="30%"></td>

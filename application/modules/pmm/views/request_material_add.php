@@ -18,6 +18,7 @@
                         <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                         <li><a href="<?php echo site_url('admin/pembelian');?>"> Pembelian</a></li>
                         <li><a href="<?php echo site_url('admin/pembelian');?>"> Permintaan Bahan & Alat</a></li>
+                        <li><a href=""> Detail Permintaan Bahan & Alat</a></li>
                     </ul>
                 </div>
             </div>

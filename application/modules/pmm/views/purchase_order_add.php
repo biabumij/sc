@@ -29,7 +29,7 @@
                     <ul class="breadcrumbs">
                         <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                         <li><a href="<?php echo site_url('admin/pembelian');?>"> Pesanan Pembelian</a></li>
-                        <li><a>Detail Pemesanan Pembelian</a></li>
+                        <li><a href="">Detail Pemesanan Pembelian</a></li>
                     </ul>
                 </div>
             </div>

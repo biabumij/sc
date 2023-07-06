@@ -57,7 +57,7 @@
                                     </tr>
                                     <tr>
                                         <th>Tanggal Sales Order</th>
-                                        <th><?= date('d-m-Y', strtotime($penagihan["tanggal_kontrak"])) ?></th>
+                                        <th><?= date('d/m/Y', strtotime($penagihan["tanggal_kontrak"])) ?></th>
                                     </tr>
                                 </table>
                                 <br />
