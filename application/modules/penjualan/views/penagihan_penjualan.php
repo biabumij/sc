@@ -59,7 +59,9 @@
                                         </tr>
                                         <tr>
                                             <th>Nomor Sales Order</th>
-                                            <th><input type="text" class="form-control" value="<?= $sales['contract_number']; ?>" name="nomor_kontrak" readonly=""/>
+                                            <th>
+                                                <a target="_blank" href="<?= base_url("penjualan/dataSalesPO/".$sales['id']) ?>"><?= $sales['contract_number']; ?></a>
+                                                <input type="hidden" class="form-control" value="<?= $sales['contract_number']; ?>" name="nomor_kontrak" readonly=""/>
                                             </th>
                                         </tr>
                                     </table>

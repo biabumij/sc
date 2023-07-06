@@ -52,7 +52,7 @@
                                         <th><textarea class="form-control" name="alamat_pelanggan" rows="5" readonly=""><?= $penagihan['alamat_pelanggan']; ?></textarea></th>
                                     </tr>
                                     <tr>
-                                        <th>No. Sales Order</th>
+                                        <th>Nomor Sales Order</th>
                                         <th><a target="_blank" href="<?= base_url("penjualan/dataSalesPO/".$penagihan['sales_po_id']) ?>"><?php echo $this->crud_global->GetField('pmm_sales_po',array('id'=>$penagihan['sales_po_id']),'contract_number');?></a></th>
                                     </tr>
                                     <tr>
