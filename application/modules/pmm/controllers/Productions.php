@@ -101,6 +101,7 @@ class Productions extends Secure_Controller {
 				$row['harga_satuan'] = number_format($row['harga_satuan'],0,',','.');
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['surat_jalan'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan/'.$row['surat_jalan'].'" target="_blank">'.$row['surat_jalan'].'</a>';
+				
 				if($this->session->userdata('admin_group_id') == 1){
 					$edit = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a>';			
 				}
