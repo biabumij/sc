@@ -112,7 +112,7 @@
                                             <tr>
                                                 <th width="5%">No</th>
                                                 <th>Produk</th>
-                                                <th width="7%">Qty</th>
+                                                <th width="7%">Volume</th>
                                                 <th>Satuan</th>
                                                 <th>Harga Satuan</th>
                                                 <th width="10%">Pajak</th>
@@ -344,7 +344,7 @@
                                                         <th>Tanggal</th>
                                                         <th>Nomor</th>
                                                         <th>Produk</th>
-                                                        <th>Nopol Truk</th>
+                                                        <th>No. Kendaraan</th>
                                                         <th>Supir</th>
                                                         <th>Volume</th>
                                                         <th>Satuan</th>

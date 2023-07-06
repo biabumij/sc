@@ -166,7 +166,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-8 form-horizontal">
-                                            <div class="form-group">
+                                            <div class="row">
                                                 <label class="col-sm-7 control-label">Sub Total</label>
 													<div class="col-sm-5 text-right">
 														<label><?= number_format($sub_total,0,',','.'); ?></label>													
@@ -176,7 +176,7 @@
                                             <?php
 												if($tax_ppn > 0){
 													?>
-													<div class="form-group">                                                   
+													<div class="row">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPN 10%)</label>
 															<div class="col-sm-5 text-right">
 																<label><?= number_format($tax_ppn,0,',','.'); ?></label>
@@ -189,7 +189,7 @@
 											<?php
 												if($tax_0 > 0){
 													?>
-													<div class="form-group">                                                   
+													<div class="row">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPN 0%)</label>
 															<div class="col-sm-5 text-right">
 																<label><?= number_format($tax_0,0,',','.'); ?></label>
@@ -202,7 +202,7 @@
 											<?php
 												if($tax_pph > 0){
 													?>
-													<div class="form-group">                                                   
+													<div class="row">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPh 23)</label>
 															<div class="col-sm-5 text-right">															
 																<label><?= number_format($tax_pph,0,',','.'); ?></label>
@@ -215,7 +215,7 @@
                                             <?php
 												if($tax_ppn11 > 0){
 													?>
-													<div class="form-group">                                                   
+													<div class="row">                                                   
                                                         <label class="col-sm-7 control-label">Pajak (PPN 11%)</label>
 															<div class="col-sm-5 text-right">															
 																<label><?= number_format($tax_ppn11,0,',','.'); ?></label>
@@ -225,7 +225,7 @@
                                                     <?php
 												}
 											?>
-                                            <div class="form-group">
+                                            <div class="row">
                                                 <label class="col-sm-7 control-label">Total</label>
 													<div class="col-sm-5 text-right">
 														<label id="total" ><?= number_format($total,0,',','.'); ?></label>
