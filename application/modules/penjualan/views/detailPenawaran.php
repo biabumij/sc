@@ -28,7 +28,7 @@
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo base_url();?>">Dashboard</a></li>
                             <li><a href="<?php echo site_url('admin/penjualan');?>"> Penjualan</a></li>
                             <li><a href="<?php echo site_url('admin/penjualan');?>"> Penawaran Penjualan</a></li>
-                            <li><a>Detail Penawaran Penjualan</a></li>
+                            <li><a href="">Detail Penawaran Penjualan</a></li>
                         </ul>
                     </div>
                 </div>
