@@ -191,8 +191,8 @@
                                                         <th></th>
                                                         <th>No</th>
                                                         <th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Nomor Produksi</th>
-                                                        <th class="text-center">Nomor Sales Order</th>
+                                                        <th class="text-center">No. Surat Jalan</th>
+                                                        <th class="text-center">No Sales Order</th>
                                                         <th class="text-center">Produk</th>
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Volume</th>
