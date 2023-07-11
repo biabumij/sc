@@ -141,7 +141,7 @@
                                                     <tr>
                                                         <th>No</th>
                                                         <th class="text-center">Tanggal Penawaran</th>
-                                                        <th class="text-center">Nomor Penawaran</th>
+                                                        <th class="text-center">No. Penawaran</th>
                                                         <th class="text-center">Rekanan</th>
                                                         <th class="text-center">Jenis Pembelian</th>
                                                         <th class="text-center">Berlaku Hingga</th>
@@ -189,7 +189,7 @@
                                                 <tr>
                                                     <th class="text-center">No</th>
 													<th class="text-center">Tanggal Permintaan</th>
-                                                    <th class="text-center">Nomor Permintaan</th>
+                                                    <th class="text-center">No. Permintaan</th>
                                                     <th class="text-center">Subyek</th>
                                                     <th class="text-center">Rekanan</th>                               
                                                     <th class="text-center">Volume</th>

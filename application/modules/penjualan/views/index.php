@@ -74,7 +74,7 @@
                                                     <tr>
                                                         <th>No</th>
 														<th class="text-center">Tanggal Penawaran</th>
-														<th class="text-center">Nomor Penawaran</th>
+														<th class="text-center">No. Penawaran</th>
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Perihal</th>        
                                                         <th class="text-center">Total</th>
