@@ -213,6 +213,34 @@
 
                                     <!-- Pengiriman Penjualan -->
 
+                                    <div class="modal fade bd-example-modal-lg" id="modalDocSuratJalan" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <span class="modal-title">Upload Surat Jalan</span>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal" enctype="multipart/form-data" method="POST" style="padding: 0 10px 0 20px;">
+                                                        <input type="hidden" name="id" id="id_doc_surat_jalan">
+                                                        <div class="form-group">
+                                                            <label>Upload Surat Jalan</label>
+                                                            <input type="file" id="file" name="file" class="form-control" required="" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan"><i class="fa fa-send"></i> Kirim</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Tagihan Penjualan -->
 
                                     <div role="tabpanel" class="tab-pane" id="settings">
