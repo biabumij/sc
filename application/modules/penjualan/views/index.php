@@ -244,6 +244,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Pembayaran</th>
+                                                        <th class="text-center">Status Tagihan</th>
                                                         <th class="text-center">Tgl. Invoice</th>
                                                         <th class="text-center">No. Invoice</th>
                                                         <th class="text-center">Pelanggan</th>
@@ -253,8 +255,6 @@
                                                         <th class="text-center">Total</th>
                                                         <th class="text-center">Pembayaran</th>
                                                         <th class="text-center">Sisa Tagihan</th>
-                                                        <th class="text-center">Status Pembayaran</th>
-                                                        <th class="text-center">Status Tagihan</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                     </tr>
@@ -613,6 +613,12 @@
                     "data": "no"
                 },
                 {
+                    "data": "status"
+                },
+                {
+                    "data": "status_tagihan"
+                },
+                {
                     "data": "tanggal_invoice"
                 },
                 {
@@ -640,12 +646,6 @@
                     "data": "sisa_tagihan"
                 },
                 {
-                    "data": "status"
-                },
-                {
-                    "data": "status_tagihan"
-                },
-                {
                     "data": "admin_name"
                 },
                 {
@@ -654,11 +654,11 @@
 
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4, 5, 6, 9, 10, 11, 12, 13],
+                    "targets": [0, 1, 2, 3, 6, 12, 13],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [ 7, 8, 9],
+                    "targets": [ 9, 10, 11],
                     "className": 'text-right',
                 },
             ],
