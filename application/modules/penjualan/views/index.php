@@ -446,6 +446,9 @@
                     "data": "no"
                 },
                 {
+                    "data": "status_payment"
+                },
+                {
                     "data": "date_production"
                 },
                 {
@@ -465,15 +468,18 @@
                 },
                 {
                     "data": "measure"
-                },		
+                },
                 {
-                    "data": "status_payment"
+                    "data": "surat_jalan"
                 },
                 {
                     "data": "admin_name"
                 },
                 {
                     "data": "created_on"
+                },
+                {
+                    "data": "uploads_surat_jalan"
                 }
             ],
             select: {
