@@ -49,7 +49,7 @@
                                 <form id="form-pro" method="POST" class="form-pro" action="<?php echo site_url('pmm/productions/process'); ?>" enctype="multipart/form-data" onsubmit="setTimeout(function () { window.location.reload(); }, 3000)">
                                 <table class="table">
                                         <tr>
-                                            <th>Pelanggan *</th>
+                                            <th>Pelanggan<span class="required" aria-required="true">*</span></th>
                                             <th>:</th>
                                             <td>
                                                 <select id="client_id" name="client_id" class="form-control form-select2" required="">
@@ -61,7 +61,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th width="200px">No. Sales Order * </th>
+                                            <th width="200px">No. Sales Order<span class="required" aria-required="true">*</span></th>
                                             <th width="20px">:</th>
                                             <td >
                                                 <select id="po_penjualan" name="po_penjualan" class="form-control form-select2" required="">
@@ -78,13 +78,13 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Tanggal *</i></label>
+                                                <label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></i></label>
                                                 <input type="text" id="date" name="date" class="form-control dtpicker" value="<?php echo date('d-m-Y'); ?>" required="">
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">No. Surat Jalan * </label>
+                                                <label for="inputEmail3" class="control-label">No. Surat Jalan<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" class="form-control" id="no_production" name="no_production" placeholder="No. Surat Jalan" required="">
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Produk * </label>
+                                                <label for="inputEmail3" class="control-label">Produk<span class="required" aria-required="true">*</span></label>
                                                 <select id="product_id" name="product_id" class="form-control form-select2" required="">
                                                     
                                                 </select>
@@ -120,13 +120,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Volume * </label>
+                                                <label for="inputEmail3" class="control-label">Volume<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" id="volume" name="volume" class="form-control numberformat" value="" placeholder="Volume" required="" autocomplete="off">
                                             </div>
                                         </div>
 										<div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Satuan * </label>
+                                                <label for="inputEmail3" class="control-label">Satuan<span class="required" aria-required="true">*</span></label>
                                                 <select id="measure" class="form-control input-sm" name="measure" readonly="" required="">
                                                     <option value="">Pilih Satuan</option>
                                                     <?php
@@ -146,7 +146,7 @@
 										<div class="col-sm-6">
                                             <div class="form-group">
 												<input type="hidden" id="select_operation" name="select_operation" value="*">
-                                                <label for="inputEmail3" class="control-label">Konversi (Isi angka "1" Jika tidak ada konversi) * </label>
+                                                <label for="inputEmail3" class="control-label">Konversi (Isi angka "1" Jika tidak ada konversi)<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" id="convert_value" name="convert_value" class="form-control numberformat" value="1" required=""  placeholder="Konversi" autocomplete="off">
                                             </div>
                                         </div>
@@ -159,13 +159,13 @@
                                     <div class="row">
 										<div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Volume Konversi * </label>
+                                                <label for="inputEmail3" class="control-label">Volume Konversi<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" id="display_volume" name="display_volume" class="form-control numberformat" value="" required=""  placeholder="Volume Konversi" autocomplete="off">
                                             </div>
                                         </div>     
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Satuan Konversi * </label>
+                                                <label for="inputEmail3" class="control-label">Satuan Konversi<span class="required" aria-required="true">*</span></label>
                                                 <select id="convert_measure" class="form-control input-sm" name="convert_measure" required="">
                                                     <option value="">Pilih Satuan</option>
                                                     <?php
@@ -184,13 +184,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">No. Kendaraan * </label>
+                                                <label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" id="nopol_truck" name="nopol_truck" class="form-control" value="" placeholder="No. Kendaraan" required="" autocomplete="off">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Supir * </label>
+                                                <label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" id="driver" name="driver" class="form-control" value="" placeholder="Supir" required="" autocomplete="off">
                                             </div>
                                         </div>
