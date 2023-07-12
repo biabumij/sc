@@ -803,7 +803,7 @@ class Penjualan extends Secure_Controller
 			$this->db->where('date_production <=', $end_date);
 		}
 
-		$this->db->order_by('updated_on', 'DESC');
+		$this->db->order_by('created_on', 'DESC');
 		$query = $this->db->get('pmm_productions');
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
