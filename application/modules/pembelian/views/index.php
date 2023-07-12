@@ -309,6 +309,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
+                                                    <th class="text-center">Status Pesanan Pembelian</th>
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
                                                     <th class="text-center">No. Pesanan Pembelian</th>
@@ -318,7 +319,6 @@
                                                     <th class="text-center">Terima</th>
                                                     <th class="text-center">Total Pesanan Pembelian</th>
                                                     <th class="text-center">Total Terima</th>
-                                                    <th class="text-center">Status Pesanan Pembelian</th>
                                                     <th class="text-center">Lampiran</th>
                                                     <th class="text-center">Tindakan</th>
                                                     <th class="text-center">Dibuat Oleh</th>
@@ -389,7 +389,7 @@
                                                 <tr>
                                                     <th></th>
                                                     <th>No.</th>
-                                                    <th class="text-center">Tagihan</th>
+                                                    <th class="text-center">Status Tagihan</th>
                                                     <th class="text-center">Tanggal</th>
                                                     <th class="text-center">Rekanan</th>
                                                     <th class="text-center">No. Pesanan Pembelian</th>
@@ -471,6 +471,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
+                                                    <th class="text-center">Status Tagihan</th>
+                                                    <th class="text-center">Verifikasi Dok</th>
                                                     <th class="text-center">Dibuat Oleh</th>
                                                     <th class="text-center">Dibuat Tanggal</th>
                                                     <th class="text-center">Tgl. Invoice</th>
@@ -481,8 +483,6 @@
                                                     <th class="text-center">Total</th>
                                                     <th class="text-center">Pembayaran</th>
                                                     <th class="text-center">Sisa Tagihan</th>
-                                                    <th class="text-center">Status Tagihan</th>
-                                                    <th class="text-center">Verifikasi Dok</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1337,6 +1337,9 @@
                     "data": "no"
                 },
                 {
+                    "data": "status"
+                },
+                {
                     "data": "date_po"
                 },
                 {
@@ -1364,9 +1367,6 @@
                     "data": "total_receipt"
                 },
                 {
-                    "data": "status"
-                },
-                {
                     "data": "document_po"
                 },
                 {
@@ -1379,18 +1379,18 @@
                     "data": "created_on"
                 }
             ],
-                "columnDefs": [
-                    {
-                        "targets": [0, 4, 6, 10, 11, 12, 13],
-                        "className": 'text-center',
-                    },
-                    {
-                        "targets": [5, 7, 8, 9],
-                        "className": 'text-right',
-                    }
-                 ],
-                responsive: true,
-                //paging : false,
+            "columnDefs": [
+                {
+                    "targets": [0, 1, 2, 12, 13, 14],
+                    "className": 'text-center',
+                },
+                {
+                    "targets": [6, 7, 8, 9, 10],
+                    "className": 'text-right',
+                }
+                ],
+            responsive: true,
+            //paging : false,
         });
 
         $('#filter_date_3').on('apply.daterangepicker', function(ev, picker) {
@@ -1588,6 +1588,12 @@
                 "data": "no"
             },
             {
+                "data": "status"
+            },
+            {
+                "data": "verifikasi_dok"
+            },
+            {
                 "data": "admin_name"
             },
             {
@@ -1617,20 +1623,14 @@
             {
                 "data": "sisa_tagihan"
             },
-            {
-                "data": "status"
-            },
-            {
-                "data": "verifikasi_dok"
-            }
         ],
         "columnDefs": [
             {
-            "targets": [0, 1, 2, 3, 6],
+            "targets": [0, 1, 2, 3, 4, 5, 8],
             "className": 'text-center',
             },
             {
-            "targets": [8, 9],
+            "targets": [10, 11, 12],
             "className": 'text-right',
             },
         ],
