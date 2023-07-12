@@ -140,7 +140,7 @@ class Receipt_material extends CI_Controller {
 		}
 		$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
 		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
-		$this->db->order_by('prm.date_receipt','DESC');
+		$this->db->order_by('prm.created_on','DESC');
 		$query = $this->db->get('pmm_receipt_material prm');
 	
 		if($query->num_rows() > 0){
