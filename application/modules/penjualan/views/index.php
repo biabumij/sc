@@ -73,12 +73,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Penawaran</th>
 														<th class="text-center">Tanggal Penawaran</th>
 														<th class="text-center">No. Penawaran</th>
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Perihal</th>        
                                                         <th class="text-center">Total</th>
-                                                        <th class="text-center">Status Penawaran</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                     </tr>
@@ -105,6 +105,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Sales Order</th>
                                                         <th class="text-center">Tanggal</th>
                                                         <th class="text-center">No. Sales Order</th>
                                                         <th class="text-center">Pelanggan</th>
@@ -114,7 +115,6 @@
                                                         <th class="text-center">Kirim</th>
 														<th class="text-center">Total Sales Order</th>
 														<th class="text-center">Total Kirim</th>
-                                                        <th class="text-center">Status Sales Order</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                     </tr>
@@ -190,16 +190,18 @@
                                                     <tr>
                                                         <th></th>
                                                         <th>No</th>
+                                                        <th class="text-center">Status Tagihan</th>
                                                         <th class="text-center">Tanggal</th>
                                                         <th class="text-center">No. Surat Jalan</th>
-                                                        <th class="text-center">No Sales Order</th>
+                                                        <th class="text-center">No. Sales Order</th>
                                                         <th class="text-center">Produk</th>
                                                         <th class="text-center">Pelanggan</th>
                                                         <th class="text-center">Volume</th>
                                                         <th class="text-center">Satuan</th>
-                                                        <th class="text-center">Status Pembayaran</th>
+                                                        <th class="text-center">Surat Jalan</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center">Upload Surat Jalan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -291,6 +293,7 @@
     <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
     <script type="text/javascript">
         $('input#contract').number(true, 2, ',', '.');
 
@@ -306,6 +309,9 @@
             },
             columns: [{
                     "data": "no"
+                },
+                {
+                    "data": "status"
                 },
 				{
                     "data": "tanggal"
@@ -323,9 +329,6 @@
                     "data": "total"
                 },
                 {
-                    "data": "status"
-                },
-                {
                     "data": "admin_name"
                 },
                 {
@@ -334,11 +337,11 @@
             ],
             "columnDefs": [
 				{
-                "targets": [0, 1, 6, 7, 8],
+                "targets": [0, 1, 2, 7, 8],
                 "className": 'text-center',
 				},
 				{
-                "targets": [5],
+                "targets": [6],
                 "className": 'text-right',
 				}
 			],
@@ -363,6 +366,9 @@
             },
             columns: [{
                     "data": "no"
+                },
+                {
+                    "data": "status"
                 },
                 {
                     "data": "contract_date"
@@ -392,9 +398,6 @@
                     "data": "total_receipt"
                 },
                 {
-                    "data": "status"
-                },
-                {
                     "data": "admin_name"
                 },
                 {
@@ -403,11 +406,11 @@
             ],
             "columnDefs": [
 				{
-                    "targets": [0, 1, 6, 10, 11, 12],
+                    "targets": [0, 1, 2, 11, 12],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [5, 7, 8, 9],
+                    "targets": [6, 7, 8, 9, 10],
                     "className": 'text-right',
                 }
             ],
