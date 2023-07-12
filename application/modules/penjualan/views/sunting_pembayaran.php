@@ -47,11 +47,11 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <label>Pelanggan</label>
+                                            <label>Pelanggan<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control text-center" name="nama_pelanggan" required="" value="<?= $bayar['nama_pelanggan'] ?>" />
                                         </div>
                                         <div class="col-sm-3">
-                                            <label>Setor Ke</label>
+                                            <label>Setor Ke<span class="required" aria-required="true">*</span></label>
                                             <select class="form-control text-center" name="setor_ke" required="">
                                                 <option value="">Setor Ke</option>
                                                 <?php
@@ -67,7 +67,7 @@
 
                                         </div>
                                         <div class="col-sm-2">
-                                            <label>Cara Pembayaran</label>
+                                            <label>Cara Pembayaran<span class="required" aria-required="true">*</span></label>
                                             <select class="form-control text-center" name="cara_pembayaran" required="">
                                             <option value="<?= $bayar['cara_pembayaran'] ?>"><?= $bayar['cara_pembayaran'] ?></option>
                                             <option value="Transfer">Transfer</option>
@@ -80,11 +80,11 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <label>Tanggal Pembayaran</label>
+                                            <label>Tanggal Pembayaran<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control dtpicker text-center" name="tanggal_pembayaran" required="" value="<?= date('d-m-Y', strtotime($bayar["tanggal_pembayaran"])) ?>" />
                                         </div>
                                         <div class="col-sm-2">
-                                            <label>Nomor Transaksi</label>
+                                            <label>Nomor Transaksi<span class="required" aria-required="true">*</span></label>
                                             <input type="text" class="form-control text-center" name="nomor_transaksi" required="" value="<?= $bayar['nomor_transaksi'] ?>" />
                                         </div>
                                     </div>
@@ -103,7 +103,7 @@
                                                     <th class="text-center">Nomor Invoice</th>
                                                     <th class="text-center">Total Invoice</th>
                                                     <th class="text-center">Sisa Tagihan</th>
-                                                    <th width="25%">Pembayaran saat ini</th>
+                                                    <th width="25%" class="text-center">Pembayaran saat ini</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
