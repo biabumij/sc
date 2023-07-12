@@ -178,7 +178,7 @@
                                                 <input type="text" id="volume" name="volume" class="form-control numberformat" required="" autocomplete="off" placeholder="Volume" />
                                         </div>
                                         <div class="col-sm-3">
-                                                <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
+                                                <button type="submit" class="btn btn-success" id="btn-form" style="width:200px; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                                                 <!-- <button type="button" id="btn-unedit" class="btn btn-info" style="display:none"><i class="fa fa-undo" ></i></button> -->
                                         </div>
 

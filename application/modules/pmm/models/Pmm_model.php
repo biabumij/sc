@@ -743,6 +743,8 @@ class Pmm_model extends CI_Model {
     {
         if($status == 'WAITING'){
             return '<label class="label label-warning">'.$status.'</label>';
+        }else if($status == 'DRAFT'){
+            return '<label class="label label-warning">'.$status.'</label>';
         }else if($status == 'APPROVED'){
             return '<label class="label label-success">'.$status.'</label>';
         }else if($status == 'REJECTED'){

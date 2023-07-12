@@ -70,26 +70,29 @@ class Request_materials extends CI_Controller {
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
 				$request_no = "'".$row['request_no']."'";
-				$row['request_no'] = '<a href="'.site_url('pmm/request_materials/get_pdf/'.$row['id']).'" target="_blank" >'.$row['request_no'].'</a>';
-				
+				if ($row['status'] == 'DRAFT' || $row['status'] == 'WAITING') { ?>
+					<?php
+					if(in_array($this->session->userdata('admin_group_id'), array(1,5,6,10,11,16))){
+					?>
+					<?php
+						$row['request_no'] = '<a href="'.site_url('pmm/request_materials/get_pdf_draft/'.$row['id']).'" target="_blank" >'.$row['request_no'].'</a>';
+						?>
+					<?php
+					}
+				}
+				if($row['status'] == 'APPROVED'){
+				    $row['request_no'] = '<a href="'.site_url('pmm/request_materials/get_pdf/'.$row['id']).'" target="_blank" >'.$row['request_no'].'</a>';
+				}else {
+					$row['request_no'] = $row['request_no'];
+				}
 				$row['request_date'] = date('d/m/Y',strtotime($row['request_date']));
-
 				$row['supplier_name'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
-
 				$row['schedule_name'] = $row['schedule_name'];
 				$total_volume = $this->db->select('SUM(volume) as total')->get_where('pmm_request_material_details',array('request_material_id'=>$row['id']))->row_array();
 				$row['volume'] = number_format($total_volume['total'],2,',','.');
-
 				$delete = '<a href="javascript:void(0);" onclick="DeleteDataRequest('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
-				if($row['status'] == 'DRAFT'){
-					
-					$edit = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
-				}else {
-					$edit = false;
-				}
 				$row['status'] = $this->pmm_model->GetStatus($row['status']);
-				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a> '.$edit.' ';
-
+				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
 				$row['delete'] = '-';
 				if(in_array($this->session->userdata('admin_group_id'), array(1))){
 				$row['delete'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'"></a> '.$delete.' ';
@@ -334,20 +337,39 @@ class Request_materials extends CI_Controller {
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->set_nsi_header(TRUE,'Request Materials <br />');
-        // $pdf->set_header_title('Laporan');
         $pdf->AddPage('P');
 
         $id = $this->uri->segment(4);
 		$row = $this->db->get_where('pmm_request_materials',array('id'=>$id))->row_array();
+
 		$data['data'] = $this->pmm_model->TableDetailRequestMaterials($id);
-		// $data['data_week'] = $this->pmm_model->GetScheduleProduct($id);
 		$data['row'] = $row;
 		$data['id'] = $id;
-		//$data['no_spo'] = $this->crud_global->GetField('pmm_schedule',array('id'=>$row['schedule_id']),'no_spo');
-		
         $html = $this->load->view('pmm/request_material_pdf',$data,TRUE);
 
-        
+        $pdf->SetTitle($row['request_no']);
+        $pdf->nsi_html($html);
+        $pdf->Output($row['request_no'].'.pdf', 'I');
+	
+	}
+
+	public function get_pdf_draft()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->set_nsi_header(TRUE,'Request Materials <br />');
+        $pdf->AddPage('P');
+
+        $id = $this->uri->segment(4);
+		$row = $this->db->get_where('pmm_request_materials',array('id'=>$id))->row_array();
+
+		$data['data'] = $this->pmm_model->TableDetailRequestMaterials($id);
+		$data['row'] = $row;
+		$data['id'] = $id;
+        $html = $this->load->view('pmm/request_material_draft_pdf',$data,TRUE);
+
         $pdf->SetTitle($row['request_no']);
         $pdf->nsi_html($html);
         $pdf->Output($row['request_no'].'.pdf', 'I');
