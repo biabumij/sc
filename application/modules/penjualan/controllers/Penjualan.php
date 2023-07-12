@@ -816,6 +816,7 @@ class Penjualan extends Secure_Controller
 				$row['client'] = $this->crud_global->GetField('penerima', array('id' => $row['client_id']), 'nama');
 				$row['volume'] = number_format($row['volume'],2,',','.');
 				$row['measure'] = $row['measure'];
+				$row['surat_jalan'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan/'.$row['surat_jalan'].'" target="_blank">'.$row['surat_jalan'].'</a>';
 				$row['display_volume'] = number_format($row['display_volume'],2,',','.');
 				$row['convert_measure'] = $row['convert_measure'];
 				$row['status_payment'] = $this->pmm_model->StatusPayment($row['status_payment']);
