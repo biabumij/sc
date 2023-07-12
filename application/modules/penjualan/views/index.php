@@ -691,6 +691,46 @@
             table.ajax.reload();
         });
 
+        function UploadDocSuratJalan(id) {
+
+        $('#modalDocSuratJalan').modal('show');
+        $('#id_doc_surat_jalan').val(id);
+        }
+
+        $('#modalDocSuratJalan form').submit(function(event) {
+            $('#btn-form-doc-surat-jalan').button('loading');
+
+            var form = $(this);
+            var formdata = false;
+            if (window.FormData) {
+                formdata = new FormData(form[0]);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('penjualan/form_document'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: formdata ? formdata : form.serialize(),
+                success: function(result) {
+                    $('#btn-form-doc-surat-jalan').button('reset');
+                    if (result.output) {
+                        $("#modalDocSuratJalan form").trigger("reset");
+                        tableProduction.ajax.reload();
+
+                        $('#modalDocSuratJalan').modal('hide');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            event.preventDefault();
+
+        });
+
     </script>
 
 </body>

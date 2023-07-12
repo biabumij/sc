@@ -823,12 +823,59 @@ class Penjualan extends Secure_Controller
 				$row['action'] = '-';
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-primary" title="Upload Surat Jalan" ><i class="fa fa-upload"></i> </a>';
+				$row['uploads_surat_jalan'] = $uploads_surat_jalan.' ';
 				$data[] = $row;
 			}
 		}
 		echo json_encode(array('data' => $data));
 	}
 
+	public function form_document()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+
+			$file = '';
+			$error_file = false;
+
+			if (!file_exists('./uploads/surat_jalan_penjualan/')) {
+			    mkdir('./uploads/surat_jalan_penjualan/', 0777, true);
+			}
+			// Upload email
+			$config['upload_path']          = './uploads/surat_jalan_penjualan/';
+	        $config['allowed_types']        = 'jpg|png|jpeg|JPG|PNG|JPEG|pdf';
+
+	        $this->load->library('upload', $config);
+
+			if($_FILES["file"]["error"] == 0) {
+				if (!$this->upload->do_upload('file'))
+				{
+						$error = $this->upload->display_errors();
+						$file = $error;
+						$error_file = true;
+				}else{
+						$data = $this->upload->data();
+						$file = $data['file_name'];
+				}
+			}
+
+			if($error_file){
+				$output['output'] = false;
+				$output['err'] = $file;
+				echo json_encode($output);
+				exit();
+			}
+
+			$arr_data['surat_jalan'] = $file;
+
+			if($this->db->update('pmm_productions',$arr_data,array('id'=>$id))){
+				$output['output'] = true;
+			}
+		}
+		echo json_encode($output);
+	}
 
 	public function table_penagihan()
 	{
