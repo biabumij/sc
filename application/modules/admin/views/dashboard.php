@@ -354,7 +354,7 @@
                 chart = new Highcharts.Chart({
                     chart: {
                         renderTo: 'container_laba_rugi',
-                        type: 'areaspline',
+                        type: 'line',
                         marginRight: 130,
                         marginBottom: 75,
                         backgroundColor: {
