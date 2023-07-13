@@ -166,8 +166,7 @@
                             </form>
                             <br />
                             <div class="text-right">
-                                <button class="btn btn-danger" id="btn-view" style="width:100px; font-weight:bold;"><i class="fa fa-search"></i> Lihat Data</button> 
-                                <!--<button class="btn btn-primary" id="btn-acc"><i class="fa fa-search"></i> Data Akumulasi</button>-->   
+                                <button class="btn btn-danger" id="btn-view" style="width:100px; font-weight:bold;"><i class="fa fa-search"></i> Lihat Data</button>
                             </div>
                             <div id="box-view" style="display:none;">
                                 <div class="row">
@@ -183,8 +182,8 @@
                                                 
                                             </select>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak</button>
                                         </div>
                                     </form>
                                     

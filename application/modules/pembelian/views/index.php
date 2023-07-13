@@ -90,7 +90,7 @@
                                     Pembelian
                                     <div class="pull-right">
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-plus"></i> Pembelian Baru <span class="caret"></span>
+                                            <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?php echo site_url('pembelian/penawaran_pembelian'); ?>">Penawaran Pembelian</a></li>
@@ -285,7 +285,7 @@
 													</div>
 													
 													<div class="form-group">
-														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
+														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form" style="font-weight:bold; width;200px;><i class="fa fa-send"></i> Kirim</button>
 													</div>
 												</form>
 											</div>
@@ -372,11 +372,11 @@
                                             </div>
                                             <br />
                                             <br />
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-6">
                                                 <div class="text-left">
                                                     <input type="hidden" id="val-receipt-id" name="">
-                                                    <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
-                                                    <button type="button" id="btn_production" class="btn btn-success">Penagihan Pembelian</button>
+                                                    <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
+                                                    <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold;">Penagihan Pembelian</button>
                                                 </div>
                                             </div>
                                             <br />
@@ -459,9 +459,9 @@
                                                 ?>
                                             </select>
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-6">
                                             <div class="text-left">
-                                                <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                                <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
                                             </div>
                                         </div>
                                     </form>   
@@ -1473,6 +1473,7 @@
         },
         responsive: true,
         //paging : false,
+        pageLength: 5,
         "columnDefs": [{
                 "targets": [0],
                 "orderable": false,

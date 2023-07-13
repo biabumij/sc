@@ -182,12 +182,11 @@
 										}
 									}
 									?>
-
-                            
 									
 									<input type="hidden" id="total-val" name="total" value="0">
                                     <input type="hidden" name="total_product" id="total-product" value="1">
-                                       
+                                    
+                                    <br /><br />
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">

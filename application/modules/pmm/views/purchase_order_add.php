@@ -213,37 +213,14 @@
                                 </table>
                             </div>
 
-                            <br />
                             <div class="text-right">
-                                <form>
-                                    <br />
-                                    <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
-                                </form>
+                                <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                
                                 <?php
-                                if($data['status'] == 'PUBLISH'){
+                                if($data['status'] == 'WAITING'){
                                     ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak</a><br />
-                                    <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-truck"></i> Terima Produk</a>
-                                    <br />
-                                    <?php
-                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
-                                        ?>
-                                        <form class="form-approval" action="<?= base_url("pembelian/closed_po/".$id) ?>">
-                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-briefcase"></i> Closed</button>        
-                                        </form>	
-                                        <?php
-                                    }
-                                }
-                                ?>
-                                <input type="hidden" id="purchase_order_id" value="<?php echo $id;?>">
-                                <?php
-                                if($data['status'] == 'DRAFT'){
-                                    ?>
-                                    <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/3');?>')" class="btn btn-warning check-btn" id="btn-po"><i class="fa fa-send"></i> Buat PO</a>
-                                    <?php
-                                }else if($data['status'] == 'WAITING'){
-                                    ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf_draft/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak (Draft)</a><br />
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf_draft/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF (Draft)</a>
+                                    
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
                                         ?>
@@ -253,18 +230,45 @@
                                     }
                                 }
                                 ?>
+
+                                <?php
+                                if($data['status'] == 'PUBLISH'){
+                                    ?>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                    
+                                    <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-truck"></i> Terima Produk</a>
+                                    
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
+                                        ?>
+                                        <form class="form-check" action="<?= base_url("pembelian/closed_po/".$id) ?>">
+                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-briefcase"></i> Closed</button>        
+                                        </form>	
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                <input type="hidden" id="purchase_order_id" value="<?php echo $id;?>">
+                                
                             
                                 <?php if($data["status"] === "CLOSED") : ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak</a><br />
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                    
+                                    <?php
+                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
+                                        ?>
+                                        <form class="form-check" action="<?= site_url("pmm/purchase_order/open_pesanan_pembelian/".$id);?>">
+                                            <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-folder-open-o"></i> Publish</button>        
+                                        </form>	
+                                        <?php
+                                    }
+                                    ?>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
-                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-trash"></i> Hapus</button>        
                                         </form>
-                                        <form class="form-check" action="<?= site_url("pmm/purchase_order/open_pesanan_pembelian/".$id);?>">
-                                            <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-folder-open-o"></i> Open</button>        
-                                        </form>	
                                         <?php
                                     }
                                     ?>
@@ -275,7 +279,7 @@
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
-                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-trash"></i> Hapus</button>        
                                         </form>	
                                         <?php
                                     }

@@ -1558,7 +1558,7 @@ class Pmm_model extends CI_Model {
             foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
                 $no_po = "'".$row['no_po']."'";
-                $row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'"  >'.$row['no_po'].'</a>';
+                $row['no_po'] = '<a href="'.site_url('pmm/purchase_order/manage/'.$row['id']).'">'.$row['no_po'].'</a>';
                 $row['document_po'] = '<a href="'.base_url().'uploads/purchase_order/'.$row['document_po'].'" target="_blank">'.$row['document_po'].'</a>';
                 $row['date_po'] = date('d/m/Y',strtotime($row['date_po']));
                 $row['supplier'] = $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');

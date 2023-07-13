@@ -976,7 +976,7 @@ class Receipt_material extends CI_Controller {
 		$material_id = $this->input->get('filter_material');
 		$this->db->select('prm.*,ppo.no_po, (prm.price  * prm.volume) as biaya, ppo.supplier_id');
 		$this->db->where('ppo.supplier_id',$supplier_id);
-		if(!empty($purchase_order_id)){
+		if(!empty($purchase_order_id || $purchase_order_id != 0)){
 			$this->db->where('prm.purchase_order_id',$purchase_order_id);
 		}
 		if(!empty($material_id) || $material_id != 0){
@@ -1843,22 +1843,25 @@ class Receipt_material extends CI_Controller {
         $pdf->SetFont('helvetica','',1); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		
+
 		// add a page
 		$pdf->AddPage('L');
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
 		$pdf->SetY(45);
 		$pdf->SetX(6);
-		$pdf->SetMargins(10, 10);
+		$pdf->SetMargins(10, 10);        
 
 		$w_date = $this->input->get('filter_date');
 		$purchase_order_id = $this->input->get('purchase_order_id');
 		$supplier_id = $this->input->get('supplier_id');
 		$material_id = $this->input->get('material_id');
 		$this->db->select('prm.*,ppo.no_po, (prm.price  * prm.volume) as biaya, ppo.supplier_id');
-		$this->db->where('ppo.supplier_id',$supplier_id);
-		if(!empty($purchase_order_id)){
+
+		if(!empty($supplier_id || $supplier_id != 0)){
+			$this->db->where('ppo.supplier_id',$supplier_id);
+		}
+		if(!empty($purchase_order_id || $purchase_order_id != 0)){
 			$this->db->where('prm.purchase_order_id',$purchase_order_id);
 		}
 		if(!empty($material_id) || $material_id != 0){

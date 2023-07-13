@@ -198,18 +198,14 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
-
-
 
     <script type="text/javascript">
         var form_control = '';
     </script>
 
 	<?php echo $this->Templates->Footer();?>
-
 	<script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
     <script src="<?php echo base_url();?>assets/back/theme/vendor/jquery.number.min.js"></script>
     <script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>

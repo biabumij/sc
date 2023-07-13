@@ -175,11 +175,10 @@
                                             </select>
                                         </div>	
                                         <div class="col-sm-2">
-                                                <input type="text" id="volume" name="volume" class="form-control numberformat" required="" autocomplete="off" placeholder="Volume" />
+                                            <input type="text" id="volume" name="volume" class="form-control numberformat" required="" autocomplete="off" placeholder="Volume" />
                                         </div>
                                         <div class="col-sm-3">
-                                                <button type="submit" class="btn btn-success" id="btn-form" style="width:200px; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
-                                                <!-- <button type="button" id="btn-unedit" class="btn btn-info" style="display:none"><i class="fa fa-undo" ></i></button> -->
+                                            <button type="submit" class="btn btn-warning" id="btn-form" style="width:200px; font-weight:bold;"><i class="fa fa-plus"></i> Tambah Produk</button>
                                         </div>
 
                                         <input type="hidden" id="tax_id" name="tax_id" class="form-control" required="" autocomplete="off" placeholder="Tax ID" readonly=""/>
@@ -198,12 +197,12 @@
                                 <table class="table table-striped table-hover table-bordered" id="guest-table">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Produk</th>
-                                            <th>Satuan</th>
-											<th>Harga Satuan</th>
-                                            <th>Volume</th>
-                                            <th>Tindakan</th>
+                                            <th class="text-center">No</th>
+                                            <th class="text-center">Produk</th>
+                                            <th class="text-center">Satuan</th>
+											<th class="text-center">Harga Satuan</th>
+                                            <th class="text-center">Volume</th>
+                                            <th class="text-center">Tindakan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -282,12 +281,8 @@
             responsive: true,
             "columnDefs": [
                 {
-                    "targets": [0, 2, 4, 5],
+                    "targets": [0, 1, 2, 3, 4, 5],
                     "className": 'text-center',
-                },
-                {
-                    "targets": [3],
-                    "className": 'text-right',
                 }
             ],
             "footerCallback": function ( row, data, start, end, display ) {

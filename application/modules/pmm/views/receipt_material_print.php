@@ -40,7 +40,7 @@
     <table width="98%" border="0" cellpadding="1">
       <tr>
         <td align="center">
-          <div style="display: block;font-weight: bold;font-size: 16px;">PENERIMAAN</div>
+          <div style="display: block;font-weight: bold;font-size: 16px;">REKAP PENERIMAAN</div>
         </td>
       </tr>
       <?php
