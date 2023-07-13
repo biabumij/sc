@@ -41,7 +41,7 @@
                                     Penjualan
                                     <div class="pull-right">
                                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-plus"></i> Penjualan Baru <span class="caret"></span>
+                                            <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= site_url("penjualan/penawaran_penjualan") ?>">Penawaran Penjualan</a></li>
@@ -260,9 +260,9 @@
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-6">
                                                 <div class="text-left">
-                                                    <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                                    <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
                                                 </div>
                                             </div>
                                         </form>
