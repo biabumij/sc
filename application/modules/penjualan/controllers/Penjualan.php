@@ -776,6 +776,30 @@ class Penjualan extends Secure_Controller
         $pdf->Output($row['contract_number'].'.pdf', 'I');
 	}
 
+	public function cetak_sales_order_draft($id){
+
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->setPrintHeader(true);
+        $pdf->SetFont('helvetica','',7); 
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+
+		$data['row'] = $this->db->get_where('pmm_sales_po',array('id'=>$id))->row_array();
+		$data['data'] = $this->db->query("SELECT * FROM `pmm_sales_po_detail` INNER JOIN produk ON pmm_sales_po_detail.product_id = produk.id WHERE sales_po_id = '$id'")->result_array();
+        $html = $this->load->view('penjualan/cetak_sales_order_draft',$data,TRUE);
+        $row = $this->db->get_where('pmm_sales_po',array('id'=>$id))->row_array();
+
+
+        
+        $pdf->SetTitle($row['contract_number']);
+        $pdf->nsi_html($html);
+        $pdf->Output($row['contract_number'].'.pdf', 'I');
+	}
+
 	public function table_productions()
 	{
 		$data = array();
