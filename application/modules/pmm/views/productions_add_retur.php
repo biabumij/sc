@@ -183,13 +183,13 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">No. Kendaraan * </label>
+                                                <label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" id="nopol_truck" name="nopol_truck" class="form-control" value="" placeholder="No. Kendaraan" required="" autocomplete="off">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Supir * </label>
+                                                <label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" id="driver" name="driver" class="form-control" value="" placeholder="Supir" required="" autocomplete="off">
                                             </div>
                                         </div>
@@ -211,14 +211,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                            <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
+                                            <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:100px; font-weight:bold;"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                            <button type="submit" name="submit" class="btn btn-success" style="width:100px; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>
                                 </form>
                                 <br />
                                 <div class="text-right">
-                                    <button class="btn btn-danger" id="btn-view"><i class="fa fa-search"></i> Lihat Data</button>
+                                    <button class="btn btn-danger" id="btn-view" style="width:100px; font-weight:bold;"><i class="fa fa-search"></i> Lihat Data</button>
                                 </div>
                                 <div id="box-view" style="display:none;">
                                     <div class="row">
@@ -256,9 +256,9 @@
                                                 }
                                                 ?>
                                             </select>
-                                        </div>
-                                            <div class="col-sm-2">
-                                                <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
                                             </div>
                                         </form>
                                     </div>

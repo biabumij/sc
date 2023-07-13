@@ -257,7 +257,7 @@
                                                 }
                                                 ?>
                                             </select>
-                                        </div>
+                                            </div>
                                             <div class="col-sm-3">
                                                 <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
                                             </div>
