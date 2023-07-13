@@ -1598,7 +1598,18 @@ class Penjualan extends Secure_Controller
         $this->db->update("pmm_penawaran_penjualan");
 
         $this->db->update('pmm_penawaran_penjualan', array('status' => 'CLOSED'), array('id' => $id));
-        $this->session->set_flashdata('notif_success', 'Berhasil Melakukan Closed Penawaran Penjualan');
+        $this->session->set_flashdata('notif_success', 'Penawaran CLOSED');
+        redirect("admin/penjualan");
+    }
+
+	public function open_penawaran_penjualan($id)
+    {
+        $this->db->set("status", "OPEN");
+		$this->db->set("updated_by", $this->session->userdata('admin_id'));
+		$this->db->set("updated_on", date('Y-m-d H:i:s'));
+        $this->db->where("id", $id);
+        $this->db->update("pmm_penawaran_penjualan");
+        $this->session->set_flashdata('notif_success', 'Penawaran OPEN');
         redirect("admin/penjualan");
     }
 	

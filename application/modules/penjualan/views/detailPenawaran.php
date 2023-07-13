@@ -219,6 +219,7 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1){
                                             ?>
+                                            <a href="<?= base_url("penjualan/open_penawaran_penjualan/".$penawaran["id"]) ?>" class="btn btn-success" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-briefcase"></i> Open</a>
                                             <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
                                             <?php
                                         }
