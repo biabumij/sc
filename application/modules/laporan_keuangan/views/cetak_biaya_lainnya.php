@@ -80,7 +80,7 @@
 						<td width="10%"><?= $row['tanggal_transaksi'];?></td>
 						<td width="10%">BIAYA</td>
 						<td width="50%"><?= $row['coa'];?></td>
-						<td align="center" width="30%" align="right"><?= $this->filter->Rupiah($row['total']);?></td>
+						<td align="center" width="30%" align="right"><?php echo number_format($row['total'],0,',','.');?></td>
 					</tr>
 					<?php
 					$total_biaya_lainnya += $row['total'];					
@@ -95,7 +95,7 @@
 						<td><?= $row2['tanggal_transaksi'];?></td>
 						<td>JURNAL</td>
 						<td><?= $row2['coa'];?></td>
-						<td align="right"><?= $this->filter->Rupiah($row2['total']);?></td>
+						<td align="right"><?php echo number_format($row2['total'],0,',','.');?></td>
 					</tr>
 					<?php
 					$total_biaya_lainnya_jurnal += $row2['total'];					
@@ -105,7 +105,7 @@
 			?>
 			<tr class="active">
 				<td width="80%" style="padding-left:20px;"><b>Total Biaya Lain - Lain</b></td>
-				<td width="20%" align="right"><b><?= $this->filter->Rupiah($total_c);?></b></td>
+				<td width="20%" align="right"><b><?php echo number_format($total_c,0,',','.');?></b></td>
 			</tr>
 		</table>
 		<br />
