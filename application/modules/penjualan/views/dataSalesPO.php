@@ -118,7 +118,7 @@
                                         <tr>
                                             <td class="text-center"><?= $no + 1;?></td>
                                             <td class="text-left"><?= $d["nama_produk"] ?></td>
-                                            <td class="text-center"><?= $d["qty"]; ?></td>
+                                            <td class="text-center"><?= number_format($d['qty'],2,',','.'); ?></td>
                                             <td class="text-center"><?= $d["measure"]; ?></td>
                                             <td class="text-right"><?= number_format($d['price'],0,',','.'); ?></td>
                                             <td class="text-right"><?= number_format($d['total'],0,',','.'); ?></td>
