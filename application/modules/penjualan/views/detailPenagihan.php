@@ -74,10 +74,6 @@
                                         <th>Syarat Pembayaran</th>
                                         <th><?= $penagihan['syarat_pembayaran']; ?> Hari</th>
                                     </tr>
-                                    <!--<tr>
-                                        <th>Tanggal Jatuh Tempo</th>
-                                        <th><?= date('d/m/Y', strtotime($penagihan['tanggal_jatuh_tempo'])); ?></th>
-                                    </tr>-->
                                     <tr>
                                         <th>Memo</th>
                                         <th><?= $penagihan["memo"]; ?></th>
@@ -145,7 +141,6 @@
                                                 <?php
 													$sub_total += ($row['price'] * $row['qty']);
 													$tax_id = $row['tax_id'];
-													//$tax_name = $row['tax_name'];
 													
 													if($row['tax_id'] == 4){
 														$tax_0 = true;
@@ -283,14 +278,14 @@
                                 </div>
                                 <div class="text-center">
                                     <?php if ($penagihan["status"] === "OPEN") : ?>
-                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
                                         <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14){
                                             ?>
-                                            <a href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-money"></i> Terima Pembayaran</a>
-                                            <a href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Pembayaran Lunas</a>
-                                            <a href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>" class="btn btn-warning" style="width:200px; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
-                                            <a class="btn btn-danger" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>	
+                                            <a class="btn btn-warning" style="width:200px; font-weight:bold;" href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>"><i class="fa fa-money"></i> Terima Pembayaran</a>
+                                            <a class="btn btn-success" style="width:200px; font-weight:bold;" href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>"><i class="fa fa-check"></i> Pembayaran Lunas</a>
+                                            <a class="btn btn-default" style="width:200px; font-weight:bold;" href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>"><i class="fa fa-edit"></i> Edit</a>
+                                            <a class="btn btn-danger" style="width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
                                             <?php
                                             }
                                             ?>
@@ -464,7 +459,6 @@
         });
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD-MM-YYYY'));
-            // table.ajax.reload();
         });
 
         var table = $('#table-pembayaran').DataTable({
@@ -497,9 +491,6 @@
                 {
                     "data": "status"
                 },
-                // {
-                //     "data": "action"
-                // }
             ],
             "columnDefs": [
                 {
@@ -514,7 +505,9 @@
             responsive: true,
         });
 
-        var table_surat_jalan = $('#table-surat-jalan').DataTable();
+        var table_surat_jalan = $('#table-surat-jalan').DataTable({
+            "pageLength": 5,
+        });
 
         function ApprovePayment(href) {
             bootbox.confirm({

@@ -141,6 +141,7 @@
                                                 <tr>
                                                     <td width="30%"></td>
                                                     <td width="10%"><a href="<?= base_url('penjualan/detailPenagihan/' . $bayar["penagihan_id"]) ?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-mail-replay"></i> Kembali</a></td>
+                                                    <td width="10%"><a href="<?= base_url('penjualan/cetak_pembayaran/' . $bayar["id"]) ?>" target="_blank" class="btn btn-default" style="width:100%; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a></td>
                                                     <td width="10%">
                                                     <?php
                                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 19){
@@ -150,7 +151,6 @@
                                                     }
                                                     ?>
                                                     </td>
-                                                    <td width="10%"><a href="<?= base_url('penjualan/cetak_pembayaran/' . $bayar["id"]) ?>" target="_blank" class="btn btn-default" style="width:100%; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a></td>
                                                     <td width="10%">
                                                     <?php
                                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 19){
