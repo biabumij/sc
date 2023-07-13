@@ -354,7 +354,7 @@
                 chart = new Highcharts.Chart({
                     chart: {
                         renderTo: 'container_laba_rugi',
-                        type: 'line',
+                        type: 'column',
                         marginRight: 130,
                         marginBottom: 75,
                         backgroundColor: {
@@ -421,7 +421,7 @@
                             format: '{value} %'
                         },
                         min: -10000,
-                        max: 10000,
+                        max: 1000,
                         tickInterval: 1000,
                     },
                     tooltip: { 
@@ -474,7 +474,7 @@
                         
                         data: [ <?php echo json_encode($persentase_jan_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_feb_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mar_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_apr_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mei_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jun_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jul_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_agu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_sep_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_okt_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_nov_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_des_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_aku_fix, JSON_NUMERIC_CHECK); ?>],
 
-                        color: '#FF0000',
+                        color: '#E69500',
                         fontWeight: 'bold',
                         fontSize: '10px',
                         fontFamily: 'arial',
