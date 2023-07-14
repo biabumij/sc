@@ -847,7 +847,7 @@ class Laporan extends Secure_Controller {
 		</style>
 		<table width="98%" border="0" cellpadding="2">
 		<tr class="table-judul">
-			<th width="5%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />NO</th>
+			<th width="5%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />NO.</th>
 			<th width="14%" align="center" class="table-border-atas-only">PELANGGAN</th>
 			<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />NO. INV</th>
 			<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />TGL. INV</th>
