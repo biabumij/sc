@@ -93,17 +93,17 @@
 		</table>	
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; NO.</th>
-				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; REKANAN / NO. TAGIHAN</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. TAGIHAN</th>
-				<th width="10%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; JENIS PEMBELIAN</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; TGL. VERIFIKASI</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; SYARAT PEMBAYARAN</th>
+				<th width="3%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />NO.</th>
+				<th width="12%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />REKANAN / NO. TAGIHAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. TAGIHAN</th>
+				<th width="10%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />JENIS PEMBELIAN</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">TGL. VERIFIKASI</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">SYARAT PEMBAYARAN</th>
 				<th width="15%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
 				<th width="20%" align="center" colspan="4" class="table-border-atas-only">PEMBAYARAN</th>
 				<th width="15%" align="center" colspan="3" class="table-border-atas-only">SISA HUTANG</th>
 				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />STATUS</th>
-				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">&nbsp; <br />TGL. JATUH TEMPO</th>
+				<th width="5%" align="center" rowspan="2" class="table-border-atas-full">TGL. JATUH TEMPO</th>
 			</tr>
 			<tr class="table-judul">
 				<th align="center" class="table-border-bawah-only">DPP</th>
@@ -213,7 +213,7 @@
 				<td align="center" class="table-border-atas-full"></td>
             </tr>   
 		</table>
-		<table width="98%" border="0" cellpadding="30">
+		<table width="98%" border="0" cellpadding="20">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">

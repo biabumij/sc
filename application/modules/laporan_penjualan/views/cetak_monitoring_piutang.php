@@ -4,39 +4,53 @@
 	  <title>MONITORING PIUTANG</title>
 	  
 	  <style type="text/css">
+		 body {
+			font-family: helvetica;
+		}
+
+		table.table-border-atas-full, th.table-border-atas-full, td.table-border-atas-full {
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		table.table-border-atas-only, th.table-border-atas-only, td.table-border-atas-only {
+			border-top: 1px solid black;
+		}
+
+		table.table-border-bawah-only, th.table-border-bawah-only, td.table-border-bawah-only {
+			border-bottom: 1px solid black;
+		}
+
 		table tr.table-judul{
+			border: 1px solid;
 			background-color: #e69500;
 			font-weight: bold;
-			font-size: 7px;
+			font-size: 5px;
 			color: black;
 		}
 			
 		table tr.table-baris1{
-			background-color: #F0F0F0;
-			font-size: 7px;
+			background-color: none;
+			font-size: 5px;
 		}
 
 		table tr.table-baris1-bold{
-			background-color: #F0F0F0;
-			font-size: 7px;
-			font-weight: bold;
-		}
-			
-		table tr.table-baris2{
-			font-size: 7px;
-			background-color: #E8E8E8;
-		}
-
-		table tr.table-baris2-bold{
-			font-size: 7px;
-			background-color: #E8E8E8;
+			background-color: none;
+			font-size: 5px;
 			font-weight: bold;
 		}
 			
 		table tr.table-total{
-			background-color: #cccccc;
+			background-color: #FFFF00;
 			font-weight: bold;
-			font-size: 7px;
+			font-size: 5px;
+			color: black;
+		}
+
+		table tr.table-total2{
+			background-color: #eeeeee;
+			font-weight: bold;
+			font-size: 5px;
 			color: black;
 		}
 	  </style>
@@ -80,27 +94,27 @@
 		</table>	
 		<table cellpadding="2" width="98%">
 			<tr class="table-judul">
-				<th width="5%" align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-				<th width="14%" align="center">PELANGGAN</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">NO. INV</th>
-				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;">TGL. INV</th>
-				<th width="17%" align="center" colspan="3">TAGIHAN</th>
-				<th width="17%" align="center" colspan="3">PEMBAYARAN</th>
-				<th width="17%" align="center" colspan="3">SISA PIUTANG</th>
-				<th width="8%" align="center" rowspan="2" style="vertical-align:middle;">STATUS</th>
-				<th width="8%" align="center" rowspan="2" style="vertical-align:middle;">UMUR</th>
+				<th width="5%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />NO</th>
+				<th width="14%" align="center" class="table-border-atas-only">PELANGGAN</th>
+				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />NO. INV</th>
+				<th width="7%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />TGL. INV</th>
+				<th width="17%" align="center" colspan="3" class="table-border-atas-only">TAGIHAN</th>
+				<th width="17%" align="center" colspan="3" class="table-border-atas-only">PEMBAYARAN</th>
+				<th width="17%" align="center" colspan="3" class="table-border-atas-only">SISA PIUTANG</th>
+				<th width="8%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />STATUS</th>
+				<th width="8%" align="center" rowspan="2" style="vertical-align:middle;" class="table-border-atas-full">&nbsp; <br />UMUR</th>
 			</tr>
 			<tr class="table-judul">
-				<th align="center">KETERANGAN</th>
-				<th align="center">DPP</th>
-				<th align="center">PPN</th>
-				<th align="center">JUMLAH</th>
-				<th align="center">DPP</th>
-				<th align="center">PPN</th>
-				<th align="center">JUMLAH</th>
-				<th align="center">DPP</th>
-				<th align="center">PPN</th>
-				<th align="center">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">KETERANGAN</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
+				<th align="center" class="table-border-bawah-only">DPP</th>
+				<th align="center" class="table-border-bawah-only">PPN</th>
+				<th align="center" class="table-border-bawah-only">JUMLAH</th>
 			</tr>		
             <?php   
             if(!empty($data)){
@@ -152,7 +166,7 @@
 					$jumlah_jumlah_sisa_piutang += str_replace(['.', ','], ['', '.'], $mat['jumlah_sisa_piutang']);
 					}	
 					?>
-					<tr class="table-baris2-bold">
+					<tr class="table-baris1-bold">
 						<td align="right" colspan="4">JUMLAH</td>
 						<td align="right"><?php echo number_format($jumlah_dpp_tagihan,0,',','.');?></td>
 						<td align="right"><?php echo number_format($jumlah_ppn_tagihan,0,',','.');?></td>
@@ -176,22 +190,22 @@
             	<?php
             }
             ?>
-            <tr class="table-total">
-				<th align="right" colspan="4">TOTAL</th>
-				<th align="right"><?php echo number_format($total_dpp_tagihan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_ppn_tagihan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_jumlah_tagihan,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_dpp_pembayaran,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_ppn_pembayaran,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_jumlah_pembayaran,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_dpp_sisa_piutang,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_ppn_sisa_piutang,0,',','.');?></th>
-				<th align="right"><?php echo number_format($total_jumlah_sisa_piutang,0,',','.');?></th>
-				<td align="center"></td>
-				<td align="center"></td>
+            <tr class="table-judul">
+				<th align="right" colspan="4" class="table-border-atas-full">TOTAL</th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_tagihan,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_tagihan,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_tagihan,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_pembayaran,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_pembayaran,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_pembayaran,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_dpp_sisa_piutang,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_ppn_sisa_piutang,0,',','.');?></th>
+				<th align="right" class="table-border-atas-full"><?php echo number_format($total_jumlah_sisa_piutang,0,',','.');?></th>
+				<td align="center" class="table-border-atas-full"></td>
+				<td align="center" class="table-border-atas-full"></td>
             </tr>   
 		</table>
-		<table width="98%" border="0" cellpadding="30">
+		<table width="98%" border="0" cellpadding="1">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
