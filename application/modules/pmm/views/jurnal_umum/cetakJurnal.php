@@ -110,11 +110,8 @@
         <br />
         <?php
         $staff_keuangan_proyek = $this->pmm_model->GetNameGroup(14);
-        $kepala_divisi = $this->pmm_model->GetNameGroup(15);
-		$ka_plant = $this->pmm_model->GetNameGroup(15);
-        $manager_keuangan = $this->pmm_model->GetNameGroup(10);
-        $direksi = $this->pmm_model->GetNameGroup(6);
-        $keuangan_proyek = $this->pmm_model->GetNameGroup(10);
+        $pj_keuangan = $this->pmm_model->GetNameGroup(10);
+        $kepala_unit_bisnis = $this->pmm_model->GetNameGroup(16);
         $arr_no_trans = explode('/', $biaya['nomor_transaksi']);
         ?>  
 
@@ -149,23 +146,23 @@
                         </tr>
                         <tr class="">
                             <td align="center" height="75px">
-                                
-                            </td>
-                            <td align="center">
-                        
+                                <img src="uploads/ttd_dian.png" width="100px">
                             </td>
                             <?php
                             if(!empty($arr_no_trans)){
                                 if (strpos($arr_no_trans[2], 'SC') === false) {
                                     ?>
-                            <td align="center">           
-                            </td>       
-                            <td align="center">   
-                            </td>
-                            <?php
-                            }
+                                    <td align="center">
+                                    </td>
+                                    <td align="center">           
+                                    </td>
+                                    <?php
+                                }
                             }
                             ?>
+                            <td align="center">  
+                                <img src="uploads/ttd_rifka.png" width="100px"> 
+                            </td>
                             <td align="center">  
                             </td>
                             <td align="center">
@@ -183,18 +180,18 @@
                                         <?=  $keuangan_proyek['admin_name'];?>
                                     </td>
                                     <td align="center">
-                                        <?=  $ka_plant['admin_name'];?>
+                                        <?=  $kepala_unit_bisnis['admin_name'];?>
                                     </td>
                                     <?php
                                 }
                             }
                             ?>
                             <td align="center">
-								<?=  $manager_keuangan['admin_name'];?>
+								<?=  $pj_keuangan['admin_name'];?>
                             </td>
                             
                             <td align="center" >
-								<?=  $kepala_divisi['admin_name'];?>
+								<?=  $kepala_unit_bisnis['admin_name'];?>
                             </td>
                             <td align="center" >  
                             </td>
@@ -218,17 +215,17 @@
                                         <?=  $keuangan_proyek['admin_group_name'];?>
                                     </td>
                                     <td align="center">
-                                        <?=  $ka_plant['admin_group_name'];?>
+                                        <?=  $kepala_unit_bisnis['admin_group_name'];?>
                                     </td>
                                     <?php
                                 }
                             }
                             ?>
                             <td align="center">
-                                <?=  $manager_keuangan['admin_group_name'];?>
+                                <?=  $pj_keuangan['admin_group_name'];?>
                             </td>
                             <td align="center" >
-                                <!--<?=  $kepala_divisi['admin_group_name'];?>-->
+                                <!--<?=  $kepala_unit_bisnis['admin_group_name'];?>-->
                                 Kepala Unit Bisnis
                             </td>
                             <td align="center" >

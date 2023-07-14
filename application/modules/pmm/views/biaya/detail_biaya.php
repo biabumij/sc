@@ -59,27 +59,6 @@
                                                 <td> <?= $this->crud_global->GetField('pmm_coa',array('id'=>$row["bayar_dari"]),'coa'); ?></td>
                                             </tr>
                                             <tr>
-                                                <th>Memo</th>
-                                                <th>:</th>
-                                                <td> <?= $row['memo'];?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Lampiran</th>
-                                                <th>:</th>
-                                                <td> 
-                                                    <?php
-                                                    $lampiran = $this->db->get_where('pmm_lampiran_biaya',array('biaya_id'=>$row['id']))->result_array();
-                                                    if(!empty($lampiran)){
-                                                        foreach ($lampiran as $key => $lam) {
-                                                            ?>
-                                                            <a href="<?= base_url().'uploads/biaya/'.$lam['lampiran'];?>" target="_blank"><?= $lam['lampiran'];?></a><br />
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <th>Dibuat Oleh</th>
                                                 <th>:</th>
                                                 <td><?php echo $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');?></td>
@@ -126,6 +105,34 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <table class="table  table-condensed">
+                                            <tr>
+                                                <th width="30%">Memo</th>
+                                                <th width="2%">:</th>
+                                                <td> <?= $row['memo'];?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Lampiran</th>
+                                                <th>:</th>
+                                                <td> 
+                                                    <?php
+                                                    $lampiran = $this->db->get_where('pmm_lampiran_biaya',array('biaya_id'=>$row['id']))->result_array();
+                                                    if(!empty($lampiran)){
+                                                        foreach ($lampiran as $key => $lam) {
+                                                            ?>
+                                                            <a href="<?= base_url().'uploads/biaya/'.$lam['lampiran'];?>" target="_blank"><?= $lam['lampiran'];?></a><br />
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-12 text-right">
                                         <a href="<?= base_url('admin/biaya_umum_&_adm.') ?>" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
