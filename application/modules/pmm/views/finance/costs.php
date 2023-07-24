@@ -165,7 +165,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 2, 5],
+                    "targets": [0, 1, 5],
                     "className": 'text-center',
                 },
                 {
