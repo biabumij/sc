@@ -509,17 +509,20 @@
                                             $waiting_po = $this->db->select('*')
                                             ->from('pmm_purchase_order')
                                             ->where("status = 'WAITING'")
+                                            ->order_by('created_on','desc')
                                             ->get()->result_array();
 
                                             $permintaan = $this->db->select('*')
                                             ->from('pmm_request_materials')
                                             ->where("status = 'WAITING'")
+                                            ->order_by('created_on','desc')
                                             ->get()->result_array();
 
                                             $verifikasi = $this->db->select('v.*, ppp.nomor_invoice')
                                             ->from('pmm_verifikasi_penagihan_pembelian v')
                                             ->join('pmm_penagihan_pembelian ppp','v.penagihan_pembelian_id = ppp.id','left')
                                             ->where("v.approve_unit_head = 'TIDAK DISETUJUI'")
+                                            ->order_by('v.created_on','desc')
                                             ->get()->result_array();
                                             ?>
                                             <tbody>
