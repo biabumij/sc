@@ -246,7 +246,7 @@ class Admin extends CI_Controller {
 			$table = 'tbl_admin';
 		    $column_order = array('admin_name','admin_email','admin_group_id','status',null); 
 		    $column_search = array('admin_name','admin_email','admin_group_id','status');
-		    $order = array('admin_name' => 'asc'); // default order
+		    $order = array('created_on' => 'desc'); // default order
 
 		    $admin_group_id = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$this->session->userdata('admin_id')),'admin_group_id');
 		    if($admin_group_id != 1){
