@@ -239,14 +239,14 @@ class Admin extends CI_Controller {
         echo json_encode($output);
 	}
 
-	function table_users()
+	function users()
 	{
 		$check = $this->m_admin->check_login();
 		if($check == true){		
 			$table = 'tbl_admin';
 		    $column_order = array('admin_name','admin_email','admin_group_id','status',null); 
 		    $column_search = array('admin_name','admin_email','admin_group_id','status');
-		    $order = array('admin_name' => 'asc'); // default order 
+		    $order = array('datecreated' => 'desc'); // default order
 
 		    $admin_group_id = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$this->session->userdata('admin_id')),'admin_group_id');
 		    if($admin_group_id != 1){
