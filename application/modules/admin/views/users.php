@@ -69,7 +69,7 @@
     
     <script type="text/javascript">
         $(document).ready(function() {
-            load_table("<?php echo site_url('admin/users');?>");
+            load_table("<?php echo site_url('admin/table_users');?>");
         });
     </script>
 
