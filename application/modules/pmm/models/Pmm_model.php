@@ -3664,39 +3664,6 @@ class Pmm_model extends CI_Model {
 
     //RUMUS BARU//
 
-    function GetReceiptMatBukuBesar($filter_client_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_product=false)
-    {
-        $output = array();
-
-        $this->db->select('c.coa, t.id as transaction_id, t.akun, t.tanggal_transaksi, t.transaksi, b.nomor_transaksi as no_trx_1, j.nomor_transaksi as no_trx_2, pdb.deskripsi as dex_1, j.memo as dex_2, t.debit as debit, t.kredit as kredit');
-        $this->db->join('pmm_biaya b','t.biaya_id = b.id','left');
-        $this->db->join('pmm_detail_biaya pdb','b.id = pdb.biaya_id','left');
-        $this->db->join('pmm_jurnal_umum j','t.jurnal_id = j.id','left');
-        $this->db->join('pmm_detail_jurnal pdj','j.id = pdj.jurnal_id','left');
-        $this->db->join('pmm_coa c','t.akun = c.id','left');
-        if(!empty($start_date) && !empty($end_date)){;
-            $this->db->where('t.tanggal_transaksi >=',$start_date);
-            $this->db->where('t.tanggal_transaksi <=',$end_date);
-        }
-        if(!empty($filter_client_id)){
-            $this->db->where('c.coa',$filter_client_id);
-        }
-        if(!empty($purchase_order_no)){
-            $this->db->where('ppo.id',$purchase_order_no);
-        }
-        if(!empty($filter_product)){
-            $this->db->where_in('pp.product_id',$filter_product);
-        }
-		
-        $this->db->order_by('t.tanggal_transaksi','asc');
-        $this->db->order_by('t.id','asc');
-        $this->db->group_by('t.id');
-        $query = $this->db->get('transactions t');
-        $output = $query->result_array();
-	
-        return $output;
-    }
-
     function GetPenerimaanPembelian($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false,$filter_kategori=false)
     {
         $output = array();
