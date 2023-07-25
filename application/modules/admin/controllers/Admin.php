@@ -52,7 +52,6 @@ class Admin extends CI_Controller {
 		}
 	}
 
-
 	function table()
 	{
 		$check = $this->m_admin->check_login();
@@ -238,6 +237,61 @@ class Admin extends CI_Controller {
             }
         }
         echo json_encode($output);
+	}
+
+	function users()
+	{
+		$check = $this->m_admin->check_login();
+		if($check == true){		
+			$table = 'tbl_admin';
+		    $column_order = array('admin_name','admin_email','admin_group_id','status',null); 
+		    $column_search = array('admin_name','admin_email','admin_group_id','status');
+		    $order = array('admin_name' => 'asc'); // default order
+
+		    $admin_group_id = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$this->session->userdata('admin_id')),'admin_group_id');
+		    if($admin_group_id != 1){
+		    	$arraywhere = array('status !=' => '0','admin_group_id !='=>'1');
+		    }else {
+		    	$arraywhere = array('status !=' => '0');
+		    }
+			$list = $this->DB_model->get_datatables($table,$column_order,$column_search,$order,$arraywhere);
+	        $data = array();
+	        $no = $_POST['start'];
+	        $no_list = 0;
+	        foreach ($list as $value) {
+	            $no++;
+	            $no_list++;
+	            $row = array();
+	            $row[] = $no;
+	            $row[] = $value->admin_name;
+	            $row[] = $value->admin_email;
+	            $row[] = $this->crud_global->GetField('tbl_admin_group',array('admin_group_id'=>$value->admin_group_id),'admin_group_name');
+	            $row[] = $this->general->GetStatus($value->status);
+				//$row[] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$value->update_by),'admin_name');
+				//$row[] = date('d/m/Y H:i:s',strtotime($value->dateupdate));
+
+	            $url_del = site_url('admin/delete/'.$value->admin_id.'');
+	            $url_edit = site_url('admin/form_edit/'.$value->admin_id.'');
+
+	            $btn_edit = '<a class="btn btn-sm btn-primary" href="'.$url_edit.'"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+	            $btn_delete = '<a class="btn btn-sm btn-danger" href="javascript:void(0)" onclick="delete_person('."'".$url_del."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+
+	            //add html for action
+	            $row[] = $btn_edit." ".$btn_delete;
+	 
+	            $data[] = $row;
+	        }
+	        $output = array(
+	                    "draw" => $_POST['draw'],
+	                    "recordsTotal" => $this->DB_model->count_all($table,$arraywhere),
+	                    "recordsFiltered" => $this->DB_model->count_filtered($table,$column_order,$column_search,$order,$arraywhere),
+	                    "data" => $data,
+	                );
+	        //output to json format
+	        echo json_encode($output);
+		}else {
+			$this->load->view('login');
+		}
 	}
 
 }
