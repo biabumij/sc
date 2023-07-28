@@ -1,5 +1,15 @@
 <?php
 if($this->session->userdata('admin_group_id') == 1){
+    return true;
+    }else {
+        if (!empty($_SERVER['QUERY_STRING'])) {
+            $uri = uri_string() . '?' . $_SERVER['QUERY_STRING'];
+        } else {
+            $uri = uri_string();
+        }
+        $this->session->set_userdata('redirect', $uri);
+        return false;
+
 ?>
 <!doctype html>
 <html lang="en" class="fixed">
