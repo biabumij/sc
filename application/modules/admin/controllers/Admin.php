@@ -6,16 +6,6 @@ class Admin extends CI_Controller {
 	public function __construct()
 	{
         parent::__construct();
-		if(empty($this->session->userdata('admin_id')))
-        {
-            if (!empty($_SERVER['QUERY_STRING'])) {
-                $uri = uri_string() . '?' . $_SERVER['QUERY_STRING'];
-            } else {
-                $uri = uri_string();
-            }
-            $this->session->set_userdata('redirect', $uri);
-            redirect('admin');
-        }
         // Your own constructor code
         $this->load->model(array('admin/m_admin','Templates','crud_global','m_themes','pages/m_pages','menu/m_menu','admin_access/m_admin_access','DB_model','member_back/m_member_back','m_member','pmm/pmm_model'));
         $this->load->library('enkrip');
