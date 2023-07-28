@@ -1,6 +1,3 @@
-<?php if (!isset($_SESSION['username'])) {
-    redirect(base_url());
-} ?>
 <!doctype html>
 <html lang="en" class="fixed">
 <head>
