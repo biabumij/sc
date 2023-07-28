@@ -1,3 +1,9 @@
+<?php
+if($this->session->userdata('admin_group_id') == 1){
+    }else {
+        redirect('admin');
+
+?>
 <!doctype html>
 <html lang="en" class="fixed">
 <head>
@@ -136,3 +142,6 @@
 
 </body>
 </html>
+<?php
+}
+?>
