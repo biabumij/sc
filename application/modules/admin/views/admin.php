@@ -1,10 +1,5 @@
 <?php
 if($this->session->userdata('admin_group_id') == 1){
-    return true;
-} else {
-redirect('admin');
-
-
 ?>
 <!doctype html>
 <html lang="en" class="fixed">
