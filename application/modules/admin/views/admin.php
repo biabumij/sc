@@ -1,7 +1,5 @@
 <?php
 if($this->session->userdata('admin_group_id') == 1){
-    return true;
-        redirect('admin/admin');
     }else {
         redirect('admin');
         return false;
