@@ -60,13 +60,13 @@
                                                 <th>NPWP</th>
                                                 <th><?php echo $npwp_supplier;?></th>
                                             </tr>
-                                            <?php foreach ($details as $x): ?>
+                                            <?php foreach ($details_pnw as $x): ?>
                                             <tr>
                                                 <th>No. Penawaran</th>
                                                 <th><a target="_blank" href="<?= base_url("pembelian/penawaran_pembelian_detail/".$x['penawaran_id']) ?>"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$x['penawaran_id']),'nomor_penawaran');?></a></th>   
                                             </tr>
                                             <?php endforeach; ?>
-                                            <?php foreach ($details2 as $x): ?>
+                                            <?php foreach ($details_req as $x): ?>
                                             <tr>
                                                 <th>No. Permintaan</th>
                                                 <th><a target="_blank" href="<?= base_url("pmm/request_materials/manage/".$x['request_material_id']) ?>"><?php echo $this->crud_global->GetField('pmm_request_materials',array('id'=>$x['request_material_id']),'request_no');?></a></th>   

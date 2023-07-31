@@ -28,13 +28,12 @@ class Purchase_order extends CI_Controller {
 			if(!empty($get_data)){
 				$data['data'] = $get_data;
 				$data['details'] = $this->pmm_model->GetPODetail($id);
-				$data['details2'] = $this->pmm_model->GetPORequest($id);
-				// $data['suppliers'] = $this->db->get_where('penerima',array('status'=>'PUBLISH'))->result_array();
+				$data['details_pnw'] = $this->pmm_model->GetPODetailPNW($id);
+				$data['details_req'] = $this->pmm_model->GetPODetailREQ($id);
 				$sp = $this->db->get_where('penerima',array('id'=>$get_data['supplier_id']))->row_array();
 				$data['address_supplier'] = $sp['alamat'];
 				$data['npwp_supplier'] = $sp['npwp'];
 				$data['supplier_name'] = $sp['nama'];
-				// $data['supplier_date_pkp'] = $sp['date_pkp'];
 
 				$this->load->view('pmm/purchase_order_add',$data);
 			}else {
