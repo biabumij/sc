@@ -156,7 +156,7 @@ class Receipt_material extends CI_Controller {
 				$row['price'] = number_format($row['price'],0,',','.');
 				$row['display_price'] = number_format($row['display_price'],0,',','.');
 				$row['surat_jalan_file'] = '<a href="'.base_url().'uploads/surat_jalan_penerimaan/'.$row['surat_jalan_file'].'" target="_blank">'.$row['surat_jalan_file'].'</a>';
-
+				$row['memo'] = $row['memo'];
 				$row['status_payment'] = $this->pmm_model->StatusPayment($row['status_payment']);
 				$edit = false;
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 4){

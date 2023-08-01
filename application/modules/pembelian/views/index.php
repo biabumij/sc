@@ -407,6 +407,7 @@
                                                     <th class="text-center">Produk</th>
                                                     <th class="text-center">Satuan</th>                                                   
                                                     <th class="text-center">Volume</th>
+                                                    <th class="text-center">Memo</th>
                                                     <th class="text-center">Dibuat Oleh</th>
                                                     <th class="text-center">Dibuat Tanggal</th>
                                                     <th class="text-center">Upload Surat Jalan</th>
@@ -1467,6 +1468,9 @@
             },
             {
                 "data": "display_volume"
+            },
+            {
+                "data": "memo"
             },
             {
                 "data": "admin_name"
