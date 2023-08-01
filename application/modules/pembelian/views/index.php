@@ -102,6 +102,7 @@
                             <div class="panel-content">
                                 <?php
                                 $arr_po = $this->db->order_by('date_po', 'desc')->get_where('pmm_purchase_order')->result_array();
+                                $arr_produk = $this->db->order_by('nama_produk', 'asc')->get_where('produk', array('status' => 'PUBLISH'))->result_array();
                                 $suppliers  = $this->db->order_by('nama', 'asc')->select('*')->get_where('penerima', array('status' => 'PUBLISH', 'rekanan' => 1))->result_array();
                                 $kategori  = $this->db->order_by('nama_kategori_produk', 'asc')->select('*')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
                                 ?>
@@ -367,7 +368,13 @@
                                             <div class="col-sm-3">
                                                 <select id="material_id" name="material_id" class="form-control select2"">
                                                     <option value="">Pilih Produk</option>
-                                                    
+                                                    <?php
+                                                    foreach ($arr_produk as $key => $pd) {
+                                                    ?>
+                                                        <option value="<?php echo $pd['id']; ?>" data-client-id="<?= $pd['supplier_id'] ?>" disabled><?php echo $pd['nama_produk']; ?></option>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                             <br />
