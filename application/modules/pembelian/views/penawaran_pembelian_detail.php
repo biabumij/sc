@@ -128,7 +128,13 @@
                                     $pajak_0 = false;
                                     $pajak_ppn11 = 0;
                                     $total = 0;
-									$details = $this->db->get_where('pmm_penawaran_pembelian_detail',array('penawaran_pembelian_id'=>$row['id']))->result_array();
+									$details = $this->db->select('ppd.*, p.nama_produk')
+                                    ->from('pmm_penawaran_pembelian pp')
+                                    ->join('pmm_penawaran_pembelian_detail ppd','pp.id = ppd.penawaran_pembelian_id','left')
+                                    ->join('produk p','ppd.material_id = p.id','left')
+                                    ->where('pp.id',$row['id'])
+                                    ->order_by('p.nama_produk','asc')
+                                    ->get()->result_array();
 									?>
 									<?php foreach($details as $key => $dt) { ?>
 									<?php 

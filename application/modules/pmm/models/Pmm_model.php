@@ -921,9 +921,12 @@ class Pmm_model extends CI_Model {
     function GetPODetail($id)
     {
         $output = false;
-        $this->db->select('pp.*,SUM(pp.volume) as total, pp.id');
+        $this->db->select('pp.*,SUM(pp.volume) as total, pp.id, pp.penawaran_id, ppp.memo, p.nama_produk');
+        $this->db->join('pmm_penawaran_pembelian ppp','pp.penawaran_id = ppp.id','left');
+        $this->db->join('produk p','pp.material_id = p.id','left');
         $this->db->where('pp.purchase_order_id',$id);
         $this->db->group_by('pp.material_id');
+        $this->db->order_by('p.nama_produk','asc');
         $query = $this->db->get('pmm_purchase_order_detail pp')->result_array();
 
         return $query;
@@ -1037,7 +1040,7 @@ class Pmm_model extends CI_Model {
         $this->db->where('request_material_id',$request_material_id);
         $this->db->join('produk pm','psm.material_id = pm.id','left');
         $this->db->join('pmm_measures pms','psm.measure_id = pms.id','left');
-        $this->db->order_by('created_on','asc');
+        $this->db->order_by('pm.nama_produk','asc');
         $query = $this->db->get('pmm_request_material_details psm');
 	
         if($query->num_rows() > 0){
