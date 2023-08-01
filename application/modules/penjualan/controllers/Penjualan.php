@@ -843,6 +843,9 @@ class Penjualan extends Secure_Controller
 				$row['display_volume'] = number_format($row['display_volume'],2,',','.');
 				$row['convert_measure'] = $row['convert_measure'];
 				$row['status_payment'] = $this->pmm_model->StatusPayment($row['status_payment']);
+				$row['memo'] = $row['memo'];
+				$row['nopol_truck'] = $row['nopol_truck'];
+				$row['driver'] = $row['driver'];
 				$row['action'] = '-';
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));

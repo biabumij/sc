@@ -188,17 +188,20 @@
                                             <table class="table table-striped table-hover" id="table-production" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th></th>
+                                                    <th></th>
                                                         <th>No</th>
                                                         <th class="text-center">Status Tagihan</th>
                                                         <th class="text-center">Tanggal</th>
-                                                        <th class="text-center">No. Surat Jalan</th>
-                                                        <th class="text-center">No. Sales Order</th>
-                                                        <th class="text-center">Produk</th>
                                                         <th class="text-center">Pelanggan</th>
-                                                        <th class="text-center">Volume</th>
-                                                        <th class="text-center">Satuan</th>
+                                                        <th class="text-center">No. Sales Order</th>
+                                                        <th class="text-center">No. Surat Jalan</th>
                                                         <th class="text-center">Surat Jalan</th>
+                                                        <th class="text-center">No. Kendaraan</th>
+                                                        <th class="text-center">Supir</th>
+                                                        <th class="text-center">Produk</th>
+                                                        <th class="text-center">Satuan</th>
+                                                        <th class="text-center">Volume</th>
+                                                        <th class="text-center">Memo</th>
                                                         <th class="text-center">Dibuat Oleh</th>
                                                         <th class="text-center">Dibuat Tanggal</th>
                                                         <th class="text-center">Upload Surat Jalan</th>
@@ -480,25 +483,34 @@
                     "data": "date_production"
                 },
                 {
-                    "data": "no_production"
+                    "data": "client"
                 },
                 {
                     "data": "contract_number"
                 },
                 {
+                    "data": "no_production"
+                },
+                {
+                    "data": "surat_jalan"
+                },
+                {
+                    "data": "nopol_truck"
+                },
+                {
+                    "data": "driver"
+                },
+                {
                     "data": "product"
                 },
                 {
-                    "data": "client"
+                    "data": "measure"
                 },
 				{
                     "data": "volume"
                 },
                 {
-                    "data": "measure"
-                },
-                {
-                    "data": "surat_jalan"
+                    "data": "memo"
                 },
                 {
                     "data": "admin_name"
@@ -522,11 +534,11 @@
                     "className": 'select-checkbox',
                 },
                 {
-                    "targets": [1, 2, 8, 9, 10, 11],
+                    "targets": [1, 2, 3, 6, 8, 9, 10, 11, 14, 15, 16],
                     "className": 'text-center',
                 },
                 {
-                    "targets": [7],
+                    "targets": [12],
                     "className": 'text-right',
                 }
             ],
