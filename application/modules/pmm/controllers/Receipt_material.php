@@ -1340,10 +1340,10 @@ class Receipt_material extends CI_Controller {
 			$this->db->where('ppp.created_on >=',$start_date.' 23:59:59');
             $this->db->where('ppp.created_on <=',$end_date.' 23:59:59');
         }
-        if(!empty($supplier_id)){
+        if(!empty($supplier_id) || $supplier_id != 0){
             $this->db->where('ppp.supplier_id',$supplier_id);
         }
-		if(!empty($filter_status)){
+		if(!empty($filter_status) || $filter_status != 0){
             $this->db->where('ppp.status',$filter_status);
         }
 		
