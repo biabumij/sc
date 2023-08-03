@@ -1068,10 +1068,10 @@ class Productions extends Secure_Controller {
             $this->db->where('ppp.tanggal_invoice >=',$start_date);
             $this->db->where('ppp.tanggal_invoice <=',$end_date);
         }
-        if(!empty($client_id)){
+        if(!empty($client_id && !empty($client_id)){
             $this->db->where('ppp.client_id',$client_id);
         }
-		if(!empty($filter_status)){
+		if(!empty($filter_status && !empty($filter_status)){
             $this->db->where('ppp.status_pembayaran',$filter_status);
         }
 		
