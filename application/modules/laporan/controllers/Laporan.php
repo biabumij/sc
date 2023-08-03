@@ -960,8 +960,8 @@ class Laporan extends Secure_Controller {
 			$data['end_date'] = $end_date;
 
 			$this->db->select('ppp.id, ppp.client_id, ps.nama as name');
-            $this->db->join('penerima ps','ppp.client_id = ps.id','left');
-            $this->db->join('pmm_sales_po po','ppp.sales_po_id = po.id','left');
+			$this->db->join('penerima ps','ppp.client_id = ps.id','left');
+			$this->db->join('pmm_sales_po po','ppp.sales_po_id = po.id','left');
 
             if(!empty($start_date) && !empty($end_date)){
                 $this->db->where('ppp.tanggal_invoice >=',$start_date);
@@ -974,9 +974,9 @@ class Laporan extends Secure_Controller {
                 $this->db->where('ppp.status_pembayaran',$filter_status);
             }
             
-            $this->db->group_by('ppp.client_id');
-            $this->db->order_by('ps.nama','asc');
-            $query = $this->db->get('pmm_penagihan_penjualan ppp');
+			$this->db->group_by('ppp.client_id');
+			$this->db->order_by('ps.nama','asc');
+			$query = $this->db->get('pmm_penagihan_penjualan ppp');
 
 			$no = 1;
 			if($query->num_rows() > 0){
