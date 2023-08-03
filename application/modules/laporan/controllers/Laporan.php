@@ -449,13 +449,13 @@ class Laporan extends Secure_Controller {
 				$this->db->where('ppp.created_on >=',$start_date.' 23:59:59');
            		$this->db->where('ppp.created_on <=',$end_date.' 23:59:59');
 			}
-			if(!empty($supplier_id)){
+			if(!empty($supplier_id) || $supplier_id != 0){
 				$this->db->where('ppo.supplier_id',$supplier_id);
 			}
-			if(!empty($filter_kategori)){
+			if(!empty($filter_kategori) || $filter_kategori != 0){
 				$this->db->where('ppo.kategori_id',$filter_kategori);
 			}
-			if(!empty($filter_status)){
+			if(!empty($filter_status) || $filter_status != 0){
 				$this->db->where('ppp.status',$filter_status);
 			}
 
