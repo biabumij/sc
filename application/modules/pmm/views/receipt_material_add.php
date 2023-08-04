@@ -70,6 +70,8 @@
                                 <input type="hidden" name="receipt_material_id" id="receipt_material_id" value="">
                                 <input type="hidden" name="supplier_id" id="form_supplier_id" value="">
                                 <input type="hidden" name="select_operation" id="select_operation" value="*">
+                                <input type="hidden" id="tax_id" name="tax_id" value="*">
+                                <input type="hidden" id="pajak_id" name="pajak_id" value="*">
                                 <div class="row">
 									<div class="col-sm-4">
 										<label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></label>
@@ -79,17 +81,26 @@
 										<label for="inputEmail3" class="control-label">No. Surat Jalan<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="surat_jalan" name="surat_jalan" class="form-control" required="" autocomplete="off" placeholder="No. Surat Jalan" />
                                     </div>
-                                </div>    
+                                </div>
                                 <div class="row">
-                                    <div class="col-sm-4">
+									<div class="col-sm-6">
+										<label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
+                                        <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" required="" autocomplete="off" placeholder="No. Kendaraan"/>
+                                    </div>
+                                    <div class="col-sm-6">
+										<label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
+                                        <input type="text" id="driver" name="driver" class="form-control" required="" autocomplete="off" placeholder="Supir" />
+                                    </div>
+                                </div>
+                                <br /><br />    
+                                <div class="row">
+                                    <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Pilih Produk<span class="required" aria-required="true">*</span></label>
                                         <select id="material_id" name="material_id" class="form-control" required="" >
                                             <option value="">Pilih Produk</option>
                                             
                                         </select>
                                     </div>
-                                    <input type="hidden" id="tax_id" name="tax_id" class="form-control" value="" required="" readonly="">
-                                    <input type="hidden" id="pajak_id" name="pajak_id" class="form-control" value="" required="" readonly="">
                                 </div>    
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -112,7 +123,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Konversi<span class="required" aria-required="true">*</span></label>
 										<input type="text" id="berat_isi" name="berat_isi" class="form-control numberformat" value="1" placeholder="Konversi" required="" autocomplete="off">
                                     </div>
@@ -137,16 +148,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-									<div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
-                                        <input type="text" id="no_kendaraan" name="no_kendaraan" class="form-control" required="" autocomplete="off" placeholder="No. Kendaraan"/>
-                                    </div>
-                                    <div class="col-sm-6">
-										<label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
-                                        <input type="text" id="driver" name="driver" class="form-control" required="" autocomplete="off" placeholder="Supir" />
-                                    </div>
-                                </div>
+                                <br /><br />  
                                 <div class="row">
                                     <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Upload Surat Jalan </label>
