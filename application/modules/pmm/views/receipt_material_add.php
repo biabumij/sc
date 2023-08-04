@@ -73,11 +73,11 @@
                                 <input type="hidden" id="tax_id" name="tax_id" value="*">
                                 <input type="hidden" id="pajak_id" name="pajak_id" value="*">
                                 <div class="row">
-									<div class="col-sm-4">
+									<div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="date_receipt" name="date_receipt" class="form-control dtpicker" required="" autocomplete="off" placeholder="Tanggal Penerimaan" value="<?php echo date('d-m-Y');?>"" />
                                     </div>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
 										<label for="inputEmail3" class="control-label">No. Surat Jalan<span class="required" aria-required="true">*</span></label>
                                         <input type="text" id="surat_jalan" name="surat_jalan" class="form-control" required="" autocomplete="off" placeholder="No. Surat Jalan" />
                                     </div>
