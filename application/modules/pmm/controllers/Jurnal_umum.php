@@ -61,7 +61,9 @@ class Jurnal_umum extends CI_Controller {
                 $row['tanggal'] = date('d/m/Y',strtotime($row['tanggal_transaksi']));
                 $row['jumlah_total'] = number_format($row["total"],2,',','.');
                 $row['nomor'] = "<a href=".base_url('pmm/jurnal_umum/detailJurnal/'.$row["id"]).">".$row["nomor_transaksi"]."</a>";
-				$data[] = $row;
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
+                $data[] = $row;
 			}
 
 		}

@@ -37,6 +37,8 @@ class Biaya extends CI_Controller {
                 $row['saldo_bank'] = 0;
                 $row['nomor_transaksi'] = "<a  href='".base_url('pmm/biaya/detail_biaya/'.$row['id'])."' >".$row['nomor_transaksi']."</a>";
 				$row['jumlah_total'] = number_format($row['total'],2,',','.');
+                $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$data[] = $row;
 			}
 

@@ -57,6 +57,8 @@
                                                         <th class="text-center">Nomor</th>
                                                         <th class="text-center">Debit</th>
                                                         <th class="text-center">Kredit</th>
+                                                        <th class="text-center">Dibuat Oleh</th>
+                                                        <th class="text-center">Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -162,10 +164,12 @@
                 { "data": "nomor" },
                 { "data": "total_debit"},
                 { "data": "total_kredit"},
+                { "data": "admin_name"},
+                { "data": "created_on"}
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1],
+                    "targets": [0, 1, 5, 6],
                     "className": 'text-center',
                 },
                 {
