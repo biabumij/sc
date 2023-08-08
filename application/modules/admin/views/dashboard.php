@@ -70,7 +70,6 @@
                     <?php include_once("script_dashboard_new.php"); ?>
 
                     <div class="col-sm-12">
-                    <?php echo number_format($total_penjualan_all_aku,0,',','.');?>
                         <figure class="highcharts-figure">
                             <div id="container_laba_rugi"></div>
                             
