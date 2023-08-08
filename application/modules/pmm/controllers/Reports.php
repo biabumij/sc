@@ -16709,9 +16709,6 @@ class Reports extends CI_Controller {
 		?>
 
 		<tr class="table-active">
-			<th class="text-center" colspan="4" style='background-color:#5B5B5B; color:white; text-transform:uppercase;'>RAP</th>
-		</tr>
-		<tr>
 			<th width="5%" class="text-center" style='background-color:rgb(188,188,188); color:black'>NO.</th>
 			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>URAIAN</th>
 			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>(M3)</th>
