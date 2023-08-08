@@ -16769,18 +16769,18 @@ class Reports extends CI_Controller {
 		<tr>
 			<th width="5%" class="text-center" style='background-color:rgb(188,188,188); color:black'>NO.</th>
 			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>URAIAN</th>
-			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA RAP (M3)</th>
-			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA RAP (TON)</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA SATUAN PEKERJAAN (M3)</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA SATUAN PEKERJAAN (TON)</th>
 		</tr>
 		<tr>
 			<th class="text-center">1.</th>
-			<th class="text-left">Harga RAP</th>
+			<th class="text-left">HARGA SATUAN PEKERJAAN</th>
 			<th class="text-right"><?php echo number_format($total,0,',','.');?></th>
 			<th class="text-right"><?php echo number_format($total_ton,0,',','.');?></th>
 		</tr>
 		<tr>
 			<th class="text-center">2.</th>
-			<th class="text-left">Harga RAP + LABA (<?php echo number_format($row['laba'],0,',','.');?>%)</th>
+			<th class="text-left">HARGA SATUAN PEKERJAAN + LABA (<?php echo number_format($row['laba'],0,',','.');?>%)</th>
 			<th class="text-right"><?php echo number_format(($total + ($total * $row['laba']) / 100),0,',','.');?></th>
 			<th class="text-right"><?php echo number_format(($total_ton + ($total_ton * $row['laba']) / 100),0,',','.');?></th>
 		</tr>
