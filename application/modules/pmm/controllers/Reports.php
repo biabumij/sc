@@ -2582,8 +2582,8 @@ class Reports extends CI_Controller {
 		?>
 
 		<tr class="table-active">
-			<th class="text-center" colspan="6" style='background-color:#5B5B5B; color:white; text-transform:uppercase;'>
-			<marquee>Nilai Persediaan Bahan Baku
+			<th class="text-center" colspan="6" style='background-color:#e69500; color:white; text-transform:uppercase;'>
+			Nilai Persediaan Bahan Baku
 			(<?php
 			$search = array(
 			'January',
@@ -2619,7 +2619,7 @@ class Reports extends CI_Controller {
 
 			echo str_replace($search, $replace, $subject);
 
-			?>)</marquee>
+			?>)
 			</th>
 		</tr>
 	<tr>
@@ -7339,8 +7339,8 @@ class Reports extends CI_Controller {
 		?>
 
 		<tr class="table-active">
-			<th class="text-center" colspan="6" style='background-color:#5B5B5B; color:white; text-transform:uppercase;'>
-				<marquee>Nilai Persediaan Bahan Jadi
+			<th class="text-center" colspan="6" style='background-color:#e69500; color:white; text-transform:uppercase;'>
+				Nilai Persediaan Bahan Jadi
 				(<?php
 				$search = array(
 				'January',
@@ -7376,7 +7376,7 @@ class Reports extends CI_Controller {
 
 				echo str_replace($search, $replace, $subject);
 
-				?>)</marquee>
+				?>)
 
 			</th>
 		</tr>
