@@ -77,6 +77,32 @@
                         <br />
                     </div>
 
+                    <!-- RAP -->
+                    <div class="col-sm-8">			
+                        <div role="tabpanel" class="tab-pane" id="rap">
+                            <div class="col-sm-15">
+                            <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">RAP</h3>
+                                    </div>
+                                    <div style="margin: 20px">
+                                        <div id="wait" style=" text-align: center; align-content: center; display: none;">	
+                                            <div>Please Wait</div>
+                                            <div class="fa-3x">
+                                                <i class="fa fa-spinner fa-spin"></i>
+                                            </div>
+                                        </div>				
+                                        <div class="table-responsive" id="box-new-rap">													
+                                        
+        
+                                        </div>
+                                    </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+
                     <!--<div class="col-sm-8">
                         <div class="panel panel-default">
                             <div class="panel-header">                                
@@ -122,7 +148,7 @@
                         $harga_jual_batu1020 = $hpp['batu1020'] + ($hpp['batu1020'] * 10) / 100;
                         $harga_jual_batu2030 = $hpp['batu2030'] + ($hpp['batu2030'] * 10) / 100;
                     ?>
-                    <div class="col-sm-8">
+                    <!--<div class="col-sm-8">
                         <div class="panel panel-default">
                             <div class="panel-header">
                                 <div class="row">
@@ -247,10 +273,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- Pergerakan Bahan Jadi (Penyesuaian Stok) -->
-                    <div class="col-sm-8">
+                    <!--<div class="col-sm-8">
                         <div role="tabpanel" class="tab-pane" id="pergerakan_bahan_jadi_penyesuaian">
                             <div class="col-sm-15">
                             <div class="panel panel-default">
@@ -280,10 +306,10 @@
                             
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- Nilai Persediaan Bahan Baku -->
-                    <div class="col-sm-8">			
+                    <!--<div class="col-sm-8">			
                         <div role="tabpanel" class="tab-pane" id="nilai_persediaan_bahan_baku">
                             <div class="col-sm-15">
                             <div class="panel panel-default">
@@ -312,7 +338,7 @@
                             
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
                 </div>  
             </div>
@@ -354,7 +380,7 @@
                 chart = new Highcharts.Chart({
                     chart: {
                         renderTo: 'container_laba_rugi',
-                        type: 'column',
+                        type: 'line',
                         marginRight: 130,
                         marginBottom: 75,
                         backgroundColor: {
@@ -373,14 +399,14 @@
                             fontFamily: 'arial'
                         },
                         text: 'LABA RUGI',
-                        x: -20            
+                        x: -20 //center            
                     },
                     subtitle: {
                         style: {
-                            color: '#000000',
-                            fontWeight: 'bold',
-                            fontSize: '14px',
-                            fontFamily: 'arial'
+                        color: '#000000',
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                        fontFamily: 'arial'
                         },
                         text: 'PT. BIA BUMI JAYENDRA - SC (<?php echo $date_now = date('Y', strtotime($date_now));?>)',
                         x: -20
@@ -394,7 +420,8 @@
                                 fontFamily: 'arial'
                             }
                         },
-                        categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi <br />2021-2023']
+                        //categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi <br />2021-2023']
+                        categories: ['Agustus 23','September 23','Oktober 23','November 23','Desember 23','Akumulasi <br />2021-2023']
                     },
                     yAxis: {
                         title: {
@@ -459,37 +486,80 @@
                         }
                     },
             
-                    series: [//{  
-                        //name: '0 %',  
-                        
-                        //data: [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    series: [{  
+                        name: '0 %',  
+                        data: [0,0,0,0,0,0],
 
-                        //color: '#000000',
-                        //fontWeight: 'bold',
-                        //fontSize: '10px',
-                        //fontFamily: 'arial'
-                    //},
+                        color: '#000000',
+                        fontWeight: 'bold',
+                        fontSize: '10px',
+                        fontFamily: 'arial'
+                    },
                     {  
-                        name: 'Laba Rugi %',  
-                        
-                        data: [ <?php echo json_encode($persentase_jan_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_feb_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mar_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_apr_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mei_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jun_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jul_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_agu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_sep_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_okt_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_nov_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_des_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_aku_fix, JSON_NUMERIC_CHECK); ?>],
+                        name: 'Laba Rugi %',
+                        //data: [ <?php echo json_encode($persentase_jan_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_feb_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mar_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_apr_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mei_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jun_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jul_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_agu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_sep_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_okt_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_nov_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_des_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_aku_fix, JSON_NUMERIC_CHECK); ?>],
+                        data: [ <?php echo json_encode($persentase_agu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_sep_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_okt_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_nov_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_des_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_aku_fix, JSON_NUMERIC_CHECK); ?>],
 
-                        color: '#E69500',
+                        color: '#FF0000',
                         fontWeight: 'bold',
                         fontSize: '10px',
                         fontFamily: 'arial',
 
                         zones: [{
-                            value: [<?php echo json_encode(0, JSON_NUMERIC_CHECK); ?>],
-                            }, {
-                                dashStyle: 'dot'
-                            }]
+                        
+                        }, {
+                            dashStyle: 'dot'
+                        }]
                     }
                     ]
                 });
             });
             
         });
+    </script>
+
+    <!-- Script RAP -->
+    <script type="text/javascript">
+        $('#filter_date_new_rap').daterangepicker({
+            autoUpdateInput : false,
+            showDropdowns: true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
+
+        $('#filter_date_new_rap').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            TableNewRAP();
+        });
+        
+        function TableNewRAP()
+        {
+            $('#wait').fadeIn('fast');   
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo site_url('pmm/reports/new_rap_dashboard'); ?>/"+Math.random(),
+                dataType : 'html',
+                data: {
+                    filter_date : $('#filter_date_new_rap').val(),
+                },
+                success : function(result){
+                    $('#box-new-rap').html(result);
+                    $('#wait').fadeOut('fast');
+                }
+            });
+        }
+
+        TableNewRAP();
+        
     </script>
 
     <!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->

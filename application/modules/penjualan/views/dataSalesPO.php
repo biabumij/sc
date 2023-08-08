@@ -68,7 +68,7 @@
                                 </tr>
                                 <tr>
                                     <th>Tanggal Kontrak</th>
-                                    <th><?= $sales_po["contract_number"]; ?></th>
+                                    <th><?= date('d/m/Y',strtotime($sales_po["contract_date"]));?></th>
                                 </tr>
                                 <tr>
                                     <th>Memo</th>

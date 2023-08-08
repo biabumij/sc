@@ -10528,7 +10528,7 @@ class Reports extends CI_Controller {
 			$total_penjualan_all = $total_penjualan + $total_penjualan_limbah;
 
 			//HARGA RAP
-			$harga_rap = $this->db->select('*')
+			$row = $this->db->select('*')
 			->from('rap')
 			->order_by('id','desc')->limit(1)
 			->get()->row_array();
@@ -10584,16 +10584,16 @@ class Reports extends CI_Controller {
 			$penyusutan_timbangan = (($penyusutan_timbangan['nilai_penyusutan'] / 48) / 25) / 7;
 
 			//M3
-			$berat_isi_boulder = 1/$harga_rap['berat_isi_boulder'];
-			$harsat_boulder = $harga_rap['price_boulder'] / $berat_isi_boulder;
-			$nilai_boulder = $harsat_boulder * $harga_rap['vol_boulder'];
+			$berat_isi_boulder = 1/$row['berat_isi_boulder'];
+			$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
+			$nilai_boulder = $harsat_boulder * $row['vol_boulder'];
 			//Ton
-			$vol_boulder = $harga_rap['vol_boulder'];
-			$nilai_boulder_ton = $vol_boulder * $harga_rap['price_boulder'];
+			$vol_boulder = $row['vol_boulder'];
+			$nilai_boulder_ton = $vol_boulder * $row['price_boulder'];
 			
 			//M3
-			$sc_a = $harga_rap['kapasitas_alat_sc'] * $harga_rap['efisiensi_alat_sc'];
-			$sc_b = $sc_a / $harga_rap['berat_isi_batu_pecah'];
+			$sc_a = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
+			$sc_b = $sc_a / $row['berat_isi_batu_pecah'];
 			$vol_sc = 1 / $sc_b;
 			$nilai_sc = $vol_sc * $penyusutan_sc;
 			//Ton
@@ -10615,12 +10615,12 @@ class Reports extends CI_Controller {
 			$nilai_gns_ton = $vol_gns_ton * $penyusutan_gns;
 
 			//M3
-			$wl_a = $harga_rap['kapasitas_alat_wl'] * $harga_rap['efisiensi_alat_wl'];
-			$wl_b = (60 / $harga_rap['waktu_siklus']) * $wl_a;
+			$wl_a = $row['kapasitas_alat_wl'] * $row['efisiensi_alat_wl'];
+			$wl_b = (60 / $row['waktu_siklus']) * $wl_a;
 			$vol_wl = 1 / $wl_b;
 			$nilai_wl = $vol_wl * $penyusutan_wl;
 			//Ton
-			$vol_wl_ton_rumus = (($wl_a / $harga_rap['waktu_siklus']) * 60) * $harga_rap['berat_isi_batu_pecah'];
+			$vol_wl_ton_rumus = (($wl_a / $row['waktu_siklus']) * 60) * $row['berat_isi_batu_pecah'];
 			$vol_wl_ton = 1 / $vol_wl_ton_rumus;
 			$nilai_wl_ton = $vol_wl_ton * $penyusutan_wl;
 
@@ -10632,23 +10632,23 @@ class Reports extends CI_Controller {
 			$nilai_timbangan_ton = $vol_timbangan_ton * $penyusutan_timbangan;
 
 			//Ton
-			$vol_bbm_solar_ton = $harga_rap['vol_bbm_solar'];
-			$nilai_bbm_solar_ton = $vol_bbm_solar_ton * $harga_rap['price_bbm_solar'];
+			$vol_bbm_solar_ton = $row['vol_bbm_solar'];
+			$nilai_bbm_solar_ton = $vol_bbm_solar_ton * $row['price_bbm_solar'];
 
 			//M3
-			$vol_bbm_solar =  $vol_bbm_solar_ton * $harga_rap['berat_isi_boulder'];
-			$nilai_bbm_solar = $vol_bbm_solar * $harga_rap['price_bbm_solar'];
+			$vol_bbm_solar =  $vol_bbm_solar_ton * $row['berat_isi_boulder'];
+			$nilai_bbm_solar = $vol_bbm_solar * $row['price_bbm_solar'];
 
-			$rumus_overhead = ($harga_rap['overhead'] / 25) / 8;
-			$rumus_overhead_1 = ($harga_rap['kapasitas_alat_sc'] * $harga_rap['efisiensi_alat_sc']) / $harga_rap['berat_isi_batu_pecah'] ;
+			$rumus_overhead = ($row['overhead'] / 25) / 8;
+			$rumus_overhead_1 = ($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc']) / $row['berat_isi_batu_pecah'] ;
 			//$overhead = $rumus_overhead / $rumus_overhead_1;
 
-			$rumus_overhead_ton = $harga_rap['kapasitas_alat_sc'] * $harga_rap['efisiensi_alat_sc'];
+			$rumus_overhead_ton = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
 			$overhead_ton = $rumus_overhead / $rumus_overhead_ton;
 			$overhead = $overhead_ton;
 
-			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $nilai_bbm_solar + $overhead;
-			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $nilai_bbm_solar_ton + $overhead_ton;
+			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $overhead;
+			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $overhead_ton;
 			//HARGA RAP
 
 			$nilai_rap = $total_volume * $total;
@@ -16607,6 +16607,185 @@ class Reports extends CI_Controller {
 			</tr>
 			
 	    </table>
+		<?php
+	}
+
+	public function new_rap_dashboard($arr_date)
+	{
+		$data = array();
+		
+		$arr_date = $this->input->post('filter_date');
+		$arr_filter_date = explode(' - ', $arr_date);
+		
+		$last_production = $this->db->select('date')->order_by('date','desc')->limit(1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH'))->row_array();
+		$last_production_2 = $this->db->select('date')->order_by('date','desc')->limit(1,1)->get_where('pmm_remaining_materials_cat',array('status'=>'PUBLISH','material_id'=>'4'))->row_array();
+
+		$date1 = date('Y-m-d', strtotime('+1 days', strtotime($last_production_2['date'])));
+		$date2 = date('Y-m-d', strtotime($last_production['date']));
+		$date1_filter = date('d F Y', strtotime($date1));
+		$date2_filter = date('d F Y', strtotime($date2));
+
+		if(count($arr_filter_date) == 2){
+			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
+			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
+			$date1_filter = date('d F Y',strtotime($arr_filter_date[0]));
+			$date2_filter = date('d F Y',strtotime($arr_filter_date[1]));
+		}
+		
+		?>
+		
+		<table class="table table-bordered" width="100%">
+
+
+		<?php
+
+		$row = $this->db->select('*')
+		->from('rap')
+		->order_by('id','desc')->limit(1)
+		->get()->row_array();
+
+		$penyusutan_tangki = $this->db->select('r.*, p.nama_produk')
+		->from('penyusutan r')
+		->join('produk p','r.produk = p.id','left')
+		->where("r.status = 'PUBLISH'")
+		->where("r.produk = '23'")
+		->order_by('p.nama_produk','asc')
+		->group_by("p.nama_produk")->limit(1)
+		->get()->row_array();
+		$penyusutan_tangki = (($penyusutan_tangki['nilai_penyusutan'] / 48) / 25) / 7;
+
+		$penyusutan_sc = $this->db->select('r.*, p.nama_produk')
+		->from('penyusutan r')
+		->join('produk p','r.produk = p.id','left')
+		->where("r.status = 'PUBLISH'")
+		->where("r.produk = '16'")
+		->order_by('p.nama_produk','asc')
+		->group_by("p.nama_produk")->limit(1)
+		->get()->row_array();
+		$penyusutan_sc = (($penyusutan_sc['nilai_penyusutan'] / 48) / 25) / 7;
+
+		$penyusutan_gns = $this->db->select('r.*, p.nama_produk')
+		->from('penyusutan r')
+		->join('produk p','r.produk = p.id','left')
+		->where("r.status = 'PUBLISH'")
+		->where("r.produk = '19'")
+		->order_by('p.nama_produk','asc')
+		->group_by("p.nama_produk")->limit(1)
+		->get()->row_array();
+		$penyusutan_gns = (($penyusutan_gns['nilai_penyusutan'] / 48) / 25) / 7;
+
+		$penyusutan_wl = $this->db->select('r.*, p.nama_produk')
+		->from('penyusutan r')
+		->join('produk p','r.produk = p.id','left')
+		->where("r.status = 'PUBLISH'")
+		->where("r.produk = '17'")
+		->order_by('p.nama_produk','asc')
+		->group_by("p.nama_produk")->limit(1)
+		->get()->row_array();
+		$penyusutan_wl = (($penyusutan_wl['nilai_penyusutan'] / 48) / 25) / 7;
+
+		$penyusutan_timbangan = $this->db->select('r.*, p.nama_produk')
+		->from('penyusutan r')
+		->join('produk p','r.produk = p.id','left')
+		->where("r.status = 'PUBLISH'")
+		->where("r.produk = '39'")
+		->order_by('p.nama_produk','asc')
+		->group_by("p.nama_produk")->limit(1)
+		->get()->row_array();
+		$penyusutan_timbangan = (($penyusutan_timbangan['nilai_penyusutan'] / 48) / 25) / 7;
+
+		//M3
+		$berat_isi_boulder = 1/$row['berat_isi_boulder'];
+		$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
+		$nilai_boulder = $harsat_boulder * $row['vol_boulder'];
+		//Ton
+		$vol_boulder = $row['vol_boulder'];
+		$nilai_boulder_ton = $vol_boulder * $row['price_boulder'];
+		
+		//M3
+		$sc_a = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
+		$sc_b = $sc_a / $row['berat_isi_batu_pecah'];
+		$vol_sc = 1 / $sc_b;
+		$nilai_sc = $vol_sc * $penyusutan_sc;
+		//Ton
+		$vol_sc_ton = 1 / $sc_a;
+		$nilai_sc_ton = $vol_sc_ton * $penyusutan_sc;
+		
+		//M3
+		$vol_tangki = $vol_sc;
+		$nilai_tangki = $vol_tangki * $penyusutan_tangki;
+		//Ton
+		$vol_tangki_ton = $vol_sc_ton;
+		$nilai_tangki_ton = $vol_tangki_ton * $penyusutan_tangki;
+		
+		//M3
+		$vol_gns = $vol_sc;
+		$nilai_gns = $vol_gns * $penyusutan_gns;
+		//Ton
+		$vol_gns_ton = $vol_sc_ton;
+		$nilai_gns_ton = $vol_gns_ton * $penyusutan_gns;
+
+		//M3
+		$wl_a = $row['kapasitas_alat_wl'] * $row['efisiensi_alat_wl'];
+		$wl_b = (60 / $row['waktu_siklus']) * $wl_a;
+		$vol_wl = 1 / $wl_b;
+		$nilai_wl = $vol_wl * $penyusutan_wl;
+		//Ton
+		$vol_wl_ton_rumus = (($wl_a / $row['waktu_siklus']) * 60) * $row['berat_isi_batu_pecah'];
+		$vol_wl_ton = 1 / $vol_wl_ton_rumus;
+		$nilai_wl_ton = $vol_wl_ton * $penyusutan_wl;
+
+		//M3
+		$vol_timbangan =  $vol_sc;
+		$nilai_timbangan = $vol_timbangan * $penyusutan_timbangan;
+		//Ton
+		$vol_timbangan_ton = $vol_sc_ton;
+		$nilai_timbangan_ton = $vol_timbangan_ton * $penyusutan_timbangan;
+
+		//Ton
+		$vol_bbm_solar_ton = $row['vol_bbm_solar'];
+		$nilai_bbm_solar_ton = $vol_bbm_solar_ton * $row['price_bbm_solar'];
+
+		//M3
+		$vol_bbm_solar =  $vol_bbm_solar_ton * $row['berat_isi_boulder'];
+		$nilai_bbm_solar = $vol_bbm_solar * $row['price_bbm_solar'];
+
+		$rumus_overhead = ($row['overhead'] / 25) / 8;
+		$rumus_overhead_1 = ($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc']) / $row['berat_isi_batu_pecah'] ;
+		//$overhead = $rumus_overhead / $rumus_overhead_1;
+
+		$rumus_overhead_ton = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
+		$overhead_ton = $rumus_overhead / $rumus_overhead_ton;
+		$overhead = $overhead_ton;
+
+		$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $overhead;
+		$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $overhead_ton;
+		?>
+
+		<tr class="table-active">
+			<th class="text-center" colspan="4" style='background-color:#5B5B5B; color:white; text-transform:uppercase;'>RAP</th>
+		</tr>
+		<tr>
+			<th width="5%" class="text-center" style='background-color:rgb(188,188,188); color:black'>NO.</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>URAIAN</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA RAP (M3)</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA RAP (TON)</th>
+		</tr>
+		<tr>
+			<th class="text-center">1.</th>
+			<th class="text-left">Harga RAP</th>
+			<th class="text-right"><?php echo number_format($total,0,',','.');?></th>
+			<th class="text-right"><?php echo number_format($total_ton,0,',','.');?></th>
+		</tr>
+		<tr>
+			<th class="text-center">2.</th>
+			<th class="text-left">Harga RAP + LABA (<?php echo number_format($row['laba'],0,',','.');?>%)</th>
+			<th class="text-right"><?php echo number_format(($total + ($total * $row['laba']) / 100),0,',','.');?></th>
+			<th class="text-right"><?php echo number_format(($total_ton + ($total_ton * $row['laba']) / 100),0,',','.');?></th>
+		</tr>
+	    </table>
+		
 		<?php
 	}
 	
