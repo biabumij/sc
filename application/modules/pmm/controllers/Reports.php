@@ -2582,7 +2582,7 @@ class Reports extends CI_Controller {
 		?>
 
 		<tr class="table-active">
-			<th class="text-center" colspan="6" style='background-color:#e69500; color:white; text-transform:uppercase;'>
+			<th class="text-center" colspan="6" style='background-color:#5B5B5B; color:white; text-transform:uppercase;'>
 			Nilai Persediaan Bahan Baku
 			(<?php
 			$search = array(
@@ -7339,7 +7339,7 @@ class Reports extends CI_Controller {
 		?>
 
 		<tr class="table-active">
-			<th class="text-center" colspan="6" style='background-color:#e69500; color:white; text-transform:uppercase;'>
+			<th class="text-center" colspan="6" style='background-color:#5B5B5B; color:white; text-transform:uppercase;'>
 				Nilai Persediaan Bahan Jadi
 				(<?php
 				$search = array(
