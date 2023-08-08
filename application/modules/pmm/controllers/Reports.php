@@ -16583,11 +16583,6 @@ class Reports extends CI_Controller {
 		?>
 		
 		<table class="table table-bordered" width="100%">
-		<style>
-			body {
-			font-size : 10px;
-			}
-		</style>
 
 		<?php
 		$row = $this->db->select('*')
