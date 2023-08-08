@@ -64,7 +64,7 @@
                                 <table class="table table-striped table-bordered" width="100%">
                                     <tr>
                                         <th width="20%" align="left">Nomor Invoice</th>
-                                        <th width="80%" align="left"><label class="label label-info" style="font-size:14px;"><?= $penagihan["tanggal_invoice"]; ?></label></th>
+                                        <th width="80%" align="left"><label class="label label-info" style="font-size:14px;"><?= $penagihan["nomor_invoice"]; ?></label></th>
                                     </tr>
                                     <tr>
                                         <th>Tanggal Invoice</th>
