@@ -67,9 +67,10 @@
             <div class="content-body">
                 <div class="row animated fadeInUp">
 
-                    <?php include_once("script_dashboard.php"); ?>
+                    <?php include_once("script_dashboard_new.php"); ?>
 
                     <div class="col-sm-12">
+                    <?php echo number_format($total_penjualan_all_aku,0,',','.');?>
                         <figure class="highcharts-figure">
                             <div id="container_laba_rugi"></div>
                             
@@ -92,8 +93,7 @@
                                                 <i class="fa fa-spinner fa-spin"></i>
                                             </div>
                                         </div>				
-                                        <div class="table-responsive" id="box-new-rap">													
-                                        
+                                        <div class="table-responsive" id="box-new-rap">
         
                                         </div>
                                     </div>
@@ -380,7 +380,7 @@
                 chart = new Highcharts.Chart({
                     chart: {
                         renderTo: 'container_laba_rugi',
-                        type: 'line',
+                        type: 'spline',
                         marginRight: 130,
                         marginBottom: 75,
                         backgroundColor: {
@@ -421,7 +421,7 @@
                             }
                         },
                         //categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi <br />2021-2023']
-                        categories: ['Agustus 23','September 23','Oktober 23','November 23','Desember 23','Akumulasi <br />2021-2023']
+                        categories: ['Juli 23','Agustus 23','September 23','Oktober 23','November 23','Desember 23','Akumulasi <br />2021-2023']
                     },
                     yAxis: {
                         title: {
@@ -447,9 +447,9 @@
                             },
                             format: '{value} %'
                         },
-                        min: -10000,
-                        max: 1000,
-                        tickInterval: 1000,
+                        min: -120,
+                        max: 120,
+                        tickInterval: 10,
                     },
                     tooltip: { 
                     //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
@@ -488,7 +488,7 @@
             
                     series: [{  
                         name: '0 %',  
-                        data: [0,0,0,0,0,0],
+                        data: [0,0,0,0,0,0,0],
 
                         color: '#000000',
                         fontWeight: 'bold',
@@ -497,8 +497,8 @@
                     },
                     {  
                         name: 'Laba Rugi %',
-                        //data: [ <?php echo json_encode($persentase_jan_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_feb_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mar_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_apr_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_mei_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jun_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_jul_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_agu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_sep_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_okt_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_nov_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_des_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_aku_fix, JSON_NUMERIC_CHECK); ?>],
-                        data: [ <?php echo json_encode($persentase_agu_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_sep_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_okt_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_nov_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_des_fix, JSON_NUMERIC_CHECK); ?>,<?php echo json_encode($persentase_aku_fix, JSON_NUMERIC_CHECK); ?>],
+                        //data: [ <?php echo number_format($persentase_jan_fix,0,',','.'); ?>,<?php echo number_format($persentase_feb_fix,0,',','.'); ?>,<?php echo number_format($persentase_mar_fix,0,',','.'); ?>,<?php echo number_format($persentase_apr_fix,0,',','.'); ?>,<?php echo number_format($persentase_mei_fix,0,',','.'); ?>,<?php echo number_format($persentase_jun_fix,0,',','.'); ?>,<?php echo number_format($persentase_jul_fix,0,',','.'); ?>,<?php echo number_format($persentase_agu_fix,0,',','.'); ?>,<?php echo number_format($persentase_sep_fix,0,',','.'); ?>,<?php echo number_format($persentase_okt_fix,0,',','.'); ?>,<?php echo number_format($persentase_nov_fix,0,',','.'); ?>,<?php echo number_format($persentase_des_fix,0,',','.'); ?>,<?php echo number_format($persentase_aku_fix,0,',','.'); ?>],
+                        data: [ <?php echo number_format($persentase_jul_fix,0,',','.');?>,<?php echo number_format($persentase_agu_fix,0,',','.'); ?>,<?php echo number_format($persentase_sep_fix,0,',','.'); ?>,<?php echo number_format($persentase_okt_fix,0,',','.'); ?>,<?php echo number_format($persentase_nov_fix,0,',','.'); ?>,<?php echo number_format($persentase_des_fix,0,',','.'); ?>,<?php echo number_format($persentase_aku_fix,0,',','.'); ?>],
 
                         color: '#FF0000',
                         fontWeight: 'bold',

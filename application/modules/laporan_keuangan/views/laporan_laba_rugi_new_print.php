@@ -89,7 +89,7 @@
 		$date2 = '';
 
 		if(count($arr_filter_date) == 2){
-			$date3 	= date('2022-01-01',strtotime($date3));
+			$date3 	= date('2021-01-01',strtotime($date3));
 			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
 			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));
@@ -141,7 +141,7 @@
 			$total_penjualan_all = $total_penjualan + $total_penjualan_limbah;
 
 			//HARGA RAP
-			$harga_rap = $this->db->select('*')
+			$row = $this->db->select('*')
 			->from('rap')
 			->order_by('id','desc')->limit(1)
 			->get()->row_array();
@@ -197,16 +197,16 @@
 			$penyusutan_timbangan = (($penyusutan_timbangan['nilai_penyusutan'] / 48) / 25) / 7;
 
 			//M3
-			$berat_isi_boulder = 1/$harga_rap['berat_isi_boulder'];
-			$harsat_boulder = $harga_rap['price_boulder'] / $berat_isi_boulder;
-			$nilai_boulder = $harsat_boulder * $harga_rap['vol_boulder'];
+			$berat_isi_boulder = 1/$row['berat_isi_boulder'];
+			$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
+			$nilai_boulder = $harsat_boulder * $row['vol_boulder'];
 			//Ton
-			$vol_boulder = $harga_rap['vol_boulder'];
-			$nilai_boulder_ton = $vol_boulder * $harga_rap['price_boulder'];
+			$vol_boulder = $row['vol_boulder'];
+			$nilai_boulder_ton = $vol_boulder * $row['price_boulder'];
 			
 			//M3
-			$sc_a = $harga_rap['kapasitas_alat_sc'] * $harga_rap['efisiensi_alat_sc'];
-			$sc_b = $sc_a / $harga_rap['berat_isi_batu_pecah'];
+			$sc_a = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
+			$sc_b = $sc_a / $row['berat_isi_batu_pecah'];
 			$vol_sc = 1 / $sc_b;
 			$nilai_sc = $vol_sc * $penyusutan_sc;
 			//Ton
@@ -228,12 +228,12 @@
 			$nilai_gns_ton = $vol_gns_ton * $penyusutan_gns;
 
 			//M3
-			$wl_a = $harga_rap['kapasitas_alat_wl'] * $harga_rap['efisiensi_alat_wl'];
-			$wl_b = (60 / $harga_rap['waktu_siklus']) * $wl_a;
+			$wl_a = $row['kapasitas_alat_wl'] * $row['efisiensi_alat_wl'];
+			$wl_b = (60 / $row['waktu_siklus']) * $wl_a;
 			$vol_wl = 1 / $wl_b;
 			$nilai_wl = $vol_wl * $penyusutan_wl;
 			//Ton
-			$vol_wl_ton_rumus = (($wl_a / $harga_rap['waktu_siklus']) * 60) * $harga_rap['berat_isi_batu_pecah'];
+			$vol_wl_ton_rumus = (($wl_a / $row['waktu_siklus']) * 60) * $row['berat_isi_batu_pecah'];
 			$vol_wl_ton = 1 / $vol_wl_ton_rumus;
 			$nilai_wl_ton = $vol_wl_ton * $penyusutan_wl;
 
@@ -245,23 +245,23 @@
 			$nilai_timbangan_ton = $vol_timbangan_ton * $penyusutan_timbangan;
 
 			//Ton
-			$vol_bbm_solar_ton = $harga_rap['vol_bbm_solar'];
-			$nilai_bbm_solar_ton = $vol_bbm_solar_ton * $harga_rap['price_bbm_solar'];
+			$vol_bbm_solar_ton = $row['vol_bbm_solar'];
+			$nilai_bbm_solar_ton = $vol_bbm_solar_ton * $row['price_bbm_solar'];
 
 			//M3
-			$vol_bbm_solar =  $vol_bbm_solar_ton * $harga_rap['berat_isi_boulder'];
-			$nilai_bbm_solar = $vol_bbm_solar * $harga_rap['price_bbm_solar'];
+			$vol_bbm_solar =  $vol_bbm_solar_ton * $row['berat_isi_boulder'];
+			$nilai_bbm_solar = $vol_bbm_solar * $row['price_bbm_solar'];
 
-			$rumus_overhead = ($harga_rap['overhead'] / 25) / 8;
-			$rumus_overhead_1 = ($harga_rap['kapasitas_alat_sc'] * $harga_rap['efisiensi_alat_sc']) / $harga_rap['berat_isi_batu_pecah'] ;
+			$rumus_overhead = ($row['overhead'] / 25) / 8;
+			$rumus_overhead_1 = ($row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc']) / $row['berat_isi_batu_pecah'] ;
 			//$overhead = $rumus_overhead / $rumus_overhead_1;
 
-			$rumus_overhead_ton = $harga_rap['kapasitas_alat_sc'] * $harga_rap['efisiensi_alat_sc'];
+			$rumus_overhead_ton = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
 			$overhead_ton = $rumus_overhead / $rumus_overhead_ton;
 			$overhead = $overhead_ton;
 
-			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $nilai_bbm_solar + $overhead;
-			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $nilai_bbm_solar_ton + $overhead_ton;
+			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $overhead;
+			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $overhead_ton;
 			//HARGA RAP
 
 			$nilai_rap = $total_volume * $total;
@@ -321,10 +321,12 @@
 			$total_harga_pokok_pendapatan = $nilai_rap;
 			$laba_kotor = $total_penjualan_all - $total_harga_pokok_pendapatan;
 			$laba_usaha = $laba_kotor - ($biaya_umum_administratif + $biaya_lainnya);
-			$nilai_persediaan_bahan_baku = $akumulasi_bahan_baku['total_akhir'];
-			$nilai_persediaan_barang_jadi = $akumulasi_bahan_jadi['total_akhir'];
-			$total = $laba_usaha + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
-			$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
+			//$nilai_persediaan_bahan_baku = $akumulasi_bahan_baku['total_akhir'];
+			//$nilai_persediaan_barang_jadi = $akumulasi_bahan_jadi['total_akhir'];
+			//$total = $laba_usaha + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
+			//$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
+			$total = $laba_usaha;
+			$persentase = ($total!=0)?($total_penjualan_all / $total)  * 100:0;
 
 			//AKUMULASI 2
 			$penjualan_limbah_2 = $this->db->select('SUM(pp.display_price) as price')
@@ -421,10 +423,12 @@
 			$total_harga_pokok_pendapatan_2 = $nilai_rap_2;
 			$laba_kotor_2 = $total_penjualan_all_2 - $total_harga_pokok_pendapatan_2;
 			$laba_usaha_2 = $laba_kotor_2 - ($biaya_umum_administratif_2 + $biaya_lainnya_2);
-			$nilai_persediaan_bahan_baku_2 = $akumulasi_bahan_baku_2['total_akhir'];
-			$nilai_persediaan_barang_jadi_2 = $akumulasi_bahan_jadi_2['total_akhir'];
-			$total_2 = $laba_usaha_2 + $nilai_persediaan_bahan_baku_2 + $nilai_persediaan_barang_jadi_2;
-			$persentase_2 = ($total_penjualan_all_2!=0)?($total_2 / $total_penjualan_all_2)  * 100:0;
+			//$nilai_persediaan_bahan_baku_2 = $akumulasi_bahan_baku_2['total_akhir'];
+			//$nilai_persediaan_barang_jadi_2 = $akumulasi_bahan_jadi_2['total_akhir'];
+			//$total_2 = $laba_usaha_2 + $nilai_persediaan_bahan_baku_2 + $nilai_persediaan_barang_jadi_2;
+			//$persentase_2 = ($total_penjualan_all_2!=0)?($total_2 / $total_penjualan_all_2)  * 100:0;
+			$total_2 = $laba_usaha_2;
+			$persentase_2 = ($total_2!=0)?($total_penjualan_all_2 / $total_2)  * 100:0;
 	        ?>
 
 			<table width="98%" border="0" cellpadding="3">

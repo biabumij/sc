@@ -10446,7 +10446,7 @@ class Reports extends CI_Controller {
 		$date2 = '';
 
 		if(count($arr_filter_date) == 2){
-			$date3 	= date('2022-01-01',strtotime($date3));
+			$date3 	= date('2021-01-01',strtotime($date3));
 			$date1 	= date('Y-m-d',strtotime($arr_filter_date[0]));
 			$date2 	= date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d/m/Y',strtotime($arr_filter_date[0])).' - '.date('d/m/Y',strtotime($arr_filter_date[1]));
@@ -10708,10 +10708,12 @@ class Reports extends CI_Controller {
 			$total_harga_pokok_pendapatan = $nilai_rap;
 			$laba_kotor = $total_penjualan_all - $total_harga_pokok_pendapatan;
 			$laba_usaha = $laba_kotor - ($biaya_umum_administratif + $biaya_lainnya);
-			$nilai_persediaan_bahan_baku = $akumulasi_bahan_baku['total_akhir'];
-			$nilai_persediaan_barang_jadi = $akumulasi_bahan_jadi['total_akhir'];
-			$total = $laba_usaha + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
-			$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
+			//$nilai_persediaan_bahan_baku = $akumulasi_bahan_baku['total_akhir'];
+			//$nilai_persediaan_barang_jadi = $akumulasi_bahan_jadi['total_akhir'];
+			//$total = $laba_usaha + $nilai_persediaan_bahan_baku + $nilai_persediaan_barang_jadi;
+			//$persentase = ($total_penjualan_all!=0)?($total / $total_penjualan_all)  * 100:0;
+			$total = $laba_usaha;
+			$persentase = ($total!=0)?($total_penjualan_all / $total)  * 100:0;
 
 			//AKUMULASI 2
 			$penjualan_limbah_2 = $this->db->select('SUM(pp.display_price) as price')
@@ -10808,10 +10810,12 @@ class Reports extends CI_Controller {
 			$total_harga_pokok_pendapatan_2 = $nilai_rap_2;
 			$laba_kotor_2 = $total_penjualan_all_2 - $total_harga_pokok_pendapatan_2;
 			$laba_usaha_2 = $laba_kotor_2 - ($biaya_umum_administratif_2 + $biaya_lainnya_2);
-			$nilai_persediaan_bahan_baku_2 = $akumulasi_bahan_baku_2['total_akhir'];
-			$nilai_persediaan_barang_jadi_2 = $akumulasi_bahan_jadi_2['total_akhir'];
-			$total_2 = $laba_usaha_2 + $nilai_persediaan_bahan_baku_2 + $nilai_persediaan_barang_jadi_2;
-			$persentase_2 = ($total_penjualan_all_2!=0)?($total_2 / $total_penjualan_all_2)  * 100:0;
+			//$nilai_persediaan_bahan_baku_2 = $akumulasi_bahan_baku_2['total_akhir'];
+			//$nilai_persediaan_barang_jadi_2 = $akumulasi_bahan_jadi_2['total_akhir'];
+			//$total_2 = $laba_usaha_2 + $nilai_persediaan_bahan_baku_2 + $nilai_persediaan_barang_jadi_2;
+			//$persentase_2 = ($total_penjualan_all_2!=0)?($total_2 / $total_penjualan_all_2)  * 100:0;
+			$total_2 = $laba_usaha_2;
+			$persentase_2 = ($total_2!=0)?($total_penjualan_all_2 / $total_2)  * 100:0;
 	        ?>
 
 			<tr class="table-active">
@@ -11030,63 +11034,6 @@ class Reports extends CI_Controller {
 								</th>
 								<th class="text-right" width="90%">
 									<span><?php echo $laba_usaha_2 < 0 ? "(".number_format(-$laba_usaha_2,0,',','.').")" : number_format($laba_usaha_2,0,',','.');?></span>
-								</th>
-							</tr>
-					</table>
-				</th>
-	        </tr>
-			<tr class="table-active3">
-				<th colspan="5"></th>
-			</tr>
-			<tr class="table-active">
-	            <th colspan="3" class="text-left">Persediaan Bahan Baku</th>
-	            <th class="text-right">
-					<table width="100%" border="0" cellpadding="0">
-						<tr>
-								<th class="text-left" width="10%">
-									<span>Rp.</span>
-								</th>
-								<th class="text-right" width="90%">
-									<span><?php echo number_format($nilai_persediaan_bahan_baku,0,',','.');?></span>
-								</th>
-							</tr>
-					</table>
-				</th>
-				<th class="text-right">
-					<table width="100%" border="0" cellpadding="0">
-						<tr>
-								<th class="text-left" width="10%">
-									<span>Rp.</span>
-								</th>
-								<th class="text-right" width="90%">
-									<span><?php echo number_format($nilai_persediaan_bahan_baku_2,0,',','.');?></span>
-								</th>
-							</tr>
-					</table>
-				</th>
-	        </tr>
-			<tr class="table-active">
-	            <th colspan="3" class="text-left">Persediaan Barang Jadi</th>
-	            <th class="text-right">
-					<table width="100%" border="0" cellpadding="0">
-						<tr>
-								<th class="text-left" width="10%">
-									<span>Rp.</span>
-								</th>
-								<th class="text-right" width="90%">
-									<span><?php echo number_format($nilai_persediaan_barang_jadi,0,',','.');?></span>
-								</th>
-							</tr>
-					</table>
-				</th>
-				<th class="text-right">
-					<table width="100%" border="0" cellpadding="0">
-						<tr>
-								<th class="text-left" width="10%">
-									<span>Rp.</span>
-								</th>
-								<th class="text-right" width="90%">
-									<span><?php echo number_format($nilai_persediaan_barang_jadi_2,0,',','.');?></span>
 								</th>
 							</tr>
 					</table>
@@ -16636,10 +16583,13 @@ class Reports extends CI_Controller {
 		?>
 		
 		<table class="table table-bordered" width="100%">
-
+		<style>
+			body {
+			font-size : 10px;
+			}
+		</style>
 
 		<?php
-
 		$row = $this->db->select('*')
 		->from('rap')
 		->order_by('id','desc')->limit(1)
@@ -16769,8 +16719,8 @@ class Reports extends CI_Controller {
 		<tr>
 			<th width="5%" class="text-center" style='background-color:rgb(188,188,188); color:black'>NO.</th>
 			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>URAIAN</th>
-			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA SATUAN PEKERJAAN (M3)</th>
-			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>HARGA SATUAN PEKERJAAN (TON)</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>(M3)</th>
+			<th class="text-center" style='background-color:rgb(188,188,188); color:black'>(TON)</th>
 		</tr>
 		<tr>
 			<th class="text-center">1.</th>
