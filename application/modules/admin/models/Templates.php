@@ -52,7 +52,7 @@ class Templates extends CI_Model {
 			<div class="logo">
 	                <a href="" class="on-click" style="color: #fff;font-weight: bold;display: block;text-align: center;font-size: 24px;padding-top: 15px;">
 	                    <!-- <img alt="logo" src="<?php echo base_url().$this->m_themes->GetThemes('site_logo');?>" class="img-responsive" />-->
-	                    <marquee behavior="scroll" direction="left" scrollamount="6" width="350px">SELAMAT DATANG DI PT BIA BUMI JAYENDRA
+	                    <marquee behavior="scroll" direction="left"  scrollamount="10" width="880px">SELAMAT DATANG DI PT BIA BUMI JAYENDRA
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIVISI STONE CRUSHER
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
