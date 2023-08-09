@@ -52,9 +52,9 @@
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li role="presentation" class="active"><a href="#hpp_bahan_baku" aria-controls="hpp_bahan_baku" role="tab" data-toggle="tab">HPP Pergerakan Bahan Baku</a>
-                                    <li role="presentation"><a href="#hpp" aria-controls="hpp" role="tab" data-toggle="tab">HPP Pergerakan Bahan Jadi</a></li>
+                                    <!--<li role="presentation"><a href="#hpp" aria-controls="hpp" role="tab" data-toggle="tab">HPP Pergerakan Bahan Jadi</a></li>-->
                                     <li role="presentation"><a href="#akumulasi_bahan_baku" aria-controls="akumulasi_bahan_baku" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Baku</a>
-                                    <li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Jadi</a>
+                                    <!--<li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab">Akumulasi Pergerakan Bahan Jadi</a>-->
                                 </ul>
 
                                 <div class="tab-content">
