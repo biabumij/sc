@@ -49,15 +49,10 @@ class Templates extends CI_Model {
     	?>
     	<div class="page-header">
 	        <div class="leftside-header">
-			<div class="logo">
-	                <a href="" class="on-click" style="color: #fff;font-weight: bold;display: block;text-align: center;font-size: 24px;padding-top: 15px;">
-	                    <!-- <img alt="logo" src="<?php echo base_url().$this->m_themes->GetThemes('site_logo');?>" class="img-responsive" />-->
-	                    <marquee behavior="scroll" direction="left"  scrollamount="10" width="880px">SELAMAT DATANG DI PT BIA BUMI JAYENDRA
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIVISI STONE CRUSHER
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DO SOMETHING BIG TODAY</marquee></marquee>
-	                </a>
+				<div class="logo">
+	                <a href="" class="on-click" style="color:#ffffff; font-weight:bold; display:block; text-align:left; font-size:18px; padding-top:15px; width:880px;">
+					<?php echo $this->m_themes->GetThemes('site_name');?> - DIVISI STONE CRUSHER
+					</a>
 	            </div>
 	            <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open" data-target="html">
 	                <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
