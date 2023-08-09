@@ -446,8 +446,8 @@
                             },
                             format: '{value} %'
                         },
-                        min: -120,
-                        max: 120,
+                        min: -100,
+                        max: 100,
                         tickInterval: 10,
                     },
                     tooltip: { 
