@@ -155,7 +155,7 @@
 						</tr>
 						<?php
 							$create = $this->db->select('*')
-							->from('akumulasi')
+							->from('akumulasi_bahan_baku')
 							->where("(date_akumulasi = '$end_date')")
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
