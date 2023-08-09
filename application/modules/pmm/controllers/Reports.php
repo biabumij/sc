@@ -11086,7 +11086,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo $persentase < 0 ? "(".number_format(-$persentase,0,',','.').")" : number_format($persentase,0,',','.');?> %</span>
+									<span><?php echo $persentase < 0 ? "(".number_format(-$persentase,2,',','.').")" : number_format($persentase,0,',','.');?> %</span>
 								</th>
 							</tr>
 					</table>
@@ -11098,7 +11098,7 @@ class Reports extends CI_Controller {
 									<span>Rp.</span>
 								</th>
 								<th class="text-right" width="90%">
-									<span><?php echo $persentase_2 < 0 ? "(".number_format(-$persentase_2,0,',','.').")" : number_format($persentase_2,0,',','.');?> %</span>
+									<span><?php echo $persentase_2 < 0 ? "(".number_format(-$persentase_2,2,',','.').")" : number_format($persentase_2,0,',','.');?> %</span>
 								</th>
 							</tr>
 					</table>
