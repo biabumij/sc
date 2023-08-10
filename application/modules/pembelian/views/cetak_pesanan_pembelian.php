@@ -192,7 +192,7 @@
                 <th align="right"><?= number_format($total,0,',','.'); ?></th>
             </tr>
 		</table>
-		<p style="font-size:7px; line-height:1;"><?= $row["memo"] ?></p>
+		<p style="font-size:7px; line-height:1.2;"><?= $row["memo"] ?></p>
 		<!--<table>
 			<?php
 			$memo = $this->db->select('memo')
