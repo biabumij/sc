@@ -49,9 +49,20 @@ class Templates extends CI_Model {
     	?>
     	<div class="page-header">
 	        <div class="leftside-header">
-				<div class="logo">
-	                <a href="" class="on-click" style="color:#ffffff; font-weight:bold; display:block; text-align:left; font-size:18px; padding-top:15px; width:880px;">
-					<?php echo $this->m_themes->GetThemes('site_name');?> - DIVISI STONE CRUSHER
+				<?php
+				function tglIndonesia($str){
+					$tr   = trim($str);
+					$str    = str_replace(array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'), array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'), $tr);
+					return $str;
+				}
+				?>
+	            <div class="logo">
+	                <a href="" class="on-click" style="color:#ffffff; font-weight:bold; display:block; text-align:left; font-size:18px; padding-top:1px; width:880px;">
+					<?php echo $this->m_themes->GetThemes('site_name');?> - DIVISI STONE CRUSHER <br />
+					<div style="font-size:12px;">
+						<?php echo tglIndonesia(date('D'));?>, <?php echo tglIndonesia(date('d F Y'));?>
+						<iframe src="https://free.timeanddate.com/clock/i8z2m94m/n108/tlid38/fs12/fcfff/tct/pct/th1/ta1" frameborder="0" width="75" height="12" allowtransparency="true"></iframe>
+					</div>
 					</a>
 	            </div>
 	            <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open" data-target="html">
