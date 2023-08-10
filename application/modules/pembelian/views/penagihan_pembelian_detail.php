@@ -410,7 +410,7 @@
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
                                     <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')" style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>
-                                    <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-warning" style="width:15%; font-weight:bold;"><i class="fa fa-warning"></i> Belum Lunas</a>
+                                    <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-warning" style="width:15%; font-weight:bold;"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
                                     <?php
                                     }
                                 }
