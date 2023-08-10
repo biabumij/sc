@@ -95,7 +95,7 @@
                 ?>
                <tr class="">
                    <td><?php echo $no;?></td>
-                   <td><?= $dt["product"] ?></td>
+                   <td align="left"><?= $dt["product"] ?></td>
                    <td><?= $dt["qty"] ?></td>
 	               <td><?= $measure; ?></td>
 				   <td align="center"><?= number_format($dt['price'],0,',','.'); ?></td>
