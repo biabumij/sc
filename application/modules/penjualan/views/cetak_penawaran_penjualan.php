@@ -42,7 +42,7 @@
 				<th width="2%">:</th>
 				<th width="50%" align="left"><?php echo $row['nomor'];?></th>
 				<td align="left" width="28%">
-					Jakarta, <?= convertDateDBtoIndo($row["tanggal"]); ?>
+					Tulungagung, <?= convertDateDBtoIndo($row["tanggal"]); ?>
 				</td>
 			</tr>
 			<tr>
