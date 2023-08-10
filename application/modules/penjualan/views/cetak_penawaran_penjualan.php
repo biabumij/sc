@@ -70,7 +70,7 @@
 		</table>
 		<br />
         <p><b>A. Mutu Harga dan Satuan</b></p>
-		<table class="minimalistBlack" cellpadding="3" width="98%">
+		<table class="minimalistBlack" cellpadding="5" width="98%">
 			<tr class="table-active">
                 <th width="5%">NO</th>
                 <th width="35%">JENIS MATERIAL</th>
