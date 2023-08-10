@@ -208,7 +208,7 @@ class Purchase_order extends CI_Controller {
         $pdf->SetFont('helvetica','',7); 
         $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
 		$pdf->setHtmlVSpace($tagvs);
-		$pdf->SetPrintFooter(false);
+		$pdf->SetPrintFooter(true);
 		$pdf->AddPage('P');
 
         $id = $this->uri->segment(4);
