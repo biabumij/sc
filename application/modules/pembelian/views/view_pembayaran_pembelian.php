@@ -173,7 +173,7 @@
                                                     <td width="10%"><a href="<?= base_url('pembelian/sunting_pembayaran_pembelian/' . $bayar["id"]) ?>" class="btn btn-warning" style="width:100%; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a></td>
                                                     <td width="10%">
                                                     <?php
-                                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 19){
+                                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
                                                     ?>
                                                     <a href="<?= base_url('pembelian/cetak_pembayaran_penagihan_pembelian/' . $bayar["id"]) ?>" target="_blank" class="btn btn-default" style="width:100%; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a></td>
                                                     <?php
@@ -181,7 +181,7 @@
                                                     ?>
                                                     <td width="10%">
                                                     <?php
-                                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 19){
+                                                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
                                                     ?>
                                                     <button type="button" id="tombol_hapus" class="btn btn-danger"style="width:100%; font-weight:bold;"><i class="fa fa-times"></i> Hapus</button>
                                                     <?php
