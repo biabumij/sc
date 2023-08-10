@@ -1551,6 +1551,11 @@ class Produksi extends Secure_Controller {
 			'total_nilai_keluar_2' => $total_nilai_keluar_2,
 			'total_nilai_akhir' => $total_nilai_akhir,
 			'bpp' => $bpp,
+			'unit_head' => 39,
+			'logistik' => 27,
+			'admin' => 27,
+			'keu_1' => 37,
+			'keu_2' => 36,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
@@ -1648,11 +1653,6 @@ class Produksi extends Secure_Controller {
 			'total_nilai_keluar' => $total_nilai_keluar,
 			'total_nilai_akhir' => $total_nilai_akhir,
 			'memo' => $memo,
-			'unit_head' => 0,
-			'logistik' => 27,
-			'admin' => 27,
-			'keu_1' => 37,
-			'keu_2' => 36,
 			'status' => 'PUBLISH',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
