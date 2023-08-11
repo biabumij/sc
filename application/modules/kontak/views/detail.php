@@ -182,8 +182,8 @@
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                        <a class="btn btn-danger" style="width:15%; font-weight:bold;" onclick="DeleteData('<?= site_url('kontak/hapus/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <a  href="<?= base_url('kontak/form/'.$row['id']) ?>" class="btn btn-primary" style="width:15%; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
+                                        <a class="btn btn-danger" style="width:15%; font-weight:bold;" onclick="DeleteData('<?= site_url('kontak/hapus/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <?php
                                     }
                                     ?>
