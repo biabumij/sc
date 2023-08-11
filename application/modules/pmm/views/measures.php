@@ -32,11 +32,11 @@
                                 <div class="col-sm-2">
                                     <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Satuan</a>
                                 </div>
-                                <form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/measures_print');?>">
-                                    <!--<div class="col-sm-2">
+                                <!--<form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/measures_print');?>">
+                                    <div class="col-sm-2">
                                         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
-                                    </div>-->
-                                </form>
+                                    </div>
+                                </form>-->
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover table-center" id="guest-table">
