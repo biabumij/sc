@@ -135,10 +135,13 @@
 					
 				</th>
             </tr>
+			<?php
+			$kepala_unit_bisnis = $this->pmm_model->GetNameGroup(15);
+			?>
             <tr>
-            	<td>
-					<b><u></u><br />
-					Ka. Unit Bisnis</b>
+				<td align="left" >
+					<!--<b><u><?=  $kepala_unit_bisnis['admin_name'];?></u>--><br />
+					<?=  $kepala_unit_bisnis['admin_group_name'];?></b>
 				</td>
             </tr>
 		</table>
