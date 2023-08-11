@@ -37,10 +37,11 @@ class Finance extends CI_Controller {
 				$row['no'] = $key+1;
 				// $row['coa'] = '' 
 				$row['saldo'] = 0;
-				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
+
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
 					$row['action'] = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary"><i class="fa fa-edit"></i> </a> <a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
-				$row['actions'] = '-';
+					$row['actions'] = '-';
 				}
 				$data[] = $row;
 			}

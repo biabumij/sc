@@ -56,11 +56,11 @@
                                 <table class="table table-striped table-hover table-center" id="guest-table">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Kode Akun</th>
-                                            <th>Kategori Akun</th>
-                                            <th>Tindakan</th>
+                                            <th width="5%">No</th>
+                                            <th width="35%">Nama</th>
+                                            <th width="20%">Kode Akun</th>
+                                            <th width="20%">Kategori Akun</th>
+                                            <th width="20%">Tindakan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -165,7 +165,7 @@
                 { "data": "coa" },
                 { "data": "coa_number" },
                 { "data": "coa_category" },
-                { "data": "action" },
+                { "data": "actions" },
             ],
             "columnDefs": [
                 {
