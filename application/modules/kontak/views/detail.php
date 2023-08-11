@@ -178,7 +178,7 @@
                                 </div>
                                 
                                 <div class="col-sm-12 text-right">
-                                    <a href="<?= base_url('admin/kontak') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                    <a href="<?= base_url('admin/kontak') ?>" class="btn btn-info" style="width:15%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
