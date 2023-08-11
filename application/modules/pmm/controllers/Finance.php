@@ -43,6 +43,7 @@ class Finance extends CI_Controller {
 				}else {
 					$row['actions'] = '-';
 				}
+				
 				$data[] = $row;
 			}
 
