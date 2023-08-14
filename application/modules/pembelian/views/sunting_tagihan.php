@@ -136,7 +136,7 @@
                         </div>
                         <div class="form-group">
                             <label>Nomor Invoice</label>
-                            <input type="text" id="nomor_invoice" name="nomor_invoice" class="form-control dtpicker" required="" readonly="" autocomplete="off" />
+                            <input type="text" id="nomor_invoice" name="nomor_invoice" class="form-control" required="" readonly="" autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Update Tagihan</button>
