@@ -259,7 +259,7 @@
                                 </div>
                                 <br /><br />
                                 <div class="text-center">
-                                    <div class="col-sm-12 text-right">
+                                    <div class="col-sm-12 text-center">
                                         <?php if ($penagihan["status"] === "DRAFT") : ?>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
@@ -539,7 +539,7 @@
 
         function DeleteData(href) {
             bootbox.confirm({
-                message: "Apakah anda yakin untuk proses data ini ?",
+                message: "Apakah anda yakin untuk menghapus tagihan ini ? <br /> * Jika ada data pembayaran, maka akan terhapus.<br /> * Status surat jalan akan kembali 'UNCREATED'.",
                 buttons: {
                     confirm: {
                         label: 'Yes',
