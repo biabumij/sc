@@ -88,12 +88,12 @@
                                         </table>
                                     </div>
                                     <div class="col-sm-12 text-right">
-                                        <a href="<?= base_url('admin/kas_&_bank') ?>" class="btn btn-info"><i class="fa fa-arrow-left"></i> Kembali</a>
-                                        <a target="_blank" href="<?= base_url('pmm/finance/cetakTerimaCoa/'.$detail["id"]) ?>" class="btn btn-success"><i class="fa fa-print"></i> Cetak</a>
+                                        <a href="<?= base_url('admin/kas_&_bank') ?>" class="btn btn-info"><i class="fa fa-arrow-left" style="width:15%; font-weight:bold;"></i> Kembali</a>
+                                        <a target="_blank" href="<?= base_url('pmm/finance/cetakTerimaCoa/'.$detail["id"]) ?>" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-print"></i> Cetak</a>
                                         <?php
-                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 14){
+                                        if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
                                             ?>
-                                            <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pmm/finance/deleteTerimaCoa/'.$detail['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
+                                            <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pmm/finance/deleteTerimaCoa/'.$detail['id']);?>')" style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>
                                             <!-- <a  class="btn btn-primary"><i class="fa fa-edit"></i> Ubah</a> -->
                                             <?php
                                         }
