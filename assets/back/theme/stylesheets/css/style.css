@@ -329,7 +329,7 @@ html.right-sidebar-opened .right-sidebar {
 /*================================================*/
 .page-header {
   /*background: linear-gradient(110deg, #e69500 70%, #fdcd3b 60%);*/
-  background: linear-gradient(110deg, #e69500 20%, #fdcd3b 71%, #333333 10%);
+  background: linear-gradient(90deg, #e69500 20%, #fdcd3b 71%, #333333 10%);
   color: #ffffff;
   font-weight: bold;
 }
