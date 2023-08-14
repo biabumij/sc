@@ -1642,7 +1642,7 @@ class Penjualan extends Secure_Controller
         $this->db->update("pmm_penawaran_penjualan");
 
         $this->db->update('pmm_penawaran_penjualan', array('status' => 'CLOSED'), array('id' => $id));
-        $this->session->set_flashdata('notif_success', 'Penawaran CLOSED');
+        $this->session->set_flashdata('notif_success', 'Penawaran Closed');
         redirect("admin/penjualan");
     }
 
@@ -1653,7 +1653,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_penawaran_penjualan");
-        $this->session->set_flashdata('notif_success', 'Penawaran OPEN');
+        $this->session->set_flashdata('notif_success', 'Penawaran Open');
         redirect("admin/penjualan");
     }
 	
@@ -1738,7 +1738,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_sales_po");
-        $this->session->set_flashdata('notif_success', 'Sales Order CLOSED');
+        $this->session->set_flashdata('notif_success', 'Sales Order Closed');
         redirect("admin/penjualan");
     }
 
@@ -1749,7 +1749,7 @@ class Penjualan extends Secure_Controller
 		$this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_sales_po");
-        $this->session->set_flashdata('notif_success', 'Sales Order OPEN');
+        $this->session->set_flashdata('notif_success', 'Sales Order Open');
         redirect("admin/penjualan");
     }
 
