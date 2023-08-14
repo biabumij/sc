@@ -306,7 +306,7 @@
                                         ?>
                                         <?php
                                         ?>
-                                        <a href="<?= site_url('penjualan/open_penagihan/' . $penagihan['id']); ?>" class="btn btn-warning" style="width:20%; font-weight:bold;"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
+                                        <a href="<?= site_url('penjualan/open_penagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:20%; font-weight:bold;"><i class="fa fa-folder-open-o"></i> Pembayaran Belum Lunas</a>
                                         <?php
                                         }
                                         ?>
