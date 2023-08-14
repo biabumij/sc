@@ -1210,7 +1210,24 @@ class Penjualan extends Secure_Controller
 			$this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
 
 			$penagihan = $this->db->get_where('pmm_penagihan_penjualan', array('id' => $id))->row_array();
-			$deskripsi = 'Nomor Invoice ' . $penagihan['nomor_invoice'];
+			
+			$pembayaran_id = $this->db->select('pm.id as pembayaran_id')
+            ->from('pmm_pembayaran pm')
+			->join('pmm_penagihan_penjualan ppp', 'pm.penagihan_id = ppp.id','left')
+            ->where("pm.penagihan_id = $id")
+            ->get()->row_array();
+			$pembayaran_id = $pembayaran_id['pembayaran_id'];
+
+			$file_2 = $this->db->select('lk.lampiran')
+            ->from('pmm_lampiran_pembayaran lk')
+            ->where("lk.pembayaran_id = $pembayaran_id")
+            ->get()->row_array();
+
+            $path_2 = './uploads/pembayaran/'.$file_2['lampiran'];
+            chmod($path_2, 0777);
+            unlink($path_2);
+
+			$this->db->delete('pmm_lampiran_pembayaran', array('pembayaran_id' => $pembayaran_id));
 
 			$file = $this->db->select('lk.lampiran')
             ->from('pmm_lampiran_penagihan lk')
