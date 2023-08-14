@@ -182,7 +182,7 @@
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
-                                        <a  href="<?= base_url('kontak/form/'.$row['id']) ?>" class="btn btn-primary" style="width:15%; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
+                                    <a  href="<?= base_url('kontak/form/'.$row['id']) ?>" class="btn btn-primary" style="width:15%; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
                                     <?php
                                     }
                                     ?>
