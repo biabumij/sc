@@ -724,7 +724,7 @@ class Pembelian extends Secure_Controller
         $this->db->update("pmm_penawaran_pembelian");
 
         $this->db->update('pmm_penawaran_pembelian_detail', array('status' => 'OPEN'), array('penawaran_pembelian_id' => $id));
-        $this->session->set_flashdata('notif_success', 'Penawaran Pembelian OPEN');
+        $this->session->set_flashdata('notif_success', 'Penawaran Pembelian Open');
         redirect("admin/pembelian");
     }
 
@@ -1086,7 +1086,7 @@ class Pembelian extends Secure_Controller
             $this->db->trans_strict(FALSE); # See Note 01. If you wish can remove as well 
 
             $penagihan_pembelian = $this->db->get_where('pmm_penagihan_pembelian', array('id' => $id))->row_array();
-            $deskripsi = 'Nomor Invoice ' . $penagihan_pembelian['nomor_invoice'];
+            
             $this->db->delete('pmm_penagihan_pembelian_detail', array('penagihan_pembelian_id' => $id));
 
             $invoice_file = $this->db->select('lk.invoice_file')
@@ -1695,7 +1695,7 @@ class Pembelian extends Secure_Controller
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_purchase_order");
-        $this->session->set_flashdata('notif_success', 'Peseanan Pembelian CLOSED');
+        $this->session->set_flashdata('notif_success', 'Peseanan Pembelian Closed');
         redirect("admin/pembelian");
     }
 

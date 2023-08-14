@@ -495,7 +495,7 @@ class Purchase_order extends CI_Controller {
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_purchase_order");
-        $this->session->set_flashdata('notif_success', 'Pesanan Pembelian PUBLISH');
+        $this->session->set_flashdata('notif_success', 'Pesanan Pembelian Publish');
         redirect("admin/pembelian");
     }
 	
