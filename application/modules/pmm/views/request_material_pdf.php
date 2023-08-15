@@ -115,6 +115,7 @@
 								Dibuat Oleh
 							</td>
 						</tr>
+						<br />
 						<tr class="">
 							<td align="center" height="75px">
 								<img src="uploads/ttd_dadang.png" width="70px">
