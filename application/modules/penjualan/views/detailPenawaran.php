@@ -170,6 +170,9 @@
                                             <?php
                                         }
                                         ?>
+                                        <form class="form-check" action="<?= base_url("penjualan/rejectedPenawaran/".$penawaran["id"]) ?>">
+                                            <button type="submit" class="btn btn-warning" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Reject</button>        
+                                        </form>
                                     <?php endif; ?>
 
                                     <?php if($penawaran["status"] === "CLOSED") : ?>

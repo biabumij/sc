@@ -233,12 +233,8 @@
 													</div>
 													<div class="form-group">
 														<label>Rekanan<span class="required" aria-required="true">*</span></label>
-														<?php
-														 
-
-														?>
-														<select id="supplier_id" name="supplier_id" class="form-control select2">
-															<option>Pilih Rekanan</option>
+														<select id="supplier_id" name="supplier_id" class="form-control select2" required="" autocomplete="off">
+															<option value="">Pilih Rekanan</option>
 															<?php
 															foreach ($suppliers as $key => $supplier) {
 																?>
