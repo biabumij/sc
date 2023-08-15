@@ -109,10 +109,7 @@
 					<table width="100%" border="0" cellpadding="2">
 						<tr class="table-active">
 							<td align="center" >
-								Disetujui Oleh
-							</td>
-							<td align="center" >
-								Diperiksa Oleh
+								Disetujui & Diperiksa Oleh
 							</td>
 							<td align="center" >
 								Dibuat Oleh
@@ -120,24 +117,18 @@
 						</tr>
 						<tr class="">
 							<td align="center" height="75px">
-								<!--<img src="uploads/ttd_hadi.png" width="100px">-->
+								<img src="uploads/ttd_dadang.png" width="70px">
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_vicky.png" width="100px">
-							</td>
-							<td align="center">
-								
+								<img src="uploads/ttd_vicky.png" width="70px">
 							</td>
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								<b><u></u></b>
+								<b><u>Dadang Rosid Ridlo</u></b>
 							</td>
 							<td align="center" >
 								<b><u>Vicky Irwana Yudha</u></b>
-							</td>
-							<td align="center" >
-								<b><u>Mohammad Rasyid</u></b>
 							</td>
 						</tr>
 						<tr class="table-active">
@@ -146,9 +137,6 @@
 							</td>
 							<td align="center" >
 								<b>Ka. Logistik</b>
-							</td>
-							<td align="center" >
-								<b>Admin Logistik</b>
 							</td>
 						</tr>
 					</table>
