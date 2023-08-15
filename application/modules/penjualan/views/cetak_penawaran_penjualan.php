@@ -121,6 +121,9 @@
 		<br />
 		<p><b>B. Persyaratan Harga</b></p>
 		<p><?= $row["persyaratan_harga"] ?></p>
+		<?php
+			$kepala_unit_bisnis = $this->pmm_model->GetNameGroup(15);
+		?>
 		<table width="98%" border="0" cellpadding="0">
 			<tr>
                 <td>
@@ -132,20 +135,18 @@
             </tr>
             <tr>
 				<th height="35px">
-					
+				<img src="<?= $kepala_unit_bisnis['admin_ttd']?>" width="70px">
+				<img src="uploads/ttd_dadang.png" width="70px">
 				</th>
             </tr>
-			<?php
-			$kepala_unit_bisnis = $this->pmm_model->GetNameGroup(15);
-			?>
             <tr>
 				<td align="left" >
-					<!--<b><u><?=  $kepala_unit_bisnis['admin_name'];?></u>--><br />
+					<b><u><?=  $kepala_unit_bisnis['admin_name'];?></u><br />
 					<?=  $kepala_unit_bisnis['admin_group_name'];?></b>
 				</td>
             </tr>
 		</table>
-		<br /><br />
+		<br /><br /><br /><br /><br />
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
                 <th width="70%">
