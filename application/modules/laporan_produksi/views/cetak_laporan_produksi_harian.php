@@ -225,7 +225,7 @@
 						?>
 						<tr class="">
 							<td align="center" height="70px">
-								<!--<img src="<?= $unit_head['admin_ttd']?>" width="70px">-->
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
 								<img src="<?= $logistik['admin_ttd']?>" width="70px">
@@ -236,7 +236,7 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u></u><br />
+								<b><u><?= $unit_head['admin_name']?></u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center">

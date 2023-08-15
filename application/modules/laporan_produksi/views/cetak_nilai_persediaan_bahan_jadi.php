@@ -1046,53 +1046,5 @@
 			<th align="right"><?php echo number_format($total_nilai_akhir,0,',','.');?></th>
 		</tr>
 	</table>
-	<br />
-	<br />
-	<table width="98%" border="0" cellpadding="0">
-		<tr >
-			<td width="5%"></td>
-			<td width="90%">
-				<table width="100%" border="0" cellpadding="2">
-					<tr>
-						<td align="center" >
-							Disetujui Oleh
-						</td>
-						<td align="center">
-							Diperiksa Oleh
-						</td>
-						<td align="center">
-							Dibuat Oleh
-						</td>
-					</tr>
-					<tr class="">
-						<td align="center" height="40px">
-						
-						</td>
-						<td align="center">
-						
-						</td>
-						<td align="center">
-						
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<b><u></u><br />
-							Ka. Unit Bisnis</b>
-						</td>
-						<td align="center">
-							<b><br />
-							Keuangan</b>
-						</td>
-						<td align="center" >
-							<b><br />
-							Logistik</b>
-						</td>
-					</tr>
-				</table>
-			</td>
-			<td width="5%"></td>
-		</tr>
-	</table>
 	</body>
 </html>

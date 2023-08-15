@@ -650,7 +650,7 @@ class Laporan extends Secure_Controller {
 
 			$data['data'] = $arr_data;
 			$data['total'] = $total;
-	        $html = $this->load->view('laporan_penjualan/001_cetak_pengiriman_penjualan',$data,TRUE);
+	        $html = $this->load->view('laporan_penjualan/cetak_pengiriman_penjualan',$data,TRUE);
 	        
 	        $pdf->SetTitle('BBJ - Laporan Penjualan');
 	        $pdf->nsi_html($html);
