@@ -49,7 +49,7 @@
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
 				<td align="center">
-					<div style="display: block;font-weight: bold;font-size: 16px;">ORDER PEMBELIAN</div>
+					<div style="display: block;font-weight: bold;font-size: 12px;">ORDER PEMBELIAN</div>
 				</td>
 			</tr>
 		</table>
@@ -239,11 +239,11 @@
 							$created_group = $this->db->get('tbl_admin a')->row_array();
 						?>
 						<tr class="">
-							<td align="center" height="30px">
+							<td align="center" height="50px">
 								
 							</td>
 							<td align="center">
-								<img src="<?= $created_group['admin_ttd']?>" width="30px">
+								<img src="<?= $created_group['admin_ttd']?>" width="50px">
 							</td>
 						</tr>
 						<tr>

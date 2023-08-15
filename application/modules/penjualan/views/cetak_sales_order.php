@@ -201,10 +201,10 @@
 		<br />
 	    <p><b>Memo</b></p>
 		<p><?= $row["memo"] ?></p>
-		<br />
-		<br />
-		<br />
-		<br />
+		<br /><br /><br /><br />
+		<?php
+			$kepala_unit_bisnis = $this->pmm_model->GetNameGroup(15);
+		?>
 		<table width="98%" border="0" cellpadding="0">
 			<tr >
 				<td width="5%"></td>
@@ -231,12 +231,9 @@
 								
 							</td>
 							<td align="center">
-								
+								<img src="uploads/ttd_dadang.png" width="100px">
 							</td>
 						</tr>
-						<?php
-                		    $logistik = $this->pmm_model->GetNameGroup(6);
-                		?>
 						<tr class="table-bold">
 							<td align="center">
 							    <u><?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama_kontak');?></u><br />
@@ -249,8 +246,9 @@
 								<?php echo $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'posisi');?>
 							</td>
 							<td align="center">
-								<u><?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name'); ?></u><br />
-								<?= $created_group['admin_group_name']?>
+								<u><?=  $kepala_unit_bisnis['admin_name'];?></u><br />
+								<?=  $kepala_unit_bisnis['admin_group_name'];?>
+								
 							</td>
 						</tr>
 					</table>

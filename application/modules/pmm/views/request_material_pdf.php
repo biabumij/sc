@@ -100,11 +100,13 @@
 			?>
 
 		</table>
-		<br />
-		<br />
+		<br /><br />
+		<?php
+			$kepala_unit_bisnis = $this->pmm_model->GetNameGroup(15);
+			$ka_logistik = $this->pmm_model->GetNameGroup(11);
+		?>
 		<table width="98%" border="0" cellpadding="100">
 			<tr >
-				
 				<td width="100%">
 					<table width="100%" border="0" cellpadding="0">
 						<tr class="table-active">
@@ -113,14 +115,6 @@
 							</td>
 							<td align="center" >
 								Dibuat Oleh
-							</td>
-						</tr>
-						<tr class="">
-							<td align="center" height="20px">
-								
-							</td>
-							<td align="center">
-								
 							</td>
 						</tr>
 						<tr class="">
@@ -133,18 +127,18 @@
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								<b><u>Dadang Rosid Ridlo</u></b>
+								<b><u><?= $kepala_unit_bisnis['admin_name'];?></u></b>
 							</td>
 							<td align="center" >
-								<b><u>Vicky Irwana Yudha</u></b>
+								<b><u><?= $ka_logistik['admin_name'];?></u></b>
 							</td>
 						</tr>
 						<tr class="table-active">
 							<td align="center" >
-								<b>Ka. Unit Bisnis</b>
+								<b><?= $kepala_unit_bisnis['admin_group_name'];?></b>
 							</td>
 							<td align="center" >
-								<b>Ka. Logistik</b>
+								<b><?= $ka_logistik['admin_group_name'];?></b>
 							</td>
 						</tr>
 					</table>

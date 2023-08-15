@@ -135,14 +135,13 @@
             </tr>
             <tr>
 				<th height="35px">
-				<img src="<?= $kepala_unit_bisnis['admin_ttd']?>" width="70px">
-				<img src="uploads/ttd_dadang.png" width="70px">
+				<img src="uploads/ttd_dadang.png" width="100px">
 				</th>
             </tr>
             <tr>
 				<td align="left" >
-					<b><u><?=  $kepala_unit_bisnis['admin_name'];?></u><br />
-					<?=  $kepala_unit_bisnis['admin_group_name'];?></b>
+					<b><u><?= $kepala_unit_bisnis['admin_name'];?></u><br />
+					<?= $kepala_unit_bisnis['admin_group_name'];?></b>
 				</td>
             </tr>
 		</table>
