@@ -103,6 +103,7 @@ class Pmm_finance extends CI_Model {
         $this->db->select('SUM(total) as total');
         $this->db->where('penagihan_pembelian_id',$id);
         $this->db->where('status','Disetujui');
+        $this->db->where("memo <> 'PPN' ")
         $query = $this->db->get('pmm_pembayaran_penagihan_pembelian')->row_array();
         if(!empty($query)){
             $total = $query['total'];
