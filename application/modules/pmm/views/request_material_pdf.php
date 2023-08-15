@@ -106,7 +106,7 @@
 			<tr >
 				
 				<td width="100%">
-					<table width="100%" border="0" cellpadding="2">
+					<table width="100%" border="0" cellpadding="0">
 						<tr class="table-active">
 							<td align="center" >
 								Disetujui & Diperiksa Oleh
@@ -115,12 +115,20 @@
 								Dibuat Oleh
 							</td>
 						</tr>
-						<tr style="margin-top:10px">
-							<td align="center" height="75px">
-								<img src="uploads/ttd_dadang.png" width="70px">
+						<tr class="">
+							<td align="center" height="20px">
+								
 							</td>
 							<td align="center">
-								<img src="uploads/ttd_vicky.png" width="70px">
+								
+							</td>
+						</tr>
+						<tr class="">
+							<td align="center" height="75px">
+								<img src="uploads/ttd_dadang.png" width="100px">
+							</td>
+							<td align="center">
+								<img src="uploads/ttd_vicky.png" width="100px">
 							</td>
 						</tr>
 						<tr class="table-active">
