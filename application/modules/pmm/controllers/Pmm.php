@@ -1651,14 +1651,8 @@ class Pmm extends CI_Controller {
 		$output['output'] = false;
 		$id = $this->input->post('id');
 		if(!empty($id)){
-
-			$data = array(
-				'status' => 'DELETED',
-				'updated_by' => $this->session->userdata('admin_id'),
-				'updated_on' => date('Y-m-d H:i:s'),
-			);
-			$this->db->update('pmm_remaining_materials_cat',$data,array('id'=>$id));
-			if($this->db->update('pmm_remaining_materials',$data,array('cat_id'=>$id))){
+			$this->db->delete('pmm_remaining_materials_cat',array('id'=>$id));
+			{
 				$output['output'] = true;
 			}
 		}
