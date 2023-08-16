@@ -1507,6 +1507,7 @@ class Pmm extends CI_Controller {
 
 		if(!empty($id)){
 			$arr['updated_by'] = $this->session->userdata('admin_id');
+			$arr['updated_on'] = date('Y-m-d H:i:s');
 			$this->db->update('pmm_remaining_materials_cat',$arr,array('id'=>$id));
 
 			$this->db->delete('pmm_remaining_materials',array('cat_id'=>$id));
