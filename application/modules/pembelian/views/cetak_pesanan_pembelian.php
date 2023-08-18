@@ -9,7 +9,6 @@
 	  		font-family: "Open Sans", Arial, sans-serif;
 	  	}
 	  	table.minimalistBlack {
-		  border: 0px solid #000000;
 		  width: 98%;
 		  text-align: left;
 		}
@@ -32,16 +31,6 @@
         table tr.table-active2{
             background-color: #cac8c8;
         }
-		table tr.table-active3{
-            background-color: #eee;
-        }
-		hr{
-			margin-top:0;
-			margin-bottom:30px;
-		}
-		h3{
-			margin-top:0;
-		}
 	  </style>
 
 	</head>
