@@ -18,10 +18,10 @@
 		  padding: 5px 4px;
 		}
 		table.minimalistBlack tr td {
-		  /*font-size: 13px;*/
+		  font-size: 7px;
 		}
 		table.minimalistBlack tr th {
-		  /*font-size: 14px;*/
+		  font-size: 7px;
 		  font-weight: bold;
 		  color: #000000;
 		  padding: 10px;
@@ -211,7 +211,7 @@
 		<?php
         $ka_plant = $this->pmm_model->GetNameGroup(15);
         ?>
-		<table width="98%" border="0" cellpadding="10">
+		<table width="98%" border="0" cellpadding="5">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
@@ -239,11 +239,11 @@
 							$created_group = $this->db->get('tbl_admin a')->row_array();
 						?>
 						<tr class="">
-							<td align="center" height="50px">
+							<td align="center">
 								
 							</td>
 							<td align="center">
-								<img src="<?= $created_group['admin_ttd']?>" width="50px">
+								<img src="<?= $created_group['admin_ttd']?>" width="100px">
 							</td>
 						</tr>
 						<tr>
