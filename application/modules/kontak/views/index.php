@@ -184,7 +184,7 @@
                 { "width": "30%", "targets": 1, "className": 'text-left'},
                 { "width": "25%", "targets": 2, "className": 'text-left'},
                 { "width": "10%", "targets": [3, 4], "className": 'text-left'},
-                { "width": "10%", "targets": [5, 6], "className": 'text-right' }
+                { "width": "10%", "targets": [5, 6], "className": 'text-center' }
             ],
             responsive: true,
         });
@@ -208,13 +208,14 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "30%", "targets": 1, "className": 'text-left'},
+                { "width": "25%", "targets": 2, "className": 'text-left'},
+                { "width": "10%", "targets": [3, 4], "className": 'text-left'},
+                { "width": "10%", "targets": [5, 6], "className": 'text-center' }
             ],
+            responsive: true,
         });
 
         var table_karyawan = $('#table-karyawan').DataTable( {"bAutoWidth": false,
@@ -241,7 +242,7 @@
                 { "width": "30%", "targets": 1, "className": 'text-left'},
                 { "width": "25%", "targets": 2, "className": 'text-left'},
                 { "width": "10%", "targets": [3, 4], "className": 'text-left'},
-                { "width": "10%", "targets": [5, 6], "className": 'text-right' }
+                { "width": "10%", "targets": [5, 6], "className": 'text-center' }
             ],
             responsive: true,
         });
@@ -270,7 +271,7 @@
                 { "width": "30%", "targets": 1, "className": 'text-left'},
                 { "width": "25%", "targets": 2, "className": 'text-left'},
                 { "width": "10%", "targets": [3, 4], "className": 'text-left'},
-                { "width": "10%", "targets": [5, 6], "className": 'text-right' }
+                { "width": "10%", "targets": [5, 6], "className": 'text-center' }
             ],
             responsive: true,
         });
