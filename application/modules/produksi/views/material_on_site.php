@@ -6,7 +6,7 @@
         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</button>
     </div>
     <div class="col-sm-2">
-        <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Stock Opname</a>
+        <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Stock Opname</a>
     </div>
 </form>
 <br />
@@ -38,7 +38,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <span class="modal-title">Sisa Produksi Form</span>
+                <span class="modal-title">Buat Stock Opname</span>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
