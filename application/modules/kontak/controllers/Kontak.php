@@ -152,14 +152,14 @@ class Kontak extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error','Gagal Input Kontak');
+			$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
             redirect('kontak/form');
         } 
         else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success','Berhasil Input Kontak');
+            $this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
             redirect('admin/kontak');
         }
     }

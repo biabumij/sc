@@ -228,7 +228,7 @@ class Biaya extends CI_Controller {
             # Something went wrong.
             $this->db->trans_rollback();
             $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
-            redirect('admin/biaya_umum_&_adm.');
+            redirect('pmm/biaya/tambah_biaya');
         } 
         else {
             # Everything is Perfect. 

@@ -54,7 +54,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-bahanbaku" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -75,7 +75,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-betonreadymix" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -95,7 +95,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-aggregat" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -115,7 +115,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-jasa" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -135,7 +135,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-peralatan" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -155,7 +155,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-bahanbakar" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -175,7 +175,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-laboratorium" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -195,7 +195,7 @@
                                         <table class="table table-striped table-hover table-center" id="table-asset" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nama</th>
                                                     <th>Satuan</th>
                                                     <th>Dibuat Oleh</th>
@@ -234,7 +234,7 @@
         $('input#contract_price, input#price_value, .total').number( true, 2,',','.' );
         // $('input#contract_price').number( true, 2,',','.' );
       
-        var table_bahanbaku = $('#table-bahanbaku').DataTable( {
+        var table_bahanbaku = $('#table-bahanbaku').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -251,16 +251,15 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
-        var table_betonreadymix = $('#table-betonreadymix').DataTable( {
+        var table_betonreadymix = $('#table-betonreadymix').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -277,16 +276,15 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
-        var table_aggregat = $('#table-aggregat').DataTable( {
+        var table_aggregat = $('#table-aggregat').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -303,16 +301,15 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
-        var table_jasa = $('#table-jasa').DataTable( {
+        var table_jasa = $('#table-jasa').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -329,17 +326,16 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
         
-        var table_peralatan = $('#table-peralatan').DataTable( {
+        var table_peralatan = $('#table-peralatan').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -356,16 +352,15 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
-        var table_bahanbakar = $('#table-bahanbakar').DataTable( {
+        var table_bahanbakar = $('#table-bahanbakar').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -382,16 +377,15 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
         
-        var table_laboratorium = $('#table-laboratorium').DataTable( {
+        var table_laboratorium = $('#table-laboratorium').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -408,16 +402,15 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
 
-        var table_laboratorium = $('#table-asset').DataTable( {
+        var table_laboratorium = $('#table-asset').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -434,13 +427,12 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0,2,3,4],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": [2, 3, 4], "className": 'text-center'},
             ],
+            responsive: true,
         });
 
     </script>

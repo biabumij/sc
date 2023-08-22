@@ -12,19 +12,17 @@
 
 <body>
     <div class="wrap">
-        
         <?php echo $this->Templates->PageHeader();?>
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
-            <div class="content" style="padding:0;">
+            <div class="content">
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li>
                                 <a href="<?php echo site_url('admin/produksi');?>"> <i class="fa fa-sitemap" aria-hidden="true"></i> Produksi</a></li>
-                            <li><a>Akumulasi Pergerakan Bahan Baku</a></li>
+                            <li><a>Buat Akumulasi Pergerakan Bahan Baku</a></li>
                         </ul>
                     </div>
                 </div>
@@ -61,7 +59,6 @@
                                             </thead>
                                             <tbody>
                                                  <tr>
-
                                                     <td>1.</td>
                                                     <td>Total Nilai Keluar Pergerakan Bahan Baku</td>
 													<td>
@@ -75,9 +72,8 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-
                                                     <td style="vertical-align:middle">2.</td>
-                                                    <td style="vertical-align:middle">Apakah ada produksi?</td>
+                                                    <td style="vertical-align:middle">Apakah Ada Produksi?</td>
 													<td>
                                                         <table width="100%">
                                                             <tr>
@@ -88,7 +84,7 @@
                                                                 <td width="20%">TIDAK </td>
                                                                 <td><input type="checkbox" name="bpp" id="bpp" value="0"/></td>
                                                             </tr>
-                                                        <table>
+                                                        </table>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -97,8 +93,8 @@
 									<br />
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('admin/kunci_&_approval');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
+                                            <a href="<?= site_url('admin/kunci_&_approval');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
+                                            <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>
 								</form>

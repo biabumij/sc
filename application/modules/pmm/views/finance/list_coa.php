@@ -33,7 +33,7 @@
                         <div class="panel-content">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Baru</a>
+                                    <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Daftar Akun</a>
                                 </div>
                                 <form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/client_print');?>">
                                     <div class="col-sm-3">
@@ -91,7 +91,7 @@
         <div class="modal-dialog" role="document" >
             <div class="modal-content">
                 <div class="modal-header">
-                    <span class="modal-title">Akun Form</span>
+                    <span class="modal-title">Buat Daftar Akun</span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

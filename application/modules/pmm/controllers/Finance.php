@@ -1162,7 +1162,7 @@ class Finance extends CI_Controller {
 				# Something went wrong.
 				$this->db->trans_rollback();
 				$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
-				redirect('admin/kas_&_bank#messages');
+				redirect('pmm/finance/terima_uang');
 			} 
 			else {
 				# Everything is Perfect. 
@@ -1283,7 +1283,7 @@ class Finance extends CI_Controller {
 				# Something went wrong.
 				$this->db->trans_rollback();
 				$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
-				redirect('admin/kas_&_bank#profile');
+				redirect('pmm/finance/transfer_uang_uang');
 			} 
 			else {
 				# Everything is Perfect. 

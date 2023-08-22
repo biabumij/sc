@@ -211,7 +211,7 @@ class Jurnal_umum extends CI_Controller {
             # Something went wrong.
             $this->db->trans_rollback();
             $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
-            redirect('admin/jurnal_umum');
+            redirect('pmm/jurnal_umum/tambah_jurnal');
         } 
         else {
             # Everything is Perfect. 

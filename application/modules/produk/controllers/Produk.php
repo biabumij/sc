@@ -182,14 +182,14 @@ class Produk extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error','Gagal Membuat Produk');
+            $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
             redirect('produk/buat_baru');
         } 
         else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success','Berhasil Membuat Produk');
+            $this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
             redirect('admin/produk');
         }
     }

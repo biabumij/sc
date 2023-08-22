@@ -30,7 +30,7 @@
                         <div class="panel-content">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Satuan</a>
+                                    <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Satuan</a>
                                 </div>
                                 <!--<form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/measures_print');?>">
                                     <div class="col-sm-2">

@@ -32,7 +32,7 @@
                                         <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo site_url('kontak/form'); ?>">Kontak Baru</a></li>
+                                        <li><a href="<?php echo site_url('kontak/form'); ?>">Kontak</a></li>
                                       </ul>
                             	</div>
                         	</h3>
