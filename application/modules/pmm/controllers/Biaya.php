@@ -227,13 +227,14 @@ class Biaya extends CI_Controller {
         if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            redirect('pmm/biaya/tambah_biaya');
+            $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
+            redirect('admin/biaya_umum_&_adm.');
         } 
         else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-             $this->session->set_flashdata('notif_success','Berhasil membuat Biaya !!');
+            $this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
             redirect('admin/biaya_umum_&_adm.');
         }
 

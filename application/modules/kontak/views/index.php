@@ -53,7 +53,7 @@
 		                                <table class="table table-striped table-hover table-center" id="table-pelanggan" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-		                                            <th class="text-center" width="5%">No.</th>
+		                                            <th class="text-center">No.</th>
 		                                            <th class="text-center">Nama</th>
 		                                            <th class="text-center">Alamat</th>
 		                                            <th class="text-center">Email</th>
@@ -74,7 +74,7 @@
 		                                <table class="table table-striped table-hover table-center" id="table-rekanan" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-                                                    <th class="text-center" width="5%">No.</th>
+                                                    <th class="text-center">No.</th>
 		                                            <th class="text-center">Nama</th>
 		                                            <th class="text-center">Alamat</th>
 		                                            <th class="text-center">Email</th>
@@ -95,7 +95,7 @@
 		                                <table class="table table-striped table-hover table-center" id="table-karyawan"  style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-                                                    <th class="text-center" width="5%">No.</th>
+                                                    <th class="text-center">No.</th>
 		                                            <th class="text-center">Nama</th>
 		                                            <th class="text-center">Alamat</th>
 		                                            <th class="text-center">Email</th>
@@ -116,7 +116,7 @@
 		                                <table class="table table-striped table-hover table-center" id="teble-lain" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-                                                    <th class="text-center" width="5%">No.</th>
+                                                    <th class="text-center">No.</th>
 		                                            <th class="text-center">Nama</th>
 		                                            <th class="text-center">Alamat</th>
 		                                            <th class="text-center">Email</th>
@@ -160,7 +160,7 @@
         $('input#contract_price, input#price_value, .total').number( true, 2,',','.' );
         // $('input#contract_price').number( true, 2,',','.' );
       
-        var table_pelanggan = $('#table-pelanggan').DataTable( {
+        var table_pelanggan = $('#table-pelanggan').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -179,16 +179,17 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "30%", "targets": 1, "className": 'text-left'},
+                { "width": "25%", "targets": 2, "className": 'text-left'},
+                { "width": "10%", "targets": [3, 4], "className": 'text-left'},
+                { "width": "10%", "targets": [5, 6], "className": 'text-right' }
             ],
+            responsive: true,
         });
 
-        var table_rekanan = $('#table-rekanan').DataTable( {
+        var table_rekanan = $('#table-rekanan').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -216,7 +217,7 @@
             ],
         });
 
-        var table_karyawan = $('#table-karyawan').DataTable( {
+        var table_karyawan = $('#table-karyawan').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -235,16 +236,17 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "30%", "targets": 1, "className": 'text-left'},
+                { "width": "25%", "targets": 2, "className": 'text-left'},
+                { "width": "10%", "targets": [3, 4], "className": 'text-left'},
+                { "width": "10%", "targets": [5, 6], "className": 'text-right' }
             ],
+            responsive: true,
         });
 
-        var table_lain = $('#teble-lain').DataTable( {
+        var table_lain = $('#teble-lain').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -263,13 +265,14 @@
                 { "data": "admin_name"},
                 { "data": "created_on"}
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "30%", "targets": 1, "className": 'text-left'},
+                { "width": "25%", "targets": 2, "className": 'text-left'},
+                { "width": "10%", "targets": [3, 4], "className": 'text-left'},
+                { "width": "10%", "targets": [5, 6], "className": 'text-right' }
             ],
+            responsive: true,
         });
 
     </script>

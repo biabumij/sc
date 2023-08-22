@@ -32,11 +32,11 @@
                         <div class="panel-content">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a href="<?= base_url("pmm/biaya/tambah_biaya") ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Biaya</a>
+                                    <a href="<?= base_url("pmm/biaya/tambah_biaya") ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Biaya Umum & Adm.</a>
                                 </div>
                             </div>
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Biaya</a></li>
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Biaya Umum & Adm.</a></li>
                             </ul>
                          
                             <div class="tab-content">

@@ -11,207 +11,205 @@
 </head>
 
 <body>
-<div class="wrap">
-    
-    <?php echo $this->Templates->PageHeader();?>
-
-    <div class="page-body">
-        <?php echo $this->Templates->LeftBar();?>
-        <div class="content" style="padding:0;">
-            <div class="content-header">
-                <div class="leftside-content-header">
-                    <ul class="breadcrumbs">
-                        <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
-                        <li>
-                            <a href="<?php echo site_url('admin/productions');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Kontak</a></li>
-                        <li><a>Kontak Form</a></li>
-                    </ul>
+    <div class="wrap">
+        <?php echo $this->Templates->PageHeader();?>
+        <div class="page-body">
+            <?php echo $this->Templates->LeftBar();?>
+            <div class="content">
+                <div class="content-header">
+                    <div class="leftside-content-header">
+                        <ul class="breadcrumbs">
+                            <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
+                            <li>
+                                <a href="<?php echo site_url('admin/productions');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Kontak</a></li>
+                            <li><a>Buat Kontak</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="row animated fadeInUp">
-                <div class="col-sm-12 col-lg-12">
-                    <div class="panel">
-                        <div class="panel-header"> 
-                            <div class="">
-                                <h3 >Kontak</h3>
+                <div class="row animated fadeInUp">
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="panel">
+                            <div class="panel-header"> 
+                                <div class="">
+                                    <h3 >Kontak</h3>
+                                </div>
                             </div>
-                        </div>
-                        <div class="panel-content">
-                            
-                            <form class="form-horizontal form-new" action="<?= site_url('kontak/submit_form');?>" method="POST">
-                                <input type="hidden" name="id" value="<?= (isset($edit)) ? $edit['id'] : '' ;?>">
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <h5>Info Kontak</h5>
-                                        <hr />
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Tipe Kontak<span class="required" aria-required="true">*</span></label>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="pelanggan" id="pelanggan" value="1" <?= (isset($edit) && $edit['pelanggan'] == 1) ? 'checked' : '' ;?> > Pelanggan
+                            <div class="panel-content">
+                                
+                                <form class="form-horizontal form-new" action="<?= site_url('kontak/submit_form');?>" method="POST">
+                                    <input type="hidden" name="id" value="<?= (isset($edit)) ? $edit['id'] : '' ;?>">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5>Info Kontak</h5>
+                                            <hr />
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Tipe Kontak<span class="required" aria-required="true">*</span></label>
+                                                <div class="col-sm-2">
+                                                <input type="checkbox" name="pelanggan" id="pelanggan" value="1" <?= (isset($edit) && $edit['pelanggan'] == 1) ? 'checked' : '' ;?> > Pelanggan
+                                                </div>
+                                                <div class="col-sm-2">
+                                                <input type="checkbox" name="rekanan" id="rekanan" value="1" <?= (isset($edit) && $edit['rekanan'] == 1) ? 'checked' : '' ;?> > Rekanan
+                                                </div>
+                                                <div class="col-sm-2">
+                                                <input type="checkbox" name="karyawan" id="karyawan" value="1" <?= (isset($edit) && $edit['karyawan'] == 1) ? 'checked' : '' ;?> > Karyawan
+                                                </div>
+                                                <div class="col-sm-2">
+                                                <input type="checkbox" name="lain" id="lain" value="1" <?= (isset($edit) && $edit['lain'] == 1) ? 'checked' : '' ;?> > Lain-lain
+                                                </div>
                                             </div>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="rekanan" id="rekanan" value="1" <?= (isset($edit) && $edit['rekanan'] == 1) ? 'checked' : '' ;?> > Rekanan
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Nama<span class="required" aria-required="true">*</span></label>
+                                                <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" name="nama" value="<?= (isset($edit)) ? $edit['nama'] : '' ;?>" placeholder="Isikan Nama Kontak / Nama Perusahaan" required=""/>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="karyawan" id="karyawan" value="1" <?= (isset($edit) && $edit['karyawan'] == 1) ? 'checked' : '' ;?> > Karyawan
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">No. Telp</label>
+                                                <div class="col-sm-10">
+                                                <input type="number" class="form-control input-sm" name="telepon" value="<?= (isset($edit)) ? $edit['telepon'] : '' ;?>" placeholder="Isikan No. Telp / No. Handphone"/>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-2">
-                                              <input type="checkbox" name="lain" id="lain" value="1" <?= (isset($edit) && $edit['lain'] == 1) ? 'checked' : '' ;?> > Lain-lain
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Alamat</label>
+                                                <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" name="alamat" value="<?= (isset($edit)) ? $edit['alamat'] : '' ;?>" placeholder="Isikan Alamat Kontak / Alamat Perusahaan"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nama<span class="required" aria-required="true">*</span></label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control input-sm" name="nama" value="<?= (isset($edit)) ? $edit['nama'] : '' ;?>" placeholder="Isikan Nama Kontak / Nama Perusahaan" required=""/>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Email</label>
+                                                <div class="col-sm-10">
+                                                <input type="email" class="form-control input-sm" name="email" value="<?= (isset($edit)) ? $edit['email'] : '' ;?>" placeholder="Isikan Email Kontak / Email Perusahaan"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">No. Telp</label>
-                                            <div class="col-sm-10">
-                                              <input type="number" class="form-control input-sm" name="telepon" value="<?= (isset($edit)) ? $edit['telepon'] : '' ;?>" placeholder="Isikan No. Telp / No. Handphone"/>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Fax</label>
+                                                <div class="col-sm-10">
+                                                <input type="number" class="form-control input-sm" name="fax" value="<?= (isset($edit)) ? $edit['fax'] : '' ;?>" placeholder="Fax"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Alamat</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control input-sm" name="alamat" value="<?= (isset($edit)) ? $edit['alamat'] : '' ;?>" placeholder="Isikan Alamat Kontak / Alamat Perusahaan"/>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">NPWP</label>
+                                                <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" name="npwp" value="<?= (isset($edit)) ? $edit['npwp'] : '' ;?>" placeholder="NPWP"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Email</label>
-                                            <div class="col-sm-10">
-                                              <input type="email" class="form-control input-sm" name="email" value="<?= (isset($edit)) ? $edit['email'] : '' ;?>" placeholder="Isikan Email Kontak / Email Perusahaan"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Fax</label>
-                                            <div class="col-sm-10">
-                                              <input type="number" class="form-control input-sm" name="fax" value="<?= (isset($edit)) ? $edit['fax'] : '' ;?>" placeholder="Fax"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">NPWP</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control input-sm" name="npwp" value="<?= (isset($edit)) ? $edit['npwp'] : '' ;?>" placeholder="NPWP"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Alamat Penagihan</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control input-sm" name="alamat_penagihan" value="<?= (isset($edit)) ? $edit['alamat_penagihan'] : '' ;?>" placeholder="Alamat Penagihan"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br />
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <h5>Informasi Umum</h5>
-                                        <hr />
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nama Kontak</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control input-sm" name="nama_kontak" value="<?= (isset($edit)) ? $edit['nama_kontak'] : '' ;?>" placeholder="Isikan Nama Kontak, Jika Nama Pada Info Kontak Adalah Perusahaan"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Identitas</label>
-                                            <div class="col-sm-3">
-                                              <select id="tipe_identitas" class="form-control form-select2" name="tipe_identitas">
-                                                    <option value="">Pilih Satuan</option>
-                                                    <option value="KTP" <?= (isset($edit) && $edit['tipe_identitas'] == 'KTP') ? 'selected' : '' ;?> >KTP</option>
-                                                    <option value="PASSPORT" <?= (isset($edit) && $edit['tipe_identitas'] == 'PASSPORT') ? 'selected' : '' ;?> >PASSPORT</option>
-                                                    <option value="SIM" <?= (isset($edit) && $edit['tipe_identitas'] == 'SIM') ? 'selected' : '' ;?> >SIM</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <input type="text" class="form-control input-sm" name="no_identitas" value="<?= (isset($edit)) ? $edit['no_identitas'] : '' ;?>" placeholder="No. Identitas"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nama Perusahaan</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control input-sm" name="nama_perusahaan" value="<?= (isset($edit)) ? $edit['nama_perusahaan'] : '' ;?>" placeholder="Perusahaan Asal Nama Kontak (Informasi Umum)"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Posisi</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control input-sm" name="posisi" value="<?= (isset($edit)) ? $edit['posisi'] : '' ;?>" placeholder="Posisi / Jabatan Nama Kontak (Informasi Umum)"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Nama Kontak Logistik</label>
-                                            <div class="col-sm-10">
-                                              <input type="text" class="form-control input-sm" name="nama_kontak_logistik" value="<?= (isset($edit)) ? $edit['nama_kontak_logistik'] : '' ;?>" placeholder="Isikan Nama Kontak Logistik, Jika Nama Pada Info Kontak Adalah Perusahaan"/>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Alamat Penagihan</label>
+                                                <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" name="alamat_penagihan" value="<?= (isset($edit)) ? $edit['alamat_penagihan'] : '' ;?>" placeholder="Alamat Penagihan"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <br />
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <h5>Akun Mapping</h5>
-                                        <hr />
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Akun Masuk</label>
-                                            <div class="col-sm-10">
-                                              <select id="akun_masuk" class="form-control form-select2" name="akun_masuk">
-                                                    <option value="">Pilih Akun</option>
-                                                    <?php
-                                                    if($akun){
-                                                        foreach ($akun as $key => $ak) {
-                                                            $selected = false;
-                                                            if(isset($edit) && $edit['akun_masuk'] == $ak['id']){
-                                                                $selected = 'selected';
-                                                            }
-                                                            ?>
-                                                            <option value="<?= $ak['id'];?>" <?= $selected;?>><?= '('.$ak['coa_number'].') '.$ak['coa'];?></option>
-                                                            <?php
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5>Informasi Umum</h5>
+                                            <hr />
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Nama Kontak</label>
+                                                <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" name="nama_kontak" value="<?= (isset($edit)) ? $edit['nama_kontak'] : '' ;?>" placeholder="Isikan Nama Kontak, Jika Nama Pada Info Kontak Adalah Perusahaan"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Identitas</label>
+                                                <div class="col-sm-3">
+                                                <select id="tipe_identitas" class="form-control form-select2" name="tipe_identitas">
+                                                        <option value="">Pilih Satuan</option>
+                                                        <option value="KTP" <?= (isset($edit) && $edit['tipe_identitas'] == 'KTP') ? 'selected' : '' ;?> >KTP</option>
+                                                        <option value="PASSPORT" <?= (isset($edit) && $edit['tipe_identitas'] == 'PASSPORT') ? 'selected' : '' ;?> >PASSPORT</option>
+                                                        <option value="SIM" <?= (isset($edit) && $edit['tipe_identitas'] == 'SIM') ? 'selected' : '' ;?> >SIM</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control input-sm" name="no_identitas" value="<?= (isset($edit)) ? $edit['no_identitas'] : '' ;?>" placeholder="No. Identitas"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Nama Perusahaan</label>
+                                                <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" name="nama_perusahaan" value="<?= (isset($edit)) ? $edit['nama_perusahaan'] : '' ;?>" placeholder="Perusahaan Asal Nama Kontak (Informasi Umum)"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Posisi</label>
+                                                <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" name="posisi" value="<?= (isset($edit)) ? $edit['posisi'] : '' ;?>" placeholder="Posisi / Jabatan Nama Kontak (Informasi Umum)"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Nama Kontak Logistik</label>
+                                                <div class="col-sm-10">
+                                                <input type="text" class="form-control input-sm" name="nama_kontak_logistik" value="<?= (isset($edit)) ? $edit['nama_kontak_logistik'] : '' ;?>" placeholder="Isikan Nama Kontak Logistik, Jika Nama Pada Info Kontak Adalah Perusahaan"/>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Akun Keluar</label>
-                                            <div class="col-sm-10">
-                                              <select id="akun_keluar" class="form-control form-select2" name="akun_keluar">
-                                                    <option value="">Pilih Akun</option>
-                                                    <?php
-                                                    if($akun){
-                                                        foreach ($akun as $key => $ak) {
-                                                            $selected = false;
-                                                            if(isset($edit) && $edit['akun_keluar'] == $ak['id']){
-                                                                $selected = 'selected';
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h5>Akun Mapping</h5>
+                                            <hr />
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Akun Masuk</label>
+                                                <div class="col-sm-10">
+                                                <select id="akun_masuk" class="form-control form-select2" name="akun_masuk">
+                                                        <option value="">Pilih Akun</option>
+                                                        <?php
+                                                        if($akun){
+                                                            foreach ($akun as $key => $ak) {
+                                                                $selected = false;
+                                                                if(isset($edit) && $edit['akun_masuk'] == $ak['id']){
+                                                                    $selected = 'selected';
+                                                                }
+                                                                ?>
+                                                                <option value="<?= $ak['id'];?>" <?= $selected;?>><?= '('.$ak['coa_number'].') '.$ak['coa'];?></option>
+                                                                <?php
                                                             }
-                                                            ?>
-                                                            <option value="<?= $ak['id'];?>" <?= $selected;?>><?= '('.$ak['coa_number'].') '.$ak['coa'];?></option>
-                                                            <?php
                                                         }
-                                                    }
-                                                    ?>
-                                                </select>
+                                                        ?>
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Akun Keluar</label>
+                                                <div class="col-sm-10">
+                                                <select id="akun_keluar" class="form-control form-select2" name="akun_keluar">
+                                                        <option value="">Pilih Akun</option>
+                                                        <?php
+                                                        if($akun){
+                                                            foreach ($akun as $key => $ak) {
+                                                                $selected = false;
+                                                                if(isset($edit) && $edit['akun_keluar'] == $ak['id']){
+                                                                    $selected = 'selected';
+                                                                }
+                                                                ?>
+                                                                <option value="<?= $ak['id'];?>" <?= $selected;?>><?= '('.$ak['coa_number'].') '.$ak['coa'];?></option>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <br />
-                                <div class="row">
-                                    <div class="col-sm-8 text-right">
-                                        <a href="<?= site_url('admin/kontak');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
-                                        <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-12 text-right">
+                                            <a href="<?= site_url('admin/kontak');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
+                                            <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
     

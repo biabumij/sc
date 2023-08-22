@@ -12,19 +12,17 @@
 
 <body>
     <div class="wrap">
-        
         <?php echo $this->Templates->PageHeader();?>
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
-            <div class="content" style="padding:0;">
+            <div class="content">
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-sitemap" aria-hidden="true"></i><a href="<?php echo site_url('admin');?>">Dashboard</a></li>
                             <li>
                                 <a href="<?php echo site_url('admin/biaya');?>"> <i class="fa fa-calendar" aria-hidden="true"></i> Biaya</a></li>
-                            <li><a>Tambah Biaya</a></li>
+                            <li><a>Buat Biaya Umum & Adm.</a></li>
                         </ul>
                     </div>
                 </div>
@@ -33,7 +31,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Tambah Biaya</h3>
+                                    <h3 class="">Buat Biaya Umum & Adm.</h3>
                                 </div>
                             </div>
                             <div class="panel-content">
@@ -165,8 +163,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('admin/biaya_umum_&_adm.');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i>  Kirim</button>
+                                            <a href="<?= site_url('admin/biaya_umum_&_adm.');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
+                                            <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-send"></i>  Kirim</button>
                                         </div>
                                     </div>
                                 </form>
@@ -175,7 +173,6 @@
                     </div>
                 </div>
             </div>
-           
         </div>
     </div>
 
@@ -347,7 +344,6 @@
             
         });
     </script>
-
 
 </body>
 </html>
