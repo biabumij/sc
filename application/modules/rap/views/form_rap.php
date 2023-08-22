@@ -12,13 +12,11 @@
 
 <body>
     <div class="wrap">
-        
         <?php echo $this->Templates->PageHeader();?>
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
-            <div class="content" style="padding:0;">
-				<div class="content-header">
+            <div class="content">
+                <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-money" aria-hidden="true"></i>RAP</li>
@@ -233,8 +231,8 @@
 										</div>
 										<div class="row">
 											<div class="col-sm-12 text-right">
-												<a href="<?= site_url('admin/rap');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-												<button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
+												<a href="<?= site_url('admin/rap');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
+												<button type="submit" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
 											</div>
 										</div>
 										</form>
