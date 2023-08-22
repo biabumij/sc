@@ -18,11 +18,10 @@
 
 <body>
     <div class="wrap">
-        <?php echo $this->Templates->PageHeader(); ?>
-
+        <?php echo $this->Templates->PageHeader();?>
         <div class="page-body">
-            <?php echo $this->Templates->LeftBar(); ?>
-            <div class="content" style="padding:0;">
+            <?php echo $this->Templates->LeftBar();?>
+            <div class="content">
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">

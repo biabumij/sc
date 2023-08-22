@@ -237,13 +237,13 @@ class Pembelian extends Secure_Controller
         if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error', 'Gagal Menambahkan Penawaran Pembelian !!');
+            $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
             redirect('pembelian/penawaran_pembelian');
         } else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success', 'Berhasil Menambahkan Penawaran Pembelian !!');
+            $this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
             redirect('admin/pembelian');
         }
     }
@@ -671,12 +671,13 @@ class Pembelian extends Secure_Controller
         if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
+            $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
             redirect('admin/pembelian#settings');
         } else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success', 'Berhasil Menambahkan Tagihan Pembelian');
+            $this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
             redirect('admin/pembelian#settings');
         }
     }
@@ -1513,13 +1514,13 @@ class Pembelian extends Secure_Controller
         if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error', 'Gagal Menambahkan Data Pembayaran !!');
+            $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
             redirect('pembelian/penagihan_pembelian_detail/' . $penagihan_pembelian_id);
         } else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success', 'Berhasil Menambahkan Data Pembayaran !!');
+            $this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
             redirect('pembelian/penagihan_pembelian_detail/' . $penagihan_pembelian_id);
         }
     }
