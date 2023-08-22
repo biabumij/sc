@@ -12,12 +12,10 @@
 
 <body>
     <div class="wrap">
-
         <?php echo $this->Templates->PageHeader();?>
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
-            <div class="content" style="padding:0;">
+            <div class="content">
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
@@ -31,84 +29,80 @@
                 <div class="row animated fadeInUp">
                     <div class="col-sm-12 col-lg-12">
                         <div class="panel">
-                            <div class="panel-header"> 
-                                <div class="text-right">
-                                    <h3 class="pull-left">Transfer Uang</h3>
-                                </div>
+                            <div class="panel-header">
+                                <h3 class="section-subtitle">
+                                    Transfer Uang
+                                </h3>
                             </div>
-                            <br />
-                            <br />
                             <div class="panel-content">
-                            <form method="POST" action="<?php echo site_url('pmm/finance/submit_transfer');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <label>Transfer Dari</label>
-                                        <select  class="form-control form-select2" name="transfer_dari"  required="">
-                                            <option value="">Pilih Transfer</option>
-                                            <?php
-                                            if(!empty($akun)){
-                                                foreach ($akun as $key => $mat) {
-                                                    ?>
-                                                    <option value="<?= $mat['id'];?>"><?= $mat['coa'];?> (<?= $mat['coa_number'] ?>)</option>
-                                                    <?php
+                                <form method="POST" action="<?php echo site_url('pmm/finance/submit_transfer');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label>Transfer Dari</label>
+                                            <select  class="form-control form-select2" name="transfer_dari"  required="">
+                                                <option value="">Pilih Transfer</option>
+                                                <?php
+                                                if(!empty($akun)){
+                                                    foreach ($akun as $key => $mat) {
+                                                        ?>
+                                                        <option value="<?= $mat['id'];?>"><?= $mat['coa'];?> (<?= $mat['coa_number'] ?>)</option>
+                                                        <?php
+                                                    }
                                                 }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Setor Ke</label>
-                                        <select  class="form-control form-select2" name="setor_ke"  required="">
-                                            <option value="">Pilih Setor</option>
-                                            <?php
-                                            if(!empty($akun)){
-                                                foreach ($akun as $key => $mat) {
-                                                    ?>
-                                                    <option value="<?= $mat['id'];?>"><?= $mat['coa'];?> (<?= $mat['coa_number'] ?>)</option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Jumlah</label>
-                                        <input type="text" class="form-control numberformat" name="jumlah" placeholder="Masukkan jumlah">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Nomor Transaksi</label>
-                                        <input type="text" class="form-control" name="nomor_transaksi">
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <label>Tanggal Transaksi</label>
-                                        <input type="date" class="form-control" name="tanggal_transaksi">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label>Memo</label>
-                                            <textarea class="form-control" name="memo" rows="3"></textarea>
+                                                ?>
+                                            </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Lampiran</label>
-                                            <input type="file" class="form-control" name="files[]"  multiple="" />
+                                        <div class="col-sm-4">
+                                            <label>Setor Ke</label>
+                                            <select  class="form-control form-select2" name="setor_ke"  required="">
+                                                <option value="">Pilih Setor</option>
+                                                <?php
+                                                if(!empty($akun)){
+                                                    foreach ($akun as $key => $mat) {
+                                                        ?>
+                                                        <option value="<?= $mat['id'];?>"><?= $mat['coa'];?> (<?= $mat['coa_number'] ?>)</option>
+                                                        <?php
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Jumlah</label>
+                                            <input type="text" class="form-control numberformat" name="jumlah" placeholder="Masukkan jumlah">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Nomor Transaksi</label>
+                                            <input type="text" class="form-control" name="nomor_transaksi">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label>Tanggal Transaksi</label>
+                                            <input type="text" class="form-control dtpicker" name="tanggal_transaksi">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 text-right">
-                                        <a href="<?= site_url('admin/kas_&_bank');?>" class="btn btn-danger" style="margin-bottom:0;"><i class="fa fa-close"></i> Batal</a>
-                                        <button type="submit" class="btn btn-success"><i class="fa fa-send"></i>  Kirim</button>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Memo</label>
+                                                <textarea class="form-control" name="memo" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Lampiran</label>
+                                                <input type="file" class="form-control" name="files[]"  multiple="" />
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="row">
+                                        <div class="col-sm-12 text-right">
+                                            <a href="<?= site_url('admin/kas_&_bank#messages');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
+                                            <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-send"></i>  Kirim</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
             
@@ -131,13 +125,19 @@
 
         $('.form-select2').select2();
 
-        $('input.numberformat').number( true, 2,',','.' );
+        $('input.numberformat').number( true, 0,',','.' );
         $('.dtpicker').daterangepicker({
             singleDatePicker: true,
             showDropdowns : true,
             locale: {
               format: 'DD-MM-YYYY'
-            }
+            },
+            //minDate: new Date()+0,
+			//maxDate: new Date()+1,
+            //minDate: moment().add(-10, 'd').toDate(),
+			//maxDate: moment().add(+0, 'd').toDate(),
+            minDate: moment().startOf('month').toDate(),
+			maxDate: moment().endOf('month').toDate(),
         });
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
               $(this).val(picker.startDate.format('DD-MM-YYYY'));

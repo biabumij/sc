@@ -56,7 +56,6 @@
                                                     <th>No</th>
                                                     <th>Kode Akun</th>
                                                     <th>Nama</th>
-                                                    <!--<th>Saldo</th>-->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -75,8 +74,8 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Nomor Transaksi</th>
-                                                    <th>Jumlah</th>
                                                     <th>Tanggal Transaksi</th>
+                                                    <th>Jumlah</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -94,8 +93,8 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Nomor Transaksi</th>
-                                                    <th>Jumlah</th>
                                                     <th>Tanggal Transaksi</th>
+                                                    <th>Jumlah</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -171,7 +170,7 @@
     
     <script type="text/javascript">
         $('input#contract').number( true, 2,',','.' );
-        var table = $('#guest-table').DataTable( {
+        var table = $('#guest-table').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -182,19 +181,17 @@
                 { "data": "no" },
                 { "data": "coa_number" },
                 { "data": "coa" },
-                //{ "data": "saldo" },
             ],
             "columnDefs": [
-                {
-                    "targets": [0],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "20%", "targets": 1, "className": 'text-center'},
+                { "width": "75%", "targets": 2, "className": 'text-left' }
             ],
             responsive: true,
             searching: true,
         });
 
-        var transfer = $('#table-transfer').DataTable( {
+        var transfer = $('#table-transfer').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -204,24 +201,20 @@
             columns: [
                 { "data": "no" },
                 { "data": "nomor" },
-                { "data": "total" },
                 { "data": "tanggal_transaksi" },
+                { "data": "total" },
             ],
             "columnDefs": [
-                {
-                    "targets": [0, 3],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [2],
-                    "className": 'text-right',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": 2, "className": 'text-center'},
+                { "width": "40%", "targets": 3, "className": 'text-right'}
             ],
             responsive: true,
             searching: true,
         });
 
-        var terima = $('#table-terima').DataTable( {
+        var terima = $('#table-terima').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -231,18 +224,14 @@
             columns: [
                 { "data": "no" },
                 { "data": "nomor" },
-                { "data": "total" },
                 { "data": "tanggal_transaksi" },
+                { "data": "total" },
             ],
             "columnDefs": [
-                {
-                    "targets": [0, 3],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [2],
-                    "className": 'text-right',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "20%", "targets": 2, "className": 'text-center'},
+                { "width": "40%", "targets": 3, "className": 'text-right'}
             ],
             responsive: true,
             searching: true,

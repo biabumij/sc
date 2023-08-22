@@ -1161,15 +1161,15 @@ class Finance extends CI_Controller {
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
-				$this->session->set_flashdata('notif_error','Gagal membuat terima uang !!');
-				redirect('pmm/finance/terima_uang');
+				$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
+				redirect('admin/kas_&_bank#messages');
 			} 
 			else {
 				# Everything is Perfect. 
 				# Committing data to the database.
 				$this->db->trans_commit();
-				$this->session->set_flashdata('notif_success','Berhasil membuat terima uang !!');
-				redirect('admin/kas_&_bank');
+				$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
+				redirect('admin/kas_&_bank#messages');
 			}
 		}
 	}
@@ -1282,15 +1282,15 @@ class Finance extends CI_Controller {
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
-				$this->session->set_flashdata('notif_error','Gagal membuat transfer !!');
-				redirect('pmm/finance/transfer_uang');
+				$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
+				redirect('admin/kas_&_bank#profile');
 			} 
 			else {
 				# Everything is Perfect. 
 				# Committing data to the database.
 				$this->db->trans_commit();
-				$this->session->set_flashdata('notif_success','Berhasil membuat transfer !!');
-				redirect('admin/kas_&_bank');
+				$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
+				redirect('admin/kas_&_bank#profile');
 			}
 		}
 	}

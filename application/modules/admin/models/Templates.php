@@ -367,7 +367,7 @@ class Templates extends CI_Model {
     		?>
     		<script type="text/javascript">
     			$.toast({
-				    heading: 'Error',
+				    heading: '<b>Gagal!</b>',
 				    text: '<?= $this->session->flashdata('notif_error');?>',
 				    showHideTransition: 'fade',
 				    icon: 'error',
@@ -383,7 +383,7 @@ class Templates extends CI_Model {
     		<script type="text/javascript">
 
 				$.toast({
-				    heading: 'Success',
+				    heading: '<b>Sukses!</b>',
 				    text: '<?= $this->session->flashdata('notif_success');?>',
 				    showHideTransition: 'fade',
 				    icon: 'success',
