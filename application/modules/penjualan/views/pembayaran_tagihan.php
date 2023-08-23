@@ -12,12 +12,10 @@
 
 <body>
     <div class="wrap">
-        
         <?php echo $this->Templates->PageHeader();?>
-
         <div class="page-body">
             <?php echo $this->Templates->LeftBar();?>
-            <div class="content" style="padding:0;">
+            <div class="content">
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
@@ -32,8 +30,8 @@
                     <div class="col-sm-12 col-lg-12">
                         <div class="panel">
                             <div class="panel-header"> 
-                                <div class="text-right">
-                                    <h3 class="pull-left">Penerimaan Penjualan</h3>
+                                <div class="">
+                                    <h3 class="">Penerimaan Penjualan</h3>
                                 </div>
                             </div>
                             <br />

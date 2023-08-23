@@ -45,12 +45,10 @@
 
 <body>
     <div class="wrap">
-
-        <?php echo $this->Templates->PageHeader(); ?>
-
+        <?php echo $this->Templates->PageHeader();?>
         <div class="page-body">
-            <?php echo $this->Templates->LeftBar(); ?>
-            <div class="content" style="padding:0;">
+            <?php echo $this->Templates->LeftBar();?>
+            <div class="content">
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
@@ -87,22 +85,8 @@
                                     </table>
                                 </div>
                                 <br /><br />
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td width="30%"></td>
-                                                <td width="10%"></td>
-                                                <td width="10%"><a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$row['id']);?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
-                                                <td width="10%"></td>
-                                                <td width="10%"></td>
-                                                <td width="30%"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="text-center">
+                                    <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$row['id']);?>" class="btn btn-info" style="width:15%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 </div>
                             </div>
                         </div>
