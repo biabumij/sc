@@ -146,10 +146,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <br /><br />
                                     <div class="row">
-                                        <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-info" style="margin-bottom:0;"><i class="fa fa-times"></i> Kembali</a>
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Kirim</button>
+                                        <div class="col-sm-12 text-center">
+                                            <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-info" style="margin-bottom:0; width:15%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                            <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>
                                 </form>

@@ -1384,13 +1384,13 @@ class Penjualan extends Secure_Controller
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
-				$this->session->set_flashdata('notif_error', 'Gagal Menambahkan Data Pembayaran !!');
+				$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
 				redirect('penjualan/halaman_pembayaran/' . $this->input->post('id_penagihan'));
 			} else {
 				# Everything is Perfect. 
 				# Committing data to the database.
 				$this->db->trans_commit();
-				$this->session->set_flashdata('notif_success', 'Berhasil Menambahkan Data Pembayaran !!');
+				$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
 				redirect('penjualan/detailPenagihan/' . $this->input->post('id_penagihan'));
 			}
 		} catch (Throwable $e) {
