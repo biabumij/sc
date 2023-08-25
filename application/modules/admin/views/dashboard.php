@@ -71,7 +71,7 @@
 
                     <div class="col-sm-12">
                         <figure class="highcharts-figure">
-                            <div id="container_laba_rugi"></div>
+                            <div id="container_laba_rugi" style="border-radius:10px;"></div>
                             
                         </figure>
                         <br />
@@ -81,9 +81,9 @@
                     <div class="col-sm-8">			
                         <div role="tabpanel" class="tab-pane" id="rap">
                             <div class="col-sm-15">
-                            <div class="panel panel-default">
+                            <div class="panel" style="border-radius:10px;">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">RAP</h3>
+                                        <center><h3 class="panel-title">RAP</h3></center>
                                     </div>
                                     <div style="margin: 20px">
                                         <div id="wait" style=" text-align: center; align-content: center; display: none;">	
