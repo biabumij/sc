@@ -61,7 +61,6 @@ class Templates extends CI_Model {
 					<?php echo $this->m_themes->GetThemes('site_name');?> - DIVISI STONE CRUSHER <br />
 					<div style="font-size:12px;">
 						<?php echo tglIndonesia(date('D'));?>, <?php echo tglIndonesia(date('d F Y'));?>
-						<iframe src="https://free.timeanddate.com/clock/i8z2m94m/n108/tlid38/fs12/fcfff/tct/pct/th1/ta1" frameborder="0" width="75" height="12" allowtransparency="true"></iframe>
 					</div>
 					</a>
 	            </div>
