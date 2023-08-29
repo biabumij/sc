@@ -346,13 +346,13 @@
                                     <div class="row">
                                         <label class="col-sm-7 control-label">PEMBAYARAN</label>
                                         <div class="col-sm-5 text-right">
-                                            <label id="sub-total"><?= number_format($row['pembayaran'],0,',','.'); ?></label>
+                                            <label id="sub-total"><?= number_format($row['pembayaran'] - $row['uang_muka'],0,',','.'); ?></label>
                                         </div>
                                     </div>
                                     <div class="row">
                                     <label class="col-sm-7 control-label">SISA TAGIHAN</label>
                                         <div class="col-sm-5 text-right">
-                                        <label id="total"><?= number_format($total - $row['uang_muka'] - $row['pembayaran']); ?></label>
+                                        <label id="total"><?= number_format($total - $row['uang_muka'] - ($row['pembayaran'] - $row['uang_muka'])); ?></label>
                                         </div>
                                     </div>
                                 </div>

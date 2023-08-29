@@ -644,7 +644,7 @@ class Pembelian extends Secure_Controller
                     exit();
                 }
 
-                /*if ($uang_muka > 0) {
+                if ($uang_muka > 0) {
                     $arr_bayar = array(
                         'penagihan_pembelian_id' => $tagihan_id,
                         'supplier_name' => $supplier_name,
@@ -652,12 +652,12 @@ class Pembelian extends Secure_Controller
                         'nomor_transaksi' => $this->input->post('nomor_transaksi_dp'),
                         'total' => $uang_muka,
                         'tanggal_pembayaran' => $tanggal_invoice,
-                        'status' => 'Belum Disetujui',
+                        'status' => 'DISETUJUI',
                         'created_by' => $this->session->userdata('admin_id'),
                         'created_on' => date('Y-m-d H:i:s')
                     );
                     $this->db->insert('pmm_pembayaran_penagihan_pembelian', $arr_bayar);
-                }*/
+                }
             }
 
             $arr_surat_jalan = explode(',', $surat_jalan);
