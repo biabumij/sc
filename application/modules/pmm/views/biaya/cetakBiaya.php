@@ -134,7 +134,7 @@
         <?php
         $staff_keuangan_proyek = $this->pmm_model->GetNameGroup(14);
         $pj_keuangan = $this->pmm_model->GetNameGroup(10);
-        $kepala_unit_bisnis = $this->pmm_model->GetNameGroup(16);
+        $kepala_unit_bisnis = $this->pmm_model->GetNameGroup(15);
         $arr_no_trans = explode('/', $biaya['nomor_transaksi']);
         ?>  
 
@@ -190,7 +190,7 @@
                                 <img src="uploads/ttd_rifka.png" width="100px">
                             </td>
                             <td align="center">
-                                
+                                <img src="uploads/ttd_dadang.png" width="100px">
                             </td>
                             <td align="center">
                             
