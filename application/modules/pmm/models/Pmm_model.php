@@ -4229,5 +4229,30 @@ class Pmm_model extends CI_Model {
         return $data;
     }
 
+    function TableMainVerifikasi($id)
+    {
+        $data = array();
+        $this->db->select('pvp.*, ppp.supplier_id, ppp.nomor_invoice');
+        $this->db->join('pmm_penagihan_pembelian ppp','pvp.penagihan_pembelian_id = ppp.id','left');
+        $this->db->where('pvp.id',$id);
+        $this->db->order_by('pvp.id','asc');
+        $query = $this->db->get('pmm_verifikasi_penagihan_pembelian pvp');
+	
+        if($query->num_rows() > 0){
+            foreach ($query->result_array() as $key => $row) {
+                $row['no'] = $key+1;
+                $row['nama']= $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
+                $row['tanggal_lolos_verifikasi'] = date('d F Y',strtotime($row['tanggal_lolos_verifikasi']));
+                $row['nomor_invoice']= $row['nomor_invoice'];
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success"> Update Verifikasi</a>';
+                
+                $data[] = $row;
+            }
+
+        }
+        
+        return $data;   
+    }
+
 }
 ?>

@@ -825,12 +825,12 @@
                                 <td width="68%" id="supplier_name_d">-</td>
                             </tr>
                             <tr>
-                                <th>Nomor Kontrak /PO</th>
+                                <th>Nomor Kontrak / PO</th>
                                 <th>:</th>
                                 <td id="no_po_d"></td>
                             </tr>
                             <tr>
-                                <th>Nama Barang/Jasa</th>
+                                <th>Nama Barang / Jasa</th>
                                 <th>:</th>
                                 <td id="nama_barang_jasa_d"></td>
                             </tr>
@@ -1062,8 +1062,8 @@
     <!-- Script Penawaran Pembelian -->
     <script type="text/javascript">
 		
-        $('input#contract').number(true, 2, ',', '.');
-        $('input.numberformat').number(true, 2, ',', '.');
+        $('input#contract').number(true, 0, ',', '.');
+        $('input.numberformat').number(true, 0, ',', '.');
         
         tinymce.init({
         selector: 'textarea#about_text',

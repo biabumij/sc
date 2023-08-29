@@ -644,7 +644,7 @@ class Pembelian extends Secure_Controller
                     exit();
                 }
 
-                if ($uang_muka > 0) {
+                /*if ($uang_muka > 0) {
                     $arr_bayar = array(
                         'penagihan_pembelian_id' => $tagihan_id,
                         'supplier_name' => $supplier_name,
@@ -657,7 +657,7 @@ class Pembelian extends Secure_Controller
                         'created_on' => date('Y-m-d H:i:s')
                     );
                     $this->db->insert('pmm_pembayaran_penagihan_pembelian', $arr_bayar);
-                }
+                }*/
             }
 
             $arr_surat_jalan = explode(',', $surat_jalan);
@@ -1863,5 +1863,206 @@ class Pembelian extends Secure_Controller
 		$this->db->update("pmm_verifikasi_penagihan_pembelian");
 		$this->session->set_flashdata('notif_success', 'Berhasil Menutup Verifikasi');
 		redirect("admin/pembelian");
+	}
+
+    public function sunting_verifikasi($id)
+	{
+		$check = $this->m_admin->check_login();
+		if ($check == true) {
+
+			$this->db->select('pvp.*');
+            $data['row'] = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp', array('pvp.penagihan_pembelian_id' => $id))->row_array();
+			$this->load->view('pembelian/sunting_verifikasi', $data);
+		} else {
+			redirect('admin');
+		}
+	}
+
+    public function main_table_verifikasi()
+	{	
+		$data = $this->pmm_model->TableMainVerifikasi($this->input->post('id'));
+		echo json_encode(array('data'=>$data));
+	}
+
+    public function get_verifikasi_main()
+	{
+		$output['output'] = false;
+		$id = $this->input->post('id');
+		if(!empty($id)){
+            $data = $this->db->select('pvp.*, ppp.supplier_id, (pvp.nilai_tagihan + pvp.ppn - pvp.pph) as total_tagihan')
+            ->from('pmm_verifikasi_penagihan_pembelian pvp')
+            ->join('pmm_penagihan_pembelian ppp','pvp.penagihan_pembelian_id = ppp.id','left')
+            ->where('pvp.id',$id)
+            ->get()->row_array();
+
+            $data['nama']= $this->crud_global->GetField('penerima',array('id'=>$data['supplier_id']),'nama');
+            $data['tanggal_invoice'] = date('d-m-Y',strtotime($data['tanggal_invoice']));
+            $data['tanggal_diterima_proyek'] = date('d-m-Y',strtotime($data['tanggal_diterima_proyek']));
+            $data['tanggal_lolos_verifikasi'] = date('d-m-Y',strtotime($data['tanggal_lolos_verifikasi']));
+            $data['tanggal_diterima_office'] = date('d-m-Y',strtotime($data['tanggal_diterima_office']));
+			$output['output'] = $data;
+            
+		}
+		echo json_encode($output);
+	}
+
+    public function update_verifikasi_main()
+	{
+		$output['output'] = false;
+
+		$penagihan_id = $this->input->post('penagihan_id');
+		$tanggal_diterima_proyek = date('Y-m-d',strtotime($this->input->post('tanggal_diterima_proyek')));
+        $tanggal_lolos_verifikasi = date('Y-m-d',strtotime($this->input->post('tanggal_lolos_verifikasi')));
+
+        $invoice = $this->input->post('invoice');
+        $invoice_file = $this->input->post('invoice_file');
+        $invoice_keterangan = $this->input->post('invoice_keterangan');
+
+        $kwitansi = $this->input->post('kwitansi');
+        $kwitansi_file = $this->input->post('kwitansi_file');
+        $kwitansi_keterangan = $this->input->post('kwitansi_keterangan');
+
+        $faktur = $this->input->post('faktur');
+        $faktur_file = $this->input->post('faktur_file');
+        $faktur_keterangan = $this->input->post('faktur_keterangan');
+
+        $bap = $this->input->post('bap');
+        $bap_file = $this->input->post('bap_file');
+        $bap_keterangan = $this->input->post('bap_keterangan');
+
+        $bast = $this->input->post('bast');
+        $bast_file = $this->input->post('bast_file');
+        $bast_keterangan = $this->input->post('bast_keterangan');
+
+        $surat_jalan = $this->input->post('surat_jalan');
+        $surat_jalan_file = $this->input->post('surat_jalan_file');
+        $surat_jalan_keterangan = $this->input->post('surat_jalan_keterangan');
+
+        $copy_po = $this->input->post('copy_po');
+        $copy_po_file = $this->input->post('copy_po_file');
+        $copy_po_keterangan = $this->input->post('copy_po_keterangan');
+
+		$data = array(
+            'id' => $penagihan_id,
+		    'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
+            'tanggal_lolos_verifikasi' => $tanggal_lolos_verifikasi,
+            'status_umur_hutang' => $tanggal_lolos_verifikasi,
+
+            'invoice' => $invoice,
+            'invoice_keterangan' => $invoice_keterangan,
+            'kwitansi' => $kwitansi,
+            'kwitansi_keterangan' => $kwitansi_keterangan,
+            'faktur' => $faktur,
+            'faktur_keterangan' => $faktur_keterangan,
+            'bap' => $bap,
+            'bap_keterangan' => $bap_keterangan,
+            'bast' => $bast,
+            'bast_keterangan' => $bast_keterangan,
+            'surat_jalan' => $surat_jalan,
+            'surat_jalan_keterangan' => $surat_jalan_keterangan,
+            'copy_po' => $copy_po,
+            'copy_po_keterangan' => $copy_po_keterangan,
+
+            
+		);
+
+        $dir = "uploads/verifikasi_dokumen/";
+
+        if (!file_exists($dir)) {
+            mkdir($dir, 777, true);
+        }
+
+        
+
+        if (isset($invoice_file) && !empty($invoice_file)) {
+            list($fileName, $base64) = explode("|", $invoice_file);
+
+            $fileContent = base64_decode($base64);
+
+            $filePath = $dir . uniqid() . "-" . $fileName;
+
+            file_put_contents($filePath, $fileContent);
+            $data['invoice_file'] = $filePath;
+        }
+
+        if (isset($kwitansi_file) && !empty($kwitansi_file)) {
+            list($fileName, $base64) = explode("|", $kwitansi_file);
+
+            $fileContent = base64_decode($base64);
+
+            $filePath = $dir . uniqid() . "-" . $fileName;
+
+            file_put_contents($filePath, $fileContent);
+            $data['kwitansi_file'] = $filePath;
+        }
+
+        if (isset($faktur_file) && !empty($faktur_file)) {
+            list($fileName, $base64) = explode("|", $faktur_file);
+
+            $fileContent = base64_decode($base64);
+
+            $filePath = $dir . uniqid() . "-" . $fileName;
+
+            file_put_contents($filePath, $fileContent);
+            $data['faktur_file'] = $filePath;
+        }
+
+        if (isset($bap_file) && !empty($bap_file)) {
+            list($fileName, $base64) = explode("|", $bap_file);
+
+            $fileContent = base64_decode($base64);
+
+            $filePath = $dir . uniqid() . "-" . $fileName;
+
+            file_put_contents($filePath, $fileContent);
+            $data['bap_file'] = $filePath;
+        }
+
+        if (isset($bast_file) && !empty($bast_file)) {
+            list($fileName, $base64) = explode("|", $bast_file);
+
+            $fileContent = base64_decode($base64);
+
+            $filePath = $dir . uniqid() . "-" . $fileName;
+
+            file_put_contents($filePath, $fileContent);
+            $data['bast_file'] = $filePath;
+        }
+
+        if (isset($surat_jalan_file) && !empty($surat_jalan_file)) {
+            list($fileName, $base64) = explode("|", $surat_jalan_file);
+
+            $fileContent = base64_decode($base64);
+
+            $filePath = $dir . uniqid() . "-" . $fileName;
+
+            file_put_contents($filePath, $fileContent);
+            $data['surat_jalan_file'] = $filePath;
+        }
+
+        if (isset($copy_po_file) && !empty($copy_po_file)) {
+            list($fileName, $base64) = explode("|", $copy_po_file);
+
+            $fileContent = base64_decode($base64);
+
+            $filePath = $dir . uniqid() . "-" . $fileName;
+
+            file_put_contents($filePath, $fileContent);
+            $data['copy_po_file'] = $filePath;
+        }
+
+		if(!empty($id)){
+			if($this->db->update('pmm_verifikasi_penagihan_pembelian',$data,array('id'=>$penagihan_id))){
+				$output['output'] = true;
+			}
+		}else{
+            $data['updated_by'] = $this->session->userdata('admin_id');
+            $data['updated_on'] = date('Y-m-d H:i:s');
+			if($this->db->update('pmm_verifikasi_penagihan_pembelian',$data,array('id'=>$penagihan_id))){
+				$output['output'] = true;
+			}
+		}
+		
+		echo json_encode($output);	
 	}
 }
