@@ -385,7 +385,7 @@
                         backgroundColor: {
                             linearGradient: [500, 0, 0, 700],
                             stops: [
-                                [0, 'rgb(106,168,79)'],
+                                [0, 'rgb(210,235,153)'],
                                 [1, 'rgb(150,194,131)']
                             ]
                         },
@@ -402,7 +402,7 @@
                     },
                     subtitle: {
                         style: {
-                        color: '#ffffff',
+                        color: '#000000',
                         fontWeight: 'bold',
                         fontSize: '14px',
                         fontFamily: 'arial'
@@ -413,7 +413,7 @@
                     xAxis: {
                         labels: {
                             style: {
-                                color: '#ffffff',
+                                color: '#000000',
                                 fontWeight: 'bold',
                                 fontSize: '10px',
                                 fontFamily: 'arial'
@@ -425,7 +425,7 @@
                     yAxis: {
                         title: {
                             style: {
-                                color: '#ffffff',
+                                color: '#000000',
                                 fontWeight: 'bold',
                                 fontSize: '10px',
                                 fontFamily: 'arial'
@@ -439,7 +439,7 @@
                         }],
                         labels: {
                             style: {
-                                color: '#ffffff',
+                                color: '#000000',
                                 fontWeight: 'bold',
                                 fontSize: '10px',
                                 fontFamily: 'arial'

@@ -228,17 +228,17 @@
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['unit_head']);
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['keu_1']);
 							$keu_1 = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['keu_2']);
 							$keu_2 = $this->db->get('tbl_admin a')->row_array();
@@ -256,15 +256,15 @@
 						</tr>
 						<tr>
 							<td align="center">
-								<b><u><?= $unit_head['admin_name']?></u><br />
+								<b><u><?= $unit_head['admin_name'];?></u><br />
 								Kepala Unit Bisnis</b>
 							</td>
 							<td align="center">
-							<b><u>Rifka Dian B.</u><br />
+							<b><u><?= $keu_1['admin_name'];?></u><br />
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center">
-							<b><u>Dian Melinda S.</u><br />
+							<b><u><?= $keu_2['admin_name'];?></u><br />
 								Staff Keuangan & SDM</b>
 							</td>
 						</tr>

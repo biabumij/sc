@@ -202,17 +202,17 @@
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['unit_head']);
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['logistik']);
 							$logistik = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['admin']);
 							$admin = $this->db->get('tbl_admin a')->row_array();
@@ -225,7 +225,7 @@
 								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="70px">
+								<img src="<?= $admin['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>
@@ -234,11 +234,11 @@
 								Kepala Unit Bisnis</b>
 							</td>
 							<td align="center">
-								<b><u>Vicky Irwana Yudha</u><br />
+								<b><u><?= $logistik['admin_name']?></u><br />
 								Ka. Logistik</b>
 							</td>
 							<td align="center">
-								<b><u>Vicky Irwana Yudha</u><br />
+								<b><u><?= $admin['admin_name']?></u><br />
 								Admin Logistik</b>
 							</td>
 						</tr>

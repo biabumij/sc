@@ -115,15 +115,26 @@
                                 Diketahui
                             </td>
                         </tr>
+                        <?php
+                            $this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$detail['created_by']);
+							$created = $this->db->get('tbl_admin a')->row_array();
+                            
+                            $pj_keuangan = $this->pmm_model->GetNameGroup(10);
+                            $kepala_unit_bisnis = $this->pmm_model->GetNameGroup(15);
+                            $dir_keu = $this->pmm_model->GetNameGroup(5);
+                            $dirut = $this->pmm_model->GetNameGroup(6);
+                        ?>
                         <tr class="">
-                            <td align="center" height="75px">
-                                
+                            <td align="center" height="70px">
+                                <img src="<?= $created['admin_ttd']?>" width="70px">
                             </td>
                             <td align="center">
-                                
+                             <img src="uploads/ttd_rifka.png" width="70px">
                             </td>
                             <td align="center">
-                                
+                                <img src="uploads/ttd_dadang.png" width="100px">
                             </td>
                             <td align="center">
                                 
@@ -134,42 +145,36 @@
                         </tr>
                         <tr class="table-active3">
                             <td align="center">
-                                <?= $this->crud_global->GetField('tbl_admin',array('admin_id'=>$detail['created_by']),'admin_name'); ?>
+                                <?= $created['admin_name'];?>
                             </td>
                             <td align="center">
-                                Rifka Dian B.
+                                <?= $pj_keuangan['admin_name'];?>
                             </td>
                             <td align="center">
-                                
+                                <?= $kepala_unit_bisnis['admin_name'];?>
                             </td>
                             <td align="center">
-                                Erika Sinaga
+                                <?= $dir_keu['admin_name'];?>
                             </td>
                             <td align="center" >
-                                Deddy Sarwobiso
+                                <?= $dirut['admin_name'];?>
                             </td>
                         </tr>
                          <tr class="table-active3">
-                            <td align="center">
-                                <?php
-                                $this->db->select('g.admin_group_name');
-                                $this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-                                $this->db->where('a.admin_id',$detail['created_by']);
-                                $created_group = $this->db->get('tbl_admin a')->row_array();
-                                ?>
-                                <?= $created_group['admin_group_name']?>
-                            </td>
-                            <td align="center">
-                                Pj. Keuangan & SDM
-                            </td>
-                            <td align="center">
-                                Ka. Unit Bisnis
-                            </td>
-                            <td align="center">
-                                Dir. Keuangan
-                            </td>
                             <td align="center" >
-                                Direktur Utama
+                                <?= $created['admin_group_name']?>
+                            </td>
+                            <td align="center">
+                                <?= $pj_keuangan['admin_group_name']?>
+                            </td>
+                            <td align="center">
+                                <?= $kepala_unit_bisnis['admin_group_name'];?>
+                            </td>
+                            <td align="center">
+                                <?= $dir_keu['admin_group_name'];?>
+                            </td>
+                            <td align="center">
+                                <?= $dirut['admin_group_name'];?>
                             </td>
                         </tr>
                     </table>
