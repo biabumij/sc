@@ -232,7 +232,7 @@ class Evaluasi extends Secure_Controller {
 				$row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
 				$row['print'] = '<a href="'.site_url().'evaluasi/cetak_evaluasi_supplier/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
-				if($this->session->userdata('admin_group_id') == 1){
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
 				$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteEvaluasiSupplier('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['actions'] = '-';
