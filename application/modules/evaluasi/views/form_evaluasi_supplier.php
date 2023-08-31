@@ -20,7 +20,7 @@
                 <div class="content-header">
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
-                            <li><a href="<?php echo site_url('admin/evaluasi#evaluasi_supplier');?>">RAP</a></li>
+                            <li><a href="<?php echo site_url('admin/evaluasi#evaluasi_supplier');?>">Evaluasi Supplier</a></li>
                             <li><a>Buat Evaluasi Supplier</a></li>
                         </ul>
                     </div>
