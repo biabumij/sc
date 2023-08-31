@@ -240,7 +240,7 @@
 														<tr>
 															<td width="30%"></td>
 															<td width="10%"></td>
-															<td width="10%"><a href="<?= site_url('admin/evaluasi#evaluasi_supplier');?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
+															<td width="10%"><a href="<?= site_url('admin/evaluasi');?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
 															<td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
 															<td width="10%"></td>
 															<td width="30%"></td>
@@ -263,16 +263,11 @@
         var form_control = '';
     </script>
     <?php echo $this->Templates->Footer();?>
-
     <script src="<?php echo base_url();?>assets/back/theme/vendor/jquery.number.min.js"></script>
-    
     <script src="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
     <script src="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
-   
     <script src="<?php echo base_url();?>assets/back/theme/vendor/bootbox.min.js"></script>
-
-    
 
     <script type="text/javascript">
         
@@ -294,115 +289,8 @@
             }
         });
         $('.dtpicker').on('apply.daterangepicker', function(ev, picker) {
-              $(this).val(picker.startDate.format('DD-MM-YYYY'));
-              // table.ajax.reload();
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
         });
-
-
-
-        $('#form-po').submit(function(e){
-            e.preventDefault();
-            var currentForm = this;
-            bootbox.confirm({
-                message: "Apakah anda yakin untuk proses data ini ?",
-                buttons: {
-                    confirm: {
-                        label: 'Yes',
-                        className: 'btn-success'
-                    },
-                    cancel: {
-                        label: 'No',
-                        className: 'btn-danger'
-                    }
-                },
-                callback: function (result) {
-                    if(result){
-                        currentForm.submit();
-                    }
-                    
-                }
-            });
-            
-        });
-	
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_a').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_b').prop('selectedIndex', 2).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_c').prop('selectedIndex', 3).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#produk_d').prop('selectedIndex', 4).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#measure_a').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#measure_b').prop('selectedIndex', 4).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#measure_c').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-		$(document).ready(function() {
-            setTimeout(function(){
-                $('#measure_d').prop('selectedIndex', 1).trigger('change');
-            }, 1000);
-        });
-
-		function changeData(id)
-        {
-			var presentase_a = $('#presentase_a').val();
-			var presentase_b = $('#presentase_b').val();
-			var presentase_c = $('#presentase_c').val();
-			var presentase_d = $('#presentase_d').val();
-
-			var price_a = $('#price_a').val();
-			var price_b = $('#price_b').val();
-			var price_c = $('#price_c').val();
-			var price_d = $('#price_d').val();
-            				
-			total_a = ( presentase_a * price_a );
-			$('#total_a').val(total_a);
-			total_b = ( presentase_b * price_b );
-			$('#total_b').val(total_b);
-			total_c = ( presentase_c * price_c );
-			$('#total_c').val(total_c);
-			total_d = ( presentase_d * price_d );
-			$('#total_d').val(total_d);
-			getTotal();
-        }
-
-		function getTotal()
-        {
-            var sub_total = $('#sub-total-val').val();
-
-            sub_total = parseInt($('#total_a').val()) + parseInt($('#total_b').val()) + parseInt($('#total_c').val()) + parseInt($('#total_d').val());
-            
-            $('#sub-total-val').val(sub_total);
-            $('#sub-total').text($.number( sub_total, 0,',','.' ));
-
-            total_total = parseInt(sub_total);
-            $('#total-val').val(total_total);
-            $('#total').text($.number( total_total, total_d,',','.' ));
-        }
-		
     </script>
 
 	<script>
