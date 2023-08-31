@@ -240,7 +240,7 @@
 														<tr>
 															<td width="30%"></td>
 															<td width="10%"></td>
-															<td width="10%"><a href="<?= site_url('admin/evaluasi');?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
+															<td width="10%"><a href="<?= site_url('admin/evaluasi_supplier');?>" class="btn btn-info" style="width:100%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a></td>
 															<td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
 															<td width="10%"></td>
 															<td width="30%"></td>
