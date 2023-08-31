@@ -176,6 +176,54 @@ class Pmm_finance extends CI_Model {
         }
         return $output;
     }
+    
+    function CheckorNoNew($id)
+    {
+        $output = '';
+
+        if(!empty($id)){
+            if($id >= 0){
+                $output = 'V';
+            }
+        }
+        return $output;
+    }
+
+    function CheckorNoNew2($id)
+    {
+        $output = '';
+
+        if(!empty($id)){
+            if($id >= 65){
+                $output = 'V';
+            }
+        }
+        return $output;
+    }
+
+    function CheckorNoNew3($id)
+    {
+        $output = '';
+
+        if(!empty($id)){
+            if($id >= 56 && $id <= 65){
+                $output = 'V';
+            }
+        }
+        return $output;
+    }
+
+    function CheckorNoNew4($id)
+    {
+        $output = '';
+
+        if(!empty($id)){
+            if($id <= 55){
+                $output = 'V';
+            }
+        }
+        return $output;
+    }
 
 
     function BankCash()
