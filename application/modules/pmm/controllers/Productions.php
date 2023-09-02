@@ -249,7 +249,6 @@ class Productions extends Secure_Controller {
 				}
 			}
 			
-	
 			
 			if($_FILES["surat_jalan"]["error"] == 0) {
 				$config['file_name'] = $no_production.'_'.$_FILES["surat_jalan"]['name'];
