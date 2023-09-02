@@ -201,7 +201,6 @@ class Productions extends Secure_Controller {
 		echo json_encode(array('data'=>$data));
 	}
 
-
 	function process()
 	{
 		$output['output'] = false;
