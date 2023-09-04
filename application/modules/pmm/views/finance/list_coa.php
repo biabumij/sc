@@ -33,7 +33,7 @@
                         <div class="panel-content">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Daftar Akun</a>
+                                    <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="border-radius:10px; font-weight:bold;"><i class="fa fa-plus"></i> Buat Daftar Akun</a>
                                 </div>
                                 <form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/client_print');?>">
                                     <div class="col-sm-3">

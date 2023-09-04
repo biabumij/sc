@@ -27,7 +27,7 @@
                             <h3 class="section-subtitle">
                             	Produk
                             	<div class="pull-right">
-                            		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            		<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
                                         <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
@@ -40,12 +40,12 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#bahanbaku" aria-controls="bahanbaku" role="tab" data-toggle="tab">Bahan Baku</a></li>
                                 <!--<li role="presentation"><a href="#betonreadymix" aria-controls="betonreadymix" role="tab" data-toggle="tab">Beton Ready Mix</a></li>-->
-                                <li role="presentation"><a href="#aggregat" aria-controls="agreaggregatgat" role="tab" data-toggle="tab">Agregat</a></li>
-                                <li role="presentation"><a href="#jasa" aria-controls="jasa" role="tab" data-toggle="tab">Jasa</a></li>
-                                <li role="presentation"><a href="#peralatan" aria-controls="peralatan" role="tab" data-toggle="tab">Peralatan</a></li>
-                                <li role="presentation"><a href="#bahanbakar" aria-controls="bahanbakar" role="tab" data-toggle="tab">Bahan Bakar</a></li>
-                                <li role="presentation"><a href="#laboratorium" aria-controls="laboratorium" role="tab" data-toggle="tab">Laboratorium</a></li>
-                                <li role="presentation"><a href="#asset" aria-controls="asset" role="tab" data-toggle="tab">Asset</a></li>
+                                <li role="presentation"><a href="#aggregat" aria-controls="agreaggregatgat" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Agregat</a></li>
+                                <li role="presentation"><a href="#jasa" aria-controls="jasa" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Jasa</a></li>
+                                <li role="presentation"><a href="#peralatan" aria-controls="peralatan" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Peralatan</a></li>
+                                <li role="presentation"><a href="#bahanbakar" aria-controls="bahanbakar" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Bahan Bakar</a></li>
+                                <li role="presentation"><a href="#laboratorium" aria-controls="laboratorium" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Laboratorium</a></li>
+                                <li role="presentation"><a href="#asset" aria-controls="asset" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Asset</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="bahanbaku">

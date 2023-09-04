@@ -84,15 +84,15 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Produksi Harian</h5></p>
-                                                        <a href="#laporan_produksi" aria-controls="laporan_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                        <a href="#laporan_produksi" aria-controls="laporan_produksi" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
                                                     </div>
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Produksi Campuran</h5></p>
-                                                        <a href="#laporan_produksi_campuran" aria-controls="laporan_produksi_campuran" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                        <a href="#laporan_produksi_campuran" aria-controls="laporan_produksi_campuran" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
                                                     </div>
 													<div class="col-sm-5">
 														<p><h5>Rekapitulasi Laporan Produksi</h5></p>
-                                                        <a href="#rekapitulasi_laporan_produksi" aria-controls="rekapitulasi_laporan_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                        <a href="#rekapitulasi_laporan_produksi" aria-controls="rekapitulasi_laporan_produksi" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
 													<!--<div class="col-sm-5">
 														<p><h5>Nilai Persediaan Bahan Baku</h5></p>
@@ -123,7 +123,7 @@
                                                                 <input type="text" id="filter_date" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>                                                           
                                                             <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -167,7 +167,7 @@
                                                                 <input type="text" id="filter_date_campuran" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>                                                           
                                                             <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -215,7 +215,7 @@
                                                                 <input type="text" id="filter_date_rekapitulasi" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>                                                           
                                                             <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -260,7 +260,7 @@
 																<input type="text" id="filter_date_nilai" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
@@ -298,7 +298,7 @@
 																<input type="text" id="filter_date_nilai_bahan_jadi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														

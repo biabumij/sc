@@ -36,7 +36,7 @@
                                 <h3 class="section-subtitle">
                                     <?php echo $row[0]->menu_name; ?>
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -52,11 +52,11 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-									<li role="presentation"  class="active"><a href="#kalibrasi" aria-controls="kalibrasi" role="tab" data-toggle="tab">Kalibrasi</a></li>
-									<li role="presentation"><a href="#komposisi_agregat" aria-controls="komposisi_agregat" role="tab" data-toggle="tab">Komposisi Agregat</a></li>
-									<li role="presentation"><a href="#produksi_harian" aria-controls="produksi_harian" role="tab" data-toggle="tab">Produksi Harian</a></li>
-									<li role="presentation"><a href="#produksi_campuran" aria-controls="produksi_campuran" role="tab" data-toggle="tab">Produksi Campuran</a></li>
-                                    <li role="presentation"><a href="#material_on_site" aria-controls="material_on_site" role="tab" data-toggle="tab">Stock Opname</a></li>
+									<li role="presentation"  class="active"><a href="#kalibrasi" aria-controls="kalibrasi" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Kalibrasi</a></li>
+									<li role="presentation"><a href="#komposisi_agregat" aria-controls="komposisi_agregat" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Komposisi Agregat</a></li>
+									<li role="presentation"><a href="#produksi_harian" aria-controls="produksi_harian" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Produksi Harian</a></li>
+									<li role="presentation"><a href="#produksi_campuran" aria-controls="produksi_campuran" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Produksi Campuran</a></li>
+                                    <li role="presentation"><a href="#material_on_site" aria-controls="material_on_site" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Stock Opname</a></li>
                                 </ul>
 
                                 <div class="tab-content">

@@ -52,10 +52,10 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Penawaran Penjualan</a></li>
-                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Sales Order</a></li>
-                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Pengiriman Penjualan</a></li>
-                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Tagihan Penjualan</a></li>
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Penawaran Penjualan</a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Sales Order</a></li>
+                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Pengiriman Penjualan</a></li>
+                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Tagihan Penjualan</a></li>
                                 </ul>
 
                                 <div class="tab-content">
@@ -176,8 +176,8 @@
                                                 <br />
                                                 <div class="col-sm-6">
                                                     <div class="text-left">
-                                                        <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
-                                                        <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold;">Penagihan Penjualan</button>
+                                                        <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
+                                                        <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold; border-radius:10px;">Penagihan Penjualan</button>
                                                     </div>
                                                 </div>
                                                 <br />
@@ -265,7 +265,7 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="text-left">
-                                                    <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
+                                                    <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
                                                 </div>
                                             </div>
                                         </form>

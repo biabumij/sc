@@ -35,14 +35,13 @@ if($this->session->userdata('admin_group_id') == 1){
                             </div>
                         </div>
                         <div class="panel-content">
-                            <div class="tabs">
+                            <div class="leftside-content-header">
                                 <ul class="nav nav-tabs ">
-                                    <li class="active"><a href="#table" data-toggle="tab" aria-expanded="true">Table</a></li>
-                                    <li class=""><a href="#add" data-toggle="tab" aria-expanded="false">Add New</a></li>
+                                    <li class="active"><a href="#table" data-toggle="tab" aria-expanded="true" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Table</a></li>
+                                    <li class=""><a href="#add" data-toggle="tab" aria-expanded="false" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Add New</a></li>
                                 </ul>
+                                <br />
                                 <div class="tab-content">
-                                    
-                                    
                                     <div class="tab-pane fade active in" id="table">
                                         <table id="basic-table" class="data-table table table-striped nowrap table-hover" cellspacing="0" width="100%">
                                             <thead>

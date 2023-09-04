@@ -89,7 +89,7 @@
                                 <h3 class="section-subtitle">
                                     Pembelian
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -107,15 +107,15 @@
                                 $kategori  = $this->db->order_by('nama_kategori_produk', 'asc')->select('*')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
                                 ?>
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Penawaran Pembelian</a></li>
-									<li role="presentation"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab">Permintaan Bahan & Alat</a></li>
-                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Pesanan Pembelian</a></li>
-                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Penerimaan Pembelian</a></li>
-                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Tagihan Pembelian</a></li>
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Penawaran Pembelian</a></li>
+									<li role="presentation"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Permintaan Bahan & Alat</a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Pesanan Pembelian</a></li>
+                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Penerimaan Pembelian</a></li>
+                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Tagihan Pembelian</a></li>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
-                                        <li role="presentation"><a href="#verifikasi" aria-controls="verifikasi" role="tab" data-toggle="tab">Approval & Notification 
+                                        <li role="presentation"><a href="#verifikasi" aria-controls="verifikasi" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Notifikasi 
                                         <blink><b><?php
                                             $query = $this->db->query('SELECT * FROM pmm_verifikasi_penagihan_pembelian where approve_unit_head = "TIDAK DISETUJUI" ');
                                             echo $query->num_rows();
@@ -378,8 +378,8 @@
                                             <div class="col-sm-6">
                                                 <div class="text-left">
                                                     <input type="hidden" id="val-receipt-id" name="">
-                                                    <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
-                                                    <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold;">Penagihan Pembelian</button>
+                                                    <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
+                                                    <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold; border-radius:10px;">Penagihan Pembelian</button>
                                                 </div>
                                             </div>
                                             <br />
@@ -465,7 +465,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="text-left">
-                                                <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
+                                                <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
                                             </div>
                                         </div>
                                     </form>   

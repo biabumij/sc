@@ -3,10 +3,10 @@
         <input type="text" id="filter_date" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
     </div>
     <div class="col-sm-2">
-        <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Cetak PDF</button>
+        <button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
     </div>
     <div class="col-sm-2">
-        <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-primary"><i class="fa fa-plus"></i> Buat Stock Opname</a>
+        <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="border-radius:10px; font-weight:bold;"><i class="fa fa-plus"></i> Buat Stock Opname</a>
     </div>
 </form>
 <br />

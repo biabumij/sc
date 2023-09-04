@@ -36,7 +36,7 @@
                                 <h3 class="section-subtitle">
                                     <?php echo $row[0]->menu_name; ?>
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -49,8 +49,8 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#rap" aria-controls="rap" role="tab" data-toggle="tab">Analisa Harga Satuan</a></li>
-                                    <li role="presentation"><a href="#penyusutan" aria-controls="penyusutan" role="tab" data-toggle="tab">Penyusutan</a></li>
+                                    <li role="presentation" class="active"><a href="#rap" aria-controls="rap" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Analisa Harga Satuan</a></li>
+                                    <li role="presentation"><a href="#penyusutan" aria-controls="penyusutan" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Penyusutan</a></li>
                                 </ul>
 
                                 <div class="tab-content">

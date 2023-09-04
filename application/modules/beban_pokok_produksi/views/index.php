@@ -83,27 +83,27 @@
                                                 <div class="panel panel-default">
 													<div class="col-sm-5">
 														<p><h5>Beban Pokok Produksi</h5></p>
-                                                        <a href="#beban_pokok_produksi" aria-controls="beban_pokok_produksi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                        <a href="#beban_pokok_produksi" aria-controls="beban_pokok_produksi" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
                                                     </div>
 													<!--<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku (Rumus)</h5></p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Februari 2021 sd. Mei 2022</blink></p>
-                                                        <a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                        <a href="#pergerakan_bahan_baku" aria-controls="pergerakan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
 													<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi (Rumus)</h5></p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Februari 2021 sd. Mei 2022</blink></p>
-                                                        <a href="#pergerakan_bahan_jadi" aria-controls="pergerakan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                        <a href="#pergerakan_bahan_jadi" aria-controls="pergerakan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>-->
                                                     <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Baku</h5></p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. sekarang</blink></p>
-                                                        <a href="#pergerakan_bahan_baku_penyesuaian" aria-controls="pergerakan_bahan_baku_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                        <a href="#pergerakan_bahan_baku_penyesuaian" aria-controls="pergerakan_bahan_baku_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                     <!--<div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi</h5></p>
 														<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. sekarang</blink></p>
-                                                        <a href="#pergerakan_bahan_jadi_penyesuaian" aria-controls="pergerakan_bahan_jadi_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
+                                                        <a href="#pergerakan_bahan_jadi_penyesuaian" aria-controls="pergerakan_bahan_jadi_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>-->   													
                                                 </div>
                                             </div>
@@ -126,7 +126,7 @@
 																<input type="text" id="filter_date_bpp" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
@@ -164,7 +164,7 @@
 																<input type="text" id="filter_date_bahan_baku" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
@@ -202,7 +202,7 @@
 																<input type="text" id="filter_date_bahan_baku_penyesuaian" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
@@ -240,7 +240,7 @@
 																<input type="text" id="filter_date_bahan_jadi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
@@ -278,7 +278,7 @@
 																<input type="text" id="filter_date_bahan_jadi_penyesuaian" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														

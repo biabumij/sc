@@ -56,19 +56,19 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Laba Rugi</h5></p>
-                                                        <a href="#laporan-laba-rugi" aria-controls="laporan-laba-rugi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                        <a href="#laporan-laba-rugi" aria-controls="laporan-laba-rugi" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
                                                     </div>													
                                                 </div>
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
                                                     <p><h5>Biaya</h5></p>
-                                                    <a href="<?= site_url('laporan/laporan_biaya'); ?>" class="btn btn-primary">Lihat Laporan</a>
+                                                    <a href="<?= site_url('laporan/laporan_biaya'); ?>" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
                                                     </div>													
                                                 </div>
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Laba Rugi (Baru)</h5></p>
-                                                        <a href="#laporan-laba-rugi-new" aria-controls="laporan-laba-rugi-new" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>										
+                                                        <a href="#laporan-laba-rugi-new" aria-controls="laporan-laba-rugi-new" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>										
                                                     </div>													
                                                 </div>
                                             </div>
@@ -90,7 +90,7 @@
 																<input type="text" id="filter_date" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
@@ -129,7 +129,7 @@
 																<input type="text" id="filter_date_new" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-info"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
