@@ -185,7 +185,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-6">
-                                            <button type="submit" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
+                                            <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
                                         </div>
                                     </form>
                                     
