@@ -213,14 +213,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:100px; font-weight:bold;"><i class="fa fa-mail-reply"></i> Kembali</a>
-                                            <button type="submit" name="submit" class="btn btn-success" style="width:100px; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
+                                            <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                            <button type="submit" name="submit" class="btn btn-success" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>
                                 </form>
                                 <br />
                                 <div class="text-right">
-                                    <button class="btn btn-danger" id="btn-view" style="width:100px; font-weight:bold;"><i class="fa fa-search"></i> Lihat Data</button>
+                                    <button class="btn btn-danger" id="btn-view" style="width:100px; font-weight:bold; font-weight:bold; border-radius:10px;"><i class="fa fa-search"></i> Lihat Data</button>
                                 </div>
                                 <div id="box-view" style="display:none;">
                                     <div class="row">
@@ -260,7 +260,7 @@
                                             </select>
                                             </div>
                                             <div class="col-sm-3">
-                                                <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</button>
+                                                <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
                                             </div>
                                         </form>
                                     </div>
