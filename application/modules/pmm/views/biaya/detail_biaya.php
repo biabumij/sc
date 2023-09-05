@@ -135,31 +135,31 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 text-right">
-                                        <a href="<?= base_url('admin/biaya_umum_&_adm.') ?>" class="btn btn-info" style="width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                        <a href="<?= base_url('admin/biaya_umum_&_adm.') ?>" class="btn btn-info" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
 										<?php
 											if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
                                         ?>
 										<?php if($row["status"] === "UNPAID") : ?>
-											<a href="<?= base_url("pmm/biaya/approvalBiaya/".$row["id"]) ?>" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Approve</a>
-											<a href="<?= base_url("pmm/biaya/rejectedBiaya/".$row["id"]) ?>"class="btn btn-primary" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Reject</a>
+											<a href="<?= base_url("pmm/biaya/approvalBiaya/".$row["id"]) ?>" class="btn btn-success" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Approve</a>
+											<a href="<?= base_url("pmm/biaya/rejectedBiaya/".$row["id"]) ?>"class="btn btn-primary" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Reject</a>
 										<?php endif; ?>
 										<?php
                                         }
                                         ?>
 										
                                         <?php if($row["status"] === "PAID") : ?>
-                                            <a target="_blank" href="<?= base_url('pmm/biaya/cetakBiaya/'.$row["id"]) ?>" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak</a>
+                                            <a target="_blank" href="<?= base_url('pmm/biaya/cetakBiaya/'.$row["id"]) ?>" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak</a>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                             ?>
-                                            <a  href="<?= base_url('pmm/biaya/form/'.$row['id']) ?>" class="btn btn-primary" style="width:200px; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
+                                            <a  href="<?= base_url('pmm/biaya/form/'.$row['id']) ?>" class="btn btn-primary" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> Edit</a>
                                             <?php
                                             }
                                             ?>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                             ?>
-                                            <a class="btn btn-danger" style="width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('pmm/biaya/delete/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
+                                            <a class="btn btn-danger" style="width:200px; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('pmm/biaya/delete/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                             <?php
                                             }
                                             ?>

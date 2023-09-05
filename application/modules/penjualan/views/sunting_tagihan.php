@@ -126,7 +126,7 @@
                             <input type="text" id="nomor_invoice" name="nomor_invoice" class="form-control" required="" readonly="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form" style="border-radius:10px;"><i class="fa fa-send"></i> Update Tagihan</button>
+                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Update Tagihan</button>
                         </div>
                     </form>
                 </div>

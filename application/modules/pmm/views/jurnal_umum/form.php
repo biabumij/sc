@@ -87,7 +87,7 @@
                                             <input type="text" class="form-control numberformat" name="kredit" placeholder="Kredit">
                                         </div>
                                         <div class="col-sm-3">
-                                            <button type="submit" class="btn btn-warning" id="btn-form"><i class="fa fa-plus"></i> Tambah</button>
+                                            <button type="submit" class="btn btn-warning" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-plus"></i> Tambah</button>
                                         </div>
                                     </div>
                                 </form>
@@ -110,6 +110,9 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <div class="text-center">
+                                <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-info" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -209,7 +212,7 @@
                             <input type="text" id="total_kredit" name="total_kredit" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form"><i class="fa fa-send"></i> Update Jurnal Umum</button>
+                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Update Jurnal Umum</button>
                         </div>
                     </form>
                 </div>
