@@ -282,7 +282,7 @@
 													</div>
 													
 													<div class="form-group">
-														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form" style="font-weight:bold; width;200px;><i class="fa fa-send"></i> Kirim</button>
+														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form" style="font-weight:bold; width;200px; border-radius:10px;><i class="fa fa-send"></i> Kirim</button>
 													</div>
 												</form>
 											</div>

@@ -152,22 +152,9 @@
                                         </div>
                                     </div>
                                     <br /><br />
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td width="30%"></td>
-                                                    <td width="10%"></td>
-                                                    <td width="10%"><a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-danger" style="width:100%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a></td>
-                                                    <td width="10%"><button type="submit" class="btn btn-success" style="width:100%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button></td>
-                                                    <td width="10%"></td>
-                                                    <td width="30%"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="text-center">
+                                        <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$pembayaran["id"]);?>" class="btn btn-danger" style="margin-bottom:0px; width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
+                                        <button type="submit" class="btn btn-success" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
                                     </div>
                                 </form>
                             </div>

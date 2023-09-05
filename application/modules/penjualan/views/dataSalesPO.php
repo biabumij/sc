@@ -196,19 +196,19 @@
                             </table>
                             
                             <div class="text-right">
-                                <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 
                                 <?php if($sales_po["status"] === "DRAFT") : ?>
-                                    <a href="<?= base_url("penjualan/cetak_sales_order_draft/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF (Draft)</a>
+                                    <a href="<?= base_url("penjualan/cetak_sales_order_draft/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print (Draft)</a>
                                     
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
                                         <form class="form-approval" action="<?= base_url("penjualan/approvalSalesPO/".$sales_po["id"]) ?>">
-                                            <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>        
+                                            <button type="submit" class="btn btn-success" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</button>        
                                         </form>
                                         <form class="form-approval" action="<?= base_url("penjualan/rejectedSalesPO/".$sales_po["id"]) ?>">
-                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</button>        
                                         </form>
                                     <?php
                                     }
@@ -216,17 +216,17 @@
                                 <?php endif; ?>
                             
                                 <?php if($sales_po["status"] === "OPEN") : ?>
-                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-top:10px; width:200px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                
-                                <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success" style="margin-top:10px; width:200px; width:200px; font-weight:bold;"><i class="fa fa-truck"></i> Kirim Produk</a>
+                                <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success" style="margin-top:10px; width:200px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-truck"></i> Kirim Produk</a>
 								
-                                <a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-primary" style="margin-top:10px; width:200px; width:200px; font-weight:bold;"><i class="fa fa-truck"></i> Retur</a>
+                                <a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-primary" style="margin-top:10px; width:200px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-truck"></i> Retur</a>
                                 
                                 <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
                                     <form class="form-approval" action="<?= base_url("penjualan/closed_sales_order/".$sales_po["id"]) ?>">
-                                        <button type="submit" class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-briefcase"></i> Closed</button>        
+                                        <button type="submit" class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-briefcase"></i> Closed</button>        
                                     </form>					
                                     <?php
                                     }
@@ -235,19 +235,19 @@
                                 ?>
                            
                                 <?php if($sales_po["status"] === "CLOSED") : ?>
-                                    <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                    <a href="<?= base_url("penjualan/cetak_sales_order/".$sales_po["id"]) ?>" target="_blank" class="btn btn-default" style="margin-bottom:0px; width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                     
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
-                                        <a class="btn btn-success" style="margin-top:10px; width:200px; font-weight:bold;" href="<?= base_url("penjualan/open_sales_order/".$sales_po["id"]) ?>"><i class="fa fa-folder-open-o"></i> Open</a>           
+                                        <a class="btn btn-success" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;" href="<?= base_url("penjualan/open_sales_order/".$sales_po["id"]) ?>"><i class="fa fa-folder-open-o"></i> Open</a>           
                                     <?php
                                     }
                                     ?>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
                                     ?>
-                                        <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
+                                        <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                     <?php
                                     }
                                     ?>
@@ -258,7 +258,7 @@
                                 <?php
                                     if($this->session->userdata('admin_group_id') == 1){
                                     ?>
-                                    <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>			
+                                    <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('penjualan/hapus_sales_po/'.$sales_po['id']);?>')"><i class="fa fa-close"></i> Hapus</a>			
                                     <?php
                                     }
                                     ?>
