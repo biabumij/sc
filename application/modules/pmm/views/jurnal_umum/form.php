@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-info" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-danger" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
                             </div>
                         </div>
                     </div>
