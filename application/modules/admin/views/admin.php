@@ -110,7 +110,7 @@ if($this->session->userdata('admin_group_id') == 1){
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-9">
-                                                    <button type="submit" name="submit" class="btn btn-primary" id="btn-submit" data-loading-text="please wait..">Submit</button>
+                                                    <button type="submit" name="submit" class="btn btn-success" id="btn-submit" data-loading-text="please wait.." style="font-weight:bold; border-radius:10px;">Kirim</button>
                                                 </div>
                                             </div>
                                         </form>

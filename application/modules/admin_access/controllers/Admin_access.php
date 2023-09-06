@@ -39,8 +39,8 @@ class Admin_access extends CI_Controller {
 	            $url_del = site_url('admin_access/delete/'.$value->admin_group_id.'');
 	            $url_edit = site_url('admin_access/form_edit/'.$value->admin_group_id.'');
 
-	            $btn_edit = '<a class="btn btn-sm btn-primary" href="'.$url_edit.'"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
-	            $btn_delete = '<a class="btn btn-sm btn-danger" href="javascript:void(0)" onclick="delete_person('."'".$url_del."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+	            $btn_edit = '<a class="btn btn-sm btn-primary" style="font-weight:bold; border-radius:10px;" href="'.$url_edit.'"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+	            $btn_delete = '<a class="btn btn-sm btn-danger" style="font-weight:bold; border-radius:10px;" href="javascript:void(0)" onclick="delete_person('."'".$url_del."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 
 	            //add html for action
 	            $row[] = $btn_edit." ".$btn_delete;
