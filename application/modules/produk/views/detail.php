@@ -146,7 +146,8 @@
                                     ?>
                                     
                                 </div>
-                                <div class="col-sm-12 text-right">
+                                <br /><br />
+                                <div class="col-sm-12 text-center">
                                     <a href="<?= base_url('admin/produk') ?>" class="btn btn-info" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
