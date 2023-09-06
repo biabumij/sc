@@ -140,7 +140,7 @@
                                 <br /><br />
                                 <div class="row">
                                         <div class="col-sm-12 text-center">
-                                            <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-info" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                            <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-danger" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
                                             ?>
