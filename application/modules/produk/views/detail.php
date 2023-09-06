@@ -148,12 +148,12 @@
                                 </div>
                                 <br /><br />
                                 <div class="col-sm-12 text-center">
-                                    <a href="<?= base_url('admin/produk') ?>" class="btn btn-info" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                    <a href="<?= base_url('admin/produk') ?>" class="btn btn-info" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
-                                        <a  href="<?= base_url('produk/buat_baru/'.$row['id']) ?>" class="btn btn-primary" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> Edit</a>
-                                        <a class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('produk/hapus/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
+                                        <a  href="<?= base_url('produk/buat_baru/'.$row['id']) ?>" class="btn btn-primary" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> Edit</a>
+                                        <a class="btn btn-danger" style="width:10%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('produk/hapus/'.$row['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <?php
                                     }
                                     ?>
