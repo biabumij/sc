@@ -540,7 +540,7 @@
                 {
                     "targets": [12],
                     "className": 'text-right',
-                }
+                },
             ],
         });
 

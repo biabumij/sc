@@ -1524,10 +1524,10 @@ class Penjualan extends Secure_Controller
 				$row['status'] = ('Disetujui');
 
 				if ($row['status'] == 'Disetujui') {
-					$row['action'] = '<a href="' . base_url('penjualan/cetak_pembayaran/' . $row["id"]) . '" target="_blank" class="btn btn-success">Cetak PDF</a>';
+					$row['action'] = '<a href="' . base_url('penjualan/cetak_pembayaran/' . $row["id"]) . '" target="_blank" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Print</a>';
 				} else {
 					$url_approve = "'" . base_url('penjualan/cetak_pembayaran/' . $row["id"]) . "'";
-					$row['action'] = '<a href="javascript:void(0);" onclick="ApprovePayment(' . $url_approve . ')" class="btn btn-warning">Approve</a>';
+					$row['action'] = '<a href="javascript:void(0);" onclick="ApprovePayment(' . $url_approve . ')" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">Approve</a>';
 				}
 				$data[] = $row;
 			}

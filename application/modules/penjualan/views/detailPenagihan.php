@@ -397,6 +397,7 @@
                                                         <th>Setor Ke</th>
                                                         <th class="text-center">Jumlah</th>
                                                         <th>Status</th>
+                                                        <th>Tindakan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -504,10 +505,13 @@
                 {
                     "data": "status"
                 },
+                {
+                    "data": "action"
+                },
             ],
             "columnDefs": [
                 {
-                "targets": [0, 1, 2, 4],
+                "targets": [0, 1, 2, 4, 5],
                 "className": 'text-center',
                 },
                 {
