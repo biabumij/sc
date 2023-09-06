@@ -149,7 +149,7 @@
                                         ?>
 										
                                         <?php if($row["status"] === "PAID") : ?>
-                                            <a target="_blank" href="<?= base_url('pmm/biaya/cetakBiaya/'.$row["id"]) ?>" class="btn btn-default" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak</a>
+                                            <a target="_blank" href="<?= base_url('pmm/biaya/cetakBiaya/'.$row["id"]) ?>" class="btn btn-default" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                             ?>
