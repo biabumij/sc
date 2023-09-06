@@ -77,10 +77,16 @@
             }
         ],
         responsive: true,
-        "columnDefs": [{
+        "columnDefs": [
+            {
             "targets": [0, 9, 10],
             "className": 'text-center',
-        }]
+            },
+            {
+                "targets": [4],
+                "className": 'text-right',
+            },
+        ]
     });
 
     $('#filter_tag').change(function() {

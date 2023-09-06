@@ -3642,7 +3642,7 @@ class Pmm_model extends CI_Model {
                 $row['nama']= $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
                 $row['tanggal_invoice'] = date('d F Y',strtotime($row['tanggal_invoice']));
                 $row['nomor_invoice']= $row['nomor_invoice'];
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success">Update Tagihan </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Tagihan </a>';
                 
                 $data[] = $row;
             }
@@ -3666,7 +3666,7 @@ class Pmm_model extends CI_Model {
                 $row['nama']= $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');
                 $row['tanggal_invoice'] = date('d F Y',strtotime($row['tanggal_invoice']));
                 $row['nomor_invoice']= $row['nomor_invoice'];
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success">Update Tagihan </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Tagihan </a>';
                 
                 $data[] = $row;
             }
@@ -4244,7 +4244,7 @@ class Pmm_model extends CI_Model {
                 $row['nama']= $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
                 $row['tanggal_lolos_verifikasi'] = date('d F Y',strtotime($row['tanggal_lolos_verifikasi']));
                 $row['nomor_invoice']= $row['nomor_invoice'];
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success"> Update Verifikasi</a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;"> Update Verifikasi</a>';
                 
                 $data[] = $row;
             }

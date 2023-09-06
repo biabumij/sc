@@ -536,6 +536,10 @@
                 {
                     "targets": [1, 2],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [12],
+                    "className": 'text-right',
                 }
             ],
         });

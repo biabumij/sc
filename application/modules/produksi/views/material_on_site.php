@@ -12,7 +12,7 @@
 <br />
 <br />
 <div class="table-responsive">
-    <table class="table table-striped table-hover table-center text-center" id="on-site-table" width="100%">
+    <table class="table table-striped table-hover table-center" id="on-site-table" width="100%">
         <thead>
             <tr>
                 <th class="text-center">No</th>

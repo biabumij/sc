@@ -144,7 +144,7 @@
                             
                             <div class="text-right">
                                 <a href="<?= base_url("admin/produksi/") ?>" target="" class="btn btn-info" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
-                                <a href="<?= base_url("produksi/cetak_komposisi_agregat/".$agregat["id"]) ?>" target="_blank" class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                <a href="<?= base_url("produksi/cetak_komposisi_agregat/".$agregat["id"]) ?>" target="_blank" class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                
                                 <?php
                                 if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){

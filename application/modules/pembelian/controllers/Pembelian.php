@@ -405,9 +405,9 @@ class Pembelian extends Secure_Controller
                 $row['sisa_tagihan'] = number_format($sisa_tagihan, 0, ',', '.');
 
                 if ($row['verifikasi_dok'] == 'BELUM') {
-                    $row['verifikasi_dok'] = '<a href="javascript:void(0);" onclick="VerifDok(' . $row['id'] . ',0)" class="btn btn-warning btn-sm" style="border-radius:10px;">' . $row['verifikasi_dok'] . '</a>';
+                    $row['verifikasi_dok'] = '<a href="javascript:void(0);" onclick="VerifDok(' . $row['id'] . ',0)" class="btn btn-warning btn-sm" style="font-weight:bold; border-radius:10px;">' . $row['verifikasi_dok'] . '</a>';
                 } else {
-                    $row['verifikasi_dok'] = '<a href="javascript:void(0);" onclick="VerifDokDetail(' . $row['id'] . ',1)" class="btn btn-success btn-sm" style="border-radius:10px;">' . $row['verifikasi_dok'] . '</a>';
+                    $row['verifikasi_dok'] = '<a href="javascript:void(0);" onclick="VerifDokDetail(' . $row['id'] . ',1)" class="btn btn-success btn-sm" style="font-weight:bold; border-radius:10px;">' . $row['verifikasi_dok'] . '</a>';
                 }
 
                 $row['status'] = (intval($row['sisa_tagihan']) == 0) ? "LUNAS" : "BELUM LUNAS";
@@ -1402,7 +1402,7 @@ class Pembelian extends Secure_Controller
                     $row['action'] = "BUTUH PERSETUJUAN";
                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
                     $url_approve = "'" . base_url('pembelian/update_status_pembayaran_penagihan_pembelian/' . $row["id"]) . "'";
-                    $row['action'] = '<a href="javascript:void(0);" onclick="ApprovePayment(' . $row["id"] . ')" class="btn btn-success">SETUJUI</a>';
+                    $row['action'] = '<a href="javascript:void(0);" onclick="ApprovePayment(' . $row["id"] . ')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">SETUJUI</a>';
                     }
                 }
                 $data[] = $row;

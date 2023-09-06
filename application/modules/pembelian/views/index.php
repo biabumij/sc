@@ -958,7 +958,7 @@
                     <form method="GET" target="_blank" action="<?php echo site_url('pembelian/print_verifikasi_penagihan_pembelian'); ?>">
                         <input type="hidden" name="id" id="verifikasi_penagihan_pembelian_id">
                         <div class="text-right">
-                            <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                            <button type="submit" class="btn btn-default" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
                         </div>
                     </form>
                 </div>
@@ -1492,7 +1492,11 @@
             {
                 "targets": [1, 13],
                 "className": 'text-center',
-            }
+            },
+            {
+                "targets": [12],
+                "className": 'text-right',
+            },
         ],
     });
 

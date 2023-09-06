@@ -467,6 +467,10 @@
             "columnDefs": [{
                     "targets": [0, 9, 10, 11],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [3, 4, 5],
+                    "className": 'text-right',
                 }
             ],
         });
@@ -533,6 +537,10 @@
             "columnDefs": [{
                     "targets": [0, 9, 10, 11],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [5],
+                    "className": 'text-right',
                 }
             ],
         });

@@ -219,7 +219,7 @@
                                 <?php
                                 if($data['status'] == 'WAITING'){
                                     ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf_draft/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak PDF (Draft)</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf_draft/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print (Draft)</a>
                                     
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
@@ -234,7 +234,7 @@
                                 <?php
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                     
                                     <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-truck"></i> Terima Produk</a>
                                     
@@ -252,7 +252,7 @@
                                 
                             
                                 <?php if($data["status"] === "CLOSED") : ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Cetak PDF</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
                                     
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
