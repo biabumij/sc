@@ -76,19 +76,34 @@
                                 <div id="alert-receipt-material-total-retur" class="row"></div>
                                     <input type="hidden" name="id" id="id">
                                     <div class="row">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">Tanggal<span class="required" aria-required="true">*</span></i></label>
                                                 <input type="text" id="date" name="date" class="form-control dtpicker" value="<?php echo date('d-m-Y'); ?>" required="">
                                             </div>
                                         </div>
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="control-label">No. Surat Jalan<span class="required" aria-required="true">*</span></label>
                                                 <input type="text" class="form-control" id="no_production" name="no_production" placeholder="No. Surat Jalan" required="">
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
+                                                <input type="text" id="nopol_truck" name="nopol_truck" class="form-control" value="" placeholder="No. Kendaraan" required="" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
+                                                <input type="text" id="driver" name="driver" class="form-control" value="" placeholder="Supir" required="" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br /><br />
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -177,20 +192,6 @@
                                                     }
                                                     ?>
                                                 </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">No. Kendaraan<span class="required" aria-required="true">*</span></label>
-                                                <input type="text" id="nopol_truck" name="nopol_truck" class="form-control" value="" placeholder="No. Kendaraan" required="" autocomplete="off">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="inputEmail3" class="control-label">Supir<span class="required" aria-required="true">*</span></label>
-                                                <input type="text" id="driver" name="driver" class="form-control" value="" placeholder="Supir" required="" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
