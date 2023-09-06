@@ -213,7 +213,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-mail-reply"></i> Kembali</a>
+                                            <a href="<?php echo site_url('admin/penjualan#profile'); ?>" class="btn btn-info" style="margin-top:10px; width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                             <button type="submit" name="submit" class="btn btn-success" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>
