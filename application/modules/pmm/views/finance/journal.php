@@ -165,11 +165,11 @@
                 { "data": "total_debit"},
                 { "data": "total_kredit"},
                 { "data": "admin_name"},
-                { "data": "created_on"}
+                { "data": "created_on"},
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 5, 6],
+                    "targets": [0, 1],
                     "className": 'text-center',
                 },
                 {
@@ -178,6 +178,7 @@
                 }
             ],
             responsive: true,
+            pageLength: 25,
         });
 
 		$('#filter_date_jurnal').on('apply.daterangepicker', function(ev, picker) {

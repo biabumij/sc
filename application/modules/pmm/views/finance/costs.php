@@ -169,7 +169,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 5, 6, 7],
+                    "targets": [0, 1, 5],
                     "className": 'text-center',
                 },
                 {
@@ -178,6 +178,7 @@
                 }
             ],
             responsive: true,
+            pageLength: 25,
         });
 		
 		$('#filter_date_biaya').on('apply.daterangepicker', function(ev, picker) {

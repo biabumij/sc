@@ -216,8 +216,8 @@ class Produksi extends Secure_Controller {
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'produksi/data_kalibrasi/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
-				$row['print'] = '<a href="'.site_url().'produksi/cetak_kalibrasi/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				$row['view'] = '<a href="'.site_url().'produksi/data_kalibrasi/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px";><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_kalibrasi/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px"><i class="fa fa-print"></i> </a>';
 
                 $data[] = $row;
             }
@@ -452,8 +452,8 @@ class Produksi extends Secure_Controller {
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_harian/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
-				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_harian/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_harian/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px"><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_harian/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px"><i class="fa fa-print"></i> </a>';
                 
                 $data[] = $row;
             }
@@ -720,8 +720,8 @@ class Produksi extends Secure_Controller {
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'produksi/data_komposisi_agregat/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
-				$row['print'] = '<a href="'.site_url().'produksi/cetak_komposisi_agregat/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				$row['view'] = '<a href="'.site_url().'produksi/data_komposisi_agregat/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px"><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_komposisi_agregat/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px"><i class="fa fa-print"></i> </a>';
 				$data[] = $row;
             }
 
@@ -1256,8 +1256,8 @@ class Produksi extends Secure_Controller {
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_campuran/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
-				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_campuran/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_campuran/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px"><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_campuran/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px"><i class="fa fa-print"></i> </a>';
                 
                 $data[] = $row;
             }

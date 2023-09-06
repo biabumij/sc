@@ -337,7 +337,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 5, 6, 7, 8, 9],
+                    "targets": [0, 7, 8, 9],
                     "className": 'text-center',
                 }
             ],
@@ -400,7 +400,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 5, 6, 7, 8, 9],
+                "targets": [0, 7, 8, 9],
                     "className": 'text-center',
                 }
             ],
@@ -465,7 +465,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 4, 5, 7, 8, 9, 10, 11],
+                    "targets": [0, 9, 10, 11],
                     "className": 'text-center',
                 }
             ],
@@ -531,7 +531,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 3, 4, 5, 7, 8, 9, 10, 11],
+                    "targets": [0, 9, 10, 11],
                     "className": 'text-center',
                 }
             ],

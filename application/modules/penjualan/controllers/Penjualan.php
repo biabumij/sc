@@ -849,7 +849,7 @@ class Penjualan extends Secure_Controller
 				$row['action'] = '-';
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
-				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-primary" title="Upload Surat Jalan" ><i class="fa fa-upload"></i> </a>';
+				$uploads_surat_jalan = '<a href="javascript:void(0);" onclick="UploadDocSuratJalan('.$row['id'].')" class="btn btn-primary" style="border-radius:10px" title="Upload Surat Jalan" ><i class="fa fa-upload"></i> </a>';
 				$row['uploads_surat_jalan'] = $uploads_surat_jalan.' ';
 				$data[] = $row;
 			}

@@ -1309,7 +1309,9 @@ class Finance extends CI_Controller {
 				// $row['coa'] = '' 
 				$row['nomor'] = "<a href=".base_url('pmm/finance/detailTransfer/'.$row["id"]).">".$row["nomor_transaksi"]."</a>";
 				$row['total'] = $this->filter->Rupiah($row['jumlah']);
-				$row['tanggal_transaksi'] = date('d-m-Y',strtotime($row["tanggal_transaksi"])); 
+				$row['tanggal_transaksi'] = date('d-m-Y',strtotime($row["tanggal_transaksi"]));
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$data[] = $row;
 			}
 
@@ -1330,7 +1332,9 @@ class Finance extends CI_Controller {
 				// $row['coa'] = '' 
 				$row['nomor'] = "<a href=".base_url('pmm/finance/detailTerima/'.$row["id"]).">".$row["nomor_transaksi"]."</a>";
 				$row['total'] = $this->filter->Rupiah($row['jumlah']);
-				$row['tanggal_transaksi'] = date('d-m-Y',strtotime($row["tanggal_transaksi"])); 
+				$row['tanggal_transaksi'] = date('d-m-Y',strtotime($row["tanggal_transaksi"]));
+				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
+                $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$data[] = $row;
 			}
 

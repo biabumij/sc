@@ -90,7 +90,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="text-left">
-                                                    <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                                                    <button type="submit" class="btn btn-default" style="font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
                                                 </div>
                                             </div>
                                             <br />
@@ -209,7 +209,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 2, 3, 4, 5],
+                    "targets": [0, 4, 5, 6],
                     "className": 'text-center',
                 }
             ],
@@ -287,7 +287,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 4, 5, 6, 7],
+                    "targets": [0, 6, 7],
                     "className": 'text-center',
                 },
                 {

@@ -282,12 +282,12 @@
 													</div>
 													
 													<div class="form-group">
-														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form" style="font-weight:bold; width;200px; border-radius:10px;><i class="fa fa-send"></i> Kirim</button>
+														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
 													</div>
 												</form>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
 											</div>
 										</div>
 									</div>
@@ -433,12 +433,12 @@
                                                         <input type="file" id="file" name="file" class="form-control" required="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan"><i class="fa fa-send"></i> Kirim</button>
+                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -789,8 +789,8 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 text-right">
-                                <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm" id="btn-form"><i class="fa fa-close"></i> Batal</button>
-                                <button type="submit" class="btn btn-success btn-sm" id="btn-form"><i class="fa fa-send"></i> Kirim</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm" id="btn-form" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-close"></i> Batal</button>
+                                <button type="submit" class="btn btn-success btn-sm" id="btn-form" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
                             </div>
                         </div>
                     </form>
@@ -984,12 +984,12 @@
                             <input type="file" id="file" name="file" class="form-control" required="" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form-doc"><i class="fa fa-send"></i> Kirim</button>
+                            <button type="submit" class="btn btn-success" id="btn-form-doc" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
                 </div>
             </div>
         </div>
@@ -1031,12 +1031,12 @@
                         ?>
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-no_po"><i class="fa fa-send"></i> Kirim</button>
+                            <button type="submit" class="btn btn-success" id="btn-no_po" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
                 </div>
             </div>
         </div>
@@ -1145,7 +1145,7 @@
             ],
             "columnDefs": [
                 {
-                "targets": [0, 1, 2, 6, 8, 9],
+                "targets": [0, 1],
                 "className": 'text-center',
                 },
                 {
@@ -1217,7 +1217,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 2, 7, 8, 9, 10],
+                    "targets": [0, 1, 7, 8],
                     "className": 'text-center',
                 },
 				{
@@ -1388,7 +1388,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [0, 1, 2, 12, 13, 14],
+                    "targets": [0, 1, 12],
                     "className": 'text-center',
                 },
                 {
@@ -1484,18 +1484,14 @@
         responsive: true,
         //paging : false,
         pageLength: 5,
-        "columnDefs": [{
+            "columnDefs": [{
                 "targets": [0],
                 "orderable": false,
                 "className": 'select-checkbox',
             },
             {
-                "targets": [1, 2, 6, 7, 8, 9, 10, 13, 14],
+                "targets": [1, 13],
                 "className": 'text-center',
-            },
-            {
-                "targets": [11],
-                "className": 'text-right',
             }
         ],
     });
@@ -1637,7 +1633,7 @@
         ],
         "columnDefs": [
             {
-            "targets": [0, 1, 2, 3, 4, 5, 8],
+            "targets": [0, 1],
             "className": 'text-center',
             },
             {

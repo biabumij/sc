@@ -76,6 +76,8 @@
                                                     <th>Nomor Transaksi</th>
                                                     <th>Tanggal Transaksi</th>
                                                     <th>Jumlah</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,6 +97,8 @@
                                                     <th>Nomor Transaksi</th>
                                                     <th>Tanggal Transaksi</th>
                                                     <th>Jumlah</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -189,6 +193,7 @@
             ],
             responsive: true,
             searching: true,
+            pageLength: 25,
         });
 
         var transfer = $('#table-transfer').DataTable( {"bAutoWidth": false,
@@ -203,15 +208,20 @@
                 { "data": "nomor" },
                 { "data": "tanggal_transaksi" },
                 { "data": "total" },
+                { "data": "admin_name" },
+                { "data": "created_on" },
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "25%", "targets": 1, "className": 'text-left'},
                 { "width": "20%", "targets": 2, "className": 'text-center'},
-                { "width": "40%", "targets": 3, "className": 'text-right'}
+                { "width": "20%", "targets": 3, "className": 'text-right'},
+                { "width": "15%", "targets": 4, "className": 'text-left'},
+                { "width": "15%", "targets": 5, "className": 'text-left'},
             ],
             responsive: true,
             searching: true,
+            pageLength: 25,
         });
 
         var terima = $('#table-terima').DataTable( {"bAutoWidth": false,
@@ -226,15 +236,20 @@
                 { "data": "nomor" },
                 { "data": "tanggal_transaksi" },
                 { "data": "total" },
+                { "data": "admin_name" },
+                { "data": "created_on" },
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "35%", "targets": 1, "className": 'text-left'},
+                { "width": "25%", "targets": 1, "className": 'text-left'},
                 { "width": "20%", "targets": 2, "className": 'text-center'},
-                { "width": "40%", "targets": 3, "className": 'text-right'}
+                { "width": "20%", "targets": 3, "className": 'text-right'},
+                { "width": "15%", "targets": 4, "className": 'text-left'},
+                { "width": "15%", "targets": 5, "className": 'text-left'},
             ],
             responsive: true,
             searching: true,
+            pageLength: 25,
         });
 
 

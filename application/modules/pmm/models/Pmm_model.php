@@ -742,32 +742,32 @@ class Pmm_model extends CI_Model {
     function GetStatus($status)
     {
         if($status == 'WAITING'){
-            return '<label class="label label-warning">'.$status.'</label>';
+            return '<label class="label label-warning" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'DRAFT'){
-            return '<label class="label label-warning">'.$status.'</label>';
+            return '<label class="label label-warning" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'APPROVED'){
-            return '<label class="label label-success">'.$status.'</label>';
+            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'REJECTED'){
-            return '<label class="label label-danger">'.$status.'</label>';
+            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'CLOSED'){
-            return '<label class="label label-danger">'.$status.'</label>';
+            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'PUBLISH'){
-            return '<label class="label label-success">'.$status.'</label>';
+            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
         }
     }
 
 	function GetStatus2($status)
     {
         if($status == 'DRAFT'){
-            return '<label class="label label-warning">'.$status.'</label>';
+            return '<label class="label label-warning" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'OPEN'){
-            return '<label class="label label-success">'.$status.'</label>';
+            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'REJECT'){
-            return '<label class="label label-danger">'.$status.'</label>';
+            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'CLOSED'){
-            return '<label class="label label-danger">'.$status.'</label>';
+            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'DELETED'){
-            return '<label class="label label-danger">'.$status.'</label>';
+            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }
 		
     }
@@ -775,50 +775,50 @@ class Pmm_model extends CI_Model {
 	function GetStatus3($status)
     {
         if($status == 'BELUM LUNAS'){
-            return '<label class="label label-danger">'.$status.'</label>';
+            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'LUNAS'){
-            return '<label class="label label-success">'.$status.'</label>';
+            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
         }
     }
 	function GetStatus4($status)
     {
         if($status == 'PUBLISH'){
-            return '<label class="label label-primary">'.$status.'</label>';
+            return '<label class="label label-primary" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'CLOSED'){
-            return '<label class="label label-danger">'.$status.'</label>';
+            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }
     }
 
     function GetStatusVerif($status)
     {
         if($status == 'SUDAH'){
-            return '<label class="label label-danger">'.$status.'</label>';
+            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'BELUM'){
-            return '<label class="label label-success">'.$status.'</label>';
+            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
         }
     }
 
     function GetStatusKategoriPersetujuan($status)
     {
         if($status == 'VERIFIKASI PEMBELIAN'){
-            return '<label class="label label-info">'.$status.'</label>';
+            return '<label class="label label-info" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'PESANAN PEMBELIAN'){
-            return '<label class="label label-success">'.$status.'</label>';
+            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'PERMINTAAN BAHAN & ALAT'){
-            return '<label class="label label-warning">'.$status.'</label>';
+            return '<label class="label label-warning" style="border-radius:10px;">'.$status.'</label>';
         }
     }
 	
 	function StatusPayment($status)
     {
         if($status == 'CREATING'){
-            $output = '<label class="label label-success">'.$status.'</label>';
+            $output = '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'CREATED'){
-            $output = '<label class="label label-primary">'.$status.'</label>';
+            $output = '<label class="label label-primary" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'UNCREATED'){
-            $output = '<label class="label label-danger">'.$status.'</label>';
+            $output = '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }else if($status == 'UNPUBLISH'){
-            $output = '<label class="label label-danger">'.$status.'</label>';
+            $output = '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
         }
 
         return $output;
@@ -1607,12 +1607,12 @@ class Pmm_model extends CI_Model {
 
                 $upload_document = false;
                 if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED'){
-                    $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
+                    $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" style="border-radius:10px" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
                 }
                 $edit_no_po = false;
                 $status = "'".$row['status']."'";
                 if(in_array($this->session->userdata('admin_group_id'), array(1,7,11,15))){
-                     $edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$no_po.','.$status.')" class="btn btn-primary" title="Edit Nomor PO" ><i class="fa fa-edit"></i> </a>';;
+                     $edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$no_po.','.$status.')" class="btn btn-primary" style="border-radius:10px" title="Edit Nomor PO" ><i class="fa fa-edit"></i> </a>';;
                 }   
                 $row['status'] = $this->pmm_model->GetStatus($row['status']);
 

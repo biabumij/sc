@@ -163,8 +163,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('admin/biaya_umum_&_adm.');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i>  Kirim</button>
+                                            <a href="<?= site_url('admin/biaya_umum_&_adm.');?>" class="btn btn-danger" style="margin-bottom:0; width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
+                                            <button type="submit" class="btn btn-success" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i>  Kirim</button>
                                         </div>
                                     </div>
                                 </form>

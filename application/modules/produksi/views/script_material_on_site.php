@@ -78,18 +78,9 @@
         ],
         responsive: true,
         "columnDefs": [{
-            "targets": [0, 1, 3, 6, 7, 8, 9],
+            "targets": [0, 9, 10],
             "className": 'text-center',
-        },
-		{
-			"targets": [2],
-			"className": 'text-left',
-        },
-        {
-			"targets": [4, 5],
-			"className": 'text-right',
-        }
-		]
+        }]
     });
 
     $('#filter_tag').change(function() {

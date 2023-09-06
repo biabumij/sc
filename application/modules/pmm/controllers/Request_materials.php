@@ -89,9 +89,9 @@ class Request_materials extends CI_Controller {
 				$row['schedule_name'] = $row['schedule_name'];
 				$total_volume = $this->db->select('SUM(volume) as total')->get_where('pmm_request_material_details',array('request_material_id'=>$row['id']))->row_array();
 				$row['volume'] = number_format($total_volume['total'],2,',','.');
-				$delete = '<a href="javascript:void(0);" onclick="DeleteDataRequest('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
+				$delete = '<a href="javascript:void(0);" onclick="DeleteDataRequest('.$row['id'].')" class="btn btn-danger" style="border-radius:10px"><i class="fa fa-close"></i> </a>';
 				$row['status'] = $this->pmm_model->GetStatus($row['status']);
-				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['actions'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'" class="btn btn-warning" style="border-radius:10px"><i class="glyphicon glyphicon-folder-open"></i> </a>';
 				$row['delete'] = '-';
 				if(in_array($this->session->userdata('admin_group_id'), array(1))){
 				$row['delete'] = '<a href="'.site_url('pmm/request_materials/manage/'.$row['id']).'"></a> '.$delete.' ';

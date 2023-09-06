@@ -405,9 +405,9 @@ class Pembelian extends Secure_Controller
                 $row['sisa_tagihan'] = number_format($sisa_tagihan, 0, ',', '.');
 
                 if ($row['verifikasi_dok'] == 'BELUM') {
-                    $row['verifikasi_dok'] = '<a href="javascript:void(0);" onclick="VerifDok(' . $row['id'] . ',0)" class="btn btn-warning btn-sm">' . $row['verifikasi_dok'] . '</a>';
+                    $row['verifikasi_dok'] = '<a href="javascript:void(0);" onclick="VerifDok(' . $row['id'] . ',0)" class="btn btn-warning btn-sm" style="border-radius:10px;">' . $row['verifikasi_dok'] . '</a>';
                 } else {
-                    $row['verifikasi_dok'] = '<a href="javascript:void(0);" onclick="VerifDokDetail(' . $row['id'] . ',1)" class="btn btn-success btn-sm">' . $row['verifikasi_dok'] . '</a>';
+                    $row['verifikasi_dok'] = '<a href="javascript:void(0);" onclick="VerifDokDetail(' . $row['id'] . ',1)" class="btn btn-success btn-sm" style="border-radius:10px;">' . $row['verifikasi_dok'] . '</a>';
                 }
 
                 $row['status'] = (intval($row['sisa_tagihan']) == 0) ? "LUNAS" : "BELUM LUNAS";
