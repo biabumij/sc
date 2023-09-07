@@ -128,9 +128,9 @@ Class General
         if(is_array($arr)){
             foreach ($arr as $key => $value) {
                 if($key == $id){
-                    $output='<span class="label label-sm label-form label-'.$value['color'].'" style="display:block;"> '.$value['title'].' </span>';
+                    $output='<span class="label label-sm label-form label-'.$value['color'].'" style="display:block; font-weight:bold; border-radius:10px;"> '.$value['title'].' </span>';
                 }else if($id == 3){
-                    $output='<span class="label label-sm label-form label-danger" style="display:block;">Not Active </span>';
+                    $output='<span class="label label-sm label-form label-danger" style="display:block; font-weight:bold; border-radius:10px;">Not Active </span>';
                 }
             }
         }
