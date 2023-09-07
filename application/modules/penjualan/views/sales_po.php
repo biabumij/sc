@@ -124,7 +124,7 @@
 
                                     <div class="row">
 										 <div class="col-sm-12">
-                                            <button type="button" class="btn btn-primary" onclick="tambahData()">
+                                            <button type="button" class="btn btn-primary" onclick="tambahData()" style="font-weight:bold; border-radius:10px;>
                                                 <i class="fa fa-plus"></i> Tambah Data
                                             </button>
                                         </div>
