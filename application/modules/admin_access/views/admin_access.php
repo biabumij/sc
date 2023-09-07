@@ -46,10 +46,10 @@ if($this->session->userdata('admin_group_id') == 1){
                                         <table id="basic-table" class="data-table table table-striped nowrap table-hover" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th width="30px">No</th>
+                                                    <th width="5%">No</th>
                                                     <th>Admin Group</th>
-                                                    <th>Status</th>
-                                                    <th width="150px">Action</th>
+                                                    <th width="15%">Status</th>
+                                                    <th width="15%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
