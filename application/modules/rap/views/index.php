@@ -65,12 +65,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%" class="text-center">No</th>
-														<th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>
-                                                        <th width="5%" class="text-center">Cetak</th>
-                                                        <th width="5%" class="text-center">Edit</th>
-                                                        <th width="5%" class="text-center">Hapus</th>
+														<th>Tanggal</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Cetak</th>
+                                                        <th>Edit</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -101,13 +101,13 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%" class="text-center">No</th>
-														<th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Produk</th>
-                                                        <th class="text-center">Harga Perolehan</th>
-                                                        <th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>
-                                                        <th width="5%" class="text-center">Cetak</th>
-                                                        <th width="5%" class="text-center">Hapus</th>
+														<th>Tanggal</th>
+                                                        <th>Produk</th>
+                                                        <th>Harga Perolehan</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
+                                                        <th>Cetak</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
