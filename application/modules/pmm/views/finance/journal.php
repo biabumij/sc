@@ -52,13 +52,13 @@
                                             <table class="table table-striped table-hover" id="table_jurnal" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center">No</th>
-                                                        <th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Nomor</th>
-                                                        <th class="text-center">Debit</th>
-                                                        <th class="text-center">Kredit</th>
-                                                        <th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center" width="5%">No</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Nomor</th>
+                                                        <th>Debit</th>
+                                                        <th>Kredit</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
