@@ -52,14 +52,14 @@
                                             <table class="table table-striped table-hover" id="table_biaya" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center">No</th>
-                                                        <th class="text-center">Tanggal</th>
-                                                        <th class="text-center">Nomor</th>
-                                                        <th class="text-center">Penerima</th>
-                                                        <th class="text-center">Total</th>
-                                                        <th class="text-center">Status</th>
-                                                        <th class="text-center">Dibuat Oleh</th>
-                                                        <th class="text-center">Dibuat Tanggal</th>
+                                                        <th class="text-center" width="5%">No</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Nomor</th>
+                                                        <th>Penerima</th>
+                                                        <th>Total</th>
+                                                        <th>Status</th>
+                                                        <th>Dibuat Oleh</th>
+                                                        <th>Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
