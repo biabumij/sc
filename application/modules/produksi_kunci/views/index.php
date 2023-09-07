@@ -73,8 +73,8 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 														<th>Tanggal</th>
-														<th>Boulder</th>
-                                                        <th>BBM</th>
+														<th class="text-right">Boulder</th>
+                                                        <th class="text-right">BBM</th>
 														<th>Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
@@ -107,10 +107,10 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 														<th>Tanggal</th>
-														<th>Abu Batu</th>
-                                                        <th>Batu 0,5 - 10</th>
-														<th>Batu 10 - 20</th>
-                                                        <th>Batu 20 - 30</th>
+														<th class="text-right">Abu Batu</th>
+                                                        <th class="text-right">Batu 0,5 - 10</th>
+														<th class="text-right">Batu 10 - 20</th>
+                                                        <th class="text-right">Batu 20 - 30</th>
 														<th>Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
@@ -143,9 +143,9 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 														<th>Tanggal</th>
-														<th>Total Nilai Keluar Boulder</th>
-                                                        <th>Total Nilai Keluar Solar</th>
-                                                        <th>Total Nilai Persediaan Akhir</th>
+														<th class="text-right">Total Nilai Keluar Boulder</th>
+                                                        <th class="text-right">Total Nilai Keluar Solar</th>
+                                                        <th class="text-right">Total Nilai Persediaan Akhir</th>
 														<th>Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
@@ -178,8 +178,8 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 														<th>Tanggal</th>
-														<th>Total Nilai Keluar</th>
-                                                        <th>Total Nilai Akhir</th>
+														<th class="text-right">Total Nilai Keluar</th>
+                                                        <th class="text-right">Total Nilai Akhir</th>
                                                         <th>Catatan</th>
 														<th>Status</th>
                                                         <th>Dibuat Oleh</th>
@@ -292,8 +292,12 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 2, 3, 4, 5, 6, 7],
+                    "targets": [0, 7],
                     "className": 'text-center',
+                },
+                {
+                    "targets": [2, 3],
+                    "className": 'text-right',
                 }
             ],
         });
@@ -376,7 +380,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 6, 7, 8, 9],
+                    "targets": [0, 9],
                     "className": 'text-center',
                 },
                 {
@@ -461,7 +465,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 5, 6, 7, 8],
+                    "targets": [0, 8],
                     "className": 'text-center',
                 },
                 {
@@ -546,7 +550,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 1, 5, 6, 7, 8],
+                    "targets": [0, 8],
                     "className": 'text-center',
                 },
                 {
