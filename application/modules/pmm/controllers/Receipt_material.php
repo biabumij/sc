@@ -211,12 +211,14 @@ class Receipt_material extends CI_Controller {
 			$this->db->where('prm.date_receipt  >=',date('Y-m-d',strtotime($start_date)));	
 			$this->db->where('prm.date_receipt <=',date('Y-m-d',strtotime($end_date)));	
 		}
+
 		$this->db->where("(date_receipt between '$awal_bulan' and '$akhir_bulan')");
 		$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
 		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
 		$this->db->where('prm.status_payment','UNCREATED');
 		$this->db->order_by('prm.date_receipt','DESC');
 		$query = $this->db->get('pmm_receipt_material prm');
+		
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$row['checkbox'] ='';

@@ -84,11 +84,13 @@ class Productions extends Secure_Controller {
 			$this->db->where('date_production  >=',date('Y-m-d',strtotime($start_date)));	
 			$this->db->where('date_production <=',date('Y-m-d',strtotime($end_date)));	
 		}
+
 		$this->db->where("(date_production between '$awal_bulan' and '$akhir_bulan')");
 		$this->db->where('status_payment','UNCREATED');
 		$this->db->order_by('date_production','desc');
 		$this->db->order_by('created_on','desc');
 		$query = $this->db->get('pmm_productions');
+		
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
 				$row['no'] = $key+1;
