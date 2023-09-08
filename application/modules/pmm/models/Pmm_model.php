@@ -932,6 +932,20 @@ class Pmm_model extends CI_Model {
         return $query;
     }
 
+    function GetPODetailNoPNW($id)
+    {
+        $output = false;
+        $this->db->select('pp.*,SUM(pp.volume) as total, pp.id, pp.penawaran_id, ppp.memo, p.nama_produk');
+        $this->db->join('pmm_penawaran_pembelian ppp','pp.penawaran_id = ppp.id','left');
+        $this->db->join('produk p','pp.material_id = p.id','left');
+        $this->db->where('pp.purchase_order_id',$id);
+        $this->db->group_by('pp.penawaran_id');
+        $this->db->order_by('p.nama_produk','asc');
+        $query = $this->db->get('pmm_purchase_order_detail pp')->result_array();
+
+        return $query;
+    }
+
     function GetPODetailPNW($id)
     {
         $output = false;

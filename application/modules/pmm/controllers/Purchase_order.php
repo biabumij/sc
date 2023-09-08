@@ -214,6 +214,7 @@ class Purchase_order extends CI_Controller {
         $id = $this->uri->segment(4);
 		$row = $this->db->get_where('pmm_purchase_order',array('id'=>$id))->row_array();
 		$data['details'] = $this->pmm_model->GetPODetail($id);
+		$data['details_no_pnw'] = $this->pmm_model->GetPODetailNoPNW($id);
 		$sp = $this->db->get_where('penerima',array('id'=>$row['supplier_id']))->row_array();
 		$row['address_supplier'] = $sp['alamat'];
 		$row['npwp_supplier'] = $sp['npwp'];
@@ -249,6 +250,7 @@ class Purchase_order extends CI_Controller {
         $id = $this->uri->segment(4);
 		$row = $this->db->get_where('pmm_purchase_order',array('id'=>$id))->row_array();
 		$data['details'] = $this->pmm_model->GetPODetail($id);
+		$data['details_no_pnw'] = $this->pmm_model->GetPODetailNoPNW($id);
 		$sp = $this->db->get_where('penerima',array('id'=>$row['supplier_id']))->row_array();
 		$row['address_supplier'] = $sp['alamat'];
 		$row['npwp_supplier'] = $sp['npwp'];
