@@ -178,7 +178,7 @@
                                             <input type="text" id="volume" name="volume" class="form-control numberformat" required="" autocomplete="off" placeholder="Volume" />
                                         </div>
                                         <div class="col-sm-3">
-                                            <button type="submit" class="btn btn-warning" id="btn-form" style="width:200px; font-weight:bold;"><i class="fa fa-plus"></i> Tambah Produk</button>
+                                            <button type="submit" class="btn btn-warning" id="btn-form" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-plus"></i> Tambah Produk</button>
                                         </div>
 
                                         <input type="hidden" id="tax_id" name="tax_id" class="form-control" required="" autocomplete="off" placeholder="Tax ID" readonly=""/>

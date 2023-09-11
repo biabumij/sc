@@ -260,24 +260,26 @@
 													<div class="form-group">
 														<label>Memo<span class="required" aria-required="true">*</span></label>
                                                         <textarea id="about_text" name="memo" class="form-control" data-required="false" rows="20">
-                                                        <p style="font-size:6;"><b>Syarat & Ketentuan :</b></p>
-<p style="font-size:6;">1. Waktu Penyerahan : 2 Februari 2023 s/d 8 Februari 2023</p>
-<p style="font-size:6;">2. Tempat Penyerahan : Divisi Stone Crushing PT. Bia Bumi Jayendra, Tulungagung</p>
-<p style="font-size:6;">3. Cara Pembayaran : 30 (tiga puluh) hari kerja setelah berkas tagihan dinyatakan lolos verifikasi keuangan PT. Bia Bumi Jayendra, dengan melampirkan</p>
-<p style="font-size:6;">   dokumen sebagai berikut :</p>
-<p style="font-size:6;">   3.1 Tagihan</p>
-<p style="font-size:6;">   3.2 Kwitansi</p>
-<p style="font-size:6;">   3.3 BAP (Berita Acara Pembayaran)</p>
-<p style="font-size:6;">   3.4 BAST (Berita Acara Serah Terima) & rekap surat jalan yang ditandatangani oleh pihak pemberi order dan penerima order</p>
-<p style="font-size:6;">   3.5 Surat Jalan Asli (Nomor PO harus tercantum pada setiap surat jalan)</p>
-<p style="font-size:6;">   3.6 PO</p>
-<p style="font-size:6;">   3.7 Faktur Pajak</p>
-<p style="font-size:6;">4. Lain-lain :</p>
-<p style="font-size:6;">   4.1 Barang harus dalam kondisi 100% baik</p>
-<p style="font-size:6;">   4.2 Barang dikembalikan apabila tidak sesuai dengan pesanan</p>
-<p style="font-size:6;">   4.3 Perselisihan yang timbul agar diselesaikan secara musyawarah, apabila tidak tercapai para pihak setuju menyelesaikannya</p>
-<p style="font-size:6;">   melalui KUH Perdata & KUH pidana. Peraturan dari KUH Perdata & KUH Pidana merupakan putusan yang bersifat final</p>
-<p style="font-size:6;">   serta mengikat para pihak</p></textarea>
+<p>1. Syarat Penyerahan :</p>
+<p>1.1 Divisi Stone Crushing PT. Bia Bumi Jayendra, Tulungagung.</p>
+<p>1.2 Material yang diterima wajib mempunyai izin/legalitas resmi sesuai undang-undang yang berlaku.</p>
+<p>1.3 Waktu Penyerahan : 12 September 2023 s/d 22 September 2023.</p>
+<p>2. Kondisi Harga : Harga mengikat sampai dengan terpenuhinya PO.</p>
+<p>3. Cara Pembayaran :</p>
+<p>3.1 Pembayaran dengan uang muka 30%.</p>
+<p>3.2 Pembayaran dilaksanakan 30 (tiga puluh) hari kerja setelah berkas tagihan diverifikasi dan dinyatakan benar oleh tim lapangan, dengan melampirkan dokumen sebagai berikut :</p>
+<p>- Invoice & Kwitansi bermaterai.</p>
+<p>- BAP (Berita Acara Pembayaran).</p>
+<p>- BAST (Berita Acara Serah Terima) & rekap pengiriman.</p>
+<p>- Surat Jalan Asli (Nomor PO harus tercantum pada setiap surat jalan).</p>
+<p>- Foto kopi PO (Purchase Order).</p>
+<p>- Faktur Pajak.</p>
+<p>3.3 Pembayaran dikirim ke rekening Mandiri : 171 005555 7758 a.n Ditya Widyangga.</p>
+<p>4. Sanksi-sanksi :</p>
+<p>4.1 Apabila tidak sesuai dengan spesifikasi akan ditolak dan dikembalikan.</p>
+<p>4.2 Limbah material hasil produksi menjadi tanggung jawab CV. Genta Buana & akan diganti dengan material yang sesuai dengan spesifikasi.</p>
+<p>5. Lain-lain : Perselisihan yang timbul agar diselesaikan secara musyawarah, apabila tidak tercapai para pihak setuju menyelesaikannya melalui KUH Perdata & KUH pidana. Peraturan dari KUH Perdata & KUH Pidana merupakan putusan yang bersifat final serta mengikat kedua belah pihak.</p>
+<p>6. Setuju : Dengan syarat-syarat di atas.</p></textarea>
 														
 													</div>
 													
