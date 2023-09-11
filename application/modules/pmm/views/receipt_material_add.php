@@ -192,10 +192,10 @@
                                 </div>
                                 <br />
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-bordered table-condensed" id="guest-table" style="width:100%;">
+                                    <table class="table table-striped table-hover table-bordered" id="guest-table" style="width:100%;">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
+                                                <th width="5%" class="text-center">No</th>
                                                 <th>Tanggal</th>
                                                 <th>Rekanan</th>
 												<th>No. Pesanan Pembelian</th>
@@ -205,11 +205,12 @@
                                                 <th>File</th>
                                                 <th>Memo</th>
                                                 <th>Produk</th>
-                                                <th>Volume</th>
+                                                <th class="text-right">Volume</th>
                                                 <th>Satuan</th>
-												<th>Harga Satuan</th>
-												<th>Nilai</th>
-                                                <th>Tindakan</th>
+												<th class="text-right">Harga Satuan</th>
+												<th class="text-right">Nilai</th>
+                                                <th class="text-center">Edit</th>
+                                                <th class="text-center">Hapus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -505,12 +506,17 @@
                 { "data": "measure" },
                 { "data": "harga_satuan" },
 				{ "data": "price" },
-                { "data": "actions" }
+                { "data": "edits" },
+                { "data": "actions" },
             ],
             responsive: true,
             "columnDefs": [
                 {
-                    "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                    "targets": [0, 14, 15],
+                    "className": 'text-center',
+                },
+                {
+                    "targets": [10, 12, 13],
                     "className": 'text-center',
                 }
             ],

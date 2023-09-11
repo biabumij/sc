@@ -266,23 +266,24 @@
                                     </div>
                                     <br />
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-hover table-bordered table-condensed" id="guest-table" style="width: 100%;">
+                                        <table class="table table-striped table-hover table-bordered" id="guest-table" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
+                                                    <th width="5%" class="text-center">No</th>
                                                     <th>Tanggal</th>
-                                                    <th class="text-center">No. PO</th>
-                                                    <th class="text-center">No. Surat Jalan</th>
+                                                    <th>No. PO</th>
+                                                    <th>No. Surat Jalan</th>
                                                     <th>Pelanggan</th>
                                                     <th>No. Kendaraan</th>
                                                     <th>Supir</th>
                                                     <th>Surat Jalan</th>
                                                     <th>Produk</th>
-                                                    <th>Volume</th>
+                                                    <th class="text-right">Volume</th>
                                                     <th>Satuan</th>
-													<th>Harga Satuan</th>
-                                                    <th>Nilai</th>
-                                                    <th>Tindakan</th>
+													<th class="text-right">Harga Satuan</th>
+                                                    <th class="text-right">Nilai</th>
+                                                    <th class="text-center">Edit</th>
+                                                    <th class="text-center">Hapus</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -464,13 +465,21 @@
                     "data": "price"
                 },
                 {
+                    "data": "edits"
+                },
+                {
                     "data": "actions"
                 },
             ],
             "columnDefs": [{
-                "targets": [0, 1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+                "targets": [0, 13, 14],
                 "className": 'text-center',
-            }],
+            },
+            {
+                "targets": [9, 11, 12],
+                "className": 'text-center',
+            },
+            ],
         });
 
 
