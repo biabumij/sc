@@ -55,7 +55,7 @@
 			</tr>
 		</table>
 		<br /><br />
-		<table width="98%" border="0" cellpadding="3">
+		<table width="98%" border="0" cellpadding="1">
 			<tr>
 				<th width="20%">Nomor PO</th>
 				<th width="2%">:</th>
@@ -66,20 +66,30 @@
 			</tr>
 			<tr>
 				<th>Subjek</th>
-				<th width="10px">:</th>
+				<th>:</th>
 				<th align="left"><?php echo $row['subject'];?></th>
 			</tr>
 			<tr>
 				<th>Tgl PKP</th>
-				<th width="10px">:</th>
+				<th>:</th>
 				<th align="left">-</th>
 			</tr>
-			
 			<tr>
 				<th>NPWP</th>
-				<th width="10px">:</th>
+				<th>:</th>
 				<th align="left"><?php echo $row['npwp_supplier'];?></th>
 			</tr>
+			<?php
+			foreach ($details_no_pnw as $dt) {
+            ?>
+			<tr>
+				<th>No. Penawaran</th>
+				<th>:</th>
+				<th align="left"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?></th>
+			</tr>
+			<?php
+			}
+			?>
 			
 			<tr>
 				<td width="72%"></td>
@@ -193,6 +203,6 @@
                 <th align="right"><?= number_format($total,0,',','.'); ?></th>
             </tr>
 		</table>
-		<p><?= $row["memo"] ?></p>
+		<p style="font-size:6px;"><?= $row["memo"] ?></p>
 	</body>
 </html>

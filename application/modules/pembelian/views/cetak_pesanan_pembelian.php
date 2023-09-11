@@ -43,7 +43,7 @@
 			</tr>
 		</table>
 		<br /><br />
-		<table width="98%" border="0" cellpadding="3">
+		<table width="98%" border="0" cellpadding="1">
 			<tr>
 				<th width="20%">Nomor PO</th>
 				<th width="2%">:</th>
@@ -54,20 +54,30 @@
 			</tr>
 			<tr>
 				<th>Subjek</th>
-				<th width="10px">:</th>
+				<th>:</th>
 				<th align="left"><?php echo $row['subject'];?></th>
 			</tr>
 			<tr>
 				<th>Tgl PKP</th>
-				<th width="10px">:</th>
+				<th>:</th>
 				<th align="left">-</th>
 			</tr>
-			
 			<tr>
 				<th>NPWP</th>
-				<th width="10px">:</th>
+				<th>:</th>
 				<th align="left"><?php echo $row['npwp_supplier'];?></th>
 			</tr>
+			<?php
+			foreach ($details_no_pnw as $dt) {
+            ?>
+			<tr>
+				<th>No. Penawaran</th>
+				<th>:</th>
+				<th align="left"><?php echo $this->crud_global->GetField('pmm_penawaran_pembelian',array('id'=>$dt['penawaran_id']),'nomor_penawaran');?></th>
+			</tr>
+			<?php
+			}
+			?>
 			
 			<tr>
 				<td width="72%"></td>
@@ -182,25 +192,10 @@
             </tr>
 		</table>
 		<p style="font-size:6px; line-height:1;"><?= $row["memo"] ?></p>
-		<!--<table>
-			<?php
-			$memo = $this->db->select('memo')
-			->from('pmm_penawaran_pembelian')
-			->where('id',$dt['penawaran_id'])
-			->get()->row_array();
-            ?>   
-			<tr>
-				<th><b>Memo :</b></th>
-			</tr>
-			<br />
-			<tr>
-				<th><?php echo $memo['memo'];?></th>
-			</tr>			
-		</table>-->
 		<?php
         $ka_plant = $this->pmm_model->GetNameGroup(15);
         ?>
-		<table width="98%" border="0" cellpadding="5">
+		<table width="98%" border="0" cellpadding="3">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
