@@ -168,7 +168,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="penerimaan-pembelian" style="display:none;">
+                                                        <table class="mytable table table-hover table-center table-bordered" id="penerimaan-pembelian" style="display:none;">
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -241,7 +241,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="laporan-hutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="laporan-hutang" style="display:none" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -331,7 +331,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="monitoring-hutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="monitoring-hutang" style="display:none" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
