@@ -185,6 +185,22 @@ class Pmm_model extends CI_Model {
             
     }
 
+    function GetNoPerubahanSistem()
+    {
+        $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
+        $output = false;
+
+        $query = $this->db->select('id')->order_by('id','desc')->get('perubahan_sistem');
+        if($query->num_rows() > 0){
+            $id = $query->row_array()['id'] + 1;
+        }else {
+            $id = 1;
+        }
+        $output = sprintf('%04d', $id).'/PPS/'.'BBJ-SC'.'/'.date('m').'/'.date('Y');
+        return $output;
+            
+    }
+
     function GetNoRM($date)
     {
         $code_prefix = $this->db->get_where('pmm_setting_production')->row_array();
