@@ -446,9 +446,9 @@
                             },
                             format: '{value} %'
                         },
-                        min: -100,
-                        max: 100,
-                        tickInterval: 10,
+                        min: -20,
+                        max: 20,
+                        tickInterval: 5,
                     },
                     tooltip: { 
                     //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
