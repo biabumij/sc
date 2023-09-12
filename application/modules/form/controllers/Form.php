@@ -149,8 +149,6 @@ class Form extends Secure_Controller {
 		if(!empty($id)){
 			$this->db->set("status", "PUBLISH");
 			$this->db->set("status_permintaan", "SEDANG DIPROSES");
-			$this->db->set("ti_sistem", $this->session->userdata('admin_id'));
-			$this->db->set("tanggal_ti_sistem", date('Y-m-d H:i:s'));
 			$this->db->set("updated_by", $this->session->userdata('admin_id'));
 			$this->db->set("updated_on", date('Y-m-d H:i:s'));
 			$this->db->where("id", $id);
@@ -168,6 +166,8 @@ class Form extends Secure_Controller {
 		$id = $this->input->post('id');
 		if(!empty($id)){
 			$this->db->set("status_permintaan", "SELESAI");
+			$this->db->set("ti_sistem", $this->session->userdata('admin_id'));
+			$this->db->set("tanggal_ti_sistem", date('Y-m-d H:i:s'));
 			$this->db->set("updated_by", $this->session->userdata('admin_id'));
 			$this->db->set("updated_on", date('Y-m-d H:i:s'));
 			$this->db->where("id", $id);
