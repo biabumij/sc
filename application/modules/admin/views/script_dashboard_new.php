@@ -27,7 +27,8 @@
     $date_november23_akhir = date('2023-11-30');
     $date_desember23_awal = date('2023-12-01');
     $date_desember23_akhir = date('2023-12-31');
-    $date_akumulasi_awal = date('2021-01-01');
+    //$date_akumulasi_awal = date('2021-01-01');
+	$date_akumulasi_awal = date('2023-07-01');
     $date_akumulasi_akhir = date('2023-12-31');
 
 	//JAN
