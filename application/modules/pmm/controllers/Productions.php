@@ -933,7 +933,7 @@ class Productions extends Secure_Controller {
 			foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat17($sups['client_id'],$purchase_order_no,$start_date,$end_date,$filter_product);
+				$materials = $this->pmm_model->GetPengirimanPenjualan($sups['client_id'],$purchase_order_no,$start_date,$end_date,$filter_product);
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
 						$arr['no'] = $key + 1;

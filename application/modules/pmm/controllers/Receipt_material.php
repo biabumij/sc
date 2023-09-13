@@ -1487,7 +1487,7 @@ class Receipt_material extends CI_Controller {
 			foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat8a($sups['no_prod'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				$materials = $this->pmm_model->GetProduksiHarian($sups['no_prod'],$purchase_order_no,$start_date,$end_date,$filter_material);
 				
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
@@ -1703,7 +1703,7 @@ class Receipt_material extends CI_Controller {
 			foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat8($sups['no_prod'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				$materials = $this->pmm_model->GetEvaluasiProduksi($sups['no_prod'],$purchase_order_no,$start_date,$end_date,$filter_material);
 				
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {
@@ -1778,7 +1778,7 @@ class Receipt_material extends CI_Controller {
 			foreach ($query->result_array() as $key => $sups) {
 
 				$mats = array();
-				$materials = $this->pmm_model->GetReceiptMat8b($sups['no_prod'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				$materials = $this->pmm_model->GetRekapitulasi($sups['no_prod'],$purchase_order_no,$start_date,$end_date,$filter_material);
 				
 				if(!empty($materials)){
 					foreach ($materials as $key => $row) {

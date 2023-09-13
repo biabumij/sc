@@ -3895,7 +3895,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function GetReceiptMat17($filter_client_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_product=false)
+    function GetPengirimanPenjualan($filter_client_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_product=false)
     {
         $output = array();
 
@@ -4044,7 +4044,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function GetReceiptMat8a($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+    function GetProduksiHarian($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
     {
         $output = array();
 
@@ -4052,8 +4052,6 @@ class Pmm_model extends CI_Model {
 		
 		$this->db->join('pmm_produksi_harian_detail pphd', 'pph.id = pphd.produksi_harian_id','left');
 		$this->db->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left');
-		//$this->db->join('pmm_kalibrasi_detail pkd', 'pk.id = pkd.kalibrasi_id','left');
-		//$this->db->join('produk p','pkd.product_id = p.id','left');
         
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pph.date_prod >=',$start_date);
@@ -4109,7 +4107,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function GetReceiptMat8($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+    function GetEvaluasiProduksi($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
     {
         $output = array();
 
@@ -4141,7 +4139,7 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
-    function GetReceiptMat8b($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+    function GetRekapitulasi($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
     {
         $output = array();
 
