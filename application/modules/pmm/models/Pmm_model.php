@@ -4024,8 +4024,8 @@ class Pmm_model extends CI_Model {
         $this->db->join('penerima ps','ppp.client_id = ps.id','left');
         $this->db->join('pmm_sales_po po','ppp.sales_po_id = po.id','left');
         if(!empty($start_date) && !empty($end_date)){
-            $this->db->where('ppp.tanggal_invoice >=',$start_date);
-            $this->db->where('ppp.tanggal_invoice <=',$end_date);
+            $this->db->where('ppp.tanggal_invoice >=',$start_date.' 00:00:00');
+            $this->db->where('ppp.tanggal_invoice <=',$end_date.' 23:59:59');
         }
         if(!empty($client_id) || $client_id != 0){
             $this->db->where('ppp.client_id',$client_id);
