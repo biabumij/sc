@@ -71,14 +71,14 @@
                                             <table class="table table-striped table-hover" id="table_hpp_bahan_baku" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th width="5%" class="text-center">No</th>
 														<th>Tanggal</th>
 														<th class="text-right">Boulder</th>
                                                         <th class="text-right">BBM</th>
-														<th>Status</th>
+														<th class="text-center">Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
-                                                        <th>Hapus</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -105,16 +105,16 @@
                                             <table class="table table-striped table-hover" id="table_hpp" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th width="5%" class="text-center">No</th>
 														<th>Tanggal</th>
 														<th class="text-right">Abu Batu</th>
                                                         <th class="text-right">Batu 0,5 - 10</th>
 														<th class="text-right">Batu 10 - 20</th>
                                                         <th class="text-right">Batu 20 - 30</th>
-														<th>Status</th>
+														<th class="text-center">Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
-                                                        <th>Hapus</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -146,10 +146,10 @@
 														<th class="text-right">Total Nilai Keluar Boulder</th>
                                                         <th class="text-right">Total Nilai Keluar Solar</th>
                                                         <th class="text-right">Total Nilai Persediaan Akhir</th>
-														<th>Status</th>
+														<th class="text-center">Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
-                                                        <th>Hapus</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -176,15 +176,15 @@
                                             <table class="table table-striped table-hover" id="table_akumulasi" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th width="5%" class="text-center">No</th>
 														<th>Tanggal</th>
 														<th class="text-right">Total Nilai Keluar</th>
                                                         <th class="text-right">Total Nilai Akhir</th>
                                                         <th>Catatan</th>
-														<th>Status</th>
+														<th class="text-center">Status</th>
                                                         <th>Dibuat Oleh</th>
                                                         <th>Dibuat Tanggal</th>
-                                                        <th>Hapus</th>
+                                                        <th width="5%" class="text-center">Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -292,7 +292,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 7],
+                    "targets": [0, 4, 7],
                     "className": 'text-center',
                 },
                 {
@@ -380,7 +380,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 9],
+                    "targets": [0, 6, 9],
                     "className": 'text-center',
                 },
                 {
@@ -465,7 +465,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 8],
+                    "targets": [0, 5, 8],
                     "className": 'text-center',
                 },
                 {
@@ -550,7 +550,7 @@
                 }
             ],
             "columnDefs": [{
-                    "targets": [0, 8],
+                    "targets": [0, 5, 8],
                     "className": 'text-center',
                 },
                 {
