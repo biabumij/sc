@@ -46,6 +46,7 @@
                                                     <th width="30%" class="text-center">Nama</th>
                                                     <th width="35%" class="text-center">Email</th>
                                                     <th width="30%" class="text-center">Jabatan</th>
+                                                    <th width="30%" class="text-center">Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
