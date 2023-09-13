@@ -419,8 +419,8 @@
                                 fontFamily: 'arial'
                             }
                         },
-                        //categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi <br />Juli 2023 -  Now']
-                        categories: ['Juli 23','Agustus 23','September 23','Oktober 23','November 23','Desember 23','Akumulasi <br />2021-2023']
+                        //categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi <br />2021-2023']
+                        categories: ['Juli 23','Agustus 23','September 23','Oktober 23','November 23','Desember 23','Akumulasi <br />Juli 2023 - Saat Ini']
                     },
                     yAxis: {
                         title: {
