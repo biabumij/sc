@@ -8820,7 +8820,7 @@ class Reports extends CI_Controller {
 			$styleColorJ = $stok_evaluasi_total_nilai_akhir < 0 ? 'color:red' : 'color:black';
 		?>
 		<tr class="table-active3">		
-			<th class = "text-left"><i>Batu Split 0,0 - 0,5</i></th>
+			<th class = "text-left">Batu Split 0,0 - 0,5</th>
 			<th class = "text-center">Ton</th>
 			<th class = "text-center"><?php echo number_format($stok_volume_akhir_agregat_abubatu_bulan_ini_2,2,',','.');?></th>
 			<th class = "text-right"><?php echo number_format($stok_harga_akhir_agregat_abubatu_bulan_ini_2,0,',','.');?></th>
@@ -8833,7 +8833,7 @@ class Reports extends CI_Controller {
 			<th class = "text-right" style="<?php echo $styleColorB ?>"><?php echo number_format($evaluasi_nilai_abubatu,0,',','.');?></th>
 		</tr>
 		<tr class="table-active3">
-			<th class = "text-left"><i>Batu Split 0,5 - 10</i></th>
+			<th class = "text-left">Batu Split 0,5 - 10</th>
 			<th class = "text-center">Ton</th>
 			<th class = "text-center"><?php echo number_format($stok_volume_akhir_agregat_batu0510_bulan_ini_2,2,',','.');?></th>
 			<th class = "text-right"><?php echo number_format($stok_harga_akhir_agregat_batu0510_bulan_ini_2,0,',','.');?></th>
@@ -8846,7 +8846,7 @@ class Reports extends CI_Controller {
 			<th class = "text-right" style="<?php echo $styleColorD ?>"><?php echo number_format($evaluasi_nilai_batu0510,0,',','.');?></th>
 		</tr>
 		<tr class="table-active3">
-			<th class = "text-left"><i>Batu Split 10 - 20</i></th>
+			<th class = "text-left">Batu Split 10 - 20</th>
 			<th class = "text-center">Ton</th>
 			<th class = "text-center"><?php echo number_format($stok_volume_akhir_agregat_batu1020_bulan_ini_2,2,',','.');?></th>
 			<th class = "text-right"><?php echo number_format($stok_harga_akhir_agregat_batu1020_bulan_ini_2,0,',','.');?></th>
@@ -8859,7 +8859,7 @@ class Reports extends CI_Controller {
 			<th class = "text-right" style="<?php echo $styleColorF ?>"><?php echo number_format($evaluasi_nilai_batu1020,0,',','.');?></th>
 		</tr>
 		<tr class="table-active3">		
-			<th class = "text-left"><i>Batu Split 20 - 30</i></th>
+			<th class = "text-left">Batu Split 20 - 30</th>
 			<th class = "text-center">Ton</th>
 			<th class = "text-center"><?php echo number_format($stok_volume_akhir_agregat_batu2030_bulan_ini_2,2,',','.');?></th>
 			<th class = "text-right"><?php echo number_format($stok_harga_akhir_agregat_batu2030_bulan_ini_2,0,',','.');?></th>

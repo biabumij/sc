@@ -6,48 +6,47 @@
 	<style type="text/css">
 		.mytable thead th {
 		  background-color:	#e69500;
-		  color: #ffffff;
-		  text-align: center;
 		  vertical-align: middle;
-		  padding: 5px;
+          color: black;
 		}
 		
 		.mytable tbody td {
-		  padding: 5px;
+            vertical-align: middle;
+            color: black;
 		}
 		
 		.mytable tfoot td {
-		  background-color:	#e69500;
-		  color: #FFFFFF;
-		  padding: 5px;
+            vertical-align: middle;
+            color: black;
 		}
-		blink {
-		-webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
-		animation: 2s linear infinite kedip;
-		}
-		/* for Safari 4.0 - 8.0 */
-		@-webkit-keyframes kedip { 
-		0% {
-			visibility: hidden;
-		}
-		50% {
-			visibility: hidden;
-		}
-		100% {
-			visibility: visible;
-		}
-		}
-		@keyframes kedip {
-		0% {
-			visibility: hidden;
-		}
-		50% {
-			visibility: hidden;
-		}
-		100% {
-			visibility: visible;
-		}
-		}
+
+        blink {
+        -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+        animation: 2s linear infinite kedip;
+        }
+        /* for Safari 4.0 - 8.0 */
+        @-webkit-keyframes kedip { 
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+        }
+        @keyframes kedip {
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+        }
     </style>
 </head>
 
@@ -122,14 +121,14 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table-hover table-center table-condensed" id="table-date8" style="display:none" width="100%";>
+                                                        <table class="mytable table-hover table-center table-condensed" id="table-evaluasi-produksi" style="display:none" width="100%";>
                                                             <thead>
-																<th align="center" rowspan="2">No</th>
-																<th align="center">Tanggal</th>
-																<th align="center">Nomor Produksi / Tanggal Produksi</th>
-																<th align="center">Durasi Produksi (Jam)</th>
-																<th align="center">Pemakaian Bahan Baku (Ton)</th>
-																<th align="center">Kapasitas Produksi (Ton/Jam)</th>
+																<th align="center" rowspan="2">NO.</th>
+																<th align="center">TANGGAL</th>
+																<th align="center">NOMOR PRODUKSI</th>
+																<th align="center">DURASI PRODUKSI (JAM)</th>
+																<th align="center">PEMAKAIAN BAHAN BAKU (TON)</th>
+																<th align="center">KAPASITAS PRODUKSI (TON/JAM)</th>
 															</thead>
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-condensed"></tfoot>
@@ -220,13 +219,13 @@
 
 		$('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
 			$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-			TableDate8();
+			TableEvaluasiProduksi();
 		});
 
-		function TableDate8() {
-			$('#table-date8').show();
+		function TableEvaluasiProduksi() {
+			$('#table-evaluasi-produksi').show();
 			$('#loader-table').fadeIn('fast');
-			$('#table-date8 tbody').html('');
+			$('#table-evaluasi-produksi tbody').html('');
 			$.ajax({
 				type: "POST",
 				url: "<?php echo site_url('pmm/receipt_material/table_date8'); ?>/" + Math.random(),
@@ -236,18 +235,18 @@
 				},
 				success: function(result) {
 					if (result.data) {
-						$('#table-date8 tbody').html('');
+						$('#table-evaluasi-produksi tbody').html('');
 
 						if (result.data.length > 0) {
 							$.each(result.data, function(i, val) {
-								$('#table-date8 tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.date_prod + '</td><td class="text-center">' + val.no_prod + '</td><td class="text-center""><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td><td class="text-center"><b>' + val.jumlah_capacity + '</b></td></tr>');
+								$('#table-evaluasi-produksi tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.date_prod + '</td><td class="text-left">' + val.no_prod + '</td><td class="text-center""><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td><td class="text-center"><b>' + val.jumlah_capacity + '</b></td></tr>');
 								$.each(val.mats, function(a, row) {
 									var a_no = a + 1;
-									$('#table-date8 tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center" rowspan=""></td><td class="text-center">' + row.date_prod + '</td><td class="text-center">' + row.duration + '</td><td class="text-center">' + row.used + '</td><td class="text-center">' + row.capacity + '</td></tr>');
+									$('#table-evaluasi-produksi tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center" rowspan=""></td><td class="text-center">' + row.date_prod + '</td><td class="text-center">' + row.duration + '</td><td class="text-center">' + row.used + '</td><td class="text-center">' + row.capacity + '</td></tr>');
 								});
 							});
 						} else {
-							$('#table-date8 tbody').append('<tr><td class="text-center" colspan="5"><b>Tidak Ada Data</b></td></tr>');
+							$('#table-evaluasi-produksi tbody').append('<tr><td class="text-center" colspan="5"><b>Tidak Ada Data</b></td></tr>');
 						}
 						$('#loader-table').fadeOut('fast');
 					} else if (result.err) {

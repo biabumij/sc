@@ -93,12 +93,12 @@
 		<br />
 		<table cellpadding="3" width="98%" border="0">
 			<tr class="table-judul">
-				<th align="center" width="5%">No</th>
-				<th align="center" width="15%">Tanggal</th>
-				<th align="center" width="20%">Nomor Produksi</th>
-				<th align="center" width="20%">Durasi Produksi (Jam)</th>
-				<th align="center" width="20%">Pemakaian Bahan (Ton)</th>
-				<th align="center" width="20%">Kapasitas Produksi (Ton/Jam)</th>
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="15%">TANGGAL</th>
+				<th align="center" width="20%">NOMOR PRODUKSI</th>
+				<th align="center" width="20%">DURASI PRODUKSI (JAM)</th>
+				<th align="center" width="20%">PEMAKAIAN BAHAN BAKU (TON)</th>
+				<th align="center" width="20%">KAPASITAS PRODUKSI (TON/JAM)</th>
             </tr>
 			<?php 
 				$subtotal_duration = 0;
@@ -121,7 +121,7 @@
             		<tr class="table-baris1" style="background-color:<?php echo $bg; ?>;">
             			<td align="center"><?php echo $key + 1;?></td>
 						<td align="center"><?php echo date('d/m/Y',strtotime($row['date_prod']));?></td>
-						<td align="center"><?php echo $row['no_prod'];?></td>
+						<td align="left"><?php echo $row['no_prod'];?></td>
 						<td align="center"><?php echo $row['jumlah_duration'];?></td>
 						<td align="center"><?php echo $row['jumlah_used'];?></td>
 						<td align="center"><?= number_format($hasil_capacity,2,',','.');?></td>
@@ -131,7 +131,7 @@
             }
             ?>
             <tr class="table-total">
-            	<th width="40%" align="center"><b>Rata - Rata Produksi</b></th>
+            	<th width="40%" align="center"><b>RATA - RATA PRODUKSI</b></th>
 				<th width="20%" align="center"><?= number_format($subtotal_duration,2,',','.');?></th>
             	<th width="20%" align="center"><?= number_format($subtotal_used,2,',','.');?></th>
 				<th width="20%" align="center"><?= number_format($subtotal_avg_capacity,2,',','.');?></th>
@@ -160,17 +160,17 @@
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['unit_head']);
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['keu_1']);
 							$keu_1 = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['keu_2']);
 							$keu_2 = $this->db->get('tbl_admin a')->row_array();

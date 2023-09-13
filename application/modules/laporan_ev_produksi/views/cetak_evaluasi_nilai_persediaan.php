@@ -44,28 +44,28 @@
 	table tr.table-judul{
 		background-color: #e69500;
 		font-weight: bold;
-		font-size: 8px;
+		font-size: 7px;
 		color: black;
 	}
 		
 	table tr.table-baris1{
 		background-color: #F0F0F0;
-		font-size: 8px;
+		font-size: 7px;
 	}
 
 	table tr.table-baris1-bold{
 		background-color: #F0F0F0;
-		font-size: 8px;
+		font-size: 7px;
 		font-weight: bold;
 	}
 		
 	table tr.table-baris2{
-		font-size: 8px;
+		font-size: 7px;
 		background-color: #E8E8E8;
 	}
 
 	table tr.table-baris2-bold{
-		font-size: 8px;
+		font-size: 7px;
 		background-color: #E8E8E8;
 		font-weight: bold;
 	}
@@ -73,7 +73,7 @@
 	table tr.table-total{
 		background-color: #cccccc;
 		font-weight: bold;
-		font-size: 8px;
+		font-size: 7px;
 		color: black;
 	}
 	</style>
@@ -1493,17 +1493,17 @@
 						->order_by('id','desc')->limit(1)
 						->get()->row_array();
 
-						$this->db->select('g.admin_group_name, a.admin_ttd');
+						$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 						$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 						$this->db->where('a.admin_id',$create['unit_head']);
 						$unit_head = $this->db->get('tbl_admin a')->row_array();
 
-						$this->db->select('g.admin_group_name, a.admin_ttd');
+						$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 						$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 						$this->db->where('a.admin_id',$create['keu_1']);
 						$keu_1 = $this->db->get('tbl_admin a')->row_array();
 
-						$this->db->select('g.admin_group_name, a.admin_ttd');
+						$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 						$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 						$this->db->where('a.admin_id',$create['keu_2']);
 						$keu_2 = $this->db->get('tbl_admin a')->row_array();

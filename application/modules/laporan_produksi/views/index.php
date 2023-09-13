@@ -6,48 +6,47 @@
 	<style type="text/css">
 		.mytable thead th {
 		  background-color:	#e69500;
-		  color: #ffffff;
-		  text-align: center;
 		  vertical-align: middle;
-		  padding: 5px;
+          color: black;
 		}
 		
 		.mytable tbody td {
-		  padding: 5px;
+            vertical-align: middle;
+            color: black;
 		}
 		
 		.mytable tfoot td {
-		  background-color:	#e69500;
-		  color: #FFFFFF;
-		  padding: 5px;
+            vertical-align: middle;
+            color: black;
 		}
-		blink {
-		-webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
-		animation: 2s linear infinite kedip;
-		}
-		/* for Safari 4.0 - 8.0 */
-		@-webkit-keyframes kedip { 
-		0% {
-			visibility: hidden;
-		}
-		50% {
-			visibility: hidden;
-		}
-		100% {
-			visibility: visible;
-		}
-		}
-		@keyframes kedip {
-		0% {
-			visibility: hidden;
-		}
-		50% {
-			visibility: hidden;
-		}
-		100% {
-			visibility: visible;
-		}
-		}
+
+        blink {
+        -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
+        animation: 2s linear infinite kedip;
+        }
+        /* for Safari 4.0 - 8.0 */
+        @-webkit-keyframes kedip { 
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+        }
+        @keyframes kedip {
+        0% {
+            visibility: hidden;
+        }
+        50% {
+            visibility: hidden;
+        }
+        100% {
+            visibility: visible;
+        }
+        }
     </style>
 </head>
 
@@ -137,10 +136,10 @@
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-date8a" style="display:none" width="100%";>
                                                             <thead>
-																<th align="center">No</th>
-																<th align="center">Tanggal</th>
-																<th align="center">Durasi Produksi (Jam)</th>
-																<th align="center">Pemakaian Bahan (Ton)</th>
+																<th align="center">NO.</th>
+																<th align="center">TANGGAL</th>
+																<th align="center">DURASI PRODUKSI (JAM)</th>
+																<th align="center">PEMAKAIAN BAHAN (TON)</th>
 															</thead>
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-condensed"></tfoot>
@@ -181,14 +180,14 @@
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-date-campuran" style="display:none" width="100%";>
                                                             <thead>
-																<th align="center">No</th>
-																<th align="center">Tanggal</th>
-                                                                <th align="center">Produksi Campuran</th>
-                                                                <th align="center">Satuan</th>
-																<th align="center">Volume</th>
-																<th align="center">Fraksi</th>
-																<th align="center">Komposisi</th>
-																<th align="center">Volume</th>
+																<th align="center">NO.</th>
+																<th align="center">TANGGAL</th>
+                                                                <th align="center">PRODUKSI CAMPURAN</th>
+                                                                <th align="center">SATUAN</th>
+																<th align="center">VOLUME</th>
+																<th align="center">FRAKSI</th>
+																<th align="center">KOMPOSISI</th>
+																<th align="center">VOLUME</th>
 															</thead>
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-condensed"></tfoot>
@@ -229,11 +228,11 @@
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-date8b" style="display:none" width="100%";>
                                                             <thead>
-																<th align="center">No</th>
-																<th align="center">Uraian</th>
-																<th align="center">Satuan</th>
-																<th align="center">Presentase</th>
-																<th align="center">Volume</th>
+																<th align="center">NO.</th>
+																<th align="center">URAIAN</th>
+																<th align="center">SATUAN</th>
+																<th align="center">PRESENTASE</th>
+																<th align="center">VOLUME</th>
 															</thead>
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-condensed"></tfoot>

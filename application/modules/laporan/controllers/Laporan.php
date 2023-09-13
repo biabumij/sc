@@ -1741,9 +1741,9 @@ class Laporan extends Secure_Controller {
 		if(empty($arr_date)){
 			$filter_date = '-';
 		}else {
-			$arr_date = explode(' - ',$arr_date);
-			$start_date = date('Y-m-d',strtotime($arr_date[0]));
-			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$arr_filter_date = explode(' - ', $arr_date);
+			$start_date = date('Y-m-d',strtotime($arr_filter_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_filter_date[1]));
 			$filter_date = date('d F Y',strtotime($arr_filter_date[0])).' - '.date('d F Y',strtotime($arr_filter_date[1]));
 		}
 		$data['filter_date'] = $filter_date;

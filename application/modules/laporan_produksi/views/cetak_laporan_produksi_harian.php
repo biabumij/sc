@@ -92,14 +92,14 @@
 		<br />
 		<table cellpadding="3" width="98%" border="0">
 			<tr class="table-judul">
-				<th align="center" width="5%">No</th>
-				<th align="center" width="20%">Tanggal</th>
-				<th align="center" width="10%">Durasi Produksi (Jam)</th>
-				<th align="center" width="12%">Pemakaian Bahan (Ton)</th>
-				<th align="center" width="23%">Fraksi / Aggregat</th>
-				<th align="center" width="10%">Presentase</th>
-				<th align="center" width="10%">Satuan</th>
-				<th align="center" width="10%">Bahan Jadi</th>
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="18%">TANGGAL</th>
+				<th align="center" width="10%">DURASI PRODUKSI (JAM)</th>
+				<th align="center" width="12%">PEMAKAIAN BAHAN (TON)</th>
+				<th align="center" width="23%">FRAKSI / AGREGAT</th>
+				<th align="center" width="12%">PRESENTASE</th>
+				<th align="center" width="10%">SATUAN</th>
+				<th align="center" width="10%">BAHAN JADI</th>
             </tr>
             <?php   
             if(!empty($data)){
@@ -168,7 +168,7 @@
 						<td align="right"><?php echo number_format($barang_jadi_e,2,',','.');?></td>
 					</tr>
 					<tr class="table-baris2-bold">
-						<td align="right" colspan="6"><b>Total</b></td>
+						<td align="right" colspan="6"><b>TOTAL</b></td>
 						<td align="center">Ton</td>
 						<td align="right"><?php echo number_format($sub_total,2,',','.');?></td>
 						
@@ -208,17 +208,17 @@
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['unit_head']);
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['logistik']);
 							$logistik = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['admin']);
 							$admin = $this->db->get('tbl_admin a')->row_array();

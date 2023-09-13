@@ -3,24 +3,24 @@
 
 <head>
     <?php echo $this->Templates->Header(); ?>
+
 	<style type="text/css">
 		.mytable thead th {
 		  background-color:	#e69500;
-		  color: #000000;
-		  text-align: center;
 		  vertical-align: middle;
-		  padding: 5px;
+          color: black;
 		}
 		
 		.mytable tbody td {
-		  padding: 5px;
+            vertical-align: middle;
+            color: black;
 		}
 		
 		.mytable tfoot td {
-		  background-color:	#e69500;
-		  color: #000000;
-		  padding: 5px;
+            vertical-align: middle;
+            color: black;
 		}
+
         blink {
         -webkit-animation: 2s linear infinite kedip; /* for Safari 4.0 - 8.0 */
         animation: 2s linear infinite kedip;

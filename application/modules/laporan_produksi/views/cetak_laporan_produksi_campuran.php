@@ -92,14 +92,14 @@
 		<br />
 		<table cellpadding="3" width="98%" border="0">
 			<tr class="table-judul">
-				<th align="center" width="5%">No</th>
-				<th align="center" width="10%">Tanggal</th>
-				<th align="center" width="20%">Agregat</th>
-				<th align="center" width="10%">Satuan</th>
-				<th align="center" width="10%">Volume</th>
-				<th align="center" width="25%">Fraksi</th>
-				<th align="center" width="10%">Komposisi</th>
-				<th align="center" width="10%">Volume</th>
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="10%">TANGGAL</th>
+				<th align="center" width="20%">AGREGAT</th>
+				<th align="center" width="10%">SATUAN</th>
+				<th align="center" width="10%">VOLUME</th>
+				<th align="center" width="25%">FRAKSI</th>
+				<th align="center" width="10%">KOMPOSISI</th>
+				<th align="center" width="10%">VOLUME</th>
             </tr>
             <?php   
             if(!empty($data)){
@@ -157,7 +157,7 @@
 						<td align="right"><?php echo number_format($barang_jadi_d,2,',','.');?></td>
 					</tr>
 					<tr class="table-baris2-bold">
-						<td align="right" colspan="7"><b>Total</b></td>
+						<td align="right" colspan="7"><b>TOTAL</b></td>
 						<td align="right"><?php echo number_format($sub_total,2,',','.');?></td>
 						
 					</tr>
@@ -195,17 +195,17 @@
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['unit_head']);
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['logistik']);
 							$logistik = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['admin']);
 							$admin = $this->db->get('tbl_admin a')->row_array();

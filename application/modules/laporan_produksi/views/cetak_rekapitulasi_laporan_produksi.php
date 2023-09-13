@@ -92,11 +92,11 @@
 		<br />
 		<table cellpadding="3" width="98%" border="0">
 			<tr class="table-judul">
-				<th align="center" width="5%">No</th>
-				<th align="center" width="35%">Uraian</th>
-				<th align="center" width="20%">Satuan</th>
-				<th align="center" width="20%">Presentase</th>
-				<th align="center" width="20%">Volume</th>
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="35%">URAIAN</th>
+				<th align="center" width="20%">SATUAN</th>
+				<th align="center" width="20%">PRESENTASE</th>
+				<th align="center" width="20%">VOLUME</th>
             </tr>
             <?php   
             if(!empty($data)){
@@ -182,12 +182,12 @@
 							->order_by('id','desc')->limit(1)
 							->get()->row_array();
 
-							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['unit_head']);
 							$unit_head = $this->db->get('tbl_admin a')->row_array();
 
-							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
+							$this->db->select('g.admin_group_name, a.admin_ttd, a.admin_name');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
 							$this->db->where('a.admin_id',$create['logistik']);
 							$logistik = $this->db->get('tbl_admin a')->row_array();
