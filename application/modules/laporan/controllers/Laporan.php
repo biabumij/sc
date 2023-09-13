@@ -2196,7 +2196,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
 		$pdf->setPrintFooter(true);
@@ -2218,7 +2217,6 @@ class Laporan extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
 		$pdf->setPrintFooter(true);

@@ -958,8 +958,6 @@ class Productions extends Secure_Controller {
 					$data[] = $sups;
 					$no++;
 				}
-				
-				
 			}
 		}
 
@@ -1041,8 +1039,6 @@ class Productions extends Secure_Controller {
 					$data[] = $sups;
 					$no++;
 				}
-				
-				
 			}
 		}
 
@@ -1172,7 +1168,6 @@ class Productions extends Secure_Controller {
 	{
 		$this->load->library('pdf');
 	
-
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
         $pdf->SetTopMargin(5);
@@ -1212,19 +1207,18 @@ class Productions extends Secure_Controller {
 			$this->db->where('pp.date_production <=',date('Y-m-d',strtotime($end_date)));	
 			$filter_date = date('d F Y',strtotime($start_date)).' - '.date('d F Y',strtotime($end_date));
 		}
+
 		$this->db->join('penerima pc','pp.client_id = pc.id','left');
 		$this->db->join('produk p','pp.product_id = p.id','left');
 		$this->db->group_by('pp.id');
 		$this->db->order_by('pp.date_production','asc');
 		$this->db->order_by('p.nama_produk','asc');
 		$query = $this->db->get('pmm_productions pp');
-		
 
 		$data['data'] = $query->result_array();
 		$data['filter_date'] = $filter_date;
         $html = $this->load->view('pmm/productions_print',$data,TRUE);
 
-        
         $pdf->SetTitle('Rekap Pengiriman');
         $pdf->nsi_html($html);
         $pdf->Output('rekap_surat_jalan_pengiriman.pdf', 'I');

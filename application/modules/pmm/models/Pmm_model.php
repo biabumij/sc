@@ -4147,8 +4147,6 @@ class Pmm_model extends CI_Model {
 		
 		$this->db->join('pmm_produksi_harian_detail pphd', 'pph.id = pphd.produksi_harian_id','left');
 		$this->db->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left');
-		//$this->db->join('pmm_kalibrasi_detail pkd', 'pk.id = pkd.kalibrasi_id','left');
-		//$this->db->join('produk p','pkd.product_id = p.id','left');
         
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pph.date_prod >=',$start_date);

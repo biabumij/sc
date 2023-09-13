@@ -1303,8 +1303,6 @@ class Receipt_material extends CI_Controller {
 					$data[] = $sups;
 					$no++;
 				}
-				
-				
 			}
 		}
 
@@ -1425,9 +1423,7 @@ class Receipt_material extends CI_Controller {
 
 					$data[] = $sups;
 					$no++;
-				}
-				
-				
+				}	
 			}
 		}
 
@@ -1516,7 +1512,6 @@ class Receipt_material extends CI_Controller {
 						$mats[] = $arr;
 					}
 					
-					
 					$sups['mats'] = $mats;
 					$total += $sups['jumlah_used'];
 					$sups['no'] =$no;
@@ -1548,8 +1543,7 @@ class Receipt_material extends CI_Controller {
 					$data[] = $sups;
 					$no++;
 					
-				}		
-				
+				}
 			}
 		}
 
@@ -1649,12 +1643,10 @@ class Receipt_material extends CI_Controller {
 					$sups['jumlah_pemakaian_d'] = number_format($sups['jumlah_pemakaian_d'],2,',','.');
 					$sups['date_prod'] = date('d/m/Y',strtotime($sups['date_prod']));
 					
-
 					$data[] = $sups;
 					$no++;
 					
-				}		
-				
+				}
 			}
 		}
 
@@ -1725,7 +1717,6 @@ class Receipt_material extends CI_Controller {
 					$sups['jumlah_capacity'] = number_format($sups['jumlah_capacity'],2,',','.');
 					$sups['date_prod'] = date('d/m/Y',strtotime($sups['date_prod']));
 					
-
 					$data[] = $sups;
 					$no++;
 					
@@ -1837,7 +1828,6 @@ class Receipt_material extends CI_Controller {
 					$no++;
 					
 				}		
-				
 			}
 		}
 
@@ -1896,10 +1886,10 @@ class Receipt_material extends CI_Controller {
 		if(!empty($supplier_id)){
 			$supplier_name = $this->crud_global->GetField('pmm_supplier',array('id'=>$supplier_id),'name');
 		}
+
 		$data['supplier_name'] = $supplier_name;
 		$data['data'] = $query->result_array();
         $html = $this->load->view('pmm/receipt_material_print',$data,TRUE);
-
         
         $pdf->SetTitle($this->input->get('filter_date'));
         $pdf->SetTitle('Rekap Penerimaan');
