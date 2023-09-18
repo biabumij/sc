@@ -8,6 +8,7 @@
 		.tab-pane {
             padding-top: 10px;
         }
+        
         .select2-container--default .select2-results__option[aria-disabled=true] {
             display: none;
         }
