@@ -477,7 +477,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>Verifikasi Dok</th>
+                                                    <th>Verifikasi Dok.</th>
                                                     <th>Status Tagihan</th>
                                                     <th>Tgl. Invoice</th>
                                                     <th>No. Invoice</th>
