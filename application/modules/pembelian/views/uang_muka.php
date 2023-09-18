@@ -35,7 +35,7 @@
                             </div>
                             <div class="panel-content">
                                 <form method="POST" action="<?php echo site_url('pembelian/submit_uang_muka');?>" id="form-po" enctype="multipart/form-data" autocomplete="off">
-                                    <input type="text" name="purchase_order_id" value="<?= $row["id"] ?>">
+                                    <input type="hidden" name="purchase_order_id" value="<?= $row["id"] ?>">
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
