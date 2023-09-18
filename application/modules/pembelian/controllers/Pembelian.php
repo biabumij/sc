@@ -1398,7 +1398,7 @@ class Pembelian extends Secure_Controller
                 $row['tanggal_pembayaran'] = date('d/m/Y', strtotime($row['tanggal_pembayaran']));
                 $row['total_pembayaran'] = number_format($row["total"], 2, ',', '.');
                 if ($row["status"] === "DISETUJUI") {
-                    $row['action'] = '<a href="' . base_url('pembelian/cetak_pembayaran_penagihan_pembelian/' . $row["id"]) . '" target="_blank" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Print</a>';
+                    $row['action'] = '<a href="' . base_url('pembelian/cetak_pembayaran_penagihan_pembelian/' . $row["id"]) . '" target="_blank" class="btn btn-default" style="font-weight:bold; border-radius:10px;">Print</a>';
                 } else if($row["status"] == 'TIDAK DISETUJUI'){
                     $row['action'] = "BUTUH PERSETUJUAN";
                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
