@@ -145,7 +145,6 @@ class Pmm_finance extends CI_Model {
         $this->db->join('pmm_penagihan_pembelian pp','pvp.penagihan_pembelian_id = pp.id','left');
         $this->db->join('penerima ps','ps.id = pp.supplier_id','left');
         $query = $this->db->get_where('pmm_verifikasi_penagihan_pembelian pvp',array('pvp.id'=>$id))->row_array();
-        
 
         if(!empty($query)){
             $query['tanggal_po'] = date('d/m/Y',strtotime($query['tanggal_po']));

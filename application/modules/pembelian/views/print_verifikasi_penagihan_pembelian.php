@@ -233,9 +233,15 @@
         ?>  
         <table width="98%" border="0" cellpadding="0">
 			<?php
+				$create = $this->db->select('*')
+				->from('pmm_verifikasi_penagihan_pembelian')
+				->where('id', $row['id'])
+				->where('approve_unit_head', 'SETUJUI')
+				->get()->row_array();
+
 				$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 				$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-				$this->db->where('a.admin_id',$row['unit_head']);
+				$this->db->where('a.admin_id',$create['unit_head']);
 				$unit_head = $this->db->get('tbl_admin a')->row_array();
 
 				$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
@@ -259,7 +265,7 @@
                         </tr>
                         <tr>
                             <td align="center" height="75px">
-								<img src="<?= $verifikator['admin_ttd']?>" width="70px">
+								<img src="<?= $verifikator['admin_ttd']?>" width="100px">
                             </td>
                             <td align="center">
 								<img src="uploads/ttd_rifka.png" width="100px">
@@ -268,7 +274,7 @@
 								<img src="uploads/ttd_vicky.png" width="100px">
                             </td>
                             <td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="100px">
                             </td>
                         </tr>
                         <tr>
