@@ -232,6 +232,17 @@
 		$admin = $this->pmm_model->GetNameGroup(20);
         ?>  
         <table width="98%" border="0" cellpadding="0">
+			<?php
+				$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
+				$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+				$this->db->where('a.admin_id',$row['unit_head']);
+				$unit_head = $this->db->get('tbl_admin a')->row_array();
+
+				$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
+				$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+				$this->db->where('a.admin_id',$row['created_by']);
+				$verifikator = $this->db->get('tbl_admin a')->row_array();
+			?>
             <tr border="1">
                 <td width="100%">
 				<table width="100%" border="1" cellpadding="2">
@@ -248,17 +259,21 @@
                         </tr>
                         <tr>
                             <td align="center" height="75px">
+								<img src="<?= $verifikator['admin_ttd']?>" width="70px">
                             </td>
                             <td align="center">
+								<img src="uploads/ttd_rifka.png" width="100px">
                             </td>
 							<td align="center">
+								<img src="uploads/ttd_vicky.png" width="100px">
                             </td>
-                            <td align="center">           
+                            <td align="center">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
                             </td>
                         </tr>
                         <tr>
                             <td align="center">
-								Dian Melinda Sari<!--<?= $row['verifikator'];?>-->
+								<?= $verifikator['admin_name'];?>
                             </td>
                             <td align="center">
 								Rifka Dian B
@@ -267,7 +282,7 @@
 								Vicky Irwana Yudha
                             </td>
                             <td align="center">
-								 
+								<?= $unit_head['admin_name'];?>
                             </td>
                         </tr>
                         <tr>

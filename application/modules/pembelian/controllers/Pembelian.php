@@ -891,6 +891,7 @@ class Pembelian extends Secure_Controller
             'catatan' => $this->input->post('catatan'),
             'kategori_persetujuan' => 'VERIFIKASI PEMBELIAN',
             'approve_unit_head' => 'TIDAK DISETUJUI',
+            'unit_head' => 39,
             'created_by' => $this->session->userdata('admin_id'),
             'created_on' => date('Y-m-d H:i:s'),
         );
