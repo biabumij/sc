@@ -40,7 +40,7 @@
                                             foreach ($row as $x) {
                                             ?> 
                                             <tr>
-                                                <th width = "50%"><a href="<?= site_url('pembelian/closed_verifikasi/' . $x['id']); ?>" class="btn btn-success" style="border-radius:10px"><i class="fa fa-check"></i> Setujui - (<?= $x['nomor_invoice'];?>)</a></th>
+                                                <th width = "50%"><a href="<?= site_url('pembelian/closed_verifikasi/' . $x['id']); ?>" class="btn btn-success" style="border-radius:10px; font-weight:bold;"><i class="fa fa-check"></i> Setujui - (<?= $x['nomor_invoice'];?>)</a></th>
                                                 <th width = "50%"><a target="_blank" a href="<?= site_url('pembelian/print_verifikasi_penagihan_pembelian/?id='.$x['id']); ?>" class="btn btn-default" style="border-radius:10px"><i class="fa fa-print"></i> Print</a></th>
                                             </tr>
                                             <tr>
