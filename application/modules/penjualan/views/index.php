@@ -275,8 +275,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No.</th>
-                                                        <th>Status Pembayaran</th>
                                                         <th>Status Tagihan</th>
+                                                        <th>Status Pembayaran</th>
                                                         <th>Tgl. Invoice</th>
                                                         <th>No. Invoice</th>
                                                         <th>Pelanggan</th>
@@ -635,10 +635,10 @@
                     "data": "no"
                 },
                 {
-                    "data": "status"
+                    "data": "status_tagihan"
                 },
                 {
-                    "data": "status_tagihan"
+                    "data": "status"
                 },
                 {
                     "data": "tanggal_invoice"
