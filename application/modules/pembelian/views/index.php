@@ -140,16 +140,16 @@
                                             <table class="table table-striped table-hover" id="guest-table" style="width:100%;">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No</th>
-                                                        <th>Status Penawaran</th>
-                                                        <th>Tanggal Penawaran</th>
-                                                        <th>No. Penawaran</th>
+                                                        <th>No.</th>
+                                                        <th>Status</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Nomor</th>
                                                         <th>Rekanan</th>
                                                         <th>Jenis Pembelian</th>
                                                         <th>Berlaku Hingga</th>
 														<th>Jumlah</th>
                                                         <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>                                                  
+                                                        <th>Dibuat Tanggal</th>                                                   
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -188,17 +188,17 @@
                                         <table class="table table-striped table-hover" id="table-request" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center" width="5%">No</th>
-                                                    <th>Status Permintaan</th>
-													<th>Tanggal Permintaan</th>
-                                                    <th>No. Permintaan</th>
+                                                    <th>No.</th>
+                                                    <th>Status</th>
+													<th>Tanggal</th>
+                                                    <th>Nomor</th>
                                                     <th>Subyek</th>
                                                     <th>Rekanan</th>                               
                                                     <th>Volume</th>
                                                     <th>Tindakan</th>
                                                     <th>Hapus</th>
                                                     <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>   
+                                                    <th>Dibuat Tanggal</th>     
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -307,13 +307,13 @@
                                         <table class="table table-striped table-hover" id="table-po" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center" width="5%">No.</th>
-                                                    <th>Status Pesanan Pembelian</th>
+                                                    <th>No.</th>
+                                                    <th>Status</th>
                                                     <th>Tanggal</th>
                                                     <th>Rekanan</th>
-                                                    <th>No. Pesanan Pembelian</th>
+                                                    <th>Nomor</th>
                                                     <th>Subyek</th>
-                                                    <th>Vol PO</th>
+                                                    <th>Vol. PO</th>
                                                     <th>Presentase Penerimaan Terhadap Vol. PO</th>
                                                     <th>Terima</th>
                                                     <th>Total Pesanan Pembelian</th>
@@ -321,7 +321,7 @@
                                                     <th>Lampiran</th>
                                                     <th>Tindakan</th>
                                                     <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>  
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -393,7 +393,7 @@
                                             <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th class="text-center" width="5%">No.</th>
+                                                    <th>No.</th>
                                                     <th>Status Tagihan</th>
                                                     <th>Tanggal</th>
                                                     <th>Rekanan</th>
@@ -476,11 +476,9 @@
                                         <table class="table table-striped table-hover" id="table-tagihan" style="width:100%;">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center" width="5%">No</th>
+                                                    <th>No.</th>
                                                     <th>Verifikasi Dok</th>
                                                     <th>Status Tagihan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                     <th>Tgl. Invoice</th>
                                                     <th>No. Invoice</th>
                                                     <th>Rekanan</th>
@@ -489,6 +487,8 @@
                                                     <th>Total</th>
                                                     <th>Pembayaran</th>
                                                     <th>Sisa Tagihan</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1101,7 +1101,7 @@
             showDropdowns: true,
         });
 
-        var table = $('#guest-table').DataTable({
+        var table = $('#guest-table').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -1146,14 +1146,8 @@
                 }
             ],
             "columnDefs": [
-                {
-                "targets": [0, 1],
-                "className": 'text-center',
-                },
-                {
-                "targets": [7],
-                "className": 'text-right',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": 7, "className": 'text-right'},
             ],
             responsive: true,
             pageLength: 25,
@@ -1191,7 +1185,7 @@
               table_request.ajax.reload();
         });
 
-        var table_request = $('#table-request').DataTable( {
+        var table_request = $('#table-request').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -1218,14 +1212,8 @@
                 { "data": "created_on" }
             ],
             "columnDefs": [
-                {
-                    "targets": [0, 1, 7, 8],
-                    "className": 'text-center',
-                },
-				{
-                    "targets": [6],
-                    "className": 'text-right',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": 6, "className": 'text-right'},
             ],
             responsive: true,
             pageLength: 25,
@@ -1332,7 +1320,7 @@
 	<!-- Script Pesanan Pembelian -->
 
     <script type="text/javascript">
-        var table_po = $('#table-po').DataTable({
+        var table_po = $('#table-po').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -1389,15 +1377,9 @@
                 }
             ],
             "columnDefs": [
-                {
-                    "targets": [0, 1, 12],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [6, 7, 8, 9, 10],
-                    "className": 'text-right',
-                }
-                ],
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [6, 7, 8, 9, 10], "className": 'text-right'},
+            ],
             responsive: true,
             pageLength: 25,
         });
@@ -1412,7 +1394,7 @@
 
     <script type="text/javascript">
 
-    var table_receipt = $('#table-receipt').DataTable({
+    var table_receipt = $('#table-receipt').DataTable( {"bAutoWidth": false,
         ajax: {
             processing: true,
             serverSide: true,
@@ -1491,14 +1473,8 @@
                 "orderable": false,
                 "className": 'select-checkbox',
             },
-            {
-                "targets": [1, 13],
-                "className": 'text-center',
-            },
-            {
-                "targets": [12],
-                "className": 'text-right',
-            },
+            { "width": "5%", "targets": 1, "className": 'text-center'},
+            { "targets": 12, "className": 'text-right'},
         ],
     });
 
@@ -1585,7 +1561,7 @@
 
     <script type="text/javascript">
 
-    var table_tagihan = $('#table-tagihan').DataTable({
+    var table_tagihan = $('#table-tagihan').DataTable( {"bAutoWidth": false,
         ajax: {
             processing: true,
             serverSide: true,
@@ -1605,12 +1581,6 @@
             },
             {
                 "data": "status"
-            },
-            {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
             },
             {
                 "data": "tanggal_invoice"
@@ -1636,16 +1606,16 @@
             {
                 "data": "sisa_tagihan"
             },
+            {
+                "data": "admin_name"
+            },
+            {
+                "data": "created_on"
+            },
         ],
         "columnDefs": [
-            {
-            "targets": [0, 1],
-            "className": 'text-center',
-            },
-            {
-            "targets": [10, 11, 12],
-            "className": 'text-right',
-            },
+            { "width": "5%", "targets": 0, "className": 'text-center'},
+            { "targets": [8, 9, 10], "className": 'text-right'},
         ],
         responsive: true,
         pageLength: 25,
