@@ -56,54 +56,60 @@
 						</tr>
 						<tr>
 							<td>5.</td>
+							<td>Uang Muka</td>
+							<td>:</td>
+							<td ><?= $row['uang_muka'];?></td>
+						</tr>
+						<tr>
+							<td>6.</td>
 							<td>Nilai Tagihan ini (DPP)</td>
 							<td>:</td>
 							<td ><?= $row['nilai_tagihan'];?></td>
 						</tr>
 						<tr>
-							<td>6.</td>
+							<td>7.</td>
 							<td >PPN</td>
 							<td>:</td>
 							<td  ><?= $row['ppn'];?></td>
 						</tr>
 						<tr>
-							<td>7.</td>
+							<td>8.</td>
 							<td >PPh 23</td>
 							<td>:</td>
 							<td  ><?= $row['pph'];?></td>
 						</tr>
 						<tr>
-							<td>8.</td>
+							<td>9.</td>
 							<td >Total Tagihan</td>
 							<td>:</td>
 							<td  ><?= $row['total_tagihan'];?></td>
 						</tr>
 						<tr>
-							<td>9.</td>
+							<td>10.</td>
 							<td >Tanggal Invoice</td>
 							<td>:</td>
 							<td ><?= $row['tanggal_invoice'];?></td>
 						</tr>
 						<tr>
-							<td>10.</td>
+							<td>11.</td>
 							<td >Tanggal Diterima Proyek</td>
 							<td>:</td>
 							<td ><?= $row['tanggal_diterima_proyek'];?></td>
 						</tr>
 						<tr>
-							<td>11.</td>
+							<td>12.</td>
 							<td >Tanggal Lolos Verifikasi</td>
 							<td>:</td>
 							<td ><?= $row['tanggal_lolos_verifikasi'];?></td>
 						</tr>
 						<tr>
-							<td>12.</td>
+							<td>13.</td>
 							<td >Tanggal Diterima Pusat</td>
 							<td>:</td>
 							<td ></td>
 						</tr>
 						<tr>
-							<td>13.</td>
+							<td>14.</td>
 							<td >Metode Pembayaran</td>
 							<td>:</td>
 							<td ><?= $row['metode_pembayaran'];?></td>

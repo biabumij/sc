@@ -618,6 +618,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-4 control-label">Uang Muka<span class="required" aria-required="true">*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" id="uang_muka" name="uang_muka" class="form-control input-sm numberformat">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-4 control-label">Nilai Tagihan ini (DPP)<span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="nilai_tagihan" name="nilai_tagihan" class="form-control input-sm numberformat">
@@ -840,6 +846,11 @@
                                 <th>Nilai Kontrak / PO</th>
                                 <th>:</th>
                                 <td id="nilai_kontrak_d"></td>
+                            </tr>
+                            <tr>
+                                <th>Uang Muka</th>
+                                <th>:</th>
+                                <td id="uang_muka_d"></td>
                             </tr>
                             <tr>
                                 <th>Nilai Tagihan ini (DPP)</th>
@@ -1678,6 +1689,7 @@
                     $('#nilai_tagihan_d').text(result.data.nilai_tagihan);
                     $('#ppn_d').text(result.data.ppn);
                     $('#pph_d').text(result.data.pph);
+                    $('#uang_muka_d').text(result.data.uang_muka);
                     $('#total_tagihan_d').text(result.data.total_tagihan);
                     $('#tanggal_invoice_d').text(result.data.tanggal_invoice);
                     $('#tanggal_diterima_proyek_d').text(result.data.tanggal_diterima_proyek);
@@ -1782,11 +1794,12 @@
                     $('#tanggal_po').val(result.data.tanggal_po);
                     $('#nama_barang_jasa').val(result.data.nama_produk);
                     $('#nilai_kontrak').val(result.data.nilai_kontrak);
+                    $('#uang_muka').val(result.data.uang_muka);
                     $('#nilai_tagihan').val(result.data.nilai_tagihan);
                     $('#tanggal_invoice').val(result.data.tanggal_invoice);
                     $('#ppn_tagihan').val(result.data.ppn);
                     $('#pph_tagihan').val(result.data.pph);
-                    $('#total_tagihan').val(result.data.total);
+                    $('#total_tagihan').val(result.data.total_tagihan);
                 } else if (result.err) {
                     bootbox.alert(result.err);
                 }

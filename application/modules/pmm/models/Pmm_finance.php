@@ -130,6 +130,7 @@ class Pmm_finance extends CI_Model {
             $query['nilai_tagihan'] =  number_format($query['nilai_tagihan'],0,',','.');
             $query['ppn'] =  number_format($query['ppn'],0,',','.');
             $query['pph'] =  number_format($query['pph'],0,',','.');
+            $query['uang_muka'] =  number_format($query['uang_muka'],0,',','.');
             $query['total_tagihan'] =  number_format($query['total_tagihan'],0,',','.');
             $query['verifikator'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$query['created_by']),'admin_name');
             $data = $query;
@@ -156,6 +157,7 @@ class Pmm_finance extends CI_Model {
             $query['nilai_tagihan'] = number_format($query['nilai_tagihan'],0,',','.');
             $query['ppn'] = number_format($query['ppn'],0,',','.');
             $query['pph'] = number_format($query['pph'],0,',','.');
+            $query['uang_muka'] = number_format($query['uang_muka'],0,',','.');
             $query['total_tagihan'] = number_format($query['total_tagihan'],0,',','.');
             $query['verifikator'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$query['created_by']),'admin_name');
             $data = $query;

@@ -766,7 +766,7 @@ class Pembelian extends Secure_Controller
         $data = array();
         $id = $this->input->post('id');
 
-        $this->db->select('pp.*, ps.nama as supplier_name, po.total as nilai_kontrak');
+        $this->db->select('pp.*, ps.nama as supplier_name, po.total as nilai_kontrak, po.uang_muka as uang_muka');
         $this->db->join('penerima ps', 'pp.supplier_id = ps.id', 'left');
         $this->db->join('pmm_purchase_order po', 'po.id = pp.purchase_order_id', 'left');
         $query = $this->db->get_where('pmm_penagihan_pembelian pp', array('pp.id' => $id))->row_array();
@@ -795,8 +795,8 @@ class Pembelian extends Secure_Controller
         $metode_pembayaran = $this->db->get_where('pmm_penawaran_pembelian ppp', ['id' => $penawaran['penawaran_id']])->row_array();
 
         $query['pph'] = $detail_2['pajak'];
-        $query['nilai_tagihan'] = $query['total_tagihan'] - $detail['tax'] + $detail_2['pajak'];
-        $query['total_tagihan'] = $query['total_tagihan'] + $detail['tax'] - $detail_2['pajak'];
+        $query['nilai_tagihan'] = ($query['total_tagihan'] - $detail['tax'] + $detail_2['pajak']) - $query['uang_muka'];
+        $query['total_tagihan'] = ($query['total_tagihan'] + $detail['tax'] - $detail_2['pajak']) - $query['uang_muka'];
 
         if (!empty($query)) {
             $receipt_material_id = explode(',', $query['surat_jalan'])[0];
@@ -868,6 +868,7 @@ class Pembelian extends Secure_Controller
             'nilai_tagihan' => $this->input->post('nilai_tagihan'),
             'ppn' => $this->input->post('ppn'),
             'pph' => $this->input->post('pph'),
+            'uang_muka' => $this->input->post('uang_muka'),
             'tanggal_invoice' => $tanggal_invoice,
             'tanggal_diterima_proyek' => $tanggal_diterima_proyek,
             'tanggal_lolos_verifikasi' => $tanggal_lolos_verifikasi,
@@ -2066,4 +2067,54 @@ class Pembelian extends Secure_Controller
 		
 		echo json_encode($output);	
 	}
+
+    public function uang_muka($id)
+    {
+        $check = $this->m_admin->check_login();
+        if ($check == true) {
+
+            $this->db->select('po.*');
+            $data['row'] = $this->db->get_where('pmm_purchase_order po', ["po.id" => $id])->row_array();
+
+            $this->load->view('pembelian/uang_muka', $data);
+        } else {
+            redirect('admin');
+        }
+    }
+
+    public function submit_uang_muka()
+    {
+
+        $this->db->trans_start(); # Starting Transaction
+        $this->db->trans_strict(FALSE); #
+
+        $uang_muka = $this->input->post('uang_muka');
+        $uang_muka = str_replace('.', '', $uang_muka);
+        $uang_muka = str_replace(',', '.', $uang_muka);
+
+        $purchase_order_id = $this->input->post('purchase_order_id');
+        $arr_update = array(
+            'id' => $purchase_order_id,
+            'uang_muka' => $uang_muka,
+            'updated_by' => $this->session->userdata('admin_id'),
+            'updated_on' => date('Y-m-d H:i:s')
+        );
+
+        $this->db->where('id', $purchase_order_id);
+        $this->db->update('pmm_purchase_order', $arr_update);
+
+        if ($this->db->trans_status() === FALSE) {
+            # Something went wrong.
+            $this->db->trans_rollback();
+            $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
+            redirect('pmm/purchase_order/manage/' . $purchase_order_id);
+        } else {
+            # Everything is Perfect. 
+            # Committing data to the database.
+            $this->db->trans_commit();
+            $this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
+            redirect('pmm/purchase_order/manage/' . $purchase_order_id);
+        }
+    }
+
 }

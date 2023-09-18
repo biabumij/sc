@@ -140,14 +140,14 @@
 				}
 				?>
 			<tr>
-               <th colspan="5" style="text-align:right">Sub Total</th>
+               <th colspan="5" style="text-align:right">SUB TOTAL</th>
                <th align="right"><?= number_format($subtotal,0,',','.'); ?></th>
            	</tr>
 			<?php
             if($tax_ppn > 0){
                 ?>
                 <tr>
-                    <th colspan="5" align="right">Pajak (PPN 10%)</th>
+                    <th colspan="5" align="right">PAJAK (PPN 10%)</th>
                     <th  align="right"><?= number_format($tax_ppn,0,',','.'); ?></th>
                 </tr>
                 <?php
@@ -157,7 +157,7 @@
             if($tax_0){
                 ?>
                 <tr>
-                    <th colspan="5" align="right">Pajak (PPN 0%)</th>
+                    <th colspan="5" align="right">PAJAK (PPN 0%)</th>
                     <th  align="right"><?= number_format(0,0,',','.'); ?></th>
                 </tr>
                 <?php
@@ -167,7 +167,7 @@
             if($tax_pph > 0){
                 ?>
                 <tr>
-                    <th colspan="5" align="right">Pajak (PPh 23)</th>
+                    <th colspan="5" align="right">PAJAK (PPh 23)</th>
                     <th align="right"><?= number_format($tax_pph,0,',','.'); ?></th>
                 </tr>
                 <?php
@@ -177,7 +177,7 @@
             if($tax_ppn11 > 0){
                 ?>
                 <tr>
-                    <th colspan="5" align="right">Pajak (PPN 11%)</th>
+                    <th colspan="5" align="right">PAJAK (PPN 11%)</th>
                     <th align="right"><?= number_format($tax_ppn11,0,',','.'); ?></th>
                 </tr>
                 <?php
@@ -185,10 +185,18 @@
 			
             $total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11;
             ?>
+
+			<?php
+				$presentase_uang_muka = ($row['uang_muka'] / $total) * 100;
+			?>
             
             <tr>
                 <th colspan="5" align="right">TOTAL</th>
                 <th align="right"><?= number_format($total,0,',','.'); ?></th>
+            </tr>
+			<tr>
+                <th colspan="5" align="right">UANG MUKA (<?= number_format($presentase_uang_muka,0,',','.'); ?>%)</th>
+                <th align="right"><?= number_format($row['uang_muka'],0,',','.'); ?></th>
             </tr>
 		</table>
 		<p style="font-size:6px; line-height:1;"><?= $row["memo"] ?></p>
