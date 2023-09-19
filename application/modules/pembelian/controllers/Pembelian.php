@@ -794,9 +794,12 @@ class Pembelian extends Secure_Controller
         $this->db->select('ppp.*');
         $metode_pembayaran = $this->db->get_where('pmm_penawaran_pembelian ppp', ['id' => $penawaran['penawaran_id']])->row_array();
 
+        $this->db->select('pppp.*');
+        $pembayaran = $this->db->get_where('pmm_pembayaran_penagihan_pembelian pppp', ['penagihan_pembelian_id' => $id])->row_array();
+
         $query['pph'] = $detail_2['pajak'];
-        $query['nilai_tagihan'] = ($query['total_tagihan'] - $detail['tax'] + $detail_2['pajak']) - $query['uang_muka'];
-        $query['total_tagihan'] = ($query['total_tagihan'] + $detail['tax'] - $detail_2['pajak']) - $query['uang_muka'];
+        $query['nilai_tagihan'] = ($query['total_tagihan'] - $detail['tax'] + $detail_2['pajak']) - $pembayaran['total'];
+        $query['total_tagihan'] = ($query['total_tagihan'] + $detail['tax'] - $detail_2['pajak']) - $pembayaran['total'];
 
         if (!empty($query)) {
             $receipt_material_id = explode(',', $query['surat_jalan'])[0];
