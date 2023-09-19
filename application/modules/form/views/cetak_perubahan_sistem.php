@@ -137,10 +137,10 @@
                                 <img src="<?= $ti_sistem['admin_ttd']?>" width="100px">  
                             </td>
                             <td align="left">
-								<img src="<?= $created['admin_ttd']?>" width="100px">   
+								<img src="<?= $unit_head['admin_ttd']?>" width="100px">
                             </td>
                             <td align="left">
-                                <img src="<?= $unit_head['admin_ttd']?>" width="100px">   
+								<img src="<?= $created['admin_ttd']?>" width="100px">   
                             </td>
                             <td align="left">
 								<img src="<?= $created['admin_ttd']?>" width="100px">   
@@ -151,10 +151,10 @@
 								Nama : Ginanjar Bayu B.
                             </td>
                             <td align="left">
-								Nama : <?= $created['admin_name'];?>
+								Nama : <?= $unit_head['admin_name'];?>
                             </td>
                             <td align="left">
-								Nama : <?= $unit_head['admin_name'];?>
+								Nama : <?= $created['admin_name'];?>
                             </td>
 							<td align="left">
 								Nama : <?= $created['admin_name'];?>
@@ -165,10 +165,10 @@
 								Jabatan : TI & Sistem
                             </td>
                             <td align="left">
-								Jabatan : <?= $created['admin_group_name'];?>
+								Jabatan : <?= $unit_head['admin_group_name'];?>
                             </td>
                             <td align="left">
-								Jabatan : <?= $unit_head['admin_group_name'];?>
+								Jabatan : <?= $created['admin_group_name'];?>
                             </td>
                             <td align="left">
 								Jabatan : <?= $created['admin_group_name'];?>
