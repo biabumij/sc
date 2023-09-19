@@ -434,7 +434,7 @@
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="menu1">
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-hover table-center table-bordered" id="table-surat-jalan" width="100%">
+                                            <table class="table table-striped table-hover" id="table-surat-jalan" width="100%">
                                                 <thead>
                                                     <tr>
                                                         <th>Tanggal</th>
@@ -442,7 +442,7 @@
                                                         <th>Produk</th>
                                                         <th>No. Kendaraan</th>
                                                         <th>Supir</th>
-                                                        <th>Volume</th>
+                                                        <th class="text-right">Volume</th>
                                                         <th>Satuan</th>
                                                     </tr>
                                                 </thead>
@@ -463,7 +463,7 @@
                                                                 <td><?= $sj['nama_produk']; ?></td>
                                                                 <td><?= $sj['no_kendaraan']; ?></td>
                                                                 <td><?= $sj['driver']; ?></td>
-                                                                <td><?= $this->filter->Rupiah($sj['volume']); ?></td>
+                                                                <td class="text-right"><?= $this->filter->Rupiah($sj['volume']); ?></td>
                                                                 <td><?= $sj['measure']; ?></td>
                                                             </tr>
                                                     <?php
@@ -483,7 +483,7 @@
                                                         <th>Tanggal</th>
                                                         <th>Nomor</th>
                                                         <th>Bayar Dari</th>
-                                                        <th class="text-center">Jumlah</th>
+                                                        <th>Jumlah</th>
                                                         <th>Status</th>
                                                         <th>Tindakan</th>
                                                     </tr>
@@ -492,9 +492,6 @@
 
                                                 </tbody>
                                             </table>
-                                        </div>
-                                        <div class="text-center">
-
                                         </div>
                                     </div>
                                 </div>
@@ -540,7 +537,7 @@
 
         });
 
-        var table = $('#table-pembayaran').DataTable({
+        var table = $('#table-pembayaran').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -576,19 +573,13 @@
             ],
             "pageLength": 5,
             "columnDefs": [
-                {
-                "targets": [0, 1, 2, 4, 5],
-                "className": 'text-center',
-                },
-                {
-                "targets": [3],
-                "className": 'text-right',
-                }
+                { "width": "5%", "targets": [0, 5], "className": 'text-center'},
+                { "targets": 3, "className": 'text-right'},
             ],
             responsive: true,
         });
 
-        var table_surat_jalan = $('#table-surat-jalan').DataTable({
+        var table_surat_jalan = $('#table-surat-jalan').DataTable( {"bAutoWidth": false,
             "pageLength": 5,
         });
 
