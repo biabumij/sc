@@ -354,7 +354,7 @@
                                                         <th>Produk</th>
                                                         <th>No. Kendaraan</th>
                                                         <th>Supir</th>
-                                                        <th>Volume</th>
+                                                        <th class="text-right">Volume</th>
                                                         <th>Satuan</th>
                                                     </tr>
                                                 </thead>
@@ -395,7 +395,7 @@
                                                         <th>Tanggal</th>
                                                         <th>Nomor</th>
                                                         <th>Setor Ke</th>
-                                                        <th class="text-center">Jumlah</th>
+                                                        <th class="text-right">Jumlah</th>
                                                         <th>Status</th>
                                                         <th>Tindakan</th>
                                                     </tr>
@@ -475,7 +475,7 @@
             $(this).val(picker.startDate.format('DD-MM-YYYY'));
         });
 
-        var table = $('#table-pembayaran').DataTable({
+        var table = $('#table-pembayaran').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -510,19 +510,13 @@
                 },
             ],
             "columnDefs": [
-                {
-                "targets": [0, 1, 2, 4, 5],
-                "className": 'text-center',
-                },
-                {
-                "targets": [3],
-                "className": 'text-right',
-                }
+                { "width": "5%", "targets": [0, 5], "className": 'text-center'},
+                { "targets": 3, "className": 'text-right'},
             ],
             responsive: true,
         });
 
-        var table_surat_jalan = $('#table-surat-jalan').DataTable({
+        var table_surat_jalan = $('#table-surat-jalan').DataTable( {"bAutoWidth": false,
             "pageLength": 5,
         });
 

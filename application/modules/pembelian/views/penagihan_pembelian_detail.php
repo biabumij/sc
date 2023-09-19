@@ -463,7 +463,7 @@
                                                                 <td><?= $sj['nama_produk']; ?></td>
                                                                 <td><?= $sj['no_kendaraan']; ?></td>
                                                                 <td><?= $sj['driver']; ?></td>
-                                                                <td class="text-right"><?= $this->filter->Rupiah($sj['volume']); ?></td>
+                                                                <td style="text-align: right !important;"><?= $this->filter->Rupiah($sj['volume']); ?></td>
                                                                 <td><?= $sj['measure']; ?></td>
                                                             </tr>
                                                     <?php
