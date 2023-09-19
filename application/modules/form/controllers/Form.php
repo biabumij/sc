@@ -182,7 +182,6 @@ class Form extends Secure_Controller {
 	public function cetak_perubahan_sistem($id){
 
 		$this->load->library('pdf');
-	
 
 		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPrintHeader(true);
