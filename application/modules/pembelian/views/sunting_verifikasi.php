@@ -134,6 +134,10 @@
                             <input type="text" id="nilai_kontrak" name="nilai_kontrak" class="form-control numberformat" readonly="" autocomplete="off" />
                         </div>
                         <div class="form-group">
+                            <label>Uang Muka</label>
+                            <input type="text" id="uang_muka" name="uang_muka" class="form-control numberformat" readonly="" autocomplete="off" />
+                        </div>
+                        <div class="form-group">
                             <label>Nilai Tagihan ini (DPP)</label>
                             <input type="text" id="nilai_tagihan" name="nilai_tagihan" class="form-control numberformat" readonly="" autocomplete="off" />
                         </div>
@@ -410,6 +414,7 @@
                         $('#nomor_po').val(result.output.nomor_po);
                         $('#nama_barang_jasa').val(result.output.nama_barang_jasa);
                         $('#nilai_kontrak').val(result.output.nilai_kontrak);
+                        $('#uang_muka').val(result.output.uang_muka);
                         $('#nilai_tagihan').val(result.output.nilai_tagihan);
                         $('#ppn').val(result.output.ppn);
                         $('#pph').val(result.output.pph);
