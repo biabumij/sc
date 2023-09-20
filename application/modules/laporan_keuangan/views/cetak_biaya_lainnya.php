@@ -126,28 +126,52 @@
 								Dibuat Oleh
 							</td>
 						</tr>
+						<?php
+							$create = $this->db->select('id, unit_head, logistik, admin')
+							->from('akumulasi_bahan_baku')
+							->where("date_akumulasi between '$start_date' and '$end_date'")
+							->order_by('id','desc')->limit(1)
+							->get()->row_array();
+
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['unit_head']);
+							$unit_head = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['logistik']);
+							$logistik = $this->db->get('tbl_admin a')->row_array();
+
+							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
+							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
+							$this->db->where('a.admin_id',$create['admin']);
+							$admin = $this->db->get('tbl_admin a')->row_array();
+
+							$dirut = $this->pmm_model->GetNameGroup(6);
+						?>
 						<tr>
 							<td align="center" height="40px">
-								
+								<img src="<?= $unit_head['admin_ttd']?>" width="40px">
 							</td>
 							<td align="center">
-								
+								<img src="<?= $logistik['admin_ttd']?>" width="40px">
 							</td>
 							<td align="center">
-								
+								<img src="<?= $admin['admin_ttd']?>" width="40px">
 							</td>
 						</tr>
 						<tr>
 							<td align="center" >
-								<b><u></u><br />
+								<b><u><?= $unit_head['admin_name']?></u><br />
 								Ka. Unit Bisnis</b>
 							</td>
 							<td align="center" >
-								<b><u>Rifka Dian B.</u><br />
+								<b><u><?= $logistik['admin_name']?></u><br />
 								Pj. Keuangan & SDM</b>
 							</td>
 							<td align="center" >
-								<b><u>Dian Melinda S.</u><br />
+								<b><u><?= $admin['admin_name']?></u><br />
 								Staff Keuangan & SDM</b>
 							</td>
 						</tr>
