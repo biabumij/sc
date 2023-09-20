@@ -108,21 +108,20 @@
 				<td width="20%" align="right"><b><?php echo number_format($total_c,0,',','.');?></b></td>
 			</tr>
 		</table>
-		<br />
-		<br />
-		<table width="98%" border="0" cellpadding="15">
+		<br /><br /><br /><br /><br /><br />
+		<table width="98%" border="0" cellpadding="10">
 			<tr >
 				<td width="5%"></td>
 				<td width="90%">
 					<table width="100%" border="0" cellpadding="2">
 						<tr>
-							<td align="center" >
+							<td align="center">
 								Disetujui Oleh
 							</td>
-							<td align="center" >
+							<td align="center">
 								Diperiksa Oleh
 							</td>
-							<td align="center" >
+							<td align="center">
 								Dibuat Oleh
 							</td>
 						</tr>
@@ -151,14 +150,14 @@
 							$dirut = $this->pmm_model->GetNameGroup(6);
 						?>
 						<tr>
-							<td align="center" height="40px">
-								<img src="<?= $unit_head['admin_ttd']?>" width="40px">
+							<td align="center" height="75px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="75px">
 							</td>
 							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="40px">
+								<img src="<?= $logistik['admin_ttd']?>" width="75px">
 							</td>
 							<td align="center">
-								<img src="<?= $admin['admin_ttd']?>" width="40px">
+								<img src="<?= $admin['admin_ttd']?>" width="75px">
 							</td>
 						</tr>
 						<tr>
