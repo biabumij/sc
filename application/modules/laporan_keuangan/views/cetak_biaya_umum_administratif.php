@@ -150,14 +150,14 @@
 							$dirut = $this->pmm_model->GetNameGroup(6);
 						?>
 						<tr>
-							<td align="center" height="75px">
-								<img src="<?= $unit_head['admin_ttd']?>" width="75px">
+							<td align="center" height="70px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $logistik['admin_ttd']?>" width="75px">
+								<img src="<?= $logistik['admin_ttd']?>" width="70px">
 							</td>
 							<td align="center">
-								<img src="<?= $admin['admin_ttd']?>" width="75px">
+								<img src="<?= $admin['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>

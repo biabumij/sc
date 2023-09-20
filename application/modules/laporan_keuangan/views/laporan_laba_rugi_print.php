@@ -694,11 +694,11 @@
 							$dirut = $this->pmm_model->GetNameGroup(6);
 						?>
 						<tr class="">
-							<td align="center" height="100px">
+							<td align="center" height="70px">
 							
 							</td>
 							<td align="center">
-								<img src="<?= $unit_head['admin_ttd']?>" width="100px">
+								<img src="<?= $unit_head['admin_ttd']?>" width="70px">
 							</td>
 						</tr>
 						<tr>
