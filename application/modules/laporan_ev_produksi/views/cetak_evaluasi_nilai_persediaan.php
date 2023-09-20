@@ -1468,7 +1468,7 @@
 			<th align = "right" style="<?php echo $styleColorJ ?>"><?php echo number_format($stok_evaluasi_total_nilai_akhir,0,',','.');?></th>
 		</tr>
 	</table>
-	<br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br />
 	<table width="98%">
 		<tr >
 			<td width="5%"></td>
