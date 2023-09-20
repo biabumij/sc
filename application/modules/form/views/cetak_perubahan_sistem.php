@@ -133,7 +133,7 @@
                             </td>
                         </tr>
                         <tr class="">
-							<td align="left" height="75px">
+							<td align="left" height="100px">
                                 <img src="<?= $ti_sistem['admin_ttd']?>" width="100px">  
                             </td>
                             <td align="left">
