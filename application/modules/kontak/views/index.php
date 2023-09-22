@@ -53,13 +53,13 @@
 		                                <table class="table table-striped table-hover table-center" id="table-pelanggan" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-		                                            <th class="text-center">No.</th>
-		                                            <th class="text-center">Nama</th>
-		                                            <th class="text-center">Alamat</th>
-		                                            <th class="text-center">Email</th>
-		                                            <th class="text-center">Telp.</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+		                                            <th>No.</th>
+		                                            <th>Nama</th>
+		                                            <th>Alamat</th>
+		                                            <th>Email</th>
+		                                            <th>Telp.</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -74,13 +74,13 @@
 		                                <table class="table table-striped table-hover table-center" id="table-rekanan" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-                                                    <th class="text-center">No.</th>
-		                                            <th class="text-center">Nama</th>
-		                                            <th class="text-center">Alamat</th>
-		                                            <th class="text-center">Email</th>
-		                                            <th class="text-center">Telp.</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th>No.</th>
+		                                            <th>Nama</th>
+		                                            <th>Alamat</th>
+		                                            <th>Email</th>
+		                                            <th>Telp.</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -95,13 +95,13 @@
 		                                <table class="table table-striped table-hover table-center" id="table-karyawan"  style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-                                                    <th class="text-center">No.</th>
-		                                            <th class="text-center">Nama</th>
-		                                            <th class="text-center">Alamat</th>
-		                                            <th class="text-center">Email</th>
-		                                            <th class="text-center">Telp.</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th>No.</th>
+		                                            <th>Nama</th>
+		                                            <th>Alamat</th>
+		                                            <th>Email</th>
+		                                            <th>Telp.</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -116,13 +116,13 @@
 		                                <table class="table table-striped table-hover table-center" id="teble-lain" style="width: 100%">
 		                                    <thead>
 		                                        <tr>
-                                                    <th class="text-center">No.</th>
-		                                            <th class="text-center">Nama</th>
-		                                            <th class="text-center">Alamat</th>
-		                                            <th class="text-center">Email</th>
-		                                            <th class="text-center">Telp.</th>
-                                                    <th class="text-center">Dibuat Oleh</th>
-                                                    <th class="text-center">Dibuat Tanggal</th>
+                                                    <th>No.</th>
+		                                            <th>Nama</th>
+		                                            <th>Alamat</th>
+		                                            <th>Email</th>
+		                                            <th>Telp.</th>
+                                                    <th>Dibuat Oleh</th>
+                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -181,10 +181,6 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "30%", "targets": 1, "className": 'text-left'},
-                { "width": "25%", "targets": 2, "className": 'text-left'},
-                { "width": "10%", "targets": [3, 4], "className": 'text-left'},
-                { "width": "10%", "targets": [5, 6], "className": 'text-center' }
             ],
             responsive: true,
         });
@@ -210,10 +206,6 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "30%", "targets": 1, "className": 'text-left'},
-                { "width": "25%", "targets": 2, "className": 'text-left'},
-                { "width": "10%", "targets": [3, 4], "className": 'text-left'},
-                { "width": "10%", "targets": [5, 6], "className": 'text-center' }
             ],
             responsive: true,
         });
@@ -239,10 +231,6 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "30%", "targets": 1, "className": 'text-left'},
-                { "width": "25%", "targets": 2, "className": 'text-left'},
-                { "width": "10%", "targets": [3, 4], "className": 'text-left'},
-                { "width": "10%", "targets": [5, 6], "className": 'text-center' }
             ],
             responsive: true,
         });
@@ -268,10 +256,6 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "30%", "targets": 1, "className": 'text-left'},
-                { "width": "25%", "targets": 2, "className": 'text-left'},
-                { "width": "10%", "targets": [3, 4], "className": 'text-left'},
-                { "width": "10%", "targets": [5, 6], "className": 'text-center' }
             ],
             responsive: true,
         });
