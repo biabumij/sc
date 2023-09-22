@@ -102,8 +102,8 @@
                    <td align="left"><?= $dt["product"] ?></td>
                    <td><?= $dt["qty"] ?></td>
 	               <!--<td><?= $measure; ?></td>-->
-				   <td align="center"><?= number_format($dt['price'],0,',','.'); ?></td>
-				   <td align="center"><?= number_format($dt['pricedua'],0,',','.'); ?></td>
+				   <td align="right">Rp. <?= number_format($dt['price'],0,',','.'); ?></td>
+				   <td align="right">Rp. <?= number_format($dt['pricedua'],0,',','.'); ?></td>
 				   <td align="left"><?= $dt["keterangan"] ?></td>
                </tr>
                <?php
