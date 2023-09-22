@@ -269,7 +269,7 @@
                                         <table class="table table-striped table-hover table-bordered" id="guest-table" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%" class="text-center">No</th>
+                                                    <th>No.</th>
                                                     <th>Tanggal</th>
                                                     <th>No. PO</th>
                                                     <th>No. Surat Jalan</th>
@@ -278,12 +278,12 @@
                                                     <th>Supir</th>
                                                     <th>Surat Jalan</th>
                                                     <th>Produk</th>
-                                                    <th class="text-right">Volume</th>
+                                                    <th>Volume</th>
                                                     <th>Satuan</th>
-													<th class="text-right">Harga Satuan</th>
-                                                    <th class="text-right">Nilai</th>
-                                                    <th class="text-center">Edit</th>
-                                                    <th class="text-center">Hapus</th>
+													<th>Harga Satuan</th>
+                                                    <th>Nilai</th>
+                                                    <th>Edit</th>
+                                                    <th>Hapus</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -471,14 +471,9 @@
                     "data": "actions"
                 },
             ],
-            "columnDefs": [{
-                "targets": [0, 13, 14],
-                "className": 'text-center',
-            },
-            {
-                "targets": [9, 11, 12],
-                "className": 'text-center',
-            },
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "10%", "targets": [9, 11, 12], "className": 'text-right' }
             ],
         });
 

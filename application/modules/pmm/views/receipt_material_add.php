@@ -195,7 +195,7 @@
                                     <table class="table table-striped table-hover table-bordered" id="guest-table" style="width:100%;">
                                         <thead>
                                             <tr>
-                                                <th>No</th>
+                                                <th>No.</th>
                                                 <th>Tanggal</th>
                                                 <th>Rekanan</th>
 												<th>No. Pesanan Pembelian</th>
