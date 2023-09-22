@@ -56,11 +56,12 @@
                                 <table class="table table-striped table-hover table-center" id="guest-table">
                                     <thead>
                                         <tr>
-                                            <th width="5%">No</th>
-                                            <th width="35%">Nama</th>
-                                            <th width="20%">Kode Akun</th>
-                                            <th width="20%">Kategori Akun</th>
-                                            <th width="20%">Tindakan</th>
+                                            <th>No.</th>
+                                            <th>Nama</th>
+                                            <th>Kode Akun</th>
+                                            <th>Kategori Akun</th>
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -150,7 +151,7 @@
     <script type="text/javascript">
         $('.select2').select2();
         $('input#contract').number( true, 2,',','.' );
-        var table = $('#guest-table').DataTable( {
+        var table = $('#guest-table').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -165,13 +166,11 @@
                 { "data": "coa" },
                 { "data": "coa_number" },
                 { "data": "coa_category" },
-                { "data": "actions" },
+                { "data": "edit" },
+                { "data": "delete" },
             ],
             "columnDefs": [
-                {
-                    "targets": [0],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
             responsive: true,
         });

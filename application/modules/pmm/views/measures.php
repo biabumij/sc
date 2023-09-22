@@ -42,12 +42,13 @@
                                 <table class="table table-striped table-hover table-center" id="guest-table">
                                     <thead>
                                         <tr>
-                                            <th width="5%">No.</th>
+                                            <th>No.</th>
                                             <th>Satuan</th>
                                             <th>Status</th>
                                             <th>Dibuat Oleh</th>
                                             <th>Dibuat Tanggal</th>
-                                            <th>Tindakan</th>
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -112,7 +113,7 @@
     <script src="<?php echo base_url();?>assets/back/theme/vendor/jquery.number.min.js"></script>
     <script type="text/javascript">
         $('input.numberformat').number( true, 6,',','.' );
-        var table = $('#guest-table').DataTable( {
+        var table = $('#guest-table').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -125,13 +126,11 @@
                 { "data": "status" },
                 { "data": "admin_name"},
                 { "data": "created_on"},
-                { "data": "actions" }
+                { "data": "edit" },
+                { "data": "delete" }
             ],
             "columnDefs": [
-                {
-                    "targets": [0, 5],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
             responsive: true,
         });

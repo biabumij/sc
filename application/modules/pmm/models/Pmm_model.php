@@ -758,32 +758,32 @@ class Pmm_model extends CI_Model {
     function GetStatus($status)
     {
         if($status == 'WAITING'){
-            return '<label class="label label-warning" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'DRAFT'){
-            return '<label class="label label-warning" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'APPROVED'){
-            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'REJECTED'){
-            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'CLOSED'){
-            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'PUBLISH'){
-            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }
     }
 
 	function GetStatus2($status)
     {
         if($status == 'DRAFT'){
-            return '<label class="label label-warning" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'OPEN'){
-            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'REJECT'){
-            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'CLOSED'){
-            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'DELETED'){
-            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }
 		
     }
@@ -791,50 +791,50 @@ class Pmm_model extends CI_Model {
 	function GetStatus3($status)
     {
         if($status == 'BELUM LUNAS'){
-            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'LUNAS'){
-            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }
     }
 	function GetStatus4($status)
     {
         if($status == 'PUBLISH'){
-            return '<label class="label label-primary" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'CLOSED'){
-            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }
     }
 
     function GetStatusVerif($status)
     {
         if($status == 'SUDAH'){
-            return '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'BELUM'){
-            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }
     }
 
     function GetStatusKategoriPersetujuan($status)
     {
         if($status == 'VERIFIKASI PEMBELIAN'){
-            return '<label class="label label-info" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-info" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'PESANAN PEMBELIAN'){
-            return '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'PERMINTAAN BAHAN & ALAT'){
-            return '<label class="label label-warning" style="border-radius:10px;">'.$status.'</label>';
+            return '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }
     }
 	
 	function StatusPayment($status)
     {
         if($status == 'CREATING'){
-            $output = '<label class="label label-success" style="border-radius:10px;">'.$status.'</label>';
+            $output = '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'CREATED'){
-            $output = '<label class="label label-primary" style="border-radius:10px;">'.$status.'</label>';
+            $output = '<button type="button" class="btn btn-info" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'UNCREATED'){
-            $output = '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            $output = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'UNPUBLISH'){
-            $output = '<label class="label label-danger" style="border-radius:10px;">'.$status.'</label>';
+            $output = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }
 
         return $output;

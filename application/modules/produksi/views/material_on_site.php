@@ -25,7 +25,7 @@
                 <th class="text-center">Dibuat Oleh</th>
                 <th class="text-center">Dibuat Tanggal</th>
                 <th class="text-center">Hapus</th>
-                <th class="text-center">Tindakan</th>
+                <th class="text-center">Uploads</th>
             </tr>
         </thead>
         <tbody>

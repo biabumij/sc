@@ -42,11 +42,11 @@
                                         <table class="data-table table table-striped table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%" class="text-center">No</th>
-                                                    <th width="25%" class="text-center">Nama</th>
-                                                    <th width="25%" class="text-center">Email</th>
-                                                    <th width="25%" class="text-center">Jabatan</th>
-                                                    <th width="20%" class="text-center">Status</th>
+                                                    <th>No.</th>
+                                                    <th>Nama</th>
+                                                    <th>Email</th>
+                                                    <th>Jabatan</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
