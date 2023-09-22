@@ -828,9 +828,9 @@ class Pmm_model extends CI_Model {
 	function StatusPayment($status)
     {
         if($status == 'CREATING'){
-            $output = '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
-        }else if($status == 'CREATED'){
             $output = '<button type="button" class="btn btn-info" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+        }else if($status == 'CREATED'){
+            $output = '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'UNCREATED'){
             $output = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
         }else if($status == 'UNPUBLISH'){
