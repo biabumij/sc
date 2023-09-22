@@ -195,7 +195,7 @@
                                     <table class="table table-striped table-hover table-bordered" id="guest-table" style="width:100%;">
                                         <thead>
                                             <tr>
-                                                <th width="5%" class="text-center">No</th>
+                                                <th>No</th>
                                                 <th>Tanggal</th>
                                                 <th>Rekanan</th>
 												<th>No. Pesanan Pembelian</th>
@@ -205,12 +205,12 @@
                                                 <th>File</th>
                                                 <th>Memo</th>
                                                 <th>Produk</th>
-                                                <th class="text-right">Volume</th>
+                                                <th>Volume</th>
                                                 <th>Satuan</th>
-												<th class="text-right">Harga Satuan</th>
-												<th class="text-right">Nilai</th>
-                                                <th class="text-center">Edit</th>
-                                                <th class="text-center">Hapus</th>
+												<th>Harga Satuan</th>
+												<th>Nilai</th>
+                                                <th>Edit</th>
+                                                <th>Hapus</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -509,17 +509,11 @@
                 { "data": "edits" },
                 { "data": "actions" },
             ],
-            responsive: true,
             "columnDefs": [
-                {
-                    "targets": [0, 14, 15],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [10, 12, 13],
-                    "className": 'text-center',
-                }
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "width": "10%", "targets": [10, 12, 13], "className": 'text-right' }
             ],
+            responsive: true,
         });
 
         var table_acc = $('#table-acc').DataTable( {
