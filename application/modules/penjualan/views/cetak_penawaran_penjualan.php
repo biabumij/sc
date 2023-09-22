@@ -124,22 +124,30 @@
 		<?php
 			$kepala_unit_bisnis = $this->pmm_model->GetNameGroup(15);
 		?>
-		<table width="98%" border="0" cellpadding="0">
+		<table width="98%" border="0" cellpadding="0" align="center">
 			<tr>
-                <td>
+				<td width="35%"></td>
+				<td width="30%"></td>
+                <td width="30%">
 					Hormat Kami,
 				</td>
             </tr>
             <tr>
-            	<th><b>PT BIA BUMI JAYENDRA</b></th>
+				<td></td>
+				<td></td>
+            	<td><b>PT BIA BUMI JAYENDRA</b></td>
             </tr>
             <tr>
+				<td></td>
+				<td></td>
 				<th height="35px">
-				<img src="uploads/ttd_dadang.png" width="100px">
+					<img src="uploads/ttd_dadang.png" width="70px">
 				</th>
             </tr>
             <tr>
-				<td align="left" >
+				<td></td>
+				<td></td>
+				<td align="center" >
 					<b><u><?= $kepala_unit_bisnis['admin_name'];?></u><br />
 					<?= $kepala_unit_bisnis['admin_group_name'];?></b>
 				</td>
@@ -149,11 +157,14 @@
 		<table width="98%" border="0" cellpadding="3">
 			<tr>
                 <th width="70%">
+					<i><u>Tembusan</u> : <br />
+					1. Kantor Pusat PT. Waskita Karya<br />
+					2. Arsip</i>
 				</th>
 				<th width="30%" align="right" style="margin-top:40px;">
 					<table width="98%" border="1" cellpadding="2">
 						<tr class="">
-							<td align="right" height="35px">
+							<td align="right" height="40px">
 							</td>
 							<td align="right">
 							</td>
