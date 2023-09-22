@@ -1200,9 +1200,10 @@ blockquote {
 /*================================================*/
 .panel {
   border: none;
-  /* box-shadow: 1px 1px 1px #cccccc; */
-  background-color: #ffffff;
-  border-radius: 8px;
+  /* box-shadow: 1px 1px 1px 1px #e69500; */
+  border: 1px solid #e69500;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
 }
 
 .panel .panel-header,
@@ -3652,9 +3653,9 @@ ul.user-contact-info li:last-child {
 }
 
 .bg-scale-0 {
-  background: #585858;
+  background: none;
   border-radius: 10px;
-  opacity: 0.8;
+  /* opacity: 0.8; */
 }
 
 .bg-scale-1 {

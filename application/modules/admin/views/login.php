@@ -70,12 +70,9 @@
 	                            </span>
 	                        </div>
 	                        <div class="form-group">
-	                            <button type="submit" name="submit" class="btn btn-primary btn-block" data-loading="Please wait..."><b>MASUK</b></button>
+	                            <button type="submit" name="submit" class="btn btn-primary btn-block" data-loading="Please wait..." style="font-weight:bold; border-radius:10px"><b>MASUK</b></button>
 	                        </div>
-	                        <div class="form-group site text-center">
-								&copy; PT BIA BUMI JAYENDRA, 2021
-	                            <!-- <a href="pages_forgot-password.html">Forgot password?</a> -->
-	                        </div>
+	                        <br />
 	                    </form>
 	                </div>
 	            </div>
