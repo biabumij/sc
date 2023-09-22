@@ -116,7 +116,24 @@ class Penjualan extends Secure_Controller
 				</select>
 			</td>
 			<td>
-				<input type="text" name="price_<?= $no; ?>" id="price-<?= $no; ?>" class="form-control numberformat input-sm text-right" onchange="changeData(<?= $no; ?>)" required=""/>
+				<input type="text" name="price_<?= $no; ?>" id="price-<?= $no; ?>" class="form-control numberformat input-sm text-right" onchange="changeData(<?= $no; ?>)"/>
+			</td>
+			<td>
+				<select id="measuredua-<?= $no; ?>" class="form-control form-select2" name="measuredua_<?= $no; ?>" required="">
+					<option value="">Pilih Satuan</option>
+					<?php
+					if (!empty($measures)) {
+						foreach ($measures as $meas) {
+					?>
+							<option value="<?php echo $meas['id']; ?>"><?php echo $meas['measure_name']; ?></option>
+					<?php
+						}
+					}
+					?>
+				</select>
+			</td>
+			<td>
+				<input type="text" name="pricedua_<?= $no; ?>" id="pricedua-<?= $no; ?>" class="form-control numberformat input-sm text-right" onchange="changeData(<?= $no; ?>)"/>
 			</td>
 			<td>
 				<select id="tax-<?= $no; ?>" class="form-control form-select2" name="tax_<?= $no; ?>" onchange="changeData(<?= $no; ?>)" required="">
@@ -131,7 +148,10 @@ class Penjualan extends Secure_Controller
 					}
 					?>
 				</select>
-			</td>	
+			</td>
+			<td>
+				<input type="text" name="keterangan_<?= $no; ?>" id="keterangan-<?= $no; ?>" class="form-control input-sm text-right" onchange="changeData(<?= $no; ?>)"/>
+			</td>
 			    <input type="hidden" name="total_<?php echo $no; ?>" id="total-<?php echo $no; ?>" class="form-control numberformat"/>
 
 		</tr>
@@ -220,10 +240,15 @@ class Penjualan extends Secure_Controller
         		$product_id = $this->input->post('product_'.$i);
         		$qty = $this->input->post('qty_'.$i);
         		$measure = $this->input->post('measure_'.$i);
+				$measuredua = $this->input->post('measuredua_'.$i);
+				$keterangan = $this->input->post('keterangan_'.$i);
 				
         		$price = $this->input->post('price_'.$i);
         		$price = str_replace('.', '', $price);
         		$price = str_replace(',', '.', $price);
+				$pricedua = $this->input->post('pricedua_'.$i);
+        		$pricedua = str_replace('.', '', $pricedua);
+        		$pricedua = str_replace(',', '.', $pricedua);
         		$tax_id = $this->input->post('tax_'.$i);
         		$total_pro = $this->input->post('total_'.$i);
         		$total_pro = str_replace('.', '', $total_pro);
@@ -252,6 +277,9 @@ class Penjualan extends Secure_Controller
 		        		'qty' => $qty,
 		        		'measure' => $measure,
 		        		'price' => $price,
+						'measuredua' => $measuredua,
+						'pricedua' => $pricedua,
+						'keterangan' => $keterangan,
 		        		'tax_id' => $tax_id,
 		        		'tax' => $tax,
 		        		'total' => $total_pro

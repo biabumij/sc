@@ -72,13 +72,17 @@
         <p><b>A. Mutu Harga dan Satuan</b></p>
 		<table class="minimalistBlack" cellpadding="5" width="98%">
 			<tr class="table-active">
-                <th width="5%">NO</th>
-                <th width="35%">JENIS MATERIAL</th>
-                <th width="20%">VOLUME</th>
-                <th width="10%">SATUAN</th>
-                <th width="30%">HARGA SATUAN</th>
-                
+                <th rowspan="2" width="5%">&nbsp; <br />NO</th>
+                <th rowspan="2" width="35%">&nbsp; <br />JENIS MATERIAL</th>
+                <th rowspan="2" width="10%">&nbsp; <br />VOLUME</th>
+                <!--<th rowspan="2" width="10%">&nbsp; <br />SATUAN</th>-->
+                <th width="30%" colspan="2">HARGA SATUAN</th>
+				<th rowspan="2" width="20%">&nbsp; <br />KETERANGAN</th>
             </tr>
+			<tr class="table-active">
+				<th>TON</th>
+				<th>M3</th>
+			</tr>
             <?php
            	$no=1;
            	$subtotal = 0;
@@ -97,8 +101,10 @@
                    <td><?php echo $no;?></td>
                    <td align="left"><?= $dt["product"] ?></td>
                    <td><?= $dt["qty"] ?></td>
-	               <td><?= $measure; ?></td>
+	               <!--<td><?= $measure; ?></td>-->
 				   <td align="center"><?= number_format($dt['price'],0,',','.'); ?></td>
+				   <td align="center"><?= number_format($dt['pricedua'],0,',','.'); ?></td>
+				   <td align="left"><?= $dt["keterangan"] ?></td>
                </tr>
                <?php
                $no++;

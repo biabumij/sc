@@ -93,11 +93,14 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th width="35%">Produk</th>
-                                                    <th width="15%">Volume</th>
-                                                    <th width="15%">Satuan</th>
-                                                    <th width="15%">Harga Satuan</th>
-													<th width="15%">Pajak</th>
+                                                    <th width="20%">Produk</th>
+                                                    <th width="10%">Volume</th>
+                                                    <th width="10%">Satuan</th>
+                                                    <th width="10%">Harga Satuan</th>
+                                                    <th width="10%">Satuan (2)</th>
+                                                    <th width="10%">Harga Satuan (2)</th>
+													<th width="10%">Pajak</th>
+                                                    <th width="10%">Keterangan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -135,7 +138,24 @@
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="price_1" id="price-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)" required=""/>
+                                                        <input type="text" name="price_1" id="price-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)"/>
+                                                    </td>
+                                                    <td>
+                                                    <select id="measuredua-1" class="form-control form-select2" name="measuredua_1" required="">
+                                                            <option value="">Pilih Satuan</option>
+                                                            <?php
+                                                            if(!empty($measures)){
+                                                                foreach ($measures as $meas) {
+                                                                    ?>
+                                                                    <option value="<?php echo $meas['id'];?>"><?php echo $meas['measure_name'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="pricedua_1" id="pricedua-1"  class="form-control numberformat tex-left input-sm text-right" onchange="changeData(1)"/>
                                                     </td>
 													<td>
                                                         <select id="tax-1" class="form-control form-select2" name="tax_1" onchange="changeData(1)" required="">
@@ -150,6 +170,9 @@
                                                             }
                                                             ?>
                                                         </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="keterangan_1" id="keterangan-1"  class="form-control tex-left input-sm text-right" onchange="changeData(1)"/>
                                                     </td>
                                                         <input type="hidden" name="total_1" id="total-1" class="form-control numberformat"/>
                                                 </tr>
