@@ -72,7 +72,9 @@
 	                        <div class="form-group">
 	                            <button type="submit" name="submit" class="btn btn-primary btn-block" data-loading="Please wait..." style="font-weight:bold; border-radius:10px"><b>MASUK</b></button>
 	                        </div>
-	                        <br />
+							<div class="form-group site text-center" style="color:black;">
+								&copy; PT BIA BUMI JAYENDRA, 2021
+	                        </div>
 	                    </form>
 	                </div>
 	            </div>
