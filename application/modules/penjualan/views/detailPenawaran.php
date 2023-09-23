@@ -197,7 +197,7 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1){
                                             ?>
-                                            <a class="btn btn-danger" style="margin-top:10px; border-radius:10px;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
+                                            <a class="btn btn-danger" style="margin-top:10px; width:200px; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('penjualan/hapusPenawaranPenjualan/' . $penawaran['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>		
                                             <?php
                                         }
                                         ?>
