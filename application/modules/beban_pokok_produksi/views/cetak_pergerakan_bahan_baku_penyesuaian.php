@@ -315,28 +315,28 @@
 		<tr class="table-baris1">
 			<th align="left"><i>Batu Boulder</i></th>
 			<th align="center">Ton</th>
-			<th class="text-center"><?php echo number_format($pergerakan_bahan_baku['volume'],2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_harga_pembelian,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($pergerakan_bahan_baku['nilai'],0,',','.');?></th>
-			<th class="text-center"><?php echo number_format($total_volume_produksi_boulder,2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_harga_produksi_boulder,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_nilai_produksi_boulder,0,',','.');?></th>
-			<th class="text-center"><?php echo number_format($total_volume_produksi_loss_akhir,2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_harga_produksi_loss_akhir,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_nilai_produksi_loss_akhir,0,',','.');?></th>					
+			<th align="center"><?php echo number_format($pergerakan_bahan_baku['volume'],2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_pembelian,0,',','.');?></th>
+			<th align="right"><?php echo number_format($pergerakan_bahan_baku['nilai'],0,',','.');?></th>
+			<th align="center"><?php echo number_format($total_volume_produksi_boulder,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_produksi_boulder,0,',','.');?></th>
+			<th align="right"><?php echo number_format($total_nilai_produksi_boulder,0,',','.');?></th>
+			<th align="center"><?php echo number_format($total_volume_produksi_loss_akhir,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_produksi_loss_akhir,0,',','.');?></th>
+			<th align="right"><?php echo number_format($total_nilai_produksi_loss_akhir,0,',','.');?></th>					
 		</tr>
 		<tr class="table-baris1">
 			<th align="left"><i>BBM Solar</i></th>
 			<th align="center">Liter</th>
-			<th class="text-center"><?php echo number_format($pergerakan_bahan_baku_solar['volume'],2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_harga_pembelian_solar,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($pergerakan_bahan_baku_solar['nilai'],0,',','.');?></th>
-			<th class="text-center"><?php echo number_format($total_volume_produksi_solar,2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_harga_produksi_solar,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_nilai_produksi_solar,0,',','.');?></th>
-			<th class="text-center"><?php echo number_format($total_volume_produksi_akhir_solar,2,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
-			<th class="text-right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>
+			<th align="center"><?php echo number_format($pergerakan_bahan_baku_solar['volume'],2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_pembelian_solar,0,',','.');?></th>
+			<th align="right"><?php echo number_format($pergerakan_bahan_baku_solar['nilai'],0,',','.');?></th>
+			<th align="center"><?php echo number_format($total_volume_produksi_solar,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_produksi_solar,0,',','.');?></th>
+			<th align="right"><?php echo number_format($total_nilai_produksi_solar,0,',','.');?></th>
+			<th align="center"><?php echo number_format($total_volume_produksi_akhir_solar,2,',','.');?></th>
+			<th align="right"><?php echo number_format($total_harga_produksi_akhir_solar,0,',','.');?></th>
+			<th align="right"><?php echo number_format($total_nilai_produksi_akhir_solar,0,',','.');?></th>
 		</tr>
 		<tr class="table-total">
 			<th align="center" colspan="2">TOTAL</th>
