@@ -1205,12 +1205,25 @@ blockquote {
   border-radius: 10px;
 }
 
+.panel-login {
+  border: none;
+  /* box-shadow: 1px 1px 1px #cccccc; */
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  padding: 0px;
+
+}
+
 .panel .panel-header,
 .panel .panel-footer {
   padding: 10px 12px;
 }
 
 .panel .panel-content {
+  padding: 12px;
+}
+
+.panel-login .panel-content-login {
   padding: 12px;
 }
 
