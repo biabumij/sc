@@ -62,13 +62,13 @@
 	                    <form id="loginform" action="<?php echo site_url('login_admin');?>">
 	                        <div class="form-group mt-md">
 	                            <span class="input-with-icon">
-	                                <input type="email" class="form-control-login" id="email" placeholder="Email" name="email" value="<?= $email;?>">
+	                                <input type="email" class="form-control-login" style="background-color: rgba(0, 0, 0, 0); color:white;" id="email" placeholder="Email" name="email" value="<?= $email;?>">
 	                                <i class="fa fa-envelope"></i>
 	                            </span>
 	                        </div>
 	                        <div class="form-group" >
 	                            <span class="input-with-icon">
-	                                <input type="password" class="form-control-login" id="password" placeholder="Kata sandi" name="password">
+	                                <input type="password" class="form-control-login" style="background-color: rgba(0, 0, 0, 0); color:white;" id="password" placeholder="Kata sandi" name="password">
 	                                <i class="fa fa-key"></i>
 	                            </span>
 	                        </div>
