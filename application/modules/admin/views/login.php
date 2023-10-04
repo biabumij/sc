@@ -35,6 +35,7 @@
 			.site {
 				color: #ffffff;
 				font-weight: bold;
+				background-color: rgba(0, 0, 0, 0);
 			}
 	    	
 	    	<?php include "assets/back/theme/stylesheets/css/style.css" ?>
