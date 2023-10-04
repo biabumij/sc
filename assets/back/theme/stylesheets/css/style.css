@@ -66,6 +66,7 @@ a:focus {
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 /* PAGE HEADER*/
