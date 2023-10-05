@@ -190,7 +190,7 @@ class Receipt_material extends CI_Controller {
 		$date_now = date('Y-m-d');
 		//$awal_bulan = date('Y-m-01', strtotime('-1 months', strtotime($date_now)));
 		$awal_bulan = date('Y-m-01', strtotime($date_now));
-		$akhir_bulan = date('Y-m-d', strtotime($date_now));
+		$akhir_bulan = date('Y-m-d', strtotime('+1 years', strtotime($date_now)));
 
 		$this->db->select('prm.*,ppo.no_po,ps.nama as supplier_name');
 		if(!empty($supplier_id)){
