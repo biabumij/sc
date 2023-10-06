@@ -111,7 +111,7 @@ class Form extends Secure_Controller {
 				if ($row["status"] === "UNPUBLISH") {
                     $row['status_permintaan'] = 'Menunggu Persetujuan';
                 } else if($row["status_permintaan"] == 'SEDANG DIPROSES'){
-                    $row['status_permintaan'] = "Permintaan Sedang Diproses IT & Sistem";
+                    $row['status_permintaan'] = "Permintaan Sedang Diproses IT/Sistem";
                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 16){
 					$proses = '<a href="javascript:void(0);" onclick="PerubahanSistemSelesai('.$row['id'].')" class="btn btn-success" style="border-radius:10px;"><i class="fa fa-check"></i> </a>';
                     $row['status_permintaan'] = $proses;
