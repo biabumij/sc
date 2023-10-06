@@ -119,7 +119,7 @@ class Form extends Secure_Controller {
                 }
 
 				if ($row["status"] === "PUBLISH") {
-                    $row['approve_ti_sistem'] = 'Permintaan Disetujui';
+                    $row['approve_ti_sistem'] = 'Permintaan Disetujui Kepala Unit Bisnis';
                 } else if($row["status"] == 'UNPUBLISH'){
                     $row['approve_ti_sistem'] = "Menunggu Persetujuan Kepala Unit Bisnis";
                     if($this->session->userdata('admin_group_id') == 1){
