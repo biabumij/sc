@@ -64,7 +64,7 @@
 				<th align="center" width="4%" style="border:1px solid black;"> <?= $this->pmm_finance->CheckorNoNew($row['penambahan_fitur_baru']);?></th>
 				<th>Penambahan Fitur Baru</th>
 				<th align="center" width="4%" style="border:1px solid black;"> <?= $this->pmm_finance->CheckorNoNew($row['penambahan_data']);?></th>
-				<th>Penambahan Datan</th>
+				<th>Penambahan Data</th>
 				<th></th>
 			</tr>
 			<br />
