@@ -92,6 +92,10 @@
 														<p><h5>Monitoring Hutang</h5></p>
                                                         <a href="#monitoring_hutang" aria-controls="monitoring_hutang" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
                                                     </div>
+                                                    <div class="col-sm-5">
+														<p><h5>Daftar Pembayaran</h5></p>
+                                                        <a href="#daftar_pembayaran" aria-controls="daftar_pembayaran" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -363,6 +367,56 @@
                                                                 <th class="text-center">PPN</th>
                                                                 <th class="text-center">JUMLAH</th>
                                                                 <th class="text-center">JATUH TEMPO</th>
+                                                            </tr>
+															</thead>
+                                                            <tbody></tbody>
+															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+
+                                    <!-- Daftar Pembayaran -->
+									<div role="tabpanel" class="tab-pane" id="daftar_pembayaran">
+                                        <div class="col-sm-15">
+                                            <div class="panel panel-default">  
+												<div class="panel-heading">												
+                                                    <h3 class="panel-title">Daftar Pembayaran</h3>
+													<a href="laporan_pembelian">Kembali</a>
+                                                </div>
+                                                <div style="margin: 20px">
+                                                    <div class="row">
+                                                        <form action="<?php echo site_url('laporan/cetak_daftar_pembayaran'); ?>" target="_blank">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" id="filter_date_pembayaran" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>                                                           
+                                                            <div class="col-sm-3">
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <br />
+                                                    <div id="box-print" class="table-responsive">
+                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
+                                                            <div>
+                                                                Please Wait
+                                                            </div>
+                                                        </div>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="table-daftar-pembayaran" style="display:none" width="100%";>
+                                                            <thead>
+                                                            <tr>
+																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
+																<th align="center">REKANAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">NO. PEMBAYARAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">TANGGAL TAGIHAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="text-center">TGL. BAYAR</th>
                                                             </tr>
 															</thead>
                                                             <tbody></tbody>
@@ -721,6 +775,73 @@
 				minimumFractionDigits : '0'
             });
 
+        </script>
+
+        <!-- Script Daftar Pembayaran -->
+		<script type="text/javascript">
+            $('input.numberformat').number(true, 4, ',', '.');
+            $('#filter_date_pembayaran').daterangepicker({
+                autoUpdateInput: false,
+                showDropdowns : true,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                },
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            });
+
+            $('#filter_date_pembayaran').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                TableDaftarPembayaran();
+            });
+
+            function TableDaftarPembayaran() {
+                $('#table-daftar-pembayaran').show();
+                $('#loader-table').fadeIn('fast');
+                $('#table-daftar-pembayaran tbody').html('');
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('pmm/receipt_material/table_daftar_pembayaran'); ?>/" + Math.random(),
+                    dataType: 'json',
+                    data: {
+                        filter_date: $('#filter_date_pembayaran').val(),
+                    },
+                    success: function(result) {
+                        if (result.data) {
+                            $('#table-daftar-pembayaran tbody').html('');
+
+                            if (result.data.length > 0) {
+                                $.each(result.data, function(i, val) {
+                                    $('#table-daftar-pembayaran tbody').append('<tr onclick="NextShowDaftarPembayaran(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="5">' + val.supplier_name + '</td></tr>');
+                                    $.each(val.mats, function(a, row) {
+                                        var a_no = a + 1;
+                                        $('#table-daftar-pembayaran tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-right">' + row.pembayaran + '</td></tr>');
+                                    });
+                                    $('#table-daftar-pembayaran tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="5"><b>JUMLAH</b></td><td class="text-right"">' + val.total_bayar + '</td></tr>');
+                                });
+                                $('#table-daftar-pembayaran tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
+                            } else {
+                                $('#table-daftar-pembayaran tbody').append('<tr><td class="text-center" colspan="6"><b>NO DATA</b></td></tr>');
+                            }
+                            $('#loader-table').fadeOut('fast');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+
+            function NextShowDaftarPembayaran(id) {
+                console.log('.mats-' + id);
+                $('.mats-' + id).slideToggle();
+            }
+            
         </script>
 
 </body>

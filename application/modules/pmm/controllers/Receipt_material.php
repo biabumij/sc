@@ -1897,5 +1897,83 @@ class Receipt_material extends CI_Controller {
         $pdf->Output('rekap_surat_jalan_penerimaan.pdf', 'I');
 	
 	}
+
+	function table_daftar_pembayaran()
+	{
+		$data = array();
+		$supplier_id = $this->input->post('supplier_name');
+		$purchase_order_no = $this->input->post('purchase_order_no');
+		$filter_material = $this->input->post('filter_material');
+		$start_date = false;
+		$end_date = false;
+		$total = 0;
+		$date = $this->input->post('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+		}
+		
+		$this->db->select('pmp.supplier_name, SUM(pmp.total) as total_bayar');
+		
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('pmp.tanggal_pembayaran >=',$start_date);
+            $this->db->where('pmp.tanggal_pembayaran <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('ppp.supplier_id',$supplier_id);
+        }
+        if(!empty($filter_material)){
+            $this->db->where_in('ppd.material_id',$filter_material);
+        }
+        if(!empty($purchase_order_no)){
+            $this->db->where('pmp.penagihan_pembelian_id',$purchase_order_no);
+        }
+		
+		$this->db->join('pmm_penagihan_pembelian ppp', 'pmp.penagihan_pembelian_id = ppp.id','left');
+		$this->db->join('penerima p', 'ppp.supplier_id = p.id','left');
+		$this->db->group_by('ppp.supplier_id');
+		$this->db->where('pmp.status','DISETUJUI');
+		$this->db->order_by('p.nama','asc');
+		$query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
+		
+		$no = 1;
+		if($query->num_rows() > 0){
+
+			foreach ($query->result_array() as $key => $sups) {
+
+				$mats = array();
+				$materials = $this->pmm_model->GetDaftarPembayaran($sups['supplier_name'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				
+				if(!empty($materials)){
+					foreach ($materials as $key => $row) {
+						$arr['no'] = $key + 1;
+						$arr['tanggal_pembayaran'] = date('d-m-Y',strtotime($row['tanggal_pembayaran']));
+						$arr['nomor_transaksi'] = '<a href="'.base_url().'pembelian/penagihan_pembelian_detail/'.$row['penagihan_id'].'" target="_blank">'.$row['nomor_transaksi'].'</a>';
+						$arr['tanggal_invoice'] = date('d-m-Y',strtotime($row['tanggal_invoice']));
+						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');								
+						
+						$arr['supplier_name'] = $sups['supplier_name'];
+						$mats[] = $arr;
+					}
+					
+					
+					$sups['mats'] = $mats;
+					$total += $sups['total_bayar'];
+					$sups['no'] =$no;
+					$sups['total_bayar'] = number_format($sups['total_bayar'],0,',','.');
+					
+
+					$data[] = $sups;
+					$no++;
+					
+				}		
+				
+			}
+		}
+
+		echo json_encode(array('data'=>$data,'total'=>number_format($total,0,',','.')));	
+	}
 	
 }

@@ -2335,4 +2335,103 @@ class Laporan extends Secure_Controller {
 	
 	}
 
+	public function cetak_daftar_pembayaran()
+	{
+		$this->load->library('pdf');
+	
+
+		$pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetPrintHeader(true);
+		$pdf->SetPrintFooter(true);
+        $tagvs = array('div' => array(0 => array('h' => 0, 'n' => 0), 1 => array('h' => 0, 'n'=> 0)));
+		$pdf->setHtmlVSpace($tagvs);
+		$pdf->AddPage('P');
+		
+		$arr_data = array();
+		$supplier_id = $this->input->get('supplier_id');
+		$purchase_order_no = $this->input->get('purchase_order_no');
+		$filter_material = $this->input->get('filter_material');
+		$start_date = false;
+		$end_date = false;
+		$total = 0;
+		$date = $this->input->get('filter_date');
+		if(!empty($date)){
+			$arr_date = explode(' - ',$date);
+			$start_date = date('Y-m-d',strtotime($arr_date[0]));
+			$end_date = date('Y-m-d',strtotime($arr_date[1]));
+			$filter_date = date('d F Y',strtotime($arr_date[0])).' - '.date('d F Y',strtotime($arr_date[1]));
+			
+			$data['filter_date'] = $filter_date;
+		
+		$this->db->select('pmp.supplier_name, SUM(pmp.total) AS total_bayar');
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('pmp.tanggal_pembayaran >=',$start_date);
+            $this->db->where('pmp.tanggal_pembayaran <=',$end_date);
+        }
+        if(!empty($supplier_id)){
+            $this->db->where('pmp.supplier_name',$supplier_id);
+        }
+        if(!empty($filter_material)){
+            $this->db->where_in('ppd.material_id',$filter_material);
+        }
+        if(!empty($purchase_order_no)){
+            $this->db->where('pmp.penagihan_pembelian_id',$purchase_order_no);
+        }
+		
+		$this->db->join('pmm_penagihan_pembelian ppp', 'pmp.penagihan_pembelian_id = ppp.id','left');
+		$this->db->group_by('pmp.supplier_name');
+		$this->db->where('pmp.status','DISETUJUI');
+		$query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
+		
+		$no = 1;
+		if($query->num_rows() > 0){
+
+			foreach ($query->result_array() as $key => $sups) {
+
+				$mats = array();
+				$materials = $this->pmm_model->GetDaftarPembayaran($sups['supplier_name'],$purchase_order_no,$start_date,$end_date,$filter_material);
+				
+				if(!empty($materials)){
+					foreach ($materials as $key => $row) {
+						$arr['no'] = $key + 1;
+						$arr['tanggal_pembayaran'] = date('d-m-Y',strtotime($row['tanggal_pembayaran']));
+						$arr['nomor_transaksi'] = $row['nomor_transaksi'];
+						$arr['tanggal_invoice'] = $row['tanggal_invoice'];
+						$arr['nomor_invoice'] = $row['nomor_invoice'];
+						$arr['pembayaran'] = number_format($row['pembayaran'],0,',','.');								
+						
+						$arr['supplier_name'] = $sups['supplier_name'];
+						$mats[] = $arr;
+					}
+					
+					
+					$sups['mats'] = $mats;
+					$total += $sups['total_bayar'];
+					$sups['no'] =$no;
+					$sups['total_bayar'] = number_format($sups['total_bayar'],0,',','.');
+					
+
+					$arr_data[] = $sups;
+					$no++;
+					
+					}	
+					
+					
+				}
+			}
+
+			$data['data'] = $arr_data;
+			$data['total'] = $total;
+	        $html = $this->load->view('laporan_pembelian/cetak_daftar_pembayaran',$data,TRUE);
+	        
+	        $pdf->SetTitle('BBJ - Laporan Daftar Pembayaran');
+	        $pdf->nsi_html($html);
+	        $pdf->Output('laporan-daftar-pembayaran.pdf', 'I');
+	        
+		}else {
+			echo 'Please Filter Date First';
+		}
+	
+	}
+
 }
