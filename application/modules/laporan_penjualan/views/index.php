@@ -91,13 +91,16 @@
 														<p><h5>Monitoring Piutang</h5></p>
                                                         <a href="#monitoring_piutang" aria-controls="monitoring_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
+                                                    <div class="col-sm-5">
+														<p><h5>Daftar Penerimaan</h5></p>
+                                                        <a href="#daftar_penerimaan" aria-controls="daftar_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+													</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
 									<!-- Laporan Pengiriman Penjualan -->
-
                                     <div role="tabpanel" class="tab-pane" id="laporan_pengiriman_penjualan">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">
@@ -308,6 +311,55 @@
                                                                 <th class="text-center">DPP</th>
                                                                 <th class="text-center">PPN</th>
                                                                 <th class="text-center">JUMLAH</th>
+                                                            </tr>
+															</thead>
+                                                            <tbody></tbody>
+															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+									</div>
+
+                                    <!-- Daftar Penerimaan -->
+									<div role="tabpanel" class="tab-pane" id="daftar_penerimaan">
+                                        <div class="col-sm-15">
+                                            <div class="panel panel-default">      
+												<div class="panel-heading">												
+                                                    <h3 class="panel-title">Daftar Penerimaan</h3>
+													<a href="laporan_penjualan">Kembali</a>
+                                                </div>
+                                                <div style="margin: 20px">
+                                                    <div class="row">
+                                                        <form action="<?php echo site_url('laporan/cetak_daftar_penerimaan'); ?>" target="_blank">
+                                                            <div class="col-sm-3">
+                                                                <input type="text" id="filter_date_penerimaan" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
+                                                            </div>                                                           
+                                                            <div class="col-sm-3">
+                                                                <button class="btn btn-info" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <br />
+                                                    <div id="box-print" class="table-responsive">
+                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                            <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
+                                                            <div>
+                                                                Please Wait
+                                                            </div>
+                                                        </div>
+                                                        <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="daftar-penerimaan" style="display:none" width="100%";>
+                                                            <thead>
+                                                            <tr>
+																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
+																<th align="center">PELANGGAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TRANSAKSI</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
+																<th align="center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="text-center">TGL. BAYAR</th>
                                                             </tr>
 															</thead>
                                                             <tbody></tbody>
@@ -611,6 +663,72 @@
                 symbol: 'none',
 				minimumFractionDigits : '0'
             });
+
+        </script>
+
+        <!-- Script Penerimaan -->
+		<script type="text/javascript">
+            $('input.numberformat').number(true, 4, ',', '.');
+            $('#filter_date_penerimaan').daterangepicker({
+                autoUpdateInput: false,
+				showDropdowns : true,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                },
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            });
+
+            $('#filter_date_penerimaan').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+                DaftarPenerimaan();
+            });
+
+            function DaftarPenerimaan() {
+                $('#daftar-penerimaan').show();
+                $('#loader-table').fadeIn('fast');
+                $('#daftar-penerimaan tbody').html('');
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo site_url('pmm/productions/daftar_penerimaan'); ?>/" + Math.random(),
+                    dataType: 'json',
+                    data: {
+                        filter_date: $('#filter_date_penerimaan').val(),
+                    },
+                    success: function(result) {
+                        if (result.data) {
+                            $('#daftar-penerimaan tbody').html('');
+
+                            if (result.data.length > 0) {
+                                $.each(result.data, function(i, val) {
+                                    $('#daftar-penerimaan tbody').append('<tr onclick="NextShowPenerimaan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.nama + '</td><td></td><td></td><td></td></tr>');
+                                    $.each(val.mats, function(a, row) {
+                                        var a_no = a + 1;
+                                        $('#daftar-penerimaan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-center">' + row.nomor_transaksi + '</td></td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-right">' + row.penerimaan + '</td></tr>');
+                                    });
+                                });
+                                $('#daftar-penerimaan tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
+                            } else {
+                                $('#daftar-penerimaan tbody').append('<tr><td class="text-center" colspan="5"><b>NO DATA</b></td></tr>');
+                            }
+                            $('#loader-table').fadeOut('fast');
+                        } else if (result.err) {
+                            bootbox.alert(result.err);
+                        }
+                    }
+                });
+            }
+
+            function NextShowPenerimaan(id) {
+                console.log('.mats-' + id);
+                $('.mats-' + id).slideToggle();
+            }
 
         </script>
 

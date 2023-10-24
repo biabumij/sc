@@ -4310,5 +4310,34 @@ class Pmm_model extends CI_Model {
         return $output;
     }
 
+    function GetDaftarPenerimaan($supplier_id=false,$purchase_order_no=false,$start_date=false,$end_date=false,$filter_material=false)
+    {
+        $output = array();
+		
+        $this->db->select('pmp.client_id, pmp.tanggal_pembayaran, pmp.nomor_transaksi, ppp.tanggal_invoice, ppp.nomor_invoice, pmp.total as penerimaan');
+		$this->db->join('pmm_penagihan_penjualan ppp','pmp.penagihan_id = ppp.id','left');
+        
+		if(!empty($start_date) && !empty($end_date)){
+            $this->db->where('pmp.tanggal_pembayaran >=',$start_date);
+            $this->db->where('pmp.tanggal_pembayaran <=',$end_date);
+        }
+		
+		if(!empty($supplier_id)){
+            $this->db->where('pmp.client_id',$supplier_id);
+        }
+        if(!empty($purchase_order_no)){
+            $this->db->where('pmp.penagihan_id',$purchase_order_no);
+        }
+        if(!empty($filter_material)){
+            $this->db->where_in('ppd.material_id',$filter_material);
+        }
+		
+		$this->db->order_by('pmp.nama_pelanggan','asc');
+        $query = $this->db->get('pmm_pembayaran pmp');
+		
+        $output = $query->result_array();
+        return $output;
+    }
+
 }
 ?>
