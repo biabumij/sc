@@ -92,16 +92,13 @@
 		</table>
 		<table cellpadding="3" width="98%">
 			<tr class="table-judul">
-				<th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
-				<th align="center" width="20%">PELANGGAN</th>
-				<th align="center" width="20%" rowspan="2">&nbsp; <br />NO. PEMBAYARAN</th>
-				<th align="center" width="15%" rowspan="2">&nbsp; <br />TGL. TAGIHAN</th>
-				<th align="center" width="20%" rowspan="2">&nbsp; <br />NO. TAGIHAN</th>
-				<th align="center" width="20%" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
+				<th align="center" width="5%">NO.</th>
+				<th align="center" width="20%">PELANGGAN / TGL. BAYAR</th>
+				<th align="center" width="20%">NO. PEMBAYARAN</th>
+				<th align="center" width="15%">TGL. TAGIHAN</th>
+				<th align="center" width="20%">NO. TAGIHAN</th>
+				<th align="center" width="20%">PEMBAYARAN</th>
             </tr>
-			<tr class="table-judul">
-				<th align="center">TGL. BAYAR</th>
-			</tr>
             <?php   
             if(!empty($data)){
             	foreach ($data as $key => $row) {

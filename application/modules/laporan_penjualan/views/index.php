@@ -92,8 +92,8 @@
                                                         <a href="#monitoring_piutang" aria-controls="monitoring_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Daftar Penerimaan</h5></p>
-                                                        <a href="#daftar_penerimaan" aria-controls="daftar_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+														<p><h5>Daftar Pembayaran</h5></p>
+                                                        <a href="#daftar_pembayaran" aria-controls="daftar_pembayaran" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                 </div>
                                             </div>
@@ -206,7 +206,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-hover table-center table-bordered" id="laporan-piutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" style="font-size: 11px;" id="laporan-piutang" style="display:none" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -214,7 +214,7 @@
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PENJUALAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN BRUTO</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN PEMBAYARAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
                                                                 <th class="text-center"colspan="2">SISA PIUTANG</th>
                                                             </tr>
                                                             <tr>
@@ -323,11 +323,11 @@
 									</div>
 
                                     <!-- Daftar Penerimaan -->
-									<div role="tabpanel" class="tab-pane" id="daftar_penerimaan">
+									<div role="tabpanel" class="tab-pane" id="daftar_pembayaran">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">      
 												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Daftar Penerimaan</h3>
+                                                    <h3 class="panel-title">Daftar Pembayaran</h3>
 													<a href="laporan_penjualan">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -337,7 +337,7 @@
                                                                 <input type="text" id="filter_date_penerimaan" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>                                                           
                                                             <div class="col-sm-3">
-                                                                <button class="btn btn-info" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -356,7 +356,7 @@
 																<th class="text-center">PELANGGAN</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. TRANSAKSI</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN PENERIMAAN</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-center">TGL. BAYAR</th>
@@ -365,7 +365,7 @@
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
                                                         </table>
-                                                        * Pembayaran diluar PPN
+                                                        * Include PPN
                                                     </div>
                                                 </div>
                                             </div>
