@@ -410,7 +410,7 @@
                                                             <tr>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
 																<th class="text-center">REKANAN</th>
-																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. PEMBAYARAN</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. TRANSAKSI</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">TANGGAL TAGIHAN</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>

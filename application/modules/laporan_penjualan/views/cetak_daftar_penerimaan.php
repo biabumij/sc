@@ -94,7 +94,7 @@
 			<tr class="table-judul">
 				<th align="center" width="5%">NO.</th>
 				<th align="center" width="20%">PELANGGAN / TGL. BAYAR</th>
-				<th align="center" width="20%">NO. PEMBAYARAN</th>
+				<th align="center" width="20%">NO. TRANSAKSI</th>
 				<th align="center" width="15%">TGL. TAGIHAN</th>
 				<th align="center" width="20%">NO. TAGIHAN</th>
 				<th align="center" width="20%">PENERIMAAN</th>
