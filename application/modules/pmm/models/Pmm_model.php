@@ -4285,8 +4285,9 @@ class Pmm_model extends CI_Model {
         $output = array();
 		
         $this->db->select('ppp.id as penagihan_id, pmp.tanggal_pembayaran, pmp.nomor_transaksi, ppp.tanggal_invoice, ppp.nomor_invoice, pmp.total as pembayaran');
-		$this->db->join('pmm_penagihan_pembelian ppp', 'pmp.penagihan_pembelian_id = ppp.id');
-        
+		$this->db->join('pmm_penagihan_pembelian ppp','pmp.penagihan_pembelian_id = ppp.id','left');
+        $this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
+
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pmp.tanggal_pembayaran >=',$start_date.' 00:00:00');
             $this->db->where('pmp.tanggal_pembayaran <=',$end_date.' 23:59:59');
@@ -4302,7 +4303,7 @@ class Pmm_model extends CI_Model {
             $this->db->where_in('ppd.material_id',$filter_material);
         }
 		
-		$this->db->where('pmp.status','DISETUJUI');
+        $this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('pmp.tanggal_pembayaran','desc');
         $query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
 		

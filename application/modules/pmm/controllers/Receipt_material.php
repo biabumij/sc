@@ -1932,8 +1932,9 @@ class Receipt_material extends CI_Controller {
 		
 		$this->db->join('pmm_penagihan_pembelian ppp', 'pmp.penagihan_pembelian_id = ppp.id','left');
 		$this->db->join('penerima p', 'ppp.supplier_id = p.id','left');
+		$this->db->join('pmm_purchase_order ppo','ppp.purchase_order_id = ppo.id','left');
+		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 		$this->db->group_by('ppp.supplier_id');
-		$this->db->where('pmp.status','DISETUJUI');
 		$this->db->order_by('p.nama','asc');
 		$query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
 		

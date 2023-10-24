@@ -245,7 +245,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-hover table-center table-bordered" id="laporan-hutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="laporan-hutang" style="display:none; font-size:11px;" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -335,7 +335,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-hover table-center table-bordered" id="monitoring-hutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="monitoring-hutang" style="display:none; font-size:11px;" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>

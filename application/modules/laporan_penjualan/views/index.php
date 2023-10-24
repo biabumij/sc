@@ -92,8 +92,8 @@
                                                         <a href="#monitoring_piutang" aria-controls="monitoring_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
-														<p><h5>Daftar Pembayaran</h5></p>
-                                                        <a href="#daftar_pembayaran" aria-controls="daftar_pembayaran" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+														<p><h5>Daftar Penerimaan</h5></p>
+                                                        <a href="#daftar_penerimaan" aria-controls="daftar_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                 </div>
                                             </div>
@@ -206,7 +206,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-hover table-center table-bordered" style="font-size: 11px;" id="laporan-piutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="laporan-piutang" style="display:none; font-size: 11px;" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -214,7 +214,7 @@
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">PENJUALAN</th>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN</th>
 																<th class="text-center" rowspan="2" style="vertical-align:middle;">TAGIHAN BRUTO</th>
-                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN</th>
+                                                                <th class="text-center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
                                                                 <th class="text-center"colspan="2">SISA PIUTANG</th>
                                                             </tr>
                                                             <tr>
@@ -287,7 +287,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table table-hover table-center table-bordered" id="monitoring-piutang" style="display:none" width="100%";>
+                                                        <table class="mytable table table-hover table-center table-bordered" id="monitoring-piutang" style="display:none; font-size: 11px;" width="100%";>
                                                             <thead>
                                                             <tr>
                                                                 <th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
@@ -323,11 +323,11 @@
 									</div>
 
                                     <!-- Daftar Penerimaan -->
-									<div role="tabpanel" class="tab-pane" id="daftar_pembayaran">
+									<div role="tabpanel" class="tab-pane" id="daftar_penerimaan">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default">      
 												<div class="panel-heading">												
-                                                    <h3 class="panel-title">Daftar Pembayaran</h3>
+                                                    <h3 class="panel-title">Daftar Penerimaan</h3>
 													<a href="laporan_penjualan">Kembali</a>
                                                 </div>
                                                 <div style="margin: 20px">
@@ -708,17 +708,18 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                        window.jumlah_penerimaan = 0;
+                                        window.jumlah_pembayaran = 0;
                                     $.each(val.mats, function(a, row) {
-                                        window.jumlah_penerimaan += parseFloat(row.penerimaan.replace(/\./g,'').replace(',', '.'));
+                                        window.jumlah_pembayaran += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
                                     });
-                                    $('#daftar-penerimaan tbody').append('<tr onclick="NextShowPenerimaan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.nama + '</td><td></td><td></td><td class="text-right"><b>' + formatter2.format(window.jumlah_penerimaan) + '</b></td></tr>');
+                                    $('#table-daftar-pembayaran tbody').append('<tr onclick="NextShowDaftarPembayaran(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.supplier_name + '</td><td></td><td></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pembayaran) + '</b></td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#daftar-penerimaan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td></td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-right">' + row.penerimaan + '</td></tr>');
+                                        $('#table-daftar-pembayaran tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-right">' + row.pembayaran + '</td></tr>');
                                     });
+                                    $('#table-daftar-pembayaran tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-right" colspan="5"><b>JUMLAH</b></td><td class="text-right"">' + val.total_bayar + '</td></tr>');
                                 });
-                                $('#daftar-penerimaan tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
+                                $('#table-daftar-pembayaran tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
                                 $('#daftar-penerimaan tbody').append('<tr><td class="text-center" colspan="5"><b>NO DATA</b></td></tr>');
                             }
