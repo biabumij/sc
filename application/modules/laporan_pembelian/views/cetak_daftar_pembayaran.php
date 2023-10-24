@@ -95,7 +95,7 @@
 		<table cellpadding="3" width="98%">
 			<tr class="table-judul">
 				<th align="center" width="5%">NO.</th>
-				<th align="center" width="15%">REKANAN</th>
+				<th align="center" width="15%">REKANAN / TGL. BAYAR</th>
 				<th align="center" width="20%">NO. TRANSAKSI</th>
 				<th align="center" width="20%">TANGGAL TAGIHAN</th>
 				<th align="center" width="20%">NO. TAGIHAN</th>
