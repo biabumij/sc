@@ -2464,7 +2464,7 @@ class Laporan extends Secure_Controller {
 			$data['filter_date'] = $filter_date;
 		
 		
-		$this->db->select('pmp.client_id, pmp.nama_pelanggan as nama, SUM(pmp.total) AS total_bayar');
+		$this->db->select('pmp.client_id, pmp.nama_pelanggan as nama, SUM(pmp.total) as total_bayar');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pmp.tanggal_pembayaran >=',$start_date);
             $this->db->where('pmp.tanggal_pembayaran <=',$end_date);
@@ -2480,6 +2480,8 @@ class Laporan extends Secure_Controller {
         }
 		
 		$this->db->join('pmm_penagihan_penjualan ppp', 'pmp.penagihan_id = ppp.id','left');
+		$this->db->join('pmm_sales_po ppo', 'ppp.sales_po_id = ppo.id','left');
+		$this->db->where("ppo.status in ('OPEN','CLOSED')");
 		$this->db->group_by('pmp.client_id');
 		$this->db->order_by('pmp.nama_pelanggan','asc');
 		$query = $this->db->get('pmm_pembayaran pmp');
