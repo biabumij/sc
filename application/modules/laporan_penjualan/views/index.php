@@ -352,11 +352,11 @@
                                                         <table class="mytable table table-striped table-hover table-center table-bordered table-condensed" id="daftar-penerimaan" style="display:none" width="100%";>
                                                             <thead>
                                                             <tr>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO.</th>
-																<th align="center">PELANGGAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TRANSAKSI</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
-																<th align="center" rowspan="2" style="vertical-align:middle;">PENERIMAAN</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO.</th>
+																<th class="text-center">PELANGGAN</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. TRANSAKSI</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">NO. TAGIHAN</th>
+																<th class="text-center" rowspan="2" style="vertical-align:middle;">PEMBAYARAN PENERIMAAN</th>
                                                             </tr>
                                                             <tr>
                                                                 <th class="text-center">TGL. BAYAR</th>
@@ -365,6 +365,7 @@
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-bordered table-condensed"></tfoot>
                                                         </table>
+                                                        * Pembayaran diluar PPN
                                                     </div>
                                                 </div>
                                             </div>
@@ -707,10 +708,14 @@
 
                             if (result.data.length > 0) {
                                 $.each(result.data, function(i, val) {
-                                    $('#daftar-penerimaan tbody').append('<tr onclick="NextShowPenerimaan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.nama + '</td><td></td><td></td><td></td></tr>');
+                                        window.jumlah_penerimaan = 0;
+                                    $.each(val.mats, function(a, row) {
+                                        window.jumlah_penerimaan += parseFloat(row.penerimaan.replace(/\./g,'').replace(',', '.'));
+                                    });
+                                    $('#daftar-penerimaan tbody').append('<tr onclick="NextShowPenerimaan(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.nama + '</td><td></td><td></td><td class="text-right"><b>' + formatter2.format(window.jumlah_penerimaan) + '</b></td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
-                                        $('#daftar-penerimaan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-center">' + row.nomor_transaksi + '</td></td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-right">' + row.penerimaan + '</td></tr>');
+                                        $('#daftar-penerimaan tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td></td><td class="text-left">' + row.nomor_invoice + '</td><td class="text-right">' + row.penerimaan + '</td></tr>');
                                     });
                                 });
                                 $('#daftar-penerimaan tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
