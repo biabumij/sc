@@ -112,17 +112,17 @@ class Form extends Secure_Controller {
                     $row['status_permintaan'] = 'Menunggu Persetujuan';
                 } else if($row["status_permintaan"] == 'SEDANG DIPROSES'){
                     $row['status_permintaan'] = "Permintaan Sedang Diproses IT/Sistem";
-                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 16){
+                    if($this->session->userdata('admin_group_id') == 1){
 					$proses = '<a href="javascript:void(0);" onclick="PerubahanSistemSelesai('.$row['id'].')" class="btn btn-success" style="border-radius:10px;"><i class="fa fa-check"></i> </a>';
                     $row['status_permintaan'] = $proses;
                     }
                 }
 
 				if ($row["status"] === "PUBLISH") {
-                    $row['approve_ti_sistem'] = 'Permintaan Disetujui Ka. Unit Bisnis';
+                    $row['approve_ti_sistem'] = 'Permintaan Disetujui';
                 } else if($row["status"] == 'UNPUBLISH'){
-                    $row['approve_ti_sistem'] = 'Menunggu Persetujuan Ka. Unit Bisnis';
-                    if($this->session->userdata('admin_group_id') == 1){
+                    $row['approve_ti_sistem'] = 'Menunggu Persetujuan';
+                    if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
 					$approve = '<a href="javascript:void(0);" onclick="ApprovePerubahanSistem('.$row['id'].')" class="btn btn-success" style="border-radius:10px;"><i class="fa fa-check"></i> </a>';
                     $row['approve_ti_sistem'] = $approve;
                     }
@@ -148,6 +148,7 @@ class Form extends Secure_Controller {
 		$id = $this->input->post('id');
 		if(!empty($id)){
 			$this->db->set("status", "PUBLISH");
+			$this->db->set("direksi", $this->session->userdata('admin_id'));
 			$this->db->set("status_permintaan", "SEDANG DIPROSES");
 			$this->db->set("updated_by", $this->session->userdata('admin_id'));
 			$this->db->set("updated_on", date('Y-m-d H:i:s'));
