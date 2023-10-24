@@ -94,16 +94,13 @@
 		<br />
 		<table cellpadding="3" width="98%">
 			<tr class="table-judul">
-				<th align="center" width="5%" rowspan="2">&nbsp; <br />NO.</th>
+				<th align="center" width="5%">NO.</th>
 				<th align="center" width="15%">REKANAN</th>
-				<th align="center" width="20%" rowspan="2">&nbsp; <br />NO. PEMBAYARAN</th>
-				<th align="center" width="20%" rowspan="2">&nbsp; <br />TANGGAL TAGIHAN</th>
-				<th align="center" width="20%" rowspan="2">&nbsp; <br />NO. TAGIHAN</th>
-				<th align="center" width="20%" rowspan="2">&nbsp; <br />PEMBAYARAN</th>
+				<th align="center" width="20%">NO. PEMBAYARAN</th>
+				<th align="center" width="20%">TANGGAL TAGIHAN</th>
+				<th align="center" width="20%">NO. TAGIHAN</th>
+				<th align="center" width="20%">PEMBAYARAN</th>
             </tr>
-			<tr class="table-judul">
-				<th align="center">TGL. BAYAR</th>
-			</tr>
             <?php   
             if(!empty($data)){
             	foreach ($data as $key => $row) {
@@ -120,7 +117,7 @@
 	            			<td align="center"><?php echo $mat['tanggal_pembayaran'];?></td>
 							<td align="left"><?php echo $mat['nomor_transaksi'];?></td>
 							<td align="center"><?php echo $mat['tanggal_invoice'];?></td>
-							<td align="center"><?php echo $mat['nomor_invoice'];?></td>            			
+							<td align="left"><?php echo $mat['nomor_invoice'];?></td>            			
 							<td align="right"><?php echo $mat['pembayaran'];?></td>
 	            		</tr>
             			<?php
