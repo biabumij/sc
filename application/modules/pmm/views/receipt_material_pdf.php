@@ -71,12 +71,12 @@
 			</tr>
 			<tr>
 				<th>Subjek</th>
-				<th width="10px">:</th>
+				<th>:</th>
 				<th align="left"><?php echo $row['subject'];?></th>
 			</tr>
 			<tr>
 				<th>Nomor Pesanan Pembelian</th>
-				<th width="10px">:</th>
+				<th>:</th>
 				<th align="left"><?php echo $row['no_po'];?></th>
 			</tr>
 		</table>
