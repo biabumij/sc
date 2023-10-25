@@ -822,7 +822,7 @@
                                     $.each(val.mats, function(a, row) {
                                         window.jumlah_pembayaran += parseFloat(row.pembayaran.replace(/\./g,'').replace(',', '.'));
                                     });
-                                    $('#table-daftar-pembayaran tbody').append('<tr onclick="NextShowDaftarPembayaran(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.supplier_name + '</td><td></td><td></td><td class="text-right"><b>' + formatter2.format(window.jumlah_pembayaran) + '</b></td></tr>');
+                                    $('#table-daftar-pembayaran tbody').append('<tr onclick="NextShowDaftarPembayaran(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left" colspan="2">' + val.supplier_name + '</td><td></td><td></td><td class="text-right"><b>' + formatter3.format(window.jumlah_pembayaran) + '</b></td></tr>');
                                     $.each(val.mats, function(a, row) {
                                         var a_no = a + 1;
                                         $('#table-daftar-pembayaran tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center">' + row.tanggal_pembayaran + '</td><td class="text-left">' + row.nomor_transaksi + '</td><td class="text-center">' + row.tanggal_invoice + '</td><td class="text-center">' + row.nomor_invoice + '</td><td class="text-right">' + row.pembayaran + '</td></tr>');
@@ -846,6 +846,13 @@
                 $('.mats-' + id).slideToggle();
             }
             
+            window.formatter3 = new Intl.NumberFormat('id-ID', {
+                style: 'decimal',
+                currency: 'IDR',
+                symbol: 'none',
+				minimumFractionDigits : '0'
+            });
+
         </script>
 
 </body>
