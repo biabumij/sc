@@ -128,6 +128,11 @@ class Form extends Secure_Controller {
                     }
                 }
 
+				if ($row["status"] === "REJECT") {
+                    $row['status_permintaan'] = 'Permintaan Ditolak';
+					$row['approve_ti_sistem'] = 'Permintaan Ditolak';
+                }
+
 				$upload_document = false;
                 if($row['status'] == 'PUBLISH' || $row['status'] == 'UNPUBLISH'){
                     $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
