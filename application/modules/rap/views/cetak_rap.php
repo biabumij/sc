@@ -229,8 +229,8 @@
 				<td align="center"><?php echo $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_boulder']),'measure_name');?></td>
 				<td align="center"></td>
 				<td align="center"><?php echo number_format($row['vol_boulder'],4,',','.');?></td>
-				<td align="right"><?php echo number_format($row['price_boulder'] / $berat_isi_boulder,0,',','.');?></td>
 				<td align="right"><?php echo number_format($row['price_boulder'],0,',','.');?></td>
+				<td align="right"><?php echo number_format($row['price_boulder'] / $berat_isi_boulder,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_boulder,0,',','.');?></td>
 				<td align="right"><?php echo number_format($nilai_boulder_ton,0,',','.');?></td>
 			</tr>
@@ -311,8 +311,8 @@
 			</tr>
 			<tr class="table-active3">
 				<td align="right" colspan="7">JUMLAH HARGA PERALATAN</td>
-				<td align="right"><?php echo number_format($nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan,0,',','.');?></td>
-				<td align="right"><?php echo number_format($nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $nilai_bbm_solar,0,',','.');?></td>
+				<td align="right"><?php echo number_format($nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $nilai_bbm_solar_ton,0,',','.');?></td>
 			</tr>
 			<tr class="table-active2">
 				<td align="center">C.</td>
