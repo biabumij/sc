@@ -146,14 +146,14 @@
 			->get()->row_array();
 			$penyusutan_timbangan = (($penyusutan_timbangan['nilai_penyusutan'] / 48) / 25) / 7;
 
-			//Ton
-			$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
-			$vol_boulder = $row['vol_boulder'];
-			$nilai_boulder_ton = $harsat_boulder * $row['vol_boulder'];
-
 			//M3
-			$berat_isi_boulder = 1/$row['berat_isi_boulder'];
+			$vol_boulder = $row['vol_boulder'];
 			$nilai_boulder = $vol_boulder * $row['price_boulder'];
+
+			//Ton
+			$berat_isi_boulder = 1/$row['berat_isi_boulder'];
+			$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
+			$nilai_boulder_ton = $harsat_boulder * $row['vol_boulder'];
 			
 			//M3
 			$sc_a = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
@@ -211,8 +211,8 @@
 			$overhead_ton = $rumus_overhead / $rumus_overhead_ton;
 			$overhead = $overhead_ton;
 
-			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $overhead;
-			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $overhead_ton;
+			$total = $nilai_boulder + $nilai_tangki + $nilai_sc + $nilai_gns + $nilai_wl + $nilai_timbangan + $nilai_bbm_solar + $overhead;
+			$total_ton = $nilai_boulder_ton + $nilai_tangki_ton + $nilai_sc_ton + $nilai_gns_ton + $nilai_wl_ton + $nilai_timbangan_ton + $nilai_bbm_solar_ton + $overhead_ton;
 			?>
 			<tr class="table-active2">
 				<td align="center">A.</td>
