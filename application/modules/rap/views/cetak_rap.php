@@ -149,10 +149,10 @@
 			//M3
 			$berat_isi_boulder = 1/$row['berat_isi_boulder'];
 			$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
-			$nilai_boulder = $harsat_boulder * $row['vol_boulder'];
+			$nilai_boulder = $vol_boulder * $row['price_boulder'];
 			//Ton
 			$vol_boulder = $row['vol_boulder'];
-			$nilai_boulder_ton = $vol_boulder * $row['price_boulder'];
+			$nilai_boulder_ton = $harsat_boulder * $row['vol_boulder'];
 			
 			//M3
 			$sc_a = $row['kapasitas_alat_sc'] * $row['efisiensi_alat_sc'];
