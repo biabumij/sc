@@ -147,12 +147,12 @@
 			$penyusutan_timbangan = (($penyusutan_timbangan['nilai_penyusutan'] / 48) / 25) / 7;
 
 			//Ton
+			$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
 			$vol_boulder = $row['vol_boulder'];
 			$nilai_boulder_ton = $harsat_boulder * $row['vol_boulder'];
 
 			//M3
 			$berat_isi_boulder = 1/$row['berat_isi_boulder'];
-			$harsat_boulder = $row['price_boulder'] / $berat_isi_boulder;
 			$nilai_boulder = $vol_boulder * $row['price_boulder'];
 			
 			//M3
