@@ -63,8 +63,8 @@ class Productions extends Secure_Controller {
 		$sales_po_id = $this->input->post('salesPo_id');
 		$w_date = $this->input->post('filter_date');
 		$date_now = date('Y-m-d');
-		$awal_bulan = date('Y-m-01', strtotime('-1 months', strtotime($date_now)));
-		//$awal_bulan = date('Y-m-01', strtotime($date_now));
+		//$awal_bulan = date('Y-m-01', strtotime('-1 months', strtotime($date_now)));
+		$awal_bulan = date('Y-m-01', strtotime($date_now));
 		$akhir_bulan = date('Y-m-d', strtotime('+1 years', strtotime($date_now)));
 
 		$this->db->select('*');
