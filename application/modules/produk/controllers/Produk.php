@@ -24,7 +24,7 @@ class Produk extends Secure_Controller {
 		}else if($tipe == 2){
 			$this->db->where('betonreadymix',1);
 		}else if($tipe == 3){
-			$this->db->where('aggregat',1);
+			$this->db->where('agregat',1);
 		}else if($tipe == 4){
 			$this->db->where('jasa',1);
 		}else if($tipe == 5){
@@ -114,7 +114,7 @@ class Produk extends Secure_Controller {
     	$kode_produk = $this->input->post('kode_produk');
         $bahanbaku = $this->input->post('bahanbaku');
     	$betonreadymix = $this->input->post('betonreadymix');
-    	$aggregat = $this->input->post('aggregat');
+    	$agregat = $this->input->post('agregat');
     	$jasa = $this->input->post('jasa');
     	$peralatan = $this->input->post('peralatan');
     	$bahanbakar = $this->input->post('bahanbakar');
@@ -156,7 +156,7 @@ class Produk extends Secure_Controller {
     		'pajak_jual' => $pajak_jual,
     		'bahanbaku' => $bahanbaku,
     		'betonreadymix' => $betonreadymix,
-    		'aggregat' => $aggregat,
+    		'agregat' => $agregat,
     		'jasa' => $jasa,
     		'peralatan' => $peralatan,
     		'bahanbakar' => $bahanbakar,

@@ -18,7 +18,7 @@ class Laboratorium extends Secure_Controller {
 	{
 		$check = $this->m_admin->check_login();
 		if ($check == true) {
-			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'aggregat' => 1))->result_array();
+			$data['products'] = $this->db->select('*')->get_where('produk', array('status' => 'PUBLISH', 'agregat' => 1))->result_array();
 			$data['kode'] = $this->db->select('*')->get_where('produk_kode', array('status' => 'PUBLISH'))->result_array();
 			$data['measures'] = $this->db->select('*')->get_where('pmm_measures', array('status' => 'PUBLISH'))->result_array();
 			$this->load->view('laboratorium/form_jmd', $data);
@@ -46,7 +46,7 @@ class Laboratorium extends Secure_Controller {
 		$kode_3 = $this->input->post('kode_3');
 		$volume_3 = $this->input->post('volume_3');
 		$measure_3 = $this->input->post('measure_3');
-		$aggregat_kasar_1 = $this->input->post('aggregat_kasar_1');
+		$agregat_kasar_1 = $this->input->post('agregat_kasar_1');
 		$kode_4 = $this->input->post('kode_4');
 		$volume_4 = $this->input->post('volume_4');
 		$measure_4 = $this->input->post('measure_4');
@@ -59,7 +59,7 @@ class Laboratorium extends Secure_Controller {
 		$kode_6 = $this->input->post('kode_6');
 		$volume_6 = $this->input->post('volume_6');
 		$measure_6 = $this->input->post('measure_6');
-		$aggregat_kasar_2 = $this->input->post('aggregat_kasar_2');
+		$agregat_kasar_2 = $this->input->post('agregat_kasar_2');
 		$kode_7 = $this->input->post('kode_7');
 		$volume_7 = $this->input->post('volume_7');
 		$measure_7 = $this->input->post('measure_7');
@@ -123,7 +123,7 @@ class Laboratorium extends Secure_Controller {
 			'kode_3' => $kode_3,
 			'volume_3' => $volume_3,
 			'measure_3' => $measure_3,
-			'aggregat_kasar_1' => $aggregat_kasar_1,
+			'agregat_kasar_1' => $agregat_kasar_1,
 			'kode_4' => $kode_4,
 			'volume_4' => $volume_4,
 			'measure_4' => $measure_4,
@@ -136,7 +136,7 @@ class Laboratorium extends Secure_Controller {
 			'kode_6' => $kode_6,
 			'volume_6' => $volume_6,
 			'measure_6' => $measure_6,	
-			'aggregat_kasar_2' => $aggregat_kasar_2,
+			'agregat_kasar_2' => $agregat_kasar_2,
 			'kode_7' => $kode_7,
 			'volume_7' => $volume_7,
 			'measure_7' => $measure_7,	

@@ -83,7 +83,7 @@
                                                 <input type="checkbox" name="betonreadymix" id="betonreadymix" value="1" <?= (isset($edit) && $edit['betonreadymix'] == 1) ? 'checked' : '' ;?> > Beton Ready Mix
                                                 </div>
                                                 <div class="col-sm-2">
-                                                <input type="checkbox" name="aggregat" id="aggregat" value="1" <?= (isset($edit) && $edit['aggregat'] == 1) ? 'checked' : '' ;?> > Aggregat
+                                                <input type="checkbox" name="agregat" id="agregat" value="1" <?= (isset($edit) && $edit['agregat'] == 1) ? 'checked' : '' ;?> > Agregat
                                                 </div>
                                                 <div class="col-sm-2">
                                                 <input type="checkbox" name="jasa" id="jasa" value="1" <?= (isset($edit) && $edit['jasa'] == 1) ? 'checked' : '' ;?> > Jasa
