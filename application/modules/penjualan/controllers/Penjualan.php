@@ -58,7 +58,7 @@ class Penjualan extends Secure_Controller
 			$data['products'] =  $this->db->select('*')
 			->from('produk p')
 			->where("p.status = 'PUBLISH'")
-			->where("p.aggregat = 1 ")
+			->where("p.agregat = 1 ")
 			->order_by('nama_produk','asc')
 			->get()->result_array();
 			$data['materials'] = $this->db->get_where('pmm_materials', array('status' => 'PUBLISH'))->result_array();
@@ -76,7 +76,7 @@ class Penjualan extends Secure_Controller
 		$products = $this->db->select('*')
 		->from('produk p')
 		->where("p.status = 'PUBLISH'")
-		->where("p.aggregat = 1 ")
+		->where("p.agregat = 1 ")
 		->order_by('nama_produk','asc')
 		->get()->result_array();
 		$taxs = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
