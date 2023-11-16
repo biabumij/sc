@@ -63,28 +63,28 @@
                                                     <td class="text-center">1.</td>
                                                     <td>Batu Split 0 - 0,5 (Abu Batu)</td>
 													<td>
-                                                        <input type="text" name="abubatu" id="abubatu" class="form-control numberformat text-right" required="" />
+                                                        <input type="text" name="abubatu" id="abubatu" class="form-control text-right" required="" />
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td class="text-center">2.</td>
                                                     <td>Batu Split 0,5 - 1</td>
 													<td>
-                                                        <input type="text" name="batu0510" id="batu0510" class="form-control numberformat text-right" required="" />
+                                                        <input type="text" name="batu0510" id="batu0510" class="form-control text-right" required="" />
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td class="text-center">3.</td>
                                                     <td>Batu Split 1 - 2</td>
 													<td>
-                                                        <input type="text" name="batu1020" id="batu1020" class="form-control numberformat text-right" required="" />
+                                                        <input type="text" name="batu1020" id="batu1020" class="form-control text-right" required="" />
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td class="text-center">4.</td>
                                                     <td>Batu Split 2 - 3</td>
 													<td>
-                                                        <input type="text" name="batu2030" id="batu2030" class="form-control numberformat text-right" required="" />
+                                                        <input type="text" name="batu2030" id="batu2030" class="form-control text-right" required="" />
                                                     </td>
                                                 </tr>
                                             </tbody>

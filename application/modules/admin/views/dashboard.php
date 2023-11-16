@@ -67,7 +67,7 @@
             <div class="content-body">
                 <div class="row animated fadeInUp">
 
-                    <?php include_once("script_dashboard_new.php"); ?>
+                    <?php include_once("script_dashboard.php"); ?>
 
                     <div class="col-sm-12">
                         <figure class="highcharts-figure">
@@ -349,7 +349,6 @@
 <script src="<?php echo base_url();?>assets/back/theme/vendor/toastr/toastr.min.js"></script>
 <script src="<?php echo base_url();?>assets/back/theme/vendor/chart-js/chart.min.js"></script>
 <script src="<?php echo base_url();?>assets/back/theme/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-<!-- <script src="<?php echo base_url();?>assets/back/theme/javascripts/examples/dashboard.js"></script> -->
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css">
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
@@ -359,7 +358,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
-
 <script src="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
 <script src="<?php echo base_url();?>assets/back/theme/vendor/number_format.js"></script>
 <script src="<?php echo base_url();?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
@@ -372,6 +370,7 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
+
     <script type="text/javascript">
         $(function () {
             var chart;
@@ -379,11 +378,12 @@
                 chart = new Highcharts.Chart({
                     chart: {
                         renderTo: 'container_laba_rugi',
-                        type: 'spline',
+                        type: 'line',
                         marginRight: 130,
                         marginBottom: 75,
                         backgroundColor: {
-                            linearGradient: [500, 0, 0, 700],
+                            //linearGradient: [500, 0, 0, 700],
+                            linearGradient: [0, 0, 700, 500],
                             stops: [
                                 [0, 'rgb(210,235,153)'],
                                 [1, 'rgb(150,194,131)']
@@ -395,40 +395,43 @@
                             color: '#000000',
                             fontWeight: 'bold',
                             fontSize: '14px',
-                            fontFamily: 'arial'
+                            fontFamily: 'helvetica'
                         },
                         text: 'LABA RUGI',
                         x: -20 //center            
                     },
                     subtitle: {
                         style: {
-                        color: '#000000',
-                        fontWeight: 'bold',
-                        fontSize: '14px',
-                        fontFamily: 'arial'
+                            color: '#000000',
+                            fontWeight: 'bold',
+                            fontSize: '14px',
+                            fontFamily: 'helvetica'
                         },
                         text: 'PT. BIA BUMI JAYENDRA - SC (<?php echo $date_now = date('Y', strtotime($date_now));?>)',
                         x: -20
                     },
-                    xAxis: {
+                    xAxis: { //X axis menampilkan data bulan
                         labels: {
                             style: {
                                 color: '#000000',
                                 fontWeight: 'bold',
                                 fontSize: '10px',
-                                fontFamily: 'arial'
+                                fontFamily: 'helvetica'
                             }
                         },
-                        //categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi <br />2021-2023']
-                        categories: ['Juli 23','Agustus 23','September 23','Oktober 23','November 23','Desember 23','Akumulasi <br />Juli 2023 - Saat Ini']
+                        categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi']
                     },
                     yAxis: {
+                        //title: {  //label yAxis
+                            //text: 'RAP <br /><?php echo number_format(0,0,',','.'); ?>'
+                            //text: 'Presentase'
+                        //},
                         title: {
                             style: {
                                 color: '#000000',
                                 fontWeight: 'bold',
                                 fontSize: '10px',
-                                fontFamily: 'arial'
+                                fontFamily: 'helvetica'
                             },
                             text: 'Presentase'           
                         },
@@ -442,13 +445,13 @@
                                 color: '#000000',
                                 fontWeight: 'bold',
                                 fontSize: '10px',
-                                fontFamily: 'arial'
+                                fontFamily: 'helvetica'
                             },
                             format: '{value} %'
                         },
-                        min: -20,
-                        max: 20,
-                        tickInterval: 5,
+                        min: -200,
+                        max: 200,
+                        tickInterval: 20,
                     },
                     tooltip: { 
                     //fungsi tooltip, ini opsional, kegunaan dari fungsi ini 
@@ -486,26 +489,27 @@
                     },
             
                     series: [{  
-                        name: '0 %',  
-                        data: [0,0,0,0,0,0,0],
+                        name: 'Target %',  
+                        
+                        data: [0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00],
 
                         color: '#000000',
                         fontWeight: 'bold',
                         fontSize: '10px',
-                        fontFamily: 'arial'
+                        fontFamily: 'helvetica'
                     },
                     {  
-                        name: 'Laba Rugi %',
-                        //data: [ <?php echo number_format($persentase_jan_fix,2,'.',','); ?>,<?php echo number_format($persentase_feb_fix,2,'.',','); ?>,<?php echo number_format($persentase_mar_fix,2,'.',','); ?>,<?php echo number_format($persentase_apr_fix,2,'.',','); ?>,<?php echo number_format($persentase_mei_fix,2,'.',','); ?>,<?php echo number_format($persentase_jun_fix,2,'.',','); ?>,<?php echo number_format($persentase_jul_fix,2,'.',','); ?>,<?php echo number_format($persentase_agu_fix,2,'.',','); ?>,<?php echo number_format($persentase_sep_fix,2,'.',','); ?>,<?php echo number_format($persentase_okt_fix,2,'.',','); ?>,<?php echo number_format($persentase_nov_fix,2,'.',','); ?>,<?php echo number_format($persentase_des_fix,2,'.',','); ?>,<?php echo number_format($persentase_aku_fix,2,'.',','); ?>],
-                        data: [ <?php echo number_format($persentase_jul_fix,2,'.',',');?>,<?php echo number_format($persentase_agu_fix,2,'.',','); ?>,<?php echo number_format($persentase_sep_fix,2,'.',','); ?>,<?php echo number_format($persentase_okt_fix,2,'.',','); ?>,<?php echo number_format($persentase_nov_fix,2,'.',','); ?>,<?php echo number_format($persentase_des_fix,2,'.',','); ?>,<?php echo number_format($persentase_aku_fix,2,'.',','); ?>],
+                        name: 'Laba Rugi %',  
+                        
+                        data: [ <?php echo number_format($persentase_jan_fix,0,',','.');?>,<?php echo number_format($persentase_feb_fix,0,',','.');?>,<?php echo number_format($persentase_mar_fix,0,',','.');?>,<?php echo number_format($persentase_apr_fix,0,',','.');?>,<?php echo number_format($persentase_mei_fix,0,',','.');?>,<?php echo number_format($persentase_jun_fix,0,',','.');?>,<?php echo number_format($persentase_jul_fix,0,',','.');?>,<?php echo number_format($persentase_agu_fix,0,',','.');?>,<?php echo number_format($persentase_sep_fix,0,',','.');?>,<?php echo number_format($persentase_okt_fix,0,',','.');?>,<?php echo number_format($persentase_nov_fix,0,',','.');?>,<?php echo number_format($persentase_des_fix,0,',','.');?>,<?php echo number_format($persentase_aku_fix,0,',','.');?>],
 
                         color: '#FF0000',
                         fontWeight: 'bold',
                         fontSize: '10px',
-                        fontFamily: 'arial',
+                        fontFamily: 'helvetica',
 
                         zones: [{
-                        
+                            
                         }, {
                             dashStyle: 'dot'
                         }]

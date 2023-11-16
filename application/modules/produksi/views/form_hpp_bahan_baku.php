@@ -61,14 +61,14 @@
                                                     <td class="text-center">1.</td>
                                                     <td>Batu Boulder</td>
 													<td>
-                                                        <input type="text" name="boulder" id="boulder" class="form-control numberformat text-right" required="" autocomplete="off"/>
+                                                        <input type="text" name="boulder" id="boulder" class="form-control text-right" required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>
 												<tr>
                                                     <td class="text-center">2.</td>
                                                     <td>Solar</td>
 													<td>
-                                                        <input type="text" name="bbm" id="bbm" class="form-control numberformat text-right"  required="" autocomplete="off"/>
+                                                        <input type="text" name="bbm" id="bbm" class="form-control text-right"  required="" autocomplete="off"/>
                                                     </td>
                                                 </tr>
                                             </tbody>
