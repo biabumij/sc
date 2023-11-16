@@ -199,7 +199,7 @@
             
             <tr>
 				<th colspan="6" align="left">
-					<div style="text-transform: capitalize;"><i>TERBILANG : <?= $this->filter->terbilang($total);?></i></div>
+					<div style="text-transform: capitalize;"><i>TERBILANG : <?= $this->filter->terbilang(round($total),0);?></i></div>
 				</th>
             </tr>
 			<tr>
