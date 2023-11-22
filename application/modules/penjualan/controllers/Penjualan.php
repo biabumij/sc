@@ -580,7 +580,7 @@ class Penjualan extends Secure_Controller
 				<input type="text" name="nama_produk_<?php echo $no; ?>" id="nama_produk-<?php echo $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?php echo $no; ?>)" readonly=""/>
 			</td>
 			<td>
-				<input type="text" min="0" name="qty_<?php echo $no; ?>" id="qty-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control numberformat input-sm text-center" />
+				<input type="text" min="0" name="qty_<?php echo $no; ?>" id="qty-<?php echo $no; ?>" onchange="changeData(<?php echo $no; ?>)" class="form-control numberformat input-sm text-right" />
 			</td>
 			<td>
 				<input type="text" name="measure_<?php echo $no; ?>" id="measure-<?php echo $no; ?>" class="form-control input-sm text-center" onchange="changeData(<?php echo $no; ?>)" readonly=""/>

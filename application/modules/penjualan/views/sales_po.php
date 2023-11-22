@@ -31,7 +31,7 @@
                         <div class="panel">
                             <div class="panel-header"> 
                                 <div class="">
-                                    <h3 class="">Sales Order Baru</h3>
+                                    <h3 class="">Sales Order</h3>
                                     
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                                         <input type="text" name="nama_produk_1" id="nama_produk-1" class="form-control input-sm text-center" onchange="changeData(1)" readonly=""/>
                                                     </td> 
                                                     <td>
-                                                        <input type="text" name="qty_1" id="qty-1" class="form-control numberformat input-sm text-center" onchange="changeData(1)" required="" />
+                                                        <input type="text" name="qty_1" id="qty-1" class="form-control numberformat input-sm text-right" onchange="changeData(1)" required="" />
                                                     </td>                                                   
                                                     <td>
                                                         <input type="text" name="measure_1" id="measure-1" class="form-control input-sm text-center" onchange="changeData(1)" readonly=""/>
