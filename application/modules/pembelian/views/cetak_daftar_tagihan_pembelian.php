@@ -92,14 +92,7 @@
 		}
 			
 		table tr.table-total{
-			background-color: #FFFF00;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-
-		table tr.table-total2{
-			background-color: #eeeeee;
+			background-color: #cccccc;
 			font-weight: bold;
 			font-size: 8px;
 			color: black;
@@ -115,7 +108,7 @@
 		<div align="center" style="display: block;font-weight: bold;font-size: 11px; text-transform: uppercase;">PERIODE : <?php echo str_replace($search, $replace, $subject);?></div>
 		<br /><br /><br />
 		<table cellpadding="3" width="98%">
-			<tr class="table-total">
+			<tr class="table-judul">
 				<th align="center" width="5%" class="table-border-atas-kiri">NO.</th>
                 <th align="center" width="25%" class="table-border-atas-tengah">REKANAN / NOMOR INVOICE</th>
 				<th align="center" width="14%" class="table-border-atas-tengah">TGL. INVOICE</th>
