@@ -92,14 +92,7 @@
 		}
 			
 		table tr.table-total{
-			background-color: #FFFF00;
-			font-weight: bold;
-			font-size: 8px;
-			color: black;
-		}
-
-		table tr.table-total2{
-			background-color: #eeeeee;
+			background-color: #cccccc;
 			font-weight: bold;
 			font-size: 8px;
 			color: black;
@@ -173,7 +166,7 @@
             	<?php
             }
             ?>
-            <tr class="table-total2">
+            <tr class="table-total">
             	<th align="right" colspan="6" class="table-border-atas-kiri">TOTAL</th>
             	<th align="right" class="table-border-atas-tengah"><?php echo number_format($total,0,',','.');?></th>
 				<th align="right" class="table-border-atas-tengah"><?php echo number_format($total_2,0,',','.');?></th>
