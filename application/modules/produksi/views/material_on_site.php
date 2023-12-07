@@ -3,10 +3,10 @@
         <input type="text" id="filter_date" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
     </div>
     <div class="col-sm-2">
-        <button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+        <button type="submit" class="btn btn-default" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
     </div>
     <div class="col-sm-2">
-        <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="border-radius:10px; font-weight:bold;"><i class="fa fa-plus"></i> Buat Stock Opname</a>
+        <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="font-weight:bold;"><i class="fa fa-plus"></i> Buat Stock Opname</a>
     </div>
 </form>
 <br />
@@ -74,7 +74,7 @@
                         <textarea id="notes" name="notes" class="form-control" autocomplete="off" rows="5" data-required="false"></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                        <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                     </div>
                 </form>
             </div>

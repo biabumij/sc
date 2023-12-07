@@ -86,7 +86,7 @@
                                 </div>
                                 <br /><br />
                                 <div class="text-center">
-                                    <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$row['id']);?>" class="btn btn-info" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                    <a href="<?= site_url('pembelian/penagihan_pembelian_detail/'.$row['id']);?>" class="btn btn-info" style="width:15%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 </div>
                             </div>
                         </div>
@@ -123,12 +123,12 @@
                             <input type="text" id="nomor_invoice" name="nomor_invoice" class="form-control" required="" readonly="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Update Tagihan</button>
+                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold;"><i class="fa fa-send"></i> Update Tagihan</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; border-radius:10px;">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold;">Close</button>
                 </div>
             </div>
         </div>

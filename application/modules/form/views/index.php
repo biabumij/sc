@@ -36,7 +36,7 @@
                                 <h3 class="section-subtitle">
                                     <?php echo $row[0]->menu_name; ?>
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -48,7 +48,7 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#perubahan_sistem" aria-controls="perubahan_sistem" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Perubahan Sistem</a></li>
+                                    <li role="presentation" class="active"><a href="#perubahan_sistem" aria-controls="perubahan_sistem" role="tab" data-toggle="tab" style="font-weight:bold;">Perubahan Sistem</a></li>
                                 </ul>
 
                                 <div class="tab-content">
@@ -101,12 +101,12 @@
                                                     <input type="file" id="file" name="file" class="form-control" required="" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-success" id="btn-form-doc" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                                                    <button type="submit" class="btn btn-success" id="btn-form-doc" style="font-weight:bold; width;10%;"><i class="fa fa-send"></i> Kirim</button>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%;">Close</button>
                                         </div>
                                     </div>
                                 </div>

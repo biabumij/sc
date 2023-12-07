@@ -33,16 +33,16 @@ class Rap extends Secure_Controller {
                 $row['tanggal_rap'] = date('d F Y',strtotime($row['tanggal_rap']));
 				$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
-				$row['print'] = '<a href="'.site_url().'rap/cetak_rap/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'rap/cetak_rap/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
-				$row['edit'] = '<a href="'.site_url().'rap/sunting_rap/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px;"><i class="fa fa-edit"></i> </a>';
+				$row['edit'] = '<a href="'.site_url().'rap/sunting_rap/'.$row['id'].'" class="btn btn-warning"><i class="fa fa-edit"></i> </a>';
 				}else {
 					$row['edit'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
 				}
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
-				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteRAP('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
+				$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteRAP('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['delete'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
 				}
@@ -482,10 +482,10 @@ class Rap extends Secure_Controller {
 				$row['nilai_penyusutan'] = number_format($row['nilai_penyusutan'],0,',','.');
 				$row['created_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
-				$row['print'] = '<a href="'.site_url().'rap/cetak_penyusutan/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'rap/cetak_penyusutan/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 			
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11){
-				$row['delete'] = '<a href="javascript:void(0);" onclick="DeletePenyusutan('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
+				$row['delete'] = '<a href="javascript:void(0);" onclick="DeletePenyusutan('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}else {
 					$row['delete'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
 				}

@@ -89,7 +89,7 @@
                                 <h3 class="section-subtitle">
                                     Pembelian
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -107,15 +107,15 @@
                                 $kategori  = $this->db->order_by('nama_kategori_produk', 'asc')->select('*')->get_where('kategori_produk', array('status' => 'PUBLISH'))->result_array();
                                 ?>
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Penawaran Pembelian</a></li>
-									<li role="presentation"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Permintaan Bahan & Alat</a></li>
-                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Pesanan Pembelian</a></li>
-                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Penerimaan Pembelian</a></li>
-                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Tagihan Pembelian</a></li>
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="font-weight:bold;">Penawaran Pembelian</a></li>
+									<li role="presentation"><a href="#chart" aria-controls="chart" role="tab" data-toggle="tab" style="font-weight:bold;">Permintaan Bahan & Alat</a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="font-weight:bold;">Pesanan Pembelian</a></li>
+                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="font-weight:bold;">Penerimaan Pembelian</a></li>
+                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" style="font-weight:bold;">Tagihan Pembelian</a></li>
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
-                                        <li role="presentation"><a href="#verifikasi" aria-controls="verifikasi" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Notifikasi 
+                                        <li role="presentation"><a href="#verifikasi" aria-controls="verifikasi" role="tab" data-toggle="tab" style="font-weight:bold;">Notifikasi 
                                         <blink><b><?php
                                             $query = $this->db->query('SELECT * FROM pmm_verifikasi_penagihan_pembelian where approve_unit_head = "TIDAK DISETUJUI" ');
                                             echo $query->num_rows();
@@ -284,12 +284,12 @@
 													</div>
 													
 													<div class="form-group">
-														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+														<button type="submit" onclick="tinyMCE.triggerSave(true,true);" class="btn btn-success" id="btn-form" style="font-weight:bold; width;10%;"><i class="fa fa-send"></i> Kirim</button>
 													</div>
 												</form>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
+												<button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%;">Close</button>
 											</div>
 										</div>
 									</div>
@@ -380,8 +380,8 @@
                                             <div class="col-sm-6">
                                                 <div class="text-left">
                                                     <input type="hidden" id="val-receipt-id" name="">
-                                                    <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
-                                                    <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold; border-radius:10px;">Penagihan Pembelian</button>
+                                                    <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                    <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold;">Penagihan Pembelian</button>
                                                 </div>
                                             </div>
                                             <br />
@@ -435,12 +435,12 @@
                                                         <input type="file" id="file" name="file" class="form-control" required="" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                                                        <button type="submit" class="btn btn-success" id="btn-form-doc-surat-jalan" style="font-weight:bold; width;10%;"><i class="fa fa-send"></i> Kirim</button>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%;">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -467,7 +467,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="text-left">
-                                                <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
+                                                <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                             </div>
                                         </div>
                                     </form>   
@@ -797,8 +797,8 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12 text-right">
-                                <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm" id="btn-form" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-close"></i> Batal</button>
-                                <button type="submit" class="btn btn-success btn-sm" id="btn-form" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-danger btn-sm" id="btn-form" style="font-weight:bold; width;10%;"><i class="fa fa-close"></i> Batal</button>
+                                <button type="submit" class="btn btn-success btn-sm" id="btn-form" style="font-weight:bold; width;10%;"><i class="fa fa-send"></i> Kirim</button>
                             </div>
                         </div>
                     </form>
@@ -971,7 +971,7 @@
                     <form method="GET" target="_blank" action="<?php echo site_url('pembelian/print_verifikasi_penagihan_pembelian'); ?>">
                         <input type="hidden" name="id" id="verifikasi_penagihan_pembelian_id">
                         <div class="text-right">
-                            <button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                            <button type="submit" class="btn btn-default" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                         </div>
                     </form>
                 </div>
@@ -997,12 +997,12 @@
                             <input type="file" id="file" name="file" class="form-control" required="" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form-doc" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                            <button type="submit" class="btn btn-success" id="btn-form-doc" style="font-weight:bold; width;10%;"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%;">Close</button>
                 </div>
             </div>
         </div>
@@ -1044,12 +1044,12 @@
                         ?>
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-no_po" style="font-weight:bold; width;10%; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                            <button type="submit" class="btn btn-success" id="btn-no_po" style="font-weight:bold; width;10%;"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%; border-radius:10px;">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; width;10%;">Close</button>
                 </div>
             </div>
         </div>

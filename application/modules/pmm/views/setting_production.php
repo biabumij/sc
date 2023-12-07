@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                      <button type="submit" name="submit" class="btn btn-success" style="width:10%; font-weight:bold; border-radius:10px;"" id="btn-submit"><i class="fa fa-send"></i> Kirim</button>
+                                      <button type="submit" name="submit" class="btn btn-success" style="width:10%; font-weight:bold;"" id="btn-submit"><i class="fa fa-send"></i> Kirim</button>
                                     </div>
                                 </div>
                             </form>

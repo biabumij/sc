@@ -255,8 +255,8 @@
                                     </div>-->
                                     <div class="row">
                                         <div class="col-sm-12 text-right">
-                                            <a href="<?= site_url('admin/produk');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
-                                            <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                                            <a href="<?= site_url('admin/produk');?>" class="btn btn-danger" style="margin-bottom:0; width:15%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
+                                            <button type="submit" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                                         </div>
                                     </div>
                                 </form>

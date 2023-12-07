@@ -36,7 +36,7 @@
                                 <h3 class="section-subtitle">
                                     <?php echo $row[0]->menu_name; ?>
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -51,10 +51,10 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#hpp_bahan_baku" aria-controls="hpp_bahan_baku" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">HPP Pergerakan Bahan Baku</a>
-                                    <li role="presentation"><a href="#hpp" aria-controls="hpp" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">HPP Pergerakan Bahan Jadi</a></li>
-                                    <li role="presentation"><a href="#akumulasi_bahan_baku" aria-controls="akumulasi_bahan_baku" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Akumulasi Pergerakan Bahan Baku</a>
-                                    <li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Akumulasi Pergerakan Bahan Jadi</a>
+                                    <li role="presentation" class="active"><a href="#hpp_bahan_baku" aria-controls="hpp_bahan_baku" role="tab" data-toggle="tab" style="font-weight:bold;">HPP Pergerakan Bahan Baku</a>
+                                    <li role="presentation"><a href="#hpp" aria-controls="hpp" role="tab" data-toggle="tab" style="font-weight:bold;">HPP Pergerakan Bahan Jadi</a></li>
+                                    <li role="presentation"><a href="#akumulasi_bahan_baku" aria-controls="akumulasi_bahan_baku" role="tab" data-toggle="tab" style="font-weight:bold;">Akumulasi Pergerakan Bahan Baku</a>
+                                    <li role="presentation"><a href="#akumulasi" aria-controls="akumulasi" role="tab" data-toggle="tab" style="font-weight:bold;">Akumulasi Pergerakan Bahan Jadi</a>
                                 </ul>
 
                                 <div class="tab-content">

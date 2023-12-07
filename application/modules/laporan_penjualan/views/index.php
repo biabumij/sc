@@ -81,19 +81,19 @@
                                                 <div class="panel panel-default">                                            
                                                     <div class="col-sm-5">
 														<p><h5>Pengiriman Penjualan</h5></p>
-                                                        <a href="#laporan_pengiriman_penjualan" aria-controls="laporan_pengiriman_penjualan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>									
+                                                        <a href="#laporan_pengiriman_penjualan" aria-controls="laporan_pengiriman_penjualan" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>									
                                                     </div>
                                                     <div class="col-sm-5">
 														<p><h5>Laporan Piutang</h5></p>
-                                                        <a href="#laporan_piutang" aria-controls="laporan_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+                                                        <a href="#laporan_piutang" aria-controls="laporan_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Monitoring Piutang</h5></p>
-                                                        <a href="#monitoring_piutang" aria-controls="monitoring_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+                                                        <a href="#monitoring_piutang" aria-controls="monitoring_piutang" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Daftar Penerimaan</h5></p>
-                                                        <a href="#daftar_penerimaan" aria-controls="daftar_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+                                                        <a href="#daftar_penerimaan" aria-controls="daftar_penerimaan" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                 </div>
                                             </div>
@@ -143,7 +143,7 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-sm-1 text-right">
-                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -194,7 +194,7 @@
                                                                 <input type="text" id="filter_date_piutang" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>                                             
                                                             <div class="col-sm-3">
-                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -275,7 +275,7 @@
                                                                 </select>
                                                             </div>                                        
                                                             <div class="col-sm-3">
-                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -337,7 +337,7 @@
                                                                 <input type="text" id="filter_date_penerimaan" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>                                                           
                                                             <div class="col-sm-3">
-                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>

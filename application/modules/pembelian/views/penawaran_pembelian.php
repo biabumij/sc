@@ -186,7 +186,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <button type="button" class="btn btn-primary" onclick="tambahData()" style="font-weight:bold; border-radius:10px;>
+                                            <button type="button" class="btn btn-primary" onclick="tambahData()" style="font-weight:bold;>
                                                 <i class="fa fa-plus"></i> Tambah Data
                                             </button>
                                         </div>
@@ -240,8 +240,8 @@
                                     </div>
                                     <br /><br />
                                     <div class="text-center">
-                                        <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-danger" style="margin-bottom:0px; width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
-                                        <button type="submit" class="btn btn-success" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i>  Kirim</button>
+                                        <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-danger" style="margin-bottom:0px; width:100px; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
+                                        <button type="submit" class="btn btn-success" style="width:100px; font-weight:bold;"><i class="fa fa-send"></i>  Kirim</button>
                                     </div>
                                 </form>
                             </div>

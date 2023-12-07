@@ -87,7 +87,7 @@
                                             <input type="text" class="form-control numberformat" name="kredit" placeholder="Kredit">
                                         </div>
                                         <div class="col-sm-3">
-                                            <button type="submit" class="btn btn-warning" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-plus"></i> Tambah</button>
+                                            <button type="submit" class="btn btn-warning" id="btn-form" style="font-weight:bold;"><i class="fa fa-plus"></i> Tambah</button>
                                         </div>
                                     </div>
                                 </form>
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-danger" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Batal</a>
+                                <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-danger" style="width:10%; font-weight:bold;"><i class="fa fa-close"></i> Batal</a>
                             </div>
                         </div>
                     </div>
@@ -163,12 +163,12 @@
                             <input type="text" id="kredit" name="kredit" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; border-radius:10px;">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold;">Close</button>
                 </div>
             </div>
         </div>
@@ -212,12 +212,12 @@
                             <input type="text" id="total_kredit" name="total_kredit" class="form-control numberformat" required="" autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Update Jurnal Umum</button>
+                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold;"><i class="fa fa-send"></i> Update Jurnal Umum</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; border-radius:10px;">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold;">Close</button>
                 </div>
             </div>
         </div>

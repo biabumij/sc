@@ -264,10 +264,10 @@
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                                 ?>
                                                 <form class="form-approval" action="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>">
-                                                    <button type="submit" class="btn btn-success btn-sm" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</button>
+                                                    <button type="submit" class="btn btn-success btn-sm" style="width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>
                                                 </form>
                                                 <form class="form-approval" action="<?= base_url("penjualan/rejectPenagihan/" . $penagihan["id"]) ?>">
-                                                    <button type="submit" class="btn btn-danger btn-sm" style="width:200px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" style="width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>
                                                 </form>
                                             <?php
                                             }
@@ -277,12 +277,12 @@
                                 </div>
                                 <div class="text-center">
                                     <?php if ($penagihan["status"] === "OPEN") : ?>
-                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
+                                        <a href="<?= base_url("penjualan/cetak_penagihan_penjualan/".$penagihan["id"]) ?>" target="_blank" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-print"></i> Print</a>
                                         <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
                                             ?>
-                                            <a class="btn btn-warning" style="width:15%; font-weight:bold; border-radius:10px;" href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>"><i class="fa fa-money"></i> Terima Pembayaran</a>
-                                            <a class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;" href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>"><i class="fa fa-check"></i> Pembayaran Lunas</a>
+                                            <a class="btn btn-warning" style="width:15%; font-weight:bold;" href="<?= base_url("penjualan/halaman_pembayaran/" . $penagihan["id"]) ?>"><i class="fa fa-money"></i> Terima Pembayaran</a>
+                                            <a class="btn btn-success" style="width:15%; font-weight:bold;" href="<?= site_url('penjualan/closed_pembayaran_penagihan/' . $penagihan['id']); ?>"><i class="fa fa-check"></i> Pembayaran Lunas</a>
                                             <?php
                                             }
                                             ?>
@@ -290,8 +290,8 @@
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                             ?>
-                                            <a class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;" href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>"><i class="fa fa-edit"></i> Edit</a>	
-                                            <a class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                            <a class="btn btn-default" style="width:15%; font-weight:bold;" href="<?= base_url('penjualan/sunting_tagihan/' . $penagihan["id"]) ?>"><i class="fa fa-edit"></i> Edit</a>	
+                                            <a class="btn btn-danger" style="width:15%; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                             <?php
                                             }
                                             ?>
@@ -305,7 +305,7 @@
                                         ?>
                                         <?php
                                         ?>
-                                        <a href="<?= site_url('penjualan/open_penagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:20%; font-weight:bold; border-radius:10px;"><i class="fa fa-folder-open-o"></i> Pembayaran Belum Lunas</a>
+                                        <a href="<?= site_url('penjualan/open_penagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:20%; font-weight:bold;"><i class="fa fa-folder-open-o"></i> Pembayaran Belum Lunas</a>
                                         <?php
                                         }
                                         ?>
@@ -313,7 +313,7 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                         <a class="btn btn-danger"  style="width:15%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                         <a class="btn btn-danger"  style="width:15%; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                         <?php
                                         }
                                         ?>
@@ -324,7 +324,7 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                        <a class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
+                                        <a class="btn btn-danger" style="width:15%; font-weight:bold;" onclick="DeleteData('<?= site_url('penjualan/delete_penagihan_penjualan/' . $penagihan['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>	
                                         <?php
                                         }
                                         ?>
@@ -332,7 +332,7 @@
                                 </div>
                                 <br /><br /><br />
                                 <div class="text-center">
-                                    <a href="<?php echo site_url('admin/penjualan#settings'); ?>" class="btn btn-info" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                    <a href="<?php echo site_url('admin/penjualan#settings'); ?>" class="btn btn-info" style="width:15%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 </div>
                                 <br />
                                 <br />

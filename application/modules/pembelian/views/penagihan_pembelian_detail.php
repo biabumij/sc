@@ -362,10 +362,10 @@
                                 <div class="col-sm-12 text-right">
                                     <?php if ($row["status"] === "DRAFT") : ?>
                                         <form class="form-approval" action="<?= base_url("pembelian/approve_payment/" . $row["id"]) ?>">
-                                            <button type="submit" class="btn btn-success" style="border-radius:10px;"><i class="fa fa-check"></i> Setujui</button></blink>
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Setujui</button></blink>
                                         </form>
                                         <form class="form-approval" action="<?= base_url("pembelian/reject_penawaran_pembelian/" . $row["id"]) ?>">
-                                            <button type="submit" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> Tolak</button>
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i> Tolak</button>
                                         </form>
 
                                     <?php endif; ?>
@@ -376,7 +376,7 @@
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
-                                    <a class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
+                                    <a class="btn btn-danger" style="width:15%; font-weight:bold;" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"><i class="fa fa-close"></i> Hapus</a>
                                     <?php
                                     }
                                 }
@@ -386,17 +386,17 @@
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
-                                        <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-money"></i> Kirim Pembayaran</a>
-                                        <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Pembayaran Lunas</a>
+                                        <a href="<?= site_url('pembelian/pembayaran_panagihan/' . $row['id']); ?>" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-money"></i> Kirim Pembayaran</a>
+                                        <a href="<?= site_url('pembelian/closed_pembayaran_penagihan/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-check"></i> Pembayaran Lunas</a>
                                         <?php
                                         }
                                         ?>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                        <a href="<?= base_url('pembelian/sunting_tagihan/' . $row["id"]) ?>" class="btn btn-default" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> Edit Tagihan</a>
-                                        <a href="<?= base_url('pembelian/sunting_verifikasi/' . $row["id"]) ?>" class="btn btn-warning" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> Edit Verifikasi</a>
-                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"  style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Hapus</a>
+                                        <a href="<?= base_url('pembelian/sunting_tagihan/' . $row["id"]) ?>" class="btn btn-default" style="width:15%; font-weight:bold;"><i class="fa fa-edit"></i> Edit Tagihan</a>
+                                        <a href="<?= base_url('pembelian/sunting_verifikasi/' . $row["id"]) ?>" class="btn btn-warning" style="width:15%; font-weight:bold;"><i class="fa fa-edit"></i> Edit Verifikasi</a>
+                                        <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')"  style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>
                                         <?php
                                         }
                                         ?>
@@ -407,7 +407,7 @@
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10 || $this->session->userdata('admin_group_id') == 13 || $this->session->userdata('admin_group_id') == 14 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
-                                    <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-warning" style="width:20%; font-weight:bold; border-radius:10px;"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
+                                    <a href="<?= site_url('pembelian/open_penagihan/' . $row['id']); ?>" class="btn btn-warning" style="width:20%; font-weight:bold;"><i class="fa fa-warning"></i> Pembayaran Belum Lunas</a>
                                     <?php
                                     }
                                     ?>
@@ -415,7 +415,7 @@
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                     ?>
-                                    <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Hapus</a>
+                                    <a class="btn btn-danger" onclick="DeleteData('<?= site_url('pembelian/delete_penagihan_pembelian/' . $row['id']); ?>')" style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Hapus</a>
                                     <?php
                                     }
                                     ?>
@@ -424,7 +424,7 @@
 
                             </div>
                             <div class="text-center">
-                                <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                <a href="<?php echo site_url('admin/pembelian#settings'); ?>" class="btn btn-info" style="width:15%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                             </div>
                             <div class="container-fluid">
                                 <ul class="nav nav-tabs" role="tablist">

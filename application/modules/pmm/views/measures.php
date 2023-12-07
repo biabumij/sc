@@ -30,7 +30,7 @@
                         <div class="panel-content">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="border-radius:10px; font-weight:bold;"><i class="fa fa-plus"></i> Buat Satuan</a>
+                                    <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="font-weight:bold;"><i class="fa fa-plus"></i> Buat Satuan</a>
                                 </div>
                                 <!--<form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/measures_print');?>">
                                     <div class="col-sm-2">
@@ -98,12 +98,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold; border-radius:10px;"><i class="fa fa-send"></i> Kirim</button>
+                            <button type="submit" class="btn btn-success" id="btn-form" style="font-weight:bold;"><i class="fa fa-send"></i> Kirim</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold; border-radius:10px;">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-weight:bold;">Close</button>
                 </div>
             </div>
         </div>

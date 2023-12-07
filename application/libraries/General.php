@@ -128,9 +128,9 @@ Class General
         if(is_array($arr)){
             foreach ($arr as $key => $value) {
                 if($key == $id){               
-                    $output='<button type="button" class="btn btn-'.$value['color'].'" style="font-weight:bold; border-radius:10px;">'.$value['title'].'</button>';
+                    $output='<button type="button" class="btn btn-'.$value['color'].'" style="font-weight:bold;">'.$value['title'].'</button>';
                 }else if($id == 3){
-                    $output='<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">Not Active </button>';
+                    $output='<button type="button" class="btn btn-danger" style="font-weight:bold;">Not Active </button>';
                 }
             }
         }
@@ -1079,11 +1079,11 @@ Class General
     function StatusPayment($status)
     {
         if($status == 'CREATING'){
-            $output = '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            $output = '<button type="button" class="btn btn-warning" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'CREATED'){
-            $output = '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            $output = '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }else {
-            $output = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            $output = '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }
 
         return $output;

@@ -39,15 +39,15 @@ class Finance extends CI_Controller {
 				$row['saldo'] = 0;
 
 				if($this->session->userdata('admin_group_id') == 1){
-					$row['edit'] = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';
+					$row['edit'] = '<a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary" style="font-weight:bold;"><i class="fa fa-edit"></i> </a>';
 				}else {
-					$row['edit'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+					$row['edit'] = '<button type="button" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-ban"></i> No Access</button>';
 				}
 
 				if($this->session->userdata('admin_group_id') == 1){
-					$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					$row['delete'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-close"></i> </a>';
 				}else {
-					$row['delete'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+					$row['delete'] = '<button type="button" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-ban"></i> No Access</button>';
 				}
 				
 				$data[] = $row;

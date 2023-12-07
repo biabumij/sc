@@ -106,20 +106,20 @@ class Productions extends Secure_Controller {
 				$row['surat_jalan'] = '<a href="'.base_url().'uploads/surat_jalan_penjualan/'.$row['surat_jalan'].'" target="_blank">'.$row['surat_jalan'].'</a>';
 				
 				if($this->session->userdata('admin_group_id') == 1){
-					$edit = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';			
+					$edit = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary" style="font-weight:bold;"><i class="fa fa-edit"></i> </a>';			
 				}
 
 				if($this->session->userdata('admin_group_id') == 1){
-					$row['edits'] = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';	
+					$row['edits'] = '<a href="javascript:void(0);" onclick="EditData('.$row['id'].')" class="btn btn-primary" style="font-weight:bold;"><i class="fa fa-edit"></i> </a>';	
 				}else {
-					$row['edits'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+					$row['edits'] = '<button type="button" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-ban"></i> No Access</button>';
 				}
 
 				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
-					//$row['actions'] = $edit.'<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
-					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					//$row['actions'] = $edit.'<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-close"></i> </a>';
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-close"></i> </a>';
 				}else {
-					$row['actions'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+					$row['actions'] = '<button type="button" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-ban"></i> No Access</button>';
 				}
 
 				$data[] = $row;

@@ -222,18 +222,18 @@
                             </div>
 
                             <div class="text-right">
-                                <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="width:150px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 
                                 <?php
                                 if($data['status'] == 'WAITING'){
                                     ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf_draft/'.$id);?>" target="_blank" class="btn btn-default" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print (Draft)</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf_draft/'.$id);?>" target="_blank" class="btn btn-default" style="width:150px; font-weight:bold;"><i class="fa fa-print"></i> Print (Draft)</a>
                                     
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                        <a onclick="CreatePO()" class="btn btn-success" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</a>
-                                        <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/2');?>')" class="btn btn-danger check-btn" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</a>
+                                        <a onclick="CreatePO()" class="btn btn-success" style="width:150px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</a>
+                                        <a onclick="ProcessForm('<?php echo site_url('pmm/purchase_order/process/'.$id.'/2');?>')" class="btn btn-danger check-btn" style="width:150px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</a>
                                         <?php
                                     }
                                 }
@@ -243,17 +243,17 @@
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
 
-                                    <a href="<?= site_url('pembelian/uang_muka/'.$id);?>" class="btn btn-warning" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-money"></i> Uang Muka</a>
+                                    <a href="<?= site_url('pembelian/uang_muka/'.$id);?>" class="btn btn-warning" style="width:150px; font-weight:bold;"><i class="fa fa-money"></i> Uang Muka</a>
 
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:150px; font-weight:bold;"><i class="fa fa-print"></i> Print</a>
                                     
-                                    <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-truck"></i> Terima Produk</a>
+                                    <a href="<?= site_url('pmm/receipt_material/manage/'.$id);?>" class="btn btn-success" style="width:150px; font-weight:bold;"><i class="fa fa-truck"></i> Terima Produk</a>
                                     
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
                                         <form class="form-check" action="<?= base_url("pembelian/closed_po/".$id) ?>">
-                                            <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold; margin-bottom:10px; border-radius:10px;"><i class="fa fa-briefcase"></i> Closed</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-briefcase"></i> Closed</button>        
                                         </form>	
                                         <?php
                                     }
@@ -263,13 +263,13 @@
                                 
                             
                                 <?php if($data["status"] === "CLOSED") : ?>
-                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
+                                    <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:150px; font-weight:bold;"><i class="fa fa-print"></i> Print</a>
                                     
                                     <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/open_pesanan_pembelian/".$id);?>">
-                                            <button type="submit" class="btn btn-success" style="width:150px; font-weight:bold; margin-bottom:10px; border-radius:10px;"><i class="fa fa-folder-open-o"></i> Publish</button>        
+                                            <button type="submit" class="btn btn-success" style="width:150px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-folder-open-o"></i> Publish</button>        
                                         </form>	
                                         <?php
                                     }
@@ -278,7 +278,7 @@
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
-                                            <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold; margin-bottom:10px; border-radius:10px;"><i class="fa fa-trash"></i> Hapus</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-trash"></i> Hapus</button>        
                                         </form>
                                         <?php
                                     }
@@ -290,7 +290,7 @@
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
-                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold; margin-bottom:10px; border-radius:10px;"><i class="fa fa-trash"></i> Hapus</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-trash"></i> Hapus</button>        
                                         </form>	
                                         <?php
                                     }

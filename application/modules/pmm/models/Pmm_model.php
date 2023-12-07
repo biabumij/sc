@@ -758,32 +758,32 @@ class Pmm_model extends CI_Model {
     function GetStatus($status)
     {
         if($status == 'WAITING'){
-            return '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-warning" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'DRAFT'){
-            return '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-warning" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'APPROVED'){
-            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'REJECTED'){
-            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'CLOSED'){
-            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'PUBLISH'){
-            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }
     }
 
 	function GetStatus2($status)
     {
         if($status == 'DRAFT'){
-            return '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-warning" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'OPEN'){
-            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'REJECT'){
-            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'CLOSED'){
-            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'DELETED'){
-            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }
 		
     }
@@ -791,50 +791,50 @@ class Pmm_model extends CI_Model {
 	function GetStatus3($status)
     {
         if($status == 'BELUM LUNAS'){
-            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'LUNAS'){
-            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }
     }
 	function GetStatus4($status)
     {
         if($status == 'PUBLISH'){
-            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'CLOSED'){
-            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }
     }
 
     function GetStatusVerif($status)
     {
         if($status == 'SUDAH'){
-            return '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'BELUM'){
-            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }
     }
 
     function GetStatusKategoriPersetujuan($status)
     {
         if($status == 'VERIFIKASI PEMBELIAN'){
-            return '<button type="button" class="btn btn-info" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-info" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'PESANAN PEMBELIAN'){
-            return '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'PERMINTAAN BAHAN & ALAT'){
-            return '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            return '<button type="button" class="btn btn-warning" style="font-weight:bold;">'.$status.'</button>';
         }
     }
 	
 	function StatusPayment($status)
     {
         if($status == 'CREATING'){
-            $output = '<button type="button" class="btn btn-warning" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            $output = '<button type="button" class="btn btn-warning" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'CREATED'){
-            $output = '<button type="button" class="btn btn-success" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            $output = '<button type="button" class="btn btn-success" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'UNCREATED'){
-            $output = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            $output = '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }else if($status == 'UNPUBLISH'){
-            $output = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;">'.$status.'</button>';
+            $output = '<button type="button" class="btn btn-danger" style="font-weight:bold;">'.$status.'</button>';
         }
 
         return $output;
@@ -3549,7 +3549,7 @@ class Pmm_model extends CI_Model {
 				$row['total']= number_format($row['total'],0,',','.');
                 $row['memo']= $row['memo'];
                 $row['lampiran'] = "<a href=" . base_url('uploads/biaya/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";  
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Biaya </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold;">Update Biaya </a>';
                 
                 $data[] = $row;
             }
@@ -3574,7 +3574,7 @@ class Pmm_model extends CI_Model {
                 $row['akun'] = $row['akun'];
                 $row['deskripsi']= $row['deskripsi'];
 				$row['jumlah']= number_format($row['jumlah'],0,',','.');
-                $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-close"></i> </a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary" style="font-weight:bold;"><i class="fa fa-edit"></i> </a>';
                 
                 $data[] = $row;
             }
@@ -3620,7 +3620,7 @@ class Pmm_model extends CI_Model {
                 $row['total_kredit']= number_format($row['total_kredit'],0,',','.');
                 $row['memo']= $row['memo'];
                 $row['lampiran'] = "<a href=" . base_url('uploads/jurnal_umum/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";  
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Jutrnal Umum </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold;">Update Jutrnal Umum </a>';
                 
                 $data[] = $row;
             }
@@ -3647,7 +3647,7 @@ class Pmm_model extends CI_Model {
                 $row['deskripsi']= $row['deskripsi'];
 				$row['debit']= number_format($row['debit'],0,',','.');
                 $row['kredit']= number_format($row['kredit'],0,',','.');
-                $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary" style="font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="font-weight:bold;"><i class="fa fa-close"></i> </a> <a href="javascript:void(0);" onclick="OpenForm('.$row['id'].')" class="btn btn-primary" style="font-weight:bold;"><i class="fa fa-edit"></i> </a>';
                 
                 $data[] = $row;
             }
@@ -3672,7 +3672,7 @@ class Pmm_model extends CI_Model {
                 $row['nama']= $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
                 $row['tanggal_invoice'] = date('d F Y',strtotime($row['tanggal_invoice']));
                 $row['nomor_invoice']= $row['nomor_invoice'];
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Tagihan </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold;">Update Tagihan </a>';
                 
                 $data[] = $row;
             }
@@ -3696,7 +3696,7 @@ class Pmm_model extends CI_Model {
                 $row['nama']= $this->crud_global->GetField('penerima',array('id'=>$row['client_id']),'nama');
                 $row['tanggal_invoice'] = date('d F Y',strtotime($row['tanggal_invoice']));
                 $row['nomor_invoice']= $row['nomor_invoice'];
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;">Update Tagihan </a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold;">Update Tagihan </a>';
                 
                 $data[] = $row;
             }
@@ -4270,7 +4270,7 @@ class Pmm_model extends CI_Model {
                 $row['nama']= $this->crud_global->GetField('penerima',array('id'=>$row['supplier_id']),'nama');
                 $row['tanggal_lolos_verifikasi'] = date('d F Y',strtotime($row['tanggal_lolos_verifikasi']));
                 $row['nomor_invoice']= $row['nomor_invoice'];
-                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold; border-radius:10px;"> Update Verifikasi</a>';
+                $row['actions'] = '<a href="javascript:void(0);" onclick="OpenFormMain('.$row['id'].')" class="btn btn-success" style="font-weight:bold;"> Update Verifikasi</a>';
                 
                 $data[] = $row;
             }

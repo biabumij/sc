@@ -102,10 +102,10 @@ class Form extends Secure_Controller {
 				$row['updated_by'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['updated_by']),'admin_name');
                 $row['updated_on'] = date('d/m/Y H:i:s',strtotime($row['updated_on']));
 				$row['lampiran'] = '<a href="'.base_url().'uploads/perubahan_sistem/'.$row['document_perubahan_sistem'].'" target="_blank">'.$row['document_perubahan_sistem'].'</a>';
-				$row['print'] = '<a href="'.site_url().'form/cetak_perubahan_sistem/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px;"><i class="fa fa-print"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'form/cetak_perubahan_sistem/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
 				$row['actions'] = '-';
 				if($this->session->userdata('admin_group_id') == 1){
-					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger" style="border-radius:10px;"><i class="fa fa-close"></i> </a>';
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteData('.$row['id'].')" class="btn btn-danger"><i class="fa fa-close"></i> </a>';
 				}
 
 				if ($row["status"] === "UNPUBLISH") {
@@ -113,7 +113,7 @@ class Form extends Secure_Controller {
                 } else if($row["status_permintaan"] == 'SEDANG DIPROSES'){
                     $row['status_permintaan'] = "Permintaan Sedang Diproses IT/Sistem";
                     if($this->session->userdata('admin_group_id') == 1){
-					$proses = '<a href="javascript:void(0);" onclick="PerubahanSistemSelesai('.$row['id'].')" class="btn btn-success" style="border-radius:10px;"><i class="fa fa-check"></i> </a>';
+					$proses = '<a href="javascript:void(0);" onclick="PerubahanSistemSelesai('.$row['id'].')" class="btn btn-success"><i class="fa fa-check"></i> </a>';
                     $row['status_permintaan'] = $proses;
                     }
                 }
@@ -123,7 +123,7 @@ class Form extends Secure_Controller {
                 } else if($row["status"] == 'UNPUBLISH'){
                     $row['approve_ti_sistem'] = 'Menunggu Persetujuan';
                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6){
-					$approve = '<a href="javascript:void(0);" onclick="ApprovePerubahanSistem('.$row['id'].')" class="btn btn-success" style="border-radius:10px;"><i class="fa fa-check"></i> </a>';
+					$approve = '<a href="javascript:void(0);" onclick="ApprovePerubahanSistem('.$row['id'].')" class="btn btn-success"><i class="fa fa-check"></i> </a>';
                     $row['approve_ti_sistem'] = $approve;
                     }
                 }
@@ -135,7 +135,7 @@ class Form extends Secure_Controller {
 
 				$upload_document = false;
                 if($row['status'] == 'PUBLISH' || $row['status'] == 'UNPUBLISH'){
-                    $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" style="border-radius:10px;" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
+                    $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
                 }
 
 				$row['document_perubahan_sistem'] = $edit;

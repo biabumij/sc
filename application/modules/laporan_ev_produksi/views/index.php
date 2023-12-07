@@ -82,11 +82,11 @@
                                                 <div class="panel panel-default">
 													<div class="col-sm-5">
 														<p><h5>Laporan Evaluasi Kapasitas Produksi</h5></p>
-                                                        <a href="#laporan_evaluasi_produksi" aria-controls="laporan_evaluasi_produksi" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+                                                        <a href="#laporan_evaluasi_produksi" aria-controls="laporan_evaluasi_produksi" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Evaluasi Nilai Persediaan</h5></p>
-                                                        <a href="#evaluasi_nilai_persediaan" aria-controls="evaluasi_nilai_persediaan" role="tab" data-toggle="tab" class="btn btn-primary" style="border-radius:10px; font-weight:bold;">Lihat Laporan</a>
+                                                        <a href="#evaluasi_nilai_persediaan" aria-controls="evaluasi_nilai_persediaan" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
 													</div>        													
                                                 </div>
                                             </div>
@@ -109,7 +109,7 @@
                                                                 <input type="text" id="filter_date_evaluasi" name="filter_date" class="form-control dtpicker" autocomplete="off" placeholder="Filter by Date">
                                                             </div>                                                           
                                                             <div class="col-sm-3">
-                                                                <button class="btn btn-default" type="submit" id="btn-print" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                                <button class="btn btn-default" type="submit" id="btn-print" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -155,7 +155,7 @@
 																<input type="text" id="filter_date_evaluasi_nilai_persediaan" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
 															</div>
 															<div class="col-sm-3">
-																<button type="submit" class="btn btn-default" style="border-radius:10px; font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
+																<button type="submit" class="btn btn-default" style="font-weight:bold;"><i class="fa fa-print"></i>  Print</button>
 															</div>
 														</form>
 														
