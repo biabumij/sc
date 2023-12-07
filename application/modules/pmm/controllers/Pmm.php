@@ -1724,7 +1724,6 @@ class Pmm extends CI_Controller {
             $chart_net[] = $net; 
         }
 
-
         // Akumulasi
         $label_chart[] = 'Akumulasi';
         $all_revenue = $this->pmm_model->getRevenueAll($arr_date);

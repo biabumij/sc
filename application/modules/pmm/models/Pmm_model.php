@@ -2326,7 +2326,6 @@ class Pmm_model extends CI_Model {
         return $nilai_persediaan_bahan_baku['total'] + $nilai_persediaan_barang_jadi['total'];
     }
 
-
     function getRevenueAll($arr_date=false,$before=false)
     {
         $output = array('total'=>0); 
