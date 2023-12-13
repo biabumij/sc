@@ -37,7 +37,7 @@
                                     <?php echo $row[0]->menu_name; ?>
                                     <div class="pull-right">
                                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
-                                            <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
+                                            <i class="fa fa-plus"></i> Buat <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= site_url('produksi/form_hpp_bahan_baku'); ?>">HPP Pergerakan Bahan Baku</a></li>

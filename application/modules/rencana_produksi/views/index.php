@@ -37,7 +37,7 @@
                                 <?php echo $row[0]->menu_name;?>
                                 <div class="pull-right">
                                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-plus"></i> Buat Baru <span class="caret"></span>
+                                        <i class="fa fa-plus"></i> Buat <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="javascript:void(0);" onclick="OpenForm()">Rencana Produksi Baru</a></li>
