@@ -163,7 +163,7 @@ class Purchase_order extends CI_Controller {
 				
 			}else if($type == 2){
 				$arr = array('status'=>'REJECTED');
-				$this->session->set_flashdata('notif_success','Berhasil menolak Permintaan !!');
+				$this->session->set_flashdata('notif_success','<b>Berhasil menolak Permintaan</b>');
 			}else {
 				$arr = array('status'=>'WAITING');
 			}
@@ -191,7 +191,7 @@ class Purchase_order extends CI_Controller {
 			);
 			if($this->db->update('pmm_purchase_order',$data,array('id'=>$id))){
 				$output['output'] = true;
-				$this->session->set_flashdata('notif_success','Berhasil Menyetujui Pesanan Pembelian !!');
+				$this->session->set_flashdata('notif_success','<b>Berhasil Menyetujui Pesanan Pembelian</b>');
 				$output['url'] = site_url('admin/pembelian');
 			}
 		}
@@ -480,14 +480,14 @@ class Purchase_order extends CI_Controller {
 		if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error','Gagal Hapus Pesanan Pembelian');
+            $this->session->set_flashdata('notif_error','<b>Gagal Hapus Pesanan Pembelian</b>');
             redirect('admin/pembelian');
         } 
         else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success','Berhasil Hapus Pesanan Pembelian');
+            $this->session->set_flashdata('notif_success','<b>Berhasil Hapus Pesanan Pembelian</b>');
             redirect('admin/pembelian');
         }
     }

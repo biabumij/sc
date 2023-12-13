@@ -295,7 +295,7 @@ class Request_materials extends CI_Controller {
 			if($type == 1){
 				$arr = array('status'=>'APPROVED','approved_by'=>$this->session->userdata('admin_id'),'approved_on'=>date('Y-m-d H:i:s'));
 
-				$this->session->set_flashdata('notif_success','Berhasil menyetujui Permintaan !!');
+				$this->session->set_flashdata('notif_success','<b>Berhasil menyetujui Permintaan</b>');
 				$this->pmm_model->CreatePO($id);
 				
 			}else if($type == 2){
