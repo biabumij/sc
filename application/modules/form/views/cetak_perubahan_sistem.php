@@ -128,10 +128,10 @@
 								Dieksekusi Oleh
                             </td>
                             <td align="left">
-								Diketahui Oleh
+								Disetujui Oleh
                             </td>
                             <td align="left">
-								Diperiksa & Disetujui Oleh
+								Diperiksa Oleh
                             </td>
                             <td align="left">
 								Diajukan Oleh
@@ -142,10 +142,10 @@
                                 <img src="<?= $ti_sistem['admin_ttd']?>" width="100px">  
                             </td>
                             <td align="left">
-								<img src="<?= $unit_head['admin_ttd']?>" width="100px">
+								<img src="<?= $direksi['admin_ttd']?>" width="100px">
                             </td>
                             <td align="left">
-								<img src="<?= $direksi['admin_ttd']?>" width="100px">   
+								<img src="<?= $unit_head['admin_ttd']?>" width="100px">
                             </td>
                             <td align="left">
 								<img src="<?= $created['admin_ttd']?>" width="100px">   
@@ -156,10 +156,10 @@
 								Nama : Ginanjar Bayu B.
                             </td>
                             <td align="left">
-								Nama : <?= $unit_head['admin_name'];?>
+								Nama : <?= $direksi['admin_name'];?>
                             </td>
                             <td align="left">
-								Nama : <?= $direksi['admin_name'];?>
+								Nama : <?= $unit_head['admin_name'];?>
                             </td>
 							<td align="left">
 								Nama : <?= $created['admin_name'];?>
@@ -170,10 +170,10 @@
 								Jabatan : TI & Sistem
                             </td>
                             <td align="left">
-								Jabatan : <?= $unit_head['admin_group_name'];?>
+								Jabatan : <?= $direksi['admin_group_name'];?>
                             </td>
                             <td align="left">
-								Jabatan : <?= $direksi['admin_group_name'];?>
+								Jabatan : <?= $unit_head['admin_group_name'];?>
                             </td>
                             <td align="left">
 								Jabatan : <?= $created['admin_group_name'];?>
@@ -184,10 +184,10 @@
 								Tgl. : <?= date('d/m/y',strtotime($row['tanggal_ti_sistem']));?>
                             </td>
                             <td align="left">
-								Tgl. : <?= date('d/m/y',strtotime($row['created_on']));?>
+								Tgl. : <?= date('d/m/y',strtotime($row['updated_on']));?>
                             </td>
                             <td align="left">
-								Tgl. : <?= date('d/m/y',strtotime($row['updated_on']));?>
+								Tgl. : <?= date('d/m/y',strtotime($row['created_on']));?>
                             </td>
                             <td align="left">
 								Tgl. : <?= date('d/m/y',strtotime($row['created_on']));?>

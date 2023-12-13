@@ -232,6 +232,34 @@
 													</div>
                                             </div>
                                             <input type="hidden" name="total_product" id="total-product" value="<?= $key + 1 ?>">
+                                            <div class="form-group">
+                                                <label class="col-sm-7 control-label">DP/ Muka</label>
+                                                <div class="col-sm-5 text-right">
+                                                    <input type="text" id="uang-muka" class="form-control numberformat text-right" name="uang_muka" >
+                                                    <div id="dp-form" style="margin-top:10px;display: none;">
+                                                        <select id="bayar_dari_dp" name="bayar_dari_dp" class="form-control" style="margin-bottom: 10px" >
+                                                            <option value="">Setor Ke</option>
+                                                            <?php
+                                                            if(!empty($setor_bank)){
+                                                                foreach ($setor_bank as  $sb) {
+                                                                    ?>
+                                                                    <option value="<?= $sb['id'];?>"><?= $sb['coa'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>  
+                                                        </select>
+                                                        <input type="text" id="nomor_transaksi_dp" class="form-control" name="nomor_transaksi_dp" placeholder="Nomor Transaksi" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-7 control-label">Sisa Tagihan</label>
+                                                <div class="col-sm-5 text-right">
+                                                    <input type="text" id="total-tagihan" class="form-control numberformat text-right" name="total_tagihan" >
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <br /><br />
@@ -250,18 +278,16 @@
     </div>
     </div>
 
-    <script type="text/javascript">
-        var form_control = '';
-    </script>
     <?php echo $this->Templates->Footer(); ?>
-
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
-
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/bootbox.min.js"></script>
-
+    <script type="text/javascript">
+        var form_control = '';
+    </script>
+    
     <script type="text/javascript">
         Date.prototype.addDays = function(days) {
             var date = new Date(this.valueOf());
@@ -271,7 +297,7 @@
 
         $('.form-select2').select2();
 
-        $('input.numberformat').number(true, 2, ',', '.');
+        $('input.numberformat').number(true, 0, ',', '.');
         $('.dtpicker').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
@@ -283,6 +309,156 @@
             $(this).val(picker.startDate.format('DD-MM-YYYY'));
             // table.ajax.reload();
         });
+
+        function changeData(id)
+        {
+            var product = $('#product-'+id).val();
+            // var product_price = $('#product-'+id).attr('data-price');
+            var qty = $('#qty-'+id).val();
+            var price = $('#price-'+id).val();
+            var tax = $('#tax-'+id).val();
+            var pajak = $('#pajak-'+id).val();
+            var total = $('#total-'+id).val();
+
+            
+            $('.tax-group').hide();
+            
+            if(product == ''){
+                alert('Pilih Produk Terlebih dahulu');
+            }else {
+
+                if(qty == '' || qty == 0){
+                    $('#qty-'+id).val(1);
+                    qty = $('#qty-'+id).val();
+                }
+
+                // $('#price-'+id).val(price);
+                total = ( qty * price);
+                $('#total-'+id).val(total);
+                getTotal();
+
+            }
+        }
+
+        function getTotal()
+        {
+            // alert('áaaa');
+
+            var total_product = $('#total-product').val();
+            $('#sub-total-val').val(0);
+            $('#tax-val-3').val(0);
+            $('#tax-val-4').val(0);
+            $('#tax-val-5').val(0);
+            $('#tax-val-6').val(0);
+            $('#pajak-val-3').val(0);
+            $('#pajak-val-4').val(0);
+            $('#pajak-val-5').val(0);
+            $('#pajak-val-6').val(0);
+            var sub_total = $('#sub-total-val').val();
+            var tax_3 = $('#tax-val-3').val();
+            var tax_4 = $('#tax-val-4').val();
+            var tax_5 = $('#tax-val-5').val();
+            var tax_6 = $('#tax-val-6').val();
+            var pajak_3 = $('#pajak-val-3').val();
+            var pajak_4 = $('#pajak-val-4').val();
+            var pajak_5 = $('#pajak-val-5').val();
+            var pajak_6 = $('#pajak-val-6').val();
+            var total_total = $('#total-val').val();
+            
+            for (var i = 0; i <= total_product; i++) {
+                // $('#measure-'+i).val('M3');
+                // console.log()
+                // console.log($('#total-'+i).val());
+                var tax = $('#tax-'+i).val();
+                var pajak = $('#pajak-'+i).val();
+                if($('#total-'+i).val() > 0){
+                    sub_total = parseInt(sub_total) + parseInt($('#total-'+i).val());
+                }
+
+                if(tax == 3){
+                    $('#tax-total-3').show();
+                    tax_3 = parseInt(tax_3) + (parseInt($('#total-'+i).val()) * 10) / 100 ;
+                }
+                if(tax == 4){
+                    $('#tax-total-4').show();
+                    tax_4 = parseInt(tax_4) + (parseInt($('#total-'+i).val()) * 0) / 100 ;
+                }
+                if(tax == 5){
+                    $('#tax-total-5').show();
+                    tax_5 = parseInt(tax_5) + (parseInt($('#total-'+i).val()) * 2) / 100 ;
+                }
+                if(tax == 6){
+                    $('#tax-total-6').show();
+                    tax_5 = parseInt(tax_6) + (parseInt($('#total-'+i).val()) * 11) / 100 ;
+                }
+                if(pajak == 3){
+                    $('#pajak-total-3').show();
+                    pajak_3 = parseInt(pajak_3) + (parseInt($('#total-'+i).val()) * 10) / 100 ;
+                }
+                if(pajak == 4){
+                    $('#pajak-total-4').show();
+                    pajak_4 = parseInt(pajak_4) + (parseInt($('#total-'+i).val()) * 0) / 100 ;
+                }
+                if(pajak == 5){
+                    $('#pajak-total-5').show();
+                    pajak_5 = parseInt(pajak_5) + (parseInt($('#total-'+i).val()) * 2) / 100 ;
+                }
+                if(pajak == 6){
+                    $('#pajak-total-6').show();
+                    pajak_6 = parseInt(pajak_6) + (parseInt($('#total-'+i).val()) * 11) / 100 ;
+                }
+                
+            }
+            $('#sub-total-val').val(sub_total);
+            $('#sub-total').text($.number( sub_total, 2,',','.' ));
+
+
+            $('#tax-val-3').val(tax_3);
+            $('#tax-total-3  label.label-show').text($.number( tax_3, 2,',','.' ));
+
+            $('#tax-val-4').val(tax_4);
+            $('#tax-total-4 label.label-show').text($.number( tax_4, 2,',','.' ));
+
+            $('#tax-val-5').val(tax_5);
+            $('#tax-total-5 label.label-show').text($.number( tax_5, 2,',','.' ));
+
+            $('#tax-val-6').val(tax_5);
+            $('#tax-total-6 label.label-show').text($.number( tax_6, 2,',','.' ));
+
+            $('#pajak-val-3').val(pajak_3);
+            $('#pajak-total-3 h5').text($.number( pajak_3, 2,',','.' ));
+
+            $('#pajak-val-4').val(pajak_4);
+            $('#pajak-total-4 h5').text($.number( pajak_4, 2,',','.' ));
+
+            $('#pajak-val-5').val(pajak_5);
+            $('#pajak-total-5 h5').text($.number( pajak_5, 2,',','.' ));
+
+            $('#pajak-val-6').val(pajak_6);
+            $('#pajak-total-6 h5').text($.number( pajak_6, 2,',','.' ));
+
+            total_total = parseInt(sub_total) + (parseInt(tax_3) - parseInt(tax_4) - parseInt(tax_5) + parseInt(tax_6)) + (parseInt(pajak_3) - parseInt(pajak_4) - parseInt(pajak_5) + parseInt(pajak_6));
+            $('#total-val').val(total_total);
+            $('#total').text($.number( total_total, 2,',','.' ));
+
+            var uang_muka = $('#uang-muka').val();
+            var total_tagihan = total_total - uang_muka;
+            $("#total-tagihan").val(total_tagihan);
+        }
+
+        $('#uang-muka').keyup(function(){
+            var val = $(this).val();
+            var total = $('#total-val').val();
+
+            var total_tagihan = total - val;
+
+            $("#total-tagihan").val(total_tagihan);
+            if(val > 0){
+                $('#dp-form').show();
+                $('#nomor_transaksi_dp').attr('required',true);
+                $('#bayar_dari_dp').attr('required',true);
+            }
+        }); 
 
         $('#form-po').submit(function(e) {
             e.preventDefault();

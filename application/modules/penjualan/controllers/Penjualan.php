@@ -1055,6 +1055,8 @@ class Penjualan extends Secure_Controller
 
 			$data['noInvoice'] = $this->pmm_finance->NoInvoice();
 
+			$data['setor_bank'] = $this->pmm_finance->BankCash();
+
 			$this->load->view('penjualan/penagihan_penjualan', $data);
 		} else {
 			redirect('admin');
@@ -1076,6 +1078,9 @@ class Penjualan extends Secure_Controller
 		$sub_total = $this->input->post('sub_total');
 		$ppn = $this->input->post('ppn');
 		$total = $this->input->post('total');
+		$uang_muka = $this->input->post('uang_muka');
+        $uang_muka = str_replace('.', '', $uang_muka);
+        $uang_muka = str_replace(',', '.', $uang_muka);
 		$sales_po_id = $this->input->post('sales_po_id');
 		$client_id = $this->input->post('client_id');
 
@@ -1098,6 +1103,7 @@ class Penjualan extends Secure_Controller
 			'nomor_invoice' => $this->input->post('nomor_invoice'),
 			'jenis_pekerjaan' => $this->input->post('jenis_pekerjaan'),
 			'total' => $total,
+			'uang_muka' => $uang_muka,
 			'memo' => $this->input->post('memo'),
 			'status' => 'DRAFT',
 			'status_pembayaran' => 'BELUM LUNAS',
@@ -1190,6 +1196,21 @@ class Penjualan extends Secure_Controller
 					redirect('penjualan/penagihan_penjualan/' . $this->input->post('idSurat'));
 					exit();
 				}
+
+				if ($uang_muka > 0) {
+                    $arr_bayar = array(
+                        'penagihan_id' => $tagihan_id,
+                        'nama_pelanggan' => $nama_pelanggan,
+                        'setor_ke' => $this->input->post('bayar_dari_dp'),
+                        'nomor_transaksi' => $this->input->post('nomor_transaksi_dp'),
+                        'total' => $uang_muka,
+                        'tanggal_pembayaran' => date('Y-m-d', strtotime($tanggal_invoice)),
+                        'status' => 'DISETUJUI',
+                        'created_by' => $this->session->userdata('admin_id'),
+                        'created_on' => date('Y-m-d H:i:s')
+                    );
+                    $this->db->insert('pmm_pembayaran', $arr_bayar);
+                }
 			}
 
 			$arr_surat_jalan = explode(',', $surat_jalan);
@@ -1872,6 +1893,55 @@ class Penjualan extends Secure_Controller
 		
 		echo json_encode($output);	
 	}
+
+	public function uang_muka($id)
+    {
+        $check = $this->m_admin->check_login();
+        if ($check == true) {
+
+            $this->db->select('po.*');
+            $data['row'] = $this->db->get_where('pmm_sales_po po', ["po.id" => $id])->row_array();
+
+            $this->load->view('penjualan/uang_muka', $data);
+        } else {
+            redirect('admin');
+        }
+    }
+
+	public function submit_uang_muka()
+    {
+
+        $this->db->trans_start(); # Starting Transaction
+        $this->db->trans_strict(FALSE); #
+
+        $uang_muka = $this->input->post('uang_muka');
+        $uang_muka = str_replace('.', '', $uang_muka);
+        $uang_muka = str_replace(',', '.', $uang_muka);
+
+        $sales_po_id = $this->input->post('sales_po_id');
+        $arr_update = array(
+            'id' => $sales_po_id,
+            'uang_muka' => $uang_muka,
+            'updated_by' => $this->session->userdata('admin_id'),
+            'updated_on' => date('Y-m-d H:i:s')
+        );
+
+        $this->db->where('id', $sales_po_id);
+        $this->db->update('pmm_sales_po', $arr_update);
+
+        if ($this->db->trans_status() === FALSE) {
+            # Something went wrong.
+            $this->db->trans_rollback();
+            $this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
+            redirect('penjualan/dataSalesPO/' . $sales_po_id);
+        } else {
+            # Everything is Perfect. 
+            # Committing data to the database.
+            $this->db->trans_commit();
+            $this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
+            redirect('penjualan/dataSalesPO/' . $sales_po_id);
+        }
+    }
 
 	
 }

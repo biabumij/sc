@@ -197,7 +197,10 @@
                 <th colspan="6" align="right">TOTAL</th>
                 <th align="right"><?= number_format($total,0,',','.'); ?></th>
             </tr>
-           	
+			<tr>
+                <th colspan="6" align="right">UANG MUKA (<?= number_format($presentase_uang_muka,0,',','.'); ?>%)</th>
+                <th align="right"><?= number_format($row['uang_muka'],0,',','.'); ?></th>
+            </tr>
 		</table>
 		<br />
 	    <p><b>Memo</b></p>

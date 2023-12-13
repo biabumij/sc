@@ -68,7 +68,7 @@
                                             <?php endforeach; ?>
                                             <?php foreach ($details_req as $x): ?>
                                             <tr>
-                                                <th>No. Permintaan</th>
+                                                <th>No. Permintaan Bahan & Alat</th>
                                                 <th><a target="_blank" href="<?= base_url("pmm/request_materials/manage/".$x['request_material_id']) ?>"><?php echo $this->crud_global->GetField('pmm_request_materials',array('id'=>$x['request_material_id']),'request_no');?></a></th>   
                                             </tr>
                                             <?php endforeach; ?>
@@ -243,7 +243,7 @@
                                 if($data['status'] == 'PUBLISH'){
                                     ?>
 
-                                    <a href="<?= site_url('pembelian/uang_muka/'.$id);?>" class="btn btn-warning" style="width:150px; font-weight:bold;"><i class="fa fa-money"></i> Uang Muka</a>
+                                    <a href="<?= site_url('pembelian/uang_muka/'.$id);?>" class="btn btn-default" style="width:150px; font-weight:bold;"><i class="fa fa-money"></i> Uang Muka</a>
 
                                     <a href="<?= site_url('pmm/purchase_order/get_pdf/'.$id);?>" target="_blank" class="btn btn-default" style="width:150px; font-weight:bold;"><i class="fa fa-print"></i> Print</a>
                                     
@@ -290,7 +290,7 @@
                                     if($this->session->userdata('admin_group_id') == 1){
                                         ?>
                                         <form class="form-check" action="<?= site_url("pmm/purchase_order/delete/".$id);?>">
-                                            <button type="submit" class="btn btn-danger" style="width:200px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-trash"></i> Hapus</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold; margin-bottom:10px;"><i class="fa fa-trash"></i> Hapus</button>        
                                         </form>	
                                         <?php
                                     }
