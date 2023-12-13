@@ -346,8 +346,8 @@
                             </div>
                             <div class="container-fluid">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#menu1" aria-controls="menu2" role="tab" data-toggle="tab" style="font-weight-bold; border-radius:10px 0px 10px 0px;">Daftar Surat Jalan</a></li>
-                                    <li role="presentation"><a href="#menu2" aria-controls="menu2" role="tab" data-toggle="tab" style="font-weight-bold; border-radius:10px 0px 10px 0px;">Daftar Penerimaan</a></li>
+                                    <li role="presentation" class="active"><a href="#menu1" aria-controls="menu2" role="tab" data-toggle="tab" style="font-weight:bold; border-radius:10px 0px 10px 0px;">Daftar Surat Jalan</a></li>
+                                    <li role="presentation"><a href="#menu2" aria-controls="menu2" role="tab" data-toggle="tab" style="font-weight:bold; border-radius:10px 0px 10px 0px;">Daftar Penerimaan</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="menu1">
