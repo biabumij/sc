@@ -232,7 +232,7 @@
                                         if($this->session->userdata('admin_group_id') == 1){
                                         ?>
                                             <form class="form-check" action="<?= base_url("pembelian/hapus_penawaran_pembelian/".$row["id"]) ?>">
-                                                <button type="submit" class="btn btn-danger" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</button>
+                                                <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</button>
                                             </form>
                                         <?php
                                         }
