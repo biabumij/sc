@@ -1701,7 +1701,7 @@ class Pembelian extends Secure_Controller
         $this->db->set("updated_on", date('Y-m-d H:i:s'));
         $this->db->where("id", $id);
         $this->db->update("pmm_purchase_order");
-        $this->session->set_flashdata('notif_success', 'Peseanan Pembelian Closed');
+        $this->session->set_flashdata('notif_success', '<b>Pesanan Pembelian Closed</b>');
         redirect("admin/pembelian");
     }
 
