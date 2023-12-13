@@ -230,7 +230,7 @@
                                
                                 <a href="<?= base_url("pmm/productions/add?po_id=".$sales_po["id"]) ?>"  class="btn btn-success" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-truck"></i> Kirim Produk</a>
 								
-                                <a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-warning" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-truck"></i> Retur</a>
+                                <a href="<?= base_url("pmm/productions/add_retur?po_id=".$sales_po["id"]) ?>"  class="btn btn-danger" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-truck"></i> Retur</a>
                                 
                                 <?php
                                     if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
