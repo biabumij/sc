@@ -1471,7 +1471,7 @@ class Penjualan extends Secure_Controller
 			'memo' => $this->input->post('memo'),
 			'pembayaran' => $pembayaran_pro,
 			'total' => $pembayaran_pro,
-			'status' => 'Disetujui',
+			'status' => 'DISETUJUI',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
 		);

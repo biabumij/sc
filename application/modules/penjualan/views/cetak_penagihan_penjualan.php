@@ -191,10 +191,19 @@
 
             $total = $subtotal + $tax_ppn - $tax_pph + $tax_ppn11;
             ?>
+
+			<?php
+				$presentase_uang_muka = ($penagihan['uang_muka'] / $total) * 100;
+			?>
+
+			<tr>
+				<th colspan="5" align="right">Uang Muka (<?= number_format($presentase_uang_muka,0,',','.'); ?>%)</th>
+				<th  align="right"><?= number_format($penagihan['uang_muka'],0,',','.'); ?></th>
+			</tr>
 			<tr>
 				<th colspan="4"></th>
                 <th class="table-active">TOTAL</th>
-                <th align="right" class="table-active"><?= number_format($total,0,',','.'); ?></th>
+                <th align="right" class="table-active"><?= number_format($total - $penagihan['uang_muka'],0,',','.'); ?></th>
             </tr>
             
             <tr>
