@@ -108,12 +108,12 @@
                                                     <input type="hidden" name="product_id_<?= $key + 1 ?>" value="<?= $row["product_id"] ?>">
                                                     <tr>
                                                         <td><?= $key + 1 ?>.</td>
-                                                        <td>
+                                                        <td class="text-left">
 															<?= $row['nameProduk'] ?>
                                                         </td>
                                                         <td class="text-center">
 															<!-- <?= $this->filter->Rupiah($row['volume']); ?>-->
-                                                            <?= number_format($row['volume'],0,',','.'); ?>
+                                                            <?= number_format($row['volume'],2,',','.'); ?>
 															<input type="hidden" min="0" name="qty_<?= $key+1; ?>" id="qty-<?= $key; ?>" value="<?= $row['volume'];?>" class="form-control input-sm text-center" required="" readonly />
 														</td>
                                                         <td class="text-center">
