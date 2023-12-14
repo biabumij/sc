@@ -1027,7 +1027,7 @@ class Penjualan extends Secure_Controller
 			$this->db->join('pmm_taxs pt', 'pp.tax_id = pt.id', 'left');
 			$this->db->group_by('pp.product_id');
 
-			$data['cekHarga'] = $this->db->select('pp.*')
+			$data['cekHarga'] = $this->db->select('pp.*, sum(pp.volume) as volume')
 			->from('pmm_productions pp')
 			->join('produk pd','pp.product_id = pd.id','left')
 			->order_by('pd.nama_produk','asc')
