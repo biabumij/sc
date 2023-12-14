@@ -1026,8 +1026,14 @@ class Penjualan extends Secure_Controller
 			$this->db->join('produk p', 'p.id = pp.product_id', 'left');
 			$this->db->join('pmm_taxs pt', 'pp.tax_id = pt.id', 'left');
 			$this->db->group_by('pp.product_id');
-			$data['cekHarga'] = $this->db->get('pmm_productions pp')->result_array();
-			
+
+			$data['cekHarga'] = $this->db->select('pp.*')
+			->from('pmm_productions pp')
+			->join('produk pd','pp.product_id = pd.id','left')
+			->order_by('pd.nama_produk','asc')
+			->get()->result_array();
+
+			//$data['cekHarga'] = $this->db->get('pmm_productions pp')->result_array();
 			// return var_dump($data['cekSurat'][0]);
 
 			$data['id'] = $id;
@@ -1196,21 +1202,25 @@ class Penjualan extends Secure_Controller
 					redirect('penjualan/penagihan_penjualan/' . $this->input->post('idSurat'));
 					exit();
 				}
+			}
 
-				if ($uang_muka > 0) {
-                    $arr_bayar = array(
-                        'penagihan_id' => $tagihan_id,
-                        'nama_pelanggan' => $nama_pelanggan,
-                        'setor_ke' => $this->input->post('bayar_dari_dp'),
-                        'nomor_transaksi' => $this->input->post('nomor_transaksi_dp'),
-                        'total' => $uang_muka,
-                        'tanggal_pembayaran' => date('Y-m-d', strtotime($tanggal_invoice)),
-                        'status' => 'DISETUJUI',
-                        'created_by' => $this->session->userdata('admin_id'),
-                        'created_on' => date('Y-m-d H:i:s')
-                    );
-                    $this->db->insert('pmm_pembayaran', $arr_bayar);
-                }
+			if ($uang_muka > 0) {
+				$arr_bayar = array(
+					'penagihan_id' => $tagihan_id,
+					'client_id' => $client_id,
+					'nama_pelanggan' => $nama_pelanggan,
+					'setor_ke' => $this->input->post('bayar_dari_dp'),
+					'cara_pembayaran' => $this->input->post('cara_pembayaran'),
+					'nomor_transaksi' => $this->input->post('nomor_transaksi_dp'),
+					'memo' => 'Uang Muka',
+					'total' => $uang_muka,
+					'pembayaran' => $uang_muka,
+					'tanggal_pembayaran' => date('Y-m-d', strtotime($tanggal_invoice)),
+					'status' => 'DISETUJUI',
+					'created_by' => $this->session->userdata('admin_id'),
+					'created_on' => date('Y-m-d H:i:s')
+				);
+				$this->db->insert('pmm_pembayaran', $arr_bayar);
 			}
 
 			$arr_surat_jalan = explode(',', $surat_jalan);
@@ -1224,13 +1234,13 @@ class Penjualan extends Secure_Controller
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
+			$this->session->set_flashdata('notif_error','<b>Gagal Membuat Tagihan</b>');
 			redirect('admin/penjualan#settings');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
+			$this->session->set_flashdata('notif_success','<b>Berhasil Membuat Tagihan</b>');
 			redirect('admin/penjualan#settings');
 		}
 	}
@@ -1243,7 +1253,14 @@ class Penjualan extends Secure_Controller
 			$this->db->select('pp.*, SUM(ppp.total) as pembayaran');
             $this->db->join('pmm_pembayaran ppp', 'pp.id = ppp.penagihan_id', 'left');
 			$data['penagihan'] = $this->db->get_where('pmm_penagihan_penjualan pp', array('pp.id' => $id))->row_array();
-			$data['cekHarga'] = $this->db->get_where('pmm_penagihan_penjualan_detail', ["penagihan_id" => $id])->result_array();
+			$data['cekHarga'] = $this->db->select('ppd.*')
+			->from('pmm_penagihan_penjualan_detail ppd')
+			
+			->join('produk p','ppd.product_id = p.id','left')
+			->where("ppd.penagihan_id = $id ")
+			->order_by('p.nama_produk','asc')
+			->get()->result_array();
+			//$data['cekHarga'] = $this->db->get_where('pmm_penagihan_penjualan_detail', ["penagihan_id" => $id])->result_array();
 			$data['taxs'] = $this->db->select('id,tax_name')->get_where('pmm_taxs', array('status' => 'PUBLISH'))->result_array();
 			$data['dataLampiran'] = $this->db->get_where('pmm_lampiran_penagihan', ["penagihan_id" => $id])->result_array();
 			$this->load->view('penjualan/detailPenagihan', $data);
@@ -1293,7 +1310,6 @@ class Penjualan extends Secure_Controller
 			$this->db->delete('pmm_pembayaran', array('penagihan_id' => $id));
 			$this->db->delete('pmm_penagihan_penjualan', array('id' => $id));
 
-
 			// update surat jalan
 			$surat_jalan = explode(',', $penagihan['surat_jalan']);
 			foreach ($surat_jalan as $key => $sj) {
@@ -1303,13 +1319,13 @@ class Penjualan extends Secure_Controller
 			if ($this->db->trans_status() === FALSE) {
 				# Something went wrong.
 				$this->db->trans_rollback();
-				$this->session->set_flashdata('notif_error','<b>Gagal Menghapus Tagihan Penjualan</b>');
+				$this->session->set_flashdata('notif_error','<b>Gagal Menghapus Tagihan</b>');
 				redirect('penjualan/detailPenagihan/' . $id);
 			} else {
 				# Everything is Perfect. 
 				# Committing data to the database.
 				$this->db->trans_commit();
-				$this->session->set_flashdata('notif_success','<b>Berhasil Menghapus Tagihan Penjualan</b>');
+				$this->session->set_flashdata('notif_success','<b>Berhasil Menghapus Tagihan</b>');
 				redirect('admin/penjualan');
 			}
 		}
@@ -1569,7 +1585,7 @@ class Penjualan extends Secure_Controller
 				$row['saldo'] = 0;
 				$row['setor_ke'] = $this->crud_global->GetField('pmm_coa', array('id' => $row['setor_ke']), 'coa');
 				$row['tanggal_pembayaran'] = date('d/m/Y', strtotime($row['tanggal_pembayaran']));
-				$row['total'] = number_format($row["total"], 2, ',', '.');
+				$row['total'] = number_format($row["total"], 0, ',', '.');
 				$row['status'] = ('Disetujui');
 
 				if ($row['status'] == 'Disetujui') {

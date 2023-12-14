@@ -233,11 +233,11 @@
                                             </div>
                                             <input type="hidden" name="total_product" id="total-product" value="<?= $key + 1 ?>">
                                             <div class="form-group">
-                                                <label class="col-sm-7 control-label">DP/ Muka</label>
+                                                <label class="col-sm-7 control-label">Uang Muka</label>
                                                 <div class="col-sm-5 text-right">
                                                     <input type="text" id="uang-muka" class="form-control numberformat text-right" name="uang_muka" >
                                                     <div id="dp-form" style="margin-top:10px;display: none;">
-                                                        <select id="bayar_dari_dp" name="bayar_dari_dp" class="form-control" style="margin-bottom: 10px" >
+                                                        <select id="bayar_dari_dp" name="bayar_dari_dp" class="form-control text-right" style="margin-bottom: 10px">
                                                             <option value="">Setor Ke</option>
                                                             <?php
                                                             if(!empty($setor_bank)){
@@ -249,11 +249,18 @@
                                                             }
                                                             ?>  
                                                         </select>
-                                                        <input type="text" id="nomor_transaksi_dp" class="form-control" name="nomor_transaksi_dp" placeholder="Nomor Transaksi" >
+                                                        
+                                                        <select id="cara_pembayaran" name="cara_pembayaran" class="form-control text-right" style="margin-bottom: 10px" >
+                                                            <option value="">Pilih Cara Pembayaran</option>
+                                                            <option value="Transfer">Transfer</option>
+                                                            <option value="Tunai">Tunai</option>
+                                                            <option value="Cek Giro">Cek Giro</option>
+                                                        </select>
+
+                                                        <input type="text" id="nomor_transaksi_dp" class="form-control text-right" name="nomor_transaksi_dp" placeholder="Nomor Transaksi">
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="col-sm-7 control-label">Sisa Tagihan</label>
                                                 <div class="col-sm-5 text-right">
@@ -457,6 +464,7 @@
                 $('#dp-form').show();
                 $('#nomor_transaksi_dp').attr('required',true);
                 $('#bayar_dari_dp').attr('required',true);
+                $('#cara_pembayaran').attr('required',true);
             }
         }); 
 

@@ -106,12 +106,12 @@
                                         <thead>
                                             <tr>
                                                 <th width="5%">No</th>
-                                                <th>Produk</th>
-                                                <th width="7%">Volume</th>
+                                                <th style="text-align: left !important;">Produk</th>
+                                                <th width="10%">Volume</th>
                                                 <th>Satuan</th>
                                                 <th>Harga Satuan</th>
-                                                <th width="10%">Pajak</th>
-                                                <th width="20%">Jumlah</th>
+                                                <th>Pajak</th>
+                                                <th>Jumlah</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -131,7 +131,7 @@
                                                 <tr>
                                                     <td><?= $key + 1 ?>.</td>
                                                     <td style="text-align: left !important;"><?= $product; ?></td>
-                                                    <td><?= $row['qty']; ?></td>
+                                                    <td style="text-align: right !important;"><?= $row['qty']; ?></td>
                                                     <td><?= $row['measure']; ?></td>
                                                     <td style="text-align: right !important;"><?= number_format($row['price'],0,',','.'); ?></td>
                                                     <td><?= $taxs; ?></td>
@@ -271,10 +271,10 @@
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                                 ?>
                                                 <form class="form-approval" action="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>">
-                                                    <button type="submit" class="btn btn-success btn-sm" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>
+                                                    <button type="submit" class="btn btn-success btn-sm" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>
                                                 </form>
                                                 <form class="form-approval" action="<?= base_url("penjualan/rejectPenagihan/" . $penagihan["id"]) ?>">
-                                                    <button type="submit" class="btn btn-danger btn-sm" style="margin-top:10px; width:200px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>
                                                 </form>
                                             <?php
                                             }
