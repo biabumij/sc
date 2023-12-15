@@ -41,6 +41,11 @@
 	  ?>
 
 	  <style type="text/css">
+		body {
+			font-family: helvetica;
+			font-size: 8px;
+		}
+		
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
@@ -107,8 +112,8 @@
 					$subtotal_volume = 0;
 					?>
 					<?php
-					$subtotal_presentase = $sups['presentase_a'] + $sups['presentase_b'] + $sups['presentase_c'] + $sups['presentase_d'] + $sups['presentase_e'];
-					$subtotal_volume = str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_a']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_b']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_c']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_d']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_e']);
+					$subtotal_presentase = $sups['presentase_a'] + $sups['presentase_b'] + $sups['presentase_c'] + $sups['presentase_d'] + $sups['presentase_e'] + $sups['presentase_f'];
+					$subtotal_volume = str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_a']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_b']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_c']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_d']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_e']) + str_replace(['.', ','], ['', '.'], $sups['jumlah_pemakaian_f']);
 					?>
             		<tr class="table-baris1">
             			<td align="center"><?php echo $key + 1;?></td>
@@ -125,27 +130,34 @@
 						<td align="right"><?php echo $sups['jumlah_pemakaian_b'];?></td>
 					</tr>
 					<tr class="table-baris1">
-						<td align="center"><?php echo $key + 3;?></td>						
+						<td align="center"><?php echo $key + 3;?></td>			
+						<td align="left"><?php echo $sups['produk_f'] = $this->crud_global->GetField('produk',array('id'=>$sups['produk_f']),'nama_produk'); ?></td>
+						<td align="center"><?php echo $sups['measure_f'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_f']),'measure_name'); ?></td>
+						<td align="center"><?php echo $sups['presentase_f'];?> %</td>
+						<td align="right"><?php echo $sups['jumlah_pemakaian_f'];?></td>
+					</tr>
+					<tr class="table-baris1">
+						<td align="center"><?php echo $key + 4;?></td>						
 						<td align="left"><?php echo $sups['produk_c'] = $this->crud_global->GetField('produk',array('id'=>$sups['produk_c']),'nama_produk'); ?></td>
 						<td align="center"><?php echo $sups['measure_c'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_c']),'measure_name'); ?></td>
 						<td align="center"><?php echo $sups['presentase_c'];?> %</td>
 						<td align="right"><?php echo $sups['jumlah_pemakaian_c'];?></td>
 					</tr>
 					<tr class="table-baris1">
-						<td align="center"><?php echo $key + 4;?></td>					
+						<td align="center"><?php echo $key + 5;?></td>					
 						<td align="left"><?php echo $sups['produk_d'] = $this->crud_global->GetField('produk',array('id'=>$sups['produk_d']),'nama_produk'); ?></td>
 						<td align="center"><?php echo $sups['measure_d'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_d']),'measure_name'); ?></td>
 						<td align="center"><?php echo $sups['presentase_d'];?> %</td>
 						<td align="right"><?php echo $sups['jumlah_pemakaian_d'];?></td>
 					</tr>
 					<tr class="table-baris1">
-						<td align="center"><?php echo $key + 5;?></td>			
+						<td align="center"><?php echo $key + 6;?></td>			
 						<td align="left"><?php echo $sups['produk_e'] = $this->crud_global->GetField('produk',array('id'=>$sups['produk_e']),'nama_produk'); ?></td>
 						<td align="center"><?php echo $sups['measure_e'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_e']),'measure_name'); ?></td>
 						<td align="center"><?php echo $sups['presentase_e'];?> %</td>
 						<td align="right"><?php echo $sups['jumlah_pemakaian_e'];?></td>
 					</tr>
-            			<?php
+            		<?php
             	}
             }
             ?>

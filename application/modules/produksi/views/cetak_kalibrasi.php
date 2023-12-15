@@ -6,7 +6,7 @@
 	  
 	  <style type="text/css">
 	  	body{
-	  		font-family: "Open Sans", Arial, sans-serif;
+			font-family: helvetica;
 	  	}
 	  	table.minimalistBlack {
 		  border: 0px solid #000000;
@@ -85,7 +85,7 @@
             </tr>
 			<?php
 			$total = 0;
-			$total = $row["presentase_a"] + $row["presentase_b"] + $row["presentase_c"] + $row["presentase_d"] + $row["presentase_e"];
+			$total = $row["presentase_a"] + $row["presentase_b"] + $row["presentase_c"] + $row["presentase_d"] + $row["presentase_e"] + $row["presentase_f"];
 			?>
                <tr>
 					<td align="center">1.</td>
@@ -99,20 +99,27 @@
 					<td align="center"><?= $row["measure_b"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_b']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_b"]; ?> %</td>
 				</tr>
+				
 				<tr>
 					<td align="center">3.</td>
+					<td align="left"><?= $row["produk_f"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_f']),'nama_produk'); ?></td>
+					<td align="center"><?= $row["measure_f"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_f']),'measure_name'); ?></td>
+					<td align="center"><?= $row["presentase_f"]; ?> %</td>
+				</tr>
+				<tr>
+					<td align="center">4.</td>
 					<td align="left"><?= $row["produk_c"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_c']),'nama_produk'); ?></td>
 					<td align="center"><?= $row["measure_c"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_c']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_c"]; ?> %</td>
 				</tr>
 				<tr>
-					<td align="center">4.</td>
+					<td align="center">5.</td>
 					<td align="left"><?= $row["produk_d"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_d']),'nama_produk'); ?></td>
 					<td align="center"><?= $row["measure_d"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_d']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_d"]; ?> %</td>
 				</tr>
 				<tr>
-					<td align="center">5.</td>
+					<td align="center">6.</td>
 					<td align="left"><?= $row["produk_e"] = $this->crud_global->GetField('produk',array('id'=>$row['produk_e']),'nama_produk'); ?></td>
 					<td align="center"><?= $row["measure_e"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_e']),'measure_name'); ?></td>
 					<td align="center"><?= $row["presentase_e"]; ?> %</td>

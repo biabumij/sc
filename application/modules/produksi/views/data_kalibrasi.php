@@ -111,20 +111,26 @@
                                             <td class="text-center"><?= $kalibrasi["measure_b"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$kalibrasi['measure_b']),'measure_name'); ?></td>
 											<td class="text-center"><?= $kalibrasi["presentase_b"]; ?> %</td>
                                         </tr>
-										<tr>
+                                        <tr>
                                             <td class="text-center">3.</td>
+                                            <td class="text-left"><?= $kalibrasi["produk_f"] = $this->crud_global->GetField('produk',array('id'=>$kalibrasi['produk_f']),'nama_produk'); ?></td>
+                                            <td class="text-center"><?= $kalibrasi["measure_f"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$kalibrasi['measure_f']),'measure_name'); ?></td>
+											<td class="text-center"><?= $kalibrasi["presentase_f"]; ?> %</td>
+                                        </tr>
+										<tr>
+                                            <td class="text-center">4.</td>
                                             <td class="text-left"><?= $kalibrasi["produk_c"] = $this->crud_global->GetField('produk',array('id'=>$kalibrasi['produk_c']),'nama_produk'); ?></td>
                                             <td class="text-center"><?= $kalibrasi["measure_c"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$kalibrasi['measure_c']),'measure_name'); ?></td>
 											<td class="text-center"><?= $kalibrasi["presentase_c"]; ?> %</td>
                                         </tr>
 										<tr>
-                                            <td class="text-center">4.</td>
+                                            <td class="text-center">5.</td>
                                             <td class="text-left"><?= $kalibrasi["produk_d"] = $this->crud_global->GetField('produk',array('id'=>$kalibrasi['produk_d']),'nama_produk'); ?></td>
                                             <td class="text-center"><?= $kalibrasi["measure_d"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$kalibrasi['measure_d']),'measure_name'); ?></td>
 											<td class="text-center"><?= $kalibrasi["presentase_d"]; ?> %</td>
                                         </tr>
 										<tr>
-                                            <td class="text-center">5.</td>
+                                            <td class="text-center">6.</td>
                                             <td class="text-left"><?= $kalibrasi["produk_e"] = $this->crud_global->GetField('produk',array('id'=>$kalibrasi['produk_e']),'nama_produk'); ?></td>
                                             <td class="text-center"><?= $kalibrasi["measure_e"]  = $this->crud_global->GetField('pmm_measures',array('id'=>$kalibrasi['measure_e']),'measure_name'); ?></td>
 											<td class="text-center"><?= $kalibrasi["presentase_e"]; ?> %</td>

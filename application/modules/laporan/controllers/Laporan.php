@@ -1390,7 +1390,7 @@ class Laporan extends Secure_Controller {
 			$data['start_date'] = $start_date;
 			$data['end_date'] = $end_date;
 		
-		$this->db->select('pph.no_prod, SUM(pphd.use) as jumlah_used, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d,  (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e');
+		$this->db->select('pph.no_prod, SUM(pphd.use) as jumlah_used, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d, (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, (SUM(pphd.use) * pk.presentase_f) / 100 AS jumlah_pemakaian_f, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.produk_f, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.measure_f, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e, pk.presentase_f');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pph.date_prod >=',$start_date);
             $this->db->where('pph.date_prod <=',$end_date);
@@ -1426,16 +1426,19 @@ class Laporan extends Secure_Controller {
 						$arr['produk_c'] = $row['produk_c'];
 						$arr['produk_d'] = $row['produk_d'];
 						$arr['produk_e'] = $row['produk_e'];
+						$arr['produk_f'] = $row['produk_f'];
 						$arr['measure_a'] = $row['measure_a'];
 						$arr['measure_b'] = $row['measure_b'];
 						$arr['measure_c'] = $row['measure_c'];
 						$arr['measure_d'] = $row['measure_a'];
 						$arr['measure_e'] = $row['measure_a'];
+						$arr['measure_f'] = $row['measure_f'];
 						$arr['presentase_a'] = $row['presentase_a'];
 						$arr['presentase_b'] = $row['presentase_b'];
 						$arr['presentase_c'] = $row['presentase_c'];
 						$arr['presentase_d'] = $row['presentase_d'];
 						$arr['presentase_e'] = $row['presentase_e'];
+						$arr['presentase_f'] = $row['presentase_f'];
 					
 						$mats[] = $arr;
 					}
@@ -1449,22 +1452,25 @@ class Laporan extends Secure_Controller {
 					$sups['produk_c'] = $sups['produk_c'];
 					$sups['produk_d'] = $sups['produk_d'];
 					$sups['produk_e'] = $sups['produk_e'];
+					$sups['produk_f'] = $sups['produk_f'];
 					$sups['measure_a'] = $sups['measure_a'];
 					$sups['measure_b'] = $sups['measure_b'];
 					$sups['measure_c'] = $sups['measure_c'];
 					$sups['measure_d'] = $sups['measure_d'];
 					$sups['measure_e'] = $sups['measure_e'];
+					$sups['measure_f'] = $sups['measure_f'];
 					$sups['presentase_a'] = $sups['presentase_a'];
 					$sups['presentase_b'] = $sups['presentase_b'];
 					$sups['presentase_c'] = $sups['presentase_c'];
 					$sups['presentase_d'] = $sups['presentase_d'];
 					$sups['presentase_e'] = $sups['presentase_e'];
+					$sups['presentase_f'] = $sups['presentase_f'];
 					$sups['jumlah_pemakaian_a'] = number_format($sups['jumlah_pemakaian_a'],2,',','.');
 					$sups['jumlah_pemakaian_b'] = number_format($sups['jumlah_pemakaian_b'],2,',','.');
 					$sups['jumlah_pemakaian_c'] = number_format($sups['jumlah_pemakaian_c'],2,',','.');
 					$sups['jumlah_pemakaian_d'] = number_format($sups['jumlah_pemakaian_d'],2,',','.');
 					$sups['jumlah_pemakaian_e'] = number_format($sups['jumlah_pemakaian_e'],2,',','.');
-					
+					$sups['jumlah_pemakaian_f'] = number_format($sups['jumlah_pemakaian_f'],2,',','.');
 
 					$arr_data[] = $sups;
 					$no++;
@@ -1472,7 +1478,6 @@ class Laporan extends Secure_Controller {
 					}	
 				}
 			}
-
 			
 			$data['data'] = $arr_data;
 			$data['total'] = $total;

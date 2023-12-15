@@ -2,12 +2,6 @@
 <html lang="en" class="fixed">
 <head>
     <?php echo $this->Templates->Header();?>
-
-    <style type="text/css">
-        .table-center th, .table-center td{
-            text-align:center;
-        }
-    </style>
 </head>
 
 <body>
@@ -69,31 +63,35 @@
                                         <table id="table-product" class="table table-bordered table-striped table-condensed table-center">
                                             <thead>
                                                 <tr>
-                                                    <th width="5%">No</th>
-                                                    <th width="35%">Fraksi/Aggregat</th>
-                                                    <th width="30%">Satuan</th>
-													<th width="30%">Presentase</th>
+                                                    <th width="5%" class="text-center">No</th>
+                                                    <th width="35%" class="text-center">Fraksi/Aggregat</th>
+                                                    <th width="30%" class="text-center">Satuan</th>
+													<th width="30%" class="text-center">Presentase</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                  <tr>
 
-                                                    <td>1.</td>
-                                                    <td>														
+                                                    <td class="text-center">1.</td>
+                                                    <td>Batu Split 0 - 0,5 (Abu Batu)</td>
+                                                    <input type="hidden"  name="produk_a" class="form-control" value="7"/>
+                                                    <!--<td>														
                                                         <select id="produk_a" class="form-control form-select2" name="produk_a" required="" >
                                                             <option value="">Pilih Produk</option>
-																	<?php
-																	if(!empty($products)){
-																		foreach ($products as $row) {
-																			?>
-																			<option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
-																			<?php
-																		}
-																	}
-																	?>
-																</select>
-                                                    </td>
-                                                    <td>
+                                                            <?php
+                                                            if(!empty($products)){
+                                                                foreach ($products as $row) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>-->
+                                                    <td class="text-center">Ton</td>
+                                                    <input type="hidden"  name="measure_a" class="form-control" value="4"/>
+                                                    <!--<td>
                                                         <select id="measure_a" class="form-control form-select2" name="measure_a" required="" >
                                                             <option value="">Pilih Satuan</option>
                                                             <?php
@@ -106,14 +104,16 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
+                                                    </td>-->
 													<td>
-                                                        <input type="number" step=".01" min="0" name="presentase_a" id="presentase_a" class="form-control input-sm text-center numberformat" onkeyup="sum();" required="" />
+                                                        <input type="number" step=".01" min="0" name="presentase_a" id="presentase_a" class="form-control input-sm text-center numberformat" onkeyup="sum();" required=""/>
                                                     </td>
                                                 </tr>
 												<tr>
-                                                    <td>2.</td>
-                                                    <td>														
+                                                    <td class="text-center">2.</td>
+                                                    <td>Batu Split 0,5 - 1</td>
+                                                    <input type="hidden"  name="produk_b" class="form-control" value="8"/>
+                                                    <!--<td>														
                                                         <select id="produk_b" class="form-control form-select2" name="produk_b" required="" >
                                                             <option value="">Pilih Produk</option>
                                                             <?php
@@ -126,8 +126,10 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
-                                                    <td>
+                                                    </td>-->
+                                                    <td class="text-center">Ton</td>
+                                                    <input type="hidden"  name="measure_b" class="form-control" value="4"/>
+                                                    <!--<td>
                                                         <select id="measure_b" class="form-control form-select2" name="measure_b" required="" >
                                                             <option value="">Pilih Satuan</option>
                                                             <?php
@@ -140,14 +142,54 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
+                                                    </td>-->
 													<td>
-                                                        <input type="number" step=".01" min="0" name="presentase_b" id="presentase_b" class="form-control input-sm text-center numberformat" onkeyup="sum();" required="" />
+                                                        <input type="number" step=".01" min="0" name="presentase_b" id="presentase_b" class="form-control input-sm text-center numberformat" onkeyup="sum();" required=""/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center">3.</td>
+                                                    <td>Batu Split 1 - 1,5</td>
+                                                    <input type="hidden"  name="produk_f" class="form-control" value="63"/>
+                                                    <!--<td>														
+                                                        <select id="produk_f" class="form-control form-select2" name="produk_f" required="" >
+                                                            <option value="">Pilih Produk</option>
+                                                            <?php
+                                                            if(!empty($products)){
+                                                                foreach ($products as $row) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row['id'];?>"><?php echo $row['nama_produk'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>-->
+                                                    <td class="text-center">Ton</td>
+                                                    <input type="hidden"  name="measure_f" class="form-control" value="4"/>
+                                                    <!--<td>
+                                                        <select id="measure_f" class="form-control form-select2" name="measure_f" required="" >
+                                                            <option value="">Pilih Satuan</option>
+                                                            <?php
+                                                            if(!empty($measures)){
+                                                                foreach ($measures as $ms) {
+                                                                    ?>
+                                                                    <option value="<?php echo $ms['id'];?>"><?php echo $ms['measure_name'];?></option>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>-->
+													<td>
+                                                        <input type="number" step=".01" min="0" name="presentase_f" id="presentase_f" class="form-control input-sm text-center numberformat" onkeyup="sum();" required=""/>
                                                     </td>
                                                 </tr>
 												<tr>
-                                                    <td>3.</td>
-                                                    <td>														
+                                                    <td class="text-center">4.</td>
+                                                    <td>Batu Split 1 - 2</td>
+                                                    <input type="hidden"  name="produk_c" class="form-control" value="3"/>
+                                                    <!--<td>														
                                                         <select id="produk_c" class="form-control form-select2" name="produk_c" required="" >
                                                             <option value="">Pilih Produk</option>
                                                             <?php
@@ -160,8 +202,10 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
-                                                    <td>
+                                                    </td>-->
+                                                    <td class="text-center">Ton</td>
+                                                    <input type="hidden"  name="measure_c" class="form-control" value="4"/>
+                                                    <!--<td>
                                                         <select id="measure_c" class="form-control form-select2" name="measure_c" required="" >
                                                             <option value="">Pilih Satuan</option>
                                                             <?php
@@ -174,14 +218,16 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
+                                                    </td>-->
 													<td>
-                                                        <input type="number" step=".01" min="0" name="presentase_c" id="presentase_c" class="form-control input-sm text-center numberformat" onkeyup="sum();" required="" />
+                                                        <input type="number" step=".01" min="0" name="presentase_c" id="presentase_c" class="form-control input-sm text-center numberformat" onkeyup="sum();" required=""/>
                                                     </td>
                                                 </tr>
 												<tr>
-                                                    <td>4.</td>
-                                                    <td>														
+                                                    <td class="text-center">5.</td>
+                                                    <td>Batu Split 2 - 3</td>
+                                                    <input type="hidden"  name="produk_d" class="form-control" value="4"/>
+                                                    <!--<td>														
                                                         <select id="produk_d" class="form-control form-select2" name="produk_d" required="" >
                                                             <option value="">Pilih Produk</option>
                                                             <?php
@@ -194,8 +240,10 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
-                                                    <td>
+                                                    </td>-->
+                                                    <td class="text-center">Ton</td>
+                                                    <input type="hidden"  name="measure_d" class="form-control" value="4"/>
+                                                    <!--<td>
                                                         <select id="measure_d" class="form-control form-select2" name="measure_d" required="" >
                                                             <option value="">Pilih Satuan</option>
                                                             <?php
@@ -208,14 +256,16 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
+                                                    </td>-->
 													<td>
-                                                        <input type="number" step=".01" min="0" name="presentase_d" id="presentase_d" class="form-control input-sm text-center numberformat" onkeyup="sum();" required="" />
+                                                        <input type="number" step=".01" min="0" name="presentase_d" id="presentase_d" class="form-control input-sm text-center numberformat" onkeyup="sum();" required=""/>
                                                     </td>
                                                 </tr>
 												<tr>
-                                                    <td>5.</td>
-                                                    <td>														
+                                                    <td class="text-center">6.</td>
+                                                    <td>Limbah</td>
+                                                    <input type="hidden"  name="produk_e" class="form-control" value="9"/>
+                                                    <!--<td>														
                                                         <select id="produk_e" class="form-control form-select2" name="produk_e" required="" >
                                                             <option value="">Pilih Produk</option>
                                                             <?php
@@ -228,8 +278,10 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
-                                                    <td>
+                                                    </td>-->
+                                                    <td class="text-center">Ton</td>
+                                                    <input type="hidden"  name="measure_e" class="form-control" value="4"/>
+                                                    <!--<td>
                                                         <select id="measure_e" class="form-control form-select2" name="measure_e" required="" >
                                                             <option value="">Pilih Satuan</option>
                                                             <?php
@@ -242,7 +294,7 @@
                                                             }
                                                             ?>
                                                         </select>
-                                                    </td>
+                                                    </td>-->
 													<td>
                                                         <input type="number" step=".01" min="0" name="presentase_e" id="presentase_e" class="form-control input-sm text-center numberformat" onkeyup="sum();" required="" />
                                                     </td>

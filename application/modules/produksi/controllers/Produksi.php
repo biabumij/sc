@@ -87,16 +87,19 @@ class Produksi extends Secure_Controller {
 		$produk_c = $this->input->post('produk_c');
 		$produk_d = $this->input->post('produk_d');
 		$produk_e = $this->input->post('produk_e');
+		$produk_f = $this->input->post('produk_f');
 		$measure_a = $this->input->post('measure_a');
 		$measure_b = $this->input->post('measure_b');
 		$measure_c = $this->input->post('measure_c');
 		$measure_d = $this->input->post('measure_d');
 		$measure_e = $this->input->post('measure_e');
+		$measure_f = $this->input->post('measure_f');
 		$presentase_a = $this->input->post('presentase_a');
 		$presentase_b = $this->input->post('presentase_b');
 		$presentase_c = $this->input->post('presentase_c');
 		$presentase_d = $this->input->post('presentase_d');
 		$presentase_e = $this->input->post('presentase_e');
+		$presentase_f = $this->input->post('presentase_f');
 		
 		$memo = $this->input->post('memo');
 		$attach = $this->input->post('files[]');
@@ -114,16 +117,19 @@ class Produksi extends Secure_Controller {
 			'produk_c' => $produk_c,
 			'produk_d' => $produk_d,
 			'produk_e' => $produk_e,
+			'produk_f' => $produk_f,
 			'measure_a' => $measure_a,
 			'measure_b' => $measure_b,
 			'measure_c' => $measure_c,
 			'measure_d' => $measure_d,
 			'measure_e' => $measure_e,
+			'measure_f' => $measure_f,
 			'presentase_a' => $presentase_a,
 			'presentase_b' => $presentase_b,
 			'presentase_c' => $presentase_c,
 			'presentase_d' => $presentase_d,
 			'presentase_e' => $presentase_e,
+			'presentase_f' => $presentase_f,
 			'memo' => $memo,
 			'attach' => $attach,
 			'status' => 'PUBLISH',
@@ -133,6 +139,10 @@ class Produksi extends Secure_Controller {
 
 		if ($this->db->insert('pmm_kalibrasi', $arr_insert)) {
 			$kalibrasi_id = $this->db->insert_id();
+
+			if (!file_exists('uploads/kalibrasi')) {
+			    mkdir('uploads/kalibrasi', 0777, true);
+			}
 
 			$data = [];
 			$count = count($_FILES['files']['name']);
@@ -174,18 +184,16 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat Kalibrasi !!');
+			$this->session->set_flashdata('notif_error', '<b>Gagal membuat Kalibrasi</b>');
 			redirect('produksi/kalibrasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat Kalibrasi !!');
+			$this->session->set_flashdata('notif_success', '<b>Berhasil membuat Kalibrasi</b>');
 			redirect('admin/produksi');
 		}
 	}
-
-	
 
 	public function table_kalibrasi()
 	{   
@@ -201,9 +209,8 @@ class Produksi extends Secure_Controller {
 			$this->db->where('kb.jobs_type',$jobs_type);
 		}
         $this->db->select('kb.id, kb.jobs_type, kb.no_kalibrasi, kb.date_kalibrasi, lk.kalibrasi_id, lk.lampiran, kb.created_by, kb.created_on, kb.status');
-		$this->db->join('pmm_lampiran_kalibrasi lk', 'kb.id = lk.kalibrasi_id','left');		
-		$this->db->order_by('kb.no_kalibrasi','asc');
-		$this->db->order_by('kb.created_on','asc');		
+		$this->db->join('pmm_lampiran_kalibrasi lk', 'kb.id = lk.kalibrasi_id','left');
+		$this->db->order_by('kb.created_on','desc');	
 		$query = $this->db->get('pmm_kalibrasi kb');
 		
        if($query->num_rows() > 0){
