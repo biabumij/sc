@@ -111,7 +111,7 @@
                 <th width="25%" align="left">Uraian</th>
                 <th width="20%">Satuan</th>
                 <th width="25%" align="right">Presentase</th>
-				<th width="25%" align="right">Volume Kalibrasi</th>
+				<th width="25%" align="right">Volume</th>
             </tr>
             <?php
            	$no = 1;
