@@ -4047,7 +4047,7 @@ class Pmm_model extends CI_Model {
     {
         $output = array();
 
-       $this->db->select('pph.id, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d,  (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e');
+       $this->db->select('pph.id, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a, (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b, (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c, (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d, (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, (SUM(pphd.use) * pk.presentase_f) / 100 AS jumlah_pemakaian_f, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.produk_f, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.measure_f, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e, pk.presentase_f');
 		
 		$this->db->join('pmm_produksi_harian_detail pphd', 'pph.id = pphd.produksi_harian_id','left');
 		$this->db->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left');

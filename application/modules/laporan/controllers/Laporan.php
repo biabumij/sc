@@ -1078,7 +1078,7 @@ class Laporan extends Secure_Controller {
 			$data['start_date'] = $start_date;
 			$data['end_date'] = $end_date;
 		
-		$this->db->select('pph.date_prod, pph.no_prod, SUM(pphd.duration) as jumlah_duration, SUM(pphd.use) as jumlah_used, pphd.duration, pphd.capacity, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e');
+			$this->db->select('pph.date_prod, pph.no_prod, SUM(pphd.duration) as jumlah_duration, SUM(pphd.use) as jumlah_used, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a, (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b, (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c, (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d, (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, (SUM(pphd.use) * pk.presentase_f) / 100 AS jumlah_pemakaian_f, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.produk_f, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.measure_f, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e, pk.presentase_f');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pph.date_prod >=',$start_date);
             $this->db->where('pph.date_prod <=',$end_date);
@@ -1115,16 +1115,19 @@ class Laporan extends Secure_Controller {
 						$arr['produk_c'] = $row['produk_c'];
 						$arr['produk_d'] = $row['produk_d'];
 						$arr['produk_e'] = $row['produk_e'];
+						$arr['produk_f'] = $row['produk_f'];
 						$arr['measure_a'] = $row['measure_a'];
 						$arr['measure_b'] = $row['measure_b'];
 						$arr['measure_c'] = $row['measure_c'];
 						$arr['measure_d'] = $row['measure_a'];
 						$arr['measure_e'] = $row['measure_a'];
+						$arr['measure_f'] = $row['measure_f'];
 						$arr['presentase_a'] = $row['presentase_a'];
 						$arr['presentase_b'] = $row['presentase_b'];
 						$arr['presentase_c'] = $row['presentase_c'];
 						$arr['presentase_d'] = $row['presentase_d'];
 						$arr['presentase_e'] = $row['presentase_e'];
+						$arr['presentase_f'] = $row['presentase_f'];
 					
 						$mats[] = $arr;
 					}

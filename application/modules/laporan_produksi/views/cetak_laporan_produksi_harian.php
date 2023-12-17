@@ -41,6 +41,11 @@
 	  ?>
 
 	  <style type="text/css">
+		body {
+			font-family: helvetica;
+			font-size: 8px;
+		}
+		
 		table tr.table-judul{
 			background-color: #e69500;
 			font-weight: bold;
@@ -107,6 +112,11 @@
             		?>
 					<?php
 					$barang_jadi_a = 0;
+					$barang_jadi_b = 0;
+					$barang_jadi_c = 0;
+					$barang_jadi_d = 0;
+					$barang_jadi_e = 0;
+					$barang_jadi_f = 0;
 					?>
 					<?php
 					$jumlah_used = str_replace(['.', ','], ['', '.'], $row['jumlah_used']);
@@ -115,7 +125,8 @@
 					$barang_jadi_c = ($jumlah_used * $row['presentase_c']) / 100;
 					$barang_jadi_d = ($jumlah_used * $row['presentase_d']) / 100;
 					$barang_jadi_e = ($jumlah_used * $row['presentase_e']) / 100;
-					$sub_total = $barang_jadi_a + $barang_jadi_b + $barang_jadi_c + $barang_jadi_d + $barang_jadi_e;
+					$barang_jadi_f = ($jumlah_used * $row['presentase_f']) / 100;
+					$sub_total = $barang_jadi_a + $barang_jadi_b + $barang_jadi_c + $barang_jadi_d + $barang_jadi_e + $barang_jadi_f;
 					?>
             		<tr class="table-baris1">
             			<td align="center"><?php echo $key + 1;?></td>
@@ -136,6 +147,16 @@
 						<td align="center"><?php echo $row['presentase_b'];?> %</td>
 						<td align="center"><?php echo $row['measure_b'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_b']),'measure_name'); ?></td>
 						<td align="right"><?php echo number_format($barang_jadi_b,2,',','.');?></td>
+					</tr>
+					<tr class="table-baris1">
+						<td align="center"></td>
+						<td align="center"></td>
+						<td align="center"></td>
+						<td align="center"></td>						
+						<td align="left"><?php echo $row['produk_f'] = $this->crud_global->GetField('produk',array('id'=>$row['produk_f']),'nama_produk'); ?></td>
+						<td align="center"><?php echo $row['presentase_f'];?> %</td>
+						<td align="center"><?php echo $row['measure_f'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_f']),'measure_name'); ?></td>
+						<td align="right"><?php echo number_format($barang_jadi_f,2,',','.');?></td>
 					</tr>
 					<tr class="table-baris1">
 						<td align="center"></td>

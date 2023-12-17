@@ -1457,7 +1457,7 @@ class Receipt_material extends CI_Controller {
 			$start_date = date('Y-m-d',strtotime($arr_date[0]));
 			$end_date = date('Y-m-d',strtotime($arr_date[1]));
 		}
-		$this->db->select('pph.date_prod, pph.no_prod, SUM(pphd.duration) as jumlah_duration, SUM(pphd.use) as jumlah_used, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a,  (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b,  (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c,  (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d,  (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e');
+		$this->db->select('pph.date_prod, pph.no_prod, SUM(pphd.duration) as jumlah_duration, SUM(pphd.use) as jumlah_used, (SUM(pphd.use) * pk.presentase_a) / 100 AS jumlah_pemakaian_a, (SUM(pphd.use) * pk.presentase_b) / 100 AS jumlah_pemakaian_b, (SUM(pphd.use) * pk.presentase_c) / 100 AS jumlah_pemakaian_c, (SUM(pphd.use) * pk.presentase_d) / 100 AS jumlah_pemakaian_d, (SUM(pphd.use) * pk.presentase_e) / 100 AS jumlah_pemakaian_e, (SUM(pphd.use) * pk.presentase_f) / 100 AS jumlah_pemakaian_f, pk.produk_a, pk.produk_b, pk.produk_c, pk.produk_d, pk.produk_e, pk.produk_f, pk.measure_a, pk.measure_b, pk.measure_c, pk.measure_d, pk.measure_e, pk.measure_f, pk.presentase_a, pk.presentase_b, pk.presentase_c, pk.presentase_d, pk.presentase_e, pk.presentase_f');
 		if(!empty($start_date) && !empty($end_date)){
             $this->db->where('pph.date_prod >=',$start_date);
             $this->db->where('pph.date_prod <=',$end_date);
@@ -1494,21 +1494,25 @@ class Receipt_material extends CI_Controller {
 						$arr['produk_c'] = $this->crud_global->GetField('produk',array('id'=>$row['produk_c']),'nama_produk');
 						$arr['produk_d'] = $this->crud_global->GetField('produk',array('id'=>$row['produk_d']),'nama_produk');
 						$arr['produk_e'] = $this->crud_global->GetField('produk',array('id'=>$row['produk_e']),'nama_produk');
+						$arr['produk_f'] = $this->crud_global->GetField('produk',array('id'=>$row['produk_f']),'nama_produk');
 						$arr['measure_a'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_a']),'measure_name');
 						$arr['measure_b'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_b']),'measure_name');
 						$arr['measure_c'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_c']),'measure_name');
 						$arr['measure_d'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_d']),'measure_name');
 						$arr['measure_e'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_e']),'measure_name');
+						$arr['measure_f'] = $this->crud_global->GetField('pmm_measures',array('id'=>$row['measure_f']),'measure_name');
 						$arr['presentase_a'] = $row['presentase_a'];
 						$arr['presentase_b'] = $row['presentase_b'];
 						$arr['presentase_c'] = $row['presentase_c'];
 						$arr['presentase_d'] = $row['presentase_d'];
 						$arr['presentase_e'] = $row['presentase_e'];
+						$arr['presentase_f'] = $row['presentase_f'];
 						$arr['jumlah_pemakaian_a'] = number_format($row['jumlah_pemakaian_a'],2,',','.');
 						$arr['jumlah_pemakaian_b'] = number_format($row['jumlah_pemakaian_b'],2,',','.');
 						$arr['jumlah_pemakaian_c'] = number_format($row['jumlah_pemakaian_c'],2,',','.');
 						$arr['jumlah_pemakaian_d'] = number_format($row['jumlah_pemakaian_d'],2,',','.');
-						$arr['jumlah_pemakaian_e'] = number_format($row['jumlah_pemakaian_e'],2,',','.');						
+						$arr['jumlah_pemakaian_e'] = number_format($row['jumlah_pemakaian_e'],2,',','.');
+						$arr['jumlah_pemakaian_f'] = number_format($row['jumlah_pemakaian_f'],2,',','.');						
 						
 						$mats[] = $arr;
 					}
@@ -1523,21 +1527,25 @@ class Receipt_material extends CI_Controller {
 					$sups['produk_c'] = $this->crud_global->GetField('produk',array('id'=>$sups['produk_c']),'nama_produk');
 					$sups['produk_d'] = $this->crud_global->GetField('produk',array('id'=>$sups['produk_d']),'nama_produk');
 					$sups['produk_e'] = $this->crud_global->GetField('produk',array('id'=>$sups['produk_e']),'nama_produk');
+					$sups['produk_f'] = $this->crud_global->GetField('produk',array('id'=>$sups['produk_f']),'nama_produk');
 					$sups['measure_a'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_a']),'measure_name');
 					$sups['measure_b'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_b']),'measure_name');
 					$sups['measure_c'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_c']),'measure_name');
 					$sups['measure_d'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_d']),'measure_name');
 					$sups['measure_e'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_e']),'measure_name');
+					$sups['measure_f'] = $this->crud_global->GetField('pmm_measures',array('id'=>$sups['measure_f']),'measure_name');
 					$sups['presentase_a'] = $sups['presentase_a'];
 					$sups['presentase_b'] = $sups['presentase_b'];
 					$sups['presentase_c'] = $sups['presentase_c'];
 					$sups['presentase_d'] = $sups['presentase_d'];
 					$sups['presentase_e'] = $sups['presentase_e'];
+					$sups['presentase_f'] = $sups['presentase_f'];
 					$sups['jumlah_pemakaian_a'] = number_format($sups['jumlah_pemakaian_a'],2,',','.');
 					$sups['jumlah_pemakaian_b'] = number_format($sups['jumlah_pemakaian_b'],2,',','.');
 					$sups['jumlah_pemakaian_c'] = number_format($sups['jumlah_pemakaian_c'],2,',','.');
 					$sups['jumlah_pemakaian_d'] = number_format($sups['jumlah_pemakaian_d'],2,',','.');
 					$sups['jumlah_pemakaian_e'] = number_format($sups['jumlah_pemakaian_e'],2,',','.');
+					$sups['jumlah_pemakaian_f'] = number_format($sups['jumlah_pemakaian_f'],2,',','.');
 					$sups['date_prod'] = date('d/m/Y',strtotime($sups['date_prod']));
 					
 
