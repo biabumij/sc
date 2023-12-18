@@ -121,7 +121,7 @@
                 ?>
                <tr class="table-active3">
                    <td align="center"><?php echo $no;?></td>
-                   <td align="center"><?= $nama_produk; ?></td>
+                   <td align="left"><?= $nama_produk; ?></td>
 	               <td align="center"><?= $dt["qty"]; ?></td>
 	               <td align="center"><?= $dt["measure"]; ?></td>
 	               <td align="right"><?= number_format($dt['price'],0,',','.'); ?></td>
