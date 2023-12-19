@@ -184,13 +184,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', '<b>Gagal membuat Kalibrasi</b>');
+			$this->session->set_flashdata('notif_error', '<b>REJECTED</b>');
 			redirect('produksi/kalibrasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', '<b>Berhasil membuat Kalibrasi</b>');
+			$this->session->set_flashdata('notif_success', '<b>SAVED</b>');
 			redirect('admin/produksi');
 		}
 	}
@@ -423,13 +423,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat Produksi Harian !!');
+			$this->session->set_flashdata('notif_error','REJECTED');
 			redirect('produksi/kalibrasi');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat Produksi Harian  !!');
+			$this->session->set_flashdata('notif_success','SAVED');
 			redirect('admin/produksi');
 		}
 	}
@@ -705,13 +705,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat Komposisi Agregat !!');
+			$this->session->set_flashdata('notif_error','REJECTED');
 			redirect('produksi/komposisi_agregat');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat Komposisi Agregat  !!');
+			$this->session->set_flashdata('notif_success','SAVED');
 			redirect('admin/produksi');
 		}
 	}
@@ -1132,13 +1132,13 @@ class Produksi extends Secure_Controller {
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error', 'Gagal membuat Produksi Campuran !!');
+			$this->session->set_flashdata('notif_error','REJECTED');
 			redirect('produksi/produksi_campuran');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success', 'Berhasil membuat Produksi Campuran  !!');
+			$this->session->set_flashdata('notif_success','SAVED');
 			redirect('admin/produksi');
 		}
 	}
