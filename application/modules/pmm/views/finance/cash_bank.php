@@ -53,7 +53,7 @@
                                         <table class="table table-striped table-hover table-center" id="guest-table" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center" width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Kode Akun</th>
                                                     <th>Nama</th>
                                                 </tr>
@@ -72,12 +72,10 @@
                                         <table class="table table-striped table-hover table-center" id="table-transfer" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center" width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nomor Transaksi</th>
                                                     <th>Tanggal Transaksi</th>
                                                     <th>Jumlah</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -93,12 +91,10 @@
                                         <table class="table table-striped table-hover table-center" id="table-terima" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center" width="5%">No</th>
+                                                    <th>No</th>
                                                     <th>Nomor Transaksi</th>
                                                     <th>Tanggal Transaksi</th>
                                                     <th>Jumlah</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -188,8 +184,6 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "20%", "targets": 1, "className": 'text-center'},
-                { "width": "75%", "targets": 2, "className": 'text-left' }
             ],
             responsive: true,
             searching: true,
@@ -208,16 +202,10 @@
                 { "data": "nomor" },
                 { "data": "tanggal_transaksi" },
                 { "data": "total" },
-                { "data": "admin_name" },
-                { "data": "created_on" },
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "25%", "targets": 1, "className": 'text-left'},
-                { "width": "20%", "targets": 2, "className": 'text-left'},
-                { "width": "20%", "targets": 3, "className": 'text-right'},
-                { "width": "15%", "targets": 4, "className": 'text-left'},
-                { "width": "15%", "targets": 5, "className": 'text-left'},
+                { "targets": 3, "className": 'text-right'},
             ],
             responsive: true,
             searching: true,
@@ -236,16 +224,10 @@
                 { "data": "nomor" },
                 { "data": "tanggal_transaksi" },
                 { "data": "total" },
-                { "data": "admin_name" },
-                { "data": "created_on" },
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "width": "25%", "targets": 1, "className": 'text-left'},
-                { "width": "20%", "targets": 2, "className": 'text-left'},
-                { "width": "20%", "targets": 3, "className": 'text-right'},
-                { "width": "15%", "targets": 4, "className": 'text-left'},
-                { "width": "15%", "targets": 5, "className": 'text-left'},
+                { "targets": 3, "className": 'text-right'},
             ],
             responsive: true,
             searching: true,

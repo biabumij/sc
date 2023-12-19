@@ -147,9 +147,7 @@
                                                         <th>Rekanan</th>
                                                         <th>Jenis Pembelian</th>
                                                         <th>Berlaku Hingga</th>
-														<th>Jumlah</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>                                                   
+														<th>Jumlah</th>                                               
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -196,9 +194,7 @@
                                                     <th>Rekanan</th>                               
                                                     <th>Volume</th>
                                                     <th>Tindakan</th>
-                                                    <th>Hapus</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>     
+                                                    <th>Hapus</th>   
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -320,8 +316,6 @@
                                                     <th>Total Terima</th>
                                                     <th>Lampiran</th>
                                                     <th>Tindakan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -400,14 +394,10 @@
                                                     <th>No. Pesanan Pembelian</th>
                                                     <th>No. Surat Jalan</th>
                                                     <th>Surat Jalan</th>
-                                                    <th>No. Kendaraan</th>
-                                                    <th>Nama Supir</th>
                                                     <th>Produk</th>
                                                     <th>Satuan</th>                                                   
                                                     <th>Volume</th>
                                                     <th>Memo</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                     <th>Upload Surat Jalan</th>
                                                 </tr>
                                             </thead>
@@ -487,8 +477,6 @@
                                                     <th>Total</th>
                                                     <th>Pembayaran</th>
                                                     <th>Sisa Tagihan</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -1148,17 +1136,11 @@
                 },
 				{
                     "data": "total"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
                 }
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": 7, "className": 'text-right'},
+                { "targets": 6, "className": 'text-right'},
             ],
             responsive: true,
             pageLength: 25,
@@ -1219,8 +1201,6 @@
                 { "data": "volume" },
                 { "data": "actions" },
                 { "data": "delete" },
-                { "data": "admin_name" },
-                { "data": "created_on" }
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
@@ -1379,12 +1359,6 @@
                 },
                 {
                     "data": "actions"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
                 }
             ],
             "columnDefs": [
@@ -1446,12 +1420,6 @@
                 "data": "surat_jalan_file"
             },
             {
-                "data": "no_kendaraan"
-            },
-            {
-                "data": "driver"
-            },
-            {
                 "data": "material_name"
             },
             {
@@ -1464,12 +1432,6 @@
                 "data": "memo"
             },
             {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
-            },
-            {
                 "data": "uploads_surat_jalan"
             }
         ],
@@ -1477,7 +1439,6 @@
             style: 'multi'
         },
         responsive: true,
-        //paging : false,
         pageLength: 10,
             "columnDefs": [{
                 "targets": [0],
@@ -1485,7 +1446,7 @@
                 "className": 'select-checkbox',
             },
             { "width": "5%", "targets": 1, "className": 'text-center'},
-            { "targets": 12, "className": 'text-right'},
+            { "targets": 10, "className": 'text-right'},
         ],
     });
 
@@ -1616,13 +1577,7 @@
             },
             {
                 "data": "sisa_tagihan"
-            },
-            {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
-            },
+            }
         ],
         "columnDefs": [
             { "width": "5%", "targets": 0, "className": 'text-center'},

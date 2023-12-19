@@ -62,7 +62,6 @@
                                 <div class="tab-content">
 
                                     <!-- Penawaran Penjualan -->
-
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                         <div class="table-responsive">
                                             <div class="col-sm-3">
@@ -80,8 +79,6 @@
                                                         <th>Pelanggan</th>
                                                         <th>Perihal</th>        
                                                         <th>Total</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -91,10 +88,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Penawaran Penjualan -->
-
                                     <!-- Sales Order -->
-
                                     <div role="tabpanel" class="tab-pane" id="profile">
                                         <div class="table-responsive">
                                             <div class="col-sm-3">
@@ -116,8 +110,6 @@
                                                         <th>Kirim</th>
 														<th>Total Sales Order</th>
 														<th>Total Kirim</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -127,10 +119,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Sales Order -->
-
                                     <!-- Pengiriman Penjualan -->
-
                                     <div role="tabpanel" class="tab-pane" id="messages">
                                         <?php
                                         $sales_po = $this->db->select('id,contract_number,client_id')->get_where('pmm_sales_po')->result_array();
@@ -197,14 +186,9 @@
                                                         <th>No. Sales Order</th>
                                                         <th>No. Surat Jalan</th>
                                                         <th>Surat Jalan</th>
-                                                        <th>No. Kendaraan</th>
-                                                        <th>Supir</th>
                                                         <th>Produk</th>
                                                         <th>Satuan</th>
                                                         <th>Volume</th>
-                                                        <th>Memo</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Upload Surat Jalan</th>
                                                     </tr>
                                                 </thead>
@@ -216,7 +200,6 @@
                                     </div>
 
                                     <!-- Pengiriman Penjualan -->
-
                                     <div class="modal fade bd-example-modal-lg" id="modalDocSuratJalan" tabindex="-1" role="dialog">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -246,7 +229,6 @@
                                     </div>
 
                                     <!-- Tagihan Penjualan -->
-
                                     <div role="tabpanel" class="tab-pane" id="settings">
                                         <form action="<?php echo site_url('laporan/cetak_daftar_tagihan_penjualan');?>" method="GET" target="_blank">
                                             <div class="col-sm-3">
@@ -287,8 +269,6 @@
                                                         <th>Total</th>
                                                         <th>Pembayaran</th>
                                                         <th>Sisa Tagihan</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -298,10 +278,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Tagihan Penjualan -->
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -359,12 +336,6 @@
                 },
                 {
                     "data": "total"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
                 }
             ],
             "columnDefs": [
@@ -372,7 +343,6 @@
                 { "targets": 6, "className": 'text-right'},
             ],
             responsive: true,
-            //paging : false,
         });
 
         $('#filter_date_penawaran').on('apply.daterangepicker', function(ev, picker) {
@@ -422,12 +392,6 @@
                 },
 				{
                     "data": "total_receipt"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
                 }
             ],
             "columnDefs": [
@@ -435,7 +399,6 @@
                 { "targets": [7, 8, 9, 10], "className": 'text-right'},
             ],
             responsive: true,
-            //paging : false,
         });
 
         $('#filter_date_sales_order').on('apply.daterangepicker', function(ev, picker) {
@@ -484,12 +447,6 @@
                     "data": "surat_jalan"
                 },
                 {
-                    "data": "nopol_truck"
-                },
-                {
-                    "data": "driver"
-                },
-                {
                     "data": "product"
                 },
                 {
@@ -499,15 +456,6 @@
                     "data": "volume"
                 },
                 {
-                    "data": "memo"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                },
-                {
                     "data": "uploads_surat_jalan"
                 }
             ],
@@ -515,7 +463,6 @@
                 style: 'multi'
             },
             responsive: true,
-            //paging : false,
             pageLength: 10,
             "columnDefs": [
 				{
@@ -524,7 +471,7 @@
                     "className": 'select-checkbox',
                 },
                 { "width": "5%", "targets": 1, "className": 'text-center'},
-                { "targets": 12, "className": 'text-right'},
+                { "targets": 10, "className": 'text-right'},
             ],
         });
 
@@ -668,18 +615,12 @@
                 },
                 {
                     "data": "sisa_tagihan"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
                 }
 
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": [9, 10, 11], "className": 'text-right'},
+                { "targets": [8, 9, 10], "className": 'text-right'},
             ],
             responsive: true,
             //paging : false,

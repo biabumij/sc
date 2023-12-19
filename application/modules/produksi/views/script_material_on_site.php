@@ -31,7 +31,7 @@
         showDropdowns: true,
     });
 
-    var table = $('#on-site-table').DataTable({
+    var table = $('#on-site-table').DataTable( {"bAutoWidth": false,
         ajax: {
             processing: true,
             serverSide: true,
@@ -64,12 +64,6 @@
                 "data": "lampiran"
             },
             {
-                "data": "admin_name"
-            },
-            {
-                "data": "created_on"
-            },
-            {
                 "data": "delete"
             },
             {
@@ -78,15 +72,9 @@
         ],
         responsive: true,
         "columnDefs": [
-            {
-            "targets": [0, 9, 10],
-            "className": 'text-center',
-            },
-            {
-                "targets": [4],
-                "className": 'text-right',
-            },
-        ]
+            { "width": "5%", "targets": 0, "className": 'text-center'},
+            { "targets": 4, "className": 'text-right'},
+        ],
     });
 
     $('#filter_tag').change(function() {

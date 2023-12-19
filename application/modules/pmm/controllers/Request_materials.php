@@ -285,35 +285,31 @@ class Request_materials extends CI_Controller {
 		echo json_encode($output);	
 	}
 
-	
 	function process()
 	{
-		// if($_POST){
-			$id = $this->uri->segment(4);
-			$type = $this->uri->segment(5);
-			$arr = array();
-			if($type == 1){
-				$arr = array('status'=>'APPROVED','approved_by'=>$this->session->userdata('admin_id'),'approved_on'=>date('Y-m-d H:i:s'));
+		$id = $this->uri->segment(4);
+		$type = $this->uri->segment(5);
+		$arr = array();
+		if($type == 1){
+			$arr = array('status'=>'APPROVED','approved_by'=>$this->session->userdata('admin_id'),'approved_on'=>date('Y-m-d H:i:s'));
 
-				$this->session->set_flashdata('notif_success','<b>Berhasil menyetujui Permintaan</b>');
-				$this->pmm_model->CreatePO($id);
-				
-			}else if($type == 2){
-				$arr = array('status'=>'REJECTED');
-				$this->session->set_flashdata('notif_error','<b>Data Gagal Disimpan</b>');
-			}else {
-				$this->session->set_flashdata('notif_success','<b>Data Berhasil Disimpan</b>');
-				$arr = array('status'=>'WAITING');
-			}
+			$this->session->set_flashdata('notif_success','<b>APPROVED</b>');
+			$this->pmm_model->CreatePO($id);
+			
+		}else if($type == 2){
+			$arr = array('status'=>'REJECTED');
+			$this->session->set_flashdata('notif_reject','<b>REJECTED</b>');
+		}else {
+			$this->session->set_flashdata('notif_success','<b>SAVED</b>');
+			$arr = array('status'=>'WAITING');
+		}
 
-			if($this->db->update('pmm_request_materials',$arr,array('id'=>$id))){
+		if($this->db->update('pmm_request_materials',$arr,array('id'=>$id))){
 
 
-				redirect('admin/pembelian#chart');
-			}
-		// }
+			redirect('admin/pembelian#chart');
+		}
 	}
-
 
 	public function delete_detail()
 	{

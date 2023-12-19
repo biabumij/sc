@@ -58,17 +58,15 @@
                                             <table class="table table-striped table-hover" id="table_perubahan_sistem" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th class="text-center" width="5%">No.</th>
+                                                        <th>No.</th>
 														<th>Tanggal</th>
                                                         <th>Nomor</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Lampiran</th>
                                                         <th>Status Permintaan</th>
                                                         <th>Status Approval</th>
-                                                        <th class="text-center" width="5%">Cetak</th>
-                                                        <th class="text-center" width="5%">Upload</th>
-														<th class="text-center" width="5%">Hapus</th>
+                                                        <th>Cetak</th>
+                                                        <th>Upload</th>
+														<th>Hapus</th>
 													</tr>
                                                 </thead>
                                                 <tbody>
@@ -133,7 +131,7 @@
 
     <script type="text/javascript">
 		
-		var table_perubahan_sistem = $('#table_perubahan_sistem').DataTable({
+		var table_perubahan_sistem = $('#table_perubahan_sistem').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -159,12 +157,6 @@
                     "data": "nomor"
                 },
                 {
-					"data": "created_by"
-				},
-				{
-					"data": "created_on"
-				},
-                {
 					"data": "lampiran"
 				},
                 {
@@ -183,10 +175,8 @@
 					"data": "actions"
 				},
             ],
-            "columnDefs": [{
-                    "targets": [0, 8, 9, 10],
-                    "className": 'text-center',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
         });
 

@@ -70,7 +70,6 @@
 									
 										
 									<!-- Table Kalibrasi -->
-									
 									<?php			
 										$judul = $this->db->order_by('id', 'asc')->get_where('pmm_kalibrasi', array('status' => 'PUBLISH'))->result_array();
 									?>
@@ -97,13 +96,11 @@
                                             <table class="table table-striped table-hover table-center" id="table_kalibrasi" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th>No</th>
 														<th>Tanggal</th>
 														<th>Nomor Kalibrasi</th>
                                                         <th>Judul</th>
 														<th>Lampiran</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Lihat Data</th>
                                                         <th>Cetak</th>
                                                         <th>Status</th>
@@ -119,11 +116,8 @@
                                             </table>
                                         </div>
 									</div>
-										
-									<!-- End Table Kalibrasi -->
 
                                     <!-- Table Komposisi Agregat -->
-									
                                     <div role="tabpanel" class="tab-pane" id="komposisi_agregat">
 										<div class="col-sm-4">
 											<input type="text" id="filter_date_agregat" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
@@ -134,13 +128,11 @@
                                             <table class="table table-striped table-hover table-center" id="table_agregat" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th>No</th>
 														<th>Tanggal</th>
 														<th>Nomor Komposisi</th>
                                                         <th>Judul</th>
 														<th>Lampiran</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Lihat Data</th>
                                                         <th>Cetak</th>
                                                         <th>Status</th>
@@ -156,10 +148,7 @@
                                         </div>
 									</div>
 										
-									<!-- End Table Komposisi Agregat -->
-										
 									<!-- Table Produksi Harian -->
-										
 									<div role="tabpanel" class="tab-pane" id="produksi_harian">
 										<div class="col-sm-4">
 											<input type="text" id="filter_date_produksi_harian" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
@@ -170,15 +159,13 @@
                                             <table class="table table-striped table-hover table-center" id="table_produksi_harian" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>	
+                                                        <th>No</th>	
                                                         <th>Tanggal</th>
 														<th>Nomor Produksi Harian</th>	
 														<th>Durasi Produksi (Jam)</th>
 														<th>Pemakaian Bahan Baku (Ton)</th>
 														<th>Kapasitas Produksi (Ton/Jam)</th>
 														<th>Keterangan</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Lihat Data</th>
                                                         <th>Cetak</th>
                                                         <th>Status</th>												
@@ -193,11 +180,8 @@
                                             </table>
                                         </div>
 									</div>
-										
-									<!-- End Table Produksi Harian -->
 									
 									<!-- Table Produksi Campuran -->
-									
 									<?php			
 										$no_prod = $this->db->order_by('id', 'asc')->get_where('pmm_produksi_campuran', array('status' => 'PUBLISH'))->result_array();
 									?>
@@ -224,15 +208,13 @@
                                             <table class="table table-striped table-hover table-center" id="table_produksi_campuran" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>	
+                                                        <th>No</th>	
                                                         <th>Tanggal</th>
 														<th>Nomor Produksi Campuran</th>	
 														<th>Uraian</th>
 														<th>Satuan</th>
 														<th>Volume</th>
 														<th>Keterangan</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
                                                         <th>Lihat Data</th>
                                                         <th>Cetak</th>
                                                         <th>Status</th>											
@@ -247,8 +229,6 @@
                                             </table>
                                         </div>
 									</div>
-										
-									<!-- End Table Produksi Campuran -->
 										           
                                 </div>
                             </div>
@@ -288,7 +268,7 @@
         showDropdowns: true,
 		});
 		
-		var table_kalibrasi = $('#table_kalibrasi').DataTable({
+		var table_kalibrasi = $('#table_kalibrasi').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -321,13 +301,7 @@
                     "data": "lampiran"
                 },
                 {
-					"data": "admin_name"
-				},
-				{
-					"data": "created_on"
-				},
-                {
-					"data": "view"
+					"data": "actions"
 				},
                 {
 					"data": "print"
@@ -336,10 +310,8 @@
                     "data": "status"
                 }
             ],
-            "columnDefs": [{
-                    "targets": [0, 7, 8, 9],
-                    "className": 'text-center',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
         });
 		
@@ -352,7 +324,7 @@
         table_kalibrasi.ajax.reload();
 		});
 
-        var table_agregat = $('#table_agregat').DataTable({
+        var table_agregat = $('#table_agregat').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -384,13 +356,7 @@
                     "data": "lampiran"
                 },
                 {
-					"data": "admin_name"
-				},
-				{
-					"data": "created_on"
-				},
-                {
-					"data": "view"
+					"data": "actions"
 				},
                 {
 					"data": "print"
@@ -399,10 +365,8 @@
                     "data": "status"
                 }
             ],
-            "columnDefs": [{
-                "targets": [0, 7, 8, 9],
-                    "className": 'text-center',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
             ],
         });
 		
@@ -411,7 +375,7 @@
         table_agregat.ajax.reload();
 		});
 		
-		var table_produksi_harian = $('#table_produksi_harian').DataTable({
+		var table_produksi_harian = $('#table_produksi_harian').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -449,13 +413,7 @@
                     "data": "memo"
                 },
                 {
-					"data": "admin_name"
-				},
-				{
-					"data": "created_on"
-				},
-                {
-					"data": "view"
+					"data": "actions"
 				},
                 {
 					"data": "print"
@@ -464,14 +422,9 @@
                     "data": "status"
                 }
             ],
-            "columnDefs": [{
-                    "targets": [0, 9, 10, 11],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [3, 4, 5],
-                    "className": 'text-right',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [3, 4, 5], "className": 'text-right'},
             ],
         });
 		
@@ -480,7 +433,7 @@
         table_produksi_harian.ajax.reload();
 		});
 		
-		var table_produksi_campuran = $('#table_produksi_campuran').DataTable({
+		var table_produksi_campuran = $('#table_produksi_campuran').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -519,13 +472,7 @@
                     "data": "memo"
                 },
                 {
-					"data": "admin_name"
-				},
-				{
-					"data": "created_on"
-				},
-                {
-					"data": "view"
+					"data": "actions"
 				},
                 {
 					"data": "print"
@@ -534,14 +481,9 @@
                     "data": "status"
                 }
             ],
-            "columnDefs": [{
-                    "targets": [0, 9, 10, 11],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [5],
-                    "className": 'text-right',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": 5, "className": 'text-right'},
             ],
         });
 		
@@ -553,55 +495,7 @@
 		$('#no_prod').change(function() {
         table_produksi_campuran.ajax.reload();
 		});
-		
-		
-		var table_laporan_produksi_harian = $('#table_laporan_produksi_harian').DataTable({
-            ajax: {
-                processing: true,
-                serverSide: true,
-                url: '<?php echo site_url('produksi/table_laporan_produksi_harian'); ?>',
-                type: 'POST',
-                data: function(d) {
-                    d.filter_date = $('#filter_date_lph').val();
-                }
-            },
-            responsive: true,
-            "deferRender": true,
-            "language": {
-                processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
-            },
-            columns: [
-				{
-                    "data": "no"
-                },
-				{
-                    "data": "no_kalibrasi"
-                },
-				{
-                    "data": "date_prod"
-                },
-				{
-                    "data": "no_prod"
-                },
-				{
-                    "data": "duration"
-                },
-				{
-                    "data": "capacity"
-                }
-            ],
-            "columnDefs": [{
-                    "targets": [0, 4, 5],
-                    "className": 'text-center',
-                }
-            ],
-        });
-		
-		$('#filter_date_lph').on('apply.daterangepicker', function(ev, picker) {
-        $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-        table_laporan_produksi_harian.ajax.reload();
-		});
-	
+
     </script>
 
     <?php include_once("script_material_on_site.php"); ?>

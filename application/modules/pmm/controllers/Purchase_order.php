@@ -151,30 +151,26 @@ class Purchase_order extends CI_Controller {
 		echo json_encode(array('data'=>$data));
 	}
 
-
 	function process()
 	{
-		// if($_POST){
-			$id = $this->uri->segment(4);
-			$type = $this->uri->segment(5);
-			$arr = array();
-			if($type == 1){
-				$arr = array('status'=>'APPROVED','approved_by'=>$this->session->userdata('admin_id'),'approved_on'=>date('Y-m-d H:i:s'));
-				
-			}else if($type == 2){
-				$arr = array('status'=>'REJECTED');
-				$this->session->set_flashdata('notif_success','<b>Berhasil menolak Permintaan</b>');
-			}else {
-				$arr = array('status'=>'WAITING');
-			}
-			$arr['updated_by'] = $this->session->userdata('admin_id');
+		$id = $this->uri->segment(4);
+		$type = $this->uri->segment(5);
+		$arr = array();
+		if($type == 1){
+			$arr = array('status'=>'APPROVED','approved_by'=>$this->session->userdata('admin_id'),'approved_on'=>date('Y-m-d H:i:s'));
+			
+		}else if($type == 2){
+			$arr = array('status'=>'REJECTED');
+			$this->session->set_flashdata('notif_reject','<b>REJECTED</b>');
+		}else {
+			$arr = array('status'=>'WAITING');
+		}
+		$arr['updated_by'] = $this->session->userdata('admin_id');
 
-			if($this->db->update('pmm_purchase_order',$arr,array('id'=>$id))){
-				redirect('admin/pembelian');
-			}
-		// }
+		if($this->db->update('pmm_purchase_order',$arr,array('id'=>$id))){
+			redirect('admin/pembelian');
+		}
 	}
-
 
 	public function approve_po()
 	{
@@ -191,7 +187,7 @@ class Purchase_order extends CI_Controller {
 			);
 			if($this->db->update('pmm_purchase_order',$data,array('id'=>$id))){
 				$output['output'] = true;
-				$this->session->set_flashdata('notif_success','<b>Berhasil Menyetujui Pesanan Pembelian</b>');
+				$this->session->set_flashdata('notif_success','<b>APPROVED</b>');
 				$output['url'] = site_url('admin/pembelian');
 			}
 		}

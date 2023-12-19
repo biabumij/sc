@@ -209,23 +209,28 @@ class Produksi extends Secure_Controller {
 			$this->db->where('kb.jobs_type',$jobs_type);
 		}
         $this->db->select('kb.id, kb.jobs_type, kb.no_kalibrasi, kb.date_kalibrasi, lk.kalibrasi_id, lk.lampiran, kb.created_by, kb.created_on, kb.status');
-		$this->db->join('pmm_lampiran_kalibrasi lk', 'kb.id = lk.kalibrasi_id','left');
-		$this->db->order_by('kb.created_on','desc');	
+		$this->db->join('pmm_lampiran_kalibrasi lk', 'kb.id = lk.kalibrasi_id','left');	
+		$this->db->order_by('kb.created_on','desc');		
 		$query = $this->db->get('pmm_kalibrasi kb');
 		
        if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
                 $row['no'] = $key+1;
 				$row['jobs_type'] = $row["jobs_type"];
-                $row['tanggal_kalibrasi'] = date('d F Y',strtotime($row['date_kalibrasi']));
+                $row['tanggal_kalibrasi'] = date('d-m-Y',strtotime($row['date_kalibrasi']));
                 $row['no_kalibrasi'] = $row['no_kalibrasi'];
-				$row['lampiran'] = "<a href=" . base_url('uploads/kalibrasi/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";  
+				$row['lampiran'] = "<a  target='_blank' href=" . base_url('uploads/kalibrasi/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";  
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'produksi/data_kalibrasi/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
-				$row['print'] = '<a href="'.site_url().'produksi/cetak_kalibrasi/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
-
+				$row['view'] = '<a href="'.site_url().'produksi/data_kalibrasi/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px";><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_kalibrasi/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px"><i class="fa fa-print"></i> </a>';
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteDataKalibrasi('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+				}
+				
                 $data[] = $row;
             }
 
@@ -455,13 +460,18 @@ class Produksi extends Secure_Controller {
 				$row['used'] = $row['used'];
 				$row['capacity'] = number_format($row['capacity'],2,',','.');
 				$row['memo'] = $row['memo'];
-				//$row['lampiran'] = "<a href=" . base_url('uploads/produksi_harian/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";
+				$row['lampiran'] = "<a target='_blank' href=" . base_url('uploads/produksi_harian/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_harian/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
-				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_harian/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
-                
+				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_harian/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px"><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_harian/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px"><i class="fa fa-print"></i> </a>';
+                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteProduksiHarian('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+				}
+
                 $data[] = $row;
             }
 
@@ -730,8 +740,14 @@ class Produksi extends Secure_Controller {
                 $row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'produksi/data_komposisi_agregat/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
-				$row['print'] = '<a href="'.site_url().'produksi/cetak_komposisi_agregat/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
+				$row['view'] = '<a href="'.site_url().'produksi/data_komposisi_agregat/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px"><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_komposisi_agregat/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px"><i class="fa fa-print"></i> </a>';
+				if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteAgregat('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+				}
+				
 				$data[] = $row;
             }
 
@@ -1262,13 +1278,18 @@ class Produksi extends Secure_Controller {
 				$row['measure_convert'] = $row['measure_convert'];
 				$row['volume_convert'] = number_format($row['volume_convert'],2,',','.');
 				$row['memo'] = $row['memo'];
-				//$row['lampiran'] = "<a href=" . base_url('uploads/produksi_harian/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";
+				$row['lampiran'] = "<a target='_blank' href=" . base_url('uploads/produksi_harian/' . $row["lampiran"]) . ">" . $row["lampiran"] . "</a>";
 				$row['admin_name'] = $this->crud_global->GetField('tbl_admin',array('admin_id'=>$row['created_by']),'admin_name');
                 $row['created_on'] = date('d/m/Y H:i:s',strtotime($row['created_on']));
 				$row['status'] = $this->pmm_model->GetStatus4($row['status']);
-				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_campuran/'.$row['id'].'" class="btn btn-warning"><i class="glyphicon glyphicon-folder-open"></i> </a>';
-				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_campuran/'.$row['id'].'" target="_blank" class="btn btn-info"><i class="fa fa-print"></i> </a>';
-                
+				$row['view'] = '<a href="'.site_url().'produksi/data_produksi_campuran/'.$row['id'].'" class="btn btn-warning" style="border-radius:10px"><i class="glyphicon glyphicon-folder-open"></i> </a>';
+				$row['print'] = '<a href="'.site_url().'produksi/cetak_produksi_campuran/'.$row['id'].'" target="_blank" class="btn btn-info" style="border-radius:10px"><i class="fa fa-print"></i> </a>';
+                if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
+					$row['actions'] = '<a href="javascript:void(0);" onclick="DeleteProduksiCampuran('.$row['id'].')" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> </a>';
+				}else {
+					$row['actions'] = '<button type="button" class="btn btn-danger" style="font-weight:bold; border-radius:10px;"><i class="fa fa-ban"></i> No Access</button>';
+				}
+
                 $data[] = $row;
             }
 

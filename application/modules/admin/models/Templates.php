@@ -352,15 +352,11 @@ class Templates extends CI_Model {
 		</script>
 		
 	    <script src="<?php echo base_url();?>assets/back/theme/javascripts/my.js"></script>
-
-	     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+	    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
     	<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-
     	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/back/theme/vendor/jquery-toastr/jquery.toast.min.css">
     	<script src="<?php echo base_url();?>assets/back/theme/vendor/jquery-toastr/jquery.toast.min.js"></script>
 		
-
-
     	<?php
     	if(!empty($this->session->flashdata('notif_error'))){
     		?>
@@ -368,6 +364,21 @@ class Templates extends CI_Model {
     			$.toast({
 				    heading: '<b>Gagal!</b>',
 				    text: '<?= $this->session->flashdata('notif_error');?>',
+				    showHideTransition: 'fade',
+				    icon: 'error',
+				    position: 'top-right',
+				});
+    		</script>
+    		
+    		<?php
+    	}
+
+		if(!empty($this->session->flashdata('notif_reject'))){
+    		?>
+    		<script type="text/javascript">
+    			$.toast({
+				    heading: '<b>Sukses!</b>',
+				    text: '<?= $this->session->flashdata('notif_reject');?>',
 				    showHideTransition: 'fade',
 				    icon: 'error',
 				    position: 'top-right',
@@ -394,11 +405,7 @@ class Templates extends CI_Model {
     	}
     	?>
 
-
     	<?php
     }
-
-
-
 
 }

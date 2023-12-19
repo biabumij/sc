@@ -270,12 +270,8 @@
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                                 ?>
-                                                <form class="form-approval" action="<?= base_url("penjualan/approvePenagihan/" . $penagihan["id"]) ?>">
-                                                    <button type="submit" class="btn btn-success btn-sm" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-check"></i> Setujui</button>
-                                                </form>
-                                                <form class="form-approval" action="<?= base_url("penjualan/rejectPenagihan/" . $penagihan["id"]) ?>">
-                                                    <button type="submit" class="btn btn-danger btn-sm" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-close"></i> Tolak</button>
-                                                </form>
+                                                <a href="<?= site_url('penjualan/approvePenagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</a>
+                                                <a href="<?= site_url('penjualan/rejectPenagihan/' . $penagihan['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</a>
                                             <?php
                                             }
                                             ?>

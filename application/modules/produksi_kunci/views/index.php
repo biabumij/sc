@@ -60,7 +60,6 @@
                                 <div class="tab-content">
 
                                     <!-- Table HPP Bahan Baku -->
-									
                                     <div role="tabpanel" class="tab-pane active" class="tab-pane" id="hpp_bahan_baku">
 										<div class="col-sm-4">
 											<input type="text" id="filter_date_hpp_bahan_baku" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
@@ -71,14 +70,12 @@
                                             <table class="table table-striped table-hover" id="table_hpp_bahan_baku" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%" class="text-center">No</th>
+                                                        <th>No</th>
 														<th>Tanggal</th>
-														<th class="text-right">Boulder</th>
-                                                        <th class="text-right">BBM</th>
-														<th class="text-center">Status</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
-                                                        <th width="5%" class="text-center">Hapus</th>
+														<th>Boulder</th>
+                                                        <th>BBM</th>
+														<th>Status</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -90,11 +87,8 @@
                                             </table>
                                         </div>
 									</div>
-										
-									<!-- End Table HPP Bahan Baku -->
 
                                     <!-- Table HPP Pergerakan Bahan Jadi -->
-									
                                     <div role="tabpanel" class="tab-pane" id="hpp">
 										<div class="col-sm-4">
 											<input type="text" id="filter_date_hpp" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
@@ -105,16 +99,14 @@
                                             <table class="table table-striped table-hover" id="table_hpp" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%" class="text-center">No</th>
+                                                        <th>No</th>
 														<th>Tanggal</th>
-														<th class="text-right">Abu Batu</th>
-                                                        <th class="text-right">Batu 0,5 - 10</th>
-														<th class="text-right">Batu 10 - 20</th>
-                                                        <th class="text-right">Batu 20 - 30</th>
-														<th class="text-center">Status</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
-                                                        <th width="5%" class="text-center">Hapus</th>
+														<th>Abu Batu</th>
+                                                        <th>Batu 0,5 - 10</th>
+														<th>Batu 10 - 20</th>
+                                                        <th>Batu 20 - 30</th>
+														<th>Status</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -126,11 +118,8 @@
                                             </table>
                                         </div>
 									</div>
-										
-									<!-- End Table HPP Pergerakan Bahan Jadi -->
 
                                     <!-- Akumulasi Bahan Baku -->
-									
                                     <div role="tabpanel" class="tab-pane" id="akumulasi_bahan_baku">
 										<div class="col-sm-4">
 											<input type="text" id="filter_date_akumulasi_bahan_baku" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
@@ -141,15 +130,13 @@
                                             <table class="table table-striped table-hover" id="table_akumulasi_bahan_baku" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%">No</th>
+                                                        <th>No</th>
 														<th>Tanggal</th>
-														<th class="text-right">Total Nilai Keluar Boulder</th>
-                                                        <th class="text-right">Total Nilai Keluar Solar</th>
-                                                        <th class="text-right">Total Nilai Persediaan Akhir</th>
-														<th class="text-center">Status</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
-                                                        <th width="5%" class="text-center">Hapus</th>
+														<th>Total Nilai Keluar Boulder</th>
+                                                        <th>Total Nilai Keluar Solar</th>
+                                                        <th>Total Nilai Persediaan Akhir</th>
+														<th>Status</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -161,11 +148,8 @@
                                             </table>
                                         </div>
 									</div>
-										
-									<!-- End Akumulasi Bahan Baku -->
 
                                     <!-- Akumulasi -->
-									
                                     <div role="tabpanel" class="tab-pane" id="akumulasi">
 										<div class="col-sm-4">
 											<input type="text" id="filter_date_akumulasi" name="filter_date" class="form-control dtpickerange" autocomplete="off" placeholder="Filter By Date">
@@ -176,15 +160,12 @@
                                             <table class="table table-striped table-hover" id="table_akumulasi" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th width="5%" class="text-center">No</th>
+                                                        <th>No</th>
 														<th>Tanggal</th>
-														<th class="text-right">Total Nilai Keluar</th>
-                                                        <th class="text-right">Total Nilai Akhir</th>
-                                                        <th>Catatan</th>
-														<th class="text-center">Status</th>
-                                                        <th>Dibuat Oleh</th>
-                                                        <th>Dibuat Tanggal</th>
-                                                        <th width="5%" class="text-center">Hapus</th>
+														<th>Total Nilai Keluar</th>
+                                                        <th>Total Nilai Akhir</th>
+														<th>Status</th>
+                                                        <th>Hapus</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -196,9 +177,7 @@
                                             </table>
                                         </div>
 									</div>
-										
-									<!-- End Akumulasi -->
-										           
+
                                 </div>
                             </div>
                         </div>
@@ -249,7 +228,7 @@
             showDropdowns: true,
         });
 
-        var table_hpp_bahan_baku = $('#table_hpp_bahan_baku').DataTable({
+        var table_hpp_bahan_baku = $('#table_hpp_bahan_baku').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -282,23 +261,12 @@
                     "data": "status"
                 },
                 {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                },
-                {
                     "data": "actions"
                 }
             ],
-            "columnDefs": [{
-                    "targets": [0, 4, 7],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [2, 3],
-                    "className": 'text-right',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [2, 3], "className": 'text-right'},
             ],
         });
 
@@ -331,7 +299,7 @@
             });
         }
 
-        var table_hpp = $('#table_hpp').DataTable({
+        var table_hpp = $('#table_hpp').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -370,24 +338,14 @@
                     "data": "status"
                 },
                 {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                },
-                {
                     "data": "actions"
                 }
             ],
-            "columnDefs": [{
-                    "targets": [0, 6, 9],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [2, 3, 4, 5],
-                    "className": 'text-right',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [2, 3, 4, 5], "className": 'text-right'},
             ],
+            
         });
 
         $('.dtpickerange').on('apply.daterangepicker', function(ev, picker) {
@@ -419,7 +377,7 @@
             });
         }
 
-        var table_akumulasi_bahan_baku = $('#table_akumulasi_bahan_baku').DataTable({
+        var table_akumulasi_bahan_baku = $('#table_akumulasi_bahan_baku').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -455,23 +413,12 @@
                     "data": "status"
                 },
                 {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
-                },
-                {
                     "data": "actions"
                 }
             ],
-            "columnDefs": [{
-                    "targets": [0, 5, 8],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [2, 3, 4],
-                    "className": 'text-center',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [2, 3, 4], "className": 'text-right'},
             ],
         });
 	
@@ -504,7 +451,7 @@
             });
         }
 
-        var table_akumulasi = $('#table_akumulasi').DataTable({
+        var table_akumulasi = $('#table_akumulasi').DataTable( {"bAutoWidth": false,
             ajax: {
                 processing: true,
                 serverSide: true,
@@ -534,29 +481,15 @@
                     "data": "total_nilai_akhir"
                 },
                 {
-                    "data": "memo"
-                },
-                {
                     "data": "status"
-                },
-                {
-                    "data": "admin_name"
-                },
-                {
-                    "data": "created_on"
                 },
                 {
                     "data": "actions"
                 }
             ],
-            "columnDefs": [{
-                    "targets": [0, 5, 8],
-                    "className": 'text-center',
-                },
-                {
-                    "targets": [2, 3],
-                    "className": 'text-right',
-                }
+            "columnDefs": [
+                { "width": "5%", "targets": 0, "className": 'text-center'},
+                { "targets": [2, 3], "className": 'text-right'},
             ],
         });
 
