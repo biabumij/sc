@@ -45,8 +45,6 @@
                                             <th>No.</th>
                                             <th>Satuan</th>
                                             <th>Status</th>
-                                            <th>Dibuat Oleh</th>
-                                            <th>Dibuat Tanggal</th>
                                             <th>Edit</th>
                                             <th>Hapus</th>
                                         </tr>
@@ -124,8 +122,6 @@
                 { "data": "no" },
                 { "data": "measure_name" },
                 { "data": "status" },
-                { "data": "admin_name"},
-                { "data": "created_on"},
                 { "data": "edit" },
                 { "data": "delete" }
             ],
