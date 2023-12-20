@@ -375,7 +375,7 @@
                                                 <div class="text-left">
                                                     <input type="hidden" id="val-receipt-id" name="">
                                                     <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
-                                                    <button type="button" id="btn_production" class="btn btn-success" style="width:200px; font-weight:bold;">Penagihan Pembelian</button>
+                                                    <button type="button" id="btn_production" class="btn btn-success" style="width:150px; font-weight:bold;">Penagihan Pembelian</button>
                                                 </div>
                                             </div>
                                             <br />
