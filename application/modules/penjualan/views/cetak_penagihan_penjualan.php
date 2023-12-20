@@ -206,9 +206,9 @@
 				<th colspan="6" align="left">
 				<b>INFO PEMBAYARAN </b><br />
 				Silahkan transfer ke rekening: <br />
-				166-000-3184-587 <br />
+				132-741-098-6 <br />
 				a/n PT. Bia Bumi Jayendra <br />
-				Bank Mandiri
+				Bank BNI
 				</th>
             </tr>
            	
