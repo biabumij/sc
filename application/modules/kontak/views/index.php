@@ -168,8 +168,6 @@
                 { "data": "alamat"},
                 { "data": "email"},
                 { "data": "telepon"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
@@ -193,8 +191,6 @@
                 { "data": "alamat"},
                 { "data": "email"},
                 { "data": "telepon"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
@@ -218,8 +214,6 @@
                 { "data": "alamat"},
                 { "data": "email"},
                 { "data": "telepon"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
@@ -243,8 +237,6 @@
                 { "data": "alamat"},
                 { "data": "email"},
                 { "data": "telepon"},
-                { "data": "admin_name"},
-                { "data": "created_on"}
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
