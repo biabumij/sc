@@ -265,7 +265,6 @@
                                                         <th>Pelanggan</th>
                                                         <th>Tgl. Sales Order</th>
                                                         <th>No. Sales Order</th>
-                                                        <th>Jenis Pekerjaan</th>
                                                         <th>Total</th>
                                                         <th>Pembayaran</th>
                                                         <th>Sisa Tagihan</th>
@@ -603,9 +602,6 @@
                 },
                 {
                     "data": "sales_po_id"
-                },
-                {
-                    "data": "jenis_pekerjaan"
                 },
                 {
                     "data": "total_biaya"
