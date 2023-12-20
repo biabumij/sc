@@ -58,8 +58,6 @@
 		                                            <th>Alamat</th>
 		                                            <th>Email</th>
 		                                            <th>Telp.</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -79,8 +77,6 @@
 		                                            <th>Alamat</th>
 		                                            <th>Email</th>
 		                                            <th>Telp.</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -100,8 +96,6 @@
 		                                            <th>Alamat</th>
 		                                            <th>Email</th>
 		                                            <th>Telp.</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
@@ -121,8 +115,6 @@
 		                                            <th>Alamat</th>
 		                                            <th>Email</th>
 		                                            <th>Telp.</th>
-                                                    <th>Dibuat Oleh</th>
-                                                    <th>Dibuat Tanggal</th>
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
