@@ -126,7 +126,7 @@
 							</td>
 						</tr>
 						<?php
-							$create = $this->db->select('id, unit_head, logistik, admin')
+							$create = $this->db->select('id, unit_head, logistik, admin, keu_1, keu_2')
 							->from('akumulasi_bahan_baku')
 							->where("(date_akumulasi = '$end_date')")
 							->order_by('id','desc')->limit(1)
@@ -139,12 +139,12 @@
 
 							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-							$this->db->where('a.admin_id',$create['logistik']);
+							$this->db->where('a.admin_id',$create['keu_1']);
 							$logistik = $this->db->get('tbl_admin a')->row_array();
 
 							$this->db->select('a.admin_name, g.admin_group_name, a.admin_ttd');
 							$this->db->join('tbl_admin_group g','a.admin_group_id = g.admin_group_id','left');
-							$this->db->where('a.admin_id',$create['admin']);
+							$this->db->where('a.admin_id',$create['keu_2']);
 							$admin = $this->db->get('tbl_admin a')->row_array();
 
 							$dirut = $this->pmm_model->GetNameGroup(6);
