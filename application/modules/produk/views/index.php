@@ -26,14 +26,14 @@
                         <div class="panel-header">
                             <h3 class="section-subtitle">
                             	Produk
-                            	<div class="pull-right">
+                            	<!--<div class="pull-right">
                             		<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
                                         <i class="fa fa-plus"></i> Buat <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo site_url('produk/buat_baru'); ?>">Produk</a></li>
                                       </ul>
-                            	</div>
+                            	</div>-->
                         	</h3>
                         </div>
                         <div class="panel-content">

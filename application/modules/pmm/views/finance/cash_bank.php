@@ -28,9 +28,9 @@
                             <h3 class="section-subtitle">
                                 Kas & Bank
                                 <div class="pull-right">
-                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
+                                    <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
                                         <i class="fa fa-plus"></i> Buat Tranksaksi <span class="caret"></span>
-                                    </button>
+                                    </button>-->
                                     <ul class="dropdown-menu text-right">
                                         <li><a href="<?= site_url("pmm/finance/transfer_uang") ?>">Transfer Uang</a></li>
                                         <li><a href="<?php echo site_url('pmm/finance/terima_uang');?>">Terima Uang</a></li>

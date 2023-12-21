@@ -127,6 +127,7 @@ class Receipt_material extends CI_Controller {
 		if(!empty($purchase_order_id)){
 			$this->db->where('prm.purchase_order_id',$purchase_order_id);
 		}
+
 		if(!empty($material_id) || $material_id != 0){
 			$this->db->where('prm.material_id',$material_id);
 		}
@@ -138,6 +139,8 @@ class Receipt_material extends CI_Controller {
 			$this->db->where('prm.date_receipt  >=',date('Y-m-d',strtotime($start_date)));	
 			$this->db->where('prm.date_receipt <=',date('Y-m-d',strtotime($end_date)));	
 		}
+
+		$this->db->where('prm.date_receipt <=',date('2023-07-31',strtotime($end_date)));	
 		$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
 		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
 		$this->db->order_by('prm.created_on','DESC');

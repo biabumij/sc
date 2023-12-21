@@ -32,9 +32,9 @@
                         </div>
                         <div class="panel-content">
                             <div class="row">
-                                <div class="col-sm-2">
+                                <!--<div class="col-sm-2">
                                     <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="font-weight:bold;"><i class="fa fa-plus"></i> Buat Daftar Akun</a>
-                                </div>
+                                </div>-->
                                 <form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/client_print');?>">
                                     <div class="col-sm-3">
                                         <select id="filter_category" name="filter_category" class="form-control select2" required="">
@@ -50,6 +50,7 @@
                                             ?>
                                         </select>
                                     </div>
+                                    <br /><br />
                                 </form>
                             </div>
                             <div class="table-responsive">

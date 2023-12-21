@@ -181,7 +181,7 @@
                                 fontFamily: 'helvetica'
                             }
                         },
-                        categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Agu 23','Sep 23','Okt 23','Nov 23','Des 23','Akumulasi']
+                        categories: ['Jan 23','Feb 23','Mar 23','Apr 23','Mei 23','Jun 23','Jul 23','Akumulasi']
                     },
                     yAxis: {
                         //title: {  //label yAxis
@@ -253,7 +253,7 @@
                     series: [{  
                         name: 'Target %',  
                         
-                        data: [0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00],
+                        data: [0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00],
 
                         color: '#000000',
                         fontWeight: 'bold',
@@ -263,7 +263,7 @@
                     {  
                         name: 'Laba Rugi %',  
                         
-                        data: [ <?php echo number_format($persentase_jan_fix,0,',','.');?>,<?php echo number_format($persentase_feb_fix,0,',','.');?>,<?php echo number_format($persentase_mar_fix,0,',','.');?>,<?php echo number_format($persentase_apr_fix,0,',','.');?>,<?php echo number_format($persentase_mei_fix,0,',','.');?>,<?php echo number_format($persentase_jun_fix,0,',','.');?>,<?php echo number_format($persentase_jul_fix,0,',','.');?>,<?php echo number_format($persentase_agu_fix,0,',','.');?>,<?php echo number_format($persentase_sep_fix,0,',','.');?>,<?php echo number_format($persentase_okt_fix,0,',','.');?>,<?php echo number_format($persentase_nov_fix,0,',','.');?>,<?php echo number_format($persentase_des_fix,0,',','.');?>,<?php echo number_format($persentase_aku_fix,0,',','.');?>],
+                        data: [ <?php echo number_format($persentase_jan_fix,0,',','.');?>,<?php echo number_format($persentase_feb_fix,0,',','.');?>,<?php echo number_format($persentase_mar_fix,0,',','.');?>,<?php echo number_format($persentase_apr_fix,0,',','.');?>,<?php echo number_format($persentase_mei_fix,0,',','.');?>,<?php echo number_format($persentase_jun_fix,0,',','.');?>,<?php echo number_format($persentase_jul_fix,0,',','.');?>,<?php echo number_format($persentase_aku_fix,0,',','.');?>],
 
                         color: '#FF0000',
                         fontWeight: 'bold',

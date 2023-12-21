@@ -89,9 +89,9 @@
                                 <h3 class="section-subtitle">
                                     Pembelian
                                     <div class="pull-right">
-                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
+                                        <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat <span class="caret"></span>
-                                        </button>
+                                        </button>-->
                                         <ul class="dropdown-menu">
                                             <li><a href="<?php echo site_url('pembelian/penawaran_pembelian'); ?>">Penawaran Pembelian</a></li>
 											 <li><a href="javascript:void(0);" onclick="OpenFormRequest()">Permintaan Bahan & Alat</a></li>
@@ -1154,7 +1154,6 @@
     </script>
 
     <!-- Script Permintaan Bahan & Alat -->
-
     <script type="text/javascript">
 		
 		$('.filter_date_b').daterangepicker({
@@ -1376,7 +1375,6 @@
     </script>
 
 	<!-- Script Pengiriman Pembelian -->
-
     <script type="text/javascript">
 
     var table_receipt = $('#table-receipt').DataTable( {"bAutoWidth": false,
@@ -1530,7 +1528,6 @@
     </script>
     
 	<!-- Script Tagihan Pembelian -->
-
     <script type="text/javascript">
 
     var table_tagihan = $('#table-tagihan').DataTable( {"bAutoWidth": false,

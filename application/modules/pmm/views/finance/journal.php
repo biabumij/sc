@@ -30,11 +30,11 @@
                             <h3 class="section-subtitle">Jurnal Umum</h3>
                         </div>
                         <div class="panel-content">
-                            <div class="row">
+                            <!--<div class="row">
                                 <div class="col-sm-12">
                                     <a href="<?= base_url("pmm/jurnal_umum/tambah_jurnal") ?>" class="btn btn-info" style="font-weight:bold;"><i class="fa fa-plus"></i> Buat Jurnal Umum</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="font-weight:bold;">Jurnal Umum</a></li>
                             </ul>

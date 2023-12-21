@@ -30,11 +30,11 @@
                             <h3 class="section-subtitle">Biaya</h3>
                         </div>
                         <div class="panel-content">
-                            <div class="row">
+                            <!--<div class="row">
                                 <div class="col-sm-12">
                                     <a href="<?= base_url("pmm/biaya/tambah_biaya") ?>" class="btn btn-info" style="font-weight:bold;"><i class="fa fa-plus"></i> Buat Biaya Umum & Adm.</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="font-weight:bold;">Biaya Umum & Adm.</a></li>
                             </ul>

@@ -29,10 +29,10 @@
                         </div>
                         <div class="panel-content">
                             <div class="row">
-                                <div class="col-sm-2">
+                                <!--<div class="col-sm-2">
                                     <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="font-weight:bold;"><i class="fa fa-plus"></i> Buat Satuan</a>
                                 </div>
-                                <!--<form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/measures_print');?>">
+                                <form method="GET" target="_blank" action="<?php echo site_url('pmm/reports/measures_print');?>">
                                     <div class="col-sm-2">
                                         <button type="submit" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
                                     </div>
