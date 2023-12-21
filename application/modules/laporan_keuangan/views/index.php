@@ -134,7 +134,7 @@
             locale: {
               format: 'DD-MM-YYYY'
             },
-            maxDate: new Date(2023, 08, 31),
+            maxDate: new Date(2023, 07, 31),
             ranges: {
                'Today': [moment(), moment()],
                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
