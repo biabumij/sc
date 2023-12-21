@@ -63,7 +63,7 @@ class Request_materials extends CI_Controller {
 			$this->db->where('request_date <=',date('Y-m-d',strtotime($end_date)));	
 		}
 
-		$this->db->where('request_date <=',date('2023-07-31',strtotime($end_date)));
+		$this->db->where('request_date <=',date('2023-08-31'));
 		$this->db->order_by('created_on','DESC');
 		$query = $this->db->get('pmm_request_materials prm');
 		if($query->num_rows() > 0){

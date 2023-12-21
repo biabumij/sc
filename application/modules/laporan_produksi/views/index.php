@@ -346,6 +346,7 @@
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
+                maxDate: new Date(2023, 07, 31),
                 ranges: {
                     'Today': [moment(), moment()],
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -400,7 +401,6 @@
             </script>
 
             <!-- Script Laporan Produksi Campuran -->
-
             <script type="text/javascript">
             $('input.numberformat').number(true, 4, ',', '.');
             $('#filter_date_campuran').daterangepicker({
@@ -461,7 +461,6 @@
             </script>
 
 			<!-- Script Rekepitulasi -->
-			
             <script type="text/javascript">
             $('input.numberformat').number(true, 4, ',', '.');
             $('#filter_date_rekapitulasi').daterangepicker({
@@ -470,6 +469,7 @@
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
+                maxDate: new Date(2023, 07, 31),
                 ranges: {
                     'Today': [moment(), moment()],
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -519,99 +519,7 @@
                 console.log('.mats-' + id);
                 $('.mats-' + id).slideToggle();
             }
-        </script>
-
-			<!-- Script Nilai Persediaan Barang -->
-
-			<script type="text/javascript">
-			$('#filter_date_nilai').daterangepicker({
-            autoUpdateInput : false,
-			showDropdowns: true,
-            locale: {
-              format: 'DD-MM-YYYY'
-            },
-            ranges: {
-               'Today': [moment(), moment()],
-               'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-               'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-               'This Month': [moment().startOf('month'), moment().endOf('month')],
-               'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-					}
-				});
-
-				$('#filter_date_nilai').on('apply.daterangepicker', function(ev, picker) {
-					  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-					  TableNilaiPersediaanBahanBaku();
-				});
-
-
-				function TableNilaiPersediaanBahanBaku()
-				{
-					$('#wait').fadeIn('fast');   
-					$.ajax({
-						type    : "POST",
-						url     : "<?php echo site_url('pmm/reports/nilai_persediaan_bahan_baku'); ?>/"+Math.random(),
-						dataType : 'html',
-						data: {
-							filter_date : $('#filter_date_nilai').val(),
-						},
-						success : function(result){
-							$('#box-ajax-3').html(result);
-							$('#wait').fadeOut('fast');
-						}
-					});
-				}
-
-				//TableNilaiPersediaanBahanBaku();
-			
-            </script>
-
-			<!-- Script Nilai Persediaan Bahan Jadi -->
-			
-            <script type="text/javascript">
-			$('#filter_date_nilai_bahan_jadi').daterangepicker({
-				autoUpdateInput : false,
-				showDropdowns: true,
-				locale: {
-				  format: 'DD-MM-YYYY'
-				},
-				ranges: {
-				   'Today': [moment(), moment()],
-				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				   'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-				   'This Month': [moment().startOf('month'), moment().endOf('month')],
-				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-				}
-			});
-
-			$('#filter_date_nilai_bahan_jadi').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableNilaiPersediaanBahanJadi();
-			});
-			
-			function TableNilaiPersediaanBahanJadi()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/nilai_persediaan_bahan_jadi'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_nilai_bahan_jadi').val(),
-					},
-					success : function(result){
-						$('#box-ajax-6d').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TableNilaiPersediaanBahanJadi();
-			
-            </script>			
+        </script>		
 
 </body>
-
 </html>

@@ -284,7 +284,7 @@ class Pembelian extends Secure_Controller
             $this->db->where('tanggal_penawaran <=', date('Y-m-d', strtotime($end_date)));
         }
 
-        $this->db->where('tanggal_penawaran <=', date('2023-07-31', strtotime($end_date)));
+        $this->db->where('tanggal_penawaran <=', date('2023-08-31'));
         $this->db->order_by('created_on', 'DESC');
         $query = $this->db->get('pmm_penawaran_pembelian');
 
@@ -384,7 +384,7 @@ class Pembelian extends Secure_Controller
 			$this->db->where('supplier_id',$supplier_id);
 		}
 
-        $this->db->where('created_on <=', date('2023-07-31 h:i A', strtotime($end_date.' 23:59:59')));
+        $this->db->where('created_on <=', date('2023-08-31 23:59:59'));
         $this->db->order_by('created_on', 'DESC');
         $query = $this->db->get('pmm_penagihan_pembelian');
 		
