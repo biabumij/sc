@@ -602,7 +602,7 @@ class Laporan extends Secure_Controller {
 		$this->db->join('pmm_productions pp','ppo.id = pp.salesPo_id','left');
 		$this->db->where("ppo.status in ('OPEN','CLOSED')");
 		$this->db->where('pp.status','PUBLISH');
-		$this->db->where("pp.product_id in (3,4,7,8,9,14,24)");
+		$this->db->where("pp.product_id in (3,4,7,8,9,14,24,63)");
 		$this->db->group_by('ppo.client_id');
 		$query = $this->db->get('pmm_sales_po ppo');
 		

@@ -3918,7 +3918,7 @@ class Pmm_model extends CI_Model {
 		
 		$this->db->where('pp.status','PUBLISH');
         $this->db->where("ppo.status in ('OPEN','CLOSED')");
-        $this->db->where("pp.product_id in (3,4,7,8,9,14,24,35,36,37,38)");
+        $this->db->where("pp.product_id in (3,4,7,8,9,14,24,35,36,37,38,63)");
         $this->db->order_by('p.nama_produk','asc');
         $this->db->group_by('pp.product_id');
         $query = $this->db->get('pmm_productions pp');
