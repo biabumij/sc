@@ -1366,7 +1366,6 @@ class Pmm extends CI_Controller {
 		$data = array();
 
 		$this->db->where('status','PUBLISH');
-		$this->db->where('date <=',date('2023-07-31',strtotime($arr_date[1])));
 		$this->db->order_by('date','desc');
 		$this->db->order_by('id','desc');
 		if(!empty($this->input->post('material_id'))){

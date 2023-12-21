@@ -25,7 +25,6 @@ class Biaya extends CI_Controller {
 
         $this->db->select('b.*, p.nama as penerima');
         $this->db->join('penerima p','b.penerima = p.id','left');
-        $this->db->where('b.tanggal_transaksi <=',date('2023-07-31',strtotime($arr_date[1])));
         $this->db->order_by('b.tanggal_transaksi','desc');
         $this->db->order_by('b.created_on','desc');
 		$query = $this->db->get('pmm_biaya b');
