@@ -390,7 +390,6 @@
         <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 
         <!-- Script Penjualan -->
-
         <script type="text/javascript">
             $('#filter_date_a').daterangepicker({
                 autoUpdateInput: false,
@@ -398,7 +397,6 @@
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
-                maxDate: new Date(2023, 07, 31),
                 ranges: {
                     'Today': [moment(), moment()],
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -476,7 +474,6 @@
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
-                maxDate: new Date(2023, 07, 31),
                 ranges: {
                     'Today': [moment(), moment()],
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -570,7 +567,6 @@
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
-                maxDate: new Date(2023, 07, 31),
                 ranges: {
                     'Today': [moment(), moment()],
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -678,7 +674,6 @@
                 locale: {
                     format: 'DD-MM-YYYY'
                 },
-                maxDate: new Date(2023, 07, 31),
                 ranges: {
                     'Today': [moment(), moment()],
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],

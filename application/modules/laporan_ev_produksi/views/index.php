@@ -198,7 +198,6 @@
 
 
 		<!-- Script Laporan Evaluasi -->
-			
 		<script type="text/javascript">
 		$('input.numberformat').number(true, 4, ',', '.');
 		$('#filter_date_evaluasi').daterangepicker({
