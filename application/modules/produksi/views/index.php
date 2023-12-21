@@ -101,7 +101,7 @@
 														<th>Nomor Kalibrasi</th>
                                                         <th>Judul</th>
 														<th>Lampiran</th>
-                                                        <th>Lihat Data</th>
+                                                        <th>Hapus</th>
                                                         <th>Cetak</th>
                                                         <th>Status</th>
 														
@@ -133,7 +133,7 @@
 														<th>Nomor Komposisi</th>
                                                         <th>Judul</th>
 														<th>Lampiran</th>
-                                                        <th>Lihat Data</th>
+                                                        <th>Hapus</th>
                                                         <th>Cetak</th>
                                                         <th>Status</th>
                                                     </tr>
@@ -166,7 +166,7 @@
 														<th>Pemakaian Bahan Baku (Ton)</th>
 														<th>Kapasitas Produksi (Ton/Jam)</th>
 														<th>Keterangan</th>
-                                                        <th>Lihat Data</th>
+                                                        <th>Hapus</th>
                                                         <th>Cetak</th>
                                                         <th>Status</th>												
                                                     </tr>
@@ -215,7 +215,7 @@
 														<th>Satuan</th>
 														<th>Volume</th>
 														<th>Keterangan</th>
-                                                        <th>Lihat Data</th>
+                                                        <th>Hapus</th>
                                                         <th>Cetak</th>
                                                         <th>Status</th>											
                                                     </tr>

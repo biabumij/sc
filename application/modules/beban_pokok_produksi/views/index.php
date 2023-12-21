@@ -102,7 +102,7 @@
 													</div>
                                                     <div class="col-sm-5">
 														<p><h5>Pergerakan Bahan Jadi</h5></p>
-														<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. sekarang</blink></p>
+														<p style='color:red; font-weight:bold;'><blink>Periode Juni 2022 sd. Agustus 2023</blink></p>
                                                         <a href="#pergerakan_bahan_jadi_penyesuaian" aria-controls="pergerakan_bahan_jadi_penyesuaian" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
 													</div> 													
                                                 </div>
@@ -321,7 +321,6 @@
 
 
 		<!-- Script Beban Pokok Produksi -->
-
 		<script type="text/javascript">	
 		$('#filter_date_bpp').daterangepicker({
 		autoUpdateInput : false,
@@ -363,11 +362,9 @@
 		}
 
 		//TableBebanPokokProduksi();
-		
 		</script>
 		
 		<!-- Script Pergerakan Bahan Baku -->
-
 		<script type="text/javascript">
 		$('#filter_date_bahan_baku').daterangepicker({
 		autoUpdateInput : false,
@@ -419,11 +416,9 @@
 		}
 
 		//TablePergerakanBahanBaku();
-
 		</script>
 
 		<!-- Script Pergerakan Bahan Baku Penyesuaian -->
-
 		<script type="text/javascript">
 		$('#filter_date_bahan_baku_penyesuaian').daterangepicker({
 		autoUpdateInput : false,
@@ -466,11 +461,9 @@
 		}
 
 		//TablePergerakanBahanBakuPenyesuaian();
-
 		</script>
 
-		<!-- Script Pergerakan Bahan Jadi -->
-			
+		<!-- Script Pergerakan Bahan Jadi -->	
 		<script type="text/javascript">
 		$('#filter_date_bahan_jadi').daterangepicker({
 			autoUpdateInput : false,
@@ -521,11 +514,9 @@
 		}
 
 		//TablePergerakanBahanJadi();
-		
 		</script>
 
 		<!-- Script Pergerakan Bahan Jadi (Penyesuaian Stok) -->
-		
 		<script type="text/javascript">
 		$('#filter_date_bahan_jadi_penyesuaian').daterangepicker({
 			autoUpdateInput : false,
@@ -534,6 +525,7 @@
 				format: 'DD-MM-YYYY'
 			},
 			minDate: new Date(2022, 05, 01),
+			maxDate: new Date(2023, 07, 31),
 			ranges: {
 				'Today': [moment(), moment()],
 				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
