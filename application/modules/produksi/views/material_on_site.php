@@ -5,9 +5,9 @@
     <div class="col-sm-2">
         <button type="submit" class="btn btn-default" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
     </div>
-    <div class="col-sm-2">
+    <!--<div class="col-sm-2">
         <a href="javascript:void(0);" onclick="OpenForm()" class="btn btn-info" style="font-weight:bold;"><i class="fa fa-plus"></i> Buat Stock Opname</a>
-    </div>
+    </div>-->
 </form>
 <br />
 <br />

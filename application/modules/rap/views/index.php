@@ -35,7 +35,7 @@
                             <div class="panel-header">
                                 <h3 class="section-subtitle">
                                     <?php echo $row[0]->menu_name; ?>
-                                    <div class="pull-right">
+                                    <!--<div class="pull-right">
                                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat <span class="caret"></span>
                                         </button>
@@ -43,7 +43,7 @@
                                             <li><a href="<?= site_url('rap/form_rap'); ?>">Analisa Harga Satuan</a></li>
                                             <li><a href="<?= site_url('rap/form_penyusutan'); ?>">Penyusutan</a></li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                 </h3>
 
                             </div>
