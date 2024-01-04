@@ -1759,14 +1759,14 @@ class Penjualan extends Secure_Controller
 		if ($this->db->trans_status() === FALSE) {
             # Something went wrong.
             $this->db->trans_rollback();
-            $this->session->set_flashdata('notif_error','Sales Order DELETE');
+            $this->session->set_flashdata('notif_error','<b>Sales Order DELETE</b>');
             redirect('penjualan/dataSalesPO/'.$id);
         } 
         else {
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success','Sales Order DELETE');
+            $this->session->set_flashdata('notif_success',<b>'Sales Order DELETE</b>');
             redirect('admin/penjualan');
         }
     }
