@@ -422,6 +422,7 @@ class Penjualan extends Secure_Controller
 
 		$this->db->select('ps.*, p.nama as client_name');
 		$this->db->join('penerima p', 'ps.client_id = p.id', 'left');
+		$this->db->where('contract_date >=', date('2023-08-01'));
 		$this->db->order_by('created_on', 'DESC');
 		$query = $this->db->get('pmm_sales_po ps');
 		if ($query->num_rows() > 0) {
@@ -855,6 +856,7 @@ class Penjualan extends Secure_Controller
 			$this->db->where('date_production <=', $end_date);
 		}
 
+		$this->db->where('date_production >=', date('2023-08-01'));
 		$this->db->order_by('created_on', 'DESC');
 		$query = $this->db->get('pmm_productions');
 		if ($query->num_rows() > 0) {
@@ -943,14 +945,15 @@ class Penjualan extends Secure_Controller
             $arr_date = explode(' - ', $w_date);
             $start_date = $arr_date[0];
             $end_date = $arr_date[1];
-            $this->db->where('created_on  >=', date('Y-m-d', strtotime($start_date)));
-            $this->db->where('created_on <=', date('Y-m-d', strtotime($end_date)));
+            $this->db->where('tanggal_invoice  >=', date('Y-m-d', strtotime($start_date)));
+            $this->db->where('tanggal_invoice <=', date('Y-m-d', strtotime($end_date)));
         }
 
 		if(!empty($supplier_id)){
 			$this->db->where('client_id',$supplier_id);
 		}
 		
+		$this->db->where('tanggal_invoice >=', date('2023-08-01'));
 		$this->db->order_by('created_on', 'DESC');
         $query = $this->db->get('pmm_penagihan_penjualan');
 
