@@ -328,9 +328,6 @@
                     "data": "nomor"
                 },
                 {
-                    "data": "nama"
-                },
-                {
                     "data": "perihal"
                 },
                 {
