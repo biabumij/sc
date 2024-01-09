@@ -44,7 +44,7 @@
                             <div class="panel-header">
                                 <h3 class="section-subtitle">
                                     Penjualan
-                                    <div class="pull-right">
+                                    <!--<div class="pull-right">
                                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat <span class="caret"></span>
                                         </button>
@@ -52,7 +52,7 @@
                                             <li><a href="<?= site_url("penjualan/penawaran_penjualan") ?>">Penawaran Penjualan</a></li>
                                             <li><a href="<?php echo site_url('penjualan/sales_po'); ?>">Sales Order</a></li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                 </h3>
                             </div>
                             <div class="panel-content">
