@@ -1238,17 +1238,16 @@ class Penjualan extends Secure_Controller
 		if ($this->db->trans_status() === FALSE) {
 			# Something went wrong.
 			$this->db->trans_rollback();
-			$this->session->set_flashdata('notif_error','<b>Gagal Membuat Tagihan</b>');
+			$this->session->set_flashdata('notif_error','<b>REJECTED</b>');
 			redirect('admin/penjualan#settings');
 		} else {
 			# Everything is Perfect. 
 			# Committing data to the database.
 			$this->db->trans_commit();
-			$this->session->set_flashdata('notif_success','<b>Berhasil Membuat Tagihan</b>');
+			$this->session->set_flashdata('notif_success','<b>SAVED</b>');
 			redirect('admin/penjualan#settings');
 		}
 	}
-
 
 	public function detailPenagihan($id)
 	{
@@ -1491,7 +1490,7 @@ class Penjualan extends Secure_Controller
 			'memo' => $this->input->post('memo'),
 			'pembayaran' => $pembayaran_pro,
 			'total' => $pembayaran_pro,
-			'status' => 'DISETUJUI',
+			'status' => 'Disetujui',
 			'created_by' => $this->session->userdata('admin_id'),
 			'created_on' => date('Y-m-d H:i:s')
 		);
@@ -1770,7 +1769,7 @@ class Penjualan extends Secure_Controller
             # Everything is Perfect. 
             # Committing data to the database.
             $this->db->trans_commit();
-            $this->session->set_flashdata('notif_success',<b>'Sales Order DELETE</b>');
+            $this->session->set_flashdata('notif_success','<b>Sales Order DELETE</b>');
             redirect('admin/penjualan');
         }
     }

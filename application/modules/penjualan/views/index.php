@@ -5,10 +5,15 @@
     <?php echo $this->Templates->Header(); ?>
     <link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet" />
     <style>
+        body {
+            font-family: helvetica;
+            font-size: 98%;
+        }
+
 		.tab-pane {
             padding-top: 10px;
         }
-        
+
         .select2-container--default .select2-results__option[aria-disabled=true] {
             display: none;
         }
@@ -21,7 +26,6 @@
 
         <?php echo $this->Templates->PageHeader(); ?>
         <?php include 'lib.php'; ?>
-
 
         <div class="page-body">
             <?php echo $this->Templates->LeftBar(); ?>
@@ -36,14 +40,14 @@
                 </div>
                 <div class="row animated fadeInUp">
                     <div class="col-sm-12 col-lg-12">
-                        <div class="panel">
+                        <div class="panel" style="background: linear-gradient(90deg, #f8f8f8 20%, #dddddd 40%, #f8f8f8 80%);">
                             <div class="panel-header">
                                 <h3 class="section-subtitle">
                                     Penjualan
                                     <div class="pull-right">
-                                        <!--<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight:bold;">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat <span class="caret"></span>
-                                        </button>-->
+                                        </button>
                                         <ul class="dropdown-menu">
                                             <li><a href="<?= site_url("penjualan/penawaran_penjualan") ?>">Penawaran Penjualan</a></li>
                                             <li><a href="<?php echo site_url('penjualan/sales_po'); ?>">Sales Order</a></li>
@@ -53,10 +57,10 @@
                             </div>
                             <div class="panel-content">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="font-weight:bold;">Penawaran Penjualan</a></li>
-                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="font-weight:bold;">Sales Order</a></li>
-                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="font-weight:bold;">Pengiriman Penjualan</a></li>
-                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" style="font-weight:bold;">Tagihan Penjualan</a></li>
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Penawaran Penjualan</a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Sales Order</a></li>
+                                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Pengiriman Penjualan</a></li>
+                                    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Tagihan Penjualan</a></li>
                                 </ul>
 
                                 <div class="tab-content">
@@ -248,7 +252,7 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="text-left">
-                                                    <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
+                                                    <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -287,10 +291,6 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        var form_control = '';
-    </script>
-
     <?php echo $this->Templates->Footer(); ?>
 
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
@@ -298,9 +298,14 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/bootbox.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
+    
     <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
     <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+
+    <script type="text/javascript">
+        var form_control = '';
+    </script>
 
     <script type="text/javascript">
         $('input#contract').number(true, 2, ',', '.');
@@ -620,7 +625,6 @@
                 { "targets": [8, 9, 10], "className": 'text-right'},
             ],
             responsive: true,
-            //paging : false,
         });
 
 		$('#filter_date_tagihan').daterangepicker({
@@ -687,7 +691,6 @@
             event.preventDefault();
 
         });
-
     </script>
 
 </body>
