@@ -102,7 +102,7 @@
                                                         <th>No.</th>
                                                         <th>Status</th>
                                                         <th>Tanggal</th>
-                                                        <th>Nomor</th>
+                                                        <th>No. Sales Order</th>
                                                         <th>Pelanggan</th>
                                                         <th>Jenis Pekerjaan</th>
 														<th>Vol. Sales Order</th>
