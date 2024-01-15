@@ -166,7 +166,7 @@
                                         }
                                         ?>
                                         <form class="form-check" action="<?= base_url("penjualan/rejectedPenawaran/".$penawaran["id"]) ?>">
-                                            <button type="submit" class="btn btn-warning" style="width:150px; font-weight:bold;"><i class="fa fa-close"></i> Reject</button>        
+                                            <button type="submit" class="btn btn-danger" style="width:150px; font-weight:bold;"><i class="fa fa-close"></i> Reject</button>        
                                         </form>
                                     <?php endif; ?>
 
