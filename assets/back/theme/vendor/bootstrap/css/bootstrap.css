@@ -4068,6 +4068,8 @@ fieldset[disabled] .btn-primary.focus {
   color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 .btn-success:focus,
@@ -4263,6 +4265,8 @@ fieldset[disabled] .btn-warning.focus {
   color: #fff;
   background-color: #d9534f;
   border-color: #d43f3a;
+  border-radius: 10px;
+  font-weight: bold;
 }
 
 .btn-danger:focus,
