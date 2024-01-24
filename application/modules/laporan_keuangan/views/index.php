@@ -135,7 +135,7 @@
               format: 'DD-MM-YYYY'
             },
             minDate: new Date(2021, 01, 27), 
-			maxDate: new Date(2023, 06, 31),
+			maxDate: new Date(2023, 07, 01),
             ranges: {
                'Today': [moment(), moment()],
                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
