@@ -210,7 +210,8 @@ class Produksi extends Secure_Controller {
 		}
         $this->db->select('kb.id, kb.jobs_type, kb.no_kalibrasi, kb.date_kalibrasi, lk.kalibrasi_id, lk.lampiran, kb.created_by, kb.created_on, kb.status');
 		$this->db->join('pmm_lampiran_kalibrasi lk', 'kb.id = lk.kalibrasi_id','left');
-		$this->db->order_by('kb.created_on','desc');		
+		$this->db->order_by('kb.created_on','desc');
+		$this->db->where('kb.date_kalibrasi <=', date('2023-07-31'));		
 		$query = $this->db->get('pmm_kalibrasi kb');
 		
        if($query->num_rows() > 0){
@@ -448,7 +449,8 @@ class Produksi extends Secure_Controller {
 		$this->db->join('pmm_lampiran_produksi_harian lk', 'kb.id = lk.produksi_harian_id','left');
 		$this->db->where('kb.status','PUBLISH');
 		$this->db->group_by('kb.id');
-		$this->db->order_by('kb.date_prod','desc');			
+		$this->db->order_by('kb.date_prod','desc');
+		$this->db->where('kb.date_prod <=', date('2023-07-31'));			
 		$query = $this->db->get('pmm_produksi_harian kb');
 		
        if($query->num_rows() > 0){
@@ -557,7 +559,8 @@ class Produksi extends Secure_Controller {
 		$this->db->join('pmm_produksi_harian_detail phd','kb.id = phd.produksi_harian_id','left');
 		$this->db->join('pmm_kalibrasi pk','phd.product_id = pk.id','left');
 		$this->db->group_by('kb.id');	
-		$this->db->order_by('kb.created_on','desc');		
+		$this->db->order_by('kb.created_on','desc');
+		$this->db->where('kb.date_prod <=', date('2023-07-31'));	
 		$query = $this->db->get('pmm_produksi_harian kb');
 		
        if($query->num_rows() > 0){
@@ -727,7 +730,8 @@ class Produksi extends Secure_Controller {
 		}
         $this->db->select('ag.id, ag.jobs_type, ag.date_agregat, ag.no_komposisi, lk.agregat_id, lk.lampiran, ag.created_by, ag.created_on, ag.status');
 		$this->db->join('pmm_lampiran_agregat lk', 'ag.id = lk.agregat_id','left');
-		$this->db->order_by('ag.date_agregat','desc');		
+		$this->db->order_by('ag.date_agregat','desc');	
+		$this->db->where('ag.date_agregat <=', date('2023-07-31'));	
 		$query = $this->db->get('pmm_agregat ag');
 		
        if($query->num_rows() > 0){
@@ -1266,7 +1270,8 @@ class Produksi extends Secure_Controller {
 		$this->db->join('pmm_lampiran_produksi_campuran lk', 'ppc.id = lk.produksi_campuran_id','left');
 		$this->db->where('ppc.status','PUBLISH');
 		$this->db->group_by('ppc.id');	
-		$this->db->order_by('ppc.date_prod','desc');			
+		$this->db->order_by('ppc.date_prod','desc');
+		$this->db->where('ppc.date_prod <=', date('2023-07-31'));			
 		$query = $this->db->get('pmm_produksi_campuran ppc');
 		
        if($query->num_rows() > 0){
@@ -1416,6 +1421,7 @@ class Produksi extends Secure_Controller {
 	
         $this->db->select('pp.id, pp.date_hpp, pp.boulder, pp.bbm, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_hpp','desc');
+		$this->db->where('pp.date_hpp <=', date('2023-07-31'));
 		$query = $this->db->get('hpp_bahan_baku pp');
 		
        if($query->num_rows() > 0){
@@ -1515,6 +1521,7 @@ class Produksi extends Secure_Controller {
 		}
         $this->db->select('pp.id, pp.date_hpp, pp.abubatu, pp.batu0510, pp.batu1020, pp.batu2030, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_hpp','desc');
+		$this->db->where('pp.date_hpp <=', date('2023-07-31'));
 		$query = $this->db->get('hpp pp');
 		
        if($query->num_rows() > 0){
@@ -1620,6 +1627,7 @@ class Produksi extends Secure_Controller {
 		}
         $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, , pp.total_nilai_keluar_2, pp.total_nilai_akhir, pp.status, pp.created_by, pp.created_on');
 		$this->db->order_by('pp.date_akumulasi','desc');
+		$this->db->where('pp.date_akumulasi <=', date('2023-07-31'));
 		$query = $this->db->get('akumulasi_bahan_baku pp');
 		
        if($query->num_rows() > 0){
@@ -1717,6 +1725,7 @@ class Produksi extends Secure_Controller {
 		}
         $this->db->select('pp.id, pp.date_akumulasi, pp.total_nilai_keluar, pp.total_nilai_akhir, pp.status, pp.created_by, pp.created_on, pp.memo');
 		$this->db->order_by('pp.date_akumulasi','desc');
+		$this->db->where('pp.date_akumulasi <=', date('2023-07-31'));
 		$query = $this->db->get('akumulasi pp');
 		
        if($query->num_rows() > 0){

@@ -84,10 +84,10 @@
 														<p><h5>Laporan Evaluasi Kapasitas Produksi</h5></p>
                                                         <a href="#laporan_evaluasi_produksi" aria-controls="laporan_evaluasi_produksi" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
 													</div>
-                                                    <div class="col-sm-5">
+                                                    <!--<div class="col-sm-5">
 														<p><h5>Evaluasi Nilai Persediaan</h5></p>
                                                         <a href="#evaluasi_nilai_persediaan" aria-controls="evaluasi_nilai_persediaan" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
-													</div>        													
+													</div>-->        													
                                                 </div>
                                             </div>
                                         </div>

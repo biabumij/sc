@@ -1908,6 +1908,7 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('prm.id');
 		$this->db->order_by('prm.date_receipt','asc');
 		$this->db->order_by('prm.material_id','asc');
+		$this->db->where('prm.date_receipt <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_receipt_material prm');
 
 		$supplier_name = '';

@@ -1377,6 +1377,7 @@ class Pmm extends CI_Controller {
 			$this->db->where('date >=',date('Y-m-d',strtotime($arr_date[0])));
 			$this->db->where('date <=',date('Y-m-d',strtotime($arr_date[1])));
 		}
+		$this->db->where('date <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_remaining_materials_cat');
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {

@@ -25,6 +25,7 @@ class Rap extends Secure_Controller {
 		}
         $this->db->select('r.*');
 		$this->db->order_by('r.tanggal_rap','desc');	
+		$this->db->where('r.tanggal_rap <=', date('2023-07-31'));
 		$query = $this->db->get('rap r');
 		
        if($query->num_rows() > 0){
