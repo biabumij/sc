@@ -285,6 +285,7 @@ class Pembelian extends Secure_Controller
         }
 
         $this->db->order_by('created_on', 'DESC');
+        $this->db->where('tanggal_penawaran <=', date('2023-07-31'));
         $query = $this->db->get('pmm_penawaran_pembelian');
 
         if ($query->num_rows() > 0) {
@@ -384,6 +385,7 @@ class Pembelian extends Secure_Controller
 		}
 
         $this->db->order_by('created_on', 'DESC');
+        $this->db->where('created_on <=', date('2023-07-31'));
         $query = $this->db->get('pmm_penagihan_pembelian');
 		
         if ($query->num_rows() > 0) {

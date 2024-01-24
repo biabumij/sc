@@ -33,6 +33,7 @@ class Penjualan extends Secure_Controller
 		$this->db->join("penerima", "pmm_penawaran_penjualan.client_id = penerima.id");
 		$this->db->order_by('tanggal', 'DESC');
 		$this->db->order_by('created_on', 'DESC');
+		$this->db->where('tanggal <=', date('2023-07-31'));
 		$query = $this->db->get("pmm_penawaran_penjualan");
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
@@ -422,6 +423,7 @@ class Penjualan extends Secure_Controller
 		$this->db->select('ps.*, p.nama as client_name');
 		$this->db->join('penerima p', 'ps.client_id = p.id', 'left');
 		$this->db->order_by('created_on', 'DESC');
+		$this->db->where('contract_date <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_sales_po ps');
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
@@ -855,6 +857,7 @@ class Penjualan extends Secure_Controller
 		}
 
 		$this->db->order_by('created_on', 'DESC');
+		$this->db->where('date_production <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_productions');
 		if ($query->num_rows() > 0) {
 			foreach ($query->result_array() as $key => $row) {
@@ -951,6 +954,7 @@ class Penjualan extends Secure_Controller
 		}
 		
 		$this->db->order_by('created_on', 'DESC');
+		$this->db->where('tanggal_invoice <=', date('2023-07-31'));
         $query = $this->db->get('pmm_penagihan_penjualan');
 
 		if ($query->num_rows() > 0) {

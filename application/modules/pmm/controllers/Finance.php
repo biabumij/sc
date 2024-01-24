@@ -1308,6 +1308,7 @@ class Finance extends CI_Controller {
 		$this->db->select('pmm_transfer.*');
 		$this->db->order_by('tanggal_transaksi','desc');
 		$this->db->order_by('id','desc');
+		$this->db->where('tanggal_transaksi <=', date('2023-07-31'));
 		$query = $this->db->get("pmm_transfer");
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {
@@ -1331,6 +1332,7 @@ class Finance extends CI_Controller {
 		$this->db->select('pmm_terima_uang.*');
 		$this->db->order_by('tanggal_transaksi','desc');
 		$this->db->order_by('id','desc');
+		$this->db->where('tanggal_transaksi <=', date('2023-07-31'));
 		$query = $this->db->get("pmm_terima_uang");
 		if($query->num_rows() > 0){
 			foreach ($query->result_array() as $key => $row) {

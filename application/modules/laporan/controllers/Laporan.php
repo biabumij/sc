@@ -130,6 +130,7 @@ class Laporan extends Secure_Controller {
 			$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 			$this->db->group_by('ppo.supplier_id');
 			$this->db->order_by('ps.nama','asc');
+			$this->db->where('prm.date_receipt <=', date('2023-07-31'));
 			$query = $this->db->get('pmm_purchase_order ppo');
 
 			$no = 1;
@@ -233,6 +234,7 @@ class Laporan extends Secure_Controller {
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
+		$this->db->where('prm.date_receipt <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_receipt_material prm');
 
 			$no = 1;
@@ -457,6 +459,7 @@ class Laporan extends Secure_Controller {
 			$this->db->where("ppp.verifikasi_dok in ('SUDAH','LENGKAP')");
 			$this->db->group_by('ppp.supplier_id');
 			$this->db->order_by('ps.nama','asc');
+			$this->db->where('pvp.tanggal_lolos_verifikasi <=', date('2023-07-31'));
 			$query = $this->db->get('pmm_penagihan_pembelian ppp');
 
 			$no = 1;
@@ -602,8 +605,9 @@ class Laporan extends Secure_Controller {
 		$this->db->join('pmm_productions pp','ppo.id = pp.salesPo_id','left');
 		$this->db->where("ppo.status in ('OPEN','CLOSED')");
 		$this->db->where('pp.status','PUBLISH');
-		$this->db->where("pp.product_id in (3,4,7,8,9,14,24,63)");
+		$this->db->where("pp.product_id in (3,4,7,8,9,14,24,35,36,37,38,63)");
 		$this->db->group_by('ppo.client_id');
+		$this->db->where('pp.date_production <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_sales_po ppo');
 		
 		$no = 1;
@@ -704,6 +708,7 @@ class Laporan extends Secure_Controller {
 		$this->db->where("po.status in ('OPEN','CLOSED')");
 		$this->db->group_by('po.client_id');
 		$this->db->order_by('ps.nama','asc');
+		$this->db->where('pp.date_production <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_productions pp');
 
 			$no = 1;
@@ -970,6 +975,7 @@ class Laporan extends Secure_Controller {
             
 			$this->db->group_by('ppp.client_id');
 			$this->db->order_by('ps.nama','asc');
+			$this->db->where('ppp.tanggal_invoice <=', date('2023-07-31'));
 			$query = $this->db->get('pmm_penagihan_penjualan ppp');
 
 			$no = 1;
@@ -1097,6 +1103,7 @@ class Laporan extends Secure_Controller {
 		$this->db->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left');
 		$this->db->where('pph.status','PUBLISH');
 		$this->db->group_by('pph.date_prod');
+		$this->db->where('pph.date_prod <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_produksi_harian pph');
 		
 		$no = 1;
@@ -1209,6 +1216,7 @@ class Laporan extends Secure_Controller {
 		$this->db->join('pmm_agregat pk', 'pphd.product_id = pk.id','left');
 		$this->db->where('pph.status','PUBLISH');
 		$this->db->group_by('pph.date_prod');
+		$this->db->where('pph.date_prod <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_produksi_campuran pph');
 		
 		$no = 1;
@@ -1316,6 +1324,7 @@ class Laporan extends Secure_Controller {
 		$this->db->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left');
 		$this->db->where('pph.status','PUBLISH');
 		$this->db->group_by('pph.date_prod');
+		$this->db->where('pph.date_prod <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_produksi_harian pph');
 		
 		$no = 1;
@@ -1411,6 +1420,7 @@ class Laporan extends Secure_Controller {
 		$this->db->join('pmm_produksi_harian_detail pphd', 'pph.id = pphd.produksi_harian_id','left');
 		$this->db->join('pmm_kalibrasi pk', 'pphd.product_id = pk.id','left');
 		$this->db->where('pph.status','PUBLISH');
+		$this->db->where('pph.date_prod <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_produksi_harian pph');
 		
 		$no = 1;
@@ -1952,6 +1962,7 @@ class Laporan extends Secure_Controller {
 		$this->db->join('penerima ps', 'ppp.supplier_id = ps.id');
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
+		$this->db->where('ppp.created_on <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
 		
 			$no = 1;
@@ -2058,6 +2069,7 @@ class Laporan extends Secure_Controller {
 		$this->db->join('penerima ps', 'ppp.client_id = ps.id');
 		$this->db->group_by('ppp.client_id');
 		$this->db->order_by('ps.nama','asc');
+		$this->db->where('ppp.created_on <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
 
@@ -2364,7 +2376,7 @@ class Laporan extends Secure_Controller {
 		
 		$this->db->join('pmm_penagihan_pembelian ppp', 'pmp.penagihan_pembelian_id = ppp.id','left');
 		$this->db->group_by('pmp.supplier_name');
-		$this->db->where('pmp.status','DISETUJUI');
+		$this->db->where('pmp.tanggal_pembayaran <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
 		
 		$no = 1;
@@ -2468,6 +2480,7 @@ class Laporan extends Secure_Controller {
 		$this->db->where("ppo.status in ('OPEN','CLOSED')");
 		$this->db->group_by('pmp.client_id');
 		$this->db->order_by('pmp.nama_pelanggan','asc');
+		$this->db->where('pmp.tanggal_pembayaran <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_pembayaran pmp');
 		
 		$no = 1;
