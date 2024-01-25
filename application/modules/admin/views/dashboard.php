@@ -143,7 +143,7 @@
                             fontSize: '14px',
                             fontFamily: 'helvetica'
                         },
-                        text: 'PT. BIA BUMI JAYENDRA - SC (<?php echo $date_now = date('Y', strtotime($date_now));?>)',
+                        text: 'PT. BIA BUMI JAYENDRA - SC (2023)',
                         x: -20
                     },
                     xAxis: { //X axis menampilkan data bulan
