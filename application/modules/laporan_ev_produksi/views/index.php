@@ -122,12 +122,12 @@
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-evaluasi-produksi" style="display:none" width="100%";>
                                                             <thead>
-																<th align="center" rowspan="2">NO.</th>
-																<th align="center">TANGGAL</th>
-																<th align="center">NOMOR PRODUKSI</th>
-																<th align="center">DURASI PRODUKSI (JAM)</th>
-																<th align="center">PEMAKAIAN BAHAN BAKU (TON)</th>
-																<th align="center">KAPASITAS PRODUKSI (TON/JAM)</th>
+																<th class="text-center" rowspan="2">NO.</th>
+																<th class="text-center">TANGGAL</th>
+																<th class="text-center">NOMOR PRODUKSI</th>
+																<th class="text-center">DURASI PRODUKSI (JAM)</th>
+																<th class="text-center">PEMAKAIAN BAHAN BAKU (TON)</th>
+																<th class="text-center">KAPASITAS PRODUKSI (TON/JAM)</th>
 															</thead>
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-condensed"></tfoot>

@@ -127,10 +127,10 @@
                                                         <table class="mytable table-hover table-center table-condensed" id="table-produksi-harian" style="display:none" width="100%";>
                                                             <thead>
                                                                 <tr>
-                                                                    <th align="center">NO.</th>
-                                                                    <th align="center">TANGGAL</th>
-                                                                    <th align="center">DURASI PRODUKSI (JAM)</th>
-                                                                    <th align="center">PEMAKAIAN BAHAN (TON)</th>\
+                                                                    <th class="text-center">NO.</th>
+                                                                    <th class="text-left">TANGGAL</th>
+                                                                    <th class="text-right">DURASI PRODUKSI (JAM)</th>
+                                                                    <th class="text-right">PEMAKAIAN BAHAN (TON)</th>\
                                                                 </tr>
 															</thead>
                                                             <tbody></tbody>
@@ -171,14 +171,14 @@
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-produksi-campuran" style="display:none" width="100%";>
                                                             <thead>
-																<th align="center">NO.</th>
-																<th align="center">TANGGAL</th>
-                                                                <th align="center">PRODUKSI CAMPURAN</th>
-                                                                <th align="center">SATUAN</th>
-																<th align="center">VOLUME</th>
-																<th align="center">FRAKSI</th>
-																<th align="center">KOMPOSISI</th>
-																<th align="center">VOLUME</th>
+																<th class="text-center">NO.</th>
+																<th class="text-center">TANGGAL</th>
+                                                                <th class="text-center">PRODUKSI CAMPURAN</th>
+                                                                <th class="text-center">SATUAN</th>
+																<th class="text-center">VOLUME</th>
+																<th class="text-center">FRAKSI</th>
+																<th class="text-center">KOMPOSISI</th>
+																<th class="text-center">VOLUME</th>
 															</thead>
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-condensed"></tfoot>
@@ -218,11 +218,11 @@
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-rekapitulasi-produksi" style="display:none" width="100%";>
                                                             <thead>
-																<th align="center">NO.</th>
-																<th align="center">URAIAN</th>
-																<th align="center">SATUAN</th>
-																<th align="center">PRESENTASE</th>
-																<th align="center">VOLUME</th>
+																<th class="text-center">NO.</th>
+																<th class="text-center">URAIAN</th>
+																<th class="text-center">SATUAN</th>
+																<th class="text-center">PRESENTASE</th>
+																<th class="text-center">VOLUME</th>
 															</thead>
                                                             <tbody></tbody>
 															<tfoot class="mytable table-hover table-center table-condensed"></tfoot>
@@ -290,8 +290,8 @@
 
                     if (result.data.length > 0) {
                         $.each(result.data, function(i, val) {
-                            $('#table-produksi-harian tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-center"><b>' + val.date_prod + '</b></td><td class="text-center"><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td></tr>');
-                            //$('#table-produksi-harian tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-center"><b>' + val.date_prod + '</b></td><td class="text-center"><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td><td class="text-left">' + val.produk_a + '</td><td class="text-center">' + val.presentase_a + '</td><td class="text-center">' + val.measure_a + '</td><td class="text-center">' + val.jumlah_pemakaian_a + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_b + '</td><td class="text-center">' + val.presentase_b + '</td><td class="text-center">' + val.measure_b + '</td><td class="text-center">' + val.jumlah_pemakaian_b + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_c + '</td><td class="text-center">' + val.presentase_c + '</td><td class="text-center">' + val.measure_c + '</td><td class="text-center">' + val.jumlah_pemakaian_c + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_d + '</td><td class="text-center">' + val.presentase_d + '</td><td class="text-center">' + val.measure_d + '</td><td class="text-center">' + val.jumlah_pemakaian_d + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_e + '</td><td class="text-center">' + val.presentase_e + '</td><td class="text-center">' + val.measure_e + '</td><td class="text-center">' + val.jumlah_pemakaian_e + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="6">' + 'TOTAL' + '</td><td class="text-center">' + val.measure_e + '</td><td class="text-center">' + val.jumlah_used + '</td></tr>');
+                            $('#table-produksi-harian tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left"><b>' + val.date_prod + '</b></td><td class="text-right"><b>' + val.jumlah_duration + '</b></td><td class="text-right"><b>' + val.jumlah_used + '</b></td></tr>');
+                            //$('#table-produksi-harian tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left"><b>' + val.date_prod + '</b></td><td class="text-right"><b>' + val.jumlah_duration + '</b></td><td class="text-right"><b>' + val.jumlah_used + '</b></td><td class="text-left">' + val.produk_a + '</td><td class="text-center">' + val.presentase_a + '</td><td class="text-center">' + val.measure_a + '</td><td class="text-center">' + val.jumlah_pemakaian_a + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_b + '</td><td class="text-center">' + val.presentase_b + '</td><td class="text-center">' + val.measure_b + '</td><td class="text-center">' + val.jumlah_pemakaian_b + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_c + '</td><td class="text-center">' + val.presentase_c + '</td><td class="text-center">' + val.measure_c + '</td><td class="text-center">' + val.jumlah_pemakaian_c + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_d + '</td><td class="text-center">' + val.presentase_d + '</td><td class="text-center">' + val.measure_d + '</td><td class="text-center">' + val.jumlah_pemakaian_d + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_e + '</td><td class="text-center">' + val.presentase_e + '</td><td class="text-center">' + val.measure_e + '</td><td class="text-center">' + val.jumlah_pemakaian_e + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="6">' + 'TOTAL' + '</td><td class="text-center">' + val.measure_e + '</td><td class="text-center">' + val.jumlah_used + '</td></tr>');
                         });
                     } else {
                         $('#table-produksi-harian tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
