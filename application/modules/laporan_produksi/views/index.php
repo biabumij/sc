@@ -91,15 +91,7 @@
 													<div class="col-sm-5">
 														<p><h5>Rekapitulasi Laporan Produksi</h5></p>
                                                         <a href="#rekapitulasi_laporan_produksi" aria-controls="rekapitulasi_laporan_produksi" role="tab" data-toggle="tab" class="btn btn-primary" style="font-weight:bold;">Lihat Laporan</a>
-													</div>
-													<!--<div class="col-sm-5">
-														<p><h5>Nilai Persediaan Bahan Baku</h5></p>
-                                                        <a href="#nilai_persediaan_bahan_baku" aria-controls="nilai_persediaan_bahan_baku" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>
-													<div class="col-sm-5">
-														<p><h5>Nilai Persediaan Bahan Jadi</h5></p>
-                                                        <a href="#nilai_persediaan_bahan_jadi" aria-controls="nilai_persediaan_bahan_jadi" role="tab" data-toggle="tab" class="btn btn-primary">Lihat Laporan</a>
-													</div>-->      													
+													</div>   													
                                                 </div>
                                             </div>
                                         </div>
@@ -238,81 +230,6 @@
                                             </div>
                                         </div>
 									</div>
-
-									<!-- Nilai Persediaan Barang -->
-                                    <div role="tabpanel" class="tab-pane" id="nilai_persediaan_bahan_baku">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Nilai Persediaan Bahan Baku</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/nilai_persediaan_bahan_baku_print');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_nilai" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-default"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-3">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-
-									<!-- Nilai Persediaan Bahan Jadi -->
-									<div role="tabpanel" class="tab-pane" id="nilai_persediaan_bahan_jadi">
-                                        <div class="col-sm-15">
-										<div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <h3 class="panel-title">Nilai Persediaan Bahan Jadi</h3>
-													<a href="laporan_produksi">Kembali</a>
-                                                </div>
-												<div style="margin: 20px">
-													<div class="row">
-														<form action="<?php echo site_url('laporan/nilai_persediaan_bahan_jadi_print');?>" target="_blank">
-															<div class="col-sm-3">
-																<input type="text" id="filter_date_nilai_bahan_jadi" name="filter_date" class="form-control dtpicker"  autocomplete="off" placeholder="Filter By Date">
-															</div>
-															<div class="col-sm-3">
-																<button type="submit" class="btn btn-default"><i class="fa fa-print"></i>  Print</button>
-															</div>
-														</form>
-														
-													</div>
-													<br />
-													<div id="wait" style=" text-align: center; align-content: center; display: none;">	
-														<div>Please Wait</div>
-														<div class="fa-3x">
-														  <i class="fa fa-spinner fa-spin"></i>
-														</div>
-													</div>				
-													<div class="table-responsive" id="box-ajax-6d">													
-													
-                    
-													</div>
-												</div>
-										</div>
-										
-										</div>
-                                    </div>
-									
 									
                                 </div>
                             </div>
@@ -483,7 +400,7 @@
             $('#table-rekapitulasi-produksi tbody').html('');
             $.ajax({
                 type: "POST",
-                url: "<?php echo site_url('pmm/receipt_material/table_date8b'); ?>/" + Math.random(),
+                url: "<?php echo site_url('pmm/receipt_material/rekapitulasi_produksi'); ?>/" + Math.random(),
                 dataType: 'json',
                 data: {
                     filter_date: $('#filter_date_rekapitulasi').val(),
