@@ -124,7 +124,7 @@
             }else {
             	?>
             	<tr>
-            		<td width="100%" colspan="5" align="center">NO DATA</td>
+            		<td width="100%" colspan="5" align="center">Tidak Ada Data</td>
             	</tr>
             	<?php
             }

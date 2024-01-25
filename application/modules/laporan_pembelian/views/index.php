@@ -831,7 +831,7 @@
                                 });
                                 $('#table-daftar-pembayaran tbody').append('<tr><td class="text-right" colspan="5"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
-                                $('#table-daftar-pembayaran tbody').append('<tr><td class="text-center" colspan="6"><b>NO DATA</b></td></tr>');
+                                $('#table-daftar-pembayaran tbody').append('<tr><td class="text-center" colspan="6"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {

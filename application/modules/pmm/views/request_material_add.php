@@ -412,7 +412,7 @@
 
         function DeleteData(id)
         {
-            bootbox.confirm("Are you sure to delete this data ?", function(result){ 
+            bootbox.confirm("Apakah Anda yakin untuk menghapus data ini ?", function(result){ 
                 // console.log('This was logged in the callback: ' + result); 
                 if(result){
                     $.ajax({

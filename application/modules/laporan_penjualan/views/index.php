@@ -718,7 +718,7 @@
                                 });
                                 $('#daftar-penerimaan tbody').append('<tr><td class="text-right" colspan="4"><b>TOTAL</b></td><td class="text-right" ><b>' + result.total + '</b></td></tr>');
                             } else {
-                                $('#daftar-penerimaan tbody').append('<tr><td class="text-center" colspan="5"><b>NO DATA</b></td></tr>');
+                                $('#daftar-penerimaan tbody').append('<tr><td class="text-center" colspan="5"><b>Tidak Ada Data</b></td></tr>');
                             }
                             $('#loader-table').fadeOut('fast');
                         } else if (result.err) {
