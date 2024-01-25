@@ -13366,7 +13366,7 @@ class Reports extends CI_Controller {
 		<?php
 		$row = $this->db->select('*')
 		->from('rap')
-		->order_by('id','desc')->limit(1)
+		->order_by('id','asc')->limit(1)
 		->get()->row_array();
 
 		$penyusutan_tangki = $this->db->select('r.*, p.nama_produk')
