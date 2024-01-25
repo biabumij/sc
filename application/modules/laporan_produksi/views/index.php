@@ -118,10 +118,10 @@
                                                     </div>
                                                     <br />
                                                     <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                        <div id="loader-table-produksi-harian" class="text-center" style="display:none">
                                                             <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
                                                             <div>
-                                                                Please Wait
+                                                                Mohon Tunggu
                                                             </div>
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-produksi-harian" style="display:none" width="100%";>
@@ -163,10 +163,10 @@
                                                     </div>
                                                     <br />
                                                     <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                        <div id="loader-table-produksi-campuran" class="text-center" style="display:none">
                                                             <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
                                                             <div>
-                                                                Please Wait
+                                                                Mohon Tunggu
                                                             </div>
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-produksi-campuran" style="display:none" width="100%";>
@@ -210,10 +210,10 @@
                                                     </div>
                                                     <br />
                                                     <div id="box-print" class="table-responsive">
-                                                        <div id="loader-table" class="text-center" style="display:none">
+                                                        <div id="loader-table-rekapitulasi" class="text-center" style="display:none">
                                                             <img src="<?php echo base_url(); ?>assets/back/theme/images/loader.gif">
                                                             <div>
-                                                                Please Wait
+                                                                Mohon Tunggu
                                                             </div>
                                                         </div>
                                                         <table class="mytable table-hover table-center table-condensed" id="table-rekapitulasi-produksi" style="display:none" width="100%";>
@@ -275,7 +275,7 @@
 
     function TableProduksiHarian() {
         $('#table-produksi-harian').show();
-        $('#loader-table').fadeIn('fast');
+        $('#loader-table-produksi-harian').fadeIn('fast');
         $('#table-produksi-harian tbody').html('');
         $.ajax({
             type: "POST",
@@ -296,7 +296,7 @@
                     } else {
                         $('#table-produksi-harian tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
                     }
-                    $('#loader-table').fadeOut('fast');
+                    $('#loader-table-produksi-harian').fadeOut('fast');
                 } else if (result.err) {
                     bootbox.alert(result.err);
                 }
@@ -337,7 +337,7 @@
 
     function TableProduksiCampuran() {
         $('#table-produksi-campuran').show();
-        $('#loader-table').fadeIn('fast');
+        $('#loader-table-produksi-campuran').fadeIn('fast');
         $('#table-produksi-campuran tbody').html('');
         $.ajax({
             type: "POST",
@@ -357,7 +357,7 @@
                     } else {
                         $('#table-produksi-campuran tbody').append('<tr><td class="text-center" colspan="7"><b>Tidak Ada Data</b></td></tr>');
                     }
-                    $('#loader-table').fadeOut('fast');
+                    $('#loader-table-produksi-campuran').fadeOut('fast');
                 } else if (result.err) {
                     bootbox.alert(result.err);
                 }
@@ -397,7 +397,7 @@
 
     function TableRekapitulasiProduksi() {
         $('#table-rekapitulasi-produksi').show();
-        $('#loader-table').fadeIn('fast');
+        $('#loader-table-rekapitulasi').fadeIn('fast');
         $('#table-rekapitulasi-produksi tbody').html('');
         $.ajax({
             type: "POST",
@@ -417,7 +417,7 @@
                     } else {
                         $('#table-rekapitulasi-produksi tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
                     }
-                    $('#loader-table').fadeOut('fast');
+                    $('#loader-table-rekapitulasi').fadeOut('fast');
                 } else if (result.err) {
                     bootbox.alert(result.err);
                 }
