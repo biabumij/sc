@@ -94,7 +94,6 @@
                                     </div>
 
 									<!-- Laporan Evaluasi Produksi -->
-									
 									<div role="tabpanel" class="tab-pane" id="laporan_evaluasi_produksi">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default"> 
@@ -140,7 +139,6 @@
 									</div>
 
                                     <!-- Evaluasi Nilai Persediaan -->
-									
 									<div role="tabpanel" class="tab-pane" id="evaluasi_nilai_persediaan">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
@@ -187,20 +185,83 @@
             </div>
         </div>
 
-        <?php echo $this->Templates->Footer(); ?>
+	<?php echo $this->Templates->Footer(); ?>
 
-        <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
-        <script src="<?php echo base_url(); ?>assets/back/theme/vendor/bootbox.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
-        <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/daterangepicker.css">
+	<script src="<?php echo base_url(); ?>assets/back/theme/vendor/bootbox.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/back/theme/vendor/jquery.number.min.js"></script>
+	<script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 
 
-		<!-- Script Laporan Evaluasi -->
-		<script type="text/javascript">
+	<!-- Script Laporan Evaluasi -->
+	<script type="text/javascript">
+	$('input.numberformat').number(true, 4, ',', '.');
+	$('#filter_date_evaluasi').daterangepicker({
+		autoUpdateInput: false,
+		showDropdowns : true,
+		locale: {
+			format: 'DD-MM-YYYY'
+		},
+		ranges: {
+			'Today': [moment(), moment()],
+			'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+			'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+			'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+			'This Month': [moment().startOf('month'), moment().endOf('month')],
+			'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+		}
+	});
+
+	$('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
+		$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+		TableEvaluasiProduksi();
+	});
+
+	function TableEvaluasiProduksi() {
+		$('#table-evaluasi-produksi').show();
+		$('#loader-table').fadeIn('fast');
+		$('#table-evaluasi-produksi tbody').html('');
+		$.ajax({
+			type: "POST",
+			url: "<?php echo site_url('pmm/receipt_material/table_date8'); ?>/" + Math.random(),
+			dataType: 'json',
+			data: {
+				filter_date: $('#filter_date_evaluasi').val(),
+			},
+			success: function(result) {
+				if (result.data) {
+					$('#table-evaluasi-produksi tbody').html('');
+
+					if (result.data.length > 0) {
+						$.each(result.data, function(i, val) {
+							$('#table-evaluasi-produksi tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.date_prod + '</td><td class="text-left">' + val.no_prod + '</td><td class="text-center""><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td><td class="text-center"><b>' + val.jumlah_capacity + '</b></td></tr>');
+							$.each(val.mats, function(a, row) {
+								var a_no = a + 1;
+								$('#table-evaluasi-produksi tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center" rowspan=""></td><td class="text-center">' + row.date_prod + '</td><td class="text-center">' + row.duration + '</td><td class="text-center">' + row.used + '</td><td class="text-center">' + row.capacity + '</td></tr>');
+							});
+						});
+					} else {
+						$('#table-evaluasi-produksi tbody').append('<tr><td class="text-center" colspan="5"><b>Tidak Ada Data</b></td></tr>');
+					}
+					$('#loader-table').fadeOut('fast');
+				} else if (result.err) {
+					bootbox.alert(result.err);
+				}
+			}
+		});
+	}
+
+	function NextShowLaporanProduksi(id) {
+		console.log('.mats-' + id);
+		$('.mats-' + id).slideToggle();
+	}
+	</script>
+
+	<script type="text/javascript">
 		$('input.numberformat').number(true, 4, ',', '.');
-		$('#filter_date_evaluasi').daterangepicker({
+		$('#filter_date').daterangepicker({
 			autoUpdateInput: false,
 			showDropdowns : true,
 			locale: {
@@ -215,116 +276,52 @@
 				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
 			}
 		});
-
-		$('#filter_date_evaluasi').on('apply.daterangepicker', function(ev, picker) {
-			$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-			TableEvaluasiProduksi();
-		});
-
-		function TableEvaluasiProduksi() {
-			$('#table-evaluasi-produksi').show();
-			$('#loader-table').fadeIn('fast');
-			$('#table-evaluasi-produksi tbody').html('');
-			$.ajax({
-				type: "POST",
-				url: "<?php echo site_url('pmm/receipt_material/table_date8'); ?>/" + Math.random(),
-				dataType: 'json',
-				data: {
-					filter_date: $('#filter_date_evaluasi').val(),
-				},
-				success: function(result) {
-					if (result.data) {
-						$('#table-evaluasi-produksi tbody').html('');
-
-						if (result.data.length > 0) {
-							$.each(result.data, function(i, val) {
-								$('#table-evaluasi-produksi tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-left">' + val.date_prod + '</td><td class="text-left">' + val.no_prod + '</td><td class="text-center""><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td><td class="text-center"><b>' + val.jumlah_capacity + '</b></td></tr>');
-								$.each(val.mats, function(a, row) {
-									var a_no = a + 1;
-									$('#table-evaluasi-produksi tbody').append('<tr style="display:none;" class="mats-' + val.no + '"><td class="text-center"></td><td class="text-center" rowspan=""></td><td class="text-center">' + row.date_prod + '</td><td class="text-center">' + row.duration + '</td><td class="text-center">' + row.used + '</td><td class="text-center">' + row.capacity + '</td></tr>');
-								});
-							});
-						} else {
-							$('#table-evaluasi-produksi tbody').append('<tr><td class="text-center" colspan="5"><b>Tidak Ada Data</b></td></tr>');
-						}
-						$('#loader-table').fadeOut('fast');
-					} else if (result.err) {
-						bootbox.alert(result.err);
-					}
-				}
-			});
-		}
-
-		function NextShowLaporanProduksi(id) {
-			console.log('.mats-' + id);
-			$('.mats-' + id).slideToggle();
-		}
 		</script>
 
+		<!-- Script Evaluasi Nilai Persediaan -->
+		
 		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
-                },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            });
-            </script>
+		$('#filter_date_evaluasi_nilai_persediaan').daterangepicker({
+			autoUpdateInput : false,
+			showDropdowns: true,
+			locale: {
+				format: 'DD-MM-YYYY'
+			},
+			ranges: {
+				'Today': [moment(), moment()],
+				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+				'This Month': [moment().startOf('month'), moment().endOf('month')],
+				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+			}
+		});
 
-            <!-- Script Evaluasi Nilai Persediaan -->
-			
-            <script type="text/javascript">
-			$('#filter_date_evaluasi_nilai_persediaan').daterangepicker({
-				autoUpdateInput : false,
-				showDropdowns: true,
-				locale: {
-				  format: 'DD-MM-YYYY'
+		$('#filter_date_evaluasi_nilai_persediaan').on('apply.daterangepicker', function(ev, picker) {
+				$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+				TableEvaluasiNilaiPersediaan();
+		});
+		
+		function TableEvaluasiNilaiPersediaan()
+		{
+			$('#wait').fadeIn('fast');   
+			$.ajax({
+				type    : "POST",
+				url     : "<?php echo site_url('pmm/reports/evaluasi_nilai_persediaan'); ?>/"+Math.random(),
+				dataType : 'html',
+				data: {
+					filter_date : $('#filter_date_evaluasi_nilai_persediaan').val(),
 				},
-				ranges: {
-				   'Today': [moment(), moment()],
-				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				   'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-				   'This Month': [moment().startOf('month'), moment().endOf('month')],
-				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				success : function(result){
+					$('#box-ajax-6b').html(result);
+					$('#wait').fadeOut('fast');
 				}
 			});
+		}
 
-			$('#filter_date_evaluasi_nilai_persediaan').on('apply.daterangepicker', function(ev, picker) {
-				  $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				  TableEvaluasiNilaiPersediaan();
-			});
-			
-			function TableEvaluasiNilaiPersediaan()
-			{
-				$('#wait').fadeIn('fast');   
-				$.ajax({
-					type    : "POST",
-					url     : "<?php echo site_url('pmm/reports/evaluasi_nilai_persediaan'); ?>/"+Math.random(),
-					dataType : 'html',
-					data: {
-						filter_date : $('#filter_date_evaluasi_nilai_persediaan').val(),
-					},
-					success : function(result){
-						$('#box-ajax-6b').html(result);
-						$('#wait').fadeOut('fast');
-					}
-				});
-			}
-
-			//TableEvaluasiNilaiPersediaan();
-			
-            </script>			
+		//TableEvaluasiNilaiPersediaan();
+		
+		</script>			
 
 </body>
-
 </html>
