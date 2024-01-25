@@ -170,21 +170,18 @@
                     
 													</div>
 												</div>
-										</div>
-										
+											</div>										
 										</div>
                                     </div>
-									
 									
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
-
+	</div>
 	<?php echo $this->Templates->Footer(); ?>
 
 	<script src="<?php echo base_url(); ?>assets/back/theme/vendor/daterangepicker/moment.min.js"></script>
@@ -260,68 +257,67 @@
 	</script>
 
 	<script type="text/javascript">
-		$('input.numberformat').number(true, 4, ',', '.');
-		$('#filter_date').daterangepicker({
-			autoUpdateInput: false,
-			showDropdowns : true,
-			locale: {
-				format: 'DD-MM-YYYY'
-			},
-			ranges: {
-				'Today': [moment(), moment()],
-				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-				'This Month': [moment().startOf('month'), moment().endOf('month')],
-				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-			}
-		});
-		</script>
-
-		<!-- Script Evaluasi Nilai Persediaan -->
-		
-		<script type="text/javascript">
-		$('#filter_date_evaluasi_nilai_persediaan').daterangepicker({
-			autoUpdateInput : false,
-			showDropdowns: true,
-			locale: {
-				format: 'DD-MM-YYYY'
-			},
-			ranges: {
-				'Today': [moment(), moment()],
-				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-				'This Month': [moment().startOf('month'), moment().endOf('month')],
-				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-			}
-		});
-
-		$('#filter_date_evaluasi_nilai_persediaan').on('apply.daterangepicker', function(ev, picker) {
-				$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-				TableEvaluasiNilaiPersediaan();
-		});
-		
-		function TableEvaluasiNilaiPersediaan()
-		{
-			$('#wait').fadeIn('fast');   
-			$.ajax({
-				type    : "POST",
-				url     : "<?php echo site_url('pmm/reports/evaluasi_nilai_persediaan'); ?>/"+Math.random(),
-				dataType : 'html',
-				data: {
-					filter_date : $('#filter_date_evaluasi_nilai_persediaan').val(),
-				},
-				success : function(result){
-					$('#box-ajax-6b').html(result);
-					$('#wait').fadeOut('fast');
-				}
-			});
+	$('input.numberformat').number(true, 4, ',', '.');
+	$('#filter_date').daterangepicker({
+		autoUpdateInput: false,
+		showDropdowns : true,
+		locale: {
+			format: 'DD-MM-YYYY'
+		},
+		ranges: {
+			'Today': [moment(), moment()],
+			'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+			'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+			'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+			'This Month': [moment().startOf('month'), moment().endOf('month')],
+			'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
 		}
+	});
+	</script>
 
-		//TableEvaluasiNilaiPersediaan();
-		
-		</script>			
+	<!-- Script Evaluasi Nilai Persediaan -->
+	
+	<script type="text/javascript">
+	$('#filter_date_evaluasi_nilai_persediaan').daterangepicker({
+		autoUpdateInput : false,
+		showDropdowns: true,
+		locale: {
+			format: 'DD-MM-YYYY'
+		},
+		ranges: {
+			'Today': [moment(), moment()],
+			'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+			'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+			'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+			'This Month': [moment().startOf('month'), moment().endOf('month')],
+			'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+		}
+	});
+
+	$('#filter_date_evaluasi_nilai_persediaan').on('apply.daterangepicker', function(ev, picker) {
+			$(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+			TableEvaluasiNilaiPersediaan();
+	});
+	
+	function TableEvaluasiNilaiPersediaan()
+	{
+		$('#wait').fadeIn('fast');   
+		$.ajax({
+			type    : "POST",
+			url     : "<?php echo site_url('pmm/reports/evaluasi_nilai_persediaan'); ?>/"+Math.random(),
+			dataType : 'html',
+			data: {
+				filter_date : $('#filter_date_evaluasi_nilai_persediaan').val(),
+			},
+			success : function(result){
+				$('#box-ajax-6b').html(result);
+				$('#wait').fadeOut('fast');
+			}
+		});
+	}
+
+	//TableEvaluasiNilaiPersediaan();
+	</script>	
 
 </body>
 </html>
