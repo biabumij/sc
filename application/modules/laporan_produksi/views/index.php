@@ -75,7 +75,6 @@
 								</div>
                                 <div class="tab-content">
 									
-									<!-- Laporan Laba Rugi -->
                                     <div role="tabpanel" class="tab-pane active" id="laba_rugi">
                                         <br />
                                         <div class="row">
@@ -107,7 +106,6 @@
                                     </div>
 									
                                     <!-- Laporan Produksi -->
-
 									<div role="tabpanel" class="tab-pane" id="laporan_produksi">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default"> 
@@ -134,7 +132,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table-hover table-center table-condensed" id="table-date8a" style="display:none" width="100%";>
+                                                        <table class="mytable table-hover table-center table-condensed" id="table-produksi-harian" style="display:none" width="100%";>
                                                             <thead>
 																<th align="center">NO.</th>
 																<th align="center">TANGGAL</th>
@@ -151,7 +149,6 @@
 									</div>
 
                                     <!-- Laporan Campuran -->
-                                    
 									<div role="tabpanel" class="tab-pane" id="laporan_produksi_campuran">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default"> 
@@ -178,7 +175,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table-hover table-center table-condensed" id="table-date-campuran" style="display:none" width="100%";>
+                                                        <table class="mytable table-hover table-center table-condensed" id="table-produksi-campuran" style="display:none" width="100%";>
                                                             <thead>
 																<th align="center">NO.</th>
 																<th align="center">TANGGAL</th>
@@ -199,7 +196,6 @@
 									</div>
 									
 									<!-- Rekaputulasi -->
-									
 									<div role="tabpanel" class="tab-pane" id="rekapitulasi_laporan_produksi">
                                         <div class="col-sm-15">
                                             <div class="panel panel-default"> 
@@ -226,7 +222,7 @@
                                                                 Please Wait
                                                             </div>
                                                         </div>
-                                                        <table class="mytable table-hover table-center table-condensed" id="table-date8b" style="display:none" width="100%";>
+                                                        <table class="mytable table-hover table-center table-condensed" id="table-rekapitulasi-produksi" style="display:none" width="100%";>
                                                             <thead>
 																<th align="center">NO.</th>
 																<th align="center">URAIAN</th>
@@ -244,7 +240,6 @@
 									</div>
 
 									<!-- Nilai Persediaan Barang -->
-									
                                     <div role="tabpanel" class="tab-pane" id="nilai_persediaan_bahan_baku">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
@@ -282,7 +277,6 @@
                                     </div>
 
 									<!-- Nilai Persediaan Bahan Jadi -->
-									
 									<div role="tabpanel" class="tab-pane" id="nilai_persediaan_bahan_jadi">
                                         <div class="col-sm-15">
 										<div class="panel panel-default">
@@ -339,185 +333,185 @@
         <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 
 		<script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
+        $('input.numberformat').number(true, 4, ',', '.');
+        $('#filter_date').daterangepicker({
+            autoUpdateInput: false,
+            showDropdowns : true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
+
+        $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            TableProduksiHarian();
+        });
+
+        function TableProduksiHarian() {
+            $('#table-produksi-harian').show();
+            $('#loader-table').fadeIn('fast');
+            $('#table-produksi-harian tbody').html('');
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('pmm/receipt_material/table_produksi_harian'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: {
+                    filter_date: $('#filter_date').val(),
                 },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                success: function(result) {
+                    if (result.data) {
+                        $('#table-produksi-harian tbody').html('');
+
+                        if (result.data.length > 0) {
+                            $.each(result.data, function(i, val) {
+                                $('#table-produksi-harian tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-center"><b>' + val.date_prod + '</b></td><td class="text-center"><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td></tr>');
+                                //$('#table-produksi-harian tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-center"><b>' + val.date_prod + '</b></td><td class="text-center"><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td><td class="text-left">' + val.produk_a + '</td><td class="text-center">' + val.presentase_a + '</td><td class="text-center">' + val.measure_a + '</td><td class="text-center">' + val.jumlah_pemakaian_a + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_b + '</td><td class="text-center">' + val.presentase_b + '</td><td class="text-center">' + val.measure_b + '</td><td class="text-center">' + val.jumlah_pemakaian_b + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_c + '</td><td class="text-center">' + val.presentase_c + '</td><td class="text-center">' + val.measure_c + '</td><td class="text-center">' + val.jumlah_pemakaian_c + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_d + '</td><td class="text-center">' + val.presentase_d + '</td><td class="text-center">' + val.measure_d + '</td><td class="text-center">' + val.jumlah_pemakaian_d + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_e + '</td><td class="text-center">' + val.presentase_e + '</td><td class="text-center">' + val.measure_e + '</td><td class="text-center">' + val.jumlah_pemakaian_e + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="6">' + 'TOTAL' + '</td><td class="text-center">' + val.measure_e + '</td><td class="text-center">' + val.jumlah_used + '</td></tr>');
+                            });
+                        } else {
+                            $('#table-produksi-harian tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
+                        }
+                        $('#loader-table').fadeOut('fast');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
                 }
             });
+        }
 
-            $('#filter_date').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate8a();
-            });
+        function NextShowLaporanProduksi(id) {
+            console.log('.mats-' + id);
+            $('.mats-' + id).slideToggle();
+        }
 
-            function TableDate8a() {
-                $('#table-date8a').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date8a tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/receipt_material/table_date8a'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date8a tbody').html('');
+        </script>
 
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    $('#table-date8a tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-center"><b>' + val.date_prod + '</b></td><td class="text-center"><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td></tr>');
-                                    //$('#table-date8a tbody').append('<tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-center"><b>' + val.date_prod + '</b></td><td class="text-center"><b>' + val.jumlah_duration + '</b></td><td class="text-center"><b>' + val.jumlah_used + '</b></td><td class="text-left">' + val.produk_a + '</td><td class="text-center">' + val.presentase_a + '</td><td class="text-center">' + val.measure_a + '</td><td class="text-center">' + val.jumlah_pemakaian_a + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_b + '</td><td class="text-center">' + val.presentase_b + '</td><td class="text-center">' + val.measure_b + '</td><td class="text-center">' + val.jumlah_pemakaian_b + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_c + '</td><td class="text-center">' + val.presentase_c + '</td><td class="text-center">' + val.measure_c + '</td><td class="text-center">' + val.jumlah_pemakaian_c + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_d + '</td><td class="text-center">' + val.presentase_d + '</td><td class="text-center">' + val.measure_d + '</td><td class="text-center">' + val.jumlah_pemakaian_d + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="4"></td><td class="text-left">' + val.produk_e + '</td><td class="text-center">' + val.presentase_e + '</td><td class="text-center">' + val.measure_e + '</td><td class="text-center">' + val.jumlah_pemakaian_e + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="6">' + 'TOTAL' + '</td><td class="text-center">' + val.measure_e + '</td><td class="text-center">' + val.jumlah_used + '</td></tr>');
-                                });
-                            } else {
-                                $('#table-date8a tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
+        <!-- Script Laporan Produksi Campuran -->
+        <script type="text/javascript">
+        $('input.numberformat').number(true, 4, ',', '.');
+        $('#filter_date_campuran').daterangepicker({
+            autoUpdateInput: false,
+            showDropdowns : true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
+        });
 
-            function NextShowLaporanProduksi(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
+        $('#filter_date_campuran').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            TableProduksiCampuran();
+        });
 
-            </script>
-
-            <!-- Script Laporan Produksi Campuran -->
-            <script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_campuran').daterangepicker({
-                autoUpdateInput: false,
-				showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
+        function TableProduksiCampuran() {
+            $('#table-produksi-campuran').show();
+            $('#loader-table').fadeIn('fast');
+            $('#table-produksi-campuran tbody').html('');
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('pmm/receipt_material/table_date_campuran'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: {
+                    filter_date: $('#filter_date_campuran').val(),
                 },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                success: function(result) {
+                    if (result.data) {
+                        $('#table-produksi-campuran tbody').html('');
+
+                        if (result.data.length > 0) {
+                            $.each(result.data, function(i, val) {
+                                $('#table-produksi-campuran tbody').append('<tr onclick="NextShowLaporanProduksiCampuran(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-center"><b>' + val.date_prod + '</b></td><td class="text-center"><b>' + val.agregat + '</b></td><td class="text-center"><b>' + val.satuan + '</b></td><td class="text-center"><b>' + val.volume + '</b></td><td class="text-left">' + val.produk_a + '</td><td class="text-center">' + val.presentase_a + ' %</td><td class="text-center">' + val.jumlah_pemakaian_a + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="5"></td><td class="text-left">' + val.produk_b + '</td><td class="text-center">' + val.presentase_b + ' %</td><td class="text-center">' + val.jumlah_pemakaian_b + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="5"></td><td class="text-left">' + val.produk_c + '</td><td class="text-center">' + val.presentase_c + ' %</td><td class="text-center">' + val.jumlah_pemakaian_c + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="5"></td><td class="text-left">' + val.produk_d + '</td><td class="text-center">' + val.presentase_d + ' %</td><td class="text-center">' + val.jumlah_pemakaian_d + '</td></tr>');
+                            });
+                        } else {
+                            $('#table-produksi-campuran tbody').append('<tr><td class="text-center" colspan="7"><b>Tidak Ada Data</b></td></tr>');
+                        }
+                        $('#loader-table').fadeOut('fast');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
                 }
             });
+        }
 
-            $('#filter_date_campuran').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDateCampuran();
-            });
+        function NextShowLaporanProduksiCampuran(id) {
+            console.log('.mats-' + id);
+            $('.mats-' + id).slideToggle();
+        }
+        </script>
 
-            function TableDateCampuran() {
-                $('#table-date-campuran').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date-campuran tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/receipt_material/table_date_campuran'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_campuran').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date-campuran tbody').html('');
-
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    $('#table-date-campuran tbody').append('<tr onclick="NextShowLaporanProduksiCampuran(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + val.no + '</td><td class="text-center"><b>' + val.date_prod + '</b></td><td class="text-center"><b>' + val.agregat + '</b></td><td class="text-center"><b>' + val.satuan + '</b></td><td class="text-center"><b>' + val.volume + '</b></td><td class="text-left">' + val.produk_a + '</td><td class="text-center">' + val.presentase_a + ' %</td><td class="text-center">' + val.jumlah_pemakaian_a + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="5"></td><td class="text-left">' + val.produk_b + '</td><td class="text-center">' + val.presentase_b + ' %</td><td class="text-center">' + val.jumlah_pemakaian_b + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="5"></td><td class="text-left">' + val.produk_c + '</td><td class="text-center">' + val.presentase_c + ' %</td><td class="text-center">' + val.jumlah_pemakaian_c + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="5"></td><td class="text-left">' + val.produk_d + '</td><td class="text-center">' + val.presentase_d + ' %</td><td class="text-center">' + val.jumlah_pemakaian_d + '</td></tr>');
-                                });
-                            } else {
-                                $('#table-date-campuran tbody').append('<tr><td class="text-center" colspan="7"><b>Tidak Ada Data</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
+        <!-- Script Rekepitulasi -->
+        <script type="text/javascript">
+        $('input.numberformat').number(true, 4, ',', '.');
+        $('#filter_date_rekapitulasi').daterangepicker({
+            autoUpdateInput: false,
+            showDropdowns : true,
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
             }
+        });
 
-            function NextShowLaporanProduksiCampuran(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
-            </script>
+        $('#filter_date_rekapitulasi').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
+            TableRekapitulasiProduksi();
+        });
 
-			<!-- Script Rekepitulasi -->
-            <script type="text/javascript">
-            $('input.numberformat').number(true, 4, ',', '.');
-            $('#filter_date_rekapitulasi').daterangepicker({
-                autoUpdateInput: false,
-                showDropdowns : true,
-                locale: {
-                    format: 'DD-MM-YYYY'
+        function TableRekapitulasiProduksi() {
+            $('#table-rekapitulasi-produksi').show();
+            $('#loader-table').fadeIn('fast');
+            $('#table-rekapitulasi-produksi tbody').html('');
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('pmm/receipt_material/table_date8b'); ?>/" + Math.random(),
+                dataType: 'json',
+                data: {
+                    filter_date: $('#filter_date_rekapitulasi').val(),
                 },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                success: function(result) {
+                    if (result.data) {
+                        $('#table-rekapitulasi-produksi tbody').html('');
+
+                        if (result.data.length > 0) {
+                            $.each(result.data, function(i, val) {
+                                $('#table-rekapitulasi-produksi tbody').append('<tr onclick="NextShowRekapitulasiLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 1 + '</td><td class="text-left">' + val.produk_a + '</td><td class="text-right">' + val.measure_a + '</td><td class="text-right">' + val.presentase_a + ' %</td><td class="text-right">' + val.jumlah_pemakaian_a + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 2 + '</td><td class="text-left">' + val.produk_b + '</td><td class="text-right">' + val.measure_b + '</td><td class="text-right">' + val.presentase_b + ' %</td><td class="text-right">' + val.jumlah_pemakaian_b + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 3 + '</td><td class="text-left">' + val.produk_f + '</td><td class="text-right">' + val.measure_f + '</td><td class="text-right">' + val.presentase_f + ' %</td><td class="text-right">' + val.jumlah_pemakaian_f + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 4 + '</td><td class="text-left">' + val.produk_c + '</td><td class="text-right">' + val.measure_c + '</td><td class="text-right">' + val.presentase_c + ' %</td><td class="text-right">' + val.jumlah_pemakaian_c + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 5 + '</td><td class="text-left">' + val.produk_d + '</td><td class="text-right">' + val.measure_d + '</td><td class="text-right">' + val.presentase_d + ' %</td><td class="text-right">' + val.jumlah_pemakaian_d + '</td><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 6 + '</td><td class="text-left">' + val.produk_e + '</td><td class="text-right">' + val.measure_e + '</td><td class="text-right">' + val.presentase_e + ' %</td><td class="text-right">' + val.jumlah_pemakaian_e + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="2">' + 'TOTAL' + '</td><td class="text-right">' + val.measure_a + '</td><td class="text-right">' + val.jumlah_presentase + ' %</td><td class="text-right">' + result.total + '</td></tr>');                                
+                            });
+                        } else {
+                            $('#table-rekapitulasi-produksi tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
+                        }
+                        $('#loader-table').fadeOut('fast');
+                    } else if (result.err) {
+                        bootbox.alert(result.err);
+                    }
                 }
             });
+        }
 
-            $('#filter_date_rekapitulasi').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-                TableDate8b();
-            });
-
-            function TableDate8b() {
-                $('#table-date8b').show();
-                $('#loader-table').fadeIn('fast');
-                $('#table-date8b tbody').html('');
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo site_url('pmm/receipt_material/table_date8b'); ?>/" + Math.random(),
-                    dataType: 'json',
-                    data: {
-                        filter_date: $('#filter_date_rekapitulasi').val(),
-                    },
-                    success: function(result) {
-                        if (result.data) {
-                            $('#table-date8b tbody').html('');
-
-                            if (result.data.length > 0) {
-                                $.each(result.data, function(i, val) {
-                                    $('#table-date8b tbody').append('<tr onclick="NextShowRekapitulasiLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 1 + '</td><td class="text-left">' + val.produk_a + '</td><td class="text-right">' + val.measure_a + '</td><td class="text-right">' + val.presentase_a + ' %</td><td class="text-right">' + val.jumlah_pemakaian_a + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 2 + '</td><td class="text-left">' + val.produk_b + '</td><td class="text-right">' + val.measure_b + '</td><td class="text-right">' + val.presentase_b + ' %</td><td class="text-right">' + val.jumlah_pemakaian_b + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 3 + '</td><td class="text-left">' + val.produk_f + '</td><td class="text-right">' + val.measure_f + '</td><td class="text-right">' + val.presentase_f + ' %</td><td class="text-right">' + val.jumlah_pemakaian_f + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 4 + '</td><td class="text-left">' + val.produk_c + '</td><td class="text-right">' + val.measure_c + '</td><td class="text-right">' + val.presentase_c + ' %</td><td class="text-right">' + val.jumlah_pemakaian_c + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 5 + '</td><td class="text-left">' + val.produk_d + '</td><td class="text-right">' + val.measure_d + '</td><td class="text-right">' + val.presentase_d + ' %</td><td class="text-right">' + val.jumlah_pemakaian_d + '</td><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center">' + 6 + '</td><td class="text-left">' + val.produk_e + '</td><td class="text-right">' + val.measure_e + '</td><td class="text-right">' + val.presentase_e + ' %</td><td class="text-right">' + val.jumlah_pemakaian_e + '</td></tr><tr onclick="NextShowLaporanProduksi(' + val.no + ')" class="active" style="font-weight:bold;cursor:pointer;"><td class="text-center" colspan="2">' + 'TOTAL' + '</td><td class="text-right">' + val.measure_a + '</td><td class="text-right">' + val.jumlah_presentase + ' %</td><td class="text-right">' + result.total + '</td></tr>');                                
-                                });
-                            } else {
-                                $('#table-date8b tbody').append('<tr><td class="text-center" colspan="8"><b>Tidak Ada Data</b></td></tr>');
-                            }
-                            $('#loader-table').fadeOut('fast');
-                        } else if (result.err) {
-                            bootbox.alert(result.err);
-                        }
-                    }
-                });
-            }
-
-            function NextShowRekapitulasiLaporanProduksi(id) {
-                console.log('.mats-' + id);
-                $('.mats-' + id).slideToggle();
-            }
-        </script>		
+        function NextShowRekapitulasiLaporanProduksi(id) {
+            console.log('.mats-' + id);
+            $('.mats-' + id).slideToggle();
+        }
+    </script>	
 
 </body>
 </html>

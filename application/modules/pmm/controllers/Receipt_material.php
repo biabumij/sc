@@ -1448,7 +1448,7 @@ class Receipt_material extends CI_Controller {
 	));	
 	}
 
-	function table_date8a()
+	function table_produksi_harian()
 	{
 		$data = array();
 		$supplier_id = $this->input->post('no_prod');
@@ -1746,7 +1746,7 @@ class Receipt_material extends CI_Controller {
 		echo json_encode(array('data'=>$data,'total'=>number_format($total,2,',','.')));		
 	}
 
-	function table_date8b()
+	function rekapitulasi_produksi()
 	{
 		$data = array();
 		$supplier_id = $this->input->post('no_prod');
