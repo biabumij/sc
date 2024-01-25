@@ -76,33 +76,7 @@
                         </figure>
                         <br />
                     </div>
-
-                    <!-- RAP -->
-                    <div class="col-sm-8">			
-                        <div role="tabpanel" class="tab-pane" id="rap">
-                            <div class="col-sm-15">
-                            <div class="panel">
-                                    <div class="panel-heading">
-                                        <center><h3 class="panel-title">RAP</h3></center>
-                                    </div>
-                                    <div style="margin: 20px">
-                                        <div id="wait" style=" text-align: center; align-content: center; display: none;">	
-                                            <div>Please Wait</div>
-                                            <div class="fa-3x">
-                                                <i class="fa fa-spinner fa-spin"></i>
-                                            </div>
-                                        </div>				
-                                        <div class="table-responsive" id="box-new-rap">
-        
-                                        </div>
-                                    </div>
-                            </div>
-                            
-                            </div>
-                        </div>
-                    </div>
-
-
+                    
                 </div>  
             </div>
         </div>
@@ -281,49 +255,6 @@
             });
             
         });
-    </script>
-
-    <!-- Script RAP -->
-    <script type="text/javascript">
-        $('#filter_date_new_rap').daterangepicker({
-            autoUpdateInput : false,
-            showDropdowns: true,
-            locale: {
-                format: 'DD-MM-YYYY'
-            },
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(30, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        });
-
-        $('#filter_date_new_rap').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD-MM-YYYY') + ' - ' + picker.endDate.format('DD-MM-YYYY'));
-            TableNewRAP();
-        });
-        
-        function TableNewRAP()
-        {
-            $('#wait').fadeIn('fast');   
-            $.ajax({
-                type    : "POST",
-                url     : "<?php echo site_url('pmm/reports/new_rap_dashboard'); ?>/"+Math.random(),
-                dataType : 'html',
-                data: {
-                    filter_date : $('#filter_date_new_rap').val(),
-                },
-                success : function(result){
-                    $('#box-new-rap').html(result);
-                    $('#wait').fadeOut('fast');
-                }
-            });
-        }
-
-        TableNewRAP();
     </script>
 
     <!--Start of Tawk.to Script-->
