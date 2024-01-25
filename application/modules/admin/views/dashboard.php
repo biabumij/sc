@@ -211,8 +211,8 @@
                             },
                             format: '{value} %'
                         },
-                        min: -200,
-                        max: 200,
+                        min: -100,
+                        max: 100,
                         tickInterval: 20,
                     },
                     tooltip: { 
