@@ -1202,14 +1202,14 @@ blockquote {
   border: none;
   /* box-shadow: 1px 1px 1px #cccccc; */
   background-color: #ffffff;
-
+  border-radius: 10px;
 }
 
 .panel-login {
   border: none;
   /* box-shadow: 1px 1px 1px #cccccc; */
   background-color: rgba(0, 0, 0, 0);
-
+  border-radius: 10px;
 
 }
 
@@ -1591,7 +1591,6 @@ blockquote {
 .btn-success {
   background: #88b93c;
   border-color: #88b93c;
-
   font-weight: bold;
 }
 
@@ -1637,7 +1636,6 @@ blockquote {
 .btn-danger {
   background: #d2322d;
   border-color: #d2322d;
-
   font-weight: bold;
 }
 
@@ -3669,7 +3667,7 @@ ul.user-contact-info li:last-child {
 
 .bg-scale-0 {
   background-color: rgba(0, 0, 0, 0);
-
+  border-radius: 10px;
   border: 1px solid #e69500;
 }
 
