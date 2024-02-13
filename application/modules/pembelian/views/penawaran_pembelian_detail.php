@@ -191,8 +191,8 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                            <a href="<?= site_url('pembelian/approve_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</a>
-                                            <a href="<?= site_url('pembelian/reject_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</a>
+                                            <a href="<?= site_url('pembelian/approve_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-check"></i> Setujui</a>
+                                            <a href="<?= site_url('pembelian/reject_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Tolak</a>
                                         <?php
                                         }
                                         ?>
@@ -202,8 +202,8 @@
                                     <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                            <a href="<?= site_url('pembelian/closed_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-briefcase"></i> Closed</a>
-                                            <a href="<?= site_url('pembelian/reject_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Reject</a>
+                                            <a href="<?= site_url('pembelian/closed_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold;"><i class="fa fa-briefcase"></i> Closed</a>
+                                            <a href="<?= site_url('pembelian/reject_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Reject</a>
                                         <?php
                                         }
                                         ?>
@@ -213,14 +213,14 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 11 || $this->session->userdata('admin_group_id') == 15){
                                         ?>
-                                            <a href="<?= site_url('pembelian/open_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-folder-open-o"></i> Open</a>
+                                            <a href="<?= site_url('pembelian/open_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-folder-open-o"></i> Open</a>
                                         <?php
                                         }
                                         ?>
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1){
                                         ?>
-                                            <a href="<?= site_url('pembelian/hapus_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-trash"></i> Hapus</a>
+                                            <a href="<?= site_url('pembelian/hapus_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</a>
                                         <?php
                                         }
                                         ?>
@@ -230,14 +230,14 @@
                                         <?php
                                         if($this->session->userdata('admin_group_id') == 1){
                                         ?>
-                                            <a href="<?= site_url('pembelian/hapus_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-trash"></i> Hapus</a>
+                                            <a href="<?= site_url('pembelian/hapus_penawaran_pembelian/' . $row['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold;"><i class="fa fa-trash"></i> Hapus</a>
                                         <?php
                                         }
                                         ?>
                                     <?php endif; ?>
 
                                     <br /><br /><br />
-                                    <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="margin-top:10px; width:150px; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                    <a href="<?php echo site_url('admin/pembelian');?>" class="btn btn-info" style="margin-top:10px; width:150px; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                 </div>
 
                             </div>

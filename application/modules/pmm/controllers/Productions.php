@@ -925,7 +925,6 @@ class Productions extends Secure_Controller {
 		$this->db->where('pp.status','PUBLISH');
 		$this->db->where("pp.product_id in (3,4,7,8,9,14,24,35,36,37,38,63)");
 		$this->db->group_by('ppo.client_id');
-		$this->db->where('pp.date_production <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_sales_po ppo');
 		
 		$no = 1;
@@ -1002,7 +1001,6 @@ class Productions extends Secure_Controller {
 		$this->db->where("po.status in ('OPEN','CLOSED')");
 		$this->db->group_by('po.client_id');
 		$this->db->order_by('ps.nama','asc');
-		$this->db->where('pp.date_production <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_productions pp');
 		
 		$no = 1;
@@ -1095,7 +1093,6 @@ class Productions extends Secure_Controller {
 		
 		$this->db->group_by('ppp.client_id');
 		$this->db->order_by('ps.nama','asc');
-		$this->db->where('ppp.tanggal_invoice <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_penagihan_penjualan ppp');
 		
 		$no = 1;
@@ -1216,7 +1213,6 @@ class Productions extends Secure_Controller {
 		$this->db->group_by('pp.id');
 		$this->db->order_by('pp.date_production','asc');
 		$this->db->order_by('p.nama_produk','asc');
-		$this->db->where('pp.date_production <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_productions pp');
 
 		$data['data'] = $query->result_array();
@@ -1288,7 +1284,6 @@ class Productions extends Secure_Controller {
 		$this->db->where("ppo.status in ('OPEN','CLOSED')");
 		$this->db->group_by('pmp.client_id');
 		$this->db->order_by('pmp.nama_pelanggan','asc');
-		$this->db->where('pmp.tanggal_pembayaran <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_pembayaran pmp');
 		
 		$no = 1;

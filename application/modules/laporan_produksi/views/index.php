@@ -130,7 +130,7 @@
                                                                     <th class="text-center">NO.</th>
                                                                     <th class="text-left">TANGGAL</th>
                                                                     <th class="text-right">DURASI PRODUKSI (JAM)</th>
-                                                                    <th class="text-right">PEMAKAIAN BAHAN (TON)</th>\
+                                                                    <th class="text-right">PEMAKAIAN BAHAN (TON)</th>
                                                                 </tr>
 															</thead>
                                                             <tbody></tbody>

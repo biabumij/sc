@@ -143,7 +143,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->join('pmm_purchase_order ppo','prm.purchase_order_id = ppo.id','left');
 		$this->db->join('penerima ps','ppo.supplier_id = ps.id','left');
 		$this->db->order_by('prm.created_on','DESC');
-		$this->db->where('prm.date_receipt <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_receipt_material prm');
 	
 		if($query->num_rows() > 0){
@@ -1164,7 +1163,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
-		$this->db->where('prm.date_receipt <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_purchase_order ppo');
 		
 		$no = 1;
@@ -1269,7 +1267,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 		$this->db->group_by('ppo.supplier_id');
 		$this->db->order_by('ps.nama','asc');
-		$this->db->where('prm.date_receipt <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_receipt_material prm');
 		
 		$no = 1;
@@ -1365,7 +1362,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->where("ppp.verifikasi_dok in ('SUDAH','LENGKAP')");
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('ps.nama','asc');
-		$this->db->where('pvp.tanggal_lolos_verifikasi <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_penagihan_pembelian ppp');
 		
 		$no = 1;
@@ -1908,7 +1904,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->group_by('prm.id');
 		$this->db->order_by('prm.date_receipt','asc');
 		$this->db->order_by('prm.material_id','asc');
-		$this->db->where('prm.date_receipt <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_receipt_material prm');
 
 		$supplier_name = '';
@@ -1965,7 +1960,6 @@ class Receipt_material extends CI_Controller {
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
 		$this->db->group_by('ppp.supplier_id');
 		$this->db->order_by('p.nama','asc');
-		$this->db->where('pmp.tanggal_pembayaran <=', date('2023-07-31'));
 		$query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
 		
 		$no = 1;

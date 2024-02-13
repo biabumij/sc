@@ -1598,7 +1598,6 @@ class Pmm_model extends CI_Model {
         }
           
 		$this->db->order_by('created_on','DESC');
-        $this->db->where('date_po <=', date('2023-07-31'));
         $query = $this->db->get('pmm_purchase_order');
         if($query->num_rows() > 0){
             foreach ($query->result_array() as $key => $row) {
@@ -3735,7 +3734,6 @@ class Pmm_model extends CI_Model {
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('p.nama_produk','asc');
         $this->db->group_by('prm.material_id');
-        $this->db->where('prm.date_receipt <=', date('2023-07-31'));
         $query = $this->db->get('pmm_receipt_material prm');
         $output = $query->result_array();
 		
@@ -3768,7 +3766,6 @@ class Pmm_model extends CI_Model {
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('p.nama_produk','asc');
         $this->db->group_by('prm.material_id');
-        $this->db->where('prm.date_receipt <=', date('2023-07-31'));
         $query = $this->db->get('pmm_receipt_material prm');
         $output = $query->result_array();
 		
@@ -3848,7 +3845,6 @@ class Pmm_model extends CI_Model {
 		$this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('ppo.date_po','asc');
         $this->db->group_by('prm.purchase_order_id');
-        $this->db->where('prm.date_receipt <=', date('2023-07-31'));
         $query = $this->db->get('pmm_receipt_material prm');
         $output = $query->result_array();
 		
@@ -3893,7 +3889,6 @@ class Pmm_model extends CI_Model {
         $this->db->where("ppp.verifikasi_dok in ('SUDAH','LENGKAP')");
         $this->db->order_by('ppp.tanggal_invoice','asc');
         $this->db->group_by('ppp.id');
-        $this->db->where('pvp.tanggal_lolos_verifikasi <=', date('2023-07-31'));
         $query = $this->db->get('pmm_penagihan_pembelian ppp');
         $output = $query->result_array();
 		
@@ -3926,7 +3921,6 @@ class Pmm_model extends CI_Model {
         $this->db->where("pp.product_id in (3,4,7,8,9,14,24,35,36,37,38,63)");
         $this->db->order_by('p.nama_produk','asc');
         $this->db->group_by('pp.product_id');
-        $this->db->where('pp.date_production <=', date('2023-07-31'));
         $query = $this->db->get('pmm_productions pp');
         $output = $query->result_array();
 		
@@ -4003,7 +3997,6 @@ class Pmm_model extends CI_Model {
 		$this->db->where("po.status in ('OPEN','CLOSED')");
         $this->db->order_by('po.contract_date','asc');
         $this->db->group_by('pp.salesPo_id');
-        $this->db->where('pp.date_production <=', date('2023-07-31'));
         $query = $this->db->get('pmm_productions pp');
         $output = $query->result_array();
 		
@@ -4045,7 +4038,6 @@ class Pmm_model extends CI_Model {
         }
         $this->db->order_by('ppp.tanggal_invoice','asc');
         $this->db->group_by('ppp.id');
-        $this->db->where('ppp.tanggal_invoice <=', date('2023-07-31'));
         $query = $this->db->get('pmm_penagihan_penjualan ppp');
         $output = $query->result_array();
 		
@@ -4317,7 +4309,6 @@ class Pmm_model extends CI_Model {
 		
         $this->db->where("ppo.status in ('PUBLISH','CLOSED')");
         $this->db->order_by('pmp.tanggal_pembayaran','desc');
-        $this->db->where('pmp.tanggal_pembayaran <=', date('2023-07-31'));
         $query = $this->db->get('pmm_pembayaran_penagihan_pembelian pmp');
 		
         $output = $query->result_array();
@@ -4349,7 +4340,6 @@ class Pmm_model extends CI_Model {
 		
 		$this->db->where("ppo.status in ('OPEN','CLOSED')");
 		$this->db->order_by('pmp.nama_pelanggan','asc');
-        $this->db->where('pmp.tanggal_pembayaran <=', date('2023-07-31'));
         $query = $this->db->get('pmm_pembayaran pmp');
 		
         $output = $query->result_array();
