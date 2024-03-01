@@ -34,7 +34,7 @@
                         <div class="panel-content">
                             <div class="leftside-content-header">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#table" data-toggle="tab" aria-expanded="true" style="border-radius:10px 0px 10px 0px; font-weight:bold;">Users</a></li>
+                                    <li class="active"><a href="#table" data-toggle="tab" aria-expanded="true" style="border-radius:font-weight:bold;">Users</a></li>
                                 </ul>
                                 <br />
                                 <div class="tab-content">
