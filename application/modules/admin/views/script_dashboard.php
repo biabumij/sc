@@ -28,7 +28,7 @@
     $date_desember23_awal = date('2023-12-01');
     $date_desember23_akhir = date('2023-12-31');
     $date_akumulasi_awal = date('2021-01-01');
-    $date_akumulasi_akhir = date('2023-12-31');
+    $date_akumulasi_akhir = date('2023-07-31');
 
 	//JAN
 	$akumulasi_jan = $this->db->select('pp.date_akumulasi, (pp.total_nilai_keluar) as total, (pp.total_nilai_keluar_2) as total_2, (pp.total_nilai_akhir) as total_akhir')
