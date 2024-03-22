@@ -270,8 +270,8 @@
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                                 ?>
-                                                <a href="<?= site_url('penjualan/approvePenagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Setujui</a>
-                                                <a href="<?= site_url('penjualan/rejectPenagihan/' . $penagihan['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Tolak</a>
+                                                <a href="<?= site_url('penjualan/approvePenagihan/' . $penagihan['id']); ?>" class="btn btn-success" style="width:15%; font-weight:bold;"><i class="fa fa-check"></i> Setujui</a>
+                                                <a href="<?= site_url('penjualan/rejectPenagihan/' . $penagihan['id']); ?>" class="btn btn-danger" style="width:15%; font-weight:bold;"><i class="fa fa-close"></i> Tolak</a>
                                             <?php
                                             }
                                             ?>
@@ -342,8 +342,8 @@
                             </div>
                             <div class="container-fluid">
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#menu1" aria-controls="menu2" role="tab" data-toggle="tab" style="font-weight:bold; border-radius:10px 0px 10px 0px;">Daftar Surat Jalan</a></li>
-                                    <li role="presentation"><a href="#menu2" aria-controls="menu2" role="tab" data-toggle="tab" style="font-weight:bold; border-radius:10px 0px 10px 0px;">Daftar Penerimaan</a></li>
+                                    <li role="presentation" class="active"><a href="#menu1" aria-controls="menu2" role="tab" data-toggle="tab" style="font-weight:bold;">Daftar Surat Jalan</a></li>
+                                    <li role="presentation"><a href="#menu2" aria-controls="menu2" role="tab" data-toggle="tab" style="font-weight:bold;">Daftar Penerimaan</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="menu1">

@@ -140,31 +140,31 @@
                                 <br /><br />
                                 <div class="row">
                                         <div class="col-sm-12 text-center">
-                                            <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-info" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                            <a href="<?= base_url('admin/jurnal_umum') ?>" class="btn btn-info" style="width:10%; font-weight:bold;"><i class="fa fa-arrow-left"></i> Kembali</a>
                                             <?php
                                             if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 10){
                                             ?>
                                             <?php if($detail["status"] === "UNPAID") : ?>
-                                                <a href="<?= base_url("pmm/Jurnal_umum/approvalJurnal/".$detail["id"]) ?>" class="btn btn-success" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-check"></i> Approve</a>
-                                                <a href="<?= base_url("pmm/Jurnal_umum/rejectedJurnal/".$detail["id"]) ?>"class="btn btn-primary" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-close"></i> Reject</a>
+                                                <a href="<?= base_url("pmm/Jurnal_umum/approvalJurnal/".$detail["id"]) ?>" class="btn btn-success" style="width:10%; font-weight:bold;"><i class="fa fa-check"></i> Approve</a>
+                                                <a href="<?= base_url("pmm/Jurnal_umum/rejectedJurnal/".$detail["id"]) ?>"class="btn btn-primary" style="width:10%; font-weight:bold;"><i class="fa fa-close"></i> Reject</a>
                                             <?php endif; ?>
                                             <?php
                                             }
                                             ?>
                                             
                                             <?php if($detail["status"] === "PAID") : ?>
-                                                <a target="_blank" href="<?= base_url('pmm/jurnal_umum/cetakJurnal/'.$detail["id"]) ?>" class="btn btn-default" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</a>
+                                                <a target="_blank" href="<?= base_url('pmm/jurnal_umum/cetakJurnal/'.$detail["id"]) ?>" class="btn btn-default" style="width:10%; font-weight:bold;"><i class="fa fa-print"></i> Print</a>
                                                 <?php
                                                 if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                                 ?>
-                                                <a  href="<?= base_url('pmm/jurnal_umum/form/'.$detail['id']) ?>" class="btn btn-primary" style="width:10%; font-weight:bold; border-radius:10px;"><i class="fa fa-edit"></i> Edit</a>
+                                                <a  href="<?= base_url('pmm/jurnal_umum/form/'.$detail['id']) ?>" class="btn btn-primary" style="width:10%; font-weight:bold;"><i class="fa fa-edit"></i> Edit</a>
                                                 <?php
                                                 }
                                                 ?>
                                                 <?php
                                                 if($this->session->userdata('admin_group_id') == 1 || $this->session->userdata('admin_group_id') == 5 || $this->session->userdata('admin_group_id') == 6 || $this->session->userdata('admin_group_id') == 15){
                                                 ?>
-                                                <a class="btn btn-danger" style="width:10%; font-weight:bold; border-radius:10px;" onclick="DeleteData('<?= site_url('pmm/jurnal_umum/delete/'.$detail['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
+                                                <a class="btn btn-danger" style="width:10%; font-weight:bold;" onclick="DeleteData('<?= site_url('pmm/jurnal_umum/delete/'.$detail['id']);?>')"><i class="fa fa-close"></i> Hapus</a>
                                                 <?php
                                                 }
                                                 ?>

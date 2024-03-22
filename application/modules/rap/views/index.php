@@ -88,7 +88,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="text-left">
-                                                    <button type="submit" class="btn btn-default" style="font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
+                                                    <button type="submit" class="btn btn-default" style="font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                 </div>
                                             </div>
                                             <br />

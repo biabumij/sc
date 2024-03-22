@@ -45,7 +45,7 @@
                                 <h3 class="section-subtitle">
                                     Penjualan
                                     <!--<div class="pull-right">
-                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:10px; font-weight:bold;">
+                                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" font-weight:bold;">
                                             <i class="fa fa-plus"></i> Buat <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -252,7 +252,7 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="text-left">
-                                                    <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold; border-radius:10px;"><i class="fa fa-print"></i> Print</button>
+                                                    <button type="submit" class="btn btn-default" style="width:100px; font-weight:bold;"><i class="fa fa-print"></i> Print</button>
                                                 </div>
                                             </div>
                                         </form>
