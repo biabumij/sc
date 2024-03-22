@@ -129,7 +129,6 @@
                                 <div class="tab-content">
 
                                     <!-- Penawaran Pembelian -->
-
                                     <div role="tabpanel" class="tab-pane active" id="home">
                                         <div class="table-responsive">
                                             <div class="col-sm-3">
@@ -158,7 +157,6 @@
                                     </div>
 									
 									<!-- Permintaan Bahan & Alat -->
-									
 									<div role="tabpanel" class="tab-pane" id="chart">
 									<?php
 									    $suppliers= $this->db->order_by('nama','asc')->get_where('penerima',array('status'=>'PUBLISH','rekanan'=>1))->result_array();
@@ -205,8 +203,6 @@
                                 </div>
 								
 								<!-- Form Permintaan Bahan & Alat -->
-
-								
 								<div class="modal fade bd-example-modal-lg" id="modalRequest" role="dialog">
 									<div class="modal-dialog" role="document" >
 										<div class="modal-content">
@@ -292,7 +288,6 @@
 								</div>
 
                                 <!-- Pesanan Pembelian -->
-
                                 <div role="tabpanel" class="tab-pane" id="profile">
                                     <div class="table-responsive">
                                         <div class="col-sm-3">
@@ -326,7 +321,6 @@
                                 </div>
 
                                 <!-- Penerimaan Pembelian -->
-
                                 <div role="tabpanel" class="tab-pane" id="messages">
                                     <div class="row">
                                         <form action="<?php echo site_url('pmm/receipt_material/cetak_surat_jalan');?>" method="GET" target="_blank">
@@ -437,7 +431,6 @@
                                 </div>
 
                                 <!-- Tagihan Pembelian -->
-
                                 <div role="tabpanel" class="tab-pane" id="settings">
                                     <form action="<?php echo site_url('laporan/cetak_daftar_tagihan_pembelian');?>" method="GET" target="_blank">
                                         <div class="col-sm-3">
@@ -1308,7 +1301,6 @@
     </script>
 		
 	<!-- Script Pesanan Pembelian -->
-
     <script type="text/javascript">
         var table_po = $('#table-po').DataTable( {"bAutoWidth": false,
             ajax: {

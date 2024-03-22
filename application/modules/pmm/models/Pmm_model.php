@@ -1638,12 +1638,12 @@ class Pmm_model extends CI_Model {
 
                 $upload_document = false;
                 if($row['status'] == 'PUBLISH' || $row['status'] == 'CLOSED'){
-                    $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" style="border-radius:10px" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
+                    $edit = '<a href="javascript:void(0);" onclick="UploadDoc('.$row['id'].')" class="btn btn-primary" title="Upload Document PO" ><i class="fa fa-upload"></i> </a>';
                 }
                 $edit_no_po = false;
                 $status = "'".$row['status']."'";
                 if(in_array($this->session->userdata('admin_group_id'), array(1,7,11,15))){
-                     $edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$no_po.','.$status.')" class="btn btn-primary" style="border-radius:10px" title="Edit Nomor PO" ><i class="fa fa-edit"></i> </a>';;
+                     $edit_no_po = '<a href="javascript:void(0);" onclick="EditNoPo('.$row['id'].','.$no_po.','.$status.')" class="btn btn-primary" title="Edit Nomor PO" ><i class="fa fa-edit"></i> </a>';;
                 }   
                 $row['status'] = $this->pmm_model->GetStatus($row['status']);
 
