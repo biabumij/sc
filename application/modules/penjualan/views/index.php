@@ -400,7 +400,7 @@
             ],
             "columnDefs": [
                 { "width": "5%", "targets": 0, "className": 'text-center'},
-                { "targets": [7, 8, 9, 10], "className": 'text-right'},
+                { "targets": [6, 7, 8, 9, 10], "className": 'text-right'},
             ],
             responsive: true,
         });
