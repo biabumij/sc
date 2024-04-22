@@ -999,7 +999,7 @@ class Penjualan extends Secure_Controller
 
 					$check_status = $this->crud_global->GetField('pmm_productions', array('id' => $row), 'status_payment');
 					if ($check_status !== 'UNCREATED') {
-						$this->session->set_flashdata('notif_error', 'Status Payment harus UNCREATED');
+						$this->session->set_flashdata('notif_error', 'Status surat jalan harus UNCREATED');
 						redirect('admin/penjualan');
 					}
 				}
