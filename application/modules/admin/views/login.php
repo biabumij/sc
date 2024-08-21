@@ -115,7 +115,7 @@
 						}else {
 							$(".alert").fadeIn();
 							$(".alert").removeClass('alert-warning').addClass('alert-danger');
-							$(".alert-content").text('Maaf, Email atau kata sandi Anda tidak benar. Silakan coba lagi. Jika Anda lupa Email atau kata sandi Anda, dapat menghubungi Admin pusat BBJ.');
+							$(".alert-content").text('Maaf, Email atau kata sandi Anda salah.');
 							$('button.btn-block').button('reset');
 							console.log(data.alert);
 						}
