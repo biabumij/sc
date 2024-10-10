@@ -58,7 +58,7 @@ class Templates extends CI_Model {
 				?>
 	            <div class="logo">
 	                <a href="" class="on-click" style="color:#ffffff; font-weight:bold; display:block; text-align:left; font-size:18px; padding-top:1px; width:880px;">
-					<?php echo $this->m_themes->GetThemes('site_name');?> - DIVISI STONE CRUSHER <br />
+					<?php echo $this->m_themes->GetThemes('site_name');?> - DIVISI STONE CRUSHER - REJOAGUNG<br />
 					<div style="font-size:12px;">
 						<?php echo tglIndonesia(date('D'));?>, <?php echo tglIndonesia(date('d F Y'));?>
 					</div>
