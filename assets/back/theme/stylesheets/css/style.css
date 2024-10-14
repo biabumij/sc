@@ -3669,7 +3669,7 @@ ul.user-contact-info li:last-child {
 .bg-scale-0 {
   background-color: rgba(0, 0, 0, 0);
   border-radius: 10px;
-  border: 1px solid #e69500;
+  /* border: 1px solid #e69500; */
 }
 
 .bg-scale-1 {
